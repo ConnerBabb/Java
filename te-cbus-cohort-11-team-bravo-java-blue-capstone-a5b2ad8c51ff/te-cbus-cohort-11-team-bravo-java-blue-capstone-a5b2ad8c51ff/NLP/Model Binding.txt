@@ -1,0 +1,135 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-java.html#model-binding
+
+Model binding
+Controllers work with data that comes from HTTP requests. For example, a path variable may provide a record ID, and posted form fields may provide values for the properties of the model. Writing code to retrieve each of these values and convert them from strings to Java types would be tedious and error-prone. Model binding automates this process.
+
+The model binding system:
+
+Retrieves data from various sources such as path variables, form fields, and query strings.
+Provides the data to controllers in method parameters and public properties.
+Converts string data to Java types.
+Updates properties of complex types.
+By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
+
+Form fields
+The request body (for controllers that have the @RestController annotation.)
+Path variables
+Query string parameters
+Uploaded files
+#Request parameters
+There are times when you'll want to pass some information along to your API as part of the request. Imagine that you created a method in your Todo API where someone could retrieve all todos based on the completed status. You might use a query parameter named filter with a value of completed. It would look like this:
+
+# request parameter example
+https://localhost:8080/todo?filter=completed
+Suppose you have the following handler method:
+
+@RequestMapping("/todo")
+public List<Todo> getCompletedTodos(@RequestParam String filter) {
+    if (filter != null) {
+        return filterTodos(filter);
+    }
+    else {
+        return todos;
+    }
+}
+Model binding goes though the following steps after the routing system selects the handler method:
+
+Finds a parameter of getCompletedTodos(), a string named filter.
+Looks through the sources and finds "filter=completed" in the query string. Name matching isn't case-sensitive.
+Sets the filter parameter to the string value of "completed."
+Of course, you can declare more than one request parameter:
+
+# request parameter example
+https://localhost:8080/todo?filter=completed&limit=10
+@RequestMapping("/todo")
+public List<Todo> getCompletedTodos(@RequestParam String filter. @RequestParam Integer limit) {
+    if (filter != null) {
+        // limit query param value is assigned to the variable limit and converted to type int
+        return filterTodos(filter, limit);
+    }
+    return todos;
+}
+The limit parameter is required by default, so if you don't pass a limit to the method above, it throws an exception. If you want it to be optional, you can set the @RequestParam annotation's required argument to false:
+
+@RequestMapping( path = "/todo", method = RequestMethod.GET )
+public List<Todo> getTodos(@RequestParam String filter, @RequestParam(required = false) Integer limit) {
+    // If limit has not been passed, then set default to 10.
+    if (limit == null) limit = 10;
+    if (filter != null) {
+        return filterTodos(filter,limit);
+    }
+    return todos;
+}
+#Path variables
+What about a scenario where you want to find a specific todo by its ID? You could use a query parameter for that—like /todo?id=1—but a popular REST convention is to use the ID as a part of the path:
+
+# request path variable example
+https://localhost:8080/todo/2
+The code below says, "Get the todo where its ID is 2."
+
+@RequestMapping(path = "/todo/{id}", method = RequestMethod.GET)
+public Todo getTodo(@PathVariable Integer id) {
+    return getTodos(id);
+}
+Model binding goes though the following steps after the routing system selects the handler method:
+
+Finds the first parameter of getTodo(), an integer named id.
+Looks through the available sources in the HTTP request and finds id = "2" in path data.
+Converts the string "2" into integer 2
+Like request parameters, you can also have multiple and optional path variables:
+
+# request path variable example with multiple parameters
+https://localhost:8080/todo/completed/limit/10
+@RequestMapping(path = "/todo/{filter}/limit/{limit}", method = RequestMethod.GET)
+public List<String> getTodos(@PathVariable String filter, @PathVariable(required = false) Integer limit) {
+    if (limit == null) limit = 10;
+    if (filter != null) {
+        return filterTodos(filter,limit);
+    }
+    return todos;
+}
+#Form data
+Earlier, you saw a Todo model that looked like this:
+
+public class Todo {
+
+    private int id;
+    private String task;
+    private LocalDateTime dueDate;
+    private Boolean completed;
+
+    public Todo() {
+
+    }
+
+    public Todo(int id, String task, LocalDateTime dueDate, Boolean completed) {
+        this.id = id;
+        this.task = task;
+        this.dueDate = dueDate;
+        this.completed = completed;
+    }
+
+    // getters, setters & toString
+}
+
+You could send a POST request with form data needed to create a new Todo:
+
+
+Image - Add Todo - POST Form Data
+But as you can see below, writing a method to accept all of these arguments quickly becomes time-consuming:
+
+@RequestMapping( path = "/todo", method = RequestMethod.POST )
+public void addTodo(@RequestParam int id, @RequestParam String task, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dueDate, @RequestParam Boolean completed) {
+    todos.add(new Todo(id,task,dueDate,completed,completedOn));
+}
+Not to worry—there is a better way to handle this. You can use the @RequestBody annotation to have the request body read and deserialized into an Object:
+
+@RequestMapping( path = "/todo/new", method = RequestMethod.POST)
+public void newTodo(@RequestBody Todo todo) {
+    todos.add(todo);
+}
+With that method in place, you can now send a POST request with JSON data. Spring takes all of those key/values and turns it into a Todo object.
+
+
+Image - Add Todo - POST JSON

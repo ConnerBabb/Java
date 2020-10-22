@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/component-communication.html#structuring-your-components
+
+Vue Component Communication
+When you first learn how to build components in Vue, you usually put all of your code in a single component. For simpler components, this is fine, but as you build more complex applications, you should strive to build more reusable and maintainable components.
+
+It's common for an application to be organized into a tree of nested components:
+
+
+Image - Tree of Nested Components
+#Structuring your components
+#What is a component?
+A popular definition of components states that they're "stand-alone, independent parts of the application that are responsible for handling only one job and don't know about each other."
+
+Below is a breakdown of this definition so you can start to think about how to design components that work together.
+
+First, components should be built in such a way that they're stand-alone and independent, both from other components and from other things that might not be components running on the site. A component can contain all of the data, behavior, UI, and general layout needed to run itself and shouldn't rely on anything outside of itself to get its job done.
+
+You can think of this as a form of encapsulation. The component’s internals should be protected from other parts of the system, giving components independence from outside forces.
+
+This independence makes unit testing, future changes, and refactoring much simpler than if the component had to worry about every other piece of functionality on the site. This doesn't mean that the component never interacts with other components on the page, but that those interactions aren't required for the component to function normally. By not requiring any other component explicitly, you make it possible for a component used in different contexts to be used for different purposes.
+
+#Single Responsibility Principle
+The Single Responsibility Principle (SRP) states that each component in the application should only handle one job. If a component isn't trying to handle an entire dashboard but is instead focused on just one graph on that dashboard, that component is easier to test, easier to maintain, and easier to reuse in another context.
+
+When looking at your application, you should try to specify components in as limited a functional context as possible. You can then look at how to make these components work together to build a larger application

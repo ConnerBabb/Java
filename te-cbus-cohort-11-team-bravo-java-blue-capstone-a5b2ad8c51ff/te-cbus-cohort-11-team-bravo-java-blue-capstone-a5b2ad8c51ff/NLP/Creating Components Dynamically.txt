@@ -1,0 +1,39 @@
+Book
+https://book.techelevator.com/content/component-communication.html#creating-components-dynamically
+
+Creating components dynamically
+As you build out your blogging application, you notice that the BlogPosts component is responsible for two different features. First, it takes in an array of posts and iterates over each one. Second, inside of each post, it displays details about that post such as the title and content.
+
+This component can be split into multiple components, too. There is still a BlogPosts component that handles displaying a list of posts, and a new component called BlogPost that's responsible for the layout of an individual post.
+
+You can use the v-for directive on any element or component. This means the same way that you iterate over an array on a li or div can be used on a component. In the following code, you iterate over the posts data that was passed into the component through props and for each post, you pass that object to the child component as a prop:
+
+<template>
+  <blog-post v-for="post in posts" v-bind:post="post"></blog-post>
+</template>
+
+<script>
+  import BlogPost from 'BlogPost';
+
+  export default {
+    name: 'blog-posts',
+    props: ['posts'],
+    components: {
+      BlogPost
+    }
+  };
+</script>
+<template>
+  <article>
+    <h1>{{ post.title }}</h1>
+    <div v-html="post.content"></div>
+  </article>
+</template>
+
+<script>
+export default {
+  name: 'blog-post',
+  props: ['post']
+};
+</script>
+This approach makes the listing of all your blog posts, as well as the display of the individual blog post, much more maintainable, reusable, and testable. If you decide in the future that you want to display the blog posts differently, you could swap out that component so you don't have to change the listing component.

@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#exception-properties
+
+Exception properties
+The Exception class is the base class from which all exceptions inherit.
+
+It contains the following properties that help make understanding this exception easier.
+
+Property Name	Description
+Cause	Used to create and preserve a series of exceptions caught during exception handling.
+Message	Provides detail about the cause of the exception.
+StackTrace	Contains a stack trace that can determine where the error occurred.
+Most of the classes that inherit from Exception don't add additional properties or members. They inherit from Exception to allow as specific of error handling as possible.
+
+The next section looks at two particular properties to demonstrate their usefulness.
+
+#Message
+The message property describes the exception in further detail.
+
+Most exception messages explain the reason for the exception. They aren't guaranteed to be user-friendly.
+With custom exceptions, you can set your own message.
+#Stack trace
+A stack trace is a list of method calls the application had pending when the exception was thrown. Having a stack trace is extremely important. You don't want to troubleshoot production issues without seeing the original error take place.
+
+If you look at a sample Java stack trace (C# looks very similar), you can see its value.
+
+Exception in thread "main" java.lang.NullPointerException
+        at com.example.myproject.Book.getTitle(Book.java:16)
+        at com.example.myproject.Author.getBookTitles(Author.java:25)
+        at com.example.myproject.Bootstrap.main(Bootstrap.java:14)
+The stack trace acts like a trail of breadcrumbs so that you can determine where the NullPointerException occurred in your code. If you start with the top of the list of "at...", you'll see the name of the class, method, and the line number that caused the NullPointerException.
+
+In this case it's:
+
+at com.example.myproject.Book.getTitle(Book.java:16)
+You should use this by observing what file it references and look directly at the line. In this case, the error occurred in Book.java on line 16:
+
+15   public String getTitle() {
+16      System.out.println(title.toLower());
+17      return title;
+18   }
+A NullPointerException occurs when you try to invoke a property or method on an object whose value is null. It looks like title may have been null.
+
+Stack traces give a lot away
+
+Stack traces can be dangerous if observed by customers or users in production. Error screens should be used to show when something goes wrong. If a malicious user saw a stack trace, they'd have information that can compromise your application, like the technology used, the libraries your code relies on, and internal naming conventions.
+
+In sum: read the stack trace. It'll save you time.

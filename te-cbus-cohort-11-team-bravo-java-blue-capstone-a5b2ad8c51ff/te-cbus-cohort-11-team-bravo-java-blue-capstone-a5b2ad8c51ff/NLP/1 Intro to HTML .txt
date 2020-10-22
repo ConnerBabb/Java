@@ -1,0 +1,793 @@
+Book
+https://book.techelevator.com/content/intro-html-css.html#introduction-to-html
+
+HTML stands for Hyper Text Markup Language. HTML is a markup language, which means that you take the raw content you want to display and structure it using HTML tags. A web browser needs to be told how to display and structure your content.
+
+Consider the following text:
+
+This is a heading! This is a paragraph. This is another paragraph.
+To the browser, this is all text that has no special meaning.
+
+Now, consider the same text marked up with HTML tags:
+
+<h1>This is a heading!</h1>
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+When the browser parses this document, it sees that you've placed emphasis on the first line of text ("This is a heading!") and that it must be a heading in your document. The next two lines of text are paragraphs and are treated differently than the first line.
+
+#Getting started
+Some of the advantages of doing web development with HTML and CSS are that you can start working with the languages pretty quickly, and they have a fast feedback loop.
+
+To get started, you need a web browser and a text editor, both of which are already installed on your machine. You'll use Visual Studio Code, which is the most popular editor for a variety of languages.
+
+To start working with HTML, you'll need to create a new file called index.html.
+
+Why start with index.html?
+
+When you visit a domain name like http://www.techelevator.com, by default, the browser looks for a file called index.html. When you have an index.html document, you don't have to specify the filename. If the only file on your site was about.html, a user would visit /about.html.
+
+After you create your index.html document, you need to start building out the document's structure.
+
+Note: Indentation and the occasional blank line are used in many of the following HTML samples for the sake of clarity. Neither indentation, nor blank lines are required by HTML.
+
+#HTML document structure
+Each HTML document begins with same structure and builds from there. The first line of the document is <!DOCTYPE html>, which tells other browsers that this is an HTML5 document.
+
+Next is the HTML tag <html>, which is the root tag for your entire document. All other elements must be descendants of this tag.
+
+Finally, there's the <head> and <body> tags:
+
+<head>: The head is the part of an HTML document that contains metadata about that document, such as the author, description, and links to CSS or JavaScript files that should be applied to the HTML.
+<body>: This element represents the content of an HTML document. There can be only one <body> element in a document.
+Below is the basic HTML structure. If you paste this content into a new HTML document and open it in a browser, the browser will open it because it's a valid HTML document. However, you'd find yourself starting at a blank screen, as there's nothing to display:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- metadata goes here -->
+  </head>
+  <body>
+    <!-- content goes here -->
+  </body>
+</html>
+One of the good things about HTML is that each HTML file starts with the same structure, so you don't have to write this code by hand. Most IDEs or text editors generate this for you.
+
+You can generate the base HTML structure using Emmet, a tool that helps you write HTML and CSS faster. It's built-in to Visual Studio Code, so you don't have to download any extensions or plugins.
+
+Enabling Emmet in Visual Studio Code
+
+To make sure Emmet is enabled, go to Code > Preferences > Settings. In the "Search settings" box, type "Emmet." You'll see a list of settings you can modify.
+
+Scroll down until you see "Emmet: Trigger Expansion on Tab." If you see a checked box, the setting is already enabled. If it isn't, check the box to enable it.
+
+Once you've enabled Emmet, you can use the shortcut ! + tab to generate the base HTML structure:
+
+
+Image - HTML Base Structure
+If you did that correctly, you'll end up with this:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+#Setting the page title
+When building a new HTML document, the first thing you usually do is set is the title of the page. The page title is the text that appears in the tab of your browser window. You can set it using the <title> tag. The page title is considered metadata, which belongs in the <head> of your document.
+
+Once you add the page title, here's what the document looks like:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- metadata goes here -->
+    <title>My Page Title</title>
+  </head>
+  <body>
+    <!-- content goes here -->
+  </body>
+</html>
+Now that you've filled in some metadata, you can open your web page. You can open it in your browser of choice by double clicking on the file in Finder, or you can open it through Visual Studio Code.
+
+Opening web pages in Visual Studio Code
+
+If you want to open a web page from Visual Studio Code rather than going to your browser, you can use an extension called Live Server. The extension is already installed on your computer.
+
+To open the above code using Live Server, you'd right click on the index.html file in the Explorer and select Open with Live Server.
+
+
+Image - Opening Live Server
+When the browser opens the web page, you'll see your title in the tab:
+
+
+Image - My Page Title
+#HTML tags
+If you look in the code block above, you'll notice that almost every HTML tag has a start and end tag. You saw this earlier with the <head> tag. There was an opening tag, <head>, and a closing tag, </head>. In between, there was a <title> tag. And inside the <title> tag was the text that set the page title:
+
+<head>
+  <!-- metadata goes here -->
+  <title>My Page Title</title>
+</head>
+There are also tags that don't have any content between them. If that's the case, you don't need a closing tag. These types of tags are called self-closing tags:
+
+<!-- line break -->
+<br />
+
+<!-- horizontal rule -->
+<hr />
+#HTML attributes
+Elements in HTML have attributes. These are additional values that configure the elements or adjust their behavior in various ways to meet the criteria the users want. There are two types of attributes: global attributes, which apply to all HTML elements, and then attributes that apply to one or more elements.
+
+Attributes are defined on HTML tags using the attribute name and value. You already saw an example of an attribute in the <html> element:
+
+<html lang="en">
+  <meta charset="UTF-8" />
+</html>
+The lang global attribute defines the language of an element. Each element inherits global attributes and defines their own. If you visit the documentation for an element like <html>, you'll see both the global and element specific attributes.
+
+
+Image - HTML Element Attributes
+If you want to see a list of all attributes, you can view them here.
+
+#Common HTML tags
+There are several HTML tags that you'll find yourself using frequently.
+
+#Heading tags
+There are six tags you can use to define headings: <h1>, <h2>, <h3>, <h4>, <h5>, and <h6>. They range in importance, from <h1> being the most important, to <h6> as the least.
+
+The importance is typically displayed as varying text sizes; <h1> is the largest, <h6> the smallest. While it's tempting to use the heading tags to resize text, their intent is to indicate relative importance.
+
+As a best practice, there should be only one <h1> tag per page, signifying the main topic or purpose of the page. Subsequent headings should descend as needed but without skipping heading tags. For instance, you shouldn't go from <h2> to <h4> without an intervening <h3>:
+
+<h1>Programming Languages</h1>
+<h2>Imperative</h2>
+<h3>Object-oriented</h3>
+<h4>C#</h4>
+<h4>Java</h4>
+<h3>Functional</h3>
+<h4>Haskell</h4>
+<h4>Swift</h4>
+<h2>Declarative</h2>
+<h3>HTML</h3>
+<h3>SQL</h3>
+As you can see from the above code, there may be duplicate <h2> - <h6> tags within a page.
+
+<h1> - <h6> tags have no special attributes of their own, but they do support the standard global attributes. If you want to learn more about the six heading elements, see the MDN web docs about HTML heading elements.
+
+#The paragraph tag
+The <p> element defines a paragraph. A paragraph always starts a new line, with some margin before and after the paragraph added by the browser. Any whitespace in the HTML document before or after the paragraph or within the paragraph itself is ignored and does not display:
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus luctus
+  accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam phasellus
+  vestibulum. Proin libero nunc consequat interdum. Pharetra convallis posuere
+  morbi leo urna molestie at elementum eu.
+</p>
+
+<p>
+  Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+  egestas egestas fringilla phasellus faucibus scelerisque eleifend donec
+  pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam tempor
+  orci eu lobortis elementum nibh tellus molestie nunc.
+</p>
+<p> has no special attributes of its own, but does support the standard global attributes. If you want to learn more about <p> tag, visit the MDN web docs.
+
+#The emphasis tag
+The emphasis, or <em> tag, emphasizes text. Typically, emphasized text is displayed in italics. Interestingly, screen readers add verbal stress to emphasized text.
+
+<em> has no special attributes of its own, but does support the standard global attributes. If you want to learn more about the <em> tag, visit the MDN web docs.
+
+Here's how you'd use the emphasis tag in a paragraph:
+
+<p>
+  The multi-volume <em>The Art of Computer Programming</em> by Donald E. Knuth
+  is considered a classic.
+</p>
+#The strong tag
+The <strong> tag defines important text. Important text is usually displayed in bold.
+
+<strong> has no special attributes of its own, but does support the standard global attributes. If you want to learn more about the <strong> tag, visit the MDN web docs.
+
+Below is how you'd use the <strong> tag in a paragraph:
+
+<p>
+  <strong>Stop!</strong>, look, and listen before calling your chicken from
+  across the road.
+</p>
+#The blockquote tag
+The <blockquote> is similar to a paragraph in terms of whitespace before, after, and within the blockquote. It differs from the paragraph in that the text is indented when displayed in the browser.
+
+Unlike the paragraph which has no unique attributes, the <blockquote> has a single cite attribute which contains a URL to the source of the quotation. The cite attribute's URL isn't displayed, but can be used by search engines to get more information about the quotation.
+
+Besides the cite attribute, <blockquote> supports the standard global attributes. To learn more, visit the MDN web docs.
+
+Below is how you'd use the <blockquote> tag:
+
+<p>As we like to say at Tech Elevator:</p>
+<blockquote cite="https://www.techelevator.com">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sit
+  accusamus itaque a vitae, atque eum nam ab explicabo repudiandae nesciunt
+  sequi fugiat sint eveniet iste facilis quas distinctio voluptatum?
+</blockquote>
+#The anchor tag
+The anchor, or <a>, tag, defines a hyperlink. It adds the hyper to hypertext, and is at the very heart of the Hypertext Transfer Protocol and the World Wide Web.
+
+Given its power, the <a> is surprisingly straightforward. While it has well over a half a dozen attributes to choose from, the href is typically the only one used. It contains the URL of the page the link goes to. The href may link to web pages, files, email address, locations in the same page, and anything else a URL can address.
+
+In addition to href, and the other half-dozen or so <a>-specific attributes, <a> supports the standard global attributes. To learn more about the <a> tag, see the MDN web docs.
+
+Below is how you'd use the <a> tag:
+
+<a href="https://www.techelevator.com">Tech Elevator</a>
+<a href="email:hello@techelevator.com>">Contact Us</a>
+#The image tag
+The image, or <img> tag, links an image to a webpage, and is a placeholder signifying where the image will appear in the page.
+
+In addition to several others, <img> has two required attributes: src and alt. src specifies the path to the image. alt contains alternative text if the image can't be displayed. Keep in mind that screen readers read the alt text out loud.
+
+Here's how you use the <img> tag:
+
+<img src="img/te-stacked-logo.png" alt="Tech Elevator logo" />
+To learn more about the <img> tag, visit the MDN web docs.
+
+#Ordered and unordered lists
+There are two types of HTML lists: ordered <ol> and unordered <ul>. Both use the list item tag <li> to itemize their items.
+
+#Unordered list
+The <ul> is the simpler of the two. The order of the items in the list is unimportant, and although it has two attributes, both have been deprecated, and shouldn't be used.
+
+<ul> tags may be nested within one another. Here's how you'd use them:
+
+<ul>
+  <li>Imperative Languages</li>
+  <ul>
+    <li>C#</li>
+    <li>Java</li>
+  </ul>
+  <li>Functional Languages</li>
+  <ul>
+    <li>HTML</li>
+    <li>SQL</li>
+  </ul>
+</ul>
+<ul> does support the standard global attributes. To learn more about unordered lists, read the MDN web docs.
+
+#Ordered list
+<ol> is similar to <ul>, but the order of the items in the list is important in that each item is preceded by a number or letter.
+
+The <ol> list has three attributes, but only start is ever really used. start is always an integer value, even if the item is preceded by a letter. For instance, start="4" begins at "d" if the list is "numbering" items by letter.
+
+In addition to the occasionally used start, the rarely used reversed, and the largely deprecated type attributes, <ol> supports the standard global attributes.
+
+<ol> tags may be nested within one another. Here's how you'd use them:
+
+<ol>
+  <li>Imperative Languages</li>
+  <ol>
+    <li>C#</li>
+    <li>Java</li>
+  </ol>
+  <li>Functional Languages</li>
+  <ol>
+    <li>HTML</li>
+    <li>SQL</li>
+  </ol>
+</ol>
+To learn more about ordered lists, visit the MDN web docs.
+
+Can you combine ordered and unordered lists?
+
+You can nest <ul> under <ol>, and vice-versa, although the need is very unusual.
+
+#The table tag
+The <table> tag defines an HTML table that consists of table rows <tr>, and table data <td> (i.e. column) elements. Table rows and data elements may be optionally grouped under <thead>, <tbody>, and <tfoot> tags, although this isn't necessarily common practice.
+
+<th> is an alternative to <td>, and the two may be used interchangeably. The distinction is that <th> is usually displayed in larger, heavier font.
+
+The <table> element, as well as all its related tags, supports the standard global attributes. To learn more about the <table> tag, visit the MDN web docs.
+
+Note: earlier versions of <table> and its related tags shared several attributes in common. All these older attributes have been deprecated.
+
+Here is an example table:
+
+<p>Programming Languages by Year Released</p>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Year Released</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C</th>
+            <td>1972</td>
+        </tr>
+        <tr>
+            <td>Java</th>
+            <td>1996</td>
+        </tr>
+        <tr>
+            <td>JavaScript</th>
+            <td>1996</td>
+        </tr>
+        <tr>
+            <td>C#</th>
+            <td>2002</td>
+        </tr>
+        <tr>
+            <td>Rust</th>
+            <td>2010</td>
+        </tr>
+        <tr>
+            <td>Swift</th>
+            <td>2014</td>
+        </tr>
+        <tr>
+            <td>Kotlin</th>
+            <td>2016</td>
+        </tr>
+    </tbody>
+</table>
+Note: Much more complex tables are possible with tables nested inside tables, and columns and rows spanned together using the colspan and rowspan attributes. This is generally considered bad practice as assistive technology, such as screen readers, may not be able to correctly parse them.
+
+#Forms
+HTML forms are one of the most important parts of a website. They allow you to collect information from your visitors. This could be something as simple as a contact form, mailing list signup form, or blog comment, all the way to an entire e-commerce checkout process.
+
+All forms start with the same structure and use different elements to capture different types of data from your visitors.
+
+#The form tag
+The HTML <form> element represents a document section containing interactive controls for submitting information:
+
+<form>
+  <!-- form interactive controls -->
+</form>
+The form element has two attributes:
+
+action: The URL that processes the form submission.
+method: The HTTP method to submit the form with. Possible values:
+post: The POST method; form data sent as the request body.
+get: The GET method; form data appended to the action URL with a ? separator.
+Imagine that you had a login form that asked the user for their username and password. When they submit the form, their information is sent to your server using the POST method. An example login form might look like this:
+
+<form action="http://localhost:3000/api/users/login" method="POST">
+  <!-- elements to capture username and password here -->
+</form>
+#Form elements
+When building a form, it's important to understand what tools are available to you. There are many elements and variations of those elements that let you add interactive controls to your forms. In this section, you'll learn about the different form elements, when you might want to use them, and see some example code.
+
+This example form has some of the interactive controls you'll learn about below.
+
+
+Image - Form Interactive Controls
+#Input
+The <input> element is one of the most powerful elements in HTML because of the sheer number of combinations of input types and attributes. When you define an input element, you start by setting the name attribute:
+
+<input name="firstName" />
+When a form is submitted, the input element is sent in the form of a key/value pair. The name of the element is what you define in the name attribute, and the value is what the user typed in the input control. You need to define the names of your elements so that you can handle them when processing them on the server.
+
+The next attribute you need to set is the type. How an <input> element works varies considerably depending on the value of its type attribute. If this attribute isn't specified, the default type adopted is text:
+
+<input name="firstName" type="text" />
+#Input types
+The following is a list of common types and what they provide:
+
+Type	Description
+button	A push-button with no default behavior displaying the value of the value attribute, empty by default.
+text	The default value. A single-line text field. Line-breaks are automatically removed from the input value.
+checkbox	A check box allowing single values to be selected/deselected.
+radio	A radio button, allowing a single value to be selected out of multiple choices with the same name value.
+date	A control for entering a date (year, month, and day, with no time). Opens a date picker or numeric wheels for year, month, day when active in supporting browsers.
+email	A field for editing an email address. Looks like a text input, but has validation parameters and relevant keyboard in supporting browsers and devices with dynamic keyboards.
+color	A control for specifying a color; opening a color picker when active in supporting browsers.
+file	A control that lets the user select a file. Uses the accept attribute to define the types of files that the control can select.
+number	A control for entering a number. Displays a spinner and adds default validation when supported. Displays a numeric keypad in some devices with dynamic keypads.
+submit	A button that submits the form.
+If you want to see the full list of types, see the Input Element MDN Documentation.
+
+#Input attributes
+Because <input> has so many types, there is a long list of supported attributes based on type. Here are a few of the more common attributes you'll come across when working on input elements.
+
+Attribute	Description
+name	Name of the input form control. Submitted with the form as part of a name/value pair.
+type	Type of input form control.
+value	Current value of the form control. Submitted with the form as part of a name/value pair.
+disabled	Whether the form control is disabled.
+minlength	Minimum length (number of characters) of value.
+maxlength	Maximum length (number of characters) of value placeholder.
+required	Boolean. A value is required or must be checked for the form to be submittable.
+#Label
+The HTML <label> element represents a caption for an item in a user interface. For example, you need to collect the first name, last name, and email address in a user registration form.
+
+You start with your form element, create input controls, and give each of them unique names so you know which piece of data is which when the form is submitted to your server:
+
+<h1>Registration Form</h1>
+<form>
+  <input name="firstName" type="text" />
+  <input name="lastName" type="text" />
+  <input name="email" type="email" />
+</form>
+When this page loads, your users see the following:
+
+
+Image - HTML Forms No Labels
+This isn't very user friendly because your users don't know what information they should fill in. A better approach is to use the label element. The for attribute contains the ID of a labelable form-related element in the same document as the <label> element. The value in between the start and end label tag is displayed to the user:
+
+<h1>Registration Form</h1>
+<form>
+  <label for="firstName">First Name:</label>
+  <input id="firstName" name="firstName" type="text" />
+
+  <label for="lastName">Last Name:</label>
+  <input id="lastName" name="lastName" type="text" />
+
+  <label for="email">Email Address:</label>
+  <input id="email" name="email" type="email" />
+</form>
+
+Image - HTML Form with Labels
+Name versus ID
+
+Why do you need both the ID and name attributes on a control? As you learned earlier, the name attribute determines the key of the data being submitted to the server. The ID attribute is a unique identifier given to an element that can be used by the browser and has no bearing of the key being sent to the server. When you say label for=“firstName”, you're assigning this label to an element with an ID of firstName. These are two different attributes and there are often times when you need both.
+
+#Textarea
+You can use the input control to ask the user for some text, but what happens when you need paragraphs of text? The HTML <textarea> element represents a multi-line, plain-text editing control.
+
+It's useful when you want to allow users to enter a sizeable amount of free-form text—for example, a comment on a review or feedback form. In this example, it's used to allow users to enter information about themselves:
+
+<h1>Registration Form</h1>
+<form>
+  <label for="firstName">First Name:</label>
+  <input id="firstName" name="firstName" type="text" />
+  <br />
+
+  <label for="lastName">Last Name:</label>
+  <input id="lastName" name="lastName" type="text" />
+  <br />
+
+  <label for="email">Email Address:</label>
+  <input id="email" name="email" type="email" />
+  <br /><br />
+
+  <label for="about">Tell us about yourself:</label><br />
+  <textarea id="about" name="about" rows="8" cols="60"></textarea>
+</form>
+The rows and cols attributes are one way to specify the exact size of the textarea. Setting these is a good idea for consistency, as browser defaults can differ.
+
+
+Image - HTML Textarea
+#Select
+The HTML <select> element represents a control that provides a menu of options:
+
+<form>
+  <label for="department">Department:</label>
+  <select id="department" name="department">
+    <option value="">--Please choose an option--</option>
+    <option value="sales">Sales</option>
+    <option value="marketing">Marketing</option>
+    <option value="IT">IT</option>
+  </select>
+</form>
+Each menu option is defined by an <option> element nested inside the <select> element. Each <option> element should have a value attribute containing the data value to submit to the server when that option is selected.
+
+If no value attribute is included, the value defaults to the text contained inside the element. You can include a selected attribute on an <option> element to make it selected by default when the page loads for the first time.
+
+By default, the <select> element only allows for a single choice. If you want to allow for multiple selections, you can use the multiple attribute:
+
+<form>
+  <label for="favoriteFood">Favorite Foods</label>
+  <select name="favoriteFood" id="favoriteFood" multiple="true">
+    <option>Pizza</option>
+    <option>Ice Cream</option>
+    <option>Meat</option>
+    <option>Seafood</option>
+  </select>
+</form>
+#Semantic HTML
+The word semantic means, "of or relating to meaning in language." If you're using semantic HTML, you're using elements that have meaning to them.
+
+Sematic HTML is a key component to a much larger and ambitious project, the Semantic Web. Originally proposed by Sir Tim Berners-Lee, the creator of the World Wide Web, the Semantic Web allows for more intelligent searches and knitting together of knowledge than is possible with simple word matches. This is because semantic HTML tags provide additional context or meaning to the words beyond the fact they match.
+
+Another advantage of using semantic HTML is that your website becomes more accessible. Accessibility is the practice of making your websites usable by as many people as possible.
+
+Many people think of accessibility when it comes to the visually impaired who visit your website with a screen reader. Making websites more accessible also includes those using mobile devices or those with slower internet connections.
+
+You've already seen examples of semantic HTML with the form and table elements. When you see the form element, you know that this element has meaning. What follows is one or more controls to collect information. When you see the table element, you expect to see data in rows and columns:
+
+<form>
+  <!-- form controls -->
+</form>
+
+<table>
+  <!-- rows and columns -->
+</table>
+To gain a better understanding of what semantic HTML means, consider a non-semantic web page. A non-semantic web page is typically built around <div> tags. A <div> is the generic container for content.
+
+Read through the sample below. Note how the content is broken up into several <div> groups. Each group has a purpose, but because there is no standard semantic way of distinguishing one <div> from another, the purpose, or meaning of each grouping, remains unknown:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Content</title>
+  </head>
+  <body>
+    <h1>My Blog</h1>
+    <div>
+      <ul id="myNavigation">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+      </ul>
+    </div>
+    <div id="leftside">
+      <ul id="categories">
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+      </ul>
+    </div>
+    <div>
+      <h2>My Article</h2>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam illum
+        earum voluptas ab quod, omnis ut incidunt repudiandae nemo adipisci
+        voluptate ex inventore similique, autem iure distinctio saepe cum iste!
+      </p>
+      <p>
+        Assumenda, iure aliquam voluptate repellat omnis, facere ad tempore,
+        porro voluptatum quidem nostrum illum voluptates ipsa autem temporibus
+        eius? Error recusandae id deleniti maiores itaque quidem facilis ducimus
+        molestiae dolorem.
+      </p>
+      <p>
+        Cum, veniam assumenda eius, libero, ipsam praesentium ad sunt natus
+        omnis impedit similique iure in voluptatibus qui ducimus soluta! Cumque
+        neque sit sapiente ea molestiae distinctio cupiditate aliquam
+        exercitationem ipsum.
+      </p>
+    </div>
+    <div>
+      Ads
+    </div>
+    <div id="footer">
+      My Footer
+    </div>
+  </body>
+</html>
+You can read the HTML, and figure out that the first <div> is related to navigation, and the second seems to have something to do with an aside, but a computer can't. It needs semantic tags to understand that some content is related to navigation, while other content belongs to asides, articles, and footers.
+
+There are over a dozen Semantic HTML elements. The following are the most commonly used:
+
+<header>
+<footer>
+<nav>
+<article>
+<section>
+<aside>
+<main>
+#Header
+The <header> element is a container for other items. There are no hard and fast rules stating what goes in or stays out of a <header>, but they typically contain a combination of headings, navigational links, author or company name, and logos.
+
+Although the name implies there is only one <header> per page, it's possible for a page to have multiple headers.
+
+The class attribute is commonly used to distinguish <header> tags within the same page:
+
+<header class="page-header">
+  <a href="https://www.techelevator.com"
+    ><img src="img/te-stacked-logo.png" alt="Tech Elevator logo"
+  /></a>
+  <p>Learn to code -- control your future</p>
+</header>
+
+<header class="main-headline">
+  <p>Main Headline</p>
+</header>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus luctus
+  accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam phasellus
+  vestibulum. Proin libero nunc consequat interdum. Pharetra convallis posuere
+  morbi leo urna molestie at elementum eu.
+</p>
+
+<header class="sub-headline">
+  <p>Sub Headline</p>
+</header>
+<p>
+  Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+  egestas egestas fringilla phasellus faucibus scelerisque eleifend donec
+  pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam tempor
+  orci eu lobortis elementum nibh tellus molestie nunc.
+</p>
+#Footer
+The HTML <footer> element is the counterpart to the <header> tag. Like the header, there are no specific rules governing its contents, but a footer typically contains information about the author or company, copyright notice, and links to related pages.
+
+Although unusual, there may be multiple footers in a page:
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus luctus
+  accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam phasellus
+  vestibulum. Proin libero nunc consequat interdum. Pharetra convallis posuere
+  morbi leo urna molestie at elementum eu.
+</p>
+<footer class="author">
+  <p>Written for Tech Elevator by Lorem Ipsum</p>
+</footer>
+
+<p>
+  Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+  egestas egestas fringilla phasellus faucibus scelerisque eleifend donec
+  pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam tempor
+  orci eu lobortis elementum nibh tellus molestie nunc.
+</p>
+<footer class="copyright">
+  <p>Contents copyright of Tech Elevator, &copy;, 2020.</p>
+</footer>
+#Nav
+The HTML <nav> tag represents a section of a page whose purpose is to provide navigation links. Common examples of navigation sections are menus and tables of contents. The navigation links can be external or internal.
+
+There may be multiple <nav> tags in a page, too:
+
+<nav>
+  <ul>
+    <li><a href="https://www.techelevator.com">Tech Elevator</a></li>
+    <li><a href="#current-blog">Current Blog</a></li>
+  </ul>
+</nav>
+#Article
+A HTML <article> represents a stand-alone document within a page. For instance, a forum post, a magazine or newspaper article, or a blog entry are all examples of stand-alone documents within a page.
+
+A single page may contain multiple <article> tags:
+
+<article>
+  <h1>Programming Languages: The first 5,000 years</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus
+    luctus accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam
+    phasellus vestibulum. Proin libero nunc consequat interdum. Pharetra
+    convallis posuere morbi leo urna molestie at elementum eu.
+  </p>
+  <p>
+    Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+    egestas egestas fringilla phasellus faucibus scelerisque eleifend donec
+    pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam
+    tempor orci eu lobortis elementum nibh tellus molestie nunc.
+  </p>
+</article>
+#Section
+The HTML <section> represents a standalone section that doesn't have a more specific semantic tag to represent it. Typically, but not always, sections have a heading. It is possible to have multiple sections within a page.
+
+It's also acceptable to nest <section>s inside <article>s, and vice-versa. In other words, you can have sections within an article, a section of articles, or a section of articles which in turn contain sections. You decide how best to structure content.
+
+Below is some sample code containing sections:
+
+<article>
+  <h1>Programming Languages: The first 5,000 years</h1>
+  <section>
+    <h2>Clay tablets and Styli
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus luctus
+      accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam phasellus
+      vestibulum. Proin libero nunc consequat interdum. Pharetra convallis posuere
+      morbi leo urna molestie at elementum eu.
+    </p>
+  </section>
+  <section>
+    <h2>The Flintstones Awards: Precursor to the Turing</h2>
+    <p>
+      Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+      egestas egestas fringilla phasellus faucibus scelerisque eleifend donec
+      pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam tempor
+      orci eu lobortis elementum nibh tellus molestie nunc.
+    </p>
+  </section>
+</article>
+#Aside
+The HTML <aside> tag defines a portion of a page which is only indirectly related to the main content. Asides are frequently presented as sidebars or call-out boxes:
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna liqua. Aliquet porttitor lacus luctus
+  accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam phasellus
+  vestibulum. Proin libero nunc consequat interdum. Pharetra convallis posuere
+  morbi leo urna molestie at elementum eu.
+</p>
+<aside>
+  Note: the eisumod is tempor of the incididunt.
+</aside>
+<p>
+  Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Sed
+  egestas egestas fringilla phasellus faucibus scelerisque* eleifend donec
+  pretium. Ipsum consequat nisl vel pretium lectus quam id leo in. Etiam tempor
+  orci eu lobortis elementum nibh tellus molestie nunc.
+</p>
+<aside>
+  * Further evidence regarding the faucibus scelerisque debacle.
+</aside>
+#Main
+The HTML <main> tag contains the primary content directly related to the <body> of a page. There should be only a single <main> tag per page.
+
+The page <header> and <footer> typically bracket the <main> tag:
+
+<body>
+  <header>
+    <a href="https://www.techelevator.com"
+      ><img src="img/te-stacked-logo.png" alt="Tech Elevator logo"
+    /></a>
+    <p>Learn to code -- control your future</p>
+  </header>
+  <main>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna liqua. Aliquet porttitor lacus
+      luctus accumsan tortor posuere ac ut. Magna fermentum iaculis eu non diam
+      phasellus vestibulum. Proin libero nunc consequat interdum. Pharetra
+      convallis posuere morbi leo urna molestie at elementum eu.
+    </p>
+  </main>
+  <footer>
+    <p>Contents copyright of Tech Elevator, &copy;, 2020.</p>
+  </footer>
+</body>
+#Refactoring with Semantic HTML
+Now that you know you have elements with some meaning to them, you can refactor the previous blog post code:
+
+<header>
+  <h1>My Blog</h1>
+  <nav>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
+  </nav>
+</header>
+<section>
+  <nav>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
+  </nav>
+</section>
+<main>
+  <article>
+    <h2>My Article</h2>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam illum earum
+      voluptas ab quod, omnis ut incidunt repudiandae nemo adipisci voluptate ex
+      inventore similique, autem iure distinctio saepe cum iste!
+    </p>
+    <p>
+      Assumenda, iure aliquam voluptate repellat omnis, facere ad tempore, porro
+      voluptatum quidem nostrum illum voluptates ipsa autem temporibus eius?
+      Error recusandae id deleniti maiores itaque quidem facilis ducimus
+      molestiae dolorem.
+    </p>
+    <p>
+      Cum, veniam assumenda eius, libero, ipsam praesentium ad sunt natus omnis
+      impedit similique iure in voluptatibus qui ducimus soluta! Cumque neque
+      sit sapiente ea molestiae distinctio cupiditate aliquam
+      exercitationemipsum.
+    </p>
+    <footer>
+      Written for Tech Elevator by Lorem Ipsum
+    </footer>
+  </article>
+</main>
+<section>
+  Ads
+</section>
+<footer>
+  Contents copyright of Tech Elevator, &copy;, 2020.
+</footer>

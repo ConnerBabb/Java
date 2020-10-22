@@ -1,0 +1,1343 @@
+Zoom
+https://techelevator.zoom.us/rec/share/6ZBeHan9-URLctbQ4WOFcfYfGa3qX6a8hyAZrvEKnRwUiqm3jCRLDd5qREW8BKHW?startTime=1590758457000
+https://drive.google.com/file/d/1JlYshxSUYbpoEu2ataGM0_mR0a-LQXXU/view?usp=sharing
+https://docs.google.com/presentation/d/1u3eXWn9mCqKTg0mvT2bvpnprEpK2Z7NFogKDbrbSHXs/edit?usp=sharing
+Okay, so we're gonna take a kind of a departure from what we've been looking at, actually for the last few weeks today and talk about a new topic, new testing. So what we're so everything you've been doing so far as but half of the problem that would normally be solved from development, half of the code should say not the problem is part of any code that's written. There's always also test code it's written in that test code is just as important and should be the same quality as the code to solving the problem. So we're going to talk about how we write that code. You've been using unit tests all along we've just been giving them to, to work with. So we're going to save we're going to look at how to write your own and how to kind of do the other, the other half of that. So when working on code, whether or not tests that you can have tests, and we'll talk about also why, why it's so important to, to do be able to do that. So we're going to start by talking through the first part of this will be just kind of talking about what testing is. So we're going to talk this thing called the software development lifecycle. And then we'll go through a testing overview, kind of review what testing is in different types of testing. So those first two are not really are more just in general about testing and kind of the industry and how that works. And some of the terms are here and some of the how it works in a project. As part of that also, we'll talk through a couple different ways that projects are commonly run as part of the software development lifecycle. And then We'll focus more on one particular type of testing called unit testing, and talk through how that's going to work. And then getting more focused with using it with Java using this framework called j unit will define what it means to be a framework together. Then as we go, we'll look at this other thing called code coverage, which is a tool that's built in to IDs like Eclipse that can help with testing.
+
+So let's talk about the
+
+the problem that we're going to solve with all this, I think first for testing. So software systems get really large.
+
+They very quickly get to a point
+
+that they become unmanageable either even by the team who initially wrote them for just comparison of the size, the scale We're talking about the number, the amount of code is that Chrome, the browser that is installed and most of you will probably used or are using now has an engine, what's the engine at the base of it. So kind of the internal workings of it, not the browser itself. But this piece that is internal to it, that's shared mageddon several other things that we'll look at more we get to JavaScript. But the crony it's called chromium, the chromium engine that runs Chrome. What I was typing is I was looking at the repository to see how much has changed because it changes each time I write each cohort is changed again. It's currently at 34,000,882 and 169. lines of code. So the engine without even the chrome wrapper around it is almost 35 million lines of code currently. That's not that's a large project, but that's not a huge project. They get much larger than that. So when you have that much code, and I don't know how many developers are working on that right now, chronium probably has at least several teams and probably a few hundred or 100 or more developers that are working on it. For different pieces, you have this problem, first of how do you make sure it works before it gets to your users. And then this other problem of, if you have this 34 million lines of code software, and you want to add any feature in it has to work with something that already exists, which is going too fast to kind of plug in and work with existing code. How do you make sure you don't break? Other things that are might be attached to the same code? How do you even remember what was attached to the same code? So very quickly, software even just a very small scale rapidly deteriorating The ability to be able to maintain it and change it. And so that's one of the main things we're gonna look at with unit testing. And with testing in general, is two things, one to make sure that when we make a change, we don't, the change works, the new code works. That's actually the lesser of the two. That's testing that is important to test teams that's in testing is important to the industry. But for developers, what's important is we didn't break something we already wrote, We don't break the existing thing. So unit tests are going to give us both for developers so that before we hand over our code, we can know it works reasonably know it works, at least know works as far as we understand the way it should work. So it does what we expect it to do. And it's gonna make sure that when we make changes in the future, our code we wrote now keeps working. The way we expect it. So that's the problem we're going to fix with eventually with unit testing. But there's other types of testing that solve other other issues. So let's walk through, let's quick kind of quickly walk through kind of the way projects are run. So we kind of know where this testing fits into what's called the software development lifecycle, and even what that software development lifecycle is. And then some of the other testing that's done before we focus on that. So the software development lifecycle, you'll often hear it called the sdlc. In fact, you hear that a lot people talking about the sdlc What sdlc do a company follow, because there's different methodologies we're gonna look at to kind of large buckets of them but there's all these more specific ones under these two large titles. But it's, what a life cycle is, is the phases something goes through. So the steps something goes through as something occurs. We're going to encounter that again later today. And a few times throughout this chord idea of a lifecycle, both in here first in a project, and then we'll look at it in a test lifecycle as our code runs later today. And then we'll see that we occur a few times. So life cycle is just how do we go from start to finish, and then usually repeat. So the software development lifecycle has five main phases. And these are often broken up into even more detailed phases. But there's five that kind of river encompassing phases. And that's first it starts with
+
+requirements gathering and analysis. And that's where there's an idea. Someone says, We want to build this piece of software, and they go in they have to figure out how they're going to build it. They have to make requirements they have to determine what if they want to look like what they wanted to do. We have to figure out what problem to solves all software. exist to solve some problem. That problem may be a business problem. But it also could just be a problem of providing a particular type of entertainment. So there's always something they're trying to solve. And they have to figure out how they want to do that and how it fits with their customers. And that levels sometimes includes development, but often doesn't. That's often more of a management in the business level. So they, they gather requirements they come together with we want to build this. And then they has to be designed and designed can go into multiple phases. There's design that most people think of like, what's this UI going to look like? What's this button? It'll look like what color scheme is it going to be? What graphics is going to be here? But there's also design of what classes are we going to build? What's the public interface is going to be? So there's a phase where there's design and each project is gonna have different levels of how they do that design. Whether it's software design or more general, just like user interface design. And after design, it moves into a development phase. And that's what we're all. That's what we're talking about this cohort, right? That's, that's the programming. That's when somebody's sitting there and actually building what was designed based on the requirements that were gathered. And then after development has to be tested. So before releasing anything, would it matter that there's few as defects or bugs or problems as possible. There's really no software out there that doesn't have problems in it. So one of the major things of testing is not just to find bugs, but to know what the problems are. So that when it's released, they can be mitigated in advance or women it is a problem. So it's not uncommon for them to know that you know, every thousands To run this app, it's going to crash because there's a problem here. But then when they restart, it'll work again for another thousand times, that's my only inconvenience, we'll let it happen. Compared to every time you save a file, it deletes your half your hard drive. That's not a problem, you'd want to release, what so it's about figuring out those those issues and fixing the ones that you can't live with. And then it goes into what's called a maintenance phase. So when software goes out the door, it's not done. It goes out, it gets released, and it has to be maintained. Because things break things change. And if things don't break, because it's not mechanical, it's not going to run in, you know, the gears were down. But things change around it, the OS changes as the as the operating systems are updated, or networks change or other things around the software change. It starts breaking the software. So maintenance is going in fixing those problems or sometimes new problems that weren't found in testing show up. No big deal. of crashing every thousandth time may not be found in testing because maybe somebody didn't use it 1000 times before they installed a new version. And so it finally shows up and maintenance is figuring those things out and dealing with those issues. Those are the stories you hear of developers getting caught in the middle of the night to look at problems. And then it repeats with the next phase of the project or another project. So that's the lifecycle all software goes through. But there's different ways of doing of achieving that goal. And there's two major ones, there's kind of most software development falls into two major buckets
+
+or methodologies.
+
+So the first one is called waterfall. So waterfall is
+
+a methodology is based on real world engineering. So when project started coming about software projects they were they were new and nobody had really done them. They based on how they ran projects based on how they work, you know, build a bridge or build a building, which made sense. They were similar goals, similar type of goals to build, design and build something with a similar output. So they, the waterfall methodology, which is still heavily used, starts out with this idea of that those steps, requirements analysis, design, development, testing, and then acceptance new and that's when we're done. We're ready for release. It has this idea that teams should do requirements. And when that team is done, they'll hand off the requirements to the team that's going to do analysis and kind of figure out how those requirements could fit into the solution they want to build. And then when that team's done, they handed off to another team who does design and then when that team's done, they hand off to an Other teams development and each one of these is happening in isolation. They're not really working together, they have a job they do. They do that job and the handoff to the next group to do that job. But what allows, it allows some advantages, it's very easy to manage because people managing companies or managing projects like this for a very long time. So it has, you know, 100 hundred 50 years of kind of experience behind it. It's very well documented for the same reason. So it's very rigid and well thought out. It's easily adaptable not to the problem, but two teams, they can't again, it's very it makes sense to most people don't have to think about the idea, but we'll design it then we'll build it because that's how we've been doing things since the most people were kids and playing with things like Legos and looked at a designer building a model and how to design and build it. And then GM after they built it, you know Just decorated it and move through steps. So it's very intuitive. And it also allows these teams to be shifting. So the requirements team when they're done, and the analysis team starts, the requirements team can start on the next project. So it has this idea of kind of layered projects where each team's working on a different project. And so why not. So each of these five end up with, you know, maybe five projects running, running concurrently, just each one staggered a month or two behind each other. But it has some huge disadvantages, especially for software. So, the disadvantage is being that it takes a really long time, it's slow, and the bigger, it's rigid. If there's changes as we go, then there's often might be years before somebody, these changes can be implemented and from the time This step starts requirements where people said I want to solve a problem. And here's how I want to solve it. To the part this part happens, acceptance is when we would accept it and say it's done, and let's release it to a customer. This is the first time that these people, the people want to solve the problem see it. And this timeframe is often very large. It's not unusual for a waterfall project to be six months or 18 months or longer. Which means the first time somebody sees the result of what they asked for, is maybe two years after they asked for it. And that's the first time they have a chance to say that's not what I wanted. That's not what I meant. So
+
+with
+
+a building a bridge, that's not an issue because you can't get an issue, but it's not as big an issue because you can't really change things after you started construction or easily change things. But software is not like that. It also when you're building a bridge or a building the landscape around it might change. But the overall physical conditions, the things you're building in are not going to change the environments not going to change in a way that you can't build a bridge any longer. But software's often don't like that the environment changes very quickly for software. So there was this problem that came about. And in the mid 90s, there was this huge issue that everyone started realizing what's happening called the applique, called the application delivery lag. And the average waterfall lifespan at the time was two to three years. And it's still usually as most places I've worked, where there's waterfall projects, they're 12 months 12 months to two or three, two or three years still and overall. So the business needs the software's moving faster than the projects. Could be built. Because there was these big phases of requirements gathering and analysis and design before development ever began, a lot of times the time development began, things had changed so much that what they were developing wasn't for the current environments anymore. So you had a lot of software coming out that was, you know, for three year old operating systems, if it came out at all. So, this ended up with this problem where almost all software projects for a few years were being cancelled. They would make it about halfway through and they would realize that they were not solving the right problem anymore. Either problem had changed or the OS had changed or the hardware changed and their solution wasn't going to work in a lagers. They went back and start again. But what they did is they went back and restarted the whole process. And now it was another six months or a year before it got to this point, and the same thing would happen. So companies were not releasing software. There was and those they were released, with Almost always pined in what technology was up to date with. So there was multiple attempts to fix this. And you hear about things like extreme programming and stuff that came about,
+
+you'll encounter terms like that. And
+
+that was the first major attempt by this developer named Kent Beck, who you'll encounter his name, eventually, in your career, probably fairly early. He's written a lot of books and a lot of articles. It's around software delivery. And he came up with this idea called extreme programming, which is we need to get rid of, it's still sitting in this idea, but we need to change the way programmers were working to combat this lag. And he added unit testing, which we're gonna look at today, this idea of developers should be testing everything. And they should be doing it with code, they should do it with automation. And he also came up with the idea of test driven development. So we've got a Monday pair programming, which you've done some of it will do more of this work. And this idea of code reviews, which we'll experience after your Capstone, next
+
+next week,
+
+and also the idea that maybe we should be designed during this phase in this phase kind of together. So we should design as we go. That way we can, software could adapt a little more to changes. So the design is not as rigid if we're not designing our classes and the way we're going to build things. No six months in advance, we design them, you know, maybe three months in advance or two months in advance, it'll go better. And, and out of that, which kind of worked, but a lot of important things we still use there. still didn't completely solve this problem. It is kind of a bandaid on it. So in 2001 Yeah, it was one hen came back and a bunch of other like giant names. In the industry at the time, there's a list of them, there's a link on one of these slides to to it got together and came up with this idea called agile. Agile was a competitor to waterfall meant to replace it. And it's still heavily used. Just about every environment uses one or the other, or most environments use a kind of their own mix of the two. But agile is software. Sorry, project development around software, design and development. So as a methodology, taking away the idea that you know, if you're building a bridge, you have to build things in a certain order you have to build, you know, you can't build the support wires before you build the base. Or if you're building a house, you can't put in the electric electrical wires before you put in the walls. But when we're building software, we can we can choose to start anywhere we want. We can put the windows in before you put walls around them. So because of that, It doesn't need to follow that rigid structure, we can make changes and be adaptable. And agile adds this idea of, let's get rid of waiting. Two years before we see the firt. The people who asked for the project, see the project and let's keep them involved on a regular basis. Let's show them what we're doing continuously. So this idea of continuous delivery, where this phase here, all these phases, happen on a set schedule, maybe every two weeks or every month, or every, a certain small timeframe. And at the end of that, we'll take a small piece of the requirements, whatever those are, are small pieces of the problem. We'll build requirements for it, do analysis of it, do design for it, develop it, test it be and then we'll go back to the what's called the stakeholders the people are asked for the problem to be solved. So the business owners And we'll say, Is this what you wanted? If they say no, now we've lost a month. Now we lost two weeks, we haven't lost two years. And then we'll repeat that we'll take them next set of requirements. And we'll make sure they haven't changed because maybe they have, and if they have, we'll change them. And then we'll continue working in this cycle of building small piece at a time. And so it added this idea called iterative development, which is that concept of let's not do everything at once, let's do small chunks at a time. And so if we were building a house, we would no spend one time we design the windows and they build all the windows, but we wouldn't really think much about how the house was going to be built. And then maybe we design the walls and build the walls. And then we design the wiring and put that in. And so we do one step at a time, and then putting out a whole blueprint at once. And then we'll ask each time, we'll say you know, these are the windows you want it. They say yes then we'll be done. With those, and if we have to change them as we go, we realized that when we build the walls, we should have had the windows slightly different, we'll make a change then because it'll be adaptable. So it makes it very fluid and flexible to change, which is what software needed to be to solve the delivery guy lag that was going on.
+
+And it creates this short time period, and also create stabilize team. In order for this to work, one team must exist that can do all of this. That's one of its cons or one of its pros that it requires the stabilized team. So agile teams tend to work together for long periods of time, waterfall teams tend to be let's get this group of people and they're going to work on this project. And then when they're done with their phase of the project, you know, a two year project development may only be six months, though we'll split them up and send them off to whatever team can use them. agile teams are using Eight to 12 people. And they're put together and they stay together permanently. They don't get split up. So when their projects done, they move on together to the next project. Part of the idea of the team starts becoming, it gets worked on, it's almost as much as the software. It starts in. But the team also is not just a bunch of developers. Now it has to include somebody that can do each of these steps. So it has to include a business analyst, it has to include a project manager, it has to include designer, it has to include developer, it has to include testers and it has to include people who not only can sometimes do the work but are can own completely take ownership, so more mastercraftsman than the waterfall approach them requires. So it's also harder to manage. It's pretty easy for an agile project to go off the rails and kind of ended up going someplace it didn't mean to go. Because you have people is you're going back and saying, Is this what you wanted them not saying? No, that's not what I wanted them saying that's exactly what I wanted. But now I have this other great idea to do it. So it falls into the problem of what's called scope creep, where the scope of what you the problem changes as they go as a goal is not very tightly managed. And it's not so it's not well suited to all projects. Some projects don't work well with agile. So we're going to look a little more in detail at it. Not a lot just because that's the main methodology that most software companies or companies who have software development, which is pretty much every company nowadays, this is the main methodology they focus they strive towards. So agile came about from this thing called the Agile Manifesto, which had four roles and there's a link to the original which is a very long and all the people who signed it stuff there. But it came with the idea that individuals and interactions so the team, the way they interact and communicate, it's more important than processing tools. So rather than writing down or keeping track of what happened or what tools were using, what was more important was how the team was communicating.
+
+And we talked about, you know, software development
+
+has this kind of a stereotype of the developer sitting in the corner, in the dark basement, you know, talking to nobody and the manager comes down, kind of feeds them the next thing to build and runs out. And there was a time when it wasn't that much different than that. But now it's about communication, interactivity, working on a team and constant, constant dynamic of working together, not just when you need new requirements, but on a immediate, constant basis every day. So The second one was the idea that working software is more important important to comprehensive documentation. So comprehensive documentation is not referring to the manual you get with piece of software, or used to get now it's, you know, on help files. But it's not the consumer base documentation. It's not what tells you how to use it. It's the documentation around the design. So a lot of projects wind up with these giant, and they really, they're giant, they're thousands of pages sometimes of how things are going to be designed. And agile throws out the idea of why do we need to document every little detail. If we can just build it, we need the document enough to build it. So what's more important is to get things working. And then if we really need that, we can come back and do that at the end. We won't we can. So the second the third is that customer collaboration has to be more important than contract negotiation. So waterfall projects and one of the reasons they're still used is that traditional way of building something for a lot of companies that do contract work is that they'll say, okay, we're going to build this for you. And they'll spend, sometimes months negotiating exactly what it's going to build, and exactly when it's going to be delivered, you know, and how the payment is going to work and all the details of it. And then it's very rigid, that has to be delivered in this timeframe. And this way. So agile was the idea of, let's not have that rigid contract negotiation, let's have a more general plan and then keep those people rather than contracting what we're going to build. And then six months or two years later, come back and saying, here's what you wanted. And it works. Or it may work or may not. But here's your delivery of it the way you would deliver a product, you know, order a product at Amazon that shows up a few days later. And it's just there it is, where they're doing that let's have a more generalized contract and have the customer Who we're building the software for, be involved, have them constantly collaborating with us and constant so we can get constant changes and constantly seeing what we're doing and constantly improving it. And then the last one responding to change me important, the following the plan goes along with that have a plan, we should have a plan we have to have you caught a roadmap of where we're going. But we should be able to respond to a change. If we find out you know, the OS updates that we're targeting. And it's our software's going to be behind now. Or a new, we're building something that's heavy on graphics and a new graphic cards coming out, that's going to kind of change the industry. Let's respond to that. Rather than just following our plan, and then responding it later. So those are the tenants of the Agile Manifesto. And the way it works, which is the part that's going to affect you the most since your final Capstone will be running agile projects is it works with this idea of this Project and by the way, you will see this slide again, at the end of the cohort, there'll be a more detailed presentation on agile, usually done by a agile professional. And I stole this slide from him from his, when he sent out the presentation on River. So I'll admit it, this is stolen from him. And he'll use it when he comes back. So, but it's because it's a great slide. And I'm not creative enough to make slides that look like this. So it starts out what we care about, really, as developers as this middle portion, it's going to start with these ideas are really four things that we're going to repeat in the first one, and they're going to repeat these things called a sprint. A sprint is a set of time where we're going to do each of these, we're going to do this whole process for a set number of features, or a set number of things. So in this sprint All of this is going to happen to acceptance we're going to take it from gathering requirements. And we're going to end with having the customer who the prop the person we're solving the problem for, say that's what I wanted and be done with that piece. And it's going to be a small piece. So again, if we were building a house, you might take on the front door for that sprint, or just the windows.
+
+And it's going to be usually, most places I work Sprint's been two weeks, they can go up to a month. At the end of the court, you'll experience two day sprints, which is a little short first sprint, but kind of required but from here when you only have two week project to work with to begin with. So they're these time segments, we're going to do this and there's going to be another team that's still doing kind of a waterfall like thing where they're figuring out what we need and keeping this thing called a backlog which is just all the tasks we have but it'll change resigned me come down towards the end of the sprint. We'll see what's there. Now and pick what we're going to do and there'll be organized kind of keeping it in order for us. So for two weeks we'll work on two to four weeks or wherever the sprint is. Because Sprint's can be longer or shorter. That's up to the team. But we'll say two weeks, we work on our sprint. And during that, every day, the team is going to meet for daily standup. And that's called a stand up because traditionally, you stand up during them away from your computer. And everyone says, what they did today, what they did yesterday, what they're going to do today, and then the problems they're solving, but you don't discuss it, you just say this is the facts of what I did. This is the facts of what I'm going to do. Here's the problems that we're having. And then somebody hopefully will say, oh, you're having that problem. You know, I can help you with that after this. Or, oh, you're working on that. That's what I was doing work. Or we should work together because I'm working on something very similar. So it's a constant communication of the team. It's not meant to be the only communication but it forces All the members. So all the people from those, they're doing these different steps to come together once a day and talk about very briefly what they're doing. And stand up, each member of the team is only supposed to talk for longer than two minutes. And often it's only 30 seconds. It's just a quick listing. So they're usually pretty short. Not always, but usually. So then we'll continue that for the sprint. So for the two to four weeks, and then at the end of each sprint, we'll have what's called a review, Sprint review. And that's where we're going to go to the customer. So the owner of the project, the people that we're solving the problem for. So you know, if you're working for a small company, it might be the CEO, if you're working for contract, it would be the company or you know, that's contracted you to build the software. And we're going to show it to them what we built and ask them to accept it. And by accepting it, we're going to have a set of tests we'll talk about in a minute, set up where if We pass these tests, they accept it. So they look at it, they'll make sure it does what they wanted. And they'll tell us Yes, we'd like this, or No, we didn't, this is what we wanted. If it's not what we wanted, we'll put it back into the tasks and handle it either in another sprint, we'll fix it later. And then there's going to be what's called a sprint, retrospective, which means we're going to sit down and talk about how the sprint went. And we're going to try to improve the team, that the agile team, the developer team, I try to make it better, and what your experience those of the cohort and feel how far uncomfortable they can become. And, but in a good way. So and then we'll plan the next sprint, we'll all sit down together and figure out and we say everyone, it's not necessarily everyone on the team. It's representative for each of the groups that are working there. So only one like the lead developer might be the only person that's part of a planning. But they'll sit down and figure out what we're going to do next for the next sprint. Then we'll we'll do that sprint. And this will just keep repeating continuously and to all the parts are done.
+
+So that's the that's agile.
+
+So let's say we're going to go back through more agile, a lot, a lot more detail. In later in the cohort. You'll use it since it is important in the industry right now. It's the now both these waterfall and agile so both heavily and use a lot of companies last place I worked. Some teams were agile, some teams were waterfall, it depended on the needs of the project. Like the last very last minute was on was a waterfall team because our client, they didn't want to talk to us for more than once about every six months. They wanted to walk in, say this is what we want with the next release of the software and we don't want to hear from you again until you're done. And then six months later, we'd see him again and we'd show them what we got a release it and don't worry Got in then that would have to ever occur again. So it was a waterfall project agile didn't make sense. Other teams in the same company were agile. And because their clients or they were working for internal projects could didn't want to be involved. So both are so heavily used. Every company in town I've ever talked to, for the last 10 or 15 years. And now all the companies that come in hiring people all either say we're doing agile or trying to do agile, a few will say they're doing it. Not many of us say we're trying to do agile, or we're planning to do agile. You never hear no, we're not going to do agile, it's so everyone's planning to do it. or trying to do it in just about nobody does purely what we just talked about. That's the pure agile, kind of the design of the way it's supposed to work. Just about every company has some hybrid that they've come up with. That's not necessarily a bad thing. It's lots of guys Worked lots of places to where it was half waterfall and then when it got to a particular point that we do our analysis and design and we got to the development testing to turn more agile. So
+
+that's a
+
+kind of a quick review of the life cycle and the two methodologies. So before we move on to testing, are there any questions?
+
+Comments?
+
+Is it like worth putting on your resume, you think to say that you've been experienced or practicing working in an agile development? That is
+
+yes.
+
+So on top of being the most used
+
+methodology in most software places, it's also an incredible it's a it's a buzzword that hiring managers who often are not part of the development team love to hear and will talk about a lot.
+
+So Yeah, I've seen it before, but I was confused. Is there is there a piece of software also called agile?
+
+There may be but it's not. It's not part of this methodology. There may be one called that that works with the methodology but it's not. When people say agile, that's not what they're talking about that piece of software. There are okay multiple pieces of software that go into agile development.
+
+Okay, that makes sense.
+
+It but there's different ones that do the same, they solve the same problem just in different ways. Like, if you and your Bitbucket you probably see the button for JIRA, the Jri, which is a major agile tool that a lot of companies use or hear about Trello. You hear about that?
+
+Occasionally? Yeah, like the word boards.
+
+Yeah, that's an agile board that's kind of combat board. It's part of backdrop. So it's in total it facilitates agile when used when used In the way that it's supposed to be used, not saying that. So you can use Trello, obviously without following the process, but it's designed around agile Trello and Asana and there's 20 tools. Interesting. A lot of the ways Bitbucket setup is also and GitHub in them are set up around
+
+agile development as well. They have a lot of tools we don't use that are building around code reviews and
+
+keeping track of the different which spreading around and things like that. So
+
+other questions or comments?
+
+Always have to ask because it's starting to happen more and more. Since all of you came from different industries, any buddy from another industry experienced trying to adopt agile into that industry.
+
+Yeah, I did it. Oh,
+
+okay. So did it work? Just carry on?
+
+Yeah, I thought so I mean, it worked really well with like the ITT digital team, and then we implemented it on the marketing team.
+
+Okay. Harder a lot harder, especially working with like a lot of partners
+
+throughout the organization.
+
+I see that the comments in the chat that
+
+non software development projects that Verizon were using it. It's interesting, because I keep here I've been I started hearing that from students a few cards ago that coming in and saying, Oh, yeah, we're using it to, to manage projects. That's not not software. So it's interesting, it's going the opposite way. Kind of moving back the opposite way now. Right.
+
+So, um,
+
+so let's talk then about testing in general. And again, this will be a high level overview of what testing is and how it fits into this process. So what we're talking about here is this box, then we're gonna talk a little bit about one type of testing in the, in the development somethings box, but mainly in this one. So when most of the testing that most people think of when they hear about testing, or quality assurance or those kind of terms. So there's two main types of testing that goes on software is manual testing. It's done by humans. And there's automated testing, which is done by automation. So manual testing is creative. It's objective, it's still used because someone manual testing can look at the software testing it say things like, no, this is a very user friendly, or this will work better if we move this button up here. You know, the color scheme you chose by choosing, you know, dark blue text on a dark on a black background makes this unreadable. So this kind of subjective things can be tested manually, and so it also just exploring the system trying to break it. So there's created that creativity that can be brought from a person sitting down to just try to break the system has a huge amount of value, and is what is still widely used and probably always will be automation, then it usually comes out of the manual testing. So as the manual testers figure out what we need to test how things are working, it's common for that testing to become automated. So the next time it needs to be done, that piece of it is no longer created, right? It's already been done. So it's already thought of it. So now it'll just be scripted, and have a computer do it. Because that's faster, it's more efficient. It costs a lot less. If manual testing generally has no teams of they might be 10 or 20. People that are testing where an automation team, maybe two people that are writing test tests, automated testing and their testing 10 times as much, or probably 100 times as much, really. So it's a lot more cost efficient, and it's repeatable. So you can write your automation test, every time something changes every release, you press a button and it gets tested, or manual, you have to, you know, work with the team and say, we're going to sit down and do this test. And there's more higher accuracy. Anytime you have people involved testing, there's going to be mistakes. Once the automated tests tests have been set up, and we know how they're working, they're not going to make those mistakes if they fail the test is because something's changed outside of them. One of the things that you know, because, as you've, if not by the end of the quarter, going into your career, this idea of we hear it all the time and people say, oh, that computer did this, it didn't it. It's doing its own thing. Well, they don't they do exactly what we tell them to do. It's not always what we want them to do. It's not always what we hoped they would do, but it's exactly what they were told to do. And because of that they're accurate. So, and then this type of testing breaks into two chunks or two things, two goals. One is exploratory testing. And that's the testing that most people don't think of. That's exploring the system trying to break it, it's almost always manually done. It's looking for missing features is looking to make sure it's usable, it's looking for opportunities where we can improve it. It's looking for those little unknowns that the developers didn't take into account. And it's usually the first type of testing for a complete system, not hopefully the first type of testing for the code, but for the complete system. And then there's what's called regression testing, and we're going to talk a lot about regression testing, you're probably going to get tired than the core for me talking about regression testing, and unit testing. But it validates existing functionality. So it means that we make changes, regression testing is to start If you didn't break anything, our new change our bug fix didn't break the existing system, everything still works. So it's usually automated, it usually comes out of manual, manual testing or development. So part of the test we'll start learning to write today will become automated regression testing. We'll write it as unit testing, but then it'll form what we call regression suite that we can keep running. We'll talk about how development that's actually
+
+really powerful. It's actually my favorite part of testing. And why don't talk about it so much for the cohort is because it gives license then to be creative with development. It means that once we know that we're not what we're breaking right when we broke it, we can start experimenting, which is a lot more fun than just taking the safe route every time to make things work. So those are the types of testing falling into these buckets of magic. On automated exploratory regression. And then there's, inside of these, there are testing that is focused on different purposes. So each of the stages that we looked at requirements architecture, which is part of analysis, but it's also a little more, it's also what database you're going to use with us, you know, we're going to use Oracle, or we're going to use Postgres. And we'll talk about those terms a little more next module. But where this is going to connect to this resource on the internet, or we're going to use this operating system. It's all those choices that have to be made as part of architecture. And then design is both software design, what classes we're going to have, what the public interfaces are going to be, and know what the color scheme is going to be, how far apart part should these buttons be, or there's going to be is there going to be a button there. And then there's development. That's the coding and each one has a type of testing that's focused on it. So requirements have what's called a septons testing. And acceptance tests are a set of tests that are designed by usually a group of people who are putting together the requirements. And they're really, their point is to say, when these tests are met, we accept the product. This is what has to be met for this to be a viable product. So they're ranis. They're usually what's ran at the end, and often put together almost always put together with the person who owns the product, who's designed who, whose idea was, he's driving it, saying, Okay, if you pass these particular tests, then run and they're often they're very user driven. They're from a user point of view. It's, you know, I click on this and this particular thing happens.
+
+Do you have a question? No, I was just gonna say what at my previous
+
+job. I had to They gave us a list. And literally, I had to go line by line, like, press this button and then hit yes. And then click this button hit yet. Does this show like yes? Was that acceptance testing.
+
+So that could be actually, this kind of list can be in the acceptance or the functional category, depending on what phase you're in the project. If the outcome was looking for bugs, then it was probably more in the functional set. But if the outcome was
+
+worth checking to make sure you met all the requirements, then that would be acceptance testing,
+
+right? Like if I click a button, did this line show up? Yeah. Now,
+
+that sounds like it probably was part of acceptance testing.
+
+So it like I was just saying it's, it's very user driven. It's the user does this. This happens because it's written by
+
+non tech People, participants usually the tests themselves, it's what they want to happen. So architecture has another type of testing, integration testing, it looks for integration testing next module. integration testing is testing between either units of code. So if two developers, right, if one team is writing this piece of code, it's common in a larger project for your team to focus on something very small, or in the scope of the project. For instance, in going back to the chrome example, since we all have Chrome, I don't know what the team breakdown are. But if I had to guess I would guess there's probably a team that focuses on how it shows the webpage like what's called HTML render. There's probably a team that focuses on something but just the tabs and how the tabs work. Another one if I focus on the history of the Back button, and there's teams as they build things, and they come to bring their code and their pieces together. That's integration testing is not to the pieces work, but do they work together. Or if we use something like a database or we have to go to go to an external website or something, or to a file that we'll do next week integration testing is the connection between that external thing and our code does it work? And that occurs around architecture, because architecture is around what are these external pieces going to be? What are these different modules teams are going to work on. And that design is functional testing. Design is functional testing can be is making sure that the design got met. So it often will be
+
+it can be at levels of
+
+just this works where someone's exploring that is trying to not break it. They're trying to break it, or it can be very detailed. down to a level of like Fiona was Hannah was talking about, sorry, of saying this step must do this. This step must do this. It's All different levels of just making sure the design works. So all of those are not done by developers. In fact, sometimes developers get pulled into it. But we're the worst group to be testing doing any of those things. Developers are the worst testers of their own code. Except for the last one, unit testing, unit testing is completely done by developers. Because it's about testing the low level functionality of the code. It's about validating that an individual unit code and when I say individual unit, I mean the method so that each method we write, given the given input gives the output we expect. So will, with unit testing, developers will write it, for every method we write will write a set of unit tests. Often the amount of test code is much more than the original code. So those are the main types of testing but there's some other ones so let's quickly review them So some other types of testing is performance, which is about how does this if
+
+How does it perform? How fast is it run?
+
+scalability, which is, you know, this work great. This is what kind of what we talked about. We talked about Big O, if this works great when there's 10 users on our site, but what happens when 10,000 show up? usability is, is it usable? Is it is it? Is it something people want to use? Is this button in the right place? It's actually test teams that spend time looking at interfaces or user interfaces. So again, since we're all using zoom right now they're looking at it and saying, should the share button it's green, should it be green? Now what's the order of the buttons that make sense to have the video button first or the mute button First, there's testings around that and making sure that that that experiences usable accessibility About can groups of people that have special needs use it? So can a screen reader use it for those that are visually impaired? portability is about is not always, none of these are all pick kind of picked and chose what each company reach project wants to use, because they're not all applicable every project. But portability might be, you know what we have a, we want to use this on Windows, but we also want a Mac version. So portability is we wrote it for Windows can what's the ability when we ported to Mac when we just do it kind of out of the box? Does it work? And what do we have to change? smoker sanity testing, you'll hear that a lot. That is a quick test that's done when a development team delivers a piece of software. So they're often used interchangeably. They're slightly different though. A smoke test is traditionally used when development right before it goes out the door. It's the last test to make sure that everything actually works. A sanity test is a test to make sure it's even stable enough to test. So it's a test to make sure we can test without. So they're quick tests that are usually done just in a couple hours by a group of people sitting down saying, Is this even good enough to work with? Or can we should we not even try? alpha and beta test? Also ones that kind of get into the public mindset a lot because they're, they involve the public that's releasing pieces of software at different stage alpha at a very early stage beta at a very late stage to help the public, your user base try to work out problems. So that only happens on software that has a user base, not all software does. So you hear about especially beta test those, you hear about those a lot. There's a lot of software that's still in beta if I remember, right, I think Gmail is still in beta. I don't think we ever officially released it. They may officially released it, but it was pretty recent. It was like 20 years after they finished, they put it beta I think it's on beta. But in that point, it's usually as a mass release, often to thousands of people to try it. And the hope is that it's almost final
+
+a stress test is, what if we so we went
+
+se there the comment that Google Maps also actually may be true of every Google product. They they just made never go out of beta. So which means they can just say, Oh, yeah, we're beta testing that bug. That's okay. We're still testing. So stress testing is kind of like scalability, but its scalability is what happens if we go from 100 to 10,000. stress testing is okay, we planned on 10,000 But what happens if 100,000 so for one minute, what if you know something we get popular for the weekend and they show up and they go away? Can we handle that stress and security is what it sounds like, if that's if a product has security gets around, how easy? How does our password management work? how those are some other common security risk work. So there's, there's many more, that's just a list of the common ones you'll hear. There's many more specific, more specific things that teams do. And the roles that are in this because there are a lot of testing roles. There's most many developers end up in a testing role at some point in their career for a while. And there's because there's developer needs on a lot of the testing teams. So some of the roles the developers themselves will do unit testing. That's what we'll be starting today. There's quality assurance, which is sitting around to make sure that well, make sure the product is has quality, so they're the ones looking for bugs. That's usually when people talk about testing or QA or that's usually what they're thinking about. Then there's quality control which is more around design. This product meet the consumer expectation. If the consumers want us to build this next version in a certain way that we meet that is a dude that doesn't match the problem. So a lot of companies have both teams, I would say the majority of companies just have a QA team and throw everything into it. But if you hear the difference, there is actually a difference. And from my personal experience, if there you have it, you're at a company with a QA team and a QC team. Do not confuse what they're doing. It makes them you makes you very unpopular with them. Then there's automation developers, this is people writing automation suites. Those are actual development roles. They're written. There's some of them are in the Java, there's also line which is pythons really popular and doing it says Ruby. And there's other languages that are specific to automation. And then there's manual tester roles where that that's the people that have sat down and tried to break a system. It's not quite that freeform if there's rules around They have to document everything and but it's still no, it's sitting at the keyboard just using the software trying to figure out how to break it. Alright.
+
+So, questions on any of that.
+
+Just Just out of curiosity, did we learn anything about security? In
+
+the cohort? Yes, we'll have. Oh, I just said yes. But
+
+one of the days is in Module Three, and Module Three is different. This cohort, they updated it to include clewd newer technologies. So there's at least one day of security next module. I think there's, they have to have the second one, it's too important. So I'll say yes. If if there's not, if there's not then if you remind me in Module Three, when we have the concepts we need to talk about it. I could do an afternoon session on it.
+
+I'm sure it's there.
+
+Do we have Learn how to hack.
+
+Yes, in Module Two, I will show you how to do a few different hacks with databases, including the one that is the one you hear about the news all the time that where people still millions of accounts and credit cards and other things. I'll show you how to do that.
+
+So not that I could do it against the major company, but
+
+and Okay, so
+
+alright, so any other questions?
+
+Alright, so let's take a break then.
+
+And we'll come back at 1030 and talk about the more interesting portion of this the actual unit testing portion.
+
+That was for me
+
+Brian, would you mind helping me out with my personal question?
+
+Um, yeah, if it's squeamish we can solve on a minute or two. Yes, that'd be fine. Okay.
+
+Mr. Brian, when is breakover oh 1030
+
+like to stop
+
+before we continue to there any questions that came up? Okay.
+
+All right. So let's talk about unit testing.
+
+The first parts not
+
+the most exciting, but unit testing is a little a little better
+
+when there's code involved So let's talk about what the unit tests are. And what kind of quickly go through what they are and how, what they do. And then we'll just jump into writing them, which I think is a little better explanation of them. So unit tests are tests test the test units of code, which is the name. So methods of code is really what it comes down to, but can be any unit of code. So every time we write a method, we should have at least one usually more unit tests around it, that verify that it does what we thought think it's going to do, every time we write a method, we have an idea of, you know, it should do this work, it should work in this way. So our unit test should be a verification that it works in this way. But it should go a little beyond that. It should also test that it's going to work in ways that we may. other users may try to use it. So it's called edge cases. So we should test that If we're doing math with an integer, what happens if somebody sends in an integer? That's the MAX SIZE? know, what, what does our code do? Or so unit tests or if we're doing it with a string, what happens if they send it all? Or to re whatever leaks in empty? So these edges of things we don't really want to use your to do or expect them to do, but they might do. Because the route is no matter how no matter what we expect, no matter how much we think, oh, nobody will ever do that, where they will, somebody will do it, or try to use our code in that way. So and I was on, I spent time on a QA team for a while. And one of our one of our things we constantly talked about was the idea of every time we sat down to figure out what we were going to test. It was just Try to think of the most ridiculous thing we could think to do. And every time we release software, the first bug that came in was something even more ridiculous than what we thought of. And that's kind of what you have to do with unit testing. It's kind of think of what's the worst thing someone could do with this method? And how will my code react to it with the hopes that you get most of the situations, but it's going to do this for a couple, we're gonna go for a few reasons. One is we want to make sure our code works. So that's the first reason personally I that's important, but I think that's the least important reason. But to now we're going to have this test. And every time we change something in our code, I'm not talking about every line of code. But as we make changes in our code, we can periodically run those tests all of the tests, and see immediately when we're breaking something, which means that we can take the code and
+
+we can
+
+Now start focusing on things like, how can I do this better? How can I make this more efficient without having to worry about what we broke. And if we do break something, we'll know right away. And we know exactly what we broke and can just back it out and try again. So it starts giving us freedom of creativity, and an agile product project. unit tests are required, they're Paramount, because if we're going to do changing things, and continuous iterations, we have to be able to constantly make sure we didn't break the last few iterations, because we're going to be changing things and then affecting other pieces of it. So that's what unit tests are going to do. The way they're going to work, unless like what they should be some rolls around them. They should be fast. So our unit test, we're going our, our goal, our goal, they are going to run sub second, they should their speed should be a milliseconds, because these are running one small unit of code and and Some other rows we're going to find is that they're not going to have any outside independent dependencies, then they should be running really fast. They should be repeatable, which means if it passed once, it should pass every time if it failed once, it should fail every time. And assuming we didn't change the code, they should only change their behavior when we change the code. So it should always behave exactly the same way. They should be independent, which means that they each test we do should not rely on any other test. It they should run each in isolation. And they should have their they should not be interacting with each other. Which means as we test, we're going to keep resetting things. If we have an object that we're testing, we're going to instantiate a new copy of the object, not before each set of tests for each individual test. And they should be obvious when they fail, we should know better look at it and say exactly why it's failed. And that goes into a lot of the unit tests you've been running because you've been running type of unit tests and we'll talk about why they're not really true. In a custom when we get to the code, but those messages that say this is why it failed. It's not failure trace, we should have a good sense of what happened. So, in from your question, duck, yeah, there are going to be tests on the exercise due tonight the tests that you write for them. But test on the test. That's no, that's for sure. In this case,
+
+I do like the idea.
+
+You should automate that show.
+
+So
+
+that's alright. So then, we're going to arrange these in three steps. We're going to set up each test. We're going to test and then we're going to verify results. And we're going to call these the arrange the act well, they're often called the random The Act and assert, because
+
+I think just because they wanted three words started with a letter A.
+
+to me I think of them more setup test and verify or what they do, but we'll call them arrange act assert as well. And that's what we're going to do, we're going to arrange a test, we're going to arrange things to be the way we needed to be to test, we're going to run a test, and that one test is going to be one single line of code is can be one thing, I never going to assert it means we're going to see what happened, we're going to verify that if you know we thought it was going to return a 10, it returned a 10. If we thought like an elevator class that the floor door was going to be closed and the floor was now going to be on six, we're going to call the getters to find out that information. So whatever we need to verify happened, that should have happened, we caught our method, we're going to verify. So those are the three steps we're going to take and we're going to repeat those and these tests are going to be very explicit. In very detailed, meaning that they're going to do test one thing each. So if we have to, we want to test like going back to the elevator class that you wrote, a week or so ago. If you want to test that you can go to floor two with the door open, and then go to door, two, three with the door up. And those will be two tests. It won't be one test that does it twice. We'll break those rules on Mondays with test driven development. But in general, with unit tests, we want very specific tests that way when they fail, we know exactly what failed. In the role other roles around them, there's going to be no external dependencies, meaning that there's a database involved. One of the questions that came up around the exercises yesterday is there was a CF CLI or command line interface that you were given that you could uncomment to kind of test your code. And I had a couple people asked why aren't there unit tests for that? And because the command line interface has an external component has the terminal evolved with the console? So it's really not something it can be unit tested. And when we get to databases, we'll learn that databases can't be if we call use the database in our code, we can't unit test that code. And we'll talk a lot about how we have to isolate code and arrange code starting next week, that so we can limit what we can't test. With unit testing. There's other types of testing that do do that.
+
+The other thing and the thing that is always the,
+
+I think, most shocking to people is that test code needs to be the same quality, we need to put the same thought into it as our product code. It's just as important. So in development, the test code is considered to be as important as the code actually going, going to the customer. Because it's what's making sure it's going to work. If we write code and we don't know what's going to work, then how do we know we went through our code? So that's just as important knowing it's going to work and knowing it continues working as a The code itself, and we're often gonna have more test code than we had code that solves the problem. We'll look at some of the problems that you worked on and we won today, a couple of them like something that you get the first two letters of a string. And then you build three strings out of it, there was only a couple lines of code to solve that problem. But you might end up with five tests around it that each one are bigger than the original method. So we don't worry about that. That's fine. Also, we want to test early and often we don't want to save it to the end you bought of teams. I guarantee when we get to the capstones, a lot of your teams will say, well, we'll test at the end. Testing at the end almost always means nothing gets tested. Because by the time you get to the end, you're trying to figure out the problems you're trying to solve or you're just tired. You're thinking, you know, it's Saturday night. I don't want to work on Sunday. Which is completely reasonable, and then anything left testing and the product works. So I just won't do it. I'll skip that. Or to product team, it's, I'll do it on Monday when I come in before they start me on that new project. And that never works out. So we don't want to save testing them, we want to test early and often, one of the things we'll really want to do is write a method, we write a test for it, maybe not every single test we can do for it, but test to make sure it works in the base level. But that also gives us we'll look at this a lot more Monday, freedom to do what's called refactoring and start looking at the code and changing it, which is the exciting part because then we don't have to worry about the what's often the boring requirements that we're trying to solve. And instead, we can focus on how can I make this code better?
+
+So the way we're going to do this
+
+is using this framework called j unit. So, Jane, it's what's called a framework. And we need to talk real briefly what a framework is. Or at least define it. So we've already used
+
+on the screen.
+
+Alright, so I'll try something else. They just pseudocode didn't seem to want open, so useless. So we already use things like math dot abs, right? We've used that. Many of you recently use math dot random. We use things like scanner. So our scanner.in the next line. We use those kind of methods. Those are libraries. In the library, we have code that does work for us, and we call it when we need it. We need absolute value we call math dot abs. We need to scan it to get the next line we tell it get us the next line and it returns a result so framework is going to give us functionality as well, but it's going to work a little different. Instead of us telling it how we want to do be used, it's going to tell us how to write our code to use it. So it's going to dictate to us how we have to write certain things. And that's what Jane is gonna do, it's gonna dictate how we write test. And then it's going to be able to run those tests and put them like you've been doing already from all your tests, your exercises, those are j unit tests. And it's going to be able to show them in that test runner where it can show results. So a framework and we'll look at frameworks a lot more in the next couple modules
+
+is
+
+like a library provides functionality, but it dictates to us how it has to be used, where a library is just a set of code we can call when we need it. So as we call it on demand, and a framework calls are code.
+
+So it means we have to follow some rules. around it. So j units a framework.
+
+And it's an org dot j unit.
+
+And it's going to
+
+have this thing called a lifecycle, which is, it's going to start down this path of every time it runs a test, it's going to do certain things. And it's going to do them in a particular order. There's three that we're going to care about. And we're going to control what happens in that lifecycle with each step by annotations. We've used override annotation already, but annotations are directives. They start with the commercial outside and then some command. And in this case, we're directing j unit what to do. And there's three that we're going to use today. Well, we'll expand that more next module, but for today, we're going to need the annotation before and we're going to tell it, we're going to annotate, we're gonna put it on a method just like we used override on to string and equals to say we're overriding this method. We're gonna build a method, we'll call whatever we want, it'll have to have a void return void. No has to be public. And it will take no arguments, but the name won't matter. And we're going to put the before annotation on it. And then that's going to run before every test. And then we'll write another method that follows the same pattern. And we'll put a test annotation on it, and that will be a test. And then we'll write another annotation after and put it on a method and that will run after every test. So with these three annotations that will follow this lifecycle of if we had two tests to run before, test one after that before, then test two that after, if there were three tests that would run before and then test three then after just keep repeating for every test there is every method we have that have the test annotation.
+
+It'll run
+
+the methods annotated with before before it runs the test. Which is gonna allow us to set things up like a standard object or run over again, for each test. And then after the test is completed after that methods run, it'll run whatever method has the after annotation to clean up, we won't actually need the after annotation today. We'll use it more later in the cohort. So today, we're really going to focus on before and test. But know that there is this after if we do need to clean up. And clean up might be something like, if we were using scanner, like we will next week with a file instead of with the console, we have to worry about things like closing the file, just like when we open a file an application, and we close it at the end. We have to do the same thing. So clean up a window and things like that.
+
+So and then, in these tests,
+
+actually, let me pull up
+
+this So this is a file on the test code lecture test. It's not real working tests, it's more of just sample code. And we're going to write some actual tests, though, in a minute. So here, you see before. And there's a method public void with the setup. And it's going to do something in this case, just printer setup. Here's an after the order these are in inside the class don't matter. It's the annotations that control it, not the ordering. So and then there's a couple tests here. Actually, these will run so I want to put breakpoints on each of the tests. I think there's three.
+
+But after
+
+four, and if we run this in debug, we'll see that
+
+So before runs,
+
+and then the first test runs,
+
+then the teardown the after runs. And then before runs the method that has before annotation, and then next test runs. Then the after and then the before runs the next test, then after, and we can see these. When you see these populating here, that's what's happening for each of those steps. And then we're done. So it continues for each of the tests. This is the J unit test runner. So all you're familiar with at this point, but that's what it's doing. For each one of these tests running before the test test. And after that each one of these in the test runner is a method that has the test annotation on it.
+
+So our classes we'll see at the bottom can have
+
+Other methods in it as well, but they don't run. They're never used because they're not tests. We can use them for our code that we can call them from inside our tests and we can use them for other purposes, but j unit won't, won't use them. So,
+
+Brian,
+
+yes. So is the after pretty much just like resetting it back to its initial state for the next test?
+
+It can be but no. So it's not putting it back to its initial state. The before is actually going to keep resetting it to the initial state. By recreating it. There are certain things something we don't run into a lot. One of the problems that Java solves, that comes from Flexi is that we don't have to clean up a lot. We don't have to do a lot of cleanup but there are some things We do we haven't encountered them yet, but we will next week for the first time and next module. And a lot of us got the warning that scanner need to be closed when you're using it. The yellow underline will use scanner and that's because scanner if you're using with anything besides system and has to be cleaned up, meaning that Java doesn't know when we're done with it, so we have to tell it so after is used for that kind of cleanup. So okay, what up using it more later in the court right now we don't have anything that really needs cleaned up because Java does it for us. Okay, so before it's putting everything back to the initial state.
+
+So it's kind of resetting everything.
+
+So then in the test themselves, we'll write code that tests our, our classes, or objects. And we'll verify them the assert stage with this method with this library that's inside of the J unit framework called assert Sir has some methods on that we can use to verify what happened. And if for each of these if what they say the cert equals, if for the expected results not equal the length, the actual result that got returned, then this will throw the error that you see down here that says assertion error, which, here we see one. So it says that and then it gives a message of what happened. If it passes, if it happens to be that for for cert equals is equal to the length, then it will not throw an error and it will just be empty with an update of the assert passes that you get the green checkbox. And we can see what's gonna go here, just to a certain to a dot. There's a lot of assert methods. So we're not gonna look through all and we're gonna look through some of the major ones you can use. But, you know, there's many others than what we're going to look at today. But we'll look at most of the major most major countries subsidize.
+
+And I guess the next
+
+thing and that's some examples here. So assert true assert false that asserts of boyum. For assert for each one, we can always include an optional string. And that string will be what appears right here. This is how I can force the test to fail. If we look at that test, which is down here somewhere,
+
+that would be the message.
+
+So each one has an optional message, we can leave it out. There's a cert equals where we can have a message and then the value we expect. and the value actually got back. There's another version of it for double where we can add a precision so we can say down to two decimal points, or just the whole number or, you know, to the fifth decimal point wherever we want to put that. And then there's fail which we won't use a lot. But it allows us to immediately fail a test. And the example we can see up here is the butter what this test boys fail. And we'll use that one. There's cases where we don't have anything to directly assert. But we might need to do an if statement to see what happened. And then determine if we succeed or fail. If the test, if the method ends, without a cert fail, or one of these failing, then it'll get the green checkbox. The other thing with the cert is they don't have to be in these test methods. They can be in any method, this method calls so we can have private methods we'll look at today with as asserts of them. And I know I went through that kind of fast because I want to get to the code because that's the more interesting port part when we get the ideas and then we'll review through all of this with the code. But before we do that you have what questions do you have
+
+all right. So let's build some tests. And then we'll talk through a couple other things about where the how they're built, where first is where they're located. So when you're working on test, you're not going to be working in source main. Java. You'll work in source test Java.
+
+So here this code we're looking at here.
+
+You see it's in source test Java, conduct elevator lecture test. This isn't the right
+
+answer. So that's okay. We can fix that.
+
+All right. So sorry, change I made last night is not here. So I didn't check it in. That's okay. We need to make it again live.
+
+So
+
+they're going to be in the source test Java. So we'll write our test there in our main Java code. In source main Java, which allows us to split it up. This isn't actually enforced by Java. This is enforced by this other tool called Maven, which is a build tool that we'll look at later in the code in more detail. But it's you notice from you know, import Maven project. And that allows us to have an easy separation. Since we don't want to release the test code. We don't we send out you know, when zoom publishes their new version of the software, they don't include the test with it, that they keep that internal. So if there was a Java project, they would include source main Java and the release and only the source test Java when they wanted to test it. So we're going to separate it in this ways. So starting today, or today for your exercises, you'll be working in source test job. Going forward, you'll be working in both depending on what kind of code you're writing.
+
+So there's a
+
+I'm going to rename this lecture test.
+
+I'm going to do it by refactoring.
+
+Rename, I'm going to do the refactor because I wanted to change all the places that has that as a tough as that use using that name. I'm just going to call it less lecture example. That'll be good.
+
+And that's because of the next step.
+
+Because that is a standalone file. But we also have this lecture file up here. So the lecture file has some methods in it that will look familiar to you. Well, you might not, it's been a couple weeks, so maybe not now. But they were familiar to you. And so things like or 35 caught speeding. So the solution to some of the problems that you worked on a couple of weeks ago, and then some new ones. And we're going to write tests for these. We're not going to write every test that we could possibly write for these because we don't have that kind of time to write that would take quite a while. Instead, what we're going to do is we're going to focus on the first couple of all the things we would test and write a couple of them. So we can kind of hit on the different ways you can test. So if I was going to write a test for this lecture class, for every class is going to have its own test file. So its own test class. And it should be in source test Java in the same package that is in source main job. So if this was in comm, dot tech elevator dot data, you up here, then it would be in combat calculator dot data down here. So they need to match. If they don't, it'll work. But it's, you want them to match because that way you can easily see where, what they're going with or how they connect. So I'm going to right click on combat tech elevator in source test Java. I'm going to create a new class because tests are just in classes. They're just other Java code. We're going to write. So it's Java code, we're going to write in this for this framework to call and run against our on the Java code. There's really nothing special about these classes just in a different location. And we're going to put these annotations inside of it. So she's class. And then the name of a test should be the name of the original class. So lecture and the word test.
+
+That's the
+
+conventional name for test classes.
+
+So we'll finish that.
+
+Alright. So the next thing I want to do
+
+is
+
+I'm going to create a variable to hold the class I'm testing the object I'm passing when I instantiate it. So it's going to be private. I'm going to put it at the top of the class because I want it reusable through all the tests. We're going to reestablish it for every test, but I want the same one just to be be there.
+
+So the name of the class I'm testing is lecture.
+
+And I'll just call it lecture.
+
+Once my variable name,
+
+so this is going to be the variable. This is a
+
+variable to hold the class being tested.
+
+And then this point,
+
+we can start writing, writing the structure of our test. So the first thing we're going to want, almost every test is before it what we're going to do in the before is a scan sheet, the object again, so it means every test we're going to instantiate a new copy of the object and that's part of the independence of the test. And the repeatability is that since the state of the object can change as things happen to it, we don't want to have to keep track of what state it's in. So we're always going to put it back in the same state, because every test needs to be independent. So if one test changes the state in some way, it's going to we know that it's been reset. So I'm going to create the annotation before in a method and its signature is going to be public, void. And then any name I want. I'm going to use set up. That was in the other example as well, but it's really just a name.
+
+But it makes sense because we're setting up the test.
+
+And then in here, I'm going to standard eight. So lecture equals new lecture class, the class and if I have to do something like build arguments to pass to the constructor, I'll do it here. So for instance, if we were going to test you know the elevator class from your exercises a week or so ago, and one of its constructors required to set the you know the height of the building, then we would set it to a set value that we knew to we'd always set it to 10 B 10 floors. That way for every test, we would know exactly the state of the object. And then I've got to import before. And I'm going to import it from word j unit.
+
+And we're now ready to write test.
+
+If I had asked something to do for after, I could write it now, but I don't. And you're not going to either at this point. So we'll come back to after. Actually, next module, we'll use it. But
+
+so now to write a test.
+
+Well, first we have to figure out what we're going to test.
+
+So now we're going to get the lecture code or the module for And I'm going to actually expand this and put them side by side.
+
+which is how I actually usually work when I'm writing tests.
+
+Get as much room as we can.
+
+Alright, so let's start with or 35
+
+common here that before statutes
+
+and sets up yeah configures Oh, she's the right word initializes
+
+the object
+
+in tested so it
+
+is in the same state for each test.
+
+So our test first we need to figure out what we're going to test someone that right
+
+write tests for
+
+or 35.
+
+And normally, you wouldn't have to do a comment like that I'm doing it for sake of readability when you come back to this code later
+
+when the private one on one. So what
+
+could we test around this
+
+method? So I'm going to move that like that so we can read it more. So return true if the given non negative numbers a multiple three, or
+
+model five.
+
+So just given that what some things you'd want to test, if you were not thinking about code, just thinking about if you were given that requirement, not even inside code, if somebody gave you something and said, If you give this a non negative number, it will Turn true, you know, the button, the light will turn green. If it's a model three or model five, it'll turn red. If it's not, how, what would you do to verify it works? And how would you try to break it? Because that's what you want to think about when you're writing unit tests.
+
+Try to give it a string or a negative number.
+
+Okay? So
+
+so negative number, so I'm going to put a negative number, because now because you're right, if you were doing it in the with the example I just gave, you would try to string a negative number. But with the code, it's going to be impossible to give it a string because it's, we're confined to that data, data type.
+
+I wouldn't give it something that I know to be true. Okay, so probably like an obvious number like 15.
+
+So, model wars multiple both maybe which is 15
+
+About if we test the data type itself, right? Instead of Boolean string or something. Well, Java is actually gonna prevent us from doing that.
+
+So we can't send a string to an integer because it won't compile. So we're going to be limited by the language are protected by since a limited protected by the language in that case. But that's the kind of thing we do want to think of. And then that becomes, can I even try this? In this case? That case? No, we can.
+
+You three and then another one, that's multiple five.
+
+And someone else. I was just gonna say the same thing. Okay. So maybe a model a three
+
+or five. Maybe
+
+00
+
+Yeah, oh, definitely a zero.
+
+And then we want to check a number that's neither a multiple of three or multiple five.
+
+So a non model.
+
+Right? So any other things you can think of.
+
+That's the number that's bigger than an integer. Okay. But again, we can the largest we can go is Max integer, right?
+
+Right. Yeah.
+
+So we could test Max, Max Sen.
+
+And there's actually a pretty easy way to do that.
+
+So again, we're getting we're being protected by the language.
+
+But that's actually the kind of thing you want to think about because there are other data types where we're not protected by the language. And you would want to consider that, especially when we get the reference types which involve things like no and Empty values and things like that, but with the primitives work, fairly well protected. So we can say, Max integer. All right, that's a, that's probably a pretty good set. We don't need to check moddable models of three, we can assume that math works. That's one of the things that it's easy. Whenever a void is what we're testing, we're testing our code, we don't need to test to the modulus operator works. So one, model three works, they're all going to work. The same way for model five, if one works are going to work. If one if the model both works, then they all should work. We would probably want to check that to make sure we didn't actually exclude when there's both which will be the difference between you know, different Boolean operators or where if statements written but we don't need to test Java
+
+and its operators. They work.
+
+So that's a good set. So you can see here, this is a one to code. And we have 1234567 tests identified for each one of those is going to be at least three lines of code, we're actually at least two lines of code. So that one line of code is going to generate at least 14 lines of code of test, possibly more. So let's write our first test, we can just go down the list. So our first test was a negative number. So to write a test, we start with a test annotation. And it's going to be and we're gonna have to import it, but we might not be able to import it yet. Yeah, but to finish the method signature first, it's always going to be public. It's always going to be void. Tests are going to return nothing. They're going to get their results from the asserts. And then we're going to name it. So method naming around test is a little different than method naming for Sorry for method naming of our regular methods. The traditional
+
+sorry, the traditional Java naming method of using camelcase is a little bit different. We use another case that I think it's called rememorize called snake case. But whatever it is, it's the words are separated by underscores. And it's all in lowercase. And we want our test names to be descriptive of what our method names be descriptive of what the test is doing, not how it's doing, but actually what we're testing. So
+
+so for that
+
+we're testing a negative number. So something like
+
+negative
+
+number
+
+returns false.
+
+Now I can import test, they will from org j unit. So I'm going to three steps. There's always going to be an assert. There's always going to be an act. Sorry. The first one is arrange. I can't remember the words set up, and then act and then assert. And again, this is set up the Test.
+
+Test, verify the test.
+
+And I'll point out I've never heard arrange an act tester to I got here tech elevator. So I'm not sure if that was trying to explain it better made up for three days or whether that is from Some book or something, but so that's what we're going to do for every test. But we're not going to always have that first step. It's very common not to have it. In fact, in this test, we don't need to arrange anything. We don't need to change anything about the object before it works. In fact, this whole first lecture test file, we won't have to really do an arrange. We'll do some other tests after this around objects where we will. So we do a test our test to be one thing. So it's going to be one line of code. In this case, it's going to be calling this method with a value that's negative. So I'm going to get a response back that's brilliant. So I know I need to store that. So Boolean result, or whatever I want to call it equals my lecture.or 35 the method and pass it a negative number. Like I said, it's going to just pass a negative one I can pass it any negative number, I'm gonna pass a negative one for two reasons. One, it's the edge of the negatives. So those edges are important for this change. After I do that, I don't have to worry about making 100, negative 1000. Because again, I'm not testing math, I'm testing how my code handles it. So Miko can handle a negative number, then it can handle all the negative numbers. Because at that point is I know what using the math operators. So now, I'm going to assert to do that I would use the assert dot. And I want to use assert true here, because I'm going to cert so I'm going to make some assertion is making a claim. So I'm making a claim that the result is going to be true. That's what is what my assertion is. So it's used assert is using the same way that it's used, sometimes a natural way. language or like legal arguments and other things like that. It's making your claim. And then it's going to say, the test runner is going to say whether that claim was true or false, I'm going to make the claim that result is true. assert true. And I have an error says type cert is deprecated. I'm actually really glad this happened because I can always make it work. So because this will likely happen to you at some point, so if you get this error, what happened is, is that Eclipse helped me out by importing the wrong thing. But it looks right. So I don't want j unit framework dot assert. I want the one from org j unit. So I'm going to change this to org dot j unit. So if you get that error
+
+that's what you need to change.
+
+At this point,
+
+this is also the one place that I'm okay with you doing this. Because this is test code, if it breaks because they update the J unit library, that's okay.
+
+So, I shall put those back so you can see
+
+the four things in case you get the wrong one. So now it's correct. Now we're ready to run the test. So you run the test the same way you've been running tests in all your exercises. I'm just going to right click on lecture test,
+
+run as j unit test.
+
+See the file
+
+and I can see I
+
+failed.
+
+So the assertion failed.
+
+Oh, my test is wrong. So when this happens when an assertion fails, I met the mess went up later, but I guess I missed the first went up. So when assertion fails, there's two choices. One, the test could be wrong, or the code could be wrong. So it's not a guarantee when your test fails the codes wrong, because you could have you're writing the test too. So that's when you go back to the requirement. So the requirement is it should only return true if a non negative number, right, there's already an answer.
+
+So
+
+this should be assert false, not true. So I'm going to make the claim that results be false because it's negative one.
+
+I can run it again.
+
+And my test is passing. I'm getting the result I expect from the input that I give it.
+
+And then I was Yes.
+
+Should we like test something? Because it only wants a non negative number, right? So should we test to like negative three, something like that? Would we show that would return true?
+
+Yes, we should, and it should return false statement according to the requirements.
+
+So let's do that. So at the end
+
+and about negative.
+
+If I was testing this, I probably wouldn't test.
+
+It wouldn't be wrong to do one of negative multiple three. Or Yeah, three, good. It wouldn't be wrong to do one, four or five and 15. But I probably wouldn't have too long as you know, it's working correctly for one or the negative for the for the negative side, not for the positive side. But let's check that because it's actually not going to work right? It's going to actually return true when it shouldn't.
+
+So now we want the next test.
+
+Actually, I should stop there. Since we just read our first one. What questions do you have before we go on
+
+I guess Oh, we already said results in cool. Something. So I guess I was just confused where result was coming from, but it's just the one above. So,
+
+Brian, would you mind explaining line 36? Online time left lecture.org 35 So is it the class name that method name.
+
+So, this variable here we created is of type lecture. So it's this object from our, our source code we're testing if we were testing, you know, a class like elevator it'd be whatever that class name is. So we're going to then a variable name to hold it to is called lecture. We can call this anything it's common, you'll see called like Target and things like that a lot to antastic our setup method instantiates, it assigns it to this variable. So on line 35 We're using that object, then to call the method we're wanting to test which is this method here. We're passing in a value negative one. So value for this integer, which is what our test was going to do. And it's going to return a Boolean, which we're going to store in this variable result.
+
+It makes sense thinking.
+
+Quick question. So for the like the assert false, or assert true, that would be, we would want that to be equal to the Boolean on the inside
+
+for it, so. So do this, this boy in here. So what we're doing is we're saying we're making the claim in this case, I claim that this boy and whatever's in these parentheses is false. I don't know what it is, I know it's a boy and that this method returned, and I'm making the claim it's false. So if it is false, then it's okay.
+
+True, I'm making the claim it's true. Does that make sense?
+
+Yeah, definitely.
+
+Alright. So others before we write the second test,
+
+right, so let's write the second test.
+
+And let's write one four. And I'm gonna skip some of these tests because if we write all these tests, we'll just be on this one method for quite a while. So we'll write one that does maybe this and the non model maybe Max and adjust we can say it and then the negative w we can move on to some more interesting problems.
+
+So here, my second test.
+
+But I will say that when you're writing your own code, and or your exercises that you should write all the all the tests just want to maximize the time for to see the most broad things Right, it manifests. So our second test is going to do the second thing. So let's do a void. And we'll say multiple of three. And I can put returns true, I can leave it like that. It's actually okay either way, but I want to communicate is I'm testing the model three, I want to communicate what I'm testing. So the result doesn't always have to be in the name. So I'll leave it like that. I'll also point out that, at this point that a lot of places will want you to write the method names like this. The actual Java standard is like this. But a lot of teams use the standard method naming. So if you see that, that's why or if you run into that. So again, we're gonna have a range. We're not going to do anything. There's nothing set up yet. I'm an act. So the test itself. Let's go returning. This always is going to return a Boolean because this method returns a Boolean. Other methods Return different things.
+
+So I'm going to set it to the result
+
+equals lecture.or 35. If we send it a model three, like nine, and I'd want to pick one here, that's also not a multiple of five, because I'm specifically testing the model three. It doesn't matter which one, just log in as a model three, that's also not a model five. And now, my assert is going to be what do I expect to happen? So I'm going to assert, I'm going to make the claim that the result is going to be true.
+
+And I can run my tests again.
+
+And I can see there's now the two tests that have passed.
+
+So the next one,
+
+stealing Non moddable guess.
+
+So for doing the non model test,
+
+public void non
+
+model of three or five.
+
+So, range
+
+and then act is going to be again we are going to put the end results lecture
+
+or 35
+
+and I want to model v there So, maybe 10 that's gonna fit that. And then I'm going to assert that this is going to return false.
+
+And thank you. You're right. Let's try it. Love it.
+
+It's an obvious multiple five. I didn't, I didn't Well, they're picking.
+
+So.
+
+So past, we can see now we have three tests running.
+
+So let's do the max integer in the negative multiple three, because those, I think you're going to bring up, well, maximum energy just so we can see how to test the maximum a data type. So if I was doing this, actually testing, because we had to have all these tests, because we want them to be individual, I want to know which thing exactly failed. I'd probably write them more like this. So the one during testing is in one place in Java, where you end up cutting and pasting and it's okay. We'll go into a lot more and more of if you're cutting and pasting drop a problem, especially next week when we start dealing with writing your own classes a lot more, but I'm bought above them by In testing, in testing in JavaScript, those are the two places to do a lot of cutting and pasting.
+
+So here how to change the name. So
+
+max int value.
+
+And I think the maximum value be false, I honestly don't know. But I know whatever it is, it's going to work because I've already tested multiples of threes and five if I've done the other tests. So I can just use the data type wrapper integer and dislike max value.
+
+Let's see if it's true or false.
+
+So that works. I mean, I could do something like max value plus one, but that really doesn't matter to my method. That's a test of integer not of my method. So the last one is
+
+in negative model three three or five.
+
+So let's take this one.
+
+Let's change this to be negative
+
+model three or five and this change it's negative nine. And it should return false because the requirement is a non negative number.
+
+And it fails. You can see it fails right here. assertion error. There's only one assertion. So I can see non negative multiple three failed for an assertion error. That tells me that the assert failed, but I could make it more explicit by saying something like
+
+negative nine
+
+returned. Valid response or
+
+negative nine return true.
+
+That's actually what happened. So something messies it tells me what happened.
+
+It doesn't have to be valid, explicit. But now if we run it,
+
+we'll see that whatever is in this string, if it fails, is what's going to show up right here. So we can kind of leave a message to ourselves or to whoever's running this of what happened. that'll become more important next week when we do test driven development, but we can use that to make it more obvious. So now we have this problem.
+
+I think my test is right.
+
+And the codes failing. So I found that we found a problem in the code. So when we have a problem, we have a test failing. writing test cases, we have to determine which ones right which one is, is the test, right? Or is the code right? I could be either. So the first thing we want to validate is make sure that it's just not something obviously missing the code like before, when I put 10 is not a multiple of five, that kind of stuff happens all the time, or a typo or something like that. So you want to validate look very closely through your test, but only should be a few lines of code to verify everything's exactly what you expect. The second thing is to make sure the result you're getting matches the requirements. The test should be written around the requirements, not the code, the requirements of the source of truth of how that method needs to work. So in this case, the requirement says return true given a non negative number. So the requirement says to me that says a negative number should be returning false.
+
+The author of the code here
+
+obviously didn't take that into account.
+
+So at that point,
+
+if you Your own code, if you're testing initially, that's when you would want to, you would say, Oh, I found a problem, part of the idea of testing is looking for missing pieces of the requirement. So we found a missing piece of the requirement. If you're testing somebody else's code, which will happen, then sometimes you fix it, sometimes she'll just report it as a bug depends on the team you're on. So it's not always a go fix it. Sometimes it becomes a, okay, this is a bug we'll fix in the later sprint or later delivery. But this is our code. So let's fix it. So what we would do is we need to make it match this requirement, give it a non negative number, so we just need to make sure that n is greater than zero, right. So n should be greater than or equal to zero. And this is true.
+
+That should work I think.
+
+Now, this is when the really great part of test cases come about. This is the part that I actually love about testing. cases, and bye bye, you'll be sick of hearing talking about test cases very soon is because now we know all of this stuff worked. We made one little change. I think that's going to work.
+
+We can run all these test cases.
+
+We know that we fixed the problem, but we also didn't break it. We don't get immediate feedback that our change is valid. We don't have to try again later hope, which is one minute codes. Not a huge deal. But when you're dealing with something that a change may affect something, you know, a few thousand lines or two objects server, that's really important. So now we fix the problem. Now we have all passing test cases. Again, if you're writing this for your own code, you would want to finish the rest of these model three, model five, zero, but those are just repeats of work. There's nothing new in there. So I'm not going to do them in lecture here. That's a lot of test cases for that one line of code isn't it? Seems a little crazy, almost. But it's not. Because if our code doesn't work, if it doesn't match these requirements, given that input, given the output, we expect, then we didn't do it, right. We have to know that. Because other people are going to be as we, when you get into a team, other people are going to be dependent on you delivering them working code. So that being said, when you're writing test cases, a failing test case, is not always a fail is not a failure of the test case. If that makes sense. If you're writing test cases and ones read, it doesn't necessarily mean it doesn't mean your test cases bad. You have to keep that in mind. And if you're writing test cases on a team, it doesn't always mean you get to fix it right then. So there are times you write tests. cases where you have to sit there and leave one read. That's when they run in isolation, because the others that are unaffected. I've seen test cases they've read for years, as it just got each each release, it just became what will fix that next release.
+
+And then so alright.
+
+So I will say that here when you're working in your own code, you should, your goal should be to get them green.
+
+I guess we'll talk about later today about the exercises but
+
+Alright, so let's move on to another one. Because that one brought up. Yes, the two things I wanted to take to take away from that is exploring all the different options because we're not gonna have time to do that. For every problem we're gonna look at, we're gonna have to look at a little more focused. Here's what how we could do this particular thing this problem hasn't. And the number of test cases, we come up with For something like a single line of code, and that they need to be separated. So each one should be its own test case. And then the edge cases, yep. Oh, have you done a fantastic job of thinking of all the edge cases? I can't think of any other tests that we do for that buffet.
+
+Usually, there's a few that get dressed. So great job.
+
+So let's look at the next one.
+
+So, Brian, yes. Take a break for a second. Sure. Oh, thank you. Yeah, it's been a while. Right? Yeah, let's take a break. We'll come back at 1145.
+
+Unless you want to propose what one we're going to test and then say Think about it.
+
+Okay, so, um, what questions came up for you?
+
+When, like, in comparison to the slides that you showed us with the before, and it had tested And then after, guess what encapsulates test one? So many tests here, but no after.
+
+So we so we have before. And before and after actually optional. It's always robust. So those are annotations, we can use tests as required. In fact, if you go to run a file, if you go to run the unit test in the file, and it says you under you, there's it doesn't give you the option for j unit. It's probably because you don't forgot the test annotation. But we don't have any work to do after so there's not here, but test one is going to pick. That's just one of these tests. That actually is a great question because it leads into something we haven't talked about. I need to add probably would have forgot. The order of these is inconsequential. It doesn't seem like it'd be It'd be great if they were in some nice order, but they're not There's no way to control the order in the test water, the order you write them in the file is not necessarily the order they show up. And that order can change. I'm sure some of you have already seen that you often won't change because there is actually some internal working, whether it's ordering them for efficiency, but it's not necessarily an order that makes sense to us, as humans. So I'm sure you've seen that you can't like look down through and say, Oh, this test goes with this file with this, because of this order, and you have to look at the names.
+
+But right.
+
+So let's move on.
+
+Again, I know it's getting late, so we're not going to be able to go through the other ones at this detail, but each one of these methods have something different we can want to look at.
+
+And I did warn you this is going to go wrong today. So
+
+fortunately, Rochelle caught us or like pirates would have went to the end and everyone would have been really miserable. But I actually find tests testing exciting. That sounds ridiculous they do. So not, not this part of it, but the, the part that it gives you where you can actually write code the way you want to. That's makes it more fun. So So get caught speeding, so cars speeding, you've solved this problem. It's where you get 01 or two ticket size based on a bunch of rules around speeding. So there's a lot of tests that can come out of caught speeding. If you think about it, there's there's at least 123 just for just for the positive cases. And I will bring up when you get to a team that a lot of places called the positive test, happy path test. I actually hate that term, but you'll hear it compared to compared to it but it's actually a term you'll find the documentation A happy path here. That's what it means compared to either side path or frowny face test. Again, I don't but so the positive test there's a lot, there's at least 343 rages, so at least nine. And that's not even counting edge cases. So this test, this method probably would generate between, I'm taking a guess between 12 and 15 tests to fully test it. Great.
+
+She's not joking for the next, however long that we have ever worked here together. I'll hear that constantly now.
+
+So
+
+Alright, so
+
+let's focus on the difference here. Differences this returns an integer. So let's write a positive test case that returns an integer that we want to validate. So let's do so we can see how we validate an integer because that's going to be a common occurrence.
+
+So let's see what I call this test for caught speeding.
+
+Speeding.
+
+So I'm going to create a test
+
+and for here, my test is going to be public void let's call it something like
+
+driving. 65
+
+on birthday
+
+no took
+
+And there's lots of ways you could have worded that, but as long as you get that information across, so that's what I'm testing.
+
+Again, there's gonna be no arrangement here.
+
+It really you won't see a lot of there's a few santra into unless you're testing a full class like something like elevator, that's when you wind up using arrangement where you might want to move the move the elevator, set it to floor three, before you test it, it moves again, those type of things, what goes in an arrangement. And then we're going to act or act here is going to be now an integer. And I call it anything I want to call ticket equals. My class dot caught speeding. And I said I wanted to check 65 on birthday, so that's true.
+
+So, cert
+
+and here, I'm going to assert to a certain A string or an integer or double, or any value, where it's not just true or false, we want to use assert.
+
+equals.
+
+And when you come up, you're really gonna see a line through it. That's because of a problem with double, but we'll get there in a minute. As soon as I change this to an integer, it'll be fine. So the first value in assert equals is what you expect. So this is what you're claiming it to be. I claim that this is going to return no ticket. So I was zero. The second value you're going to send it is what it actually was, what the result was, and that's the ticket. So this will return as a past test if ticket contains zero, which is what I expect.
+
+So it does. So the point of looking at this one was around returning this integer
+
+So let's
+
+continue to look at one for strength. So first two returns a string. So caught speeding, let's put this in
+
+testing with integer
+
+result. So you remember why we only did one test. Remember, none of these, we completed all the tests that you would really want to do. So. So first two, we're gonna write a string test that passes this. And again, I just want to, I want to, we send it to where Hello, we should get a G back. And I just want to show how we can test that.
+
+So this would be
+
+test for first to
+
+be testing
+
+actually has string return.
+
+So again, we'll use the test annotation
+
+public void, it's always gonna be public void. And a name of this one may be
+
+maybe something as simple, this actually has less testing some of the others. There's not a lot this method actually does. Because if it returns one of these, I probably don't need to return a bunch, I probably want to test you know, an empty string or null, which is going to fail.
+
+So we'll probably an empty string and all a
+
+string that is exactly to a string, maybe that's one, a string that is greater than two. It's probably all you would need.
+
+So this is going to be string
+
+length blanks.
+
+greater than two. Turns out, that's enough. Because we know it's going to return the first two characters. So again, we have no arrangement. And, and encourage you as you're working through these to actually put comments arrange, act and assert. And or something that means that's a setup, test, verify whatever makes sense to you. So here we're going to get a string back, so we're going to hold it in the string. So it's going to be first to lecture. And then we're gonna call the method first to and our test is going to be let's just use their example.
+
+So we'll send it Hello
+
+are certain to a certain string, we do it the same way we just did for the integer. Now here, we are, what we expect the first argument is what we expect if we Send it the word hello. We expect he to return.
+
+So that was going to be what we expect.
+
+And the actual is going to be what we get back. So that's going to be the whatever in the variable first to it, it's a string comparison. So it's going to call when we call assert equals, if it's a primitive, like the integer, it's just going to compare the stock value. If it's a reference type, it's going to call the dot equals method on it. So in string, it's going to call the dot equals. So that means that things like case are going to matter.
+
+It's gonna pass
+
+so alright, so it's gonna get a little more complicated with arrays and lists and maps next. So what questions do you have before we look at that
+
+I have a question, Brian.
+
+Yes, I may have been distracted and missed it. But you were just sending like single examples of what you could test for for each of these methods. Not that these methods were fully tested, correct? Correct. Yes.
+
+So for good for all these, these are just the purpose of these further tests is because we have one test that returns a string, one test returns an integer for the samples. None of these, including the first one is everything. You could test. Now we did list all the tests you could possibly do or might want to do for the first one. But yeah, for us, these recipes is not. So when you when you're doing your tests, they should not be one test each. That's almost never correct.
+
+All right. So let's look at this next problem of
+
+all four letter words because it's going to return
+
+a, it's going to take an array and return a list. So we need to be able to work with arrays and lists, there's a couple ways we can do it. One is we could loop through it and assert what it's going to be. And that's a common way to do it. But that's tedious. There is a method built in that we can create an array, but it only works for arrays. So we can create an array of what we expect it to be. But fortunately, we can easily convert a list into an array. So we can just get away get our list back we can convert to array then compare to constar expected array.
+
+This is going to be four no four letter words
+
+and this would be test for
+
+know four letter words.
+
+And this is going to be showing testing lists an array actually should be asserting, it's not only the testing of them, it's the asserting of them. So if I was testing this, this one actually is going to have a range because of the list. We need to arrange the list before we use it. And we also need to arrange what we expect the result to be.
+
+So I'm going to test
+
+to a test and
+
+public void list does not return
+
+four letter words.
+
+So my arrange here
+
+is going to be create two arrays, because I have to pass an array to the argument. I know that from my arguments here
+
+But I also, I'm going to want to compare it to this list.
+
+So my arrangement will be first string array words. And let's put some values and let's just use their examples that are in the so train,
+
+boat
+
+car.
+
+Now my second thing I'm going to arrange is my expected result as an array. I can't actually compare two lists directly with J unit, there are expansions to J unit. So kind of extra plugin type things that you can use to test other things more easily. But by default, it doesn't do list directly. So but it does do a race. So we'll say string and we'll say
+
+expected result.
+
+Now we have to manually for expected results. It's always a matter of saying if I give it this, given these requirements, not the code, but the requirements, what do I expect to get back. So return it away less contains the same string, except for any words that contain exactly four characters. So I would expect to get back this list without words that have four characters. So I would manually go through it and say, That's five characters, that's four. So I don't expect that to be here. That's three. So I do expect that so that's my result.
+
+Now I can do the test.
+
+So the act is going to be I'm going to get back a list string. And we call this maybe our result list. actually called this. Yeah, let's say result list equal. When I call the lecture, class, no four letter words and pass it my test. So words
+
+Try to get this more important.
+
+Now, there's two things I could do now.
+
+I could loop through the result list within using its index and everything it should be the same index and expected result as a result list. That's completely fine way to do it. Sometimes you actually can be easier to do it that way.
+
+So you know, do for it I and
+
+index zero, they both should be trained index one, they both should be car. They both should be like two. But if I was testing this, my search would look like this.
+
+So cert, first of all,
+
+I want to
+
+cert
+
+cert true. cert equals I can't explain one cert And what I want to do is compare my expected results to my result list, actual result. So what comes back from the method is the actual result. What I think it's going to be what I claim it's going to be is the expected.
+
+But I do that
+
+it's not gonna work because
+
+I can see it says it expected a bunch of strings, you can see it use the string. It's just getting the information from the class. It's not getting the instance information. It's not getting the value, but was this array. So what I have to do in my assert is like convert that to an array. So I could change this to expected array Know sorry, actual, actual result. And we can take our result list to array. And if I want to cast it immediately into that string array, I can say new string of size. Result List dot size. So what we looked at when we were looking at arrays initially, how enlist initially sorry, having cast back and forth, and now I can use this as my actual result. So it'll be that would be two arrays, but now I can't use assert equals.
+
+So I'll change this to assert array array equals which will take
+
+two arrays, and it will go through and check that they're equal in every index. Right? Now I get a passing test case. So we can use that start arrays equals either with arrays or lists, we have to convert the array list into an array to do it.
+
+So questions before we move on?
+
+You go over line 121 again. Yes. So, line 121
+
+is taking our list. So our type lists are ArrayList and has a method called to array to array by default returns an array of objects. But I want an array of strings. So it has an argument it takes where we can pass it an array, an empty array, we want it to populate for us and returned to us. So I pass in an array of strings, but then I have to create a new array of the dimension it to a particular size right now because arrays can be created to stand shaded with a square size Why do I want to populate, you want to array to populate it with this list, so I get the list size as the size of the array. And then what to array will do, instead of creating a new array of type object, it will use this array that is substantiated and passed to it to populate the values and send back, which will give me an array of strings. So it's effectively getting the array back in the data type I want rather than generic data type. I could get it back as array of objects and go through and cast it to, but this is a lot quicker.
+
+Does that answer your question?
+
+Yeah, it's it's like the homework.
+
+Yeah, I think you had to do this recently didn't I believe? Yeah, and the bank bank accounts. We didn't have to, but it was one of the options, I think the
+
+best option
+
+and it's common, we have to get between ArrayList so Alright, so now we have so many other questions I should say, then this one's a little more complicated.
+
+Okay. All right, so
+
+let's do.
+
+The next one I want to do
+
+is there's one for
+
+Rob Peter to pay Paul. I'm sure a lot of people have really bad memories of this particular problem. And let's write a test for it. So we can look at testing map, there is nothing special a test map, we're actually going to have to go through and test it pretty much manually. So let's do that.
+
+So let's write a test.
+
+public void, and I should put up comments that this is for Test, Rob Peter to pay, Paul. And again, this was one that would probably have quite a few test cases around it. There's a lot of things that come up packed into this requirements. And this is asserting with maps.
+
+So half of
+
+Peters money given to Paul.
+
+That's what we're going to test in this particular test case.
+
+We're going to have an arrangement because we have to create an A map to send it so one of the other times we need arrangements when we have to create some data to send. So we need to create a data that looks like one of these and we'll get back know the result that we expect. So I'm going to create a new map of string integer
+
+nap string
+
+in it And we'll call it Peter Paul
+
+equals new hash map of type string
+
+integer.
+
+For that, and now we have to put values in it. So Peter, Paul, put,
+
+and the values we, Peter,
+
+and 2000.
+
+And I come up with these values by just thinking through how's this function supposed to work? So it's going to be if I give it this map, according to its requirements. And sometimes the requirements are things that we've came up with as we're building the function. So it's not always something written down. It's often something I'm building a function that's going to do this. And so we have to kind of think through how do I expect it to work given what inputs Expect what output?
+
+Now, we'll give it a value of 5000.
+
+All right. So there we have our arrangement. We've set up the map, we're going to send it
+
+and we do act.
+
+And we're going to get a map back of string and integer.
+
+And type results map equals lecture, call Rob Peter to pay Paul, pass it our Peter Paul mapping, creating the arrangement
+
+that our cert is not going to be more than one thing.
+
+So we have to assert when we assert we want to sort everything that could be true, that we know about it, everything could should change. So in this case, we have two things that should change the amount Peter has the amount Paul has. So we're gonna start equals first Now what I'm starting with an integer This is a capital integer. So I can't just if this is one of the cases where it won't auto box for me, so I'm gonna have to say I expect this to be a new integer value 1000 so I have to box the image of myself and my result map is going to be get the key Peter which return return uppercase integer, it should be 1000. And now I'll do the same thing
+
+for new
+
+integer and I expect that to be 1500.
+
+We won't be right
+
+when this to be 500 I think
+
+result map get Paulo
+
+so We're starting to things because I expect two things to change.
+
+And we'll run the test to see if it does, it does. So this gives two things, starting with maps. And this also is asserting with
+
+object or primitive rappers.
+
+Rap reps, like integer.
+
+So won't automatically box it into the permanent format or the object wrapper for me, I have to manually do it when I'm using with a cert. For a map we have to assert on each key we're interested in.
+
+So well that like if it fails, well, let's say expected this, but got this.
+
+Yeah, let's see what. Let's change this to.
+
+I could make it Oh, let's just change the amount false. by one, I should make it fail.
+
+So, it will, but what we're going to see
+
+is so yeah, so expected 1000, but it was 1001.
+
+So the problem is, this isn't obvious, which test just failed.
+
+Me you can kind of look expecting 1000 expected 1000. So we're going to write this we should see something like Peters money or Peters result or something like that.
+
+And
+
+Paul's resolve some comment. It could be useful, the more useful the better. But sometimes there's not all that useful as which cert it came from. So now when it fails, if we look at it says Peters result expected 1000 it was 1001 it's really obvious I come here. I look for Peters result. I know exactly which cert failed. So yeah, it does each assert each time type that gets passed to it. We'll have some variation on this usually for the study.
+
+I thought you were asking like, would you get it? Would you be notified if it wasn't able to autobox for you? Is that what you're asking about? Are we asking about the results of that test?
+
+He answered what I was asking.
+
+I don't know what you thought. I don't know what
+
+you thought that I was asking. I don't understand what you're saying there. So that's definitely not what I
+
+was asking. But I think that's a great question too. So I'm going to answer it too, because it's something you're running may run into, or probably run into something I run into every time I test with integer because I always forget. So this seems like it should work. But it doesn't. That's but this is the auto boxing problem where it won't transform the primitive integer into the uppercase integer wrapper like it normally does for us. So all it does is it says you'll get this message straight off. object is ambiguous for the type of cert, which is probably going to mean absolutely nothing to you. So, it doesn't mean a lot to anybody. But it does give a little hint, it does say that it doesn't really get much of a hat. But we know that it means that something's wrong with the requirements. And the either the string or one of the objects are not what they expect. But it does give just hit me with a hint, I never thought of before. This isn't an object instead of one string, object object. So when you see this string object object, or it might just is by to say object object, you're working with an integer that almost or a double it almost always means you need the wrapper class. So that's what it will give you. So you have to change it to this or new double whenever you need. The errors you get, like many of them from Java C or not always
+
+great
+
+or understandable and not just to your to anybody.
+
+I will say that I understand about a third of errors I actually see coming from Java. After years of using it, I just more haven't memorized it. Oh, I see this keyword, it must be one of these three things. And you will too soon.
+
+All right, so
+
+two more things I want to look at here. And then I actually want to look quickly, I won't have time to do it, all it testing a full class, because that's important. That's actually the way you use it. And you don't have many methods like catch caught speeding to actually test. You're more worried about how something like the elevator works or the fruit tree works or there's bank account classes that you've been working on work. That's what you care about. So we have You can see an example of that. So let's get through these last couple because there's some really important things in them. The first one is double. So I'm just going to call this. So these last two methods, they're not even, they don't really even do anything. Well, they do. One, just divide the number by three so that you can get a Precision Air with double in a test case, and the other one just returns an object, we send it a dog object and returns a dog object with the same values, but it creates a new version of it, so we don't have the same exact object reference.
+
+So this will be testing with doubles.
+
+And the first test is going to be test like void testing with no rounding error.
+
+No precision problems that doubles when they're in for.
+
+So we're going to double resolve equal Where to call when lecture. If we call this method third double, and we pass it a nine, we'll get back a nice even three, no routing error.
+
+So asserting doubles.
+
+assert equals.
+
+And the reason that this slide comes through it saying it's deprecated for double is because double requires three arguments is the only one that does. And it didn't use two, which is why it has a line through it. They no longer allow the two argument version for double. So our expected value is going to be three. Our actual value is going to be the result. The third argument is going to be the precision. What do we care about? So do we care about it to two decimal points? We care about it to four decimal points, or do I just care about the whole number portion? So I'm going to say zero. I don't expect anything after the decimal point should be a whole number.
+
+And that should pass
+
+So let's do the same thing
+
+to the copy this to make it a little faster. So test with randonneur. So let's take the same third double. And if we give it
+
+five,
+
+five is going to result in something like. So it's going to be being five divided by three, which is going to result in something like 1.666666666667, something like that. We've all seen results like that, right? Because five divided by three is 1.6 to infinity.
+
+So
+
+if I want to find out if I have the right result, for a double like this, I have to decide what precision do I care about. So it's significant number of the double like we talked about, we looked at Double problem, so maybe I only care about the first two. So I want to make sure that it's correct out the two decimal points. So my expected is gonna be one point 66 my result is gonna still gonna be the result. And now like precision is two. So I'm gonna check it off to two decimal points,
+
+which is going to should pass.
+
+So this allows us to get around that precision problem with double testing. Because we can say, you know, what, if it's right up to the third decimal point at the fifth decimal point, that's good enough. So the precision problems go away. They don't go away, we just ignore them. The browser's not running. It's not rounding though. It's just truncating. So what it's going to do is it's going to compare it against this these two numbers without taking any regarding without regard to the other numbers. Does that make sense? Make sense?
+
+It does. Thanks.
+
+So any questions?
+
+Yeah. All right. So the last thing in here, what to look at is
+
+urn objects we haven't, we've only been testing with the stuff that was given to us by Java.
+
+We know that that we're writing our own objects. How do we test those?
+
+So there's a method here, dog, there's a class dog. And all it does, we send it an object of type dog, which just has a name, a breed and an age. So I think it's two strings and an integer, then it'll return a new object, that type of the same values. So they should be equal, but they're not the same object. So no.
+
+So let's write
+
+testing with our own objects
+
+and
+
+test
+
+for like void dog returns
+
+the same dog
+
+not the exact same dog the same values. So our
+
+assert here, or arrangement here is going to be creating the dog. So dog will say our dog
+
+equals new
+
+dog. And we need to give it a name which we named the dog. I hate coming up with these names, so I'll make you do these values. I know. I know. All right. That's actually what I probably would have picked anyways. So the go to dog name. What kind of breed is the dog?
+
+lad?
+
+I assume that spelled like the fin you're working. So right We'll give it an age when we get seven, I can pick a number. So without further ado I'm going to freeze up. So now let's get our dog back. So returned dog equals lecture, return our dog and our dog. So now we can insert them. So let's do a cert cert equals
+
+expected
+
+our dog
+
+and got back return dog. Get all this method does is take the values and move them to a new object. So I get these objects are going to have both be Fido lab seven for the values.
+
+So if we run this
+
+that fails, why do you think it failed?
+
+Same, the values are just the same.
+
+Yeah, that's that's it. They're not the same object.
+
+The values the same object. So when it calls,
+
+dot equals calls the equals method on the objects. So if we look at this, it says expected dog with this hash. That was dog, this other hash. So it's comparing the object references. Well, we care about the values. So how can we change? What can we do? Does anyone have any ideas what we could do to make dot equals work?
+
+Is it to string
+
+close? It's not using the to string method.
+
+Can you just Is there a way to access the name?
+
+Well, we could actually go through so one of the options
+
+is we could do this. Let's do both. With options, we do the option that I think is the common way to do it. And then we'll do the option that I prefer. Not you can do either one, I just mean I prefer my own code, not necessarily for. So we could write a private method and basically create our own assert, assert dogs. And then we can say dog expected.
+
+Dog actual.
+
+And we can do exactly what you just said, we can use the getters. So we can say, well, three, assert equals. Let's copy this line down here three times, to make a little. So asserts don't have to be in this method. They can be in a printing method, this method calls if they fail, the test case will fail. Which means we can essentially create our own assert. So here we'd want expected dot get breed, and then our return dog will be our actual dogs. Get breed. And what are the same for expected dot, get name, the actual dot, get name, and then the age,
+
+get age.
+
+And then instead of having this
+
+we could say, assert dogs and send it our dog, the same thing, our dog and the returned,
+
+returned dog
+
+calling our private method. And now it should pass because now assuming the asserts on the string, and then the things it knows how to assert, and they just pass, so we can build essentially our own asserts by creating private methods. We can build all the private methods we own here to do work order assert things that we want to repeat. We done the map we could have built a private method compares a map to you know, art Just map any place in what's any place anything that calls in here, any method this calls gonna serve dog. If the cert fails, the whole test case fails, which means we can move them around and make them reusable. Because now I could every time I want to use if I have the dog class returning, I can always just call a certain dog doesn't have to be this method can be any method calls, how this reusable cert now, that's one way.
+
+Let's take the same test
+
+that's what the remote object
+
+and our own search method.
+
+So let's take this and copy it
+
+and test with our own object
+
+using start equals
+
+so that I know Don't want to do this same dog as the same dog again.
+
+I want this to work.
+
+So any
+
+ideas on how we can make that work? Because we can
+
+you have to access the heap.
+
+We do find the string. So we had to we have to be able to access all the various the object. So what do we have that can do that? What are we looked at before for objects. That equals dot equals. So, the problem with an object is we have to manually override dot equals otherwise it compares that reference it gets returned, which is what was happening when we ran it. In fact, let's run it again. So we can see on these two objects
+
+Well, it's comparing is
+
+what's different is the hash.
+
+So but the values are the same. We know that because when we've done it up here worked when we asserted them individually. So I'm going to go to the dog class. And I have a couple choices. Here. There's a override a dot equals, I already have one comment. So this checks inside says is the object instance of dog. If it's is, if it's still there, then it's going to cast it and it says no to the names equal to the breed equal to the age equal which thing, whatever we consider making the two objects equals what we had right here. So it doesn't have to be everything. It's up to the developer to say this is what makes it equal. We can also right click go to source and choose hashCode and equals no generate them for Now this, the reason I say you don't have to do this, this is how I prefer to do it. Because I want this to work. And with dot equals, it will, because that's what it's calling, it's calling the equals method. So now it knows how to compare them internally. And we'll do the comparison. But I will warn you that when we have something simple that has strings and images on it, that's fairly easy. Our objects here to get more and more complex, they're going to be objects inside of objects. Remember, they're all data types. So my dog class could have, you know, a nother object in it that represents the breed and has a bunch of details about the breed or I don't know what else might have, but um, it might have other classes in it. And so those all have to chain equally and that can get a little messy sometimes. But when they're simple like this, that's pretty easy. to work out. So you can do it either way, for your own objects, you can either build your own assert, or you can override dot equals and use the assert equals.
+
+Alright, so any questions on anything we've
+
+looked at so far?
+
+So even though you're just overriding equals assert equals also still applies to it.
+
+Yes, because assert equals what it for reference types, it calls the equals method. So when before we override, it was calling the generic object version of it from the superclass object, which doesn't know what to do with your values in your object. So we just compares the class type and the height what's called the hash code, and that checks to see if they're the same reference essentially, in the heap. But when you create your own dot equals, then you say what actually makes these two these two dogs equal? No, the fact that they have the same exact name, the same breed and the same age is what makes them equal. You can make other choices you can say the same name and breed. They're equal maybe, but. Okay.
+
+And then I also had a question on are you importing the dog? class? Like, how are you just creating that? That dog object?
+
+I think it is imported. Oh, no, wait. I think it's in the same package.
+
+Yeah, it's in the same package. So I don't have to import it. Okay. Okay. Got it.
+
+So Other questions?
+
+Okay, so
+
+it's been an hour again, I'm going to leave it up to you. We have still one more thing we need to look at. And I really want to look at it. I think it's worth the extra time. So do you want to take a short break? Now I just want to talk through All right. So I'm taking, I see Nick shaking heads running in place. So I'm not sure how to interpret this. So
+
+quiet.
+
+All right. So all right, so let's just keep going. If somebody disagrees with that speak up, otherwise, we'll just keep going.
+
+So
+
+the other thing I want to look at is classes, because you have to work with your own classes. And right now everything we've looked at is these kind of standalone things and there's some pretty important concepts and testing a whole class together. And again, as we go through it, as much as I would like to go through and test everything we possibly could. We'll focus on this because a time on more the same type of idea of some differences we want to look at. So here in The lecture code, there's fruit tree. And I was really over ambitious and had elevated in here too, in case we didn't have enough time we have time to fill, but it never happens.
+
+So let's test fruit tree. Let's look at it.
+
+So you probably remember fruit tree from a couple weeks ago when I made an appearance and your exercise, I think in your first class exercise. So it's a pretty simple class where it just has the constructor that takes some information, this pick fruit method, and then a couple methods to verify it. So but it has some interesting concepts that it's going to bring up around classes. And that's this idea of their state being held in the class, something we didn't have to worry about with all those tests we just had. So when you're writing a class like this, you have to, and this is more commonly how you use testing is around your whole class, you're still gonna write a test for every method. So there's getters and setters in here. There's a lot of getters and setters. Send your diverse classes. getters and setters have to be tested. That is true. However, I'm not a big fan of people writing tests for getters and setters manually. Every place I've ever worked, there's tools that do the testing for getters and setters. So you don't have to write tests if you want to for practice, you're welcome to write tests around getters and setters. But to me, it seems kind of tedious for something that when you go to the workplace, that is not any not interesting, the tests, you're not learning anything about testing. And when you go to the workplace, the first thing they're going to do is say, Oh, we have a toll it does this. The disk goes through all the getters puts that in now there's there is two exceptions, if it's derived, so derive getter, that's just a method with a fancy name. So that has to be tested. If you do something in the getter or setter, so if you make a change, like if you remember back in our rectangle we've done an absolute value of in the center. If you do something besides just pass the value through to something up here, then you need, you have to test it explicitly manually. But if you're just doing like this, where you're just setting the value here in the gutter or getting the value here in the center, just setting the value here, in the member variables, you don't need to worry about testing it here at Tech elevator. They are important, they're tested in real code. So but we can pretend we have the tools that are doing it. So you don't have to write that out. If you want to practice them, you're welcome to do it. But please don't take that to mean you shouldn't test them just I don't want to make you do that. That's too tedious. I would feel too much food too guilty about that. you spending your time on that. So let's look at how we would test fruit tree. So the first thing we need is a test class. We're gonna write it in source test Java. It's good to be in Tom combat tech elevator and it has to be in the same package. So trees
+
+So here,
+
+I'm going to create a new class. And it's going to be named. And I need to change the package to trees, which is the package my fruit trees. And the name is going to be fruit tree test.
+
+And then I'll click Finish. I'm done.
+
+Alright, so the first thing we want to do in every test class class, what do we need to set up before we can start running tests
+
+was the first thing we set up in the last class.
+
+Before when you're creating the instance of the class that you're testing,
+
+so we're going to it before
+
+calling public setup, void and let's call it
+
+Create fruit tree.
+
+That's not a test, I'm going to use a standard Java syntax or naming.
+
+I really messed that up. Let me try that again.
+
+So we have to import four. I'm actually just going to go up here. For this one I just do. When I'm actually working on tests, the first thing I do is come up here and just import j unit dot star. That way I can use everything. Get in one place that I think stars, not a danger. It's not a danger, and it's useful.
+
+So what are we going to do in the before?
+
+So if we're going to test a fruit tree, what do we need?
+
+If I told you to go test the fruit tree in your backyard, what do you need? fruit tree. Yeah, you need a fruit tree in your backyard. So the same thing here trying to test the fruit tree class or an object, we have to have a fruit tree object to test. So the first thing with the before is we're gonna create a private member variable, the whole our free tree object. Private, and it's going to be a fruit tree. And we can name it whatever we want. Commonly, it's just the same class name, lowercase. A common test convinced Ctrl C is to call it something like Target. I actually like it like this because then I can remember what I'm testing as I go.
+
+And I can't be a problem sometimes. So.
+
+So here, we're going to create a fruit tree.
+
+So every time before I'm going to create a brand new fruit tree. So new
+
+fruit tree
+
+and let's pull this to the side here so we can see it.
+
+About to work. So it has a constructor of type of fruit and starting pieces of fruit. So this is why we want to do before, I want to pick values that every test I run starts in the same place. They're always gonna have the same value. So to the constructor, so I know that this fruit tree always has pears on it. It always has 15 pieces of fruit. So as I run tests, and I'm changing things I can know, I mean, confident how they're supposed to change. So let's do that. Let's do pairs and what have you, not 10 so this fruit tree every time it's created, for every test is always going to have pairs. It's always going to have 10 pieces of fruit. So my first test I probably would write would be around. Does this fruit tree have 10 pieces of fruit? And is it pears? So I would probably would write your test that made sure the constructor set things properly. We're going to skip that for time. But because there's some more interesting tests to focus on.
+
+So in this case, we're going to have
+
+this thing we didn't have in the other test. And that's that as we change things with the fruit tree, the only method we're really going to be testing is pick fruit. But it has several rolls around it right has rolls around. If we there's enough pieces to remove, and then if we can remove them.
+
+This
+
+pieces of fruit left changes.
+
+But it doesn't tell me and pick fruit from this result. What that changed, right? It says true or false. But the requirement is and the code the code is that it's going to change pieces of fruit left is called a side effect. So when I have side effects, which are commonly well in Java classes and when I have side effects like pieces of fruit changing when I successfully pick pieces of fruit if I pick five pieces of fruit pieces of fruit remaining, so get piece of fruit left should return five, because there's been a side effect the state has changed. With the other methods we looked at, there were no side effects I call caught speeding, nothing changes. I call it twice, nothing changes. In this case, the fruit tree changes every time I call pick fruit, which is why it's really important to rheostat change it to a starting value every time and before. If I would have done that in the last one, if I just would have put it up here, it would have worked just fine. Because nothing changed in that class. There was no state being held. But now there is most Java classes. We do upstate
+
+So, let's play the test.
+
+So I did a test of public void.
+
+Pick five fruit.
+
+So I'm gonna have
+
+I won't have a further range now.
+
+But I will have an act. So I'll have no arrangement in this particular test. We'll look at one a minute that I will, I'm gonna have an act. In this case, I'm going to call my fruit tree.
+
+And I'm going to
+
+pick fruit, and I want to pick five. I know this is going to return a Boolean. So I'm going to start out, I don't have to do this, but I'm going to do it so you can just see it can be done. I expect that to return true. So I can do it like this. I don't have to really store that condition and avoid if I don't want to
+
+Now I am
+
+not only assert
+
+for the return, but also side effects.
+
+Changes in object state.
+
+So now I have to do a second assert, where I'm going to check how many fruit are left in the tree. I know that I started with 10. I know that I picked five. So I can calculate how many fruit are going to be left, because I have these values kind of guaranteed, by the way I wrote the test. And I picked an arbitrary if I would have picked 12, then or you know, three, I would just determine how many should be left. So I'm going to assert by Sorry, I'm going to make the claim that cert equals that it's going to be true that there's gonna be five left. And then for my actual I'll just call free trade. pick fruit, not pick fruit,
+
+get piece of fruit left, so they get her for that value that changed.
+
+And I think I have an extra
+
+I do. Alright. So now if I run the test
+
+that's not the fruit tree Tesla's electric test. If I run the test or not remember here by run as j unit test not. Now I've asserted that both pick fruit got returned, the Boolean is true, but it also sorted the fruit changed in the way I expected.
+
+So before we look at another
+
+couple more tests for fruit tree, so again, not all of the ones that are we should be doing just Someone's pointing out different concepts. Are there any questions?
+
+So make sense, the side effect.
+
+Kind of dilemma.
+
+Yeah. So since that is just a getter, would you also be able to generate that one through eclipse?
+
+No, because in this case, I'm using the getter to get the value. I'm not testing the getter.
+
+Okay, I see what you're saying.
+
+So the ones I'm talking about is when we have like, type of fruit. If I had a setter for two, there's no reason to call the setter than call the getter to make sure it has the right value. Well, there is a reason to do that, not manually. But we're going to have to use the getters and setters to arrange the test and to verify things. So we'll use the actual test here is Pickford, Pickford five. So as we run tests on our whole objects, what we have to pay attention to, is what we have to think about in constant keep in mind When I run this method, does it change anything outside of itself? Does anything change that's not in this block of code. And if it does, in this case, it does, because it changes piece of fruit, which is a member variable. if something changes is not not blocking code with the method that we have to assert that to, because it's changed the method state. And that assertion is just as important as the main one, because in this case of pick fruit we return true, but it hadn't reduced the number of pears in the tree by five that would be a failed test, and we would miss it if we didn't check the how many fruit are left the side effect. The same way if we wouldn't have checked started true that fruit tree return true then it may return false and still change the number. So we need to make sure all the changes we expect to happen to the object happened which means that we have to really understand how our classes work and fit together, which we should if we weren't them, but it can be challenging sometimes to keep track of what's changing. So I've suggest by doing it in exactly that way, when you're starting out, if you're testing a method, highlight it in some way, look at it and say, is there anything here, anything it's touching, that's not just here, that's defined someplace else. If it is, you know, you have a side effect. If it calls another method, then do the same for that method. If that method changes something, then you have a side effect. So you kind of follow the chain down through to it's done. Alright, so let's look at one with a kind of more traditional arrangement.
+
+So
+
+some of the things you would want to test for the fruit tree is not just Can I pick fruit once you want to do things like hey, pick fruit twice, because just because you can do it once doesn't mean it's not code in there that somehow prevented During your second time, in this case, you are testing your own code. You also want to do things like I pick all the fruit and then not pick any more. So let's do that. And that's has some more interesting
+
+part to it. So our test is going to be
+
+public
+
+void if
+
+no fruit
+
+actually
+
+cannot pick fruit when no fruit remains.
+
+So I want to make sure I can pick I can't pick fruit when it's at zero. So now I have an arrangement. My arrangement is going to be that I'm going to pick all the fruit so I want to do this using my My method. So we'll say fruit tree
+
+and
+
+pick fruit. And I want to pick them all, there's 10 of them. So I'm going to pick all 10 pieces of fruit. That's my arrangement. So I've changed the state of the object to be something I want to test. So the arrangement is going to be sometimes one, sometimes multiple steps to change the state of the object into our starting point. From this initial starting point, it gives an extra benefit because I've actually kind of end up with an extra kind of free test for pick fruit that I can pick off the fruit. I still would want to test that explicitly, but there's nothing wrong with using the methods to arrange things. But our actual action is going to be good. I'm going to assert, assert false This time, I should not be able to pick any fruit. And I could store this in a variable but since it's just a boy, and I'm not going to fruit tree fruit. Let's just try to pick one more piece of fruit.
+
+And then my assertion.
+
+Our second assertion is going to be cert cert equals
+
+expect the number of fruit remaining in the fruit tree
+
+to still be zero.
+
+And the reason I want to check that is what if it made it negative one? What if it told me false but still decremented the count to negative one or positive one because if it was adding can add Yeah, negative negative one if it's attracting and subtracting negative one in Nevermind.
+
+So that makes sure it's zero. Let's just leave it at that.
+
+So run the test
+
+and about passing.
+
+So there's a more tests we should do with fruit tree. But they all involved and what I wanted to touch on the two things I wanted to touch on with the object is these two concepts, one, have to check the side effects, objects have side effects, or they can have side effects is not guaranteed. So you have to pay attention to the state of the object and how that changes into your grant, you will need to arrange the state of the object for whatever you want to test. So you have to think more than just how is this integer being used to determine if I've been speeding or not? And go beyond that, too? What are all the things this object can do? What if it's behaviors can do? How do they change as the state changes? So it's a little more complicated. I think it's a little more fun, a little more challenging and interesting than just oh, I gave it a word and I got two letters back that's kind of boring to test. around the whole object, it's a little more it's a little more Interesting in. So those are the two takeaways. When we do this, this is again, not all the techy stuff this object, this object would have quite a few more, I'd want to make sure I can pick the fruit to zero, I want to try to pick 11 fruit. Right, the start, I wanted to try to pick two fruit and then try to pick three fruit to make sure I can pick fruit twice. I wouldn't go beyond that. If I could pick fruit twice, I can do it. No, probably three or four times. I'd want to pick fruit tonight and try to pick one more to make sure I can get to zero and the second time.
+
+So various tests like that.
+
+Right. And I want to try to pick negative fruit, negative one fruit. I think if you tried to pick if you tried to pick negative one fruit, it would work it would be wrong. I think it'll increase it to one just looking at the code because it'll subtract negative one from pieces of fruit and that'll be greater than zero. If it's a If you pick negative one fruit, it'll go subtract negative one, end up one, which would be greater than Yeah. I'm pretty sure it'll add fruit if you use negative from this particular case, which would be a bug. But never mind. I just kind of noticed that. I want to point it out. So questions about anything we've talked about?
+
+I'm going to stop here because I know it's been
+
+a very long day.
+
+But hopefully exciting. Hopefully. Sorry, exactly. I mean, I interrupt you.
+
+Super exciting, right, guys? And
+
+if you have a question, yes. So four asserts assert false and then it kind of put the C's for trade off pick fruit one. Yes. Um, so I'm kind of curious as to why that's a Boolean.
+
+Because right here pick fruit returns a Boolean. Yeah. So this is this is I don't think it's what you're asking. But just to be clear this for everyone, this resolve equals fruit tree dot pick fruit one, which probably makes a little more clear and assert cert false result. These two lines of code in this is equivalent. I'm just not storing it in a variable. I'm just using it directly. So I'll leave that in there. So you can see the equivalency. I know we haven't done a lot of babble, we're using methods calls as arguments on their method calls. We're gonna start. I think testing is a good place to start with it. Because otherwise, you end up with a lot of code you don't need. You can write it though, won't hurt anything. You're welcome to write it if it makes more sense.
+
+So Other questions?
+
+So you feel like you can write tests right now.
+
+But less, less Yes, head shaking than normal when I asked that question at the end of the day, so, which is normal for you to testing? It's a whole different switch the whole switch from what we've been doing, right? It's not it's just Java code. Keep that in mind. That's important. It's just Java code. There's no real difference in the code is the way you think about it. There's, I mean, there's these test classes are just classes. They're just calling me on the card.
+
+This you cannot fail.
+
+That's, that's true. Well,
+
+we're gonna talk about that because yeah, you might be able to fail some of the test. All right.
+
+So let's talk about what you'll be doing for exercises.
+
+Let me
+
+pull up. I import them. I don't think I did. So let me import them and pull up the readme.
+
+So the exercises are closer, not closer. They are like, what we started what we did for most lecture, I just the small problems.
+
+And let me get to
+
+Oh, look at code coverage.
+
+Let's look at that. I'll take like two minutes.
+
+So coke and we'll look at it again on Monday too. So code coverage is instead of clicking after you ran the test, if you click this button here, it runs this thing called code coverage. I'm not a huge fan of code coverage. So
+
+but it can be useful, which is why I think I forgot it
+
+runs the test and it looks like this. And it is it is useful. So this tells us that the lines that are green have been tested, the lines that are read or have not been tested, and the lines that are yellow have partially been tested. So if you have a complicated Boolean condition, it may be yellow because maybe you test it when the left side of it was true and the right side false but not the inverse. No tell you to say there was like six different ways this could go on with the boring conditions. And you tested three of them didn't tell you which three you tested. You have to figure that out. And they give you some information down here. So it says in this entire project we had tested about 1.7% of the code. We can look and that's from this particular set of test. We tested 90% of The free tree class. So that's what it shows you. So there's not much to it really, you just run it from this right here. This shows you but the important thing about code coverage, and we'll look at these, I'll make sure we use code coverage and cover it in more detail on Monday with test driven development. But the important things about it is that it's a guide. It's not a, you're done testing because you made 100%. It's, you run it occasionally and look at it and say, Oh, I forgot to test this whole segment. I didn't realize that it never was touched. Especially with private there's private methods and stuff involved with your code. We're almost where 90% we're nowhere near 90% of the testing. I can think of another probably eight to 10 tests that are needed. Without easily for fruit tree that we haven't done. They're going to so it just says this line of code ran once. It doesn't say all this business requirements, all the requirements are on the curve protect. So it's a guide. But so it's more important. You're not done when you do 100. But you, but you do want to try to get as close to 100 as possible. It's not always possible. There are certain boiling conditions that you can write that you can't pass possibly could there's boiling kisses, right, that can be self contradictory, meaning that you can't have this subpart truth another part is also true. which ends up meaning you can't test the case when they're both true. So the yellows become a kind of a guide to make sure you think through the boyens conditions. And there are cases where weather errors are required to get to a section you can't easily test either. So if you try to make your goal someplace between 80 and 100%, you'll be in good shape. If but if it's read that you should understand why it didn't get there, so you should be looking at it saying I can't test this because of this right? I can't include it unit test because of this. If you want to get rid of it, this, this highlighting, if you click these x's here, it removes the highlighting. Or if you're on your regular test case, you're going to remember it as well. So I'll repeat where it's at. It's after you have to have already ran the test cases. So that's important. You don't start here, you run your test cases. And then after you ran them, if you click the coverage button, it'll run the same test cases you just ran with that coverage information. Right, there's really not much more that's pretty much everything I was going to go over and code coverage anyway. So I was just going to show it plan to show it as I went through fruit tree and we kind of got cut short on fruit tree because it doesn't really make much sense on me. There's little small problems like caught speeding and all those they don't have a lot of those does have classes quite a bit. But I would encourage you as you're working through your exercise, sighs day to use it. Because just to play with it. So questions on what it is how to use it. And more importantly, that it's not head hundred percent you're done. It's just a helpful tool to kind of help you visualize what you might have missed. And Rochelle, there's no requirement on code coverage and the touch and exercises, right?
+
+Well, you do you run code coverage.
+
+I peek at it, and I see. But we have given a definition of what we consider code coverage based on the rubric that we've developed for the exercises that are being tested. And we're asking you to write tests for so we call it code coverage based on how you line up in our rubric
+
+to a random code coverage, what number should they be looking for?
+
+I don't know. But
+
+I think at least, if you run out look for at least over 80%, I guess that tends to be helpful. It tends to fall in line. I guess, if you run that,
+
+if you can't get over 80% in any of your code, there's a problem. You very, it's all it's very common not to make be able to get to 100. But between 80 and 100, somewhere, is where you should be. So even though it's not as useful for the single problems, I would run it for each one. Because especially because the ones that boy conditions you can see. Actually,
+
+I know it's late, but I think that's
+
+let's run it quickly for
+
+what so it's similar to what you're going to see. That's the wrong one.
+
+Today, when your exercises
+
+So to run these tests again,
+
+you actually can start from here too, if you go for coverage, guys.
+
+But now that I've ran these,
+
+I'll run the code coverage on.
+
+fruit tree still open.
+
+So if I come down here I can kind of see so for. So you can see in what we've done today, in the lecture. We only had we had 91% coverage, and we didn't do that many tests. We skipped a lot of tests. In fact, most of them we said things like, oh, there's 10 tests we could do here. Here's one that shows this new concept. So it's pretty easy to get above 80%. So you should be above there. But here's an example of a boy when we didn't test all the conditions. It says, okay, we've tested five of six branches, me we test five ways that this could go. And what it's looking for is, this could be true, this true this true, this true this false this false this true, that's true, that's false, just going down through the truth table for it is how it's determining that. And it could be possible you can't get to the final branch or some of the branches on Boolean conditions. here another this is actually a really good example of how you can use it today. We tested part of it, but we never tested the adjusted speed, which is an important part of the problem. Because we always we set birthday to a particular way. So it is useful I guess. I'll take that back. It'll be useful for your exercises to guide you. I apologize. I shouldn't be so cynical just because I don't personally I always forget code coverage exists, you should be using it is really useful.
+
+And I should be too, but
+
+alright. So that's how you could use it, your exercises, they are going to be more like these problems, but they're going to be a little different. That's what I was trying to get to.
+
+In that, you're not going to have them all in one file. So
+
+what you're given is those same type of problems. So you've solved all these problems before, like animal grip name.
+
+And
+
+they've turned them into classes, their own individual classes. So you're going to build a test class for each one. They all should be the package combo tech elevator, data source test Java, and you're going to test the methods and some of them are going to have are going to be more like what we started with. There's a few Now, I think I don't think anyone have side effects, but you want to watch for them too. So
+
+that's, um,
+
+you'd be writing one for each of these. Now some thought you might be having is he gave us these test cases. You can't use those test cases. If I say you can't, you can, but it's not gonna work out for you. Because those test cases aren't good examples of test cases at all. They're not unit tests. They're using the J unit framework, but test build for academic validation look, and have very different results than unit tests do. So it doesn't mean you can't use them for inspiration, oh, hey, maybe we should check this. But if you're thinking I'll just go copy those tests. It's going to be obvious because they're, they're not going to cover what you need to for unit testing in are not in the same way or follow the same rules or even cover all the circuit. stances because they're that their academic tests are different. But feel free to use them for inspiration. I also warn you, they use some external libraries like mockito. And ham crest, which we don't need to worry about. Those are just plugins for j unit. So some of the code is going to look a lot different. But the ideas, if you're interested, I would encourage you just to go off the requirements for each one of these as the requirements. That's what you're writing your tests for. The requirements, not the code. So you don't want to look at this and say, how does this work? You want to look at this and say, how should this work in write your test? So I don't think there's actually a lot of in the readme here, let me see. So make sure that you had said 80%, code coverage and all of the all your tests, you can do the multi. Yeah, you can do them all at the end. After you create them, you can run the whole folder, like you were doing your test for before today, running it off source test Java will run every test file inside of it, including for coverage. And, yeah, just appropriate code coverage. So it is good. Make sure you name your methods properly. So the way we used it with the snake case, and descriptive, they should be descriptive to what's being tested. Not all the ones I wrote, especially the end of the day, were descriptive to what's being tested, they were more about what we were interested in, for that example. So the earlier ones, the first test where we were actually just writing your test for that, or 35 probably should look more like that. Or even more explicit that can be more detailed. Remember, Java doesn't care much about the length of things. So you're not calling these. So explain what you're testing.
+
+So the other thing you're going to you're going to run into
+
+is no and remember to write these in source test Java, their source main Java, they're incorrect, that would be like having a build error. And that's something that happens the first time through for somebody about every time so please try not. Please remember if you're working in test Java now. So
+
+the final thing,
+
+some of these
+
+you may write correct tests for some of these and get a failed test. There are some of them where the requirements are there is a two things about this one. Some of these, even though they look this like the same problem, the requirements are slightly different than when you solve them. Some of these have problems. There's a few that have some problems, where if you follow the requirements, the test will fail. Because the codes wrong, and that's on purpose. So you're gonna run into places where you could you need to write gets the requirements. So now, Rochelle, what do you want them to do if the test fails to run the fix it so they all turn green and you want to leave it just broken,
+
+you can leave the test failing. Okay, good.
+
+That's what I was hoping that you were gonna say. Because that's not because I don't want you fixing the problems because I think it's good practice to get used to the idea that sometimes your tests are going to be found to be broken. And it's about the test, not about the cost at this point. So I don't think you get they don't get removed credit. If they do fix it, right.
+
+No, you don't.
+
+Okay, so if you're, if you can't stand it, and you fix the codes, they turn green. It won't hurt you, as long as it matches these requirements. So the way they're, I believe, and again, Rochelle You can correct me if I'm wrong, but they'll be validated as you'll look at him to say, No, I expect these 10 tests and they have these 10 tests. Right?
+
+Yeah, we look through it and see, you know, did they test to see when they were when it so when it was the weekend when it was not the weekend when they had enough cigars when they didn't have enough cigars for each for when it was the weekend when it wasn't the weekend. And so like each of those conditions we run through. So like the examples that they have there in the commented out code that says like have party 30 Falls have party 50 Falls, have parties 70 true, I don't think that's hitting all of the different scenarios that you want to you could test for. So it's a good starting point. But we look at all the different combinations that we want you to look for. But also on the flip side of that, I have some students sometimes that turn in work that they're not testing for different scenarios. So for instance, they would say have party 20 False, and then they say have party 30 false and think that those are different tests that that's going to give you more coverage. And it's not really because it's outside the bounds of what the problem is looking for. Does that make any sense? Did I say that in a way? That makes sense? Okay,
+
+that's the golf effect. That's a great point, not now, but we're gonna hit even worse. next module. When we get to integration testing. You're not testing Java, you're not testing math, you're not testing, you're testing your code. So if it works once, below 40, if it works, if negative will work to 39, it's going to work at 38. It's going to work at no 20. If the check is for below 40. Because that's checking the mathematical operations of Java that works. You don't even have to check if it's below 40. You check 39 You don't have to check. Negative 100 either because it's going to work. So be careful It's really easy to fall in the trap of testing Java, not your code, which is exactly what Rachelle was talking about. What kind of makes it feel like those are separate tests when they're not.
+
+So any
+
+other questions?
+
+Feel confident what you're going to be doing. All right, great.
+
+Well, I'll let you go. Thank you for putting up with me a little extra long today. So, alright, so have a great weekend and I'll talk to you
+
+soon. Bye.
+
+Have a good one, guys.
+
+Transcribed by https://otter.ai

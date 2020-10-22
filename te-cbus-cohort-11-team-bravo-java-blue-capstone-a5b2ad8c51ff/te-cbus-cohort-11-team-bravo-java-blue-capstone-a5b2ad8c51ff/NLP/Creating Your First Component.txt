@@ -1,0 +1,191 @@
+Book
+https://book.techelevator.com/content/intro-to-vue-and-data-binding.html#creating-your-first-component
+
+Creating your first component
+#Creating a component from scratch
+In this section, you'll learn how to create a simple component. All components that you make are created in their own .vue file in the src/components directory of your project.
+
+#Parts of a Vue component
+Like all component-based frameworks, Vue components consist of HTML, CSS, and JavaScript.
+
+#HTML
+At the top of your component file, surrounded by <template> tags, is the HTML that defines the structure and content of the component:
+
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+  </div>
+</template>
+The App component contains HTML for a div and an image.
+
+#JavaScript
+Next is the JavaScript inside of <script> tags:
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
+The JavaScript represents the data and behavior for your component. The above example shows that the component has a name defined called app.
+
+The <script> tag defines the Vue object for the component. This object contains all the configuration needed to create a Vue instance from your component code.
+
+#CSS
+Next is the CSS inside of <style> tags:
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+This CSS defines the default view and layout for the component. The CSS here should only apply to this component and not affect other elements that might also be included on the page. You'll look at ways to do that as you build your components.
+
+These are the three pieces of a component: HTML, CSS, and JavaScript.
+
+Note: One Root Element
+
+It's important to remember that each Vue component must have only one root element. That means that inside of the <template> tags, there must be an HTML element that holds the rest of the component's HTML. Typically, that tag is a div.
+
+The HTML of a component might look something like this:
+
+<template>
+    <div>
+        <h1>{{message}}</h1>
+    </div>
+</template>
+This defines your component as a <div> tag that contains an <h1> tag. When your component is shown, the <template> tags themselves won't be included in the display, but everything else that's between them will be. This is your component's presentation.
+
+#Basic one-way data binding
+The double curly bracket syntax of {{message}} is an example of basic one-way data binding. Data binding is the concept of connecting a data property in the component to a part of the HTML view. When the value of that property changes, the HTML automatically updates to show the new value. This is an important property of component-based JavaScript that all major frameworks support, and you'll dive into more complex aspects of this.
+
+You can then define a data property called message that is filled in at that spot in the HTML. This is added to the JavaScript portion of the component.
+
+Next is the Vue JavaScript object that defines the behavior and data for this component:
+
+<script>
+export default {
+    name: 'first-component',
+    data() {
+        return {
+            message: 'Our message from the first component'
+        }
+    }
+}
+</script>
+This section specifies the properties of your component. In this case, you give the component a name and some data properties. The JavaScript object returned from the data() function is the data property of the component. In this example, there is one data property: message. This is a variable that lives in this component. It's initially set to the value 'Our message from the first component', but it could change in the course of the application running. Because data binding binds the message data property to the HTML above, if the message data property value changes, a new message is shown in the HTML.
+
+As it is now, this means that the HTML section of the component looks like this:
+
+<h1>{{message}}</h1>
+It's shown to the user as:
+
+<h1>Our message from the first component</h1>
+#Displaying a component
+The next step in creating your component is to display it so your users can interact with it. To do this, add your component to the main App component that's generated for you by the CLI program.
+
+To do that, go to the beginning of the JavaScript section of App.vue and add in a new import line to import your new component:
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+import FirstComponent from './components/FirstComponent.vue'
+Then add the component to the components section of the Vue object:
+
+  components: {
+    HelloWorld,
+    FirstComponent
+  }
+Finally, add in the tag to the <template> section at the top of the App.vue component to show your new component on the page:
+
+  <div id="app">
+    <first-component></first-component>
+    <img alt="Vue logo" src="./assets/logo.png">
+Why use the name `first-component`?
+
+The tag is called first-component here because that's the HTML version of the component's name. While you've written the component name in Pascal case so far (FirstComponent), when adding it as an HTML tag to the App component, use the kebab-case version of the name (first-component). This is part of the HTML standard for custom HTML elements.
+
+As a special note, the auto-generated HelloWorld component does not follow this standard and should be considered poorly named.
+
+After saving this file, your component is viewable to the main page of your web application.
+
+What you just created in the JavaScript section of the component is commonly called the "Vue object." All parts of a component's logic and data live within it.
+
+#Complex JavaScript objects
+You've already looked at arrays in JavaScript. JavaScript objects are like arrays, they're data structures that have keys that relate to values:
+
+let classGrades = {
+    'Jake': 82,
+    'Tyler': 92,
+    'Connor': 96
+};
+
+let connorsGrade = classGrades.Connor; // will be 96
+In the example above, 'Jake', 'Tyler', and 'Connor' are the keys, and 82, 92, and 96 are the values.
+
+You can also create more complex structures by nesting multiple objects into one structure:
+
+let classes = {
+    'weekone': {
+        'dayone': 'Introduction to Command Line',
+        'daytwo': 'Variables and Data Types',
+        'daythree': 'Logic and Branching',
+        'dayfour': 'Loops'
+    },
+    'weektwo': {
+        'dayone': 'Objects and Classes',
+        'daytwo': 'String Methods',
+        'daythree': 'More String Methods',
+        'dayfour': 'Classes and OOP'
+    }
+};
+
+let className = classes.weektwo.daytwo; // will be 'String Methods'
+This lets you build more and more complex structures for your data, structures that very clearly describe the data that's held. This makes your code more self-documenting. When another programmer sees a line of code with classes.weektwo.daytwo in it, they can tell exactly what the value in that variable means.
+
+Remember that you can put any value into an array—not just strings or numbers—and that functions are values in JavaScript. The same is true for JavaScript objects. That means you can build a JavaScript object like this:
+
+let rectangle = {
+    length: 20,
+    width: 34,
+    area: function() {
+        return this.length * this.width;
+    },
+    perimeter: function() {
+        return (2 * this.length) + (2 * this.width);
+    }
+};
+
+let totalArea = rectangle.area(); // Will equal 680
+rectangle.length = 49;
+rectangle.width = 82;
+
+totalArea += rectangle.area(); // Will equal 4698
+Arrays used in this way are called JavaScript objects.
+
+What are JavaScript objects?
+
+JavaScript objects are array-like data structures that contain keys and values to model, or represent, a certain concept. In the example above, the concept is a rectangle in a mathematics application. By keeping the data and the functions together in one thing, you can group everything you need to represent a rectangle in the system.
+
+This idea of grouping together the data and behavior, represented as variables and functions respectively, for a certain concept in one place in your code is called Encapsulation.
+
+Define: Encapsulation
+
+Encapsulation is defined as the bundling of data with the functions that operate on that data. In the example above, you modeled a rectangle that has data—its length and width—bundled with functions that operate on that data: area() and perimeter().
+
+As you see, when you want to create components in JavaScript—and in Vue—you build those components as objects. Those objects hold the data for that component and the functions that represent actions the component uses to perform logic and operate on its data.
+
+#Video: Debugging Vue
+In this tutorial, you'll learn how to debug a Vue application.
+
+
+Now that you've looked at components, you'll start thinking about what the component has and what the component can do. Your components consist of properties that make up what it has and functions that make up what it can do.
+
+For instance, you'll look at a component that models an order form. That component consists of properties like the customer’s first name, last name, and address. It also consists of methods—which verify that the user filled in all data fields before submitting and show the proper credit card type based on the credit card number—that work on the properties.
+
+Keeping data with the methods that work on that data as one unit is extremely important in programming. This helps to compartmentalize functionality and makes changes and testing much easier to do.
+
+The following sections explain the different parts of your component and how to use them.

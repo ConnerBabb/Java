@@ -1,0 +1,43 @@
+Book
+https://book.techelevator.com/content/polymorphism-ool.html#interfaces
+
+nterfaces
+In Java, interfaces force each component to expose specific public members that can be used in a specific way. Interfaces provide you with a way to say what classes can do and as such are an alternative way to define an is a relationship.
+
+The code below shows how an interface is defined.
+
+public interface Alarmable {
+    void setAlarm(int hour, int minute);
+}
+Notice that in the definition of the interface, there's no implementation for the methods. There's only a method signature, minus the access modifier. That's what an interface is: a declaration of one or more public methods.
+
+After definition, interfaces are implemented by classes. Think of an interface as a contract. If a class wishes to implement an interface, it is required to agree and provide implementations for all methods defined by the interface. A class, if necessary, can implement more than one interface.
+
+public class AlarmClock extends Clock implements Alarmable {
+
+    public void setAlarm(int hour, int minute) {
+        /* implementation for set alarm method on alarm clock*/
+    }
+
+}
+
+public class Phone implements Alarmable {
+
+    public void setAlarm(int hour, int minute) {
+        /* implementation for set alarm method on phone */
+    }
+}
+Interface Instantiation
+
+Interfaces don't get instantiated.
+
+Now that the interface has been defined, it is available as a data type that can be used to reference an existing object. In this sense, you can adjust the Shopkeeper class and eliminate the duplicate methods by programming the set alarm method against an interface and not the concrete classes.
+
+public class Shopkeeper {
+    public void setAlarm(Alarmable alarm) {
+        alarm.setAlarm(08, 00); // set the alarm to 8 o'clock
+    }
+}
+Polymorphism & Interfaces
+
+With respect to interfaces, polymorphism means if B is a class that implements interface A and a function can accept A as a parameter, it can also accept B.

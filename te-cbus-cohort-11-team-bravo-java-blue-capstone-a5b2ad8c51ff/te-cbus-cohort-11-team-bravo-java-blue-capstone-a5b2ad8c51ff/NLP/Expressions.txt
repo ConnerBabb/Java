@@ -1,0 +1,47 @@
+Book
+https://book.techelevator.com/content/introduction-to-programming-ool.html#expressions
+
+Expressions
+You now know one way to assign values to a variable: use literals and other variables. Another way to assign values to a variable is to use an expression. Expressions are statements that get evaluated and produce a single result, which can then be used in another statement.
+
+An example that you may be familiar with could be:
+
+200 / 10
+You know that this arithmetic expression yields a single value: 20. In a program, it could be used in a similar way.
+
+int milesPerGallon = 200 / 10;      //200 / 10 is evaluated to 20 which is then saved into the variable.
+As you continue reading, expressions will take on many forms. Next, you'll see how arithmetic expressions can be used with variables in programs.
+
+Arithmetic expressions
+There is usually a need for simple calculations when your programs run. To do that, you have access to the following arithmetic operators:
+
+Assume: A is equal to 15 and B is equal to 2.
+
+Operator	Description	Example
++	Adds two operands	A + B = 17
+-	Subtracts two operands	A - B = 13
+*	Multiplies two operands	A * B = 30
+/	Divides two operands	A / B = 7
+%	Finds the remainder after division	A % B = 1
+These operators can be combined with () to group parts of the expression together.
+
+int a = 15;
+int b = 2;
+int result;
+
+result = a + b;     //expression is evaluated to 17 and copied into result
+result = a - b;     //expression is evaluated to 13 and copied into result
+result = a * b;     //expression is evaluated to 30 and copied into result
+result = a / b;     //expression is evaluated to 7 and copied into result
+result = a % b;     //expression is evaluated to 1 and copied into result
+
+//In the below statement, a is multiplied with b first. The output is divided
+//by the current value of the result variable. This final value is assigned
+//into the result value.
+result = (a * b) / result;
+
+// Translates to
+//  result = (15 * 2) / result;
+//      result = 30 / result;
+//      result = 30 / 1;
+//      result = 30;

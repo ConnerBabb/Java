@@ -1,0 +1,40 @@
+Book
+https://book.techelevator.com/content/logical-branching-ool.html#blocks
+
+Blocks
+Each of the sections of code that follow an if or an else statement are called blocks. Blocks use a pair of braces {..} to enclose single or multiple lines of code. Although it may seem that blocks exist to make your life difficult, they enhance code readability and deal with something called variable scope.
+
+The below code is enclosed in a block that only executes when the condition is true. Note the indentation that occurs when you write code inside of a code block.
+
+if (condition) {
+    //statement or block of code to run when condition is true
+}
+#Scope
+In C# and Java, you can declare a variable at any point in a block, but you must declare it before you use it. Once declared, the variable is in scope. Variables are in scope until the end of the block when they're discarded and go out of scope.
+
+#Nested blocks
+Whether you have complex conditional logic or you're mixing multiple loops with conditions, blocks are often nested. Each nested block can declare and use its own set of local variables:
+
+{ //outer block
+    int i;
+    { //inner block
+        int j;
+    }
+}
+The variable j has the scope of the inner block. Statements within the inner block can use both i and j. Statements in the outer block can only use i. If you write the following code, a compilation error occurs because j is out of scope:
+
+{
+    int i;
+    {
+        int j;
+    }
+    j = 33; //<--- not allowed, variable out of scope
+}
+C# and Java also won't allow a variable in an inner block to have the same name as a variable in an outer block. This also creates a compilation error.
+
+{
+    int i;
+    {
+        int i;  //<-- not allowed, variable already in scope
+    }
+}

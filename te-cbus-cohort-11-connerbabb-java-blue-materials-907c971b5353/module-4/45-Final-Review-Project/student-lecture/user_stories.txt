@@ -1,0 +1,23 @@
+As a guest of the system I need the ability to regiter an account so I can log in.
+
+As a guest of the system I need the ability to login to the system
+
+As a user of the system I need to view a list of parks by state so I can select them for my iternary
+
+As a user of the system I need to be able to get more informaton about an individual park
+
+As a user of the system I need to be able to create an iternary
+
+As a user of the system I need to be able to view my iternaries
+
+As a user of the system I need bo be able to add parks to my internary
+
+As a user of the system I need to be able to delete parks from my internary
+
+As a user of the system I need to be able to be able to add comments to the parks in my iternary
+
+As a user of the system I need to be able to be able to update comments about parks
+
+As a user of the system I need to be able to delete my iternaries
+
+As an admin of the system I need to be able to view users of the system and reset their passwords

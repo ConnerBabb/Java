@@ -1,0 +1,19 @@
+Book
+hthttps://book.techelevator.com/content/web-services-post.html#post-put-delete
+
+POST, PUT, DELETE
+You've read about POST, PUT, and DELETE methods in an earlier chapter, but to recap:
+
+Method	Intended for
+POST	Creating data
+PUT	Updating data
+DELETE	Deleting data
+These three methods, in addition to GET methods for retrieving data, allow your applications to have full CRUD (Create, Retrieve, Update, Delete) functionality.
+
+Reminder
+
+Although there's nothing preventing you from having a data-changing method respond to whatever HTTP method you want—for example, a delete method responding to a GET request—it's generally considered best practice to have them tied to the right HTTP methods.
+
+The HTTP method used indicates how the data does or doesn't change on the server. This is important because you may not be the same developer creating the frontend, or you may want your API to be public and used by other developers.
+
+If you want to learn more about using the right HTTP method, see the Further Exploration section at the end of this chapter.

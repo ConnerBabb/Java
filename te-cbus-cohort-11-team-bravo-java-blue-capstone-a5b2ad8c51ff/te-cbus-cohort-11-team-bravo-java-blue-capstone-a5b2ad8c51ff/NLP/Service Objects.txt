@@ -1,0 +1,38 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#service-objects
+
+Service Objects
+When code that calls a web API is added to your project, it's typically separated into what is called a Service Object.
+
+Service Objects encapsulate the logic of a service into one JavaScript object that can then be used in multiple places in your application. Separating that logic into its own object also makes it more testable and replaceable, if needed. So, you want to keep all of your API calls in a Service Object in your applications.
+
+Service Objects are regular .js files. For this example, you'd make an apiService.js file in a /service directory under the /src of your application. This file is structured like this:
+
+import axios from 'axios';
+
+const http = axios.create({
+  baseURL: "http://localhost:3000"
+});
+
+export default {
+
+  list() {
+    return http.get('/users');
+  },
+
+  get(id) {
+    return http.get(`/users/${id}`);
+  }
+
+}
+The first line of this file imports the Axios library. This would have been included in your package.json file so that it's available in your project. The second line creates a new Axios object called http. This is the object you'll use to make requests to Web APIs.
+
+You can see in the create() call that an object is passed into it. This is a configuration object, which lets you configure the Axios object before using it. For instance, in the above example, the baseURL setting is set to http://localhost:3000, which means that every request begins with that in the URL when called.
+
+Finally, you export the service object, or the functions that make up the service object. In this case, they're list() and get().
+
+Note
+
+Large JavaScript applications are commonly broken up into separate modules. The modules can be imported by other JavaScript code when needed. The export defines what's available for import in other code. A loose analogy is declaring something public in C# or Java. If the function isn't declared in the export, it isn't visible to the importing code.
+
+Once you import the service object into your other JavaScript code, the exported functions are available anywhere within the importing code.

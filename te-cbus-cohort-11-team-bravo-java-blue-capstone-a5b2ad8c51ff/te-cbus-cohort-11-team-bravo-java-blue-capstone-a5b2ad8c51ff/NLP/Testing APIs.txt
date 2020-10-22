@@ -1,0 +1,34 @@
+Book
+https://book.techelevator.com/content/web-services-http.html#testing-apis'
+
+Testing APIs
+Using the ExchangeRate-API from above, you can see the results from their API in your web browser. How's that possible?
+
+This API method—often called an API endpoint—responds to a GET request, which is what your browser uses by default when you enter a URL, so their API returns the requested data.
+
+Feel free to try their API with different currencies. Replace USD with EUR or NZD. You can find a list of their supported currencies at Currencies Supported By Our API.
+
+#Postman
+Testing an API in a web browser works for some API endpoints that don't require specific headers, need complex data parameters, or only respond to request methods other than GET.
+
+For these endpoints, there are tools that help with that. One of the most widely used tools is Postman. It's free to download and install on your computer.
+
+Once you've installed and opened Postman, click the "Create a request" button in the Launchpad tab:
+
+
+Image - Postman Create Request
+In the new request tab that opens, copy and paste the URL from the previous example (https://api.exchangerate-api.com/v4/latest/USD) into the address bar and click "Send":
+
+
+Image - Postman Request
+You'll see the same JSON that you saw when you put that address in your web browser:
+
+
+Image - Postman Request
+Note that Postman shows you the HTTP status code, as well as the response headers:
+
+
+Image - Postman Response Status
+
+Image - Postman Response Headers
+Postman offers several great features such as changing the HTTP method, like POST and PUT, and setting parameters, headers, and body values for sending data. You'll see more about these features in the next chapter

@@ -1,0 +1,1299 @@
+Zoom
+https://techelevator.zoom.us/rec/share/6ZJ6AKre-kFOBZHJsFHUA45_D5TmX6a81CYY-6FexU6u-uLv3tvr3bcYGEce8WOa?startTime=1592918539000
+https://drive.google.com/file/d/1P5b4hWDcz4PxOUSc3pFBuZBeZF33fUxK/view?usp=sharing
+https://docs.google.com/presentation/d/1cqDuGiLeF6c88zKEIEbCHiuN1hfAk3ATbS7ZEy5r3oQ/edit?usp=sharing
+Okay, so today we're going to actually continue with what we started yesterday. Yesterday, we went through a bunch of just terminology so that we could talk about API's and talked about communicating remotely to remote services. Today we're going to it, we ended that with looking at how to do that with a get request, either we didn't go into a lot of detail on the different types of requests, we just kind of walk through, this is how you do it to get information. Today, we're going to continue with going from where we started with that GET request. And we're kind of going to repeat that somewhat again. And then, because we're going to do after that is go through the other three types of requests. So we said that there's these web methods that make out the CRUD operations of a service. So similar to we had with SQL, we had select, insert, update, and delete. With API's, we're going to have GET, POST, put and delete. So we're going to walk through how to do each one of those. And there's also going to be some rules around when to use some of these, especially get in post. So is part of that we're going to take a look at handling exceptions in API's. I have it in the objectives is to, but it's actually just going to be pretty early on, we're going to run into it, and then talk about it then. So those and then, so
+
+let's start by talking about
+
+GET requests. And again, that's what we looked at yesterday. So we get requests the usage of it. The purpose of a get request is to read retrieve information, it's to retrieve a resource. And again, a resource is something that a web server or an API server has available that it can deliver. So it can be anything from just information to a file to a stream. So it can be anything that can be returned as a response to resources. So it get is a way of retrieving one of those resources without changing the
+
+said web page.
+
+gently used to retrieve
+
+resources
+
+without changing the server.
+
+So again, it is often used for things like images or documents or style sheets or script files or just search the type of things we were looking at yes Getting a list of hotels getting a single hotel. In all those cases, nothing's changed on the server. So it creates a URL that when we get to web development is not, cannot can be easily bookmarked. So we'll talk about using get sometimes specifically to create bookmark URLs when we get there. But for API's, we don't have that that problem. But it creates a URL that's easily repeatable, we can send it to somebody else and say, if you call this API with this URL, you'll get the same results as I see. So it creates a URL or an address or endpoint with parameters that are easily repeatable.
+
+So get requests. Part of them is that
+
+they're required to be ID what's called ID and potent. And Id opponent is a word that means that the operation has after it's been called, if it We call multiple times that it will have the same result every time. So if you think about a search, if you do the same search multiple times, you're going to get the same result multiple times. And this is given that nothing's changed on the server. So they haven't added a new result that you can retrieve. If you you know, asked to see a particular PDF file multiple times, then you'll receive the same PDF file every time. Or if you ask to stream the same, you know, video, every time you'll get that video stream. That's what it means to be idea potent, but doing it 10 times in a row is the same as doing it. One, nothing's changed, the server hasn't changed either. It also is what's considered a safe request and safe and unsafe means what states the server left in. And a safe request is that after the server after the get request is run the servers in the same way Nothing's changed like it's as if the request had never occurred. So that's going to be important for get, because that's going to define when we want to use get a large number of requests. In fact, the majority of them will be GET request. Because we often don't want to change information. If you think about SQL, it's the same as select, it serves, it's the same type of behavior, with a select nothing changes, right? Nothing actually affects the database. And most of what we did end up doing is collecting data. So we'll find that good is going to be the predominant thing. We'll use it with API's. But not the only. Just like with SQL, sometimes we have to insert, update and delete. It'll be the same with API. So these actually applies very much like they do with SQL statements. So another thing about GET request and that we started looking at yesterday is that the any parameters have to travel in the URL the agreement First types we're going to look at today, two of them will have a very different way of transporting. It's their parameters. So all the arguments or the parameters have to be in the URL for GET requests. So we have the two options we saw yesterday, we can either have path parameters, where they're included as part of the path. So like in the hotels API, we had hotels, forming an endpoint. And then two was a ID of a hotel. It was used as a parameter. So it can be path parameters, or in what's called the query string. The query string is everything after this question mark. And it's a set of key value pairs with equal separate but equal signs with the key value pairs himself separated by ampersands. And that's the only way parameters or information can be set on a get request, which is why it's easy to reuse the request because if Everything is here in the URL, we can copy and paste this URL and save it or store it or send it to somebody. And they can repeat that same request, or we can repeat it in the future quite easily. Which we're familiar with from web usage, because that's exactly what a bookmark is, right? So get requests carry everything on their URL, which means they have one big limitation. And that's that they can't be secured. So get requests or oisans secure because even though their header and anything in the response can be secured by HTTPS by TLS, and encryption, the URLs cannot be it's like an envelope. You know, we mail a letter, you have to write the address in the outside of the envelope, everything inside the envelope secured, right, it's hidden away unless somebody opens the envelope, but the address has to be public. It has to be available. for anyone to see, because that's what's required to get the envelope to its destination. And the same is with a URL, it can't be encrypted. Because it's what's required to get to the destination. It's the addresses. So every point it's moving through towards the internet through the internet has to be able to see the URL, which means that forget request the entire request, the important parts of the request where we're going and all the parameters always are publicly, publicly visible. They're always available because they're part of the address. So it'd be like if we were writing part of our message on the outside, you know, of an envelope.
+
+That would be the same same idea with a get request, where so that's one of the things we'll talk about when we get to the other request types that some of those can do that are different than get is that we will have this limitation, the security limitation with get But most of the time, we won't care, right? If you're going to search by going to Google, when you're doing a search,
+
+what your search terms are,
+
+you don't generally care if those are hidden away, right? Those are. So is this going to be the same? If we're doing you know, a search for hotel two and reviews or four stars, we don't really need to encrypt the fact we're looking for four star reviews for the hotels with the ID two. So in most cases, it won't matter. Because it is no information that is kind of useless to anyone who is interested interested in watching, watching traffic or looking at requests.
+
+So that's what I get. That's kind of
+
+what a get request is. It we've already made these. So we're going to make some more of them. Talk about A couple of things that's going to bring us to. But before we go further with that, I'm going to bring up the lecture code. And let's step through quickly what the lecture code is today. And then where we can apply what we just talked about why we would apply it, which will bring us to our first problem of handling errors. Before the lecture code, like your exercise, like your tutorials, and the other things you've been working with the last couple days, there's a server involved, they have a start, and I've already done the npm install. And I'm in the lecture code server folder. So now I'm going to do an NPM start to start the server. And this is just providing the API server which actually go away tomorrow, because tomorrow we'll be writing our own server, and won't need to rely on these JavaScript servers any longer. So So now we have the server. It's the same Same one, same information we had yesterday with hotels and reservations. The Electric Code project today is very similar to yesterday only adds some extra menu items. So I'm just going to run it to start, actually, to get down to its
+
+application class.
+
+Let me see here. It has a menu that's slightly different than yesterday. Today, it has the ability to list hotels, lists, reservations, hotels, create new reservations. So we're going to be able to insert new data, update existing reservations, update data, and deleting a reservation deleting data. So it has all four of the web methods in use in some some form. And stop it so we can look at the code, the app class itself.
+
+has
+
+a
+
+bunch of code here and the main.
+
+So before we just we're looking at this code, and this is the example code. And I know that it's you want to take the code and so will we should model our code after this. Can anyone point out what's wrong with this method?
+
+Already problems with it.
+
+It's big long.
+
+Yeah, it's way too big. It's doing way too much.
+
+Also,
+
+it shouldn't probably be in the main method, right? It's probably should be in some other method. So I wanted to point that out, because it's not for the purposes of what this codes doing, which is more focusing on the next pieces. We're going to look at it It's okay. But don't emulate this in your own code. There's some bad behaviors. And because it's serving a very different purpose, it's been set up a lot around, being able to easily demo things rather than necessarily following good coding standards. You'll see that a lot in the lecture code the next this week. Because sometimes those standards make it kind of hard to fall harder to follow. So when you're walking through it, so keep that in mind. I just wanted to point that out. So when we get to the Capitol next week, you know, if you come back here and say, oh, we'll just make it look like this. Don't do that. So it all this, we're not going to actually be working in this app code. All it does is just that menu. Now it does some other things as part of the menu like it's going to get some system and information. When we go through the menus to add
+
+hotels and things, reservations and things like that. But
+
+We actually won't. And it also is going to set the app
+
+base URL to our localhost 303,000, which is where our URLs our API is running that we just started. And we're going to it has also the models we looked at yesterday. So we saw these yesterday, the hotel and the reservation object. They have
+
+not really changed.
+
+They've added the guests the check in and checkout dates, we didn't have those yesterday. But so those are now there. And it the comment that these really should be local dates, but they're not their strings. Again, because our point is not to work with local date, it's to work with this API. So we're not going to be we've already seen those. And we'll talk a little bit more about how those are mapped. And we're and then there's two, what's called service classes. So we saw the first service class at the end of yesterday. As soon as classes essentially a worker class that encapsulates some functionality. They're heavily used in API development to encapsulate the functionality of a web service or an API. They also can often encapsulate other functionality. Like for instance, somebody ran into the problem of having, you know, multiple tables and SQL that you needed to work with. And you could do that with one with a join table or having a service that encapsulates three or four dinos that brings them all together so that your other co can just call one place as a common approach to if that doesn't make sense. That's okay. We'll come back to that. Later, this chord as we go. But this so this has two of them. It has a console service in the console service is working as the menu class. It's really could have been called menu class and doing the same thing. It has the scanner system admin system out. There are a few others system and system out six specifically, you'll see it Around the code that is there for debugging. So that's the purpose of it being we were into those, but it encapsulates the menu system that we we saw. So similar to what your menu classes, it's been named service, because that's just a common naming. Standard. Again, we won't be working in there. But the hotel service is where we'll be doing the code and incapsulate, the API, the hotel API that we have running right here. So it provides methods for adding, updating, deleting, and getting getting the hotel, getting a list and getting the hotel and also has reservations, which already done and then some other kind of helper methods around that that do some various things. Like break up the input, so it can become an object from system and not from the API.
+
+So that's the code we're working on today.
+
+And,
+
+and some kind of things about it if you're looking through it. And this that's going to be the same for your things like exercises, you're generally going to be working in these service classes or similar class going forward in this in the client side base of
+
+the code. Alright.
+
+So for we, so the first thing we're going to do is create the method for this list hotel and get her tone. I know we did that yesterday. We're going to do it again. So we can talk about talk through the same thing we did. We looked at the end of yesterday. So before we do that, are there questions on just the project or anything we've looked at so far?
+
+So the second thing I'm going to bring up is postman.
+
+And
+
+when you're working with an API, whether it's one year written or one year using, you want to always have postman handy, you should always actually be doing all your API work there. First make using it to determine how the API's actually work. And then, after you have a clear sense of what's needed for the API to function, then take it into Java, where you're just implementing the Java code or route it similar to the way if hopefully, you're working with DB visualizer, and sequel where you focus on the database DB visualizer. Then in Java, you just have to focus on the Java portion of the code. So we're going to be using it quite a bit today. We already that's for later, so We're working on port 3000. And we know there's a hotels that we looked at yesterday to get all the hotels. And I'll send that so you can remember what we're getting back. So what we're getting back is this JSON. And if you remember, JSON is a set of JavaScript objects are actually they're not pure JavaScript objects. They're based on JavaScript objects. And so JavaScript Object Notation, but it's JavaScript objects when we get there we'll see are slightly different. But with they're made of arrays, objects, indicated by curly braces, and then parameters, to the left of colons and to the right, the values and then each VAT each key value pair, set in each object or each thing is separated by commas. So these and then the values can be numbers, strings, other objects, or I don't think we have an example of this here. They could be arrays.
+
+And then these three, remember can map
+
+to Java objects. And it can be done for us from the rest template where these names match these IDs. And this process of mapping them. We looked at it yesterday, but we didn't really name it. So it does have a name. And we're going to go both directions today. So yesterday, we took from JSON and mapped it into JavaScript objects or the rest template that specifically we looked at how we had to build objects that match the JSON. And that process is doing that of going from an object to JSON or is called D serialization. So D serialization is where we'll start using. It's also a good word to know for interviews. So when we say we're going to D serialize. An object, it means we're taking a text representation of it like JSON. json is a text represent rotation of an object. It's not the only type of text representation. It's just the one we're going to be working with, but isn't the most common modern development. And to de serialize, it means we're going to take it and we're going to turn it into a object, a job object, or D serialization is not a Java specific term or so an object of whatever language working in our case, Java. Just talk about serializing an object which we'll be doing later today. That's going the opposite direction. That's taking a Java object or object from object language like Java or C sharp, and it's turning it into JSON or string representation of it. It doesn't necessarily have to be JSON again, but we're going to be using JSON that's Definitely the most common. So serialization is taking a object and turning it into JSON.
+
+D serialization is taking JSON and turning it into an object. and
+
+so forth. More specifically, serialization is taking an object and turning it into a string representation of it. So it can be sent on HTTPS. And the whole term comes from the idea of old network connections. So which like we would call them internet, are said to be serialized, or serial serializable. So we're saying we used to talk about it's we're sending things HTTPS, we're sending it in serial, so it's sending it one
+
+bite at a time.
+
+And that's what it's still doing. So the idea is trying to getting it ready. For that, and that's just some history of the name. D serialization is taking that stream of items and turning it back into an object. But for your purposes, knowing the words, and one means going from object to JSON, the other one from JSON object is what you really need to know about it rather than the history. But so that's our API we have working in our first thing we need we want to do is get
+
+that hotel menu
+
+when we can list hotels, working again. So we want to be able to when I run this, when I press one, and list hotels, then instead of just saying enter, Press Enter to Continue. It should give a list of the hotels from the API. So that's what
+
+I do to do that.
+
+And our hotel services code.
+
+We need to populate or write this list hotels. method. So,
+
+if we're going to do that, what, what do we need? What's the volunteer the first line of code? Since we've done this one yesterday?
+
+Yeah, you can just I mean, it depends on how you want to write it. I would put a hotel or a hotel. Okay?
+
+Very well. Okay.
+
+Let's start out it's No. All right. So now we have to get populate this right. So what do we need here on the other side of the equal sign to assign this array
+
+should be the GM as templates. Get four objects inside. See API, underscore UI URL and then a comma. And then it's going to be hotels, brackets, dot class, and then we would just return hotels.
+
+Okay, yeah, that'll work. We have to clean up. I wrote one piece wrong and what the clip the URL? Yeah, that's exactly what we need to do. So this API URL, it's here in this method as base URL or this class. So we use that and that goes to this portion of the URL, we need to concatenate on the rest of it. That's part of the idea of using a tool like postman is it makes it very easy, much easier to work with and separate out what we actually need in the URL. So we know our base URL contains this string. So if we need this entire URL, we have to concatenate on the remainder. So we'll do that. So plus
+
+tells.
+
+And that should return the hotel. So let's see if it works before we
+
+talk about the next piece of it.
+
+And what is running?
+
+See most hotels. Okay.
+
+So that works but
+
+so we also need the one for a single ID.
+
+So how do I change this to get one hotel?
+
+Well, I think this one Can you just do like,
+
+for slash and then put the host ID?
+
+Yeah, she works.
+
+Okay, so does that's what we need. That's our URL we need.
+
+So here,
+
+I do have additional question. What's that? Sorry? Yeah. Could you do like, you know,
+
+what is it like params
+
+as well. So or?
+
+I don't. So it depends on the you're on the API.
+
+I don't know if this API supports or not, but let's find out.
+
+So generally, they will support one or the other. It's saying that that's for reservations.
+
+Let's try this like there's they're suggesting
+
+I'm guessing that doesn't. So the primes are just ignored because there and it's to be sure it doesn't support some like ID. My guess is it probably doesn't. Usually if there's a path parameter, there's no reason to have. Oh, no, it does. Yeah. So it does. So that would be equivalent. But that's not going to be guaranteed to be equivalent in every API, the author of the API had to write it to be equivalent. So that means they wrote it. So they look for this parameter or they look for the PATH variable. So many API's you encounter will only we would require you to do this
+
+or the other, whichever they chosen.
+
+So we have our eye or your honor.
+
+So here,
+
+do we need to change much from this other code for this one to work
+
+Now what what do we really need to change? What to fix?
+
+back what is copy
+
+paste this code
+
+so we do need to change a couple things
+
+actually specifically to let me clean this up.
+
+So what are those things?
+
+Return symbol hotel.
+
+Yeah, so we have to change this to a single hotel.
+
+Purchase become
+
+towel. So make it singular everywhere
+
+what's the second thing
+
+Amanda euro,
+
+we have to change the euro. So I can cat me into the ID and adds the slash. So that's fine. But what if this happened? So we know our, when we saw those hotels, the highest one, I think had an IDF seven or something like that. Let's say we try it 25. I know there's not 25 of them.
+
+And we get the status for four.
+
+We don't have any way of handling that over here. So I'm going to write in the app code. I said we're not going to use it, but I'm going to write some quick sample code for it. Actually, let's just I'm going to create
+
+Yeah, I'm going to create a quick
+
+like throw the same thing that like a sequel error does
+
+Very similar, yes.
+
+Then could we just return the last place that they were at?
+
+Well, um,
+
+you say return the last place they were at
+
+or like, just like send them to the last place that they were at.
+
+mean, the repeat the last API call? They did?
+
+Yeah.
+
+We could choose to do that. Yes. If we,
+
+if we had the last place the RAD and that's the way we want to handle it.
+
+Yeah. Cuz I guess like people could just like copy and paste a URL and not have a last place to go. Maybe?
+
+Yeah, it could have been the first time they they used it. Yeah. And we were these these at this point are not web pages, right. So there's no good even we get cpis are done on the back end stuff. So we're not dealing with a user doing something. We're only dealing with a server Talking another server at this point. So so I'm gonna make this error demo, just so we can easily kind of work with these errors. So I mentioned there were some bad practices in this, there's gonna be some even worst practices in this, because it's just going to be about showing that Aaron's been able to step through it. So we know we have that hotel service. So I'm going to get in shape, go back to app, and I'll copy this. And if I get this line, now, we can instantiate the host health service, we have everything we need to call the
+
+those classes. So let's
+
+do hotel, hotel equals hotel service, and we'll get Hotel by ID. Let's just start with an ID. We know works.
+
+And then I think
+
+we get the console service to.
+
+There's a print hotel method.
+
+We can use, let's see, console service. I think there's one print hotel, and we can use it just to print the display. report that we run this. We stopped this other one
+
+right as Java application, and
+
+it prints the photo.
+
+And this right here should be a good argument for your why it's important to have things like a menu class member console service could be called menu. Notice how I got all the functionality just by importing it. I didn't have to copy and paste or write anything for it to work. So, but what if now we change it to this, we'll go to our 25 here
+
+and run it again.
+
+And we get
+
+all this error.
+
+That's really not
+
+there, I probably want my user to see, right.
+
+So let's look at how we can handle this a little better.
+
+So back in our
+
+hotel service class,
+
+what we want to do is handle situations that when they're not to hundreds. So the rest template actually makes us very Java like, I would say, easy, but it's Java like not necessarily easy. Because it's going to when there's a problem, that when it gets a status, that's not In the 200 range, so if it's between 202 99, it's fine. If it's in the 200 range, those are all successes. So it's going to do, everything's going to work fine. Actually, if it gets 100 range to, it'll be fine to this information. So if we get something above 299, it's going to throw an exception. because something's happened. And usually, this is going to happen with 400 errors, like we just got to four or four, or 500 errors, where there's server exceptions. That's really where we're going to care about these problems. Actually, with 300 errors, it's probably going to go in most cases, it's going to do the redirect for us. And we're going to get the response back of the redirect afterwards. So we will run into many of those. So what we care about really is the fortune 500 errors. But if it gets anything above 200 to 200 range, it's going to throw an exception it's going to throw a particular exception.
+
+It's gonna throw
+
+a REST client response exception
+
+And this exception allows us to treat these errors in Java like fashion, not in a web like fashion. So we can go back to our get hotel code otelco. And we can supply we can put it into a try catch. So with this code, since this was a question that was brought up, which what code should be in a try catch? Which line or lines?
+
+Only the one that's going to throw the exception
+
+in which ones that you
+
+get for object.
+
+Exactly. So that's where if the try should be
+
+and the reason is, we could set have the return inside of it, but it's going to be no Because of scope, this is going to exist Oh, just in the scopes, it's going to return all if
+
+this. There's an exception here.
+
+So with that in it, and that will catch it, what we're going to catch is going to be the REST client
+
+response exception. Name.
+
+And it's already been imported. Let's go and look at the import.
+
+So this is coming from. org spring framework web client was quiet response exception. So the same place as the rest template,
+
+framework web client.
+
+And now we can do something.
+
+So that console class actually has a air handler in it. It doesn't just prints there, but it'd be more of what we want to print.
+
+So let's actually
+
+put a breakpoint here on line 79.
+
+Actually, let's just do this. Let's do console dot
+
+print error. And again, that's that console service console, the variable that it's being stored in right now. So that's something that's in this code. And we'll just use it as takes a string as the error message. So we'll treat it like we do a regular normal exception. And then we'll put our breakpoint on line 80. I'm going to run this in debug. Now where we can explore this exception object and see what might be available here.
+
+Switch
+
+so we're here and exception objects. In our variable, so I'm going to expand it. So it has that and shows exactly what that message is going to be. But it has some information that could be interesting to us. So the two that we probably are really interested in, that are different member exceptions can have their own getters and setters, they don't have it outside of, you know, standard exception, get message and get stacktrace. They can have their own properties, like we looked at when we build exceptions. You know, we added things like IDs and stuff to the exceptions. And the REST client response exception has two things that we're probably interested in, or we are going to be interested in. The first is going to be the raw status code. So the raw status code four, four, that's the status code, they should be status code. So it's going to be for four or 500. For one, if it's an authorized So we can actually use that. And it's just a string, or No, it's not. It's a number. So we can compare it. If we wanted to do something like an if statement around, no, four, four. So we can use the wrong status code to find out what error was because we might want to handle these differently. For instance, if we got a for one that's not authorized, we may need to ask the user, if we were building a application where we're talking to a user like console application, we want to ask them things like No, you've entered your password wrong, try again. We haven't looked at using passwords and authentication with these services, but we will next week. So we can use it for that here if we might want to, you know, tell them, oh, that resource wasn't found. Try something different. Try a different hotel ID. So the raw status code gives us the status, the actual status code and the second one we might be interested in. Status text, which gives us the description. So not found. So these are the same status coding status text we end up seeing on your websites when we have errors. And then it still gives us information like the stack trace and other details about where it came from the Java code, but that's going to be more Java code specific. The status code itself gives us the actual HTTP status object, which has the same details in it. Notice, well, reason phrase and value are readable but the raw status code and status text gives us a very easy way to access that same information.
+
+So now that we know that
+
+we could kind of have an idea if we wanted to tell the user you got a four four
+
+we could get
+
+Raw status code.
+
+And maybe we want to put together the message. So we want also want to say not found
+
+any get status text.
+
+And now
+
+if we run it, we get the four four not found. So we got an exception,
+
+right after a null pointer exception.
+
+Any guesses on why?
+
+And this isn't an API question. This is just
+
+returns.
+
+No, exactly. So in our other code back in the demo code, we immediately use the hotel right here. And that's to that null pointer exceptions coming from this line of code not from our API. So let's actually maybe make that hotel not equal to no
+
+We can put a null check there. And
+
+now if we run it
+
+and we get the four four not found
+
+without getting the exception, and if we change it to no be an ID that we're interested in that works.
+
+We get
+
+that hotel. So
+
+that's how we can handle
+
+exceptions and or errors that are in the status code that are or webinars or the HTTP airs the status code above 200. So before we move on to another problem we could have, are there questions? I'm
+
+going back to the homework again.
+
+I was writing lots of things with like if Id is great, good And zero and in this kind of place that
+
+it can.
+
+So if, because normally if we call an AI API, we probably don't know what the valid IDs aren't, right? Like when we write a select statement, unless we look at the data, we don't know what the valid values are. So we rely on it tell us in SQL, it tells us, you know, by giving their results in an API tells us by giving us a status for four, and part of it is the stop even though we get an exception for for when we get things we call for for an error, but it's really not 500 is an error. But for fourth, the 400 series, our statuses there, what happened, I didn't find this resource isn't really an error. It's just telling you know, what you put in wasn't found. So if we think about it, from that point of view, yeah, we'll make we'd replace decisions about why should we be trying to figure out Right, if statements around what IDs are valid, when we should just be asking the API, and the way it's going to communicate with us, the rest templates going to communicate status back with us, is by an exception. So in this case, we're not always using the exception for true error handling.
+
+We're where this is kind of using it more for status.
+
+So then we could do whatever we would would have done with that if statement, we would do that here in the catch. So if we were going to say something like, you know, enter better a different value, which is I imagine if you're saying, if the idea is between this range, it's okay. Otherwise, have the user try again, type of behavior, then that's what we do in the catcher. And does that answer your question, or did I misunderstand?
+
+Yeah, that's, that's perfect.
+
+Okay. So other questions before
+
+Alright, so there's another problem I can run into. So I'm gonna go back to
+
+the server here, and I'm going to stop it Ctrl C.
+
+And now let's run our demo again.
+
+And it's gonna take a moment.
+
+And we got this big exception thrown here.
+
+So
+
+says, get requests for this connection refused. So connection refused. You're going to see this error a lot in the next few weeks are actually starting in the next few weeks and going for forward connection. Refuse doesn't necessarily mean that a lot of web errors sound like the web servers telling you know, when all they means often is the web server either doesn't isn't there or doesn't know
+
+what's going on itself.
+
+So connection refused doesn't necessarily mean that the web server solid, in fact, very rarely means the web server saw it and then said, I don't want to talk to you. What it means is the web server wasn't there to answer at all. And it's saying refused. Because the API, the client doesn't know whether the server is just ignoring it. Or the server is not there. So it's kind of like if you know, call somebody you don't know on the phone, you don't know if they're not in there. Don't answer. You don't know if they're not answering because they're not by their phone. They don't know the phone's ringing to call, they're not there. Or if they're looking at the phone and laughing and saying, I'm not talking. I'm not talking to this person. You don't know which one's going on. And it doesn't matter to you to to your point of view. The phone calls has been refused. It was unanswered. And the same idea for the API. The API is asking sending a request to The server and the server is not answering. So it says the connection was refused. It didn't talk to me. In this case, there is no server. So if you look at the accept what happened, the exception that got thrown was a resource access exception. So we can catch that. So that's not a status, no the 400 errors, and those are statuses. So we get those back. And they because there's a response coming back to the server, and the template says, Okay, I got a four four, I'm going to throw an exception. And to let the color my code know what happened, or I got a four one, I'm going to throw an exception, but in this case, it couldn't connect. So there is no status to get back. So instead, it throws an exception for this resource access exception saying I couldn't connect anything. So we have a second exception that we need Need to handle. Because if we can't connect, we probably want the user to know. You know, often if we can't connect, the user may know what's going on. They may not. Or they may just need to try again, right? If you go to a website, and it's not connected, it's not a, you get, you know, a message that it's not there. You'll come back later, you know, it should be there, come back later and try again. Like, I'm sure that a few months ago, when Google had their outage, if anyone ran into that, where their search engine went down for a very short time, I'm sure that if you ran into it, you went back and, you know, try to get later assuming they're coming back. So we might want to tell the user so we can handle that exception to
+
+so we can catch it. We can catch the
+
+resource access exception. I'm just gonna grab it from here.
+
+And here,
+
+we
+
+might not know what to do with it. So let's just call the print error again. And this is the message. If you remember the exception, this is more of a standard
+
+Java exception.
+
+And this is going to be what's going to show up when we get called get message. So that may actually be useful for the user. So let's just use that. And you can see it doesn't have as many getters is the other.
+
+And let me also add,
+
+REST client response. exception occurs for HTTP status.
+
+list above
+
+299
+
+for example 40144 500
+
+and resource access
+
+exception
+
+occurs when
+
+the connection cannot be made.
+
+Sample the server is not available.
+
+Then back to our demo, if we run it now with this exception
+
+we get back
+
+you know this. So it's telling the least to user the connection was refused, where they were trying to go and which is something we probably do want To show them because they might look at this and say, Oh, no, there was a typo. That's not the case here. But it could have been. But we could do something better with us, you know, we're just printing the message right now. But in our catch, we could do something more useful than just print the message. That allows us to separate the two major types of errors we can get from an API. We could get either status code, which again, not an error, it's a status. It's what happened to our request, but one that we need to let the user be informed of like 4441. Or we could get a connection error, we couldn't connect to the service at all. So before we continue, I'm gonna go out and restart the server. So
+
+what questions you have on
+
+these exceptions?
+
+Does it matter Worried education?
+
+It is not. They're not. And they're both exception, but they're not ones on a subclass of the other. So we're not matter. That's a great question, though, because it could, it could have mattered
+
+if they were subclasses of each other.
+
+All right. So now we know we know about these pretty much for every API call we make, we're going to have to handle these exceptions.
+
+Which means up here,
+
+we need to handle these two cases. It's unlikely we're going to get 404 for air from when we're getting an entire list of hotels. But it is likely that we might get a 500 error, which means there's we haven't seen a 500 error yet, but we will probably starting tomorrow because that means there's an exception that happened on the server and when we start writing Those mean I'm sure will cause some.
+
+So let's
+
+add that. So again, we're going to add try. And I've added around just to just a template line. If there were more lines of code involved, then I may need to include those. But here here just return all this stuff happens. Like catch First, the REST client response exception. That's going to catch again, the 400, the 400 and 500 errors. And I misspelled it somebody and now we'll catch the resource access exception, which is going to handle the not found and really for this code, we don't have a lot else much else we could do with it. We just want to print the exception occurred. I'm just going to copy these two lines, we're going to end up pretty much wrapping everything we do with an API and this type of code. Right? Now our list has it. And we can go back to our, we don't need this anymore.
+
+That's the lead up there in case you want to see.
+
+And if we run our Java application,
+
+you can list our hotels. And we should get a list of our hotels now. We're there now we should be able to do our individual ones.
+
+Maybe not.
+
+Now, though, this shows a list, okay? It doesn't allow us to select them in this one.
+
+Okay, so now we're back to we have our list hotels, and there's already existing code in the service for The reservation has already been written. So we don't need to write that. So now we can start working on the other methods we need to build to add, update and delete. So before we move into those, yeah, we'll take a break before we move into those. But before we do that,
+
+have fun. One more call for questions on.
+
+All right. So before we do that, can someone tell me what it means to deserialize?
+
+deserialize is taking a JSON object to string right.
+
+Almost. So taking
+
+an object to Java.
+
+Exactly, yeah. So it's taking the JSON object to a job object.
+
+JSON objects the string, because Jason was just a string.
+
+And that's its whole thing. It's the string representation of an object. in any language, it's not Java specific or JavaScript specific. It's just a string representation of a language. That's language independent. Okay. All right. So let's take a break, then we'll come back and it's 1029. And actually doesn't make it as 1030. We'll just, we'll go out today. And
+
+sorry.
+
+We'll continue with his other other methods.
+
+So what questions do you
+
+came up for you during the break?
+
+I guess is it really like, I'm guessing it's best practice to go ahead and specify which error you're catching rather than just do like a general catch of all of them.
+
+It is because there's other errors, exceptions still occur that like, for instance, an exception if there's a problem in our code, or there could be some other exception around the other things we're doing in that line that we don't want to bury. If we handle those, we just catch them and say something went wrong. And it's not something we expected to go wrong, then we missed we kind of missed the whole point of those other exceptions. So the best practice is to not ever catch generate Well, let me rephrase that, to not usually catch general exceptions. It's to catch specific exceptions, the ones we can deal with now, the one exception to the rule of exceptions would be it's common often to have kind of a like if you're building a CLR application. In your main method or your run method, kind of the main place, it might be common there to have a catch all so that your application doesn't crash where you maybe tell the user something unexpected went wrong. And then write out some log file what's called a log file, which is a kind of a written record of what happened or tell the user what the exception was, so that you if so they can try to correct it without the application restarting. So you'll see that a lot in programs where you get this error and say, like an unexpected error occurred. That's usually what's happened. They've caught something they did not expect as just a general exception in whatever language you're using. Most languages have the same type of thing. And they're telling you something happened but wasn't something we thought would happen. So that's the one the one time you may not want to do that, but it can be very dangerous to catch general exceptions. Unless you're prepared to handle
+
+that makes a lot of sense. Thank you.
+
+So other questions before?
+
+I could question you mentioned the console. You have a console class that could be a menu class. Can you show that real quick? Yes. Yeah. So um, yeah, I would say good could have it something the same role is in your cat movie on your capstones as a menu, just so it just has by the scanner for system and. And then it has almost all the system out print lines. It should have all of them. But there's a few he said, because this purpose of this project was more demonstration than being a perfect project.
+
+So it just has a bunch of methods to print things out.
+
+Does that answer the question you had or? Yeah, I was looking at the console that printers wanted to see. But like you said, you handled it at all in the console class. Yeah. Yeah, so But yeah, printer, all it's doing is just calling it just encapsulating or delegating off to a print line to actually. And it shows something actually, we haven't seen their system, our system error prints and read text essentially. That's if you want to print error text, if you want to know how they this, the exceptions and stuff, make red text instead of the general black text. That's how it's being done.
+
+Alright, so
+
+is there anything else before we move on?
+
+Brian, I had a quick question. I'm sorry. I know you explain the null pointer exception and I was having the same issue all of them was mentioning
+
+he just don't worry One more time. No pointer exception in general human is that
+
+it's when it wasn't initialized as no we listed all the
+
+the auctions but when I was trying to use the length it was giving me a null pointer exception because I probably didn't put a null on top.
+
+So in that case, in our case where we were was occurring, supercop that demo class again.
+
+So in our hotel service,
+
+it
+
+has the variable in this ethanol in this line throws an exception which means it doesn't complete so it never signs anything to hotel, and then it returns it. And then the what we're using it we were calling the print hotel, which if we look at that,
+
+print out protel from a menu you Find the
+
+then it's calling the to string method on the hotel. And null pointer exceptions almost always occur. Factory could almost safely say they they always are going to occur when we're trying to call a method on a variable that contains no instead of an object. So this variable contains no, because clear back here.
+
+This line didn't finish.
+
+So
+
+when it gets sent to print hotel here, it's no.
+
+So a null pointer exceptions almost always going to be from a dot operator, a method that's trying to be called on a class or an object that doesn't exist. So anytime you have a null pointer exception, you should look for the line that the exceptions occurring on you should look for where a method is being called. And then explore those those variables to make sure that they have objects in them.
+
+almost always the case they will
+
+not. Thank you.
+
+Alright, so anything that's free. All right.
+
+All right. So we have get, we've done, I guess they get and redid it again today. Now we have a way of handling exceptions. But let's look at some of the other methods. So in the next one, the next most common one is post. I see next most common because when we get to web development, we do an API development, we're going to have four we get to web development. next module we're going to see that web really relies on to so get in posts are the the two big kind of big ones post but for API's, we're going to be more granular. So post is used for three cases really, with API's or just with network communication.
+
+When the data must be secure, that's one of the big ones
+
+in are one of the two big ones. So anytime we have data that we need to secure, because the post is not going to move its parameters on the query string, it's going to move the parameters and what's called the message body. So it's going. So when we put something in a post, it's like when we sent the envelope, we're still gonna have an address on the outside. That's the URL we're going to. But the parameters are going to be like putting like a letter inside the envelope, it's not going to be visible to the outside world, which means that encryption, the TLS, encryption, or HTTPS, is going to encrypt it. So the values inside of a post are encrypted. If if we're using secure connection with HTTPS. If we're not, then they're not encrypted, but they're still traveling in the message body so they're not easily available just by looking at the URL. So this means so anytime we have something we need to be secure, like credit card number, passwords, anything like that. We're Going to use post. That's one of the purposes of post, because we can secure it. The second one is that URL can only be so long. There is a limit. The used to be, like 10,000 1024 characters, it's much larger now. But it's still a limit. I'm not sure exactly where it is in modern web, but it's still
+
+someplace in the two to 5000 range of characters.
+
+So you might if you want to post you know what if you want to send your novel to somebody for editing to an API that's going to edit it. You can't send that on a URL, you can't put an entire novel on a URL, it's just too big. So post is also going to be useful when we want to handle large amounts of data. So secure data, large amounts of data. And then the third one and probably the most important one is if something is going to we're going to ask data to the server, the way we're going to add it, use it for an API is post can change the data, it can change the server. So if we're going to add something to the server, like an insert would for SQL, then we'll use a post, that's what post is for it saying we're going to put new data onto the server. So when we're done, the server is going to be different. So post is not unlike it post is not idempotent. Because after it runs, the server is different. And it's also what's called unsafe because we talked about get being safe because if we run it 10 times in a row, we get the same result. 10 times a post is unsafe, because we're at 10 times in a row, we get 10 different results. Meaning that if you know if I'm going to add, if you think about in doing insert to SQL, you insert, you know, a new user under the table, you insert john doe into the table when you run it 10 times you have 10 john doe's on the table. Same with post, if we run out 10 times we have the same thing is going to keep getting added. Or we're going to get an error after the first time. But it's still a different result. So post is, is exactly like exactly like an insert, it's going to be used mainly when we want to add data. There are those other two uses, we need to be aware of when we have too much data or we need it to be secure. But one of the things we're going to see a change with post is that where the status trends, trance is being transmitted. So here everything. When we have parameters, they go here, they either are in like this in the query in the path parameters, or we saw that we can do this with the query string. With a post, we can still have that kind of stuff in the URL, but the actual post data the data post is Karen cares about is not going to be there. It's going to be wrapped inside of the message itself. So we talked about when we send a message, actually send this
+
+there is
+
+these headers we looked at
+
+what I've done to my
+
+headers here but
+
+and there's so there's all this information that's going back and forth. But the only thing that's it all this other informations traveling in said in a message. This is the only part that's, you know traveling with the euro. So in our responses we're already getting back this message body we're getting back this
+
+information That's in JSON.
+
+And our posts, we're going to do the same. We're going to create our own message body and see what we're here we're getting the body or the body in the response, we're going to create our own on the post to send information to the server. And I said that this will allow it to be encrypted, and also allow us unlimited size, we can send a whole novel if we want, we can send any amount of information we need.
+
+So before we look at how to code a post, because we have to talk about some new pieces, what questions you have about just what it is.
+
+So post is, is still going ahead and retrieving information from the server and still get requests.
+
+But we haven't done a POST request yet. So we don't get that Talk about this is the response body. We can see right now in the get the bodies grayed out. This is the this top part, the requests the bottom parts, the response, the body is grayed out because GET requests don't have a request body. They just have the header and the URL. POST requests are going to add a request body like the get response has. And it's still going to have a response body too. So yes, you can actually have values coming back from a post. But we will work as well. Yeah, for instance, the example of when you might have a value coming back, if you were adding something to an API and it was put added to a table and it want to return you right, it might want to return the same object with now the ID populated so that the generated IDs are available.
+
+Okay, thank you.
+
+Kind of to piggyback off of that So when you do a post, does it have to add something to the server? Like, wait, if you just want to pass that it's done. You want to encrypt, but you don't necessarily have to add it to the server. But that work?
+
+Well, yes, you don't actually have to add anything to the server because two of the uses of posts necessarily won't change the server. That would be large data. Though most likely it wouldn't. But it doesn't have to. And then when we need security, when we anytime we pass something like a password or credit card number, we're always doing a post. So post can change the server, it's not required to change the server. In fact, for all of these, there's these roles right? This these the get needs to be ID opponent should not change the server, the post can change the server. there's actually nothing in the technology that enforces those rules. There's nothing that says a server developer can't build a gift To change the server. The reason people don't is because it makes your service difficult to use. So people don't understand how it's going to work. But if somebody wanted to, and there are bad services out there, where they're developed against the standards that were get would change the server. It's just confusing when you run into them, making them hard to use.
+
+So other questions before we?
+
+Alright, so
+
+let's
+
+first workout a post in postman, and then we'll move it to Java. So the posts that we have available not all methods, not all endpoints on a API will have posts. For instance, this API has a get for hotels, but it doesn't have a post because we can't add a hotel So the API author has to decide which of these operations their their API is going to support. And if they don't support it, we can't use it. It's like their methods, right? So the same idea. If they somebody doesn't give us you know, they only give us a getter and a setter, we can't set the data. So if they give us a get out of post, we can't add data. But the reviews on this API do have a post. So I'm going to change this to use the reviews.
+
+And for that,
+
+reservations, not reviews, I'm sorry, that we get the API ID, or the hotel ID, hotels, and then
+
+reservations.
+
+And where we would normally get that from from an API would be from documentation. So API's rely heavily on the author of them documenting how they work. So in this case, I got it from the readme of the rich documentation. So if we send this as a get, we're gonna get back the reservations for this ID, or for this hotel, a hotel one has two reservations currently. So we want to create a new reservation. So what we're going to need to do for the post is we again, we'd have to check the documentation. But we need to create, it's going to tell us that we need to send a JSON object for reservation that matches one of these. And that's actually really common, it just matches what's being returned by the get in the post. They're not required just common. So we need to send a JSON object in our message body that looks like this and send it to this URL as a post instead of again, we'd have to look No more than that, we're going to do one more thing, because now we're going to have to worry about the headers. So what I'm going to do to make this easy, I'm just going to grab one of these. I'm going to copy it
+
+and then I'm going to come up here
+
+and
+
+I can get it to
+
+Alright, don't worry about that. Now.
+
+There's one individual place if you can get it, it will expand.
+
+I never can find it.
+
+Cuz I'm going to change this method here.
+
+From get to post.
+
+And we do now sees show that body is now listed. So I'm going to click on body and I need to change the message body again everything before this line. This section is the request everything below this from Whereas his body cookies for will part that has the status down is going to be the response. That's the old response. So I don't really care about it right now. But I want to send a message body and there's different types of things we can send in the message body, I want to send JSON. So I'm going to select raw, meaning I'm going to create the message body myself. And when I do that, over here, there's a section for text. One of the things on the list is applicate is JSON. So I'm going to select that. We talked about those other message types. json is the most common and use but there's many other ones. I should say most common for API's. When we get to things like HTML forms, then form data will be and these two will be more common common before API's JSON is so stock raw JSON, and then I'll just paste that.
+
+Maybe try it again.
+
+And
+
+And now I'm just going to edit it to what I need. So I still want to be
+
+ID one.
+
+This AI API keeps values. IDs are just numbers, random numbers between zero and 1000. And he keeps them until you restart the API and they reset. So let's put it just pick some number. We'll just pick like 38.
+
+Sure, we might not even need that.
+
+Let's try leaving the ID out. I think we can take the idea out. And then full day, we'll change it to some name. Let's make a
+
+reservation for john. He'll check in
+
+on the 24th and maybe check out
+
+The 26th and have two guests. So that'll be our new reservation for hotel one. And now we need to do one more thing. You can see headers, I'm going to click here. And it's actually already added it for us. So the headers it has here. So there's actually more headers going on, but somehow I've lost them, and I can't. So it's added this header, content type, application JSON, this is important, we're gonna have to emulate this in Java. We have to tell it what kind of content we're sending. We have to tell it we're sending JSON because the API, many API's will actually accept multiple types of things. So the header content type JSON, or application JSON is the key that says we're sending JSON And then the body is raw JSON and we populate with JSON. And we say to the method, the post, so that we're ready to press send, we have a post setup. And for send, and we get it back in, you see a generated ID for us. So this is a time where it does respond with something useful. So it The, the CPI responds by sending back the exact stuff that we sent it. But now with the ID populating the object, so conquer our SQL methods did when we done inserts, right, we made them populate the ID. So now, we have the three pieces we need for are actually four. So there's four things we needed to know before we could write this in Java, we need to know one, the Euro, we have that we need to know to the message body we need to send we have that within three the header So we need now we have that, and for the response we were going to get, and we No, no, no that. So postman allows us to figure out those things before we get to Java, where now we just have to code around those four things with those four ideas in mind.
+
+So before we
+
+move to Java, are there questions on
+
+what we just did in postman?
+
+Just
+
+I guess it in this case, or is it always true that they get in the post euro aren't going to change like those so remain the same?
+
+It is, because it's like a classroom setting. So no, it is usually the case they will remain the same. There's no guarantee they will. But when we talk about rest design for the next couple days, one of the tenants of rest design is that your URL should be formatted like this. That the difference between Working with reservations should not be a different URL, it should be changing between get post, put and delete. Now you may have to pry IDs in the URL for individual ones. But the general idea being that the endpoint should not change. So in well written services, they will not they will work like this. But that being said, there are a lot of a lot of services out there that don't quite follow the rules, like many things. So let's look at this. Now in first Java code. What we're going to do we have to do, remember we had four pieces, right? We know how to do two of them already. We know how to build the URL. We know how to get the response we've been doing that with get but the other two pieces we need is we need to set the header and we need to put something in the message body So there's an object called HTTP entity that represents the headers in the body of a message. So we're gonna have to use that. So we're going to create that. And we're going to tell it what kind of message body we're creating. So our reservation object, and then we're going to pass it. One argument, that's going to be our message body type. And then there is an HTTP headers object that will allow us to create set headers. So we're going to create that we're going to stay in shape one of those, and we're going to set the content type equal to application JSON. And then we're going to pass it to the HTTP entity. And then we're going to set a coin get for object we're going to call post for object, which is a post that will return data to us which we know we are post does and most of them actually will generally just like ours did, returning an ID. That will pass it the URL like we did for the get We'll pass it the entity object, which has the message body and the header in it. And then we'll pass it the class that we want back so it can map. So we can deserialize the JSON response into our reservation object. So that's what we're going to do to meet those four parts. So let's go do that. So here in the application code, sorry, application hotel service. There is a add hotel method for add reservation method, surviving reservations, not hotel. So one of the things that the string new reservation, what's it's going to ask us for a reservation. Let me run this so we can see this.
+
+If we create a new reservation number three, It's going to ask us to put a string in like this, to create the reservation. This is just something this right here is done for just ease. Because we could you know, if you were writing an application to this, you'd want to ask the user multiple questions like you did in your Capstone, you probably wouldn't want to have them. You know, if you if you went to a reservation system as a user, and you had to actually type a string in like this, you can imagine all the problems that would become about people trying to use this. So this is done for just eat, you could ask multiple questions and pass multiple variables or an object would be probably the best way to do it in a real application. But here, it's going to ask for a string that's like this. So there's a method down here. It's going to pass that string right here as any reservation. So that's what we're going to have a string that looks like this. And there's a method down here called something like make make reservation that's going to split that string up into a reservation object. So when I call make reservation, that's not really about that. about splitting that into a reservation object for input. It's not part of the
+
+actual API portion.
+
+So these first two lines, we're going to have to get that reservation object. So we'll do that. We're going to get a reservation object.
+
+And we're going to call that make reservation
+
+method and call new reservation.
+
+And they somehow
+
+spelled that.
+
+And this is not part of the API.
+
+Just
+
+to convert
+
+the user input
+
+to a reservation
+
+object for this example. So it's clear that's not part of the API code. In the next line is not either set will do if
+
+reservation is equal to No.
+
+will return No.
+
+So those lines are around this example. Now we're going to write the code. It's about the API. So the first thing we need to do is we need to create the header. So create, actually make this a step, step one, we're going to create the header HTTP header for the request. And that means we're going to need the HTTP headers object. And I'm going to go up here quickly to the, we can see that's coming from org framework HTTP HTTP headers. So the web client is the stuff for rest template HTTP package inside of org framework is general HTTP protocol. Wow classes. So we went the header. And what is call it like headers equals new ht, TP headers. And now we're going to set them if we look at this class headers, and we set there is all kinds of different things we can set on here. These are all different headers, we can set, there's quite a bit of headers. And as we go, not today, we're just going to work with one today. But as we move through the court and have more and more advanced things we'll do with API's, there's different headers will have to set. So there's quite a few different headers that exists. But what we care about is content type. We have to tell it, we're going to send JSON. So and now there is a class called media type. That it's actually not a class it's what's called an enumeration which allows us to do this. We can use it and then we can select values from it. So we don't have to type them out and worry about typos, essentially. So application JSON, tweeze the media type class, and we just use it statically to get application JSON.
+
+So we get the header
+
+to set the content type header to application.
+
+json. That's what that logic there's a lot of the codes gonna do for us. So we compared to postman, we've done this right here, we've created that.
+
+The next thing we need
+
+is we're going to three, we're going to create HTTP entity object that represents the headers and the body of the request. So we're going to create HTTP entity, and like list and map and those Once it has generic, so it takes a generic type. So we're going to tell it, we're going to pop our message body. And the generic type that is taking is the type of message body that we're going to create. And this is going to be required because it's going to serialize. The object for us to remember that means it's going to take our object is going to turn into JSON for us. So we have to tell it, here's the object type we're going to give you, we're going to give you a reservation object. And that's going to be our message body. And we'll just call it
+
+let's call it request, entity,
+
+and new HTTP entity.
+
+And again, we should do observation.
+
+And now we'll pass it to two arguments. The first argument is the message body,
+
+which is our object from up here.
+
+The second argument is the headers
+
+So here, let me put more comments for that. reservation tells the HTTP entity that our message body will be serialized from
+
+our reservation object.
+
+And then the constructor arguments constructor arguments.
+
+arguments are
+
+one, the object
+
+object to build
+
+the message body And the headers,
+
+the object with the headers.
+
+So now we have an entity, this entity is getting its the message body and the headers. So going back to postman, what we've built, what the entity represents is this. And this so these two tabs are what's represented by the entity. Actually we'll find out authorization to, but that's later. So these tabs up here, everything in postman, that is up here that's not on this line
+
+is what's represented by the htt entity
+
+in Java.
+
+So now we have an entity that has our message body, and we told it, it's going to be a reservation, object type and then we pass it on reservation, it's going to serialize it for us into Jason. So kind of like the
+
+template.
+
+Okay, so I'm seeing a lot of
+
+expressions that's telling me that maybe this is really the stop.
+
+So what questions do you have? Or what do you
+
+write if you saw me, I was actually looking at something else. I did, but I assumed that you weren't. I saw two or three other people with expressions that
+
+I forget him on camera sometimes.
+
+I assume you're not really listening to the lecture. So
+
+but I saw other people that
+
+I know my face was really bad, but I've been just like having a very hard time focusing today in general, but I think I ended understand what's going on. Okay.
+
+So
+
+just an overview for my own self, the reservation object is pretty much exactly the same as when we were doing a get. And it was mapping all of our column IDs and values there, we've just gone ahead and input them ourselves on this side. And we're going to send it now to the API. And it will have those values to go ahead and then map into the server itself to create the object.
+
+Exactly.
+
+That's it. Is it cool if it doesn't have one of those? Like, is it the same thing where like, if you don't create all of those in your reservation in Java, like, does it mind if they don't all exist in this as well?
+
+So it
+
+depends on the API. If the API requires all the data to be there, then no it'll cause problems. Causing air. If it's doesn't require all the data to be there, like our arc, our code doesn't, then it won't cause it won't cause any problems. So that's going to be really up to the API author and how they use the objects. So as far as the serialization and deserialization, no, it won't cause problems. It'll be the use of the code. So let's revisit on something about that. I'm sorry, did I answer your question before I thought something really? I don't think I explained real well, before. Credit, I answered the question you had for the Yeah, probably. So the serialization and deserialization. It's happening. Both are happening every time you send a message. I don't think I was very, I made that clear before. So what's happening
+
+is
+
+When we start, we have our code, right? or something's going to send a message API. So our code
+
+so it's on our side, the client.
+
+There is
+
+serialization happening here, when we're sending a message. So it serializes the message. And then it sends it serialized, so it sends it as text into the server.
+
+It's going to D serialize. It.
+
+that's gonna happen every request. When our GET requests, we don't have any message to send. It's all in the URL. So we don't need to worry about that. That is text. But if it's anything that has more than just the URL, that's always going to happen. It's going to serialize on the client is going to deserialize on the server. When the server responds, it's Going to be the case that the server now is going to do a serialization. And it's going to send it to our client and the server here on the client, we're always going to deserialize. So this serialization is not something that's happening on one side, it's something that it's the way that we communicate back and forth with the server. And this is because HTTP only allows text to transfer. Which means that everything we send, whether it's now an object, or whether we want to send an image, or when you're sat down to watch Netflix, that video is streaming to you as text. They're converting it. They're serializing it on the fly to text. They're streaming it to your device, which is deserializing it into bits again to be used. Everything that transports across the internet is text. Our I see let me rephrase this. Everything that transfers No, it's actually Sure, there's no protocols that are not text based. So everything over HTTP is just text. And that's what that that process, why those two terms by keep using them. And why they're important is because we have to understand that's occurring. So that's what we're doing right here. So this whole line of code is about this step right here. serializing that object. And that's half of it. The second half is in no, it is because then the headers all about telling it what we serialized it into. Clear this looks like I just got signed out of everything. So let me fix that
+
+is
+
+where's the serialization happening?
+
+That's a great question because it's hidden from us. And it went away. Be it's hidden because of the framework we're using. So this is actually a process that using a different framework, you may have to do manually. So it's the way it's happening here. It's it's happening inside of the Spring Boot framework. So the serialization is happening. When we send it to this HTTP entity object, it's part of what it does to prepare it to prepare to be sent to build the message body. So all we have to do is pass it, tell it what kind of object we're going to pass it and pass it an object of that type, and it'll sterilize it for us. The D serialization is happening. By the rest template, here, we tell it what we want to D serialize. The JSON into and it D serialize. It and returns as an object that value so it's happening inside the framework floors. This is actually part of their one of the main reasons of there's a few but One of the big things that Spring Boot does for us is the serialization and deserialization. Because it's not a doing a manual is not an easy process. And you can do it manually, you can still do it in Java manually. even five years ago, there was a lot of manual work maybe 10 years ago, there's a lot of manual serialization, and it was a pain. But
+
+so
+
+to see if I'm understanding it, right, kind of a high level is what happening is it kind of like when we do like, map rows set, you know, when we would pull like SQL data, and then we would send it to a method that would map it
+
+out what's kind of happening,
+
+that is kind of what's happening. Yeah, it's the same idea. We're sending it htma has a method inside that says, I can all map your object into JSON, and it does it by We've talked about how important it was to have the property names match the JSON. Because the way it's going to build the JSON is look at our object users property names and build the keys and then the values here are be the values that we have set will become their values.
+
+Does that answer?
+
+Yeah, that helps. kind of helps understand what's happening, because we've seen that before. So
+
+that may make sense. That's exactly what's happening.
+
+Right? The questions, I know it feels like we're spending a lot of time on post and we have put and delete. But after we have these concepts down, the other two, use the same concepts. So this entity object, this concept is really the big
+
+thing. Sorry, additional additional question
+
+for the HTTP headers, and the answer
+
+With those kind of Windows generally be done every time you're going to
+
+use them.
+
+Often, you could actually have if you're doing a bunch of API calls, you could have like a header at class level, if you're always going to be setting the application JSON header, and that's the only one. You can have a header object that you don't keep recreating, just like you could for other objects. See the Kinect we have for the you couldn't you could have an if you're doing multiple different types of requests. With reservation, you can have an entity object that you use for multiple requests. So these are just Java objects so we can reuse them as needed. We don't have to create a fresh one for each one.
+
+So we could have like a method that takes an object and set the headers for that every time method.
+
+Exactly. We could have a method that takes takes one of our objects and returns us For an entity that's built out with the right headers and everything set up, if we wanted
+
+to run for the headers, if you have more than
+
+one header,
+
+use additional methods or include more parameters in the content,
+
+use additional methods for this. So we can call all those other centers we want, and it'll build out the headers for us. Okay, and that's another thing it's spring boot does. That's very nice, because other frameworks and other languages. In other Java frameworks, you have to send multiple parameters for each header. We get the JavaScript that's what wants to do.
+
+I can't believe how much Spring Boot is doing Actually, it's
+
+so nice to work with. Yeah, it does a lot. Which is good and bad.
+
+makes it really easy to work with but then it makes a lot of
+
+magic on the back end. Exactly.
+
+And that that can make it bad, too. Alright.
+
+So any other questions before we
+
+write? Okay, so now we have our entity objects, we have our header, our message body. So now we need to use it with
+
+the
+
+sorry rest template to actually do to send it. So we know that because in postman, we know that this post is going to return an object to us. So that means we need to handle it. So we can use the same reservation object. I really would like my reservation ops just to be updated with my ID. So we'll just use the same variable
+
+and we're going to call rest template.
+
+Now, the good methods are forget we're not doing a good so we're going to use
+
+There's post methods.
+
+And we're going to post for object.
+
+And we need three things.
+
+The URL, the request and response type. We've already dealt with the URL and the response type and the GET requests, those aren't new. So we're going to use our same, our URL. Actually, let's build it up here. Just for clarity string URL is going to be our base base URL. And if we look here, we have to concatenate on hotels, the hotel ID, and the word reservations. So
+
+we'll concatenate on hotels.
+
+And we need a slash. So we have this string and our base URL. So we're going to have and this is going to be a variable for our reservation object. So we're going to katni on this next.
+
+In fact, an easier way to do this might just be to grab all of this.
+
+And this is what we need.
+
+And now we want this one to become a variable to become something variable, we have that in our reservation object,
+
+get hotel ID.
+
+So that's our URL. And then we use that string here. And we could have done that whole line of code here, but I think it's a little more readable that way.
+
+And then our request is a request entity.
+
+So the entity object,
+
+the response type is just like with get, we want it to deserialize into the reservation object type.
+
+So
+
+that's all we need for the rest template.
+
+But what else do we need to do here?
+
+What are we missing?
+
+returning the reservation?
+
+Well, we are missing that you're right. So let's do that.
+
+But what are we missing
+
+with a call to an API?
+
+try catch.
+
+If two errors that could occur, right, we could get a four four, we could get a 500. We get a four one. So we need to handle that. And we also need to handle if we, if this server is just not there, that could happen as well. So we're gonna add our try. So yesterday, you were writing these without a try catch. Starting today, all of your API calls should always have should always need to handle these cases. Because these are common cases. These aren't like a lot of exceptions or this might happen, but probably Won't getting a status on the 200 or having the server down are things that happen all the time and when we're working with network communication, so we always need to have some way of handling them. So quiet response
+
+exception.
+
+And let's, let's do the same thing we did before. So we can actually go down and
+
+just grab, actually, we can scrap all of this.
+
+So we're gonna have our client response that's going to handle things, the errors above the 299 range, status codes, not errors, and then resource access exception for when we just can't connect and following what I had here, I should say,
+
+add for use posts for object
+
+In the URL, the request HTTP entity
+
+populated with the header and body, body, body object
+
+and then the
+
+type to return.
+
+Alright, so we're ready to try it now.
+
+So I need to restart this.
+
+And let's put a breakpoint here on line 39. And we'll run in debug so we can step through it and kind of review what it's doing. They said if we get this one down, delete input are almost the same. There's slight variations, but they're almost the same. So we start out, we're going to we want to create a new reservation for hotel So sex three, and we have to give it this string. So let's create one. We need someone to create a reservation for us credit for john doe. Check in date, six, I don't think I need to zero for the matter. We'll make it for the 28th. And then they'll check out on seven 320 20. And they're gonna have four guests. Again, this format is just about this demo app. Real CL application should split that up. What I'm saying that is don't copy this for your Capstone next week. So now we're here. So we have that in that make reservation object created this reservation. We can see it over here. We can see it has all the data, and that was but and we can also see that it's actually what created the ID for us. But that's alright. So now
+
+we
+
+start building the headers. So we get the HTTP header object, we set the content type to application JSON. So we set the header. Now we're using this reservation object we're talking about the type, we're passing it, this reservation object that we, we populated and the headers object. We're creating the URL with the toe ID. And now we're going to call post for object passing it the URL, the request entity, so the message body and headers and then the class type that we want to deserialize the response to serialize to
+
+take a moment
+
+sticking around Very long moment.
+
+There's a post.
+
+There we can see right there, it's happening. So you can see there, the next line got added. So it returned to 201. We can see from our server. So we can look here and see what the server is actually returning if you want to compare it. So server to one means created. So post methods on servers, as we'll learn next couple days generally return to one instead of 200. Because that's the creative, they don't have to but it's just the proper status. It means that it was specially created value, and now we're done. So now if we want to see this if we list reservations for hotel, so it should be two, and we want hotel one where he made the reservation, we can see that our reservations now been added to the list. So we've added We then put it we put data onto the server.
+
+So questions
+
+before we continue? So making sense?
+
+Um, I have a question about the ID I know that, um, it's seems to be fairly generated.
+
+I don't know if that's true or not.
+
+It is. So this ID is not a real ID. It's because when we restart the server, it goes back to its starting state, everything we add goes away. So everything just stored in memory right now. It's just there's really just a list. Basically, it's like an ArrayList class in JavaScript. It's a list of an array x is what it is have reservations and hotels and memory. When this application restarts, good, they all go away. So because of that, to simulate what a real database and later this week, we will hook it up to a real database. Well We'll get there. To simulate that. What it does, if you look down here is it just picks a random number between zero and 1000. And that's its ID. So it's possible, we could have two with the same ID and nothing's going to care because it's just a list in memory. And again, it's simulating working with a database, but it's not. So don't, you would never do that and something real. It's just about making it feel like a database until we and the idea is so that we can focus on this and then we'll focus on hooking it up to the database when we get to the server side.
+
+Alright, thank you.
+
+Alright, so Other questions? All right.
+
+So
+
+we have,
+
+post and delete are putting delete so they're not after post they're not is difficult. And then we're two minutes short. But let's go ahead and take our second break now. We'll come back at 1139. And continue.
+
+we're deciding to send it as JSON, because the API authors is decided that that's what they want to us up. So, and that's the most common use format for modern API's. It's not the only one, but it's the most common by far. So if they say we only accept JSON, we have to send it as JSON.
+
+And so where do you see that they only accept JSON. Is that going to be in the documentation? That would be in the documentation? Yes.
+
+Okay, cool. Thank you.
+
+So other
+
+than watch added that in with modern API's, unless they say otherwise, you should assume they accept JSON. It's it when I say that majority, it's the vast majority use JSON. of
+
+Okay, I guess I was getting confused because I know that the responses coming in JSON, but I didn't know the types of, I guess, when we send the information to them, if we could vary on the formatting of the the object or the data,
+
+there has to be has to be what they accept. So let's get into finance. You'll probably only ever encountered JSON.
+
+Alright, got it. Thank you.
+
+So other questions before we?
+
+Okay. All right. So our next thing is put, but two more methods to look at. Put is somewhat gonna be variable Similar to post, but put its purpose is to update data. So update existing data. So like an update on an SQL,
+
+like post, we're going to send everything in the message body.
+
+So its data is going to travel there.
+
+It's
+
+going to be idempotent. Since it's not idempotent, I'm sorry, since it is going to change the server, however, it is what's called a safe method. Because if we repeat it 20 times we get the same result all 20 times think of if you update if I say I want to change the name of this user from
+
+john to Sally.
+
+Then if I do that same update 20 times update the user's name to Sally, it's still Sally at the end of 20 times, right. So update changes the server but it's repeatable. So it's ideal not idempotent But safe. And you don't really need to worry too much about those times I just the concept is more important that we can change this earth update, we update existing data. If you just are put sorry, it is think of it as put as like SQL update, you'll have pretty much everything you need for what it does. The way we're going to use it is almost identical to post. That's why we focus a lot on post is once we understand how it works, we can apply it to put we're going to call it different method on the rest template. That's the main difference. So we're going to build the header the same way. It's going to be JSON, we're going to have the same message body type, and then we're going to call put, and put is often not going to return a response. Because why does they need to they're going to return a status. Why do they need to give us an object back we know what changes we made. So the user often only gonna return a status code 200 not always but often they can Choose to return something. And so we're going to return usually the URL and just the entity objects. So that request object. So before we do that, though, let's go to postman and look at how we can do I put. So the put URL is probably going to be slightly different. So if I'm when I'm working, so part of this is also if I'm working with a new URL, how would I figure out how to do a put. So first, I would want to get a list of what I'm working with. So I'm going to list a reservation. So we know that if we do a get on this URL, I'm going to see all the reservations. So let's do
+
+a get
+
+and we can see we have our values. I'm going to grab one of these. I'm just gonna copy it. Because I'm going to need that as my J. So I'm gonna have to update the data in that JSON object. When I do my put snap I'm going to change this to a put before put the URLs sometimes going to be different. It's not always but one of the things is going to be different here is we're now not working with a hotel anymore. Now we're working specifically with reservations. So what's going to change is this hotel is not going to be involved anymore, because why do we need to know the hotel, if we know the reservation ID? We don't. So I'm going to go to the body and just paste that. And again, the body is going to be raw JSON.
+
+So for the URL for this particular
+
+API, if I read the documentation, I just messed something up there, me.
+
+That's trying to get rid of these. All right, the wrong thing. I need to send this ID as a path, query parameter. And our We'll come to the documentation of the API,
+
+in this case, just the readme file.
+
+So my put URLs gonna look like this, I'm gonna make a change, instead of us putting it to john doe, let's change it to, I don't know,
+
+Sue Smith.
+
+And maybe there's only gonna be two guests. And then I need my head of the same e content type application JSON. That's just telling it that my body is going to be in JSON. So now I have my URL. I have the JSON message, the header set. So I'm going to send it and this one happens to return a value if I'm interested in it. So I know now, I could get this object back, but really, it's always going to be identical to this slide. Probably don't really need it.
+
+So let's.
+
+So before we go take this to Java, now that we have the three, four things we need, the URL, the message body, the headers we need, and the response we're going to get.
+
+Are there questions before we?
+
+Okay. All right.
+
+So let's go to Java and there is a update reservation method.
+
+And it's going to start the same as
+
+Actually, this is going to have a reservation.
+
+It's going to need to do that just for this application. So I'm just going to cut and paste that beginning code because that's not really about the
+
+So this about the foot, that's about just
+
+this application. Alright, so now we need to create the header. So it's gonna be the same type of steps one, create the header. So we're gonna say h HTTP headers, headers equals new. So we need to get the headers object. We're going to set the same header, set the content type header to application. json. So we're going to do that with setting the headers object. We're going to set content type, use the media type
+
+to application
+
+JSON.
+
+Now, we're Create
+
+the Create a request entity and pass it the
+
+data object and
+
+header.
+
+So we're going to create our HTTP entity object.
+
+Again, it's going to be of type reservation.
+
+And we'll call it request entity
+
+equals new HTTP
+
+entity of type reservation.
+
+Pass it the reservation and the headers. So that's exactly like put post. Nothing's different right now. And now the only line that's going to be different is we're going to call rest template. There is a response. I know I'm getting back but it has nothing new in it. That's part of what I was looking at. So I'm going to ignore it. I can choose to ignore any response I get at any time. It from it most methods, that's not really the case forget, that wouldn't make any sense. But for this put I can. So I'm going to call put.
+
+And
+
+so put, I'm going to take the URL and the request entity.
+
+And our URL is going to be this.
+
+So again, for clarity, I'll create a string up here called URL.
+
+It's gonna be that and what's going to be variable here
+
+is going to be
+
+on the reservation, I just need to get the reservation or get the ID. So I can build this URL with the reservation IDs selected. And then we have to return reservation. And what am I missing?
+
+We have to handle those two cases in in for these exceptions keep this is CSV sorry. I don't know why that's all uppercase, but we're going with it.
+
+For these
+
+two exceptions, we're handling, trying to think of them as handling errors, you're handling conditions, you're hitting statuses. There's things that happen with an API. And we just need to know what's happening. So these are almost like almost taking the place of just if statements coming back for non standard
+
+conditions.
+
+So
+
+We're going to catch the two exceptions. And again, it's going to be the REST client response exception. Fast, quiet response exception to handle status codes over 300 or 299. And then the resource access exception to handle connection errors. And then we'll handle them the same way that we did the other one. So let's come down here and copy and paste these console lines. Again, the first one, the console. log, what it's doing get raw status code is going to get the actual status code 4144 or 500, whatever it is, get status text is going to have the words like not found an authorized and then for this one, we'll get message because this is going to contain what happened. You know, can we not connect in how things like the URL on it, which can be important to troubleshooting? So we should be ready to run this now.
+
+So outside of this line,
+
+this is pretty much a copy and paste from the post. Putting posts are very similar.
+
+So the difference is that we're accessing an I like a primary key basically. Yeah,
+
+yes, we're accessing we're up. We're updating something that exists instead of adding something new. So there's a, there's a fine line, you could write a post those updates, and you'll see lots of API's to do that, should they? That's a whole different discussion. But they can. So in this case, we're using put because the API has been properly designed to say, Okay, if you want to do an update to something existing, do a put which means that it doesn't have to return a response to us except for a status as they're not returning the object back. We know what the changes were. It also means that we can know calling it that if we call this 10 times in a row, we're going to get the same result. Like if you do a sequel update 10 times in a row, you get the same result, right? just kept updating the same column to the same value. Who cares if it was that value before that. So that's the purpose of using put is to separate it from post and often they did different a different URL. This one needs the URL reservations because we're not dealing with a hotel anymore. Now we're dealing directly with a particular reservation ID we don't need the hotel involved anymore.
+
+So does that answer your question?
+
+Or, yeah, okay.
+
+And when we get to web development, we'll find that put doesn't really exist on webpages. But can we can make it exist by using eight this thing called Ajax and calling API's in the background, but it doesn't exist by default. They just do everything pre post and get
+
+an API stock. A little more particular. Because
+
+put just overwrites all the data.
+
+It does. Yeah, there is a whole nother method that is for updating incremental fields about put does this do a complete rewrite of the data. But the get in post only existing in the web is more because they were just the first two and at the time, it was like a once for getting data at once for updating data we're done.
+
+And now it's more of a we need a little more fine. Should have a little more fine granularity to that.
+
+And I will point that out because the back to spring product, something that there is
+
+to do a put put, we have to include all of the data.
+
+So put does actually doesn't overlay. It's great by the primary key. So Going to overlay, whatever is this primary key with this data, all of it. There is actually a separate method patch that we will not get into. It's a newer method. Not a lot of API support it yet. That allows you to say, I want to update just for name. Let's say not other API support, a lot of them do, but it's, it's newer. It's in the last few years. So
+
+Alright, so we're ready to try our put, unless there's other questions before it does.
+
+headers, set content type work with more complex data structures?
+
+So when you say it does have quite a few different data structures that can handle so the answer is yes. If we look at some of the ones there's some XML JSON, PDF Well, no No, I mean, what I'm actually what I'm asking you about is like, say that if there
+
+was like
+
+an object within an object here.
+
+Yes, it does. So all this content, all this header, the header is doing is saying that what we're going to send is going to be JSON. The serialization here, can work with complex objects. So if you have an object within an object, it'll serialize it as a JSON object as an object within an object.
+
+Does that answer?
+
+Yeah, you actually answer two questions. Okay. So
+
+now, anything else before?
+
+So let's give it a try. I'm going to stop this again.
+
+And what it's run at this time?
+
+Actually, no, it's not run. Let's debug it.
+
+So
+
+somebody's going to update an existing reservation.
+
+And it shows me some reservations. Let's update the one we just did 916. And now it takes the same data. So we want her to one. We need a new name. So let's change it to I don't Sally Jones. And now we need two dates, maybe we'll keep one of them the same stuff arrive on 220 but they want to check out
+
+maybe 710 now,
+
+stay a while and there's only gonna be one guest now. So we've updated three of the fields. run that. So now it has far reservation object with that information in it. So, we create the headers, we set it to, to tell the header that our content type is going to be JSON. That now we're creating the entity objects, we're passing it the reservation objects that's in the message body. We're passing it the headers that we just created, build the URL with the ID. And then now we're calling put the put method with the URL and that request object that has the the entity object that has the body and the headers in it.
+
+And if we look over
+
+here in our
+
+server, we can see it just it just processed to put it got a 200 status, put returns this reg there's 200. Usually it's not created. It didn't create anything, it just successfully processed it. So then we can continue. And now if we want to see it, we could list the reservations for a hotel and we'll get a hotel one and we can see The update occurred. So now we can get information, we can insert information and we can update information. So, the last thing we need to do is delete information. And actually after the last to delete deletes, actually the easiest one can SQL write, SQL delete was really simple. It's kind of the same here.
+
+So for deleting, we're going to
+
+delete is going to remove data from a server just like we'd expect from the word delete. It's just like, the others it's going to actually that's incorrect.
+
+should not be cannot be should be can often be
+
+and cents.
+
+It relies on
+
+path and query parameters. So, deletes not going to use the message body. What do we really need to delete something from delete a reservation?
+
+What do we actually need?
+
+Just the ID,
+
+right? Exactly, we need the ID, we don't need to show the other data. So delete. In most cases, we'll just pass an ID, and either use it as a PATH variable or a query parameter. I'm in this case, this API passes the PATH variable, which is probably the most common way of doing it. Since we don't need filters, we just need the ID, the ID. So delete is not idempotent. It's changes something on the server, but it like update it's safe. Meaning that we can run it 20 times a month. same result. So if we run the Delete, and it deletes, you know, Sally Jones from the reservation, then if we run it 10 more times Sally Jones reservation is still gone. So it doesn't change anything after the first run. It's the same every time.
+
+So
+
+coding a delete is really simple compared to the rest, we build the URL that has an ID, we call delete, pass in the URL, there's no message body, there's no headers. And there's no response. There are only responses to status code. So let's do it in postman first. I guess I got ahead of myself. We should delete it from postman before we
+
+look at the code. So we have we can do with the reservation here.
+
+I change this to delete
+
+it I changed nothing else is ignored by message body, I get back a status 200 I get no response. So status 200 means it should have worked should have worked. So let's take a look at Hotel one reservations.
+
+And
+
+we get the list back
+
+just back to a get. Notice I got a four or four not found there because even though there is a get at this URL, there is no deleted that URL. So I got a 444. So the resource being found for an API is a combination of the URL and the method. So if that combination delete in this URL don't exist, it's a 404 not found.
+
+So there is a good for it though.
+
+So I send it MMC that that Id nine 16 is not in the list. So it was deleted. Same way, if I wanted to get rid of
+
+this ID,
+
+I could change it back to
+
+reservations one,
+
+delete.
+
+And now when I undo back to
+
+the back to the hotel
+
+and go back to hotels
+
+go back to get
+
+and now that one's gone.
+
+So again, I know the things I need. So when I use a delete, notice the body's still there because the headers are there, but it's actually going to ignore them. It's going to send them but nothing's going to care about them. So what I don't know why don't get a response now. So what I really care about is just this URL.
+
+So let's go
+
+create that. So we'll need to create the string URL equals that. And that's not the right URL, but we'll fix it to be right. We know that this first part is stored in base URL. And that last part will be from the ID being passed into this method. So there's our URL. And now we're going to call the rest, template,
+
+delete and the URL.
+
+And oh, sorry, I'm sorry, no, no, please. Well, um,
+
+does a get for that reservation. Take the exact same URL.
+
+I don't know if that's enough. I don't know if that supports get or we have to have the hotel involved. Let's find out.
+
+I've always done it with the hotel, but if we have the Id like 550
+
+Yeah, it does.
+
+So could you like, get that reservation and save it as a reservation so that you could like log your deleted reservations in that same thing? Definitely. Yes.
+
+Okay, yeah.
+
+So, just like the other ones, we have to have, we have to handle the exceptions. We have to handle statuses that are not 200. We have to have handled connection errors, because those both could occur. So that's kind of this is almost boilerplate code for
+
+doing API calls.
+
+So let's
+
+we'll save that. And now let's restart the application.
+
+Let's run it because
+
+we want to delete a reservation
+
+tasks was reservation, let's get rid of John's reservation. So 551 and you and I, we list the reservations on the hotels from one and see it's gone. Just like it was we used it from postman.
+
+So questions on Delete
+
+So something else I want to show then really quick
+
+in the console service.
+
+So we're starting to work with
+
+multiple
+
+classes. And in this case, there's a scanner class that has system in. And if we need to close those resources, we should always close those resources before exiting application. We haven't really had to do that because when we exit application scanner is going to close. And actually, I've told somebody don't close scanner system in and I still will say that until documentation, but we haven't with other pieces. So as we start passing these around, and we can always use things we'll try with resource if you do have things like database connections scanners, before you exit an application. This has an exit method that gets called rather than just letting an exit naturally. So the exit method cleans up scanner close will close and destroy a scanner. So it'll be least the resources, exit, then we'll exit and application system exit will exit immediately. It'll be really careful about where you use that. Because if you use it unexpectedly, your application just shuts down with no explanation. Zero is for success mean everything went fine. And then there's other you can return status codes kind of like the two, zero be like a 200. You could return on their status codes if you want your application to send something bounced back when it has an error. So just want to point out those are there you see those those what they're doing is meant to be Wow, you should not really close scanners and have system in them according to the Java documentation, when to point out the example of how to close a resource since we haven't really ran into it yet, and is where, Okay, next, we're going to have to pay a little more attention to that. So there's an example of And when you see it, I want you to know what that code is doing since it's got new code that we haven't seen before. So
+
+So any questions about anything we've talked about today?
+
+Bad or anything else?
+
+All right. Alright, so you feeling good about API's?
+
+I saw comments on the pulse survey today that performed a few people that they homework yesterday was rather difficult. So hopefully this will put you more in a better position for today. I know we repeated the same thing a lot. But hopefully that helps.
+
+You know, I'm sure it felt very slow at times.
+
+Alright, so then
+
+four exercises tonight. They're a lot like yesterday's, in fact, very much like yesterday's. There, you're going to be working me, there's a server involved. So you have to start it the same way you did yesterday, you have to do npm install, like you did yesterday.
+
+And guy c tech, they wasn't the tutorial.
+
+But I assume that maybe half the people actually look at the tutorials. So that doesn't mean that only half you should look at the tutorials. Not all of you should, but I still make assumptions that
+
+that won't be the case.
+
+So get to Module Three.
+
+Exercise so there's a server you'll want to come in here and terminal, run npm install and then NPM start
+
+unless the
+
+In this up, unless the Ruby tells you otherwise.
+
+It looks a lot like election code lecture code today.
+
+Please,
+
+only deals with auctions. So you're not going to go you can look at this app to kind of look through and see what it's doing. It has the it's crazy auction service. It has an auction service class where all the code you're going to be writing is and it has passes the base URL. And now it's a bunch of other code that provides a menu so you can test it.
+
+There's a model already set up that has the option.
+
+So you shouldn't have to do anything changes that at least I don't believe you will. And then there's a constant service that does printing. The only thing you mean, you'll probably want to use this for is if you need to print an error message. But you'll want to follow the directions in the readme and what to do with exceptions, because I'm actually not sure how they want you to handle this. But I know that exceptions are part of this. And then where you're actually gonna be working is an auction services. And there are three methods, add, update, and delete, you'll be working on Exception Handling as needed. So proper exception handling, so you ought to work with that. There are test cases. So let's see how many there are. So some federal funding, so there's test cases to verify that your codes working So really three methods to write, add, update, and delete.
+
+So any questions what you'll be doing.
+
+So there's also a tutorial available. For that, just read the readme, it's a little different than the last two. Because tomorrow we're going to go to the other side. Right now we've been doing the client. So we're going to take a look at the actual server next, starting to build our own servers starting tomorrow. So rather than run doing NPM, run start or our start and running a server that we're working with, we'll be building that side of it. So the tutorial walk you through that. I should point out also with these exercises, if I was doing them, I would figure out each of these methods and how they work in postman before I wrote Java code for it. You'll things will go I know it always feels like it's taking longer to do that, like I say, working dbvisualizer and people like Well, that seems like a waste of time. But If things go well, then yes, it might have taken, taking a few minutes longer. That's true. But if things don't go well, which I'm sure everyone knows at this point is probably the most likely circumstance, at least it is for me I know, then it will save you massive amounts of time. So it's both things. And then often the things might have went well, because you spent that a couple extra minutes. So it really will save you a lot of time to work out those things. And there's other tools that are specific for them, like postman dbvisualizer even if it doesn't feel like it. Right. So I would start there, work out each one, there's only three, figure out how they work and then take those same four pieces. And then you just have to write out those pieces in Java code to solve the problem really.
+
+Alright, so that's so
+
+before I talk about the things going on today, they're in here Questions.
+
+So for today, there is
+
+the safe auto employer showcase at three o'clock. So don't forget to attend that. There is also lightning talks at four o'clock. I'm sorry, I did not write down who was talking. So there's three exciting talks going on. So and then I'm going to make another plug for I know I made a couple last week but and I hope Michelle, is it too late to sign up for the mentor? Night was that like, it's too late.
+
+Now you can
+
+go right now, but you posted about like eight o'clock last night so. So I this will be how I'll stop. I told you I would keep telling you this last week, but I strongly strongly encourage you to sign up for that. That is one of the third often many of the things I won't I'll just be silent on about whether you should attend them or not. This is one you should sign up for. Most of I've talked to come back, really having really liked it and learned a lot from it. It's not going to help you with what we're doing right now. What it's going to help you with is the job search. And, you know, that's why you're all here, right? I mean, everyone wants to learn to program. I know that's your main goal, right? This is trying to program because there's so much fun. But in the end, you want to Yeah, you might want to get a job or something out of it. So better will really help with that. That portion of it. So
+
+Java green is winning.
+
+Yeah, we can't have that kind of Jolly Green when it's something
+
+out there is any competition or anything but
+
+yeah, everybody Sign up now.
+
+You're not supposed to have favorite children. Michelle, come on. I tell all my children individually well, So,
+
+all right. Was it last
+
+night so the last thing, code review start today. I'm sure everyone's really excited for that I can remember was excited to hear how we'd be doing him last week. And you're probably more excited now that they're here. So, I posted the schedule yesterday, there's three teams per code review. Your, if you're in that list, you're required to be there. If you're not, you're not, you're obviously can show up and listen or participate even. The way they work is those three teams will just randomly pick which one goes in which order, you know, 15 to 20 minutes each. So it'd be an hour long for the whole thing.
+
+come
+
+prepared to talk about to show your application running, or how far you've got with it running. If it's not, it's okay. if things aren't Working, that's okay. Don't panic if you're like, Oh, I don't have everything working, that's okay. You'll want to walk through your code. You don't want to talk about your design and kind of why you chose to do things in a particular way. You'll want to talk about the biggest challenge that you faced. And you're in also the lessons you learn from it. And then answer questions. And if you're not being reviewed, and you're on the other two teams, so for instance, two, five and eight today, when team two is being reviewed, five and eight, you're expected to ask questions, make comments, and then so on for each of the teams. Part of this is the review portion. So I know this is not Yeah, I know people don't like to be other code public reviewed until after they do it. But one of the things that you'll take away from this, hopefully is that you're not the only one that have
+
+You had the same problems. So it's okay.
+
+If your codes not working, it's okay. If you have problems, it's okay. If you didn't solve, solve everything. That's okay. So don't feel bad if you're thinking I didn't get as far as I wish I could have, that's completely fine. That's not what we're reviewing the code for. It's also don't compare it don't fall into the trap of, oh, that person did something different than me. And I should have done it like that. Having a different solution doesn't make your solution worse than somebody else's, or make their solution better. So you're going to see and that's part of what I hope you see is that there's multiple solutions to every problem, and that everyone kind of runs into the same problems, or that problems that you thought were easy or difficult for other people and vice versa. So usually, they're kind of enlightening the first time we go through them. So that's about Those will be today at to their everyday to for the next three days two to three. So just make sure you show up on your team's day. And can I see your question do you suggest other people attend? That's really up to you. I think they're useful. I think it's valuable to see other people's code, which is why we're doing them. I think it's really valuable to see other people's code and not have the isolation of your code and your partner's code for the entire cohort. But it's really how much you know, is seeing to other teams code enough for you? Or if you're interested in seeing other people's code, then yeah, sometimes if you're not, or you're have other things that you would rather be doing then yeah, don't. That's, that's why I made it optional. I don't want to force people to next module. We'll all see all the code reviews, but
+
+this one we want. All right.
+
+So questions on
+
+Anything else? All right. All right then. Thank you. And good luck to
+
+you guys.
+
+Later, Gators.
+
+Transcribed by https://otter.ai

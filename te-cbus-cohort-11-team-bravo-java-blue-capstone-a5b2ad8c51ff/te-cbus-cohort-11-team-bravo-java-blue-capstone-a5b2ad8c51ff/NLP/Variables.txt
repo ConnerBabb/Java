@@ -1,0 +1,13 @@
+Book
+https://book.techelevator.com/content/introduction-to-programming-ool.html#variables
+
+Variables
+Typical programs like web applications need to store and manipulate data. For example, many websites can send a password reset e-mail. Programmers try to write these applications with as little repetitive code as possible.
+
+For example, building a password reset flow for every single user is time consuming. So, to save time, programmers use variables to store the user's email address. This allows them to write their code in a generic and reusable manner.
+
+This next section addresses three characteristics of variables:
+
+A variable must identify what type of data it stores
+A variable must be declared before it is used
+A variable must be given a unique name when it is declared

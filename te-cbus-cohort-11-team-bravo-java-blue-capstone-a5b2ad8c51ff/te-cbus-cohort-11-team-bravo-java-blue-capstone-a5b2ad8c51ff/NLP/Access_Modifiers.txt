@@ -1,0 +1,82 @@
+Book
+https://book.techelevator.com/content/introduction-to-classes-ool.html#access-modifiers
+
+Access Modifiers
+The keywords public and private are two of the most common access modifiers in the Java language. Access modifiers control visibility to methods and properties to the rest of your program.
+
+#public
+The modifier keyword public marks something as publicly accessible, meaning it can be used or invoked by external callers.
+
+By making the Clock class public, public class Clock or any other program that references the code instantiates it.
+
+Marking a property or method public indicates that it can be used by any external caller. An external caller may be an outside program, or a class within the application itself.
+
+#private
+The private access modifier restricts access to type members. Private variables and methods are only visible from within the class that the member is declared.
+
+In the clock example, the class variables hour, minute, and second are all designated private. If you try to access them through an instance of your class, you receive a compile error.
+
+This allows you to hide your implementation away from users or outside callers of the class. Because it's only exposed through the getter and setter methods, you can restrict the values and/or access to the variable.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+     public void setHour(int hour) {
+        if(hour >= 1 && hour <= 24) {
+            this.hour = hour;
+        }
+    }
+
+    public void setMinute(int minute) {
+        if(minute >=0 && minute < 60) {
+            this.minute = minute;
+        }
+    }
+
+    public void setSecond(int second) {
+        if(second >=0 && second < 60) {
+            this.second = second;
+        }
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+If it helps, think about classes as something seen from the outside, not the inside. public is what other programmers should see. It should be reserved for things that are useful to help someone perform a task.
+
+However, programmers don't need to see everything—for example, the code that makes things work under the hood. In those cases, you should keep things private so that they're only accessible from within the class.
+
+Access modifiers and methods are a key feature of encapsulation, the first pillar of object-oriented programming. Encapsulation lets you restrict access to the internal mechanism of how the class works by hiding or protecting its variables. This way, the values remain consistent and can only be changed through methods that the class allows external resources to have access to. In this way, a class controls how it is used and makes sure that use is consistent with its purpose.
+
+For example, rather than having the user of the clock change the second, minute, and hour manually, the clock ticks and internally manages when the values need to increment by one or rollover to zero. Ideally, this limits the risk of bugs that appear in your code.
+
+#Overloading methods and constructors
+To provide users of your class with different options when they instantiate new objects or invoke new methods, you can create an overloaded method or overloaded constructor.
+
+As a programmer, when you overload a method or constructor, you add flexibility to your class so that users can leverage different inputs when interacting with it.
+
+There are three rules of an overloaded method:
+
+Overloaded methods must have the same name.
+Overloaded methods must have the same return type (does not apply to constructors).
+Overloaded methods must differ in the number of parameters and/or parameter types

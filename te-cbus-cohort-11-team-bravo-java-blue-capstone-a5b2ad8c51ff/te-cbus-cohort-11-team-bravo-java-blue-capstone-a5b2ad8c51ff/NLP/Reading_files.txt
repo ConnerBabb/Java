@@ -1,0 +1,47 @@
+Book
+https://book.techelevator.com/content/file-io-ool.html#reading-files
+
+File input and output
+When using a programming language, there are times when you have to work with files on the hard drive, both reading from them and writing to them. In fact, you may do this many times while on the job.
+
+Data is transferred via text files more often than you'd think. Knowing how to read and write files from your back-end language is an important skill to learn.
+
+#Reading files
+Every back-end language has classes for opening and reading files in its standard library. Dealing with files follows a very common pattern.
+
+In Java, the class that you use to read files is the Scanner class. Given the location of a file, the Scanner class can open the file and read from it, either character by character, line by line, or all at once.
+
+To understand how files are read in your code, you'll need to understand the concept of data streams.
+
+#Data streams
+In computer science, a stream is a data structure that reads data as a series of ordered bytes. You mainly work with text data streams, so each byte represents a character in a large string.
+
+You can think of a stream like an assembly line. You don't have to process everything at once. Instead, you work piece by piece as the items move down the line. Your data works the same way. You can have it delivered character by character or line by line instead of dealing with the entire file at once.
+
+Where do these characters come from? That's the wonderful thing about streams—it doesn't care where they come from. It could be from a user typing on a keyboard, a network connection to a file on the internet, or a file on the hard drive of your computer. You've already worked with data streams when you read input from a user. Now you can work with files in the same fashion.
+
+By using a stream and only reading in a small part of a file at a time, you can work with many different sizes of files. Some files can be multiple gigabytes in size or even larger. By reading files as streams, you only have to read in a small bit at a time and not read in the entire thing into memory.
+
+#Opening a file stream
+Opening a file for reading requires that you know the path to the file that you want to read.
+
+Many programs ask the user what file they want to read in. This gets the file path, or the location on the hard drive where the file can be found. Once the file path is obtained, you can open that file and read from it.
+
+After you have the file path, you can use that to create a new File object:
+
+File dataFile = new File(filePath);
+The java.io.File class creates objects that represent a file on the file system. Using this class, you can check if the file already exists with a call to exists() or see if you have permission to access the file with canWrite() or canRead().
+
+This doesn't open the file at all. It only gives you a handle on it in Java. To open the file, pass the File object to a new Scanner:
+
+Scanner dataInput = new Scanner(dataFile);
+The Scanner then opens the file and prepares the data stream of the file's contents, ready for you to read.
+
+#Reading text from a file
+You can read text from a Scanner using a file like you did when using user input. Usually, you want to read the file line by line to process it. You can do that by calling the nextLine() method in a while loop:
+
+while(dataInput.hasNext()) {
+    String lineOfInput = dataInput.nextLine();
+    ...
+}
+This assigns the first line of the file, not including the return character at the end, to the lineOfInput variable, allowing you to do whatever you need to that line. Then, it gives you the next line and continues. Once it reaches the end of the file, hasNext() returns false, and the while loop ends.

@@ -1,0 +1,63 @@
+Book
+https://book.techelevator.com/content/web-services-consuming-get.html#processing-api-responses
+
+Processing API responses
+Now you have the response, but how do you use the JSON data in your application?
+
+#Response status
+RestTemplate only parses the response if the HTTP request is successful and returns an HTTP status code of 200. If the request isn't successful, RestTemplate throws an exception to indicate what went wrong. You'll learn how to handle errors in the next unit.
+
+As you may recall from the previous chapter, HTTP responses include a status code. Anything in the 200-299 range is a success response. However, when performing a GET request, the only response code you need for success is 200.
+
+Why only 200?
+
+Different response codes mean different things, even if they're all in the "success" category. Some response codes are only suitable for request methods other than GET. You'll see an example of that in the next chapter.
+
+#Parse JSON
+You can use RestTemplate to make the request using HTTP GET, retrieve the response, and deserialize the response body—meaning the JSON—into a Java object or array of objects.
+
+RestTemplate uses a deserializer, which converts a string into an object or array of objects. RestTemplate attempts to map every field in the JSON response to a Java class you provide. If the result is an array of objects, it attempts to create a structure you define. You could use a simple array or one of the Java Collections structures to store the data.
+
+First, you need to define the class for JSON you're expecting. Take a look at the return JSON from the ExchangeRate-API:
+
+{
+  "base": "USD",
+  "date": "2020-02-20",
+  "time_last_updated": 1582157102,
+  "rates": {
+    "USD": 1,
+    "AED": 3.672012,
+    "ARS": 61.679567,
+    "AUD": 1.494929,
+    "BGN": 1.810794,
+    "BRL": 4.364061,
+    //the rest omitted for brevity
+  }
+}
+You define your class with the same names. Note the slight variation—timeLastUpdated is OK:
+
+public class ExchangeRates {
+    private String base;
+    private String date;
+    private String timeLastUpdated;
+    private Map<String, Double> rates;
+    // constructors, getters, setters...
+}
+First, you'll make the GET request in a similar way that you've already seen. There are two differences between the following code and the code you saw earlier. Namely, you use the .getForObject() method to return the JSON as an object that you specify, and the ExchangeRate.class replaces the String.class:
+
+ExchangeRates response = restTemplate.getForObject(
+                "https://api.exchangerate-api.com/v4/latest/USD",
+                ExchangeRate.class);
+That single line of code returns an instantiated ExchangeRate object populated with the JSON data. To get access to the data, call the getter methods on the class:
+
+System.out.println(response.getBase()); // prints USD
+System.out.println(response.getDate()); // prints 2020-04-10
+// etc...
+If you don't want all the fields returned by the API, you can omit them from your class. For example, if you didn't want the base and date fields, you could declare your class like this:
+
+public class ExchangeRates {
+    private String timeLastUpdated;
+    private Map<String, Double> rates;
+    // constructors, getters, setters...
+}
+The resulting object is constructed without those properties

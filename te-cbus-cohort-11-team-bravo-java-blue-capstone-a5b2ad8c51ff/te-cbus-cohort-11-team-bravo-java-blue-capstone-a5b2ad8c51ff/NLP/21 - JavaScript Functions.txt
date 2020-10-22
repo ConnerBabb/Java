@@ -1,0 +1,1721 @@
+Zoom
+https://techelevator.zoom.us/rec/share/yPVWE-_Tp3NIaZHHtGbnc5NxPLiiX6a81HUd__IJy0qH25coRUakBcO4M8qbxOEz?startTime=1594732960000
+https://drive.google.com/file/d/1Ux6iwd8C04i1JW6kiOEexYDgvQlai1OG/view?usp=sharing
+https://docs.google.com/presentation/d/1qay8aBCPULPtGe7P0CnmKSnG9ivHbiCsYmItIbQQMLk/edit?usp=sharing
+I said today we're going to continue
+
+taking a look at
+
+the basics of JavaScript, we're going to focus on JavaScript functions, we're going to see that functions actually are a little different in some, in some ways in JavaScript than they are. And at least the way we've looked at Java so far, are well discovered. So we're going to start by Archie gonna start by taking a look at just named functions, which are functions we're familiar with. And we've seen those yesterday. And they're going to feel really familiar since we're familiar. They're very similar to what we worked with in Java. And then we're going to take a look at documenting functions. So as we started to see yesterday, documentation in JavaScript is very important because it's not because it's not the statically typed, because we don't have to define the data types, because we don't have to define whether a function returns something. The only way we can know that information is we can't go out of the method signature. Instead, we have to rely on the developer documenting what it's doing, or how it's supposed to be used. So we're going to look at this thing called j. s Doc, which helps standardize that. And then we're gonna look at this idea called anonymous functions, which are fairly important concept in JavaScript, in a lot of languages, including modern Java. But we'll look at those what that means to be an anonymous function and some of the ways that you're used it, then we're going to look at some of the functional functions available on arrays. We're going to there's multiple functional functions in JavaScript, we're going to focus on some of the array ones, just to see how they work and some of the roles of them, and we'll find out how useful so Some of the Ravens are. So let's start by kind of rehashing something that's important for all of this from yesterday. And that's how JavaScript just loads and function works. So I'm in the this is the lecture code for today. And I'm actually going to start by creating a new file. So we'll have two lecture code files today, the lecture j s. And I'm going to create a new file here, just clicking the file and just call it something like lecture to J s. And we'll use a kind of a, as a scratchpad to write some of our own code that's not in the kind of question and answer code. So before we can use this
+
+in our HTML files, what do we have to do? Someone
+
+you have to script it.
+
+Yes, we have to add it. We have got it as a script vailable to follow So I'm going to go to the HTML file. And I'm just going to add to the test HTML, because that's the one we'll mainly be using today. And there's already the lecture j s here. So to add a new script, a lot of script tag, source, and then we can add our lecture to, and this is just a path. So it can be to a relative path in our project, this is in the same directory. So it's just keeps the same. It just doesn't doesn't need any thing farther. If it was in a folder or something inside of this project, then we would add that as part of the path. And it could also be external, like we see up here there's some JavaScript loading from
+
+an external source.
+
+Maybe this mocha and Chai are the test libraries being used. But so we Add the script tag. And that'll allow us to work in this lecture to jazz. And then with that, I'm going to open test HTML and live server so we can work with it. And it has some tests, but I'm going to be more important to us most of the time is going to be this is going to be the console.
+
+I'm gonna open it.
+
+And now we're ready to
+
+work through here. I'm going to start by in lecture two, I'm just going to write a line of JavaScript. So let's do a console log. Actually, maybe let's start with Alice to a console log is going to start with an alert. That's a little more bracing but I think it's also a little more irritating. So let's do a Hello
+
+Hello. We're past that, just Hello.
+
+We can see when I save it, it automatically runs when we get the message in the in the console, because JavaScript no matter where it's at, if it's loading in this HTML, it's if it's not in a function, it's going to run immediately. So it's random, executed and done the console. If I move this into a function,
+
+function, greeting.
+
+And now we can see it's not running. We don't get the Hello when the run so instead of running the function,
+
+what it's
+
+done is
+
+just loaded this function to be ready to run.
+
+So I can call it now.
+
+And it runs again. But let's take this
+
+over to the other lecture file.
+
+Let's put it at the top here.
+
+And I run it, and I get this uncaught reference greeting is not defined.
+
+So this is being caused.
+
+But it's defined here.
+
+And we saw yesterday that we can use variables in functions between two files. So any suggestions on what may be causing it not to work?
+
+doesn't
+
+load the HTML first, therefore, it's not created? When when you call it
+
+email. I'm sorry. So Take a look at it. Is that something to do with the HTML that is distracting, I think you're on the right, the right track. So we're loading two script files lecture and lecture to the methods in lecture two. But the call to it is in lecture one is the first lecture file which is being loaded first. So if we want this to work if we just flip the order of these,
+
+and now it works.
+
+So, the order of the scripts the way they load is important. So functions have to be declared before they can be used, which means that we have to load the scripts, we're using them, we're declaring them before we use them. So, let's look at how I know we talked about at some yesterday, but let's look again at how that's working. So it starts with the HTML, the HTML with JavaScript rendering JavaScript in the browser is Everything is controlled by it. Because the HTML defines the structure of how the documents going to load in the JavaScript is just one piece of the document.
+
+So
+
+HTML rendering, and rendering is the process of when we open an HTML file of loading it into the browser in showing what it did loading all the pieces and showing what is what's required in the browser. So whatever it's asking for, or doing whatever, scripting the JavaScript thing, it's the app should be happening. So rendering happens top to bottom, and it happens one line at a time. Which means this line renders and then this line and it goes down. And is it fine something like this line loads. So the way a this mocha CSS from an outside source, it goes and it doesn't get requested. downloads this file. And while it's downloading this file, it's paused. It doesn't continue until this is downloaded. It's done. So HTML happens one line at a time. And each line blocks the rest of the file from continuing. In this then it continues once that's downloaded, and goes to the next line and continues down to it gets through these scripts. It pauses while it downloads the bogus script. And it gets the next line pauses, why downloads the Chai script? It runs the script. And then it pauses here why it gets the lecture to script and downloads. You know, it's local, it's still pulling it into the browser, then the lecture j s script, and then the test script, and then it's going to run this and if there was more to it, something's missing here is there's actually not much HTML in here, right? It's all just JavaScript. But if there was more like images or being loaded for each of those, it's probably Download the image before it goes to the next line. So the order of JavaScript is important. But also the position can be important in the file. Some JavaScript libraries can get quite large. So it's common to put the JavaScript loads not here. While this is actually doing this not up here in the head, like you see in a lot of older documentation, but to put it right before the end of the body tag. The reason is that if we're not for scripts that are not manipulating the HTML, like these test scripts, it allows the HTML to do things like Load images and content like text is going to display on the screen before it downloads the JavaScript. And then the user can read end up reading the page and looking at the page while the download of the Java scripts currently So what that means if there was something to the page that that HTML would go in this position, so HTML would go here. This is where our page would go. And then our JavaScript would go here right before the end, this closing body tag.
+
+So that's a common way to load JavaScript. It's not a requirement. It's just a way of getting around this way, this blocking behavior of HTML when it loads.
+
+Is that why like when I'm super impatient, and a page is like loading and I click on a thing, and I'm expecting it to do a thing? And it doesn't? Probably, yes, that's that's a common reason that it's not, it's not downloaded, not finished downloading everything it needs.
+
+Like I've been to a page a million times, so my mouse is immediately where it needs to be. Yes.
+
+So they're, yeah, they're they're hoping. And a lot of cases that where that stuff's finishing that you won't know where you need to click that you'll spend a second or two just orienting yourself on the page. And by then it's done.
+
+Because we're not talking minutes, we're talking now seconds.
+
+The goal of most sites is to have the whole page loaded in less than three seconds, which isn't a lot of time for someone to orient themselves. But yeah, so when you're impatient or know the page already and doing what you're doing, I guess that's what's probably happening. There's also some other things that could be happening, but they're related that we'll look at tomorrow and look at the document object model. By the page isn't done that they're giving you the impression it is.
+
+So these files, all these files, so this particular
+
+file here loads 1234 Five JavaScript files. It also runs to scripts where it's actually running content. The order of all this is important.
+
+So
+
+the order is important because it's going to build all of this JavaScript into one composite JavaScript. We looked at this idea called hoisting yesterday, it's going to move variable declarations to the top. And it's going to move some of the functions around as well, but it it's good, so everything is going to be running together. So hoisting didn't help this case because of here, because this file, this greeting line, is outside of a function, so it ran as it was being loaded. So it actually ran before the second file was looked at, to be fair. wasted, it will look into tomorrow as a way to make that work easier. So we don't have to worry quite as much about about that by making sure we're done. Actually not tomorrow, the day after tomorrow, on Thursday, when we look at events, making sure that the pages loaded before we start running anything, which will help with that problem. But
+
+so the order is going to matter.
+
+So in this case,
+
+if we end up what we just did is we have three files, one that has the method one, this has a constant, we haven't looked at this, let's look at this. Next, or if you're soon a one that has the method, or the call to the method. If the method gets loaded before the function, what we're going to end up with is the variables okay, because it's going to hoist
+
+then it has the method Call them the function that gets gonna have an error.
+
+But just changing the script, the load order so that the function loads before the call of the function, and it's going to work. So all that just comes down to something we talked about yesterday, but I want to reinforce that a lot of problems come, since we will have a lot of code broken out into multiple files, comes just from the order of the two being loaded. So something we always have to be aware of is that this script in the end, all of five of these scripts, including these external ones, and these lines have to be written here. As far as the browser is concerned, once they're all loaded. They're one giant JavaScript. Now we can't see this anywhere. It's in memory. It's not something it really rewrites. And it's more of a kind of like, we can't see machine code and byte code running in Java. It builds this construct that it uses. It's the same idea here. It's building out but when it sees it, it sees it as one All right. So before we move on to looking at functions, questions on,
+
+on any of that.
+
+So let's take a look at functions.
+
+So I'm going to bring up, see, we all need HTML anymore today, so I'll close that. So in JavaScript, this is a function. So something where it looks familiar, we looked at it yesterday.
+
+But this particular type of function
+
+is called a named function.
+
+So named functions are called that because they have a name. That's really all there is to it. They have three parts. Unlike in Java, we have four parts. Actually. They have to parts are. In Java, we had four parts, we have the accessor. Then we have the return type, we have the name and we have the arguments. in JavaScript, we just have the name and the arguments. We have the function keyword that will be actually be getting rid of soon, but will still need it in some cases and find a standalone function like this A named function, then we do still need the function keyword, and then the name and then whatever parameters we're going to it's going to take and then it may or may not return something, it's doesn't have to. In Java, once we declare a return type, we have to return. This is just as valid as this so it's going to be up to us whether we return which means that when we're writing a method that's supposed to return something, and we have multiple paths that we end up with, like an if statement returns one, one thing in one place, you know if it's equal to the numbers are equal to each other, it returns double there. Some, if they're not a return just the sum, those type of problems, we have to be careful that we end up returning something on every path. If we if we that's our attention. Because in Java, if we don't we get the error that you know there's a path, I'm sure everyone's seen that path that's not returning. And you have to finally figure out where you're missing a return statement. in JavaScript, your method just won't return anything, there'll be no error, there'll be no problem in your calling code will just end up with being marked as undefined. So we have to be more aware of the return statements in JavaScript since they're not required. And they're in their optional even in the same, the same method.
+
+So we also looked at yesterday, this idea that
+
+when we call the function, we can pass a value do something with it.
+
+And we can call that from, you know, or
+
+from other JavaScript or from the JavaScript console, which allows us to write JavaScript. So you know, if we write, or print a console method is prints to the console. So it in much we can call the method. And if we look at them, so let's write our own here with two parameters to take first and second parameter. And it's going to multiply them together and return the response.
+
+Right? Yes. Quick question. For that function prints a console. and the value, can you like put in an array, and it'll just print out there, right? Correct.
+
+It will. So print a console. Let's put it in an array
+
+123.
+
+So we can put anything This, so we can put in any of those data types. So we can including, so that there are there are five basic data types arrays, actually one of the object types. So it's actually good to come up with like a sixth. We can put in any of those in for that value.
+
+Yeah, it was weird cuz like, I'm so used to saying, like, take an array of intz. And so when I wanted to make a function of array, I was like, do I just put in a value and then you know, treat as an array. It was a weird thought thing to go through. I guess.
+
+It is didn't me typing's kind of hard to get used to, especially coming from Java where everything's very static. Where you do have to say, this is going to be an array in JavaScript, you just say here's a variable. I'm going to treat it as an array because I've told someone to somebody one. It ends there. There's no more checking or
+
+sorry, make sure that's how it's supposed Thank you.
+
+So let's write this method.
+
+We'll call it model and the city called multiply together. So let's do that. So we'll call so we create use the function keyword. And then we'll multiply together. And we'll create our parameters. We don't need any data types, we just give names for arguments for methods. And then we'll just return first parameter, multiplied by the second parameter.
+
+save that and come over here now and we can call it
+
+get these more
+
+organized. So we can see, I have this test cases for so we call multiply together Two, two and four will get eight. But we looked at yesterday, we could also do, you know, just two, and we get not a number because what we've multiplied together is to an undefined, which is not a number.
+
+And we also looked at, we could do, you know,
+
+a and b, which is also not a number, we'll get an error, we just get a number back because we kept multiply the two letters together.
+
+Or we can do
+
+12345. And we get back to like, because Italy worries about the first two. So most these cases are fine, but this, this one is the one that's a little concerning. Because when we have extra values, we just ignore them. So if we get five values, it just uses the first two. If we gave letters It really is not a number. But in this case, if I just send it to one value, then
+
+I may not want that to be not a number. So
+
+even though we can't
+
+define things like in Java, we wouldn't have this issue, because if we had two values, and they were both integers, they would default. If they did well, one, it wouldn't let us send less arguments. But even if we did, if somehow it would, if it would, you know, each data type has a default, all data types default to undefined in Java, or JavaScript. So looks
+
+exactly. That's the problem with the test cases, but Yep, was it
+
+so we If we do want it to work, I want this.
+
+If I send it to I would expect to get zero says the other value is I would expect to retreat to zero. So we can define values, arguments into our methods with default values. And we can do that let's redefine this. And let's call it something like multiply. I think there's already a name for it multiplied No, no, I'll just copy it this time. waterplay no undefined. We say first parameter. And to default it, we set it equal to a value, second parameter equal to a value. And then we're gonna have the same thing return first. Apply first parameter
+
+multiply by the second parameter.
+
+And now let's call
+
+multiply no undefined. And first let's use it with two and four, we get eight like we expect. And now it's this two, I get zero, because now the first parameter is two, because that was the argument. The second parameter is defaulted to zero. So when I multiplies it's zero. Same way, if I call it with no arguments at all, oh, I just get zero because now first and second parameter both zero. So we can default an argument to our method to evaluate for this exact issue of because they're not required to be sent. So if they're not set in the when they're used, if they don't pass the argument to us, we give it a value to use.
+
+So, yes, it is done with anything where you can assign like an empty string. You can
+
+going to be using a library similar to Java to validate inputs in arguments.
+
+We
+
+will be looking at some when we get to view
+
+validation, client side validation I there's no library we'll be using directly there are multiple ones available. But there's not not one like we did with hibernate validator. But we'll talk about the concept and how it's done and where when we when we look at view
+
+Thank you.
+
+It actually it's not true even
+
+on Thursday, we'll start looking at some validation. So, Tim before view. So we'll look at the idea. Yeah.
+
+So other questions before we move on.
+
+So now that we have these methods
+
+back over here to lecture two, because I'm going to look at something that is not in the guest, that lecture code.
+
+I'm gonna create another method here.
+
+I'm gonna call it multiply with spread.
+
+Let's say XYZ.
+
+Just going to return x, y. Multiply that all together.
+
+I'll save it. Just
+
+need a comma in there. Thank you.
+
+And you can see the denyce error that came about from that was not about my comma. Instead, it was about the fact that now this method was not defined because the script failed to render. So, that actually is a good, a good thing to point out that JavaScript errors are not always what they seem,
+
+in fact, often not what they seem.
+
+So we have this method called private spread. And I'm going to call it just to make sure it works. Let's give it 123 which would be six Yeah. So we have multiple methods like this, say I have an array now. Now some sample that was called our eggs equals 123.
+
+And I want to call this method
+
+I could call it
+
+multiply with spread, like this.
+
+R zero,
+
+r one,
+
+r two. And that's going to work right? Save it, we'll see six. Oh no, nothing actually logged it. But that's gonna work. We don't have to see the six to know that that's valid. is an operator in Java to make this easier, called the spread operator. So the spread operator, we have
+
+this case of A
+
+value like an array or string. So something that's called an IR iterable. Something we can loop through. And we have, we want it to go across multiple arguments for parameter parameters for a function.
+
+Or actually anything. We can
+
+write it with this operator called the spread operator.
+
+So let's actually put this in a console log. So we didn't need to see it's a six, but we will in a minute.
+
+And we'll see that
+
+it's working there with the six. So the spread operator. What we're going to do is we're going to use take our array, our name array, we're going to use it with three dots in front of it.
+
+And then our write name.
+
+And what it's going to do is it's going to take it unpack the array. And it's when it does the spread, it's going to take the first item, put it in the first variable, the second item, but in the second variable, the third item, put it in the third variable and so on, until it's filled up off the arguments. So let's save that. And we'll see we still get the six the same, the same way.
+
+If we add more,
+
+it's still gonna work because the spread operator is going to say, Okay, I need 123 values. So I'll take values 123, and I'll ignore the rest. So something we're familiar with
+
+So Brian, the way that you were filling up the array yesterday and you were like placing a value at index 100. Yeah. Is it going off the index number? Or is it going off a found value?
+
+It's going off of
+
+believe the, or just order the found values? You know, we can Okay, we can figure that out for sure. Okay. Oh, is I've I've never tried that. I've never tried to make an array that didn't start index zero and then use the spread operator with it.
+
+Or even really thought to,
+
+what would happen? Let's find out. The spread operator
+
+populates
+
+each argument from one from the array.
+
+So, you're saying let's make an array like
+
+ours to And we're going to set it to
+
+what's called gnomes.
+
+We're just making an empty array. And then you want to set it to noms like 10
+
+equals
+
+but the same values and so maybe 42 equals two noms
+
+100 equals three
+
+and that already
+
+and now let's console, log it.
+
+We can see it actually you're still table. Good
+
+so there's our values
+
+They're indexes. And now
+
+my guess is it's going to be with found values. But that's a guess.
+
+Is JavaScripts not to
+
+actually.
+
+Let's do it here.
+
+Apply spread noms.
+
+Not a number. So yeah, it must actually be by index. Okay, cool. Thank you so much. So for once JavaScript makes sense, but the least with the way Java works.
+
+Right? So the spread operator
+
+works that way behind packing and it also works with strings. So if we were to second function, actually this but just the whole section here. So this spread operator. So when you come back, you know what this is referring to. And we could do a second function and say add letters, we'll just concatenate letters just to show that it works. The C, D. And we'll just return a plus b plus c plus d.
+
+And that's create a string.
+
+So come on string equals
+
+JavaScript.
+
+And then, just so we can see it, we'll do a log of it. And we'll add letters and use the spread operator, the three dots with our string. And what we're going to see is it's going to get the first form Letters concatenated together. So it works with strings as well the same way. So it'll break apart to string and the first letter will get put into the first argument, the second letter into the second argument, the third to the third, the fourth to the fourth, and so on with the spread operator. So if you if the spread operator is not making sense to you,
+
+that's okay.
+
+If there's one thing you're going to walk away from today, not quite getting this is the one. That's okay. You could it's like many things we looked at, you can go through everything you're going to need to do, including most of your career, never use it. But it's really useful. It's kind of the ternary operator, it's really useful to know it exists. But it's not a definitely not a required thing. So before we move on any questions on this operator?
+
+Okay. All right.
+
+So let's revisit again scope. So we started taking a look at scope yesterday. And let's return to it in go through it a little more, a little more detail than we did yesterday. So we defined the fact that yesterday that JavaScript has three scopes. We came coming from Java, we had one scope, we only had block scope. That was the only scope scope that really existed in Java. Everything was defined in blocks because everything was in a class, or function. And all variables were defined in those blocks, and they were scoped inside the block.
+
+JavaScript, again, has three scopes.
+
+global scope, it has block scope, as well.
+
+But it also has the idea of function scope.
+
+So let's look at what those three axes mean and how they how they work.
+
+So let's start with global scope.
+
+So global scope is this
+
+idea that
+
+a variable created,
+
+like less than less every crate available here will create after the function. So this would be actually, let's just go and do it down,
+
+down here. So we'll say
+
+scope.
+
+So this would be a global scope variable.
+
+And constant want to save const first name equals john.
+
+Now once we have this in global scope, we can use it anywhere. So come back over here, and let's change our greeting method up here. To take a name and just concatenate it on. And now, we're we're calling the greeting method right here, we can use our first name variable. And when it runs, we can see it says hello, john, because in global scope, it's even though it's available in this other script, it's down here in the middle. If we declare a variable outside of a block, or function, it's in global scope. It's available everywhere. And because of hoisting, it really is pretty much available everywhere. Even if it's value, maybe it's not. It is. So that's global scope. So do you need to be super careful about calling things the same thing? Calling thing? Let's see, if you have multiple scripts that get put together you do if they're in global scope, so we actually will Want to limit global scope variables, only things that really need to be global order JavaScript, you'll see a lot of global scope. But that has the problems that you just you just brought. He's brought up the fact that now, everything that gets brought in, including the well, they shouldn't be cleaning this other like the mocha and Chai JavaScript files. Only one of them can have first name as a constant lead. Now, if it's a VAR, we can all have first name, it will just overwrite each others. And the last one wins, whoever happens to be and we might not know who that is, until, or different users may end up with different results as they they import our script differently. That's different developers, I should say not not end users. So we do have to be careful of global scope. Because it is available everywhere. This variable is now available. By defining it here. It's not only available in my code, it's available in these scripts. They are loading here too.
+
+So,
+
+but it's the easiest to understand. So some rules about global scope, we there are cases where we will want to use it. There are cases where we do want it available through multiple scripts. And when we do, it shouldn't be defined in the middle of the fire like this, it should be defined at the top, the convention is defined at the top of the JavaScript file. So that global scope is not hidden down in the middle of things. It's, so it should be defined as the line one. And I'll actually put that should be declared on
+
+top of file.
+
+But I'm going to leave it here. So all the scopes stuff stays together for examples. So that's global scope. Block scope, is creating something inside of a block.
+
+So block scope
+
+A B if, say if true to so it always runs.
+
+Let lock scope lead equals john.
+
+So
+
+now let's call our greeting here
+
+with our block scope lead.
+
+And we'll see we get an F an error that block variable block scope lead is not defined.
+
+So
+
+says
+
+error because
+
+variable.
+
+It's not in the scope
+
+and I'm going to comment this out. Now let's create a second one to show a problem, not a problem, but a difference. So block scope, var
+
+equals C.
+
+greeting.
+
+Block scope bar
+
+and it prints out. Actually, let's make it different so that we can see it's not the same as before. Steve. And you see it prints.
+
+Normally this I could take this back over to here.
+
+And, and
+
+it prints here from there as well.
+
+So var lead didn't work. The var did
+
+Because var ignores block block scope works because var ignores block scope, which can be a huge problem. And one of the reasons one of the reasons we don't want to use var is because it would appear scoped but it's not. It puts it in global scope. So letting const do have a block scope like we just saw. So the next scope function scope
+
+is variables declared in a function block.
+
+So
+
+let's
+
+function scope.
+
+Let and we'll set that equal, we'll actually do the same two variables, only now their function scope will be one with far, function scope far.
+
+And we try to call them here
+
+we'll see we're going to get an error here. That it's not firing because something defined in a function scope is only available in the function scope. Function scope is a block of a function. So it's like block scope, but it's the specifically the blocks associated with a function. So
+
+error
+
+this
+
+function scope, what is the function is
+
+not in the scope.
+
+In the same
+
+function scope,
+
+var,
+
+we're going to get an error that it's not available because var does have a function scope. This is going to be an error because our obeys function scope. That's the only scope of the base.
+
+So the other so before we look at one more thing with scope
+
+Are there questions on
+
+Okay, so
+
+let's
+
+go here. We have this in the same scope. So we know that if we define we could define let block scope let equals
+
+Matt here.
+
+And that's not going to cause a problem, because these are different scopes, right.
+
+But block scope var is
+
+in both scopes.
+
+So let's change it to
+
+far.
+
+So you can see now it's not only affected here,
+
+but it's also affected here.
+
+So we've overridden the value of this variable by redefining it, we didn't get an error. We didn't get any message. So
+
+var
+
+and be redefined
+
+in the same scope.
+
+Which means that if we ended up using the same variable name by accident, we ended up overriding the variable and not knowing there's no warning, there's no nothing It tells us we just use the same name. And now we've changed it. Where if I tried to save anything up here, let block scope equals we get an error, block scope lead has already been declared.
+
+So causes
+
+this is gonna be a compile time error
+
+because let const cannot be redefined
+
+in the same scope
+
+out. So the script is a script run.
+
+So, it has the three scopes. And for each of them
+
+there could be one letter constant any in any given scope, just like in Java, and if it's in a different scope, so global scopes available everywhere block scopes available just in the block. So if you have a global let, or const x, you can have no const x here in the block scope, just like Java. But if you have, you know, constants here and this scope, you can have it down here in the function or in the second block because they're in different scopes. You can say you can't redefine it, you get an error, but with var you can and that's actually the danger of var that the fact that it doesn't have a block scope in the fact that you can redefine it in the same scope or it's already available is the main reason that It's been just disregarded, it's not used. Because that's really dangerous behavior. Because it's really easy to make a typo. And now you've read a credit variable. And you don't get a warning, you don't get any, any error. There's no indication it just goes with it. Now your variable has a different meaning and nothing. So that's not that big a deal when it's a script this size. But if you're loading a bunch of files, or we go look at, see, can we even these might be minimized, but
+
+but they're not.
+
+Right now, let me get to it.
+
+But now imagine that problem with a script.
+
+The size
+
+And two of them together that were written by the same author, making sure that they all used the perfect thing. They didn't have any overlapping variable names in any scope besides function. Because if they did, they're going to overwrite each other's code. And
+
+is that a bar right there at the top of the screen?
+
+Yeah, yeah, it is. And there's actually lots of there are legitimate reasons to use bar. And you'll see var a lot in two places older code. Or you'll see it a lot in frameworks and libraries, where they're actually taking advantage of that ability. So that's the reason it's not just removed from the language is it has some legitimate uses, there's times we want to, we want that scope override.
+
+But there are
+
+many times we don't and I guess, I'm guessing if you go through most code, most older code mo and type type has been around for a while. Long time, there's probably quite a few bars in here, probably leftover from the time when that was the only one that existed. It was only just a couple years ago that letting cons came around. So So, so a lot of code out there. But the reason they got rid of they they're moved away from it is because of that, that problem that we just looked at this problem of scope. The reason it's still used is sometimes that's a desirable behavior, especially for frameworks. Alright,
+
+so let's take a look at
+
+the scope down here. And we can kind of see it's already kind of what we've seen, but this is all set into function scope. And then inside of here, there are two block scopes. So The blocks internal blocks work the same way they do in Java with child blocks having access to the parent blocks scope, but parent block not having access to the child block scope.
+
+So let's run
+
+the scope test.
+
+And we get
+
+this error scoped to block is not defined. And that's coming from right here where it's being used.
+
+Because that's defined inside of this block.
+
+We can see
+
+changing a toolbar would actually allow that to work.
+
+And this won't print now prints. Let's put it back because we don't want that.
+
+So when we run it, we get
+
+Again, the uncaught reference.
+
+So in this case, this variable is available all places where we see it highlighted.
+
+scope, the block is only available here because of the block,
+
+which is why we get the error here, there we get it when saying it's not defined means it's not defined in the scope. So when you see a variable name is not defined, it's saying that it's not defined in the scope that you're currently in.
+
+So questions on scope?
+
+Can a constant variable variable be used multiple times in different scopes? As long as they Yes, as long as it's not designed? exist in that scope. For instance, we can have
+
+constant x equals 10 here. And yeah, I think they should have made this constant x equals 10 here. And let's, let's turn this back tymberlee back to a virus we get, no, we're not getting an error from that. And that works because these are in separate scopes. If I move one, move one of these out here
+
+does that.
+
+Oh, because there was a block and once in function scope and block scope, that kind of job with its method scope, okay. So this ones are actually being used here is being allowed because they're in two different scopes. But if I moved it when I showed it on this here,
+
+And now I get an error in before I can run it.
+
+So you can as long as they're in different scopes they can be defined. This can't be in the same scope
+
+as per the spec.
+
+So which is actually the same roles the job has for scope and variable names for Latin const. Alright,
+
+so, Other questions?
+
+Alright, let's let's take a break then. And we'll come back at, say
+
+1030 and continue.
+
+So what questions come up for you?
+
+During the break,
+
+so when you were over writing or
+
+overriding the var, again in a different scope, yes, you were declaring it with the var. But yes, you just did the variable equals new number string with that also override it.
+
+That would change its value, but it would be the, it would be the same variable. Which is a slight difference. So we would change the value. Yes. But in the one case, if I'm not using it with the far just the variable name, I would be doing that because I know the variable exist, right? I know there's a variable scope to block and I'm changing its value. If I'm redefining it, I'm probably doing that because I don't know the variable exists. Which means I've just ever written something I don't don't know. It's even there.
+
+Okay, that makes sense. Thank you.
+
+So other before we
+
+okay. So one of the things that
+
+is from just the way these methods are built in JavaScript and the fact that we don't have data types, we don't have return types, documentation is much more important than it is in a language like Java, which, while doesn't self document, it gets very close, we can look at a method and if it's properly named, and for, you know, if it's called add numbers, and it takes two integers and returns an integer, we can infer what that's going to do. As long as it was named validly, then it'll probably do what we think it does. in JavaScript, though. If we have add numbers, we don't know how many numbers to send. We don't know their doubles or integers. We don't know if it can take a string. We don't really know anything about how to use it, even if we can infer what it does from its name. So documentation becomes very important. And I'm not saying the documentation is not important Java just not quite as critical.
+
+So JavaScript has a
+
+function documentation
+
+functionality built in called jazz stock. And actually, to be fair, I didn't really we looked I showed that showed it to you for like 30 seconds, but Java does too called J. Doc, or Java Doc, it works almost exactly the same. In fact, J stock bar borrows heavily from Java doc. So a lot of what we look at today will work in Java too. So
+
+it helps create standardized
+
+comments on four methods, so that there's a standardized way of commenting of what a method does and how it works. So to create, so let's document this method walkthrough what that means to document so document or a comment on the method should explain what the function does its purpose, but not how it does it. It shouldn't be shouldn't give details of how something works, it should only give detail only give a description of what it's going to do. I then should have a list of all the parameters that are part of it.
+
+And
+
+it should document what it's going to return.
+
+So if we're documenting this function, create settings from user, it takes name, age list of quirks and a separator to use the standard j s doc we start with the Ford slash, and then two, so a regular comet is one asterisk. If we use two and then press enter. it populates out a bunch of placeholders based on our parameter So you can create a parameter for name, age list of quirks and separator. And then we just have to populate the remainder. And again, this exact syntax will work in Java as well, for Java Doc,
+
+and do pretty much the same thing.
+
+So let's document this. So craisins from user, what this method does is it is going to create a description using these details, and then it's going to join it with the list of quirks set delimited by that separator. So that's what it's going to do. So that's what we want to describe. So our description might be something like take the details
+
+of a person
+
+and create a readable
+
+sentence.
+
+that uses that information to describe.
+
+describe them.
+
+Yeah, the quirks
+
+are joined
+
+together
+
+with the separator
+
+or we can see there's a default. So let's mention that there is a default because that is part of the behavior, not how it works, just what it's going to do.
+
+Or by default,
+
+and added to the information.
+
+Again, use spread here for the array.
+
+Read up, so
+
+If you had an array to populate,
+
+name, age and the third item of the array was an array, I don't see why you couldn't. So
+
+See The Description gives a
+
+description of what the methods going is going to do, but not any details about how it's implemented. You could argue that the separator portion is kind of a detail but it also is really what it's going to do. It's a description is going to put these things together by the separator, not how it's going to put them together, but the separator so the next thing we want to document is the parameters. So you can see it has this syntax here. Star is a placeholder. So what that should be replaced with is the data to Type we expect these parameters to be. So named we expect to be a string age we expect to be a number list of quirks we expect to be a string array. And when it's an array, it's common to put square brackets around the name of the variable as well. The separator, we also expect to be a string. And if it has a default, it's common to show the default by putting it in square brackets square brackets indicating there's something different about it Mr. Regular data type, like an array, or in this case, the default. And we'll just set show what that default is. And then for each of these, a description of what that variable represents, so the name of the person being described
+
+The age of the person
+
+a list of funny
+
+quirks.
+
+quirks to lists
+
+and the string to separate
+
+their quirks by.
+
+So again, the description of the parameters is meant to be a description of what they represent the person sending it, they don't need to know how they're going to be used. What they need to do is understand what they're what they're sending, what kind of data this is. So the final pieces then the return, and so, since it does, it can't interfere forever for what we want to return from the method itself. We What we have to add to return if it has one, we do that by add at return returns, we say the type, we're going to return string, and then a description of what we're going to return the full
+
+descriptive string.
+
+And that would be documentation for the method. So every, almost every JavaScript method should have documentation like this, associated with it. Definitely anything that you may that is meant to be called by anybody but yourself. Even fully documentation for yourself. So documentation is part of really all JavaScript.
+
+So questions on on that
+
+The description or documentation doesn't, it's not like rules, right? Like, just because we say that the name should be a string doesn't mean it's, it's gonna throw an air, it's not gonna take something that isn't a string, correct?
+
+That's, that's correct. Yeah, it's not doing anything code wise, it's just telling the user with this variable name, but it's dynamically typed. So they don't know how we're actually going to use it. So it's telling them, you know, we expect this to be a string. We expect this to have the name of the person, that's how the state is going to be used. So but if we choose to do something different with it, then no, that means we were a bad documentation.
+
+Nothing, nothing stops that.
+
+If they just choose the sender's integer or a number, nothing will stop that in JavaScript.
+
+Hey, Brian. Yes. So sorry if I missed the concept Tim's make sure I understand it. So if someone's writing Java scripts, what I imagine if there's a program written that there would be like a separate document that just has a list of documented functions that would go along with that gets, where would we see this? So? That's a great question. So it gets pulled out in a couple ways. One is to be in the code itself. So we see it there. But it also gets, there's lots of tools, it'll pull it out into documentation. So the same so we've looked at Java Docker load, write, the kind of hard to read documentation, all the Java libraries. There. There's similar library or documentation like that for Java Script libraries and functionality, and it gets created generated from the These comments THE SAME WAY Java doc does. So it's, it's generally in the code. So if you're looking at a library, you can see it in the code, but it will get usually pulled out into like a website or documentation to look at it. So we're talking from libraries not like if I'm writing a program, I'm not creating the sort of documentation we're talking about, if we're pulling something from a library to use. If you're writing it, then there are tools you can use that will go through import your comments into documentation, it got it, got it. But there's nothing in JavaScript by itself that does that. Okay. Make sense?
+
+So either All right.
+
+So let's take a look at
+
+functions in a little different way than
+
+So we've looked at named functions functions that have a name associated with it. There's also this idea of anonymous functions. So anonymous functions are functions that don't have a name. They're defined by just parameters in a block of code. They may or may not have the function keyword as well. And we'll look at two different ways of doing that. So let's start. I'm going to go back to the lecture to again, and let's create a section down here for
+
+anonymous functions.
+
+But anonymous functions have to be assigned to something or used in some way usually assigned to a variable. So let's create a variable constant was called double sum equals function. So we're saying there's a function We give it the list of parameters. And now we write our function.
+
+So maybe we just want to return
+
+x plus y multiplied by two. Actually, I put that in parentheses to get the result I want.
+
+Alright, so
+
+this function has no name, it is assigned to a variable, but it doesn't have to be assigned to that particular variable. It just happens to be assigned to it. Now. We can use it now by using that variable name, so double sum, and this give it two and three. You see it works. Double the sum. No, that's gonna be five times two so 10 We can then take this and we can call it
+
+like, it is.
+
+We can take it, we can assign it
+
+to another variable.
+
+And now we can
+
+call here x, two and three, we can see that the x now works like a function. So the anonymous function be assigned to a variable. And since if you remember yesterday, we looked at the data types in JavaScript function is a data type. So we can assign it to a different variable. Actually don't want to leave this x because we're going to use that in a minute for another example. So and then we can use that variable the same way. So at its core, all anonymous function is is a function without a name, that gets assigned to a variable to be used. Rather than Be being held in a just register to be used in the script. So, but we can even go farther, we don't necessarily need the function keyword, we can replace that with what's called the fat arrow. So the fat arrow is the arrow operator, and it's called the fat arrow because in JavaScript, we use the double the equal sign. So two lines compared to what's called a thin arrow and some other languages uses a dash. And it allows us to define a method without the function function without the function keyword, where we give the parameters and then the arrow and then the body of the block of the function. So for the same thing, let's see, do you want to triples now so we have a sound we could define this as These parameters, so our parameters, so x and y, the arrow,
+
+and then the block
+
+x plus y
+
+multiplied by three, it's gonna work the same way. So the arrow allows us to get rid of the function keyword. Now, there is actually a difference between these two, but we'll get to that later. has to do with objects into this keyword. But for just creating anonymous functions, these are this to set this to syntaxes are the equivalent. If we only have one,
+
+one argument we can take it further
+
+and we could say const say triple number. We have one argument x We can remove even the parentheses and return x to the so let's start it with anonymous function.
+
+can define
+
+with function keyword and no name.
+
+can reassign
+
+to or assign
+
+to different
+
+variable
+
+and define with out the function keyword
+
+using the parameters
+
+and air operator
+
+And then finally
+
+can
+
+skip the parentheses if only one parameter. So anonymous functions allow us to set defined functions. And in this way we can skip the names and assign the variables. Now we're still naming them with the variables. But now we can reassign them, and we can move them around. Which means we're going to allow be able to pass them as arguments to other methods or other functions, which is really where, where this is going to become useful to us. And really, the first thing we're going to do with them and the functional array methods. So before we move to that, are there questions about the syntax or what we're doing?
+
+Bryan, so when you're using the fat arrow is this also like is an anonymous function also a lambda function?
+
+It's a lambda expression that creates the anonymous function. Yes.
+
+Okay, I was just learning about that recently. And so to see it used, I was like, oh, I've never heard it, like described as this. But that was a great explanation of it. So thank you. So,
+
+so other
+
+just the side, most of what, what these anonymous functions now exist in Java two. So, actually Java eight. We didn't look at them because they're, they're not heavily used. They're also pretty much everything we're gonna look at today now exist in Java as well. In a way it's the syntax is different, of course, but the concepts are there.
+
+So before we
+
+so let's look at using this now.
+
+So the array has some functions, what's called functional functions built on a functional function is it's a function that's built to emulate or be part of functional programming. And the idea is that there's no side effects and functional programming. So I'm not gonna go too far into that. But it's this idea that a functional function means that we send it a parameter or list of parameters, it's going to send us output is always going to give us the same output every time given the same parameters. And the parameters that we pass to it are immutable, are treated as immutable, doesn't mean they are but they're treated as immutable. So we're guaranteed that the results We get back
+
+our
+
+it's going to be a new value, and it's not going to change the original vibe. So that's what it means to be functional. And array has some methods in it, that for each one of these, they can do some particular action for us and they take a function of how to do that work as an argument. So we're going to pass it, we're going to call a method on the array or function on the array. And then we're going to pass it a funk anonymous function that's going to tell you how to do the work.
+
+So let's just look at the first one.
+
+Let's look at
+
+array
+
+reduce.
+
+So let's build an array.
+
+123456 Let's make it through 10.
+
+So we have this array we can work with now.
+
+And what reduce is going to do
+
+is it's, it's an aggregate aggregating method, if you remember back to SQL, what aggregates do, they take a group of things and put it down to one value. And that's what reduce does. It takes a group of things, the array, and it returns a single result from the array. So doing things like summing all the values together, or
+
+it can be used maybe to find the larger
+
+or multiplying all the values together or doing something that where we bring all of them down to one one single value. So finding the common use of reduce might be to find the sum of all the numbers in the array.
+
+So to do that, let's take a look at
+
+the
+
+documentation for reduced because we talked about in JavaScript documentation is our first needs to be our first stop for pretty much everything.
+
+Open up, there's a link to it here on the slide.
+
+It's going to tell us some information. So the reduce method executes a callback to a method we're going to provide. That's going to be our anonymous method. When you see this callback, that's what they're saying is a method they're going to call. So we're going to give it an anonymous method. And our anonymous method can should have four arguments. The accumulator, that's where so that would be like the sum, you know the variable to hold the sum The current value, so the current value through the iteration. So the first time the current value is one, then two, then three, the current index, which is going to be, you know, 01 to the index of one. And then the array, which would be the entire way itself
+
+can show some examples of
+
+how that can be used.
+
+This might be a particular
+
+anonymous method is used for this. So, another one here, but we're working in JavaScript, they're going to send us these four argument these four values to our anonymous method in that order. But in JavaScript, do we actually need to have off values for all four of those
+
+Or parameters? No,
+
+no, because if we only put the first one or two, and they send the other ones, they'll just be ignored. So they're going to be sent in this order, which means that if we want the array, we have to have all four,
+
+then.
+
+But if we just want the accumulator and the current value, then we just need the two. And most of the time, that's probably what we're going to need. So we can pick and choose any of these four, but we just have to get them. They're going to be set in this order. They're always all going to be sent. But we don't have to, we can ignore the end of the list as we choose. So we, but so I'm going to write a method. So it's going to return a single value, because that's what a reduced does reduce it to one value. Some of the creative value for it, let's call it some, it's going to be equal to r Ray. In on it, I'm going to call the reduce method. And then I have to pass it an anonymous function. So the anonymous function, I'm going to pass it, I'm going to choose to use the accumulator and the current value, because I really don't care about the index of the array. I want to go through every one like a for each. And I don't need to do anything with the array. I just want to go through each item in the array.
+
+So
+
+I'll call it sum and value. And then use the arrow operator to associate the body of it. You can see here it's inside. It's the second argument of the mess, the only argument the method is this the function and then if I look at reduce, what reduce the documentation is going to tell me that
+
+My method should return
+
+the next new current value. So I have the accumulated amount. And my method should return what the new accumulated amount should be.
+
+So I want to return
+
+the sum plus the value.
+
+And we'll save that. And now let's do a log of it. So we can see it working.
+
+And back to
+
+say the wrong File, Save the file. And we'll see the reduction here. 50 is the 55
+
+which is what it should be for one through 10.
+
+So let's I put something here to mark but this is
+
+The sum is there.
+
+So let's write out what this is doing. It's long form, so we can see what's happening.
+
+Using this we'll use the same
+
+or we can't use the same, we'll use the same variable names only with like a number two after him so that we can
+
+keep track of them.
+
+And
+
+this might make it less compute fusing if we change this to final sum.
+
+That's the final value.
+
+So
+
+same code, say yeah,
+
+Long Form would be let final sum to four, let i equals zero. So we're going to loop through the array because that's what we do since doing
+
+so our array
+
+length
+
+so it's looping through each item in the array
+
+and
+
+probably should put this in a function function maybes reduce manually
+
+and
+
+re
+
+I can't call them re re two
+
+wait becomes really
+
+So we want to
+
+go right to here. And then it's going to be just
+
+I'll sum to actually
+
+equals
+
+array plus equals array to,
+
+at I
+
+can return
+
+the final sum to.
+
+So now let's
+
+guess
+
+this rename. I mean that this should be named some.
+
+And I really want to make it
+
+so we can see what it is. Let's do it like this
+
+because re two I
+
+Gotta make it.
+
+So now this should be the final sum to equals reduce manually and passing it the array, we're going to get the same, the same result. So that's what it's doing. That's what this code is doing is this. So it's taking in going through for each item in the array. And this first value, the sum is an aggregator. So it's something that it's going to be collected into, it's going to be the final value, the thing that keeps getting added to, so the sum, and then it's going to loop through every value in the array. And for each time, the array it's going to pass two things. It's going to pass what this currently is to our method and it's going to pass the value which is the next item in the array to our method, and then our methods going to return the new sum. So our method is going to return the old sum, plus the value, which is right here. So it's gonna be like doing a plus equals. And we could make this more explicit by saying this. So what our methods doing, what we're sending it is, it's giving us all of this code.
+
+And our entire method is right here.
+
+That's our anonymous method, the part that happens inside the loop
+
+for reduce.
+
+So let's pause there, what questions do you have
+
+so when you call reduce, and you have some imbalance there,
+
+it understands that the variable names put in the first and second position will be the acumen Later. And the current index, yes. Okay, the current value current value rather, because it's going to send the accumulator, the current value of the accumulator, the value of the current value, the current index in the full array in that order. And because it's JavaScript, we just have that parameters for the ones for the, in the order that for each of them, once we want, we have to have them in that order. So if we want the array, we have to have all four. But if we only care about the value in the accumulator, we just need ones for that. And the rest just get ignored. Does that makes sense? Yeah, so in my head, I'm kind of making it equivalent, or at least similar to when you have like the for the for loop where the last position is going to be the increment or like it knows that that's what it's going to be. Is that like it? That's where that position is? It just knows which position things belong in, I guess I don't know how to describe it. So it's, it's telling us by documentation that this method is going to recall our method.
+
+So what we've built here,
+
+so let's maybe take this
+
+and
+
+just temporarily put this up here.
+
+And what they've done is they said, Okay, give us a method
+
+and take our method here. And we'll give it a name temporarily.
+
+So function
+
+r reduction method,
+
+which means we can have a syntax. And they said, okay, passes that, give us that and we'll run this code. And you return the next value each time. And we'll run this code here, and we'll call your reduction method. And we're going to pass it the accumulator, the next value. And we're going to pass it the index. And we're going to pass it the entire array.
+
+And then this is our method.
+
+And when it gets called, it's JavaScript. So all four of these arguments get sent. But like we've looked at earlier today, and yesterday, if we send too many arguments, the extras just get ignored. So if we only want the first two, we just provide values for those. And when all four of these gets sent, we just get those two. If we wanted the others, we just change our method index in the array. And now it'll get those ones as well. We can't pick and choose we have to have them in this order. So if I want this one, I have to have all four. If I want the index, I have to have these two But most the time I won't. So what we've actually passed it is
+
+a method
+
+just like this one, that
+
+only now it's anonymous that it's going to use in this manner.
+
+Perfect, thank you.
+
+I'll leave that in there. But I'll comment that out because I don't want.
+
+So other questions.
+
+So let's write another reduction. So in this case, let's create a string, a string. array of strings. So let's just create a string of names like we've done.
+
+So what does she use? Hello
+
+back there and put some names, some will put everyone's name in it.
+
+Almost
+
+see format in there, we'll put
+
+a show on there.
+
+We'll put
+
+Steve.
+
+And now we can reduce this. So let
+
+join string
+
+equals our string array. And we can reduce it. We give it the same thing. So we can say, for the aggregator, which is now the sum, but it's really not. This is the new string.
+
+Actually, let's call it the Yeah.
+
+string and the value, the current value. We want to return Now, the string plus the value.
+
+Now let's do
+
+a console dot log, and we'll
+
+on strings.
+
+Running run it, we'll see that it's prints out, it creates joins them together into a single string. So it doesn't the same, the same action we can do with a string we can with any day any, any array of any data type, we can reduce. This has to reduce down to a single value. The original rate is unchanged. And that's an important aspect of these methods. But it gives us this new value back that is, in this case, a reduction of it to one.
+
+So this method
+
+and this method are the same, aren't they? Just concatenating two things together once concatenating one is multiplying it.
+
+So we also could
+
+create our anonymous method in this way. Let's see.
+
+Yeah, together
+
+equals
+
+let's make it more generic. So make it our aggregator and our value. And the method will return the aggregator plus the value.
+
+So this
+
+and we could do the same thing.
+
+So console dot log directly these and we can log for an array we could call reduce, instead of passing it the anonymous method as it is, we could also pass it a variable that holds an anonymous method
+
+Must do
+
+and was a string array.
+
+Reduce and the same
+
+method here.
+
+And we'll see
+
+we got the 55 from the first one, and then the string. Hello, john, Matt, Rochelle and Steve from the second one. So we can also pass it a variable that holds a method as well. It just has to have anonymous method pass to it.
+
+Before we look at the next one questions,
+
+making sense
+
+or is this a moment where
+
+it's too far out there that you're not sure what to ask?
+
+Are we basically only going to be using this to add stuff together? Oh, no.
+
+Would you be able to do an example of us not adding stuff together or like using the other parts of the reduce method?
+
+So what I'll have another week, another week we do sweat another way, can we? So in all cases, what we're going to be doing is bringing it together in some final state.
+
+So, because we need one single value,
+
+like could we so let's look through the array or something, and like where it's the index is, like, odd or something?
+
+Yeah. Okay. And then a little bit or something. I don't know. Well, we can't, we can't change it.
+
+The array
+
+But there's more methods coming reduces one of many methods that do some of that other work. We do aggregates, that's all reduced us. So let's maybe we could get to an exercise you've got think there was an exercise where you returned the A string of the last thing like week one, you had to get like the last letter of every string and put them together. So we can do something like that with reduce. So let's, we need a variable for it, but last letters.
+
+And we will take our string array.
+
+So the names and actually with that particular string array, the last letter is always going to be a space. Let's use the first letter First letters straightaway. And we'll reduce it. And again, we'll have our and let's make it harder, we'll do the string array for only the hot indexes. So we have, our new method is going to be our aggregator. So that's gonna be our new string.
+
+So our, let's say letters.
+
+We're going to take the value of each time through the array. And then our index. This call is we're used to calling guy Mo. And say we could say for if I modulus two is equal to, we said that we're going to get the odd right. Doesn't matter if really. So if that's equal to two, then we're gonna get the first letter. So We'll say the let actually be a const letter
+
+first with equal R value.
+
+So there's a car ad, right?
+
+All right, Sarah.
+
+Gotta work that way, the way I think it will. And then
+
+we actually probably want this to be a let first equals empty string because that's because we have to return something every time. So we'll make it the first letter if it's not, and then we'll return the letters
+
+plus
+
+the first
+
+whether it's empty string or whether it's letters. So now let's print it so we can see it. So console dot log first letters. And we should end up with forgetting the odd ones. We shouldn't end up with j are a no. They're odd, it should be 01. So j two, just Jnr.
+
+Let's find out.
+
+Nope, undefined, undefined so I had something wrong with that
+
+being the first letter
+
+Actually, let's do a vow
+
+and we use to substring
+
+substring 01 So,
+
+so we just need more complicated things like that doesn't have to be as simple as just adding it together. Does that answer the question that you're?
+
+Oh, yeah, that was Thank you.
+
+So other questions before we?
+
+So just for my own clarification, so letters is continuing to build every time it iterates through.
+
+Yep. Okay. Yeah, got it. Yeah.
+
+Yeah. So it let so in this case, like for the old one, letters would be the value we create outside of the for loop for adding things to us. We go. Okay, thank you.
+
+Let's just make a more complicated production.
+
+And
+
+string this can be reduced.
+
+arrays, let's change this to arrays of any type data type
+
+and be reduced.
+
+And functions held in variables can be used instead of an anonymous function written in place. So when you come back to look at this, there's some idea what all these things are doing.
+
+Since it's a lot of code, okay?
+
+So there are more than
+
+just go back in the lecture code for reduce. If we were doing this is takes an array and using the power of anonymous function generator some. So it's a ray reduce. So what kind of what would we pass here?
+
+If
+
+I did we just looked at it, but what would we, what function will we build to reduce to a sub
+
+menu to pass the aggregated value of the current value?
+
+Yeah, so that's, that's how it starts. So we're gonna pass The aggregator
+
+and the value which is a number
+
+and actually we could just change this maybe to
+
+current some.
+
+And what do we need to return?
+
+Current Oh.
+
+So just to current some
+
+Yeah. So you write the new current song, which is going to be the new one. So that should pass the test case i think it does, okay.
+
+So there is another syntax we could have written this with. And let me
+
+get this out here. Copy this.
+
+It also would have been valid to write this, like this. And you will see that useful this used a lot
+
+that it worked just as well
+
+see, it still passes the test case. So using the function keyword rather than the arrow operator. Let's put it back there operators probably the more standardized way now to use it. There's a legitimate reason sometimes to use the function keyword around the this keyword but so we'll get we'll save that for later.
+
+So let's look at another method.
+
+Actually, before we do that, there are other questions. So this is the first one.
+
+So there's other functional methods D
+
+There's another one called filter want to take a look at.
+
+And what filter does
+
+is it creates a new array of values from the original way that match a particular condition. So if I go through and pick out all the numbers that are even or all the numbers for odd, or all the numbers that are multiples of 10 are all the strings that are seven in length, or whatever conditions we want to give it, including whatever object has, you know a certain ID certain IDs or so whatever condition we give it, it's going to build a new array out of those items. So what we're going to do is send an anonymous function, and it's going to send us to our anonymous function. As it goes through the array. It's going to pass the value of the element the index, the element is In the array that is going through, and we're going to return our anonymous function has to return true or false. True if we want the value included in the new array, so if it meets the conditions and false if we do not want it ignored. So let's start with in the lecture code here, there's a numbers to filter. And it says, Take an array and return a new array of only numbers that are multiples of three.
+
+So if we were doing that
+
+they're sending this array numbers to filter.
+
+And we want to return a new array.
+
+So
+
+you can just return numbers to filter dot filter. And again, we can pick which of these things we're interested in. This is the values they're going to send to our anonymous method, and the order they're going to send them if all I want to find out is which ones are multiples of three, that I only care about the value. So I'll say the value. And remember, I can skip the parentheses if I only have one argument.
+
+And then we'll say if
+
+the value is a model three.
+
+So if I think oh zero,
+
+then return true.
+
+Else return false, which means I could really just return value, I could really just return the response to that, but I'll leave it like this so it's more explicit. And that should pass the test case, and then we'll write another one that does with our other two arrays. So does so let's write a filter out again with our
+
+Alright lists we've done the numbers, the multiples of three, two.
+
+Right? I got a question about that one. So is the filter like actively removing the numbers from the array?
+
+So it's creating a new array without them. So that's a great let's, let's look at our array where we can actually see the array. So the test case so we can look at what's going on.
+
+Because that's a great, great question. So
+
+we're going to build a new array, right?
+
+And we'll use our we call it the numbers were to say or W. Yeah, ar. So our red numbers, it will build the same type of filter. So we're going to say filter, and we have to give it a number. So all we really care about is the value so past Here, and let's do a model. Let's say the value of
+
+123 the same thing.
+
+Let's just return.
+
+return that. So return and that's true.
+
+Now, sir, is Bose
+
+Oh, it is pretty much fizzbuzz in it.
+
+I thought you're gonna make it fizzbuzz like, do different levels.
+
+Well filter because return true or false. Let's Let's wait to the next one. That is a great idea because I've never thought about doing fizzbuzz but the next one, and we will.
+
+So, filter is going to build this new array, and it's going to return. So let's have that. So let's do a console. Table of the new array and that's asked to a console table of the original array.
+
+Actually, let's do the original array first.
+
+Alright, so now it's going to run. And we can see the original Ray was this one through 10. And the filtered array is this 336 and nine.
+
+Let's go over here too
+
+much to find this
+
+method, I'm going to put a breakpoint here on line 141. and refresh the page so it runs
+
+and what we're interested in see everything
+
+Is this array right here.
+
+So as it runs through each line,
+
+it filters so after it's filtered, we have our new array here, which has the three, six and nine, but our original array is unchanged. And that's an important aspect of these functional methods. The original array, we send it, the original way we're calling the method is treated as immutable. It doesn't change. It's not immutable, but it's treated as that. And it's guaranteed not to change so always returns a new array, or new VAT value with the new array. So it is it's not changing the original array. Instead, it's going through and saying we're going to create a new array only with the values that you say you want. So the ones that are multiples of three and then we get a new array back with the fat
+
+This resume at this point. So
+
+questions on this filter Make sense?
+
+So it makes sense, is what he said it only returns true or false right?
+
+filter we return true or false from our, our method. If it helps we can write it I can write it out long form.
+
+Well, I was just gonna ask is essentially doing a for loop, like,
+
+yeah, that's what these are doing is a follow up. So it's looping through for each one. And what we're building is a portion that through each loop, if you can imagine as it goes through each value, it's doing it if statement for this for our values is calling our method and if our method returns true, it adds to the new array. If it returns false, it ignores it.
+
+That makes sense. Perfect. Thank you.
+
+So Other questions? Does this exist in Java? It does. Oh, really? Yes.
+
+Not
+
+as direct as this. But if you look into Java streams, it exists as of Java eight. So is this more like a for loop or I'm sorry, a for each loop. It is much more. It's like a foreach loop. It's going to go through every item in the loop in order every item in the array in order every time beginning to end it won't stop until the end. So other okay. So the next one, let's take a look at a question. Clicking the next one map, which is quickly related, I'm going to take a look at them where they're kind of happening back to back. And then we'll come back and look at map in more detail and then look at
+
+the
+
+Yeah, there's so map is like filter, but it, let's do the same thing we have here. But instead of calling filter, let's call map and see what it does. So I'm actually just going to show how close they are, what map is going to do is it's going to use our whole fiscal slide for map breathers. So map is going to take the same values, the current value, the array, the current index, and it's going to create a new array that changes the original array in some way. So it doesn't change the original brand new array that has all the values of the original array only changed. So if we're returning this Can we change this to a map with the same argument, this can't be said have to be something like new re from map.
+
+And we want it
+
+we can see we get back the true and false instead of the actually adding the items. So it changed each item in the array, the original array is still unchanged, so one through 10. But we get back the value that we're returning from here, and that's what gets put into the array at that index. So we probably don't want to use actually use map in this way. We would use it in a way
+
+where we might say if
+
+that's true.
+
+Let's return the value Otherwise, we'll return. We just won't do anything.
+
+And we run it.
+
+And now you can see we get the values with the differences with the filter, we get an array of just the filtered items. With map, we get an array of everything. So all 10 indexes. But since we didn't return anything for the ones that were not multiples of three, they're not undefined. So they're always there.
+
+Which
+
+we could do something.
+
+If we did run return for the other ones, we could return
+
+not
+
+moddable
+
+and those are the ones now those positions from that's going to change Create a new array with all the same indexes. And we have to tell it what we want for each time through the loop based on the value, the index in the original array of how we want it to
+
+what we want to set to the in that index in the new array.
+
+So let's put
+
+a filter
+
+creates a new array
+
+of
+
+the
+
+values,
+
+the way the values when the anonymous
+
+method
+
+returns true
+
+map
+
+creates a new array the values of the
+
+way, with every
+
+index with a value with the value
+
+at that
+
+index as
+
+returned by the anonymous method, anonymous function.
+
+So we'll do
+
+something else we could do with map. Let's use them with our string. And then
+
+we could
+
+use math to do something like let's get this the long names
+
+out of our map. So I can use our string array.
+
+And
+
+for each item, so it's going to be each item is going to be named, because that's the each thing in our string array. Remember to have the name of structures, names, and the word Let's say if name is length
+
+greater than seven.
+
+So if it's a longer name, we'll return name.
+
+And now if we console
+
+this to a table,
+
+long names map,
+
+we get back the names that the strings that are longer than seven. So in this case just Rachelle and Steve, and then the other ones come back as undefined. And if we wanted them to be something else, we could say something like, return name.
+
+Let's do to uppercase
+
+turn name
+
+to lowercase. Okay,
+
+so we could do something like all the longer names the code to uppercase, all the shorter ones go to lowercase. But we end up with the entire array, a new array of all the values from the original that we tell it for that index. Alright.
+
+So let's see,
+
+saying map to
+
+uppercase
+
+O, long names and lowercase o short names.
+
+So, any questions on
+
+that before? Okay.
+
+All right. So let's take another break, and then we'll come back and we'll look at one more use a map and then we'll look at one more thing.
+
+Alright, so we'll come back here. Let's see 1049.
+
+So Brian is a map the least used out of the three because it looks like filter does a very similar thing, but will obviously give you less elements to have to iterate through. If you wanted to find out what happened to the array or is in the new array,
+
+it really depends on I would say it's issues. It's, it depends on the use case. Sometimes you went back just the elements from the array that meet a certain condition. Other times you want to change the array. So you're wanted like if you wanted to multiply every value in the array by to map this perfect
+
+if you
+
+but if you just wanted to get out the even numbers then It'd be better for that. So it's really what you want to end up with the entire array changed in some way, which is maps job, or do you want just values out of it that meet a criteria, which is Photoshop.
+
+Okay, that makes sense. Thank you.
+
+So let's, uh, so somebody brought up the idea of with
+
+filter, can we do fizzbuzz with it? And
+
+we could, since filter really returns true or false, we want to include it, we actually couldn't because we couldn't use the fism buzz but we could with map plus all fizz bows with maps. I think that's a great more complicated use of it than just what we've seen.
+
+So let's build
+
+but we need an array of numbers.
+
+Quite a few of them right.
+
+So let's do this.
+
+Let's build an array
+
+and we'll just create an array const array
+
+is array
+
+and we're going to populate it with
+
+just a little quick for loop
+
+on language.
+
+Yes, I was I didn't think that through we didn't have don't have a will start at one. And we'll go to i is less than or equal to 100. And just take and we'll put the fizz array index at i minus one
+
+equals I. All right. So that should give us an array of
+
+and let's just make sure it does did. They should give us an array of
+
+numbers between one and 100 Does Okay, so we can do fizzbuzz on that.
+
+So we needed new output. So we're going to have
+
+const
+
+fizzbuzz.
+
+And we can take our fizzle array.
+
+We're going to map so map would be the best result for this piece, we want to change for each one, right? So what we do we put here for map, what do we need?
+
+Just the value?
+
+Yes, we needed VI, do we need the index or the array itself?
+
+No.
+
+Yeah, we don't.
+
+Because we're not going to do anything with the index. We don't care when indexes then can I can afford each and we don't want to check the array the time when you might want the array is if you wanted to find out what's next. So the problems where you look and look ahead like you say, if this number is This characters x and the next one's x as well then do something, that's when you'd want the array and the index, because you'd need to check to see if the next index is a value. But so now we're just going to write simply fizzbuzz with this value. So we've written fizzbuzz. So many times that I'm going to assume that you can you're dreaming fizzbuzz at this point. So I'll just, we won't go. So we know that that's going to be vow, what is it? If it's equal to three, we know the order matters.
+
+So
+
+5.0
+
+and if that's the case, that's what that's what will return, fizz buzz right to return the value we want in that position, otherwise found
+
+It's three.
+
+Return fizz.
+
+Anyway you've written in the past would be the same way you just return.
+
+No buzz, right?
+
+And then return the vow.
+
+So this portion is fizzbuzz. I think we all could agree on that. I kind of went through it fast because I said I assume that at this point, you can write fizzbuzz multiple ways and with no questions about it. But when returning it from map or return the value we want from each element and what we're interested in now, is this console dot Log, let's take a look at fizzbuzz array that returns out of it, actually, let's table it. We can see it there, you can see that we ended up with fizzbuzz.
+
+Because it's created a new array out of the values.
+
+That
+
+is the same number of indexes as the original. From the chat, yeah, you can use the ternary operator to any place you want in here. It's just the place you would use any any code you can write for JavaScript you can write in here. Or any JavaScript you want can be here. Just has to return a value for each index. That what value do you want that index to be? So yeah, you could use a ternary operator.
+
+Get a little complicated for for returns, but
+
+So questions
+
+so let's put a comma here.
+
+Perhaps doing that.
+
+This year just exist
+
+in an array to do
+
+this book fizzbuzz with
+
+fizzbuzz using map
+
+I have another
+
+sofa Go back to the documentation course use filters here.
+
+If we look at the array methods,
+
+you can see the document for different things. There's many more. There's others as well. So not all of these, I mean, some of like filters, but
+
+find index and some of the other ones are not
+
+methods in this way. But there's other ones like for each, which we'll look at more, next, or tomorrow.
+
+But there are quite a few. So you would want to explore this for things to do. The type of things you're interested in, the main ones you would end up using would be these three for an array, but there are others, just pointing to the documentation there for the rest of them. So let's take Look at the next thing that we can do with these anonymous methods. And that's that one of their uses. And what we've actually been doing with these functional methods is that
+
+we can use anonymous functions
+
+as arguments to our methods.
+
+So let's build a function. We'll say do math.
+
+We'll take x y, and then we'll take a function. We'll take an anonymous function. And we'll just do a result where we'll call. So this is going to be a variable that has an anonymous function. When we started, we saw that maybe someplace we could have variable with anonymous function and then we can call that variable just using parentheses and it will call the function inside of it. So if this variable, this argument to our method is going to be a function, we can use it the same way function. And then we can pass it the parameters that were passed to our method. And let's just do a console log here, so we don't have to keep writing it.
+
+So the math result
+
+is
+
+plus
+
+resolved.
+
+So now, we could call do math.
+
+And this is rather simple, but we give it a couple values. And we could say, okay, for our function, x, y,
+
+we want to do
+
+x plus y.
+
+So we want to do addition
+
+And we can see that when it runs, the math is on a six. So it adds them together, we can do the same thing.
+
+Now if we want to
+
+subtract,
+
+we get negative two. So we've changed the behavior of this do math method by this function. And that's actually one of the most powerful features of anonymous functions. We can use them to change the behavior of another function. And of course, it could get more complicated. So let's, but
+
+So Brian, in that example, you created the anonymous function in the phone parameter. Yeah.
+
+Could you also use the double sum function that we created earlier?
+
+Yes. Yeah, so we could say do math.
+
+Two, four, and what was it called double sum?
+
+And
+
+then there's are they using the double sum method?
+
+That's a great question. Because that's, that doesn't have to be built in place. It can be something gets assigned to a variable. It also doesn't have to be this. Simple. So let's do one a little more complicated. Let's do let.
+
+See, we'll see.
+
+We'll call math resolve.
+
+equals,
+
+do math, and maybe it's negative 25. And what we actually want to do
+
+we'll pass it our two values into our anonymous function.
+
+Maybe we're gonna get first the absolute distance. So maybe we use math. And I'm just kind of making nothing's up to do, right. So to show that we can do multiple steps. So x minus y
+
+and maybe we'll get the power of three
+
+equals math dot
+
+power of distance of three. I don't know why we would need this but
+
+so that's already going to
+
+print out the result here. So now we just need to return
+
+the power
+
+three, we don't actually need this variable here, do we because it's going to print and do math. So we're going to get it resolved to 15,006 25. So we can do more in our function. It can be at Complicated as we need it to be. Again, that's just to show that we can have multiple lines, we can store it to a variable and use it. So we can, a
+
+use of this that is
+
+pretty common for anonymous functions is to change the way a method behaves. So for instance, imagine you're writing a control of so you're wanting to control a side thing moving a block moving on the screen. And you just want to be able to make it move, you know, up and down, left and right, or, or even diagonals. And you can have a method that's move and pass an anonymous function that tells it how it's going to move for this time. So you pass it diagonal, and it tells it how to complete the move diagonally, or you pass it the right method that tells it how to what it means to move to the right. Zack pointed out a tax method where you pass it a function They can calculate the results for a particular state or county would be another great example of that. So we have a bunch of often work or work we need to do, but there's one portion of it that can be different in different circumstances, we can pass that portion in with anonymous function rather than having to have multiple methods for each one, we can manipulate the way our single functions working. So the last thing I want to do is kind of put some of this together, but their questions on that before okay.
+
+So let's look at
+
+these, say functional methods can be chained.
+
+So
+
+Let's put all this together, we're going to create a function and our function. I don't really know how to explain what a function is cram, it will take an array, we'll take a filter function. And then on that array, what it will do will return that array. We'll filter it by the filter function, whatever we pass in, and then we'll use map to add the letter A to the end of every string.
+
+So value
+
+return
+
+a plus the value I guess I said the end but beginning is good. Same thing, right? It's not really about what we're doing and then So now we can pass an array, it's going to call whatever footer function we give it, it's going to add the letter A return a new array with the letter A added to the beginning of every one. But the whole point of this is that we can chain them. So the filter is going to be applied first, it's going to filter things out. And then the maps can be applied to what remains in the filter.
+
+So we have those two
+
+arrays of numbers. So let's call our function as puram. Plus pass it that array. And we'll give it our anonymous function. Let's make it something simple like return num.
+
+So when it's even,
+
+and we run it, and we can see we get all the time numbers out of our one through 10 array where with the letter A attached to the beginning, we could take the same thing
+
+and just change this photo function to now where
+
+it's three
+
+and run begin. And we'll see now we have the one where it's just the model three. We can do with anything we want here that's going to filter the array. So we could take the same, the same thing and let's do it where we'll return
+
+our string array
+
+and we'll return word length.
+
+Where value
+
+value
+
+See, there's not a lot of jmeter
+
+Most likely again.
+
+So binary length is less than seven.
+
+Some more rare names, before we had the long names now we get the short names. So have a value less than seven with the aid attached to them.
+
+So we can do quite a bit from
+
+this for instance for this. Let's take this output,
+
+our fizzbuzz.
+
+Just grab this
+
+since we have that working
+
+and let's do something more with it.
+
+So we've mapped it to fizzbuzz. And now maybe we can filter it
+
+filter that and to say we only want
+
+to see how should we filter this?
+
+It'd be type of string.
+
+Okay? So we'll filter our values. So our strings are found value or we better value equals and we want to return
+
+that. vow is type of
+
+type of
+
+type of bow equals string.
+
+I guess right that right
+
+and now let's
+
+Let's console, log it. So I guess we need to put this into something. So const
+
+results array to
+
+hold us to call it
+
+has no context really.
+
+So now we just get all the strings out.
+
+Let's do it
+
+with a equal number.
+
+Because now we can do something a little interesting.
+
+So now we have all the numbers and then let's reduce it
+
+where
+
+the sum
+
+is and the value
+
+can lead to reduction. method where we take and return the sum
+
+plus the value.
+
+So, now what we've ended up with was the sum of all the numbers who are not fizzbuzz numbers in the fizzbuzz set between 100. So but the point of this is not that value, it's that we can chain them together to do interesting things. This would maps everything this one filter the results to all just the numbers that after it mapped them out, and then this reduced it, they filtered results. So we can put them in any, any combination we need to move through the results and get what we're looking for.
+
+So questions, what questions do you have?
+
+Can you explain how that reduce works again?
+
+Yes. So reduce works by The aggregator, so the sum is going to be an ongoing value that's going to increase by whatever we return. So it's going to be set to for each time through the loop is going to be set to whatever we return. So that gives us the old cumulus IP value, and then the current value in the array. So the at that index the next index, and then we return what we want the new accumulating value to be. And that's what some is, and then they pass it to us again, the new value with the next value index, and then we return what we want the new accumulating value to be. So
+
+that's the you're adding up all the numbers that
+
+match fizzbuzz.
+
+We added up all the numbers that didn't match fizzbuzz
+
+So because what we did is we turned it into all the fizzbuzz numbers into strings fizzbuzz this so here, and then we use Matt filter to remove all the numbers, all the types that were filtered to only include. Now the values that are numbers. So all the ones that are just numbers, we got rid of all the fizzbuzz and fizz, fizz, fizz, fizz buzz and fizz buzz. And then now that resulting set of numbers were reduce it to a song.
+
+Cool, yeah, that makes sense. Thank you.
+
+Again, kind of a pointless exercise, but it's more around just the fact we can chain them together. And we work quite a bit. So
+
+um, question I don't know if the term is multiplicity, but um, like if you have a for loop within a for loop. Let's just sum it inefficient is using these anonymous functions as a way to avoid the
+
+No, it's still going to be in the background just for loops running. So it's more about ease of syntax. It's about this idea why?
+
+Let's go back to where we were a long way.
+
+Why do we need to write all of this? When all we really care about is this.
+
+So now we just write that
+
+because this the rest of everything, but this every time we want to redo something reducing array is identical. It's this code every time only the only thing we change is this line. So it's allowing us to send a function that gives it this line Rather than having to keep rewriting all this, that's what it's about. Now, to be fair there, if there's optimizations that can be done to speed things up, I don't know if JavaScript I don't know behind map filter and reduce what they have their interpret language probably not as much as possible. There's, they're optimized. Like I know some of the Java libraries. If you look behind them, they'll do memory optimizations by using not using for loops, but doing other things with memory locations and stuff rather than doing it is doing it as efficiently as we would have to or would normally do it. But I don't know if that's the case. But these are really more about why are we rewriting all this for loops when all we care about is the conditions
+
+and the questions
+
+Okay, so these are making sense.
+
+We will use these a lot in JavaScript. So these aren't a, we see these and never see these. Again, these are a, we'll see these and every time we wanted to loop this will be the new way of doing it. It doesn't mean you'll ever write a for loop. or regular for loop just means that often you won't need to this is the way will work. nonnamous functions are all through JavaScript.
+
+And a lot of modern Java too. So
+
+that's a whole nother discussion. All right.
+
+So there's no other questions then, for today. The exercises, he pulled them up.
+
+We save all this
+
+workspace
+
+they work very similar to yesterday. So your run test HTML
+
+you open that live server
+
+maybe it's great open the live sir I guess
+
+and then you'll work inside of exercises dot j s. So it has problems similar to what you worked on yesterday. So write a function called is emitted. It will check the intern scores return true if the student submitted false if rejected, takes three parameters, GPA, SAT score recommendation and then some requirements around it. And then it has some other methods, if you can use the functional methods array methods for a lot of these, that's what you should be using.
+
+Also, some of these
+
+are more about there are some down here
+
+that are maybe not maybe not, they removed them. But be careful what they asked for because some of them require documentation. Some don't some do like this one right and document a function that means you're required to add the doc and have it properly formatted to the way we looked at it. So like these up here, so for each these will be like you worked on yesterday, write a function called is emitted. So if I was doing the There's a question about how you actually do these on the pulse survey. So, if I was doing this I would start by taking the name they tell me to write it is admitted. And akasa see it here in the test case is admitted is not defined.
+
+And I should get a different area now, which I do.
+
+And now we should have GPA, SAT score and recommendation. So I would create the variables for those. And those are have defaults. So I set the defaults.
+
+And now, at this point, it'd be solving the problem.
+
+So for each one, that's how
+
+you, you would get it from these requirements. It's going to give you the function name, the parameter list. And then what is returns? That means someplace this has to return true or false.
+
+Just returning true actually passes most of the test cases. That's. So
+
+that's interesting.
+
+But you should do some work to actually pass them in the right.
+
+In the right circumstance.
+
+But I'll leave it there and let you do the actual work. So I think I hope that answers the question that was asked in the survey about how to work through these because I don't think it was about the logic. I think it was about the signatures and the brain functions, if not let me know and I'd be happy to continue. Okay.
+
+All right. So I'll save that and
+
+Go ahead and push all this right now. Cuz I keep forgetting. All right.
+
+So then tomorrow there's we'll be looking at the document object model. So, my opinion this has been JavaScript for client development really starts getting interesting. We started actually manipulating webpages. So putting this together with what we done last week. So we'll start taking a look at that tomorrow. There's a chart out there for it if you to go through before then. And then today. Let's see. There is the Franklin County and player showcase at three, good fat a four there's lightning talks with Justin is doing a talk on science of learning like and David I can't pronounce his last name. So, David from the dotnet classes in languages science, and Rochelle is going to be talking about her journey to buy a byline of motorcycles. So that should be an exciting lightning talk. So don't miss that one. For all those, so and then I'll let you know now. So you're not surprised on Friday, john will be leading the review. I'll be out of the office for to be away for the day. So, you know, tentatively, it'll be john. I'm pretty sure it will be. But someone will be here.
+
+So, so I you know,
+
+so Other questions?
+
+I had a question about the homework from yesterday. If we could stay after, that'd be okay.
+
+So if there's nothing Awesome, thank you, and good luck.
+
+You guys, you guys.
+
+Transcribed by https://otter.ai

@@ -1,0 +1,67 @@
+Book
+https://book.techelevator.com/content/variables-and-datatypes-javascript.html#type-conversion
+
+Type conversion
+There's an old saying, "If life gives you a lemon, make lemonade." So, if you have a number, but need a string version, make one.
+
+What's great about JavaScript is that if you have a string, but need a number, you can change that lemonade back into a lemon.
+
+The Number datatype section briefly mentioned the standard built-in Number object which has several useful functions that can help you convert strings to numbers or numbers to strings.
+
+Methods are functions
+
+JavaScript refers to methods as functions. The terms are commonly used interchangeably.
+
+#Number to string
+#toString() method
+Any number, whether it's an integer or decimal, has access to the built-in Number object's toString() method:
+
+Number.toString(radius)
+Radius is another way of saying "number base." It's optional, and if not given, defaults to your everyday base-10 number base.
+
+Then again, there are times when you need to deal with numbers in terms the computer uses: base-2 (binary), and base-16 (hexadecimal). That's when you want to use the radius:
+
+const numberOfMonkeys = 11;
+const avgMonkeyWeight = 22.75;                      // Approximation after a 2 minute read of a Wikipedia article
+console.log(numberOfMonkeys.toString());            // '11'
+console.log(avgMonkeyWeight);                       // '22.75'
+console.log((83).toString());                       // '83', note the use of parenthesis around the numeric literal 83
+console.log((3.14).toString());                     // '3.14', parentheses are also needed on literal floating-point numbers
+console.log(numberOfMonkeys.toString(2));           // '1011', 11 is displayed as a binary number (radius: 2)
+console.log((4 * numberOfMonkeys).toString(16));    // '2c', 44 (4 * numberOfMonkeys) is displayed as hexadecimal number (radius: 16)
+#toFixed()
+Another Number method to know, especially when dealing with money values, is toFixed():
+
+Number.toFixed(digits)
+Like toString(), toFixed() returns a string version of a number. The difference is you get to control the number of digits after the decimal point to include in the string, which is why it's useful in terms of money values.
+
+You may have noticed that operations such as multiplication and division of numbers can often produce decidedly non-money-like decimal values. For instance, a program may want to evenly split the cost of meal:
+
+const costOfMeal = 83.50;
+const numberOfDiners = 7;
+const sharePerPerson = costOfMeal / numberOfDiners; // Result: 11.928571428571429
+Unfortunately, the shares aren't evenly divisible down to the penny, but you can round to the nearest penny using toFixed():
+
+const toThePennyShare = sharePerPerson.toFixed(2);  // Result: '11.93' (digits: 2)
+#String to number
+Continuing with the meal share example, toFixed() isn't a perfect solution to handling money values, since it may round up or down. A prudent program confirms the shares add up to the correct total.
+
+However, toThePennyShare is a string value, and you'll need to convert it back to a number before performing any mathematic operations on it.
+
+There are two options for converting, or parsing a string into a number: parseInt() and parseFloat():
+
+Number.parseInt(string)
+Number.parseFloat(string)
+parseFloat() converts a string to a decimal number; parseInt() converts a string to an integer value.
+
+You can sum up the shares once toThePennyShare is parsed back into a decimal number:
+
+const totalOfShares = Number.parseFloat(toThePennyShare) * numberOfDiners;
+#NaN
+There is one potential issue that exists when parsing strings. It's always possible that the string you attempt to parse can't be converted into a number. In these cases, JavaScript returns NaN (Not-a-Number):
+
+const k9 = Number.parseInt('dog');                      // Result: NaN, 'dog' cannot be parsed into an integer
+const nineLives = Number.parseFloat('cat');             // Result: NaN, 'cat' fares no better, even as a decimal number
+const surprise = Number.parseInt('1234 Test Drive');    // Result: 1234, surprisingly, parse will parse what it can
+const noSurprise = Number.parseInt('West 1234 Test');   // Result: NaN, parse quits on first sign of trouble
+NaN isn't limited solely to JavaScript, but seems to be where many programmers are first introduced to the concept. The idea of a value not being a number originated with floating-point numbers. See Wikipedia: NaN for more information

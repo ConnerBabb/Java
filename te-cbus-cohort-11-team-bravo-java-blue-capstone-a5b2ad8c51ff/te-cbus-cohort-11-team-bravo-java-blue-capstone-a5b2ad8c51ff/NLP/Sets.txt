@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/non-linear-data-structures-ool.html#sets
+
+Sets
+Another type of non-linear data structure is a set. A set is a collection that holds unique values, similar to a list, but in a way that allows you to easily and quickly determine if the object already exists in the set. In C#, it is called a hash set.
+
+Sets don't use indexes to store values. Instead, they hold hashcodes, which are numbers computed from the values you want to store.
+
+#Creating a new set
+The syntax for creating a new HashSet is:
+
+Set<String> characters = new HashSet<String>();
+#Adding items to the set
+The add() method adds an element to the set.
+
+Set<String> characters = new HashSet<String>();
+
+characters.add("Luke");     // contains Luke
+characters.add("Rey");     // contains Luke, Rey
+characters.add("Ben");     // contains Luke, Rey, Ben
+characters.add("Luke");     // contains Luke, Rey, Ben
+The add() method returns a boolean indicating if the element was added to the Set. false indicates the element is already present.
+
+#Removing items from the set
+The remove() method removes an element from a Set. The method returns a boolean indicating if the element was removed:
+
+Set<String> characters = new HashSet<String>();
+
+// ... set contains Luke, Rey, and Ben
+
+characters.remove("Ben");   // set now contains Luke and Rey
+#Iterating through a set
+Sets don't allow you to use an index to access each item. To see each of the elements in a set, you'll need to use the foreach loop.
+
+Set<String> characters = new HashSet<String>();
+
+// ... set contains Luke, Rey, and Ben
+
+for(String character : characters) {
+    // execute code for each item in the set
+}
+#What's next
+You've reached the end of this section on different data structures and collections classes. Up until this point, you've learned about linear data structures—those with a sequential order like arrays, stacks, and queues—and non-linear data structures, or those with a non-sequential order of data.
+
+This isn't the end of it all. These data structures are the ones used most often, but if you want to explore data structures further:
+
+Trees are often used to maintain a hierarchy of parent, children, and sibling relationships of data, like a file system.
+Graphs show how two different pieces of data are connected. Graphs are often seen in social networking and path-finding/GPS algorithms.

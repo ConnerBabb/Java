@@ -1,0 +1,1375 @@
+Zoom
+https://techelevator.zoom.us/rec/share/5MVvd6-p7GJJb6eO603wVoxiD57paaa81CNNqPQPyU3l06qNgtYD91QTsconiuK2?startTime=1589981180000
+https://drive.google.com/file/d/1vM2dnG-zKrycQtXxt0fSEcCNiqxJ9YzR/view?usp=sharing
+https://docs.google.com/presentation/d/1bcuPsizpKyEcwFilmi7Hjm_DaLPE0IKqu0ZgMMy3RfE/edit?usp=sharing
+Okay, so
+
+to recap for recording, we talked about set, and then map and then algorithm complexity towards the end. So set is another collection type, it's like queue and stack. It's a specialist it has something he does very well. And it's useful in that one case and but in not necessarily is more of a global usage like lists. So with set by default, the elements are not ordered, though we are going to talk about with set how we can change that, because we set a map something that sets them apart is that we're going to have to make intentional choices around what this implementation class we use without ones we've been using. So far. We always use q or we are linked lists we always used ArrayList or stack. But for these ones, we're going to actually make choices depending on how we want to behave. We'll see the beginning of why the interface and implementation classes separate on these, because that choice will change his behavior. And that's mostly around the order. So by default, those sets are not ordered, meaning we put data in the order, the data goes in, and there it's stored, but it doesn't keep it in any necessarily in the way we put the data. So what the specialist special behavior said is the elements in it must be unique. So there can be no duplicates in in the collection of data that's being put into it. But it's the way it handles that behavior is what makes it useful and is that when we add things to it, if we add something that is is not unique, that is a duplicate, that doesn't error or even complain or even give us any indication, it just ignores it. And that's what's going to. That's its behavior that makes it useful for the problem it solves, which is mainly when we're trying to remove duplicates from a group of items, or to make sure there are no duplicates. So set itself since it's not ordered, and it cannot be accessed by index, only by iterating over it. So the only way we can actually get to the information in the set is to use a for each loop to loop through it. So that's what and then so the only method we're really going to need on is to be able to add data to it so I data to it and then we'll loop through it to get data back off. The problem that you're solving is to mainly remove duplication, or to keep a list of information without duplicates. Without
+
+having duplicates in it, and without us having to check if they're duplicate. So
+
+the way we build one is we'd start with the set interface, like we did for list and queue yesterday for their interfaces, and we'll give it a data type that we want it to hold. Then we'll instantiate it. And with new, and the most common set of the base when I paste that, which is look at the second and we'll give it its interface. So if we were to hold a set of integers, set integer, or variable name equals new high set with integer so similar to the three we looked at yesterday, like those, it can only use reference types. So we can only use the wrapper classes or string or other objects with it. We can't use the lower the primitive data types with it.
+
+And the other
+
+Let's, let's go make right one before we
+
+know we have the color. So the other choice we're going to make was set, since it is about to duplicate duplicate data is that we're commonly going to want to, there are times when this restriction that elements are not ordered, is not going to be what we want, we are going to want to have some kind of ordering in them. So we can change sets behavior, by changing the actual implementation that we're using. And this is what the reason that an interface exists on these is that with an interface, it sets up a guarantee of what the data type can do. So and we'll look at this in a lot of detail next week. But it sets up this guarantee. But it doesn't actually have any code that does that work it it says, Oh, you can do these things. And then the implementation class has the code That actually does the work. So it allows us to switch the implementation class without changing anything else in our code. We'll look at doing that today and then change the behavior of how something works, because each one can do it slightly differently.
+
+So I set is this standard unordered. One.
+
+There are, there are more than three, but there are three that we'll talk about. And that is typeset, which does not guarantee order it will allow nulls to be put into it. link text set, which keeps the order of insertion just like list so the order we put them in as the order they remain in. And it also allows knows, and then tree set, which uses the natural order of the data type and we'll talk about what that means in a moment. And it does not allow at all so it requires a value for each of these did change, the only change in our code is after knew which name we use, which class we taught, we want everything else to remain the same. So for before we go write some of these, and we'll write one of each, and also show how we can use. When we create our code. We can write all of our code without really caring which of these we're using and switch between the very easily. But let's talk about this natural order. Because it can be confusing sometimes. So natural order means that have the data type, every data type has a way that it's going to or knows ordered data. And it's really, for most data types fall into two types, either numeric, or alphanumeric ordering. And that's between the number types like double integer and those and then string, and then other data types like scanner and things like that. may or may not have a way of how they would order things. So, numeric order is what we would expect, if we had this set of numbers, it would be one to 1020 2130. So that's how if it was an integer, it would be ordered in preset. But if they've seen numbers were strings, they would order an alphanumeric ordering, which would end up being 110 to 2021 30. Wait. Yeah, so I guess only one switched. But the reason is because it orders like, like it does for words alphabetically, so what in one order together, and then the twos order together, and then the threes. So a better example might this be if we had added a 200 in the list? It would order like that. And then, just like it does for four words, it goes to the second character, so it orders the ones and then the two And then inside the ones that would order nothing, and then the zero inside period or to the zero and the one. And then this one has to zero, so it's good. So it orders just the same way you can see this in like Windows a fuse windows, where if you put numbers in your folders, and you its file system, and you order them, though, appear in the same type of order. So we see this sometimes on some internal workings of systems and sometimes also in some user base systems. But that's a natural order. So you can get sometimes the results we don't expect if we're not aware of it, what it's actually doing which reset. So before we walk, the next thing we'll do is we're actually code some sets and look at them working. Before we do that, are there any questions about just what we talked about? Okay, so let's go. I'm gonna go to eclipse and and Eclipse I have today's lecture code open
+
+questions part two. And that's what we're looking at here. So spend a little more.
+
+So let's first
+
+create just a regular hash set. To do that, we'll start with the set interface. And then we tell it the data type, we want to hold us hold integers. And then we give it a name to a set of numbers, and will equal new hash set the implementation class we want to use. And then we tell it the data type that we want this data to be used when it's instantiated. And then we end it with parentheses. So Just like we did yesterday, only replacing set and hash set for it. And I didn't have to do the import. But if you're following along, you won't because it's already been imported from earlier. So
+
+So there we have a set. If we want to add items to the set.
+
+We would do that by set of numbers, add method, assign a one to it. Let's add a few numbers. set of numbers, add one out of 10 ad set 33 or one and aside another three one, or any other duplicate
+
+and then maybe
+
+Another 10 just a few more. So we end up with a sets, we could look at a few things with and outside of a really large or larger number. Not really large but
+
+should be good. So we have this set. I'm going to set a breakpoint here on line 26 so that we can debug it and we can walk through
+
+what it looks like in memory.
+
+See has been created, it's currently empty, and
+
+let's start
+
+stepping through it. So we add one and it looks like ArrayList are the other data types. We looked at adds the integer type. And at 10, we had 230. We do here we can see numbers being added. So now we got the first of the duplicates, or first one that will be a duplicate. As a 301, we can also see that the order that they're in right now is not being kept the way we just inserted, it decided to put 301 before 30. You know, we started later. We don't really worry about that we're using hashset. And because explicitely really does not order and when I say that, it means it doesn't have ordered that is relevant to us as programmer. It has its own internal ordering it does for but it does, it does that for its own internal efficiency, rather than its performance rather than for anything that we can use. So now we've got a second 301 so when I do that, there's the nothing changed. It just ignored. That there was even attempt to add it, there was no error, there was no feedback. Just there's only 131 in the list. Now we're going to see that this is actually its big benefit. So now again, we already have a 10. So it'd be another duplicate. And I stepped on one, so we step back out of that. And so after we had the 10 C, it did not change the set. But now we go back to having the other numbers, and we can see it did. And now we have our final set. And again, we added them in order 110 33 or 142 570. Wait, it's keeping them in this order. If we done this, if we repeated this, the order may be different. So there's no guarantee that it's going to keep it in this order if we'd done this a second time. Or we may do it 10 times in a row and keep the same order every time because It's said it's an internal performance ordering, not an ordering that we can easily predict. We could if we knew the inner workings of the code, but that's why we would use the other implementations if we care about order. So I'm going to stop this. So if we want to get things out of the set, we would want to be perfect. So we'd use a for loop, use for and then our data type. So we're going to create a variable to hold each item. So that's going to be integer, let's just call it number, colon, if you remember, and then then set
+
+and then let's just print it out.
+
+This is where we would do something with that value.
+
+So if I run it here
+
+you can see it prints out See even here, it prints out a different order than we had it. Now if I did want to change the behavior of the ordering between blinked, typeset, and Teresa, we can see here, I have a bunch of code, not a bunch, but this code all using the set. So the change would be copy this line. So I don't want to lose the original one would be if I wanted to link I said,
+
+would be bad.
+
+Just for spacing. And if I run it again,
+
+you can see now it has the order of insertion and sorted them as ordered 110 33 140 257 and eight. And that's the order it's maintaining. So the only change to my code was changing the implementation class. So that means that I can use this as just a set, not worrying in the rest of my code, which actual version of a set it is. And that's the whole reason these collections have an interface is that allows us to write them without having to worry about things like whether it's a link pack set or high set or preset. And then if we change our mind how we want to behave, we can switch switch that out without changing the rest of our code. So we do the last one to Teresa, let's look at it
+
+get into the same code.
+
+We would just change this from link tag set or hash set to tree set. And we'll run that you can see now we get the natural ordering
+
+of the data type.
+
+So because in order to
+
+ours. Oh, yeah. So they're in numeric order right now from lowest to greatest. So I was clear, I was thinking we use strings, but these integers, so that's correct. So the order that we can make those choices using, which implementation class we use, that's something that's going to come up more and more for us. It's something we're actually going to spend a lot of time on next week is how and why we do that. We'll see that a lot of things in the Java language have this ability. So
+
+I'm Brian, but about the order for the strings. So it's alphabetical order, then,
+
+yeah, so let's see how can we the order for the strings. Let's change this. We have to change to make the strength let's just make a string version of this
+
+Just copy and paste all of it, I mean, just change out
+
+the string. And how about set of strings.
+
+change this to string.
+
+So the order for the strings is going to be slightly different
+
+set of strings
+
+don't think Yeah, though these will.
+
+Since it's an these are integers are their strings, these numbers should cast into that on their own. So let's run this and this is what the tree set which is the one that we should see differences with the only one we should see differences with so if we look at
+
+Not print twice.
+
+We have to change it
+
+from just adding duplicates to the first
+
+set, right?
+
+Yep, this is set of strings. And this is set of numbers. Like the actual values we're adding. Yep.
+
+It's starting with the form, right? Can you check out?
+
+Oh, yeah, it's right here.
+
+I forgot to switch these.
+
+And they're okay. They want up costumes.
+
+And I want to put these in quotes. That's not appropriate.
+
+So
+
+Will they cast?
+
+They will not auto cast? I was thinking they would, they would widen for us, but they will not.
+
+So we have to.
+
+So, alright, so that should work.
+
+See, the first one is the numeric ordering 110 3042 31578, the second one string order with the same data, and it's also a tree set. So it's ordering is 110 33 or 142. Because it's ordering the ones than the threes than the fours and the fives than the zeros. Well then do each of the set of numbers so it's ordering them like you would order alphabetically
+
+is that does that answer your question?
+
+All right. So um,
+
+so let's look problem, kind of a use case of where this type of thing is going to be used. And we're gonna see another use for it today, because sets are kind of integral to the way maps work, which is the next data type we'll be looking at. But a common problem is just to remove duplicates from the list. So for instance, if we had a list like this, which is a type of list that I ran into many times, something like a work log, where users are logging, logging their work, right, so they have multiple entries for things they're doing. In this particular worklog
+
+has multiple entries. See,
+
+we chose in the list three times because it's in John's in the list twice, because it's realistic. They're the ones doing all the work. So let's use a set. If we have common assignment might be to see Not how many times people log work, but just to see who did it, who was in the list. So a common use of a set would be to take a list like this, put it into a set so we can get out just unique names. Otherwise, we'd have to write code that goes through and says or shows in the list, keep checking if that name appears multiple times remove it, john to the list, keep checking in that would means we'd have to do a loop within a loop, which we're going to learn later today, why that's not a good idea. Or not that it's not a it's a bad idea, but why there's some problems with that. So we could use a set to solve this problem. So using a set of strings, and work log set,
+
+equals new.
+
+And let's make it a tree set. So we make a choice here. We say well, this is a list of names. If we use high set if we just want the names, but we probably have some purpose for them. It's a good chance that we want to display them or put them into Reporters something that someone is gonna look at. So it's realistic, we might want them enough abetik order. So we can have the set do that work for us too. So we use a preset for that. If we didn't care, we use a high set. And there's more than just the ordering that will when we talk about algorithmic complexity today that we'll have to think about. But if we do want that functionality, it's going to be faster and more efficient than writing it separately. So we'll use it. So these are preset, and then we'll just loop through our original list. So we can say string for each name, and the instructor workload and then our work log set, add it, add the name.
+
+And then when we're done,
+
+we would do something with it. So in this case, we're just going to printed out so we can see it.
+
+And I guess to make it more clear of why we might you solve this problem like this, we could
+
+the following people logged work.
+
+And we've run it. You can see it takes the list. And we end up with, you know, a report of just an alphabetically ordered report of just who, who would log something rather than a listing of everything they had done. So this is, you know, list this size. It's easy, we can just look at it and say all the East names in there if we can see all the names called easily but if you expand this to, you know, something more common in an environment where you might have thousands of people logging things, or 10s of thousands of entries either, even this can
+
+this becomes very useful. So still
+
+so questions about setting.
+
+Alright, so let's then
+
+talk about
+
+Yeah, so let's, before we talk about map, there's one more concept I want to talk about. And that's this idea of key value pairs. And what it talks about specifically because it's something that's going to come up a lot throughout the rest of the cohort, it's a really common concept and a lot of data structures. Both in Java and JavaScript approach every language has this concept.
+
+So key value pairs a pretty simple concept. But it's
+
+it's the idea of having a key. So a value that something that we use to identify another piece of data.
+
+So some examples
+
+in real life might be if you've ever used a zip code lookup, you type in a zip code and it pulls back the city that you get that goes with that would be a key, the zip codes a key and it retrieves the city. So the cities the value. Another one might just be a classic phone book either you can search by name and get a value back the phone number, or a lot of alignment and search by phone number and get the name back. The owner of the phone number back So in that case, it's the same idea, it's you're giving a key, you're giving one piece of this information to get the other one back. Another one that's kind of more, that's less data driven is a vending machine is a perfect example of key value pair, you go to a vending machine, and it has, you know, all the things in in their slots. And they have, you know, a one, B one, a three, all the letter number combinations, and you pick that you want, you know, a bag of chips and you press in a three, and it delivers it based on that key. So it key value pairs is just that it's a connection between a key that's going to identify unique value that we can use. And then the value that that's going to hold the key is often very simple. Doesn't have to be but it often is, the value is often something much more complex, like the zip code and city example would be would be that Where the key is, you know, five to nine digit number, and the actual value might be a few lines
+
+of information.
+
+So, this key value pair idea,
+
+we're going to see it a lot. Instead, it's all across pretty much everything that you do on the internet is through key value pairs. So when we get into web development, we're going to see it, come back. And we're gonna count a lot today, because map is going to do exactly that. It's going to use key value pairs. So
+
+before we start looking at that,
+
+is there What questions do you have about key value pairs is the concept make sense or
+
+so it's just to understand
+
+what would be the difference between In a key value pair and a variable
+
+being assigned something.
+
+So that's, that's actually a really great question because at its core variable actually is type of key value pair is the same idea. But the difference is, is that with a variable, we're setting the name and code, right? So we're writing code and that that's fixed. We can't change a variable name inside of our program. We can't change the source code. But we can't change it, why things are running, right? We can't write code. It says make this variable something out another name the same variable. Or ask a user what what do you want to call this fair? A key value pair is the same idea. But it's something that we control just in data. So we could ask the user, what's your zip code and what city goes with it to enter our data in? Or, today we could, we're going to see examples like we can put the name of an animal and then as a key and then the sound they make as their value. But that is it's more fluid. It can be something that can be defined dynamically. But it's the same exact concept. It's just the variables doing it in a more static, less,
+
+less than amic way.
+
+Does that answer your question?
+
+Kind of, I think it's gonna be one of those things where like, I have to see it as well. Yeah. So once once I either use it or probably make a little bit more sense. But yeah, thank you.
+
+Okay, um, so now that we have kind of two building blocks, this idea of key value pairs was going to become really important in maps. And set instead is going to be kind of important in maps, please will be able to know what we're talking about. We're talking about when I'm talking about how map represents data. Let's start looking at map. So map is another collection type and it's like list it's one of the most commonly used it's it's solves a very particular problem, but it's a problem that is really common. So outside of like, it's, I can if I can think back over my career I used, I think one decided I met yesterday, maybe one cue, maybe two. I've used a few stocks, but not many. I've used a few sets, but I probably can count each of those uses, you know, if I went back through, they're probably in the 10s or even less, because they're so specialized, but nap and list is a daily type usage. It's something that you're constantly running into problems where you need to use them. So map is defined as a collection that utilizes key value pairs, that allows the values to be signed, and then located using user defined keys. So keys that we're going to define as just data types. It's just data. So it's defined with two generics, one for the key, and one for the value. And we'll go back over that. Remember from all these other ones we looked at the T represents that reference type can be used there. So we define it, we're gonna have to tell it to rather than one. So, the click, it's a collection of keys. And it's actually technically a set of keys. And then a another collection of values that are that it keeps organized together. So that if you select something from the set of keys in those which value goes with it. So it's indexed by key rather than order, so it doesn't keep order but we won't care about order because we'll generally you won't loop over a map that we'll talk about how you can, but it's more common to just use it to as a lookup, so So I have this key and I want to get this information from it with this value from it based on that key. So rather than order anything, it keeps its own internal order that it's allows it for very fast retrieval of the specific values much faster than keeping in a list. We can do the same work map does using list, but we'd have to constantly loop through the list looking for things. So map actually does use doesn't do that in the background. Most things are doing something common in the background, but it's use this own scheme to be able to sort the data very quickly and find values based on these keys from the way it keeps track of the values. And there are multiple, like set. Since the sorry, since the key is kept and set the keys are kept in this set. We can make the same choice we can choose to use different, not types to determine to Modify, or to influence that ordering. And we'll talk about that
+
+in a minute. But
+
+so, map with two values has the key and it can be any reference type. So any any type, but those, those eight primitives, it has to be unique. So in set is going to take care of that for us. And it cannot be no. So it can't have no value. It has to be a unique value. But it can be any data any object, the value. So the second piece that we attached to the the key can also be any reference type. And these two are not unrelated so they don't have to be or the types are unrelated. So they don't have to be the same type. It can't have duplicates, and it can be no so it's much more the way we would work with Like a list, a lot more free with what we can do with it. So those are the basic rules of a map. Let's look at
+
+how one is created.
+
+We're going to create it with an interface, the map interface. So map and then we're going to define it with two data types. The first one is going to define the data type of the key. So a string or integer or it can be house object, like we looked at, it can be anything, any data type. And then we're going to define comma and a second data type, which is going to be the data type of the value and again, it can be any data type any reference type. So double how string Boolean
+
+and for both of these includes our own data types
+
+that will make starting tomorrow
+
+Then new substantiate one. And then we'll define where we'll pick an implementation class. By default, most the time it'll be hashmap. So hash map is, by far the most common one to use, but there are others that we'll look at that can change ordering. So as we define it like we would here in code, if we were building like an inventory, we don't use a map. We want the key to be a string. We want the value to be an integer. Then our variable name equals new hash map and then we have to define the key and the integer datatype. Again for the
+
+instantiation. So
+
+map has
+
+quite a bit of maths So let's go. I'm gonna go to the code and let's build a map. Let's just define a map first, here. And then we'll talk about each of the things we might want to do with it. So declaring a map, we would pick map, and then our data type. Let's build. We saw in the example that we can do two different data types, like string and integer. Let's make a map that can keep track of animal noises. So we'll basically make a Java version of one of those pull string animal toys.
+
+So
+
+our first data type will be string, that'll be our key. That's where we're going to keep the name of the animal. If we want to what the noise the animal we're gonna have to keep an A string as well.
+
+And we'll give it a name for a variable to hold it in.
+
+And again, we're using the map interface, and then new and we're not going to care what the order is because We're going to our use case for the map will be, we want to call it the name of an animal and have it return the sound that makes. So in that case, we know, we never need order for that. So we'll use hashmap. And then we'll use string method to find that string string, we want to be built the whole string as a key and the string as the value. So that's how we would declare a map. It looks a lot like the other ones we've done only now we have two data types, we have to tell it because we're telling it two things we're going to be we're going to hold rather than one like the other ones have done. So our next problem is how do we put things in the map.
+
+So let's look at
+
+actually putting things in and kind of getting them out kind of at the same the same time. So we put things in the map With the method put, that's how we add to the map. So given this inventory map, it's a string and integer. So we call method put, and we're going to give it a string, common integer, the same in the same order that we've defined the data types. The first one
+
+is
+
+the first string is going to be the key. So it's going to be inserted into the map as the key, the second one is going to be the value, so it's going to get inserted in the map as the value. So we're going to end up with this map that has a key and a value beside it. So for each thing we inserted that we put into the map, it's going to add the key here, and then the value with it kind of side by side. Then, if we want to get something from the map, we'll use the get method and we're going to retrieve things from map using the key because that's the purpose of the key is to get information from the map. So we, when we call use the get method, we're going to use this key, the same one we use to put it in.
+
+So
+
+then that's going to go to into our map is going to find that key, find the value of it, and then it's going to take that value and return it. So what we're going to end up with in our variable here is the value which is this 22. So that's how we're going to data is going to be represented or used for our map, we're going to put it in by giving it two things, the key and the value. And then when we get it back out, we're going to tell it what key we want and it's going to retrieve the value for us. And both of these things on either side can be any reference type.
+
+So with that, let's add some data. To our map.
+
+So for doing this
+
+let's say animal
+
+noises. Let's put, let's put maybe a cow in our map, the value
+
+animal
+
+noises put
+
+chicken
+
+and we'll just continue for a few more. I can't spell properly.
+
+More
+
+So the value the keys for each one of these
+
+has to be unique. So if I try to use cow or chicken dog or cat again, I won't get the behavior I expect and we'll talk about what will happen in just a moment. But why the keys have to be unique, the values do not
+
+flying in
+
+and they will finally put
+
+Moreover, the duck in and will.
+
+So, we'll put a breakpoint here in line 86 so we can watch it be created.
+
+And then here
+
+in deep debug
+
+You can see it created the animal noise hashmap
+
+and then start stopping. So added the first entry. And if we look at it here Okay, expand it and we can see the key is called the value. So the first one became the key and the second one the value. Go to the next one, we haven't, again, the first one, the first item and each one goes into the key and the second one into the value.
+
+And we'll continue the next one.
+
+And for each one, it decides this key value pair. So now we have our full on hashmap. So now our hash map is created with each of these keys such that we can get it, we can send it this key and it's going to return whatever the value is. So we send it the key cow, it's going to return mu. Notice that as they went even as I was putting them in the order kept changing. That's because it's using its internal ordering because it's the hash map implementation we used, which doesn't take our ordering into account.
+
+So the next thing we might want to do with that is to retrieve something from the list.
+
+And let's change the order but just
+
+so we want to retrieve something from the list, we're going to be retrieving a The value, so we're gonna need a variable of the data type of the value to hold it in. So, both of these are strings, there's not much choice here, but it's always going to be the second data type is what we're retrieving.
+
+So we're going to use string.
+
+noise, let's call it m counoise. equals, and
+
+our map
+
+is get, and then the name of the key that we want to retrieve.
+
+Let's do a second one, string.
+
+Cat and what is goes animal noises get.
+
+And then the key.
+
+And this key is it's a it's a string so it is case sensitive when we're using a string Right.
+
+So
+
+all right. To break one why 92 here, and let's run it again.
+
+We can see our
+
+hash map, let me expand it out.
+
+And when it calls the get it's going to go
+
+in, take this key we gave it right here.
+
+It's going to go into the hash map, it's going to find that key value. And then it's going to find that key. That's going to get the value for the key. And that's what it's going to return into this variable.
+
+So let's watch that happen.
+
+So there if we look at counoise, it has the key the value move from the key cow. And the same thing is gonna happen with cat it's going to look through each of the keys find cat and return its value.
+
+And we can see that it did.
+
+So that's the basics of putting things in to the map and then retrieving them.
+
+Alright. So
+
+so from this point, what questions do you have?
+
+Brian? Yes.
+
+The keys case matters, right?
+
+It does matter. Yes. So,
+
+for the keys, whatever. For strings when the keys are strings, the case does matter. So if if you think of it like this, for Whatever, since they're all reference types, whatever happens when you take the first the key equals Whatever you're looking up your lookup, whatever that would return is what? Whether it's going to find the key or not. In fact, that's actually what it's going to use. So case is going to matter. So if your key
+
+is
+
+cow, and this was a string and you ran equals cow is most of you have ran into some exercises, those, those don't equal, do they?
+
+Because they're different.
+
+Because it's doesn't care. The difference between upper and lowercase it's, those are two different characters, the capital C and the lowercase C. So yes, so easier answer to that would have been Yes, case matters.
+
+Use the index to look for something
+
+you cannot know.
+
+So the index itself is unreliable because hashmap actually will reorder as we go. So the in the key is actually taking the place of something like an index. That's what it's allowing us to do is to index keys, the data on the sequential numeric number, where this is king the data on something we create. So we can't we'll we'll see how we can loop through it on two different ways. But both of them neither one rely on the index.
+
+So any other questions?
+
+All right, so let's take a break. Then we'll come back and look at some of the other things we can do with a map. So it's 10 16th. We'll come back at 1026
+
+Okay, so
+
+what questions
+
+came up for you during break about what we've been looking at so far?
+
+All right. Well, let's look at some other things we can do with maplin. So we can put things in the map, but we often need to update things. For instance, our
+
+map right now.
+
+Let's get
+
+wise.
+
+Has that incorrect doc noise. We've been went To change that to something that happened in real world data, right, we put we put information in, and it's not quite what we want. So if we want to update our key, like we would update the doctor via a correct noise, we could, we can do a put again.
+
+So we can put in if we use the same key.
+
+Then instead of adding it'll update,
+
+so let's
+
+copy this lines. We see it twice.
+
+And we'll see it debug as well, but
+
+it's the same variable,
+
+my breakpoint down to
+
+one on one and we're going to run it
+
+and debug.
+
+Alright, so we had duck noise and it's currently getting roar. So now when we put expand
+
+is, let's see if we can find
+
+like it's in the third one
+
+where it has the key duck. So what it's going to do, it's going to take on this put it's gonna look through the keys and say the key duck already exists.
+
+So since it already exists,
+
+we're not going to it's not going to add it. Instead what it's going to do is it's going to update.
+
+So when it looks in the map and it sees that this key
+
+exists here, it's going to take the value, it just update the value. So put both adds or updates to pending on the state of the map, what this means is we want to put information in the map, we can just use the key and not really worry about if we've used it before. Because if it's there, it'll update to the new value. And if it's not, it'll add it for us. So we don't have to do a bunch of checks of saying do we already have this?
+
+So we can see, when I run the line put, it changes the value for this key. Notice it didn't move it around or change anything else, just change the value. And now we can see that where Donnelly's was for on the next line, it goes to the new sound. So, put can both it's an add or update.
+
+So let's look at
+
+we see with retrieving from From updating the map we just use,
+
+put again. But let's look
+
+at a little more
+
+detail so forth get I mean, sorry. So forget if,
+
+if we try to get something that we don't have in the map.
+
+So
+
+try to get a penguin. We know that that's not in the map. What we're going to
+
+get is not an error
+
+should be the break point there.
+
+So we step on this one What we'll retrieve is just know. So get will return all if the key doesn't exist. I mean one error, like we have a key like an index array, we try to use it we get an error in this case, but it's gonna know back which means that we can try to use a key and actually check and see if this exists by the fact whether it returned or returned to value. So let me put a comment in there that it
+
+get is used
+
+with a key that does not exist. and
+
+map it
+
+returns No. And the same way I put a comment here that
+
+put
+
+adds the key value pair if the key does not exist, And updates the value if the key already exists, just what those particular lines are showing its code. So the next thing we might want to do is remove something from our list
+
+our, our map.
+
+So from our map, we have
+
+several animals in here. And if you look at him, the one that really doesn't fit in our list would be lying, right? It's arguably a very different type of animal than the more farm animal and house animal type things that are domesticated animals in the list. So let's remove it. So to remove something from the list, we can call it Remove
+
+and we do that with our list.
+
+noises dot remove and we give it the key we want to remove or remove the key line
+
+and when we remove a value from the list it or key from the list
+
+it
+
+doesn't just remove it It also returns the value. So we can find and return the value at the same time.
+
+So let's see string, why noise
+
+breakpoint there
+
+we look at what we get from it
+
+next breakpoint will see that it removed lines in the list it Return the roar. And if we look at animal noises, you can see the lions no longer in the in the map. So it returns the value in removes the key value pair when we call remove. If we call the move on a key that doesn't exist in the list,
+
+string,
+
+remove,
+
+remove if it's going to do it's going to work similar to get and it's going to return null. So let's try to remove it from the list
+
+and we'll
+
+get rid of that breakpoints we stop stopping at it now in that material
+
+and then
+
+went too far. Sorry
+
+Let me put a breakpoint back.
+
+So we move line which is our,
+
+our animal noises. It removes it. You see it's gone. And then it returns the sound, Wolf, which is not in our map. And it returns No. So again, with map, when we're using these methods, we don't necessarily have to worry about our check what's there, we just have to use it.
+
+And then we can check to see if it returned at all to find out if the value was there to begin with. So but if we do want to check if a key exists or not, we can do that. Want to find out if a key exists in the map? We could say Boolean does cat exist? Close animal noises
+
+dot contains key
+
+cat.
+
+And we could say boy does
+
+Tiger exist.
+
+animal noises contains key
+
+and we could do the same thing for the values. So I'm going to put all these in so we can then step through them all together. So Boolean does check for meow exist, equals animal noises. We can change contains value in search for a value. This is one of the only places we can access the value without the key
+
+And does
+
+exist.
+
+So let's step through them. So I'll put a breakpoint one on 118
+
+and then
+
+debug, and they're going to do exactly what we'd expect them to do, it's going to return true or false
+
+based on
+
+whether it exists or not. So, our map here is currently this. So it's gonna say this cat exist. That's going to return true. We look for tiger, it's going to return false. Same way. It's coming from me out with Isn't the is a value in the list? It's going to return true. or looking for the earth sound, it's going to return false. So we can check if a value is there are keys there, but we often don't have to. They we often just have to use it and then we can see if it was an all afterwards to know. And often we won't care anyways, but we do we can check for that.
+
+So before we look at looping over her map, what questions do you have about what we've looked at so far?
+
+Well, further contains value. So it's telling you that it's true. But so then how would you go about finding what key is related to that value?
+
+That can be challenging? Yeah, so.
+
+So you would then go to the next one, you would probably loop through it and look for the value if you lost the key. Okay, so just
+
+an If statement to then
+
+iterate through, yeah, you would hash map. Okay.
+
+And there's other versions of
+
+they'll get you for that. There are other versions of map and some of them do have abilities to do things like a value lookup to get the key but the default once they've added it does not I don't believe. Okay. I putting the caveat on there because sometimes I miss changes that happen in Java. But I don't believe it. It didn't used to, at least I don't think it does yet.
+
+All right. So any other things before we?
+
+Well, the reason I'm pausing here is this, these key value pairs in this relationship is something we're gonna have to take advantage of and looping. So
+
+I have is, um,
+
+with this being case sensitive, they're like a best practice to check for uppercase and lowercase.
+
+So If you're using a string as a key,
+
+there's a few options you could do. One of them is to loop through the list instead of using the get for the keys, and then use the key to get the value we'll look at doing that. And then you can use something like to uppercase or equals ignore case. There is you could also put in the keys in on a single case. So for instance, you could always add the keys all uppercase or all lowercase. If you don't need ever display the keys or use them in some way, there is a third more advanced option. You can manipulate the way things are starting the list by something we haven't talked about and actually won't talk about during the court where you can set it basically a and if you saw him in JavaScript, a little bit anonymous method, Java style of how to do the comparison Compare rater. So there's there's a few options to it by the default option, there's nothing that does that for us. So we have to
+
+take that into account with how we store the data.
+
+If I was doing it,
+
+for instance, if I was keeping the names of animals so I could find their herds, I would probably do something like uppercase them as I was putting the keys in the list. And if I was hard coding that list, I probably just would type them out mo uppercase.
+
+If you were a student doing your exercises, and that was the first problem, that would be the way you would go about it.
+
+Yes, if that happened to be the case, that's, that's how I would do it. So,
+
+Alright, so let's look at how we can loop over a map.
+
+And there's a list of all this methods here. And we won't walk through it since we just did in the debugger. But there's also a web page like I was showing for some of the other ones. So you can step through each of these and see them kind of working. There's a link to it there, if you want to look at that. So looping through a map, we're gonna have two ways of doing it. One is, we can loop through the keys, because it's a set. So we can use a for each label on it. And there's a method key set that will retrieve the keys as a set for us, they'll give us this access to the set. So we can loop over that set, and then we can use the key to get the value in the loop or the value for that key. So we basically would get the set of keys, we would loop through that set. And for each item in it, we would use that since we know that's a key in the map to get the value from the map for that entry.
+
+So let's do that first.
+
+This is kind of the traditional way of walking or looping through a map. But again, it's not a problem we end up doing a lot. Jelly with maps, it's not something we need to loop through. It's more
+
+in most cases is something that we needed as a lookup.
+
+But if we did that, we could say for
+
+and so the variable we're going to use here is going to be our key. So each entry is going to be our key. So we would get use the variable type for our key. That's what each one's going to be. So it's going to be string for this one.
+
+So we'll say string
+
+and it was called key. This case would also be correct called some like animal names, but we'll make it and then our animal noises but this time we're not going over the map, we're going over the key set the set of keys. So we're going to use the method key set. And that's going to return you can see and tele sense when I was looking at, it's showing me that it returns a set of strings because my keys are strings. If this was by keys or integers, it would be returning a set of integers. So I'll call the key set method.
+
+And then they get the
+
+this is actually comment was meant to go inside this here.
+
+Then if we wanted to do something like print each one out or do something with them, the values
+
+could say the key is
+
+actually just simple. The key plus maybe equals plus to get the value we would use the map again. So animal noises get Use that key. So in this printout, it's going to go through each of the keys in the map. And for each one of the print there, it will use the map again, to get the value for that key. And if we print it, or print it, run it, we'll see. We get all the items that are currently in the map with the keys in their values. So that's one way of looping through the map and if we
+
+so free
+
+so before we look at the second way,
+
+is the questions about that. Does that make sense? Or do want me to walk through it again?
+
+Or more slowly?
+
+Or is it is it good?
+
+Suppose you're Naugahyde. Yes.
+
+I guess I asked two questions with yes or no answers. So I'll go with that. I think everything's okay. Correct me if I'm wrong. All right. So let's look at a second way of mapping welcome through a map. And for this, we are looping through a map, either way will work, they both will do the same thing. So the second way is a little more complicated, which is why I'm by prefixing it with this. So whichever way makes sense to use okay to use. So this way will work in any version of Java, the, this new way, second way works in Java eight, which is what we're using and above. So it's a little newer way of doing it. So map also provides this thing called entry set. So entry set is, again, it's a set, and it's defined. Like this is backwards, like this. So it's defined as a set of this data type. entry. That is the same data types takes two data types of two generic data types that will set to the key in the value data types. And then for each through and through the map, it'll return this entry object that we can call, we can get key or get value on to get the key or the value. So in this case, if we had a map like this, that string integer inventory, and we were looping through it, we would build our entry set or entry object or variable for it, because that's what it's going to return to each time through. And it's data type would match our map these two data types, they have to match the map because they have to match the key and the value data types. And then on and on our map instead of key set we call entry set, and it'll loop through each entry each key and value pair, get them into this entry object. Then we can get the key by calling get key and the value of it Can't get value. So let's write code that loops to the map like this, like that. And we'll say using country set. So for that we're gonna say for, and we're gonna use an entry object. And we have to define it, we have to give it data types that we're going to work with. And it's going to match our map. Our map is currently a key string, and the value is also a string. So it's going to be string string. And let's call it something like entry, equal or colon, and then our map, and I'm gonna noises entry set. And now I have to import this. So notice when we import it, there's three of them. The top one is Java security keystore. Then there's Java util. Map. javac, swing row filter. So if you report the wrong one It won't work, you'll get errors, because they're all different. We have to make sure this is the case that we talked about with importing. When we get this pop up, we have to make sure we're selecting the right one. An entry is one that has, has multiple. And if you have, depending on what you're doing, you actually can see more, as we have more and more libraries involved. But we want the one from java. util. map, which now makes sense for working with a map. So I'm going to get click Java util map. And now we can do the same thing that we printed out here. Where instead of just key we say entry, get key.
+
+Here, entry, get value.
+
+And if we run that,
+
+we're gonna see the same list printed twice, once from using looping through the keys and once removing the entries so Two ways to loop over a map, again, a problem that in the real world you don't end up doing a lot. Not saying you won't be doing it a lot, very near future, but it's not a ways or common use. But there are two ways to do it you when you do have to do it, especially here, you can do use either option, whichever one makes sense to you. I know the entry adds a lot of complexity with this. And this adds a little more complication by having to use the key with the map. But they're both completely fine to use. That one's not more efficient than the other. It's just two ways of doing it.
+
+So questions over on looping,
+
+right, I don't see the import option on entry.
+
+Okay, so if you're not getting an import option, because sometimes the clips will miss what you want, then Anytime in Eclipse, if that happens, then you have to do the import yourself essentially. So to import entry, it would be java. util map dot entry. So it's this line. I can actually put it in that way. Yes, again,
+
+premiere somewhere.
+
+I can paste it into the surfer.
+
+And that does happen in Eclipse sometimes where it won't see sometimes if you save the file, or make a small change to say the file will show up too, but not always, for the imports. All right.
+
+I'm a little shaky on how Java knows when you're doing this
+
+for each loop, What, what it's looking for
+
+originally.
+
+Alright, so for which
+
+it is, it seems like it just inherently knows what you're looking for. But you're putting in key but that's like a new variable right?
+
+So let's let's look at how it's it's working
+
+let's see would be the best way to
+
+get a straw over here. So we have our map
+
+that has our keys and values in it right.
+
+So it has some values like in this case, we have a cat
+
+and
+
+not work I expected
+
+and we have
+
+See once you put it to and that should be enough to see our keys
+
+and then we also have
+
+the values associated.
+
+Sorry, I've never used the text editor and it's not working the way I expected it all.
+
+Alright, so that'll just be great. That's okay.
+
+And then we have our value
+
+that's confusing.
+
+Is this Zoom Text Editor?
+
+Yes, his
+
+zoom annotation because I thought oh,
+
+my goodness drawing words.
+
+See, I could probably make that blue now.
+
+Alright, that's close enough, I think to get the point across I think if I do another one now I can make it blue.
+
+Okay, that's I think, so you have the key and the values aligned on through to make it stand out more.
+
+So what it's doing is this when we call
+
+here entry set,
+
+this entry set what this methods returning is taking these keys and it's these keys here and this side is actually being held as a set like we just looked at the beginning today. So this is a set.
+
+So I see I'm on the wrong one for
+
+so what key said
+
+so key set. So this is a set and this is the key. So what this returns is The set here returns this this part of the set. So this is the set, we just never had, we never have it called one of these a collection where we had to call an internal another collection inside of it to use with the loop.
+
+More My question is more about the other side of the colon.
+
+That's where we're
+
+going. So so that's going through it, this is for any foreach loop, this is just it's just a variable, right? So each time through the for each loop, since this is a set the first time through, it's going to take the first value, it's going to populate it into this, the second time through the second value. And then when we use it down here, the first time through animal noises key is a string. So it's going to be the first time through it's going to be the cat key. And we use that that's the same as we just typed in Word cat because it's just the string which will return then go to the key and get the value and return it. Does that
+
+help? Yeah, that makes sense.
+
+Okay. So Other questions? All right.
+
+So let's
+
+look at doing a simple problem with us. And we're not a problem with us. So here we have two, two values. The key values don't need to be the same as we talked about, they set up two reference types. So this one is an integer and a double, and it represents an account number in a mountain the account and it's in a hashmap. so we can write code that will transfer half of this accounts balance into this account. This actually would be a one use of the of a reward use type of map of keeping track of this type of information. So if we did that we first would have to get, we first want to get half of this account, this accounts balance, right? So the value.
+
+So let's store that.
+
+And it's a double. So let's put it in the double and half of balance. And that's probably not the best variable name, but
+
+but we'll use it
+
+and my map is accounts. So how would I get
+
+that accounts balance?
+
+So I can give half take half of it.
+
+You're gonna do counts that get 12345 and then divide that whole thing by two.
+
+Yes. So yes. So that's gives us
+
+the,
+
+this will give us the amount. And just like we do with lists or other things or arrays, we can just use it as that variable, right. So it's going to return a double, it's going to turn a capital double, because this key is going to look it up, return this value. And then we can just use it in place and I'm going to turn this into a 2.0. I don't think it'll matter but just to make sure we don't get any integer division issues. This is a double so it really shouldn't mean matter but Alright, so now if I wanted to put some I have half of this balance
+
+and that should be half the balance of
+
+Something I count 12345 I'm going to make it correct and better variable name.
+
+So, now that I had that, how could I change
+
+in this array? Or this map? How could I change account 12345 so it now has an updated correct balance. Why removed half? Put?
+
+So I've used put
+
+so what would my key be for that?
+
+12345
+
+It wasn't my value B.
+
+It's gonna be accounts that get 12345
+
+and then minus
+
+a half of balance account 12345
+
+Don't do it. So that'll update the first account to half of the amount. So how could I then update the second account?
+
+to have its current property balance
+
+using this map?
+
+essentially the same thing except for you would add
+
+is the key for 56789.
+
+Yes. So I use my other key.
+
+And now
+
+we get
+
+using that same key.
+
+So I'm getting this value now. And now we just add to it.
+
+Yeah. 12345
+
+Alright, so that should change it right?
+
+Um it's going to so let's let's put a breakpoint in and so we can see it actually stopped okay? Good. Go down in what the breakpoint up here. Okay, so now we have remap about to be created our accounts map we can see it right here nothing in it yet it's going to put the two key value pairs in that we're going to do the calculator, do the math and get path which is the 50 and then we can see it changed, it didn't just update it to the proper amount by subtracting the first half that half from the first one and then our second one.
+
+In both cases we can just work with
+
+those amounts by just using the map Get and then the key to get the value that we want to work with or change. We can update them by putting to that key. So before we look talk about what are the kind of a gotcha, we didn't fall into there. What? Do you have any questions about how that works? Or
+
+why we did anything like that?
+
+Yeah, I do. Okay. So why didn't I guess could we, for the first portion in the value just put, instead of, you know, subtracting, can you just put half a balance of a town,
+
+you could well cause an error though. You could, it will cause an error, but you might not get what you expect. And that's actually what the gotcha that I was gonna bring up, because that's, that's the way it seems like it should work and Mathematically, it's sound. But because of the way things end up working with integer math and numbers, if these were energies, these are doubles. So actually, it's going to work. So these are doubles, these are going to work. But if these happen to be integers, like is often done with things like mounts, then we run into a problem of this.
+
+Having something like this and half equals hole, it's actually mayco value, and the end whole is equal to five and a half equals whole divided by two, and then and one equals whole plus half. It two equals whole, minus one Half has a different effect. What? Some can end up with a different value than in one equals whole plus whole divided by half. That's not intuitive is it? Because mathematically, of course, that sound caused someone to too.
+
+So the reason is this.
+
+So let's change this to
+
+put some values with it. So we have a whole and half.
+
+And what we're going to end up with is
+
+it's going to divide by, these are integers. So it's going to divide by two, it's going to get 2.5. It's going to truncate so we're going to get this is going to be equal to two, right? So this is going to be five plus two, which is going to be equal to seven. And the minus is minus is going to be five minus two Which is going to be equal to three, right? But
+
+in this case, we're going to end up with
+
+Yep. So we're gonna get to, but if we
+
+do it
+
+the other way we're gonna end up with
+
+this is going to be five changes to minus five. I always mess this up. So this is going to be five divided by two,
+
+which is going to give us
+
+Oh yeah, so
+
+this is going to deliver By
+
+to write. And we're going into part two. So we're going to end up with three the same way. But if we done this and stored it up here, we're going to end up with actually getting to four, one and three for the other because of integer division. And I know I've just done a horrible job of explaining that.
+
+I should prove that every time because it confuses me too.
+
+But the important thing there takeaway that is really, that there's a problem of doing the same calculation different ways, and you have to make a choice. But there's another thing to consider. And that's that we should limit there's kind of a row anyways to limit and to do calculations once if we can. So to always get the result and save it and reuse it rather than do the result multiple times. So even though it's so it's really small, good clean code. I'm sure the book does, but just good code in general. And the rules are refat. The single refactoring we'll talk about later would state that if we're doing this calculation twice, that we should be doing it storing in a variable and using the variable. So using that row, you would end up using it like this. And so we both are going to get different answers, and you just have to decide how you want to handle it. I will give you a hint that the when you're asked to do something very similar later today, that storing the answer once following the role of storing the answer once and using it plussing and missing it, rather than dividing it multiple times, is if you follow that rule, you'll have a much easier time. But in actual code, that's one of the things in code reviews that gets brought up all the time is Oh, you're multiplied that three times why you multiplied it twice or divided it twice why store in a variable and then use that variable appropriately.
+
+It makes sense
+
+Is this kind of like, constantly inconsistent equals constant? Does that make sense?
+
+Yeah.
+
+Yeah. the least amount of time, so you make it, or you just keep it the same as many times as possible.
+
+Yeah, exactly. Yeah. Yeah, you do it once you keep the value so that you don't risk any changes to it. Because there's other risk involved too in larger applications. And that's something like since we're dealing with references, something changing the data as we go anyways. We hope don't happen, but it's actually possible. But the role the role of good code is that we should only do a calculation one time. That becomes especially true with division, because divisions that one is most likely to go poorly for us.
+
+So, alright.
+
+So for those who didn't catch some of the painfully obvious inference is that the whole point of that last part of the discussion was when you have to do something like this, like, let's say in your exercises mimic this, rather than doing the calculations, different times, and you'll have a better it'll work better.
+
+Right? And I will further say that when I worked in financial software, this is how we did the stupid calculations. That's actually how we would would do it because you need this value a bunch of places.
+
+So all right.
+
+So let's look at one more thing for map and that's something we've already seen for set. And that's this idea of order. So map, natural implementation. The most common one you'll use is hash map but hash map doesn't keep any order at all, why it keeps its own order. It actually maps is actually really predictable on how to order things. But we don't care about it's not something useful to us. We can also use linked hash map, just like we did was set to maintain order of insertion, or tree map, just like we did preset again, because remember the keys, these are all based on the keys. And tree map will sort the keys based on the natural order just like the order set. So the ordering ends up being exactly like a set only now instead of linked set, it's like early. Yeah, it's now linked hash map and tree map and hash map rather than the set classes. They work the same. And an example of that. I'm just gonna put a breakpoint cuz this codes already been pre built and just run Here.
+
+And as we start
+
+thumbing through it
+
+now first time we build a hash map, it puts in the values 10 to 1025, and one
+
+and
+
+we're going to put another breakpoint here, so we can skip in a second. But right here is our hash map, we can see they happen to be now they're in one to 2510 order, when we put them in this order, so that order really doesn't make doesn't have anything to do with the way we put it in or the way the values themselves. So it prints out like that. If we do linked hash map, which is exactly the same code, if we look at this, this code is cut and pasted. The only differences This is the hash map. This is linked hash map just like set.
+
+So for this case, If we
+
+put a breakpoint here, so we're going to continue down. When it built the linked hash map, we can see they were inserted the same way to 1025. And one, now they're being stored as 210 25. In one, the order we put them in, when we loop through them, they come out as 210 25 with one the order we inserted them into the map.
+
+The last one tree map,
+
+exact same code only analysis tree map with 210 25, and one. And
+
+we can see it comes out now one to 1025. So it's in natural order for numbers. These are numbers and this is this thing we saw with the strings is the same thing again, for the tree map, we now have a string and we can see that now it's in 110 to 25 because it's often America where rather than rather than a quarter rather than numeric, because it's a string rather than integral So all these orderings, we just saw, we saw a set and we went through them a lot more detail was set. So I know I kind of kind of quick through them. Because it apply everything that we learned was set applies Exactly. directly here. It's just a matter of changing out the implementation of a map can change its order. But most the time with a map, we're not going to care about order. We're only going to care about
+
+the keys and the values. So
+
+before we continue, what questions do you have about map?
+
+Brian, I just wanted to make sure I think it wasn't clear to me earlier with the upper case scenario that we talked about. So if we enter in the data as uppercase, does that in and of itself, make it searchable with any cases was there print and we're supposed to add them they're like the to uppercase we did yesterday. So it would not make it searchable by any case, but it mean that we could then call to uppercase on when we're going to search are what the on the string that we're looking for in the map. Okay. And that would effectively make it like it was case insensitive, because with uppercase and we can call it with to uppercase it up. Yes. Yeah, cuz we call it to uppercase, then if the user gave us values that were mixed case, then the to uppercase and put everything to uppercase. We compare them but it wouldn't change their original string because of the immutability string. Okay, so we get that effect of being case insensitive. Awesome. Thank you.
+
+So anything else?
+
+SMAP makes sensors, anyone it feel like maps.
+
+That complete departure from everything we've done.
+
+I hear that a lot. So that's one.
+
+Okay. All right.
+
+So we'll come back at the very end to do Couple exercises a map.
+
+But before that, I want to talk about something else.
+
+And let's see.
+
+But it's a big departure and from what we're doing. So let's go ahead. I know it's only been 15 minutes, but let's go and take a second break now. So we can come back fresh. You don't have to talk about this in two segments, because it's only about a half an hour's worth of stuff. So we'll come back at what 1126 again, so And look, take a look at algorithm complexity.
+
+Ryan, would you mind keeping the slides on?
+
+Page 10? Please, I had to take some notes.
+
+Which, what did you want to align to?
+
+These lines, like page 10 Okay, so right here
+
+Okay, I can leave that there.
+
+Is it distracting? If I pull up the slides at the same time that you're working on it?
+
+It is not. No. That's why I give them to you for in that folder shared so you can pull them up and
+
+look at them.
+
+I it's funny because I can see you, when you're on a slide, I can see your little icon. I was wondering if you could see mine, but I looked on your screen through zoom and you couldn't. So
+
+now I can't I can see that there's people here but I can't see who you are. Just that there's 15 people that have this slide set open. But you don't have edit access to it. Which is why you can you can see me moving around. Like we use shared documents like this all the time here among us, like if we're working and we all have edit access, we can see each other where we're at. Like every shell got on here and started doing something you would see exactly where where she was at in the slides. And when But she was doing.
+
+Okay. Yes. I was wondering why you couldn't see me.
+
+Yeah, yeah, it's a guess because you're anonymous without metal access.
+
+But yeah, no,
+
+you're right. resumed recording. And that's okay, because we haven't actually got to need the real material yet. This is all the setup for the material. So talking about algorithmic complexity for the recording, so they actually doing the search and then what they're actually searching is star fields. This is actually going to be used on a satellite, and they need to be able to better search data points in the range of about 1 billion. So they do the simple search again, and they do a calculation and they expect it they expected from what they've seen to be about 480 milliseconds. And actually shouldn't show the actual down here yet. But so they estimate on that, that this should take about 32 milliseconds then. And they make a decision that they're going to go with simple search. And the reason they're gonna do a simple search, a simple search is what it says it's really simple. It's a very small amount of code. It's a simple for loop, it's a simple check of just basically the element in the array and equals, it's going to be very difficult to make mistake
+
+in the code, so it's going to be very
+
+low chance of having bugs. So a lot of times we'll we'll talk about going forward. And what happens in code is this idea of good enough is the code good enough what we needed to do to solve the problem. And one of the things that can make you choose something that's less efficient sometimes is What's the chances of this is going to break? How complicated is it? Is it going to take us? You know, can we build this simple thing that works good enough, and two days, compared to this bigger thing, that will work three times as fast, but we really don't need it three times as fast. But it would be great. And that's going to take us three weeks, you're almost always going to take the thing that works good enough, that solves your problem the way you need it. In this case, it was going on a satellite, and if it broke at the time that this was being done, they weren't able to remotely fix it would actually require a patch going
+
+being launched to the satellite.
+
+So or, I'm not sure how it would be fixed, but they couldn't remotely fix it like would be a possible solution now. So they made the decision because of that and because binary search has a lot involved. It was more prone to bugs, were prone to an error, that having sub second search so half a second. That the risk wasn't worth going from half a second down to one 20th of a second or possibly one 20th of a second, not exactly close at 32 milliseconds. So that that difference wasn't enough, the risk wasn't great enough for that, that half a second search would be fine for their 1 billion elements.
+
+So they stopped here.
+
+And they'd estimated go out. And they never tested, they'd calculate it all out. And they didn't test with 1 billion elements. And the satellite was launched with our code. And the first time it actually had a test set of 1 billion elements, that's a lot to generate a test set was when it actually was testing a star star field. This is actually from real. I can't remember the satellite it was but this was
+
+an actual event. So when they started
+
+using it, he found out that the 10,210 milliseconds was slightly off For the 10,000, lm Watson was actually closer to 10 seconds. And that binary search, they were right, it actually was about 14 milliseconds to search the same 10,000 records for simple search for their 1 billion elements. The search time was approximately 11 days.
+
+Binary search, they were right, it was about 32 milliseconds.
+
+So the search time for a single element in the satellite was approximately 11 days. So there of course, it had to be patched. And there was there's lots of articles and stuff about this 32 used to be It's been a while since I've seen one, but there's some videos on YouTube about it. So this brings up a problem with algorithms. The algorithm works great at 110,000 elements. The mistake they made is that algorithms don't scale or change with the problem size in the same manner. So just because we can no data points at 1100 per hundred 10,000, or 100,000 elements, going just off the speed of an algorithm, we can't determine really, how good it is how it's gonna work at a million or a billion or any number higher than what we've actually tested. It we actually don't always know when we're using it, something like a search algorithm, what the actual speed is when we test it because of something we'll talk about in a minute. Because there's differences in each search, as well as how fast we find the item depends on where it isn't something like an array. It's the first item we're going to find out really fast. It's the last item it's gonna take a lot longer. So I'll give them complexity the study of is the study of how to determine, say, a good algorithm versus a bad one. Not necessarily the algorithm. himself being good or bad that we will look at a bad one today. That's just globally bad. But things like simple search have a great use. They're commonly used for certain types of problems. It just doesn't fit this problem. So it's more about judging, are they good for the problem size we need or the problem size we might need in the future? So often the complexity is it's not a measurement of speed. It's not a measure of how fast is this code run? It's amazement as how does it increase how much work that increases with it. As the problem sizes increases? It's actually calculated by looking at code and looking at things like well, we have 100 items, we're going to loop 100 times 1000 items, we're going to loop 1000 times and inside of there, there's certain actions are taking place. And now it's going to loop a different you know, another time through the loop. So that's going to add, you know, for each time, it's called loop 100 times and If we as we increase the problem size, how does that work increase? Of course code is very, it's very complicated. We haven't talked a lot about the size of code yet. But the everything we see throughout this course is going to be really small projects. We look at a project like Chrome, the engine that runs Chrome is called chromium. So not even the browser portion, UI, Porsche, but the engine itself is a number just left my mind 22 million lines of code might be off by a million, but it's from 22 million lines of code. That's a lot of code. And that's, that's considered a pretty good sized project, but not not, by no means a huge, huge project. There's much larger ones. So processing, or the amount of code in projects gets huge. So Because of that these,
+
+sometimes algorithms can be quite large as well.
+
+So we talk about algorithmic complexity in this thing called Big O notation, which is a notation that's just a standard symbol that can be given to an algorithm that says, Well, this is how it performs. This is how it changes performance as the problem size changes. So we can make decisions about what to use this one versus this other one, we want to use simple search versus binary search for this problem, because of the way the problem size is going to change. So big O notation is going to describe this change. And that's how we're going to judge the performance of an algorithm, not by how fast is runs with 100 items or 1000 items 10 thousands but how it changes as it goes between each of those numbers. It Big O complexity is always measured in worst case, it's so everything you read about an algorithm is always from a worst case point of view. And the reason is because let's take a search algorithm. So we have a common search. And let's say we have an array of no says 52 items and same as a deck of cards, and we're going to find one item. So now let's apply that to a reward object that's like an array, an actual deck of cards, you have 52 cards, and I pulled them out to you and ask you to randomly pick the Queen of Hearts. So if the first card you pick is the queen of hearts, you found it really fast and you if the last card you pick, taking meaning you had to take 52 choices is the queen of hearts, which is just as probable then you found it slow. So we want to talk about the search time in the worst case it could be because it could be anywhere between to pick the Queen of Hearts or the deck of cards and we're between one pick and 52 picks. So we'll talk about that it will take 52 picks for you to pick the Queen of Hearts. That's how we talked about in Bingo. So we can judge how the worst the algorithm is going to do. And then if it does better, great. And there's other whole other segment of the study that have Sunday bingo that we won't talk about today that goes into then starting to calculate, well, how will this actually perform in a more detailed level? So let's look at a few of these timing. So there. Here's a chart of what's called bigo complexities. And there's lots of these on the internet. This is just one I happen to grab. And it gives the big O notation comes with an O which is why it's called bingo, parentheses and then a timing symbol inside of it. And we'll talk about a few a mean, you won't have to memorize those. I don't have it memorized. I don't really know anyone who does. What you did do the one thing you wanted it Notice if you see it oh with parentheses beside it, it's a timing, then you can go find the chart of complexities compared to other timings and get the idea of saying, Well, if I have a one, which you can't really see, but it's right here along the bottom, just pretty much a straight line on the bottom, you have another algorithm that's o n log in, which is right here, I can see that this one is going to perform much better than this one, which is going to lose performance as or increase its work as the project size increases. And this is showing as the project size increases, how much the work increases, which is so the more flat this line is the higher performance, the algorithm is, or the better not you shouldn't say high performing, because the same algorithm might perform better at 20 then or hundred or 50 operations, then something that that another one will At 10,000 as it loses, so it's not that it performs better, but it's how it's going to scale. As we increase size. We always have to build for, we often don't know the size of our true problem. So when we build code, we often have this idea, but right now, we're doing 1000 transactions a month. And next month, we're doing 10,000. We didn't expect that. So a real, real world scenario that I can pull from my work at a start up several years ago, and when I started the startup, they were doing about 1000 15,000 transactions they were a month so coming through their system. And almost overnight, they exploded. And by the next month, we were processing close to a million per day and needless to say a lot of our stuff didn't hold up to that.
+
+It's so there was a lot of scrambling trying to update stuff to us because of this exact thing we planned for hoping that maybe next year, we would be at that kind allowed a billion per year, not per day. But that happens all the time. So we have to we plan for it. It's a hard lesson when it happens. But that's part of what bigo helps us figure out is if we're writing our code this way, and we do have some kind of giant growth like that, or in that case, a giant client new client comes on board that has that type of workload and brings everything it wants, then can we scale to it? That's the point of trying to understand how the algorithms scale. So let's look at a few actual algorithms running and see the difference we're talking about. So I'm going to go to the code and I'm going to algorithm complexity code and in here, there is For algorithms that run at different complexities, they all do different things. But they're not the same thing. We'll look at a search comparison at the end. And for each one, there's a value that can be set for the array size. And it will go and go down to this method. And it just builds an array of numbers, and it builds an array of numbers, and then it just basically jumbles the array, and it also sets the right place down here, and it just shuffles the array. So it builds every number in order, and then it is shuffled them, which means that every values in the array one time but in a random position.
+
+So given that,
+
+we kind of know what it's worth doing. Let's look at constant time. So one of the constant time means that as the problem changes the algorithm won't change, it will remain the same. An example constant time would be getting an element
+
+by index from an array.
+
+So, or also mathematical operators. So this no matter how large this array is, we'll always have at about the same speed, and we're going to run it, we're going to see speeds, and they're going to be off by a few thousand milliseconds or a few hundred milliseconds sometimes, because there's differences in the way that it's going to take for the JVM to start things and some other differences there. So they're going to be very approximate,
+
+especially at the scale. So if we run it,
+
+you can see that took about
+
+2000. These are nanoseconds. So 21 milliseconds, and let's move it to 500 items.
+
+Again, we'll see it'll be the same range.
+
+Keep writing we can see what I'm mean where it's there's about 2000 to 3000 nanoseconds difference because of just the JVM and Eclipse and other things overhead.
+
+So we go up to, let's go up to 500,000,
+
+which is going to appear to take a lot longer because as to build that first array. But
+
+we can see it's still
+
+a little worse, but it's still running often in the same 2000 range. So it really hasn't changed. So that's constant time. So that's the one that we were looking at it that's just going across the bottom.
+
+So the second one
+
+is linear complexity, which means it's going to double the problems the the number of work required every time that the problem size doubles. So examples Something it's always linear complexity looping through an array is always linear complexity, it's the best it can be. So essentially, every time we have to go through now one, if we double the size of the array, we double the size of the loops we go through, but hopefully makes sense. So let's look at linear complexity and its difference here uncomment this and run it properly. So there we go backwards. So there are 500,000 items sticking out a little over about 13 million nanoseconds. So let's go down to
+
+5000 items.
+
+And now we're down to 100,000 reigns so there's jumping from jumping that is it's actually much easier to see going the other way
+
+says Good, there we go to
+
+100.
+
+As we go up, we're going to see approximately each time we double this count, approximately a doubling of
+
+the duration. But
+
+so the, and again, that's a worst case w iteration. So the next one is quadratic, which is into the square. And that here's a quadratic algorithm. Something that's always quadratic is having a loop within a loop. Loop within a loop always be quadratic. It means that as the problem size multiplies the operations, the actual algorithm has to be four times the work. So every time we double the problems, we have to increase the work by four.
+
+So let's look at that. Again. Make sure
+
+And so we started out already at 50, this algorithms a little slower, it's at 9000 milliseconds twice to see, we go up to something like 100 we're going to see a pretty large jump much larger number than the last time. You see it's almost to a million.
+
+That was not that. Okay, so
+
+we added went from 50 to 100, and went from 100 to
+
+between three and 400 milliseconds in most cases, we go to 1000 make a larger jump. We'll see now we've already jumped up into the 16 million range. So you can see it's jumping at a much higher level. As we increase the problem size and I'm not going to go as high as the last the first one went to 500,000. No problem. This one higher we go it's going to get slower and slower. So the last one we're looking at is one that is called exponential complexity, which means that increasing the problem size by one doubles the amount of work you have to do. So for every not doubling the whole problem, but for each item, you add each new element you add, it's going to double the work. So this is almost a worst. This is the second worst algorithm, or complexity could have. This is a horrible algorithm. But it's one that when you look at it, and think of it, you may think it's not horrible, because it seems like something great. So this right here, this code, you all just have you just wrote Fibonacci last week, right? This is the entire Fibonacci code. This solves Fibonacci. And those two lines of code. It's what's called a recursive function. So it means it's going to and don't worry about trying to figure it out. I just put a point out It's also bonacci. The one thing it doesn't do that yours does is if you tell it to go to 100, it gets the first hundred Fibonacci numbers, or your stop stop when you got to the biggest number under 100. But it's still it gets Fibonacci
+
+and it's said exponential complexity. So let's try it.
+
+I'm gonna put down the count, start with 10.
+
+So we got a 10. It comes back, pretty good time.
+
+Let's jump that up to 20.
+
+Game start too bad, still, actually sub second. So let's go to
+
+25, which is where most of you were working on your exercises in that range. So it's still good. So in this case, if you were working on something like you're working on last week, where you were most of your testing at the time Test Case level, I think they suggested 25, right? This is getting the first 25 numbers and you're only getting like the first seven or so. So that would have looked like this algorithm scales way beyond what they were asking me. Okay, great algorithm. Let's double the problem size now. So a 25. It's
+
+about 2 million nanoseconds. Let's go to 50. All right.
+
+So let's run it. Alright, so now it's off. So each by doubling the problem size, where each addition the problem size is doubling the work. So it's going to increase exponentially. So why this is working, because there's going to be a moment let's
+
+talk about
+
+software. Okay, let's talk about a few of the common bingo timings. And it's been serious, we can see both, it's still going. So what are some of the common ones is 01 or o one is constant time, we already looked at that it goes pretty much in a straight line across the bottom of the chart. While again, logarithmic, is crease means it's going to increase at a constant factor. This is considered to be, but it's not directly related to the problem size. It's still going. So the problem size as we increase the problem size, the complexity increases but it goes up constantly. In a pretty almost straight line. Linear, which is where we want would be doubling the problem size. So doubles to come clecs each time so this is iterating over a list. Mine arrhythmic, which is, oh, no login, this is just about this is the fastest and he search algorithm is known can perform. So it's doubles the problem size, increasing complexity by fixed size. So o of into this squared quadratic, and it's still going, I assure you it will finish. It's doubling the problem size multiplies the complexity by four. That's a loop within a loop. That's the fastest a loop and the loop can ever perform. O of n to the X is polynomial, it doubles the problem size is it multiplies on there, it's done. So if we remember that 25 it was about a million or a couple million and now where whatever number this is. The first time I ran this, I had to change it from in too long to keep track of that. So you see there's a that algorithm that looks good can perform pretty well in a small Small Scale doesn't scale well at all very quickly it goes out of control. So it'd be an auger that we probably wouldn't want to use that would be considered. Unless we had a case where we always we knew for sure we only would ever do the first 10 Fibonacci numbers, we wouldn't want to use this algorithm.
+
+So let's, so the last couple
+
+exponential, that's what we just saw with Fibonacci. And then there's factorial, which just means something is going really wrong. It's basically the line on the chart is just going straight up. I've never seen if I cannot find an example of a factorial algorithm, I've never seen one I would like to, I really want to see a factorial algorithm. But
+
+Brian,
+
+so yeah, I'm sure if
+
+something goes really wrong.
+
+Yeah. I almost guarantee at some point in my career, I build a factorial algorithm, but I didn't know how to identify it and I, I can't Yeah, so someday, I will find one.
+
+Alright, so
+
+those are the complexities. Again, you don't need to memorize those. There's many more. The takeaway here is that when you see something that looks like this, you can search for the chart to see how it fits on or in with between the compare it against other other algorithms that do the same thing. All right. So let's look at one more example. That will just run just to see. And that's in this other test case search algorithms. So in his test cases that run this, so a few core to go I found a new search algorithm I never heard of called
+
+counting sort.
+
+And I spent like a day, trying to figure it out obsessing over it. So I was laughing because I drove her crazy, I think all day and everyone else in the office because I wouldn't shut up about it. And then I got obsessed with sorting algorithms for a few days. So I compare them and it actually cannot really interesting for this lecture. So I'm going to run them, because those four common sorting algorithms with three and then the one that I found, so this is going to compare bubblesort, which you're going to encounter, if you haven't encountered already, you're going to come up very soon exercises, you they won't call it that, but you'll probably implement your sorting as bubble sort. bubble sort just means you start swapping things as you go down the list that it's going to compare Insertion Sort, which is another sort where it's really common and easy to kind of figure out. Most people come to it in their own. It's where you have two items you swap from, you find like the next biggest item and you swap them and keep going down with them just items side by side. Then there's counting sort which usually takes advantage With vintages of buckets, puts everything in the buckets, and then sorts those buckets, and then puts them back in place. There's a little more to it than that. But they're commented if you're really interested. And then there's merge sort, which is probably the most popular sort, which takes in divides into everything's divided into one, and then puts sorts those one or two sorts those things and then puts them back together recursively. So they all do the same thing. They're all going to sort the exact same array of data, which is similar to the one we just had. They're all sorting an array that has 100,000 random numbers in it, and there's duplicates in these numbers.
+
+So I'm gonna run the test.
+
+And they're all going to work at a fairly reasonable speed.
+
+So As we go bubblesort the first one that one is running now has a time complexity of polynomial.
+
+So it doesn't scale that great
+
+insertion sort is going to have
+
+next minute. Yeah, exponential. No.
+
+As I said, I don't have these memorized either.
+
+quadratic, quadratic speed, and bubblesort just completed Insertion Sort score now, counting sort has a speed I'm not sure that about but it's a can. k plus in very fast and merge sort has the fastest, one of the fastest you can get with sorting, and that's n log n. So as they complete bubblesort took 33 seconds. insertion sort of nine seconds, word sort in counting sort. Both were 25 And point one three seconds. So they're considerably faster at the same same speed. So the algorithm you pick to do something matters a lot. And this is this, what we're talking about is how you can choose choose. Alright. So why do you care about this? And why are we talking about it today is because of collections that were, we care about it now.
+
+So every collection has a
+
+has a complexity rating for a group of things for one for insert. Now they just insert by inserting items at the beginning of the collection, the end of the collection in the middle of the collection, for searching the collection for retrieving from the collection. So getting an item for the collection and from the removal from the begin from the beginning. In the end,
+
+one of these should be metal.
+
+And there's lots of charts. There's one that's linked here. There's lots of charts and vailable. So you don't need to memorize these, but you will want to know that there is a difference. So for instance, we talked about the different implementations of set. So high set links, high set and tree set. So for setting for add for contains, and getting, it does very well. Getting the next it also does fairly well. For how to set link tie set does about the same. It's not quite as fast to when we're actually no it is a little faster when we're actually trying to loop through it.
+
+But tree set
+
+isn't A lot slower for all of them. So the difference in timing, if we look at this is that three sets performing here, and high set and link a set of performing down here. actually pretty consistent. So if we're making the choice of which one to use, it actually matters which one we use. If we need that alphabetic numeric ordering, or the ordering by data set the natural ordering, then we probably want to use preset, but if we don't need it, we're paying what we pay for that using that with performance. Now, often we don't care. And we just pick the one. So we just pick the one we we want for ordering. And that's been most cases, but it's important to note there is a distinction. And for each of these, like we look at queues, here's all I mentioned yesterday, there's a bunch of queues just like their high sets. We were using link list Link lists being very fast for offer people and size. But if we look up here, link list is great for add, remove, but it's horrible for getting contains. But with Q, we don't do we only do get in contains.
+
+So for each of these there's a different
+
+different speeds. And this is sometimes when you're trying to find which collection to use or which implementation that becomes an important consideration. So this is the one thing you should know exists, that there is an added complexity ratings for everything that all these questions can do. And there's a difference. It makes a difference which one you choose, not here. When you're doing your exercises. You choose the one that does the work you want. It sorts the way you need. But that's a common interview question and not to tell for you to tell them what Are but just that that exists. And also it can be a problem when you're designing your own code in the future in larger things. Alright.
+
+So
+
+some clusion for, for complexity.
+
+So it's always, every time we talk about complexity, it's this idea how important performances. But we should never start with performance tuning. You should always find the solution first and then perform that solution once it's working. And that you'll find that in actual projects, optimizing first almost never works out because even people who've done it the same type of code multiple times or solved similar problems before, you almost always end up optimizing the wrong thing. And to have the problem solved and know how data is going to be flowing through Knowing how it's scaling and where the kind of the bottlenecks and slowdowns are, you can optimize. So don't try to don't start by thinking about, Oh, I should use this collection, or I should use this algorithm. Or I should use this code in this way or not do a for loop within a for loop. Because it's too slow. Don't start there. Instead, do whatever needs to be done to solve the problem, and then come back if it's damned if you do run into a problem that's too slow, and then look at why, at the end, what's the problem solved? That's just kind of a warning. Because that's, that's a common pitfall you see in teams is people trying to optimize and figure out the best way of doing something. I've seen people spend days trying to figure out the perfect way to code something. And then when they code it, they figured out that all the little optimizations they made, were all in the wrong place. And it performed horribly, because but if they would have waited to the end, I've done that myself. So I'm saying I know people that have done that, but the reality is, I've done that
+
+Trying not to.
+
+Because it's easy to do you want to sit there and thank god This has to be where the problem is going to be. You're going to be wrong. Just about every time. So,
+
+alright, so questions.
+
+That's a lot. I know it's kind of boring. Hopefully it's a little interesting. But, alright.
+
+So
+
+then
+
+let's look at what should be doing for exercises. Let's actually work through one or one of them or two of them.
+
+So let me close that and
+
+go down here.
+
+Let's see. I'm important I'm important yet some important
+
+Part Two,
+
+to the problems we'll be working with today are like you've been doing for the last few days. Last week or so now. This will be the last day of these word problems for a while. Tomorrow, this, the exercises are vastly different.
+
+Whether that's good or bad for you, as I know,
+
+individual for whether you like these or not. me find when I put it out, there it is. So they have test cases, I'm gonna run the test cases to start. They have their comments in the code that describe them. I would encourage you to use to read me this octave the last day you won't be able to rely on the readme you See some of these have errors. They have exceptions, null pointer exceptions, instead of just failed test cases, remind you get these errors here in the test cases, those are okay. And all pointer exception in the test case or another exception here was just a red X here is not a build error. So that won't cause any problems.
+
+Come out to
+
+the corn. So let's
+
+so for each of the exercises, they'll be working with mainly maps. I think there's might be one set. There's no exercises, no work about the algorithmic complexity stuff. It's all think it's all maps. Yeah, there's so there's one set problem and the rest are maps. So the same way, you'll want to start by figuring out what you're going to return. In this case, you're not always going to be returning like that. before you've been turning on lists or arrays, in this case you'd like to return you'd return a string, they're going to send you a string. And you're going to have to figure out what string to return. So we won't do this one since I told you how to do it. I told you the hard part of it. So for this, you would build, you know, a map of animals and herds, and then they're going to send you a string, and they want it to be case insensitive, and return the proper value for it. So if they send
+
+pigeon, you should return kit.
+
+If they say return pigeon, with all capital or lowercase or with random letters capitalized, you should still return cat you should find it. So
+
+let's find another one to do.
+
+I did get a comment that I always do to easier problems in class. So let's find something that's so Peter, these to rob Peter to pay Paul, or Rob Peter to pay Paul, Peter Paul part partnership. Remember in lecture we talked about how to do math. Those will help you help you with those. Those are particular problems that are very similar to that.
+
+See,
+
+and that was taught to you interesting. Count.
+
+Let's do that one because we could do a not perfect solution that takes advantage of set so we can review it with this one, I think, I think if I'm reading it, right, can array events, return a map and enter the key for each event with a VAT? Yeah. So we need a unique list. So we can do that. So
+
+What are we returning here?
+
+What do we need by the time we're done? With a
+
+map?
+
+Yeah, we need a map.
+
+So again, it's gonna be return type. return type can be these interfaces like we saw the flows only with map has the two data types. So let's do integer integer. And this is going to be our, this is our counts equals new. And they don't need any order. So we use hash map because it's the should be our default kind of map we use unless we have neither one of the other ones.
+
+And that's because of just what we just talked about. It's the fastest of them.
+
+To import it, I'm just gonna go and return it.
+
+So they have a list of integers.
+
+And I want to go through it and count how many integers? How many times that integer occurs in the list. There's a few ways I could do this. And the way I'm going to propose we do it is not the most efficient way to do it. But it does take advantage of said set. So if we wanted to do that, we wanted to find out what the unique values were in that list of that array of integers. What can we do?
+
+I think the first thing we need to do is find out what value we're going to be collecting. Right.
+
+Yes, so we need. So we need to know, if we're going to find how many times an integer appears in the array. The problem we're going to run into is if we're looping through it, and we have one, and we go through, and we count one, and then we go to 9963, then we get to one again. And we start back here. We're going to end up we could end up counting one, the wrong number of times that we can deal with that that's there's ways to deal with that. Probably more efficient ways to deal with that, then, I'm proposing. But proposing if we one thing we could do is we could get our list from the array. We could find out the number of unique values first, and then loop through the number of unique values, knowing that we're only going to ever check the list for at once. Now, this would actually be better performance because it wouldn't be a liberal Within a loop, it'll be two separate loops. Escape something away. But so how can we get the list of unique values?
+
+For each loop?
+
+Okay, what are we going to do in our for each loop?
+
+Add, so we're going to need to make a set. Okay? So, um, and then you're going to add each value in the array to the set, and then that would just not add it if it already existed.
+
+Yeah, that would work on port this. So we'll loop through our integer array, we'll add them all to the set, which is going to give us a unique set of all the unique items. So let's do before and it's an array so it's an eye and it's and then unique
+
+ants.ad
+
+Okay, so now we have a set of all the unique values in the array. So what can we do next?
+
+With our next problem to solve,
+
+create a value for each item in that set. So, or
+
+sorry, I took the question again, I'm sorry, it's okay.
+
+So let me
+
+put this here so we can see it all at one time.
+
+The server
+
+so, we need to find out how many times each of these unique values exist in the right now, right?
+
+And I mean, I'm just thinking, since we now have a set, could we make, could we start our starter map with our, with the set of numbers that we just pulled out, because we know that there's at least one with a value of one
+
+we could.
+
+So for what we have now, there's not
+
+an easy way to do that. So we'd have to loop through it. So but we're gonna have to loop through the set anyways, right? So what if we're looping through the set, we just create those as we go. So we don't have to do them twice. So we could so there are ways there are other ways that we could with some things we don't know. There are ways we could do what you're talking about. We could make the set become the the keys but
+
+not what we are today.
+
+So
+
+So we probably want to go through this list of unique integers, right? Because then then we could go look through, we could go through each for each of the unique integers, we could check the list to see how many times it's there. And we know we'll only check it then once for each number. Because it's unique in our list, right?
+
+That makes sense. No.
+
+Right? So
+
+I can try for
+
+it I
+
+and are unique.
+
+So this is an integer. And when I loop through it, I'm getting it as an AI. Why does that work?
+
+outside the scope of the for loop.
+
+Well, yeah, that's why I can name it I that's true. But why is it that the set contains integers? And I'm getting it as int? Why does that work? Those are different data types. We did
+
+boxing or auto wrapping.
+
+Yeah, yeah, you're both right it's it's auto boxing. So it's an auto unboxing it for me into the end that is kind of confusing but the name here but it's so now how could we loop through every integer in this list in this array?
+
+Do we need do we need the index?
+
+I guess I know I assume you know how to rate this point but I my question should be how what type of loops for us because we have to loop through now the and the array to see the count the numbers.
+
+Well, each.
+
+Yeah, for each would be a good choice. We don't. We don't Need the index? We don't need to change the array, we just need to go through every one in order.
+
+So you know, for each and what to say, and
+
+it's called like num,
+
+in essence.
+
+So now
+
+how would we find out if we had a match? What do we need?
+
+Well, we're going to need to compare the value to our known value, right?
+
+Yes. Because once from our set of unique numbers that we know is in the array. Now that one is the value we're looking at. So we're going to compare them i if i equals j.
+
+Now what's going to happen, not J.
+
+It was what I was really thinking about calling it before I
+
+say that would be too confusing.
+
+So now that we know that,
+
+what,
+
+what do I want to do with it?
+
+So I know I found one
+
+that the num plus one plus,
+
+I'm gonna do need to do num not to the num plus plus because I don't want to change that number. But I need to keep a count somewhere for each individual number. Count,
+
+I think you're gonna create a variable outside of the for loop that you're in but inside of the parent to that for loop, I don't know how to explain that.
+
+So you're right. Oh, but
+
+yeah, so on line 146 you're gonna move your for loop down. Then create a variable like, No,
+
+I don't think we need to do that. Now I think we already have the variable created, we need
+
+nothing, we have to create any more variables to do what we need to do.
+
+We're just going to do like counts dot add. And then like maybe I, the world's gonna numb.
+
+Yeah. So if we want to add it when counts dot add,
+
+I write, that's the number we're looking for. And then we might want to get if there's already counts there.
+
+It is i
+
+plus one.
+
+Not add put.
+
+So we're going to add it to our map, the number that we're looking for. So the unique number we know that uniques we know it's only there once and then we'll get whatever value is currently there and add one to it. That's going to work great as long as that values already in their map. So our next problem is what do we do if the value is not in the map? And part of that is how did we find out if the values in the map the keys in the map, not the value of the key?
+
+So how can we find out the keys in the map?
+
+It is excellent. There is something like this.
+
+Um, yeah.
+
+There's, there's a method that does exactly what
+
+we need, what it contains value or dot contains key. I can't remember exactly.
+
+Yeah, so actually, those are right. So we might want to do a if counts. dot contains key because we're looking for the key. So if it contains the key I,
+
+then what would we do?
+
+Well, if it contains the key if we want to do this, right, because it's there. So it's really the But does not contain the key. What do we do?
+
+In our mat with our map?
+
+We're gonna want to create the key.
+
+Yes,
+
+exactly. So it's gonna look almost the same only now it's gonna be I mean, what value should we put for starting out? One?
+
+Yeah, one. We know we there's one of them now.
+
+All right, so that actually think was all the problem. Let's find out cuz I'm
+
+often wrong.
+
+Click to twice. That's all right. Okay, so it did solve the problem. So to walk through again, what it's doing, actually, let me come in. So we're going to create
+
+map to return.
+
+And then
+
+we'll create a set
+
+to hope to get the unique
+
+numbers in the list
+
+and the numbers
+
+from the array to the set.
+
+So
+
+so we just have a unique have just, that's pretty awkward. So we have
+
+a list of only unique numbers and then we're going to loop through, loop through the unique numbers for each unique number, loop through the original record
+
+If the number is found,
+
+and the key is in the map,
+
+one,
+
+two, it's count
+
+else if it's not, otherwise, add the key with a starting value of one
+
+and then we'll return
+
+the current the map.
+
+So that's what it's doing. So let's I'm going to run in debug so we can walk through and see see it running.
+
+So I know this Sometimes of maths, it can be really hard to visualize what's going on with them. So we're going to create a map, it's going to be empty To start with, but it's going to take the two integers. Our int array looks like this. So it's a set of numbers. And now we're going to create our set. So now we're going to loop through this set of numbers in our set is going to end up being only a unique set of these numbers from the list. So as we add, we're going to add all these to the set. And remember, the property of set the useful property of it is we add things, we add the one we add the one again, it's just going to ignore it, we add the 99, we add the 99. Again, it's just going to ignore it. So we're going to add it so I'm going to put another breakpoint here so I can skip over that for and then we can see its result. So our result from this list is just the unique numbers 190 930-544-7763. And now we're going to loop through this set. So this list of numbers, and for each one of them, loop through this list and count how many numbers times is there. So we're going to loop through it and say, okay, for number one, there's one, two, and then 499, there's one, two, and so on through each of the numbers that we know are uniquely in the list. So for the first one, we're going to loop through, and it's a one and our counts is empty, right? So the first time so that's num is also once they're equal. So it found it now it's going to check the map counts and see if one is there as a key. And it's not going to be because it's empty. That's going to come back false. So then we're going to put the key, which is one because it's the first item in the list into the map. And we're going to set it starting count to one. So now our map looks like this. And that was we continue. numbers now 63, it's going to go through the entire array. Actually, we'll keep going another couple. And now we'll see that number is one again. So we're right here in the array. So this time, it's going to say does this contain key one, and it does, it's right here. So this is going to be true now. So this time it's going to get, it's going to put this key, it's going to get this value right here. So this number, it's going to add one to it, and that's what it's going to update it to. So we'll see it changed to two. So the counts change to two. And then it's going to repeat that for the next number in the unique list. So now X number is gonna be 99. So we'll see, as it goes through, eventually,
+
+that's gonna take forever.
+
+There you can see it found the first 99.
+
+And eventually, it's going to find the second 99 by doing the same thing. And then it's just going to continue for every item in the list. And then when it's done, we're going to have a map that as each of the unique numbers with the count as the value, that number time it appears in the list that returns and that's what the problem is looking for. Again, this is not the only way to solve this problem. There's, in fact, it's probably not, it's not the intuitive way to solve this problem.
+
+There are other ways to solve it.
+
+If you're so if you're looking at this thinking that's not how I would have done it. That's okay. Because you're right. If I was, if we wouldn't just talk about set, I probably wouldn't have done that either. It was more of just a pain because unique lists involved here. So but that's the idea, though of, you're going to create maps, you're going to work with maps, and then work together with the list and other things together is how each of these problems are going to be solved.
+
+So questions
+
+hope that was hope doing one of the more different or one of the ones in the medium to higher level of difficulty was more useful than the first two or three easy ones.
+
+I know we only get to do one before we run out of time usually then.
+
+Alright. So any other questions about today?
+
+Read more.
+
+There, okay. So it doesn't matter that they're they're
+
+just so Yeah, that's a that's a great question because it's so this red mark here in the test runner, that's fine. That's a failed test case. test cases are allowed to fail the code. So runs the test case, is that do what he expects the test case expects.
+
+However,
+
+let me create a great one. This is a great one.
+
+This is the file, which you can see appears here in the file. It appears here, it appears here to the code. There's a marker for it here. And there's also a marker for it here, all through the other packages in Project Explorer. So these are all for the same error. So there's a lot of markers around it for this error. That's not okay. Because this COC makes it so the project can't run. So basically, you can't be scored because when Rachelle checks it out. She runs scripts to check all these the first time and it's just going to come up and basically say the code doesn't work. So you can't verify the test cases. To see where it's at, so that's not okay. But the test cases are fine.
+
+And it's common to have failing test cases.
+
+And I would also ask, a lot of you keep having unused imports in your files. And it doesn't show you that read error when you have that, but it does break my tests. So I keep putting messages on the dashboard asking you to not have those unused imports in your file. You have to extend it to be able to see them. But it's hidden. It's very hidden issue. That it's, yeah, it will still look if I bring your proxy would, okay. So when they are the red X's on the projects here, I can still pull your project into Eclipse and run it. I mean, I can't, when I when I pull in your projects, when it has that red X, it brings that red X into my file and I can't run it. But if you have unused imports, I I can still run it in Eclipse. So I'm still be giving you guys credit. It's just as a favor to me to remove this unused
+
+Oh, I'll extend it. beyond that. It's not just a favor to a shell, it's the way code should be written. Having imports to things that may not be on the system that it's being run on, which is the problem that it causes for his would break production system. So I look at this not working code. So I think she's being really nice and generous by not counting it against you. But I'll show you a really easy way to fix it. You can just give him a habit of doing so one, you can see him by here, unused imports, me import something that's not used. I can think of Java x, get something from Java x activation. So they appear yellow. That means it's unused. You can see it says Dropbox has never used. So if it's a core library, that's not going to cause any problems. But if it's a non core library, which is what keeps getting employed By accident for Eclipse clips is doing this. So it's not. Yeah, so it's not something you're doing purposefully. It's something that's happening from the way Eclipse works in other IDs to it as well. So the yellow ones,
+
+show you the ones that are unused.
+
+You can see that when it's collapsed, you really can't see much about it in most files end up with a bunch of warnings all through it anyways, you can see even things that are completely valid. So there are easy to miss. expand this, you can see it but an even easier way to do it is no matter whether it's expanded or not. If you right click any place in the file,
+
+go to source
+
+organize imports.
+
+Or I think that shift command. Oh, but organized imports and it will clean them up. They'll clean them down. It'll remove anything, not you Also order these in appropriate use. So when you get into the workplace in your, before you go to code review, you should always do that too, because most places have rules around how they should be ordered. There actually are rules around it, but we don't do it. But if you just right click to source, right click source organized imports before you turn something in, you'll never have the problem.
+
+I can stop being nice about it, should I? So
+
+personally,
+
+no one's gonna like this, but I personally don't think you should be so nice about it. I would like to see not be as nice about it because it's bad practice.
+
+But I
+
+but I mean, you know about things like that. Michelle is really nice about it. So.
+
+Right, so any other questions?
+
+All right. Great. So um
+
+so that's all for today. So, thank you and good luck. And I don't think there's anything going on this afternoon.
+
+Remember, right.
+
+Make sure now there's not so good luck. Thank you.
+
+See you tomorrow, guys. I
+
+Transcribed by https://otter.ai

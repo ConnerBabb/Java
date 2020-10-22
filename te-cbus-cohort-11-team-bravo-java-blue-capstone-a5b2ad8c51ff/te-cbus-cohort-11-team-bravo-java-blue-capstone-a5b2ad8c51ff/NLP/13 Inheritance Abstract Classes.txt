@@ -1,0 +1,1366 @@
+Zoom
+https://techelevator.zoom.us/rec/share/yO9FIJj1p39IbInAr17Ydo4oMKbIeaa8hHAf-_ALj01iQ1Vi1IXdIZMbI0y28g?startTime=1590672389000
+https://drive.google.com/file/d/1t-ClvGTmoNkG_G9BT9y7p1tS4RSwp8g0/view?usp=sharing
+https://docs.google.com/presentation/d/1Gjkt2P9qWGhalFkt4M_MDMxurD1UpKagYtOoAi9HPV4/edit?usp=sharing
+
+So then Today we're going to be talking, we're going to continue talking about
+
+inheritance and polymorphism. We're going to revisit, actually kind of both of them but mainly inheritance through another idea called abstract classes, and then a couple of the concepts around passing some ways of controlling how someone uses our classes when they're in it when they're inheriting from us or
+
+extending them. So we're going to
+
+start with today by talking about final methods and final classes and what the problems are they solved.
+
+Then we're going to walk through
+
+abstract methods and classes are abstract. Yeah, nothing's in class. And looking at a problem they're gonna solve That's going to be a new way of doing inheritance, and also creating polymorphism. And then we're gonna look at two more access to more accesses are protected and default, they go along with public and private. So
+
+let's
+
+look at a problem.
+
+So for today, the lecture code.
+
+I have it up here. It's from today's lecture. Yeah, it looks familiar, because what I did is I copied yesterday's lecture code, the final version of it. And that's today's starting lecture code. So we're going to keep working with the same two pieces of lecture code, the farm code with the Old MacDonald song, and then the store that we wrote. We'll apply some stuff to it at the end. So if you remember, in the Old MacDonald lecture code, we ended it with creating singable unsellable so that we could both choose the SAP things in the farm singing or selling depending on the relationship that they had with whether they have the ability to sing or have the ability to be sold. And we had created a few different things like the dog and the craft box, and the sheep that we added to what was there and add them to these various kind of kind of categories.
+
+So let's add a
+
+new property.
+
+So I might want my farm animals to be able to sleep. that's reasonable. So
+
+we got a new boy into them,
+
+let's say
+
+private and boy in and is sleeping
+
+and we
+
+can maybe default to false
+
+And we'll change our constructor so that no no we will leave them set to false and we'll add a couple of methods.
+
+One wide one public void sleep,
+
+which will set his sleeping equal to true.
+
+Another public void wake
+
+the set is sleeping, you could have false
+
+and what we'll do with it is something similar to what you did put the dog in your exercises so I'm going to change sound to say if is sleeping
+
+well return
+
+sleeping sound
+
+otherwise return their way their regular sound
+
+And once we have that, let me get this code split split.
+
+So once we have that we can come back to our list, we're gonna have to change it a little because we can't use new like this and then call a method. So maybe we'll just pick one
+
+cow
+
+and move it up here and change it into Cow Cow equals new cow
+
+and
+
+replace it with a variable in the list that way we can modify the variable the cow and anytime we want, we can say cow sleep
+
+and run the
+
+song and if we find The cow on the list.
+
+It's because of sleeping sound because we've told it to sleep the same way if we in the other ones are awake. So we have the ability now to put the animals from the sub superclass, using the superclass, we could add, we had able to add the ability to make all the animals sleeper, awake, we don't have to do anything extra for them the same way. If we want to do the same thing for sheep
+
+they get it just has to be here. And
+
+variable because we have to be able to call a method on it and the shortcut we're using here doesn't allow us to do that. We could have changed the constructors to set it but
+
+it'd be a little
+
+actually be more working.
+
+Probably doesn't make a lot of sense.
+
+So all the animals now have been It's an implementing farm animal that is a farm animal. Now can be awake or asleep. Just for that easy change, we've changed our entire hierarchy, which is part of the main reasons we want to use like an inheritance. We have this we want to add a new ability, and by adding it to the superclass, we give that ability to everything in the hierarchy. So it makes it very easy way to add additional functionality or to change code. And now something breaks. If we have a bug in our sleeping. We have one place to fix it. We fix it here in the farm animal superclass, we fixed it for all the animals. But
+
+let's add a
+
+so something I will point out is down here.
+
+If we look at our singer in our syllables,
+
+they don't have the wake in the sleep method because they're looking at it in a different, a different view. So, we can set them in the initial list or if we could check here if they were a farm animal and put them you know, choose to make them all asleep or awake at that point in the loop using instance of, but let's look at another problem. Let's add another animal
+
+sweida new animal, implements farm animal.
+
+So let's add a new
+
+animal cat
+
+and we'll have it Extend,
+
+farm animal, same way
+
+extends.
+
+And that means we have to implement the constructor. So I'm gonna choose the fix to implement the constructor and work to give it
+
+sound.
+
+We'll get rid of here, since we're hard coding the values we want to send to the superclass constructor.
+
+And since farm animals it's an LED symbol, the cat automatically gets the single interface. So it has, it is a farm animal it is a single has a symbol.
+
+So if we come back here, we could create
+
+our cat, and I'm going to create a variable so we can add a method to it in a minute. So we'll say new cat
+
+And let's put it in our list. We'll put it right at the top there.
+
+So now we put in our singable list and we we play the
+
+song and the cats in the list. And we can say, you know, cat sleep
+
+and
+
+the cat sleep our cats asleep, so that's working. But
+
+the author of our,
+
+the cat
+
+decided that
+
+as they're implementing this, they want their own implementation of get sound. So right now it's in farm animal, it's public.
+
+And so they can add an override
+
+sound
+
+And as they create this, they don't understand the inner workings of argot sound method, or they just want to ignore it either way, so they
+
+provide their own implementation.
+
+So now, we're still calling the cat sleep.
+
+But when we run it,
+
+it's calling their override implementation. So it's now the broken our shared functionality, the functionality we're inherited from our superclass, which may be fine, maybe it might be okay that we want them to have
+
+the ability to
+
+override our methods. But it could be that some of our methods have functionality that we need to be part of it, we need it to work. So in this case, The Spice overwriting get sound, they've broken all the sleeping functionality we've added to the hierarchy. And so we can use the final attribute the final keyword, to modify our methods to tell them when to kind of give a hint to the little more than a hat to other developers who may be extending our code, how they should be using this class and what they can override. And we can do that by limiting what they can override. So when this method gets sound, if I add a final modifier
+
+and save it immediately cat gets an error.
+
+It gets an error here and it says that we can't override the final method from farm animal. So final creates an unraidable method. It creates a public method that we can give the Allow the user of our class to use the method to inherit the method, but prevent them from providing their own implementation, which allows us to keep control over some of our methods. So allows us to be able to say, we don't want this, this method should never be overwritten. because it provides some functionality that if you change it, generally we'll change the way our our class works, or break some other piece of it. In this case, changing overwriting get sound, and doing an improperly will break all the sleeping, sleeping awake functionality of the farm animal. So we met so now they can't compile the cat class with this override. And now they're forced to use the get sound method that's been provided for them. So the final keyword or method limits at two Not being able to be overwritten, it creates a final version of the method so to speak, so that nothing can nothing can change it. When we would use this is really just a matter of design, there is no hard and fast rule of when methods should be final. If it comes down to do we want this functionality to be something that somebody can extend. There's a lot of code out there that the author doesn't want to extend it that's really common in especially libraries that like paid libraries, to not allow for their functionality to be extended. So you can use the functionality but you can extend it and modify it using an override to make it your own or make it part of your own. It also in this case, it's another use of final Annabeth, it would be exactly this where overriding that method and doing it incorrectly can break the functionality under functionality in the class or the so the third reason is used is for A lot of classes, especially since you just been working on bank account classes in financial classes is often used for security. What are the risks there are some exploits of some memory exploits that we'll get into in great detail or any detail of basically creating a class that overrides that provides the same functionality overriding some of the methods with redirects and things like that built into them. So it prevents that type of behavior. So sometimes it's used for security. Those are very sophisticated. When we get to security later this cohort. See those are very sophisticated attacks. So if that's happening to us, we probably have bigger problems anyways. But it's sometimes used for that. And it's often a lot of places I've used. I've worked it's used as a hint, you put the final one, the important methods, and if somebody needs to override it, the developer goes and takes your final off, but it gives them a hint of this is important. Something here needs to be the way it is. So the final keywords stops bathysphere were written for those those various reasons, none of them as a hard and fast rule, you should always use it in this case it would have always be up to Canada it depends on how your codes meant to work. So, before we look at another way of using Final with classes,
+
+the questions on what questions you have about
+
+final methods okay.
+
+So let's look at a nother problem. So
+
+the
+
+so another author comes or the okay say After another class decide to add another class to our list of animals. But they don't extend the farm animal because what they want to do is add something more detail in the hierarchy. So instead, they build a class
+
+and they build a
+
+fuzzy cat class. Actually, what's the name of a real one? Tabby, I guess I'd be real cat. So they build a tabby cat class. And it's a type of cat it's a more specific type of cats. They want the is a relationship to be with cat they want it to be is a cat which makes sense. So they extend cat and they save it and they don't have any really anything else they want to do at this point. So they just leave it as is. I just want to be able to have it in the list.
+
+They come back to here, I create a new one.
+
+add it to this. And
+
+it's in the list but if a problem with the way it's appearing in the song. So the problem is that it gives the same responses as its superclass cat. And if we look at these two classes side by side that extends farm animal and farm animal has a constructor that takes the name and the sound that that animal is going to make, right. So when cat is created, it passes the name and the sound But it's going to make through the constructor to farm animal incorrectly, that correctly gets used in when it's called. But when the tabby cat subclass of cat is created, cat has a new argument constructor. So it doesn't need to create a constructor but even more more, so there is no way for Tommy cat to set these guys, because if he calls super and its constructor, it's calling this constructor which can take no arguments. And in farm animal, there's getters and for name and sound, but there is no setter.
+
+And there shouldn't be That's correct.
+
+So, extending cat, or any of the other farm animals for the way they've been built, with their no argument constructor means that we can create things in the hierarchy, we'll be forced to create things in the hierarchy that don't, don't make sense. They don't work the way we want them to. So as we extend multiple things off of cat or cow, or chicken, or any of the farm animals, they can't provide their own responses, they have to use some superclasses response. So building the tabby cat cast may make sense if we want to override some other functionality, but it's never going to be able to identify itself as a unique subclass. It's always going to be identify itself as its superclass.
+
+So we may not want that.
+
+So we can fix this problem.
+
+In a case where we have the functionality the way we need it the way we want it. And the problem sometimes is that not that we need to change the way farm animal and the or the subclasses are working But that maybe there should be no subclasses of cat or cow or chicken, maybe the final level should be there. And so by doing that, so we can do that by using the final keyword with a class.
+
+So on public class, we say final class.
+
+Let's save it and see if we get an error here on the tabby cat class. And we look at it says it cannot subclass the final class. So when making a class final, it makes it so it can't be extended, it can't be used as a superclass. Hence, it becomes the final thing and its hierarchy. It's the bottom of the hierarchy, and nothing else is going to be beneath it. So early choices to either not have the class final or to remove that
+
+subclass all together,
+
+which is what I'm going to do and what Go back here and remove it from
+
+song as well.
+
+So the final keyword on a class is similar to they're both similar in a method or class, it makes it the final thing that for inheritance, so the class can't be extended when it's final and that that cannot be overpronators. Final, what's the final version of it? Do you think of it like that? That gets the easiest way to think of final similar to when we use final with a variable when it became No, we set it once and then we can't set it at another time it becomes the final assignment.
+
+So
+
+again, with making classes final its design decision. There's no hard and fast rule of we should make a class final in this case or not. It becomes down to do we want somebody to be able to extend our class to add their own functionality or their own subclass version of it, or is to just be the bottom of the hierarchy. And again, it's used for a lot of the same reasons for a methods. It's used commonly in commercial libraries, so you can extend their classes and again, add your own functionality wrapped around theirs. It's used for security reasons. So nobody can extend the class and provide a different version, the hierarchy that they laid, can later take advantage of polymorphism to give their own malicious versions of and it's used when the class in this case, the class, extending it, it's going to break the hierarchy, because there's no way to provide some extra functionality. And it's completely the case for a developer to the side. This is the bottom of the hierarchy. This is as far as it can go. I'm developing in a way that for the way the functionality, it's needed the Can't get more specific than this. This is the bottom level. And final allows that to happen as well. So I'd say half the at least half of the teams I've worked on have required every class you write to be final. And what you did is you word them as final. And then if you needed to extend your class later or somebody else's class, you remove the final keyword, but it made it It made a conscious thought around it done two things, I made a conscious thought around. Why am I extending this and you had to go in actually explore their class before you did it, whether just use it in case there was things were missing. But it also meant that if you opened up somebody code, when you were working on a bug, and you saw that it wasn't final, that meant there was subclasses of it, and that it's possible that the overrides and those might give you behaviors that you're not expecting. So
+
+that's The final keyword on a class.
+
+So I guess everything was whatever there. Again, it's just added to either on the method just between the accessor in the data type. And the same for class is added before the class keywords.
+
+So questions on
+
+Final for class or, or for method before we
+
+do preference here and talk a little later. So, I don't see
+
+I don't see a reason, really why you would need to add that final to your classes here. So it's been, I would give it It probably about 5050 of the teams I've worked on. The other half didn't do that. And if I If I'm off by a little bit, I'm off by less than half to rather than more. But it is a thing in some place in the industry, but you don't need to do that here. In fact, unless they if you're asked to an exercise to make something final, which I don't know if you ever will be unless you're asked for that to happen, I would not make them final because if they did, you know, sometimes they build on things or the tests may
+
+do something with them that that breaks. So.
+
+Other questions?
+
+Does anybody else wish that like the movie franchise Final Destination would have embraced the power of the word final
+
+and not made more than anybody else? No. I like them
+
+like that. What All of them number three was the best. Okay what okay
+
+you should have used it for song, the song movies should have stopped at some point
+
+before the first one
+
+did it stop it too? So
+
+So other questions before we
+
+let's talk about abstract.
+
+So, an abstract class is another class type or another thing
+
+like an interface or a
+
+superclass. An abstract class is something a class that cannot be instantiated like an interface. But
+
+it can contain implementation code, like a subclass.
+
+So it exists solely for the purpose of inheritance and polymorphism. mainly for polymorphism to allow us to create relation to have code that forces somebody who's extending our class to implement particular methods. So one of the things that subclass doesn't do that an interface does is interface forces if you're going to have the is a or has a relationship with the interface that it is. You have to implement particular methods, like we talked about, when we're reviewing the the guy has a relationship this morning. In the quiz, if you implement the interface You have to implement particular methods you have to give an answer to how get perimeter works on the shape from the quiz today or get area works. That's what it means to implement that shape interface. But if you extend a subclass, there's no kind of general generic way of implementing that method. So since the quiz had shaped, that's actually a good example. And what we'll explore again later, is that why maybe getting the perimeter on all or almost all shapes except for circles, and ovals, is just a matter of the same type of calculation with the sides. Areas very different for every for multiple different types of shapes. So it can't just be implemented and inherited. So if you have a superclass, you can't force the subclasses to provide Their own versions of functionality. You can't force them to implement a particular method. You can with an interface, but then you can't inherit particular functionality. So an abstract class gives kind of the best of both, it allows us to, it can be extended like a superclass, which is also going to mean that there can only be one of them per class pinxton. One, it's going to be able to pass on implementation. So actual code like a superclass does. And this is going to provide methods signatures, like an interface that says, if you're going to extend this abstract class, you have to implement these particular methods. And with it, so we know we're going to be able to be a limitation is that on any class that we're using it from? We're going to be able to extend one class we can choose to extend a superclass or a single abstract class. Last, we can still implement all the interfaces we want. But we can only extend one class and abstract class counters that extension. So it's a little more limited than interface. It's limited like a superclass and not like an interface on how many we can have, you know, one, one parent, that's an abstract class. So
+
+they're,
+
+their whole purpose is to be this thing that we can't. We can't instantiate and it will create logic and structure that we can pass on to subclasses. And to get around the problem that we have, with two problems, we have one with interface, one with superclass, superclass problem being we can't force structure, we can't tell a developer you have to implement this particular method. So we can't guarantee that a datatype though the superclass has, get area, it with an interface we can't give shared. functionality. So if we have functionality that exists across the whole hierarchy, we have to cut and paste that between all the classes. So it's the solve those two problems. So
+
+if we look at
+
+abstract, if we go back to our farm animals one of the main reasons that we might use an abstract class, there's two, two main one or two big ones that we'll go through, but one of the reasons is here in farm animal. So
+
+I can currently do this
+
+school's new
+
+farm animal
+
+and I can give it a name
+
+So
+
+I'm not sure what satellite ball but make fun of
+
+and then I can add my and what's wrong with your electricity? Why you're stung sound like that
+
+like maybe like a home of some kind or, or if you're thinking like idea laughing or I guess, again, multiple things in our story or song.
+
+So your electricity things all the time.
+
+That works.
+
+But this is a problem. Does it make sense to have a general farm animal? Does it make sense to have a farm animal that is He's like this is their cot is kind of farm animal exists as a concept as a physical thing. The cow can exist, the cat can exist, the dog can exist, the sheep can exist, but farm animal is a abstract thought that we're applying to them. So it's common in code that we have something like this like a farm animal, we don't want the farm animal to be substantiated directly. Now, of course, I could build with these other classes with cow chicken. And she and the other animals they're controlling what they are. If I instantiate a cow, it says I'm a cow. But here I can make the farm animal be anything. Of course I can. The light bulb class in the extended from farm animal that would still work. But there's still more a little more control over what our farm animals and We have this abstract idea of a farm animal now that's becoming concrete. So we often want to stop that. And I do. I don't want this to be possible. So if I go to my class, my public class farm animal, I can make it abstract.
+
+So make it abstract.
+
+Let's save it. This now has an error. I can't do this anymore. I can't instantiate it.
+
+So remove that means I need to remove my variable here.
+
+So I no longer have my, I guess, weird sounding light bulb. And I run it and everything works. Everything works just like before, nothing's changed, because it's still a superclass, but now it's abstract. Now it can't be associated.
+
+So I've
+
+created this remove the ability to create the generic farm animal. Now we have to have a concrete representation of it. It doesn't actually stop me from doing what I did before and creating something that clearly isn't a farmer black or white Bob has a farm animal, I can do that. But I'm gonna have to put more thought into it than just instantiating a generic farm animal now.
+
+So
+
+in this case, I'm using abstract because not because I want to pass on I want to guarantee functionality. I'm still passing on the functionality like a superclass. I haven't changed that but I've made it so this generic superclass itself can't be stagnated. So I've limited to only the subclasses of it. I've identified that the farm animals an abstract idea in the cow and the sheep and each of those is a specific representation of it. Concrete representation of it.
+
+And those are the ones that need to be used.
+
+So that's one use of an abstract class. And you've noticed there's not much difference we can write make any class abstract just by adding the word abstract to it is loading. But once we do that we can only now implement or substantiate its subclasses.
+
+Which means that we can still do this
+
+farm animal
+
+A equals new
+
+sheep.
+
+That'll still work because it's a stanching. So we can still use it as a data type.
+
+We're stable whereas have to instantiate one of the concrete representations of it. And then because remember when we this is creating the concrete representation, the sheet class and then it's could be really up casting it to a farm animal, we can still represent it in upcast. But as we looked at before, that doesn't change the fact that this variable is going to contain a sheep. It's just being representatives a farm animal, we can still do that. Just like if we're no one a real farm, we could look at, you know, around and say, Look at all these farm animals. Or we could look at the cows and say, Look at the farm animals. And use represent them in a generic way. But it removes the ability for us to create that generic representation standard line without a concrete one.
+
+says that makes
+
+does that mean that like if we wanted to make it so that we could only have specific types of cats on our farm, we could make the cat class abstract. We could.
+
+Yes. So the solution to that other problem that we had to do that we would have to we could create a constructor for cat that was appropriate for them to split those sounds then make that abstract. And then we will have a generic cat owner, our farm, we would have to have specific ones. So, yeah, that's what it allows us to do to say we don't want a generic one of this thing existing. We don't want a generic cat running around. We only want specific types of cats. So we can make any class abstract by adding the abstract keyword, but with the caveat that once we do that, it becomes a superclass only, it can never be instantiated. So before we look at, move on to the next use, and kinda more, is there questions? or What questions do you have?
+
+So that a variable right there if you didn't, is a is that gonna come back as a sheet? It will,
+
+yes. So I'm sure let's run it. Right debug breakpoint there.
+
+Just do a couple things with the
+
+we have the A here in memory, we look at the data type that is represented as it is its shape.
+
+Let's continue, actually,
+
+because that is a really good
+
+spec over here so we can see the better.
+
+So internally, it's always going to be a sheep because that's what it's substantiated as right now we're using as a farm animal. So we have this list of singable. Let's look at it as well, because I think that goes along with the same question. So we go here, we have our list of symbols. If you look at what's inside of them, their actual data types is the cat the crap music box, the dog, the tractor, the sheep, the cow and chicken. That hasn't changed. But each one's going to be putting this variable singable so they're being cast into them something they have in something higher in the hierarchy or something in this case that they're not. They're in a different hierarchy with their, really their interface. So now, here the first one is going to be the cat and it's being treated as a syllable. So we can use get name and get sound, but it's still a cat that has not changed the next time through when the same variable, that's still a data type singable is going to have the craft music box. It is a craft music box, but it's treating it as a singable.
+
+So when we're casting things,
+
+which is what's going on here, we're standing in the middle of casting it
+
+is
+
+the Drina type, the actual internal type of the object will always Be the type that was created as the type was instantiated as, or really the type is defined us. It's never going to change. So the sheep always be a sheep no matter whether we look at it as a syllable or syllable or farm animal. It's still internally a sheep. And that's, it's mimicking the way we you know, treat real, real things. Right. So we had the same idea on you know, physical farm, and we were looking at a sheep. And we said, look at the, that's a farm animal. Or we said it's going to make a sound, or we set so it can make a sound so it's suitable for your phrase that we look for the sheep said it that's a good singer. And we looked at the sheep and said, I'm, that's an item I'm going to sell. In all three cases. I've called it a farm animal. I've called it a singer and I've called it an item It's still a sheep. It's never that's never changed. It all I've changed is the way I'm representing it at the moment how I'm thinking about it and using it at the moment. And that's what's going on with casting into things in the hierarchy. Does that make sense?
+
+Yeah, that that was a great explanation. Thank you.
+
+So other questions before we move on?
+
+Okay, so the other use we'd have for abstract classes would be, are with abstract, it's not just the class but also methods inside of them. So in an abstract class, we can provide
+
+methods signatures, just like we do, in an interface, that
+
+the subclass has to
+
+override, they have to give an implementation to. So that's right code for just like we do where they're implementing interface. If they extend our subclass, they have to give
+
+some code that does something around that method.
+
+So we write it, like we do an interface, we write the method signature, that should have a semicolon at the end. And unlike an interface, we do have to give it an accessor. Because we're going to learn two new accessors today. And we can write abstract methods for those well, so we'll have three of them we can choose from, but most of them are going to be public. But we have to be explicit. And then we add the word abstract. So really, what it comes down to we start writing the method in the class. We don't provide the block of code, and we add the word abstract to it. So it's just like we've added other methods. superclass only now with the word abstract and just a semicolon inside of a block of code. And then in the, whoever extends our class, they're going to have to provide the block of code. So, whatever method This is, whatever class this is, whoever extends that abstract class is going to have to create a method, a public method that returns an integer called do science that takes an x and y is an integer in their class to extend it, otherwise, they'll get a compile error and they won't be able to use use it.
+
+So let's go back and look at how we might use that with our farm animal.
+
+So a common
+
+so once we have this abstract class, this idea
+
+we have singable and that's allowing us to treat things in a very different way so we can treat as a symbol or farm animal. And we had that separated because we wanted the tractor to sing. And things that were not farming almost like the music box to sing. But
+
+and we have functionality that we're
+
+we're passing on that we're using through inheritance to pass from the this abstract class farm animal to each of the subclasses. So we're passing on, get name, get sound, sleep, the wake, so they're inheriting those methods. So we're providing implementation here and sharing it, we don't have to use it. We don't have to change the farm animals to just make that work as we've already seen. But what if we had something that we wanted all the farm animals to do, but they might all do differently? Like, we want the ability for all farm animals to be able to eat Now, of course, how we're going to code farm animals to eat. That's not something we probably could do today. But we can create the method and create it kind of mimic it. So what if we had that functionality that we wanted to pass on, we wanted to force them to do. So to do that, we could create that as an abstract method method. And what we're saying then with it is, if you're going to be a farm animal, you have to have an eat method. But we don't have a generic way of doing that. So you have to, you have to give some implementation of it. So we can add it as public abstract. And we'll just return a string from our eat method. That way we can have the difference in and eat and I just already messed it up, and whatever, semi colon. So now let's save this. Let me get back to the Java view. We can see all The farm animals now have an error. They have an error because they're implemented. They're extending an abstract class farm animal that has this abstract method eat on it. And they need to provide implementation.
+
+So if we go,
+
+let's go to cat, we can see it has the same helper method that we see with interfaces. The type cat must implement the inherited abstract method, farm animal, daddy. If we add the implement one method, it looks just like we do with an interface. So it's the same idea. It allows us to force a class to give to create implementation for a method that we want to guarantee it has. So our abstract method is like the same thing as an interface. It's allowing us to create a contract to say if you're going to be this data type. If you're going to be a farm animal, you have to have an eat method. We guarantee you'll have one
+
+What you do with it is up to you. So for today
+
+we could just return a string. So cat
+
+biting
+
+and for each of them we have to provide the same provide.
+
+So public string, eat,
+
+turn,
+
+Guess how you would spell it?
+
+And
+
+wait a minute we can put them in a list and see why we would
+
+this
+
+With more farm animals than I realized we had,
+
+so a dog might. Oh.
+
+So it ends up what we're actually coding ends up pretty similar to the get sound because obviously, we'd want he would have more complicated
+
+some type of more complicated code.
+
+You have no idea how she puts out eating so
+
+maybe.
+
+And I have an extra bracket here. So now our farm animals all have an eat That's all you need to them that
+
+they
+
+are forced implement to be a farm animal.
+
+So the next thing we'd want to do is we've had
+
+we've had to miss syllables and syllables.
+
+But I want to change out a little more to to that using with this abstract. But we got to take a break, and we'll come back and add it to this code is running so we'll come back at 1027 and continue
+
+One question questions come up for you during the break all right.
+
+So let's look at
+
+this eating method. Now in the context of However using it also will go back to that instance of operator we really hadn't. We've looked at it, but we'll use it before. So we can use it along with this
+
+new abstract method. So in our list here
+
+we can maybe add another segment that maybe does something when the farm animal, when is a farm animal, we have other things in our syllabus besides farm animals. So we have, you know, the crap music box, the tractor, they're not farm animals, so they're not going to eat method. That's our abstract method we've added to the farm animal class, the abstract farm animal class. So if we wanted to do something specific, we want to change maybe the song for the front variables. We could do that we can change To see if the singer, that's a singer is also a type farm animal if we can cast it to that other type. Because right now, if we look at our singer,
+
+we don't have access to that eat method.
+
+So first to cast before we cast it, if we don't know what the type is, often we will often will have a list where we put everything in there. And we know exactly what the types are. So we know what we can cast and what we can't. But sometimes we won't. This is especially true like in your exercises, where your past lists of things right now, I will say I don't think there's any exercises now or throughout the court where you're required. You need instance of tepat to make them work. So, but I'm using as an example. So when you get your arrays, taken the array exercises The first time you you had the arrays, you didn't know what the values are right now they're passing you and list of something you don't know what's in there. It's the Same idea, someone's past you a list of singers of singable, you know that everything there has the singer interface. But you might also know that it's possible that some of the things in the singer interface might be farm animals.
+
+So we can use instance of, we can say, singer
+
+instance of farm animal.
+
+And if that's true,
+
+then we know that we can safely cast it to a farm animal. One place that we will see instance of being used and we will use it in the court Gordon for a few times, meaning class will be when we start working a little more with object equality. And when we have to solve problems around that, well, we'll see that that's established solve the problem that we had when we added
+
+overrode dot equals for the first time
+
+with our rectangle, we couldn't Check if it was a rectangle, we just had to hope it was before we cast it and we talked about that would cause an error if it wasn't. So checking if it was an instance of a rectangle will be one way of verifying that we can actually cast a rectangle. So we know this if this is true singer instance of far man will returns true that means we know that we can cast whatever is inside this particular singer at the time, whatever that particular object is, we know that it can be represented as a farm animal, that it's part of that hierarchy, which means that we can now cast it farm animal animal equals and we can't cast it explicitly because this is down casting. We're going from a generic type to something or, actually this is more side casting, but it's so tied down casting, we're going from one specific type to another type that's just a specific. In this case, they're not even really, truly part of the same hierarchy. So, when we're doing this and only time since it's not up casting something that we guaranteed that it can fit, because the tractor in the music box wouldn't fit. We have to be explicit. So we'll just say farm animal. And now, if we look at animal, we have access to our eat method. That's part of the farmer but not part of the center method.
+
+So we might want to say something like in this case,
+
+was a print line.
+
+The and
+
+us
+
+animal dot eat
+
+some Chow
+
+and we run it
+
+And now we see that the farm animals are all using that abstract method to give their specific
+
+version of that specific imitation of eat.
+
+The things that are not an animal like the music box does not.
+
+And the tractor does not. So each one though is using
+
+in polymorphism to give the particular answer. So we've done that now with abstraction are the abstract class. And this ability is the main purpose of an abstract class. So let's look at some a couple other things about them. And then the big question about abstract classes. When do you use one? I think, for most, I find that most people, not just students, but just in general, the challenge Have abstract classes is not really how to do them. The syntax is fairly easy. You add word abstract a couple places, and they were just like superclasses interface something already familiar with, but it's when to use them. But there's one more property we want to talk about. That's the transitivity of an abstract, which we already seen with interfaces. But now that we have classes that can extend classes that can extend classes and pass on functionality, there's a slight difference. And that's that an abstract class can extend an abstract class. So we could have another like we created brought up a cat abstract that extends the abstract farm animal. And then, finally, a concrete class that extends from that or an implementation class extends from that. So when since we can have an abstract class extending an abstract class It creates some interesting, it creates transitivity of a different type of transitivity of the abstract methods. So we know with a interface or a superclass, things are passed on through each of the all the children. So we add an interface to farm animal, all the farm animals and everything in that hierarchy, you know, gets the singer singable interface
+
+with an abstract class.
+
+What is going to happen is now that we can have an abstract class extending an abstract class, we have the these abstract methods that are getting passed on, and they're getting inherited by classes that themselves are abstract. So they don't necessarily have to provide an implementation. So the role is that abstract methods get passed on through every class that they send it If what is extending it is an abstract class itself, it doesn't have to implement the methods, it can kind of let them pass on to the next class in the hierarchy, because you can't implement it. So something has to be extending it. And so by the time or they can choose to implement it, that's their choice. So by the time it gets to the final, the concrete class, the implementation class, the one we can actually extend, it's not abstract that extends it in the hierarchy. That class by that point, all the methods all the abstract methods have to be overridden with with some kind of code, they have to have functionality. So where that comes from can come any place along if there's a chain of abstract classes, any place in that chain. Now having a chain of abstract classes is pretty, pretty rare. Not super rare, but it's not something you'll see a lot. An example actually, of having an abstract cat class so we can have specific types of cats on the farm. It would be a great example when that could happen.
+
+So if we look at it here,
+
+if we had an abstract class mammal and it had three abstract methods eat, bite and move, so anything that extends mammal is going to have to implement eat, bite and move. And then we have an abstract class feed line that extends off mammal. And it chooses to provide functionality for move. So it implements move, it doesn't do anything about bite or eat. And it adds another abstract class call it and then we have a class housecat that extends feline but this isn't an abstract class. This is a implementation class a concrete class.
+
+So it has to provide
+
+a functionality for bite and eat because these two abstract classes were transitively pass through fee line to it as the to the abstracts It also has to provide functionality for claw because that was an abstract method added by its direct superclass feline. It's going to inherit the functionality of move from feline because felines provided functionality. So once it's been overriding the functionality starts being inherited down the line, why it's abstract, it just has to be implemented by the time that there's finally a implementation class. So I think the easiest way to think of the role because it's is that if you have abstract classes, the only class that has to implement an abstract method is one that you can instantiate. So a non abstract class. So if there's a chain of abstract classes, the only they just have to be implemented by the time that final class gets is created, the one that can be instantiated and it will pass through otherwise until it gets there. So it makes sense for questions about that.
+
+Yeah, so
+
+I, so the actual instantiated object has to utilize the abstract methods.
+
+Yes, it has to provide code for the abstract methods.
+
+So what is happening with move then? Why doesn't that make it down to the house cat
+
+what it does, but they don't have to override it, they inherit it. So just like we do from a superclass where we have like for our farm animals, we have this the gets out sound method, and we don't have to write it in the cow class. The chicken class we had heard it, it's because it was in the farm animal. So since they provided an override here with code, it gets inherited. But for the ones that are still abstract, they have to be
+
+there for people provide code for on their own.
+
+Okay, that makes sense. So
+
+they can Choose to override move they wanted
+
+give it a didn't have the final keyword.
+
+They get not a
+
+particular circumstance or run into a lot. But when working with abstract classes important to know, I guess the role of an abstract class can transitively pass on things from its abstract super classes. And the reason you want to know it is sometimes you were if you extend an abstract class, you'll find that there's methods that you have to implement that you didn't directly see in the class because they've inherited them themselves. So happens more when you're working with frameworks or libraries or other code, a commercial code or open source code that you're trying to use. Though, they'll say extend this class to do this, you extend it and you'd say, oh, there's two methods here. And there's actually 20 you have to implement We weren't other questions on on that. I
+
+guess for abstract class mammal, did you have to make the methods abstract?
+
+No. If there was a if eat, for instance would not have been an abstract method, then it would have been inherited by feline and then passed on inherited by housecat implementation of it. They would not have to override it, they would just inherit the functionality.
+
+So Other questions?
+
+So, to review, there's, we'd have three ways of doing
+
+polymorphism.
+
+And some would argue inheritance but there's an argument about whether interfaces are inheritance or not. So when I say polymorphism, we have an interface which provides method signatures without implementation. So there they create the contract of what what their subclass specific implementation has to be. So if you have them at the interface, you have to have these particular methods and you have to give code to them. And interfaces can represent either the has a word is a relationship, something that a class is or the object is or something it can do. We have a superclass, we started looking at initially this week that provides a default implementation that can be inherited by a subclass, it can provide functionality they can pass on. So it can guarantee a default implementation, but it can't guarantee that the subclass will have a specific implementation, that it's it can't make it override a method and provide code. So it has a limitation of the interface has a limitation that we can guaranteed create a contract with Has the class has to create on its own or create to be this datatype. But it can't pass on functionality. superclass can pass on functionality. So it's creates more reusability. But it has a limitation, it can't force the subclasses to override a particular class. So in our farmina example, when before was an abstract class, we could there was no way for it to force
+
+the cow to implement eat.
+
+So, super super classes only represent is a relationship something that is there's something that they are. So a car is a vehicle. An abstract class allows for both, it allows for the default implementation to be inherited so as to give code that we can reuse and pass on. It also allows us to say, if you're going to be this data type, you have to provide functionality for these methods, yeah, to provide code that makes them work. So we can represent. And it should only represent an is a relationship as well, because it is a superclass to, it's just a superclass with these extra kind of extra interface like abilities. So the big question between them is, when do we use each? And there's no hard and fast answer there, it becomes down to a kind of choice of how you want your code to be used.
+
+So there's really two reasons.
+
+We might choose to use an abstract class two major reasons. The first is to prevent a superclass from instantiated. So there's lots of cases we have a class that we it's abstract because it's an abstract concept like our we talked about with a farm animal, we don't want someone to be able to create A generic farm animal, it doesn't make sense. Or maybe it's not functional, ours was kind of so functional. But if it was something more than a farm animal that we could just call a light bulb, if it was something like a connection to a website, and it was a generic connection, and without having, you know, the address, or information about what website is going to connect to present, then it doesn't make sense to have then we might make it abstract. So the generic idea of that connection to a website does can't exist, because it's not usable. So it's commonly used to make it so we can't instantiate a superclass.
+
+So the second use is when we have a need for both
+
+superclass functionality and interface functionality for a particular thing in the hierarchy. And this is kind of this was more a tricky word because It has it should be that to be it is a relationship with this thing that it has to have some functionality that we need to pass on. Or we want to pass on because it's shared and some functionality that has to exist. But we can't make a generic representation for hierarchy. So some not shared implementation. And there's actually not a lot of cases of that. That's is probably the more less common time to use it. But there are a look at a couple we'll look at one and we kind of see what all right with a farm animal eat.
+
+So and the reason is, some people would argue that
+
+some of the things we might say that it means to be something maybe isn't true. Like for instance, if we had a bird class If we had a bird class in, we would say that one of the things we might want to have is the concept of being flyable. But of course, there are birds that are not flyable. So having an abstract class that has an implement how to fly for the bird class, even though it may, the surface makes sense. Because even the birds not flyable all attempt to be flyable in their own way.
+
+That
+
+probably actually doesn't make sense because flyable is not something that's specific to just being a bird. It's something no helicopter can do to. So it probably makes sense to be a bird class that's maybe not abstract as a superclass with an interface of flyable.
+
+So there's no
+
+there's nothing you can do with abstract class.
+
+That's to provide as far as providing inherited functionality and impact in enforcing implementation of particular overrides, they can't be done just with a superclass and set of interfaces. But sometimes it makes more sense to have it kind of grouped together to really say, you know, this, these things have to be together. So our farm animal has to be able to eat because all farm animals can eat. So those are the two reasons that abstract classes are generally used. You actually won't find a lot of them there. There are really common when we get to they're going to be more common. We're going to see a lot more when we get to internet type stuff because they're used heavily for database and actually for database is something that we won't even notice the difference between using them in interfaces. We write code write code, because they're used commonly and things like connections to databases, connections to things on the internet in a lot There's tons of resources. But outside of that, you probably won't have a lot of need to actually use them or write one of your own. But when you do, they're really useful. So let's look at I'm going to go through an example of when you might choose each for the same type of problem. I'm gonna find out I see this text editor so I can
+
+kind of draw as we go
+
+get my mouse to get my right screen.
+
+I'm gonna use this kind of like just like a whiteboard with the
+
+so let's say I'm working on a problem.
+
+And, on the problem I'm want to create a class that represents a polygon
+
+So polygon class I'm starting with.
+
+And so what I want to actually build the represent is all shapes. But I don't want to worry about curves. So I'm not going to worry about circles or ovals. I want to represent all shapes that have straight lines for sides. So polygons and
+
+so I decided to create a class.
+
+We'll call it polygon.
+
+And I want to use it as kind of as a superclass to
+
+some polygons.
+
+So, for my use for my need of this class, I have need of one, one real method.
+
+All I'm going to use it for
+
+is I need the perimeters. So I need get perimeter
+
+And then I expand it out. And I make a few different
+
+classes subclasses of it. So I bet a subclass and I build a
+
+rectangle, and I build maybe a triangle.
+
+And a C, I'll build
+
+a hexagon.
+
+That's probably enough. I can build some other ones kind of added dodecahedron or anything I want in there. But I'll stop there. So we have a few different shapes. I wanted to be able to represent all the sides, all these things. So the thing about each of these shapes is that the get parameter calculations actually the same. It's just a matter of know the addition to some of the sides. So Make this
+
+I decide to make this a
+
+interface or no sorry, a superclass. So I create a superclass.
+
+And I implement get permanent, and then it gets inherited by each of these.
+
+So as I wrote these three classes, I don't have to write any extra code. I create the grid perimeter, I create my three classes, I don't do anything else more, I just extend that class and I have fully working code. The only thing that might be different is I'll pass in the number of sides that have in some information about the dimensions their sides to my polygon. So similar to our farm animal, when we started yesterday with it. So superclass makes sense here. The functionality I need, can be written once it can be then shared. I don't have to
+
+rewrite any code
+
+So then I get a new requirement. My requirements changed and I'm using this and I realized that what I actually needed was not permanent. I misunderstood what I was doing. So what I actually needed was
+
+edit this after you credit interesting
+
+ones.
+
+What I actually did was get area so
+
+some kind of back to the starting point.
+
+I started
+
+Okay,
+
+back to my starting point and I have good area Gary has is a completely different set of requirements.
+
+So
+
+with get area it's not the same no calculation, the way I'm going to calculate area of a rectangle versus a triangle versus a hexagon versus a dodecahedron is gonna be very different. So I can't just write one implementation of get area and have it work across all my subclasses. So instead, what I needed was force each of these to have their own get area.
+
+So I need
+
+this one to have get area
+
+of its own.
+
+Can I need the triangle to have good area
+
+Can't move them either, okay. And I need my hexagon to have good area.
+
+So I need to force them to have it.
+
+But they have to have it because my polygons have to have good area. So, this won't work as a superclass anymore. So they make a superclass, it's going to work, but I can't force them to pray get area, and I have nothing really I can create here. For get area, my superclass that makes sense. So I'm gonna have to kind of take it on memory to make sure I always do it right. Or I can turn this into an interface polygon interface, which now is going to force them to use get area. So I switch this now out to the interface.
+
+And now, for each of these, it's no longer
+
+passing on get area but now it's telling them that to be this polygon
+
+they have to
+
+know they have to advocate area method. So it makes sense to be an interface. Everything I have is about being having this get area method and each one of those has to be a unique implementation. So, as I continue, as I'm continuing to use my polygons I realized I made yet another mistake I got rid of get perimeter and I shouldn't have I really did need get. So I'm back to our starting point again, with a with a change in requirement.
+
+I have this
+
+And
+
+I need this one to be something they create. And I have this one, I can go back to my default implementation. So
+
+I decided to go with back to a superclass.
+
+So this goes back to being a superclass.
+
+And now I
+
+inherit good perimeter in each of these, and I implement get area and everything's going great.
+
+So it's working.
+
+But in the future, I come back to my code, and I go to create another
+
+polygon. And we make it the
+
+end and when I create it, I end up creating. Let's see, I'll create a
+
+She has to be drawing this successfully is almost zero, but okay, the octagon, maybe pretend that's an octagon. So I create an octagon. And I extend my class. And that's going well. So I extend my class. And everything's going great. And I put in my code and now it's a polygon. And I go to call get area on it. It's not there. So now I've broken it's broken. So my, my project no longer works because my octagon the list is breaking everything. Because I forgot to I didn't it wasn't enforced to get good area.
+
+So I
+
+separated out. And I think well, this still can work. I can still keep my superclass. I just need to
+
+add something
+
+So I come over here, and I add area
+
+that has good area on it.
+
+And this is the interface.
+
+So now I have an interface here.
+
+Let's get a different
+
+mix up, make it stand out. So I have an interface here.
+
+And this is working great. I apply it to all these they're Arial and they're a polygon. I get rid of about here. And that's working great. And that'll work. That'll completely continue working
+
+quite well.
+
+It's kind of a mess. Kind of a lot of interconnected two interconnected things. But I come along again and I go to the future, if I add another shape. And
+
+I add,
+
+I finally get around to adding my dodecahedron, which I'm not going to try to draw. So this is the big, something like that, not my dodecahedron. And I, it extends polygon, which is great. But now I've forgotten to implement arable which again, breaks my code. So this this case, area is a feature of what it means to be a polygon. It's not something that it may be able to do. It's something it has to be able to do. There's no polygon that exists. I'm going to how many I had, what sizes, they get fat.
+
+I
+
+can't don't want area to be there. It doesn't make sense to be is a polygon and not have area. That's part of what it means to be a polygon. So, it would make more sense.
+
+To return I get area here
+
+and make get rid of this big a superclass get rid of this interface.
+
+And that's it.
+
+And then go back to this but make
+
+this abstract
+
+to make this an abstract class
+
+and make good error here. This method
+
+is reset.
+
+Get Pregnant back
+
+And then I make get very abstract
+
+and get kind of the best of both worlds. So now each of my polygons have to implement get area to be a polygon. When I extend the polygon abstract, I enforced now I get perimeter passed on to it but I'm forced to get get area there's no circumstance where I can become a polygon or have a class be a polygon and not have both those cases, be forced to create get area before CS polygon. So in this case, I would make polygon abstract. And then the farther goes fits the further role of it doesn't make sense to have a generic polygon that's a cause that is a not a concrete idea. It does not saying that when you represent a cotton on concrete idea and code that you have to make it abstract That's not necessarily the case. In fact, most of the time, while many non concrete ideas are presented in code that are not abstract, but it makes sense in this case to to make it I don't want to ever make a generic polygon would probably break my functionality as much as
+
+it might, octagon or dodecahedron did when I
+
+added it without the interface without good area. So this case makes us have abstract. So that's kind of what we go through to decide whether you use an abstract or not. So questions on format.
+
+What would be what would happen if you kept the polygon but
+
+it wasn't abstract, but get area is still abstract,
+
+what would be the difference there? So it wouldn't allow good area to be abstract in a concrete class, only an abstract class might have abstract methods.
+
+Okay, so.
+
+So Other questions?
+
+Okay. So let me
+
+Alright, so that's what we have so.
+
+So in general what we looked at Are there any questions on the concept of abstract methods the way we use them, why we use them at this point before we move on to access modifiers
+
+All right. So.
+
+So let's look at access modifiers. And right in seeing the chat, that's why that type of scoring is why I did so poorly in school.
+
+So let's look at access modifiers. Again. So we've seen two of them. You said private, private, and public, but there's two more. So private is going to give us make it accessible. Only in that class. It can be applied to methods. error can be applied to member variables. So we can't have a private class that doesn't make sense. A class is meant to be used externally. So
+
+we saw public which is
+
+accessible everywhere, so public, everyone can use it. And there's two others. There's protected These two you won't use as much but protected is accessible in the class, or in any subclass inheritance tree. So, protected allows us to form something similar to a private, but it's through the entire hierarchy, not just for a single class.
+
+So we had a protected method in
+
+our farm animal.
+
+It can be used in cow or chicken or any of those can be inherited by them and used by them. But it wouldn't be available from outside. So to somebody using our farm animal or cow or chicken, they wouldn't be able to call that class. Now in this can be applied to methods and member variables as well. And in Java protected has another thing it does. That's leftover from Java. One. And it's been discussed for years to be removed, but it's still there. And that's that, protected also makes it available to everything in the same package. But that usage is actually just discouraged to make something available on the same package. But part of the reason that's still there is that the only thing that should be in your package is things in your hierarchy. If something if you have a hierarchy of things, they should be in the same package, and anything not in that hierarchy belongs in probably another package. And that's part of that idea that kind of mentioned call cohesion of having kind of modules of code to go together. So part of the reason that remains
+
+but the reason it's discouraged is because it kind of breaks
+
+the idea of
+
+protected of what it's how it's supposed to work.
+
+There's another access modifier default. And that's what happens when you don't give an access modifier. So if we write a method, like here, if I write a method and I Do or variable. So I can add a new variable and at class level, an X or a method,
+
+void, do something, I have to make it static because it's inside. Now I don't void
+
+do something,
+
+then these get this modifier called default. And what default is
+
+is that it
+
+is accessible to any class or subclass in the same package. And that's an important difference because it sounds almost the same as protected, but it's not. I'm looking at kind of a graphical representation of that second, and this can be applied again to members of member variables. And it's the use of default we're going to talk about is actually heavily discouraged. You'll see it using frameworks and Libraries a lot, but it's heavily discouraged in most code because it's not explicit, it's makes it harder to read. And it also doesn't go along with the idea of what we want to accomplish with things like capsulation. So let's look at visually what these mean, because private and public are pretty easy. Protected by itself, I think fairly calm, easy, but when you get default in the mix with protected, it's gonna be confusing. And I wouldn't spend too much time trying to memorize all these you won't use protected that much. You won't see default that much. But it's more of knowing that if there is no access modifier, there really is one gets applied. And if you need to have kind of a private value through your hierarchy or function on your hierarchy, it's not available outside that it's available, they protected. So again, having two packages with class ABS Seeing it if Class A had a private method, because so private can be applied to methods, constructors, properties or inner classes, but don't worry about that. I should have wrote that on there. And this document we're looking at available in the cheat sheet for right now. So, so privates available if there was a private method, constructor or property here, it'd be available here. That's the only place private cannot be applied to classes or interfaces. So can only be accessed in the class that's created in nothing else. So compared to, so these kind of expand whether they're available, the next Least Restrictive is default. So default would give it access to everything in this pack in this package. Everything in common tech elevator, not in subpackages. So if there was a conduct that elevator data, that would be, they would not have access, but everything just in the bait main package, but nothing in another package has access. So
+
+in this case,
+
+the
+
+even a child class in another package because show subclasses don't have to be in the same package. can't access default. So default can be applied to pretty much everything. I'm including classes. And it's just what happens when we don't give access. So a reason that you'll see default sometimes use instead like frameworks, or libraries, and we'll look at frameworks are more next module, but is to create a class that's only usable inside of their internal code. So we'll see if we look inside the code of that. So that's a timer. might might actually have a legitimate use and to keep you from accessing if you extend off their code. So protected is almost the same as default because of the kind of the idiosyncrasy of Java, but it cannot be applied to classes or interfaces. And I actually this is, I should fix this as well, because interfaces appear to go back to default. Their default is not default, their default is public. All interfaces are public, no matter what. But
+
+it that's
+
+so hear protected, allows a child all subclasses to
+
+use the code. So the true meaning of protected every other language besides Java would mean that if Class A had a protected method, it'd be available here and the child of class A and here in the outer class. So it's all with subclasses. But Java adds on everything in the package. So if you go to another language, you won't find the same type of behavior protected, more restricted, like it's actually supposed to be. So the difference between default and protected is really the subclasses over here and the under packages
+
+and then public is everything.
+
+So it can be applied to anything.
+
+So those are the four access modifiers but let's talk about when you use each of these access modifiers.
+
+So, this these rules
+
+that I have here
+
+are not set in stone, not my guess eyes are not something that are strict. These are guidelines. So the guidelines of when to use each public is for kind of your set in stone methods that you want other people who are using your object to rely on. So this creates the base, they're the ones scoring to give behavior to the object. So that's important, right class or object, data type has to have behavior, mentioned that everything is going to have the beginning for the beginning, everything has state and behavior. And so that's going to be what it can do. And that's going to be through public methods. But the problem with public methods is other developers are relying on them. So or your other code and the other developers, users of the class are relying on them. So if you change your public method, it's going to break your code. So for instance, if
+
+so at
+
+this point, in your code, you've probably used system print line, system out print line quite a bit, probably in just about every not everybody A lot better than any of the exercises you've written. So if the if the author of system went in, and that's a public method, if they went in, they change print line, so that required to always have an integer method that gave the length of the string that it's going to print. Everything you've written just about this keyword, every time you use the print line, for the last two and a half weeks would break, you'd have to go through and fix it all. Because they change the contract, they change the way print line works. So public methods should be things you're putting in your class that you want an outside user to use, because it's the behaviors or things you want them how they you want them to build the user class, but you should give a lot of thought to what's public. Because when you change it, you have the potential breaking other code. So protected should be when you want to build connections between inherited classes. A good example of that is when I save the main case I come into when I use protected is when I have a private method and get a class that I'm using as a sub superclass. And in my subclass, I realize I need the same functionality. But I don't want it to be public. It's it's an internal working of the class. So I end up about the copy and paste my private method from my superclass to my subclass. Rather than copy and paste it, I can make it protected. And then my subclass can just access it and use it. But it's not available to the out to users or the object. It's only available internally to the subclass.
+
+So that's when you would use protected
+
+private is for internal workings of a class. So if you change protected after you write it, you change the method signature protected Then you have to, you might break your own subclasses. But that's probably going to be pretty limited in scope, how much you break, and you probably have a lot of control over that. If somebody has extended your class, they, you're going to break their code too, because they'll have access to protected methods. But again, that's probably fairly limited, much more limited than using the code. Private as for the internal workings, and it can be unstable and unstable doesn't mean that it breaks a lot, it means that you can change it a lot. It means that you can go out every hour if you want to change everything about it, and the only thing you have to change is internal to this one class. So it's the inner workings of the class. So, in default, we should generally want to avoid there are legitimate reasons to use it. But it's one of those cases where when you get into the case where default is useful that's the one time when when you find out you need to That whole package that kind of you get indication later on in your career, you might find some uses for default, but it's pretty rare. So your way you should choose these the way I would recommend it. Again, there's no hard and fast rule was I start everything private? Well, that's not true. I start first designing my class and thinking as I build the class, and what I'm going to build, what, how do I want someone to use this? And that's part of the design. So how do we want it to be used and those are my public methods, and I'm pretty sparse with them. So if I was building a class, like Next week, we'll talk about file access, if I was building a class that could read a file, so we could read the text out of you know, a file on the hard drive. And then it could save text to a file. My only two methods might be reading, save. And then publicly, because once you create those and once you've kind of released And start using it, you're limited to what you can do with those not to the code, but to the method signature. So after that I make everything private. So your default kind of should be methods or private variables or private. And then if you need it, the higher access, then change it. So if you need it in a subclass, change it to protected is one word change, now it's available. So it's an easy change to do. If you decide that you know what this really should have been public, I need this externally, then you make it public, you don't resist doing that you just kind of make everything private. That's what I recommend. And it actually goes along with this principle. We'll talk about a lot more in detail. next module and the next one, as we talked about a couple security concepts, called the principle of least privilege, meaning that everything should have the minimum access needed to do what it needs to do. And that's a security principle that we can apply here. Not really for the security reasons, the security reasons is that everyone has the minimum Then if there's a breach then only the minimum was breached. But in this case it's if every thing has the minimum access then middle the minimum number of changes have to be made we break the minimum number of things if we change it
+
+that's when we use each so questions on
+
+Brian Can you go back to the Java accessor chichi for just a second? Yeah.
+
+So
+
+in protected we're able to access is it so if you go down one more protected in class A Yeah. So is child of class A is that able to still pass information That is protected on to classy if I'm confused about them being in separate packages,
+
+so if Class C extended the charter Class A, then yes.
+
+Okay,
+
+but if it's a separate class, which is what I'm starting to represent here, then no. So any children of the child of class A any subclasses, it will pass on the Protected Access to Yes.
+
+So when you're setting up that child of class A Do you need to like import the Class A specifically because it's in a different package?
+
+You will get you'd have to import it and then extend it.
+
+Okay,
+
+got it. Thank you. So when we're extending classes or implementing interfaces, they can be from any package
+
+you will have? You'll have to import them though if they're not contained within the same package.
+
+That's correct. Yes. Got it.
+
+So Other questions?
+
+All right. So the next thing I
+
+like to do
+
+is go back to the store. We worked on yesterday, the shopping cart, and looking at a look at a new requirement for that and how we can use some of the stuff we looked at today to apply that. But let's see, it's been almost an hour. So why don't we take another break? So we're not to break that up. And we'll come back at in 10 minutes or 1133 and
+
+not do that.
+
+So in that scenario, though, like is there a preferred method between constructor versus setters?
+
+know there's not a preferred method because they both they both meet different needs. So the role kind of the rule of thumb you can use is if your object should not exist without this data. If it doesn't make sense to exist, then it should be in probably in the constructor. If you should be able to create this without it, there's really in most cases, there's not a lot of data like that, right. So the example might be get a person object, it may not make sense for them not to have them without their name. Or if the scanner object, it doesn't make sense to have a scanner without the system in like string object we can create with nothing, because it makes sense to have one that's empty. So here we make the choice of can we have an item without a base shipping cost and a weight. If we can't, then it should be in the constructor. Or sometimes it gets put in the constructor for convenience too, because then you can instantiate it and populate it with one line. We'll look at that a lot more. Especially once we get database and stuff involved. We That sum it, but if it's something that can be set later than it should have Sutter. The other caveat is Can it be changed? If it can't be changed? If you should be able to set it once and never change it, you probably want to in the constructor. If it's something that can change after the fact, then you probably want in the center for it, or both. You can both. You can have a constructor to set it that kind of the starting value in a center to change it later. So that is your question.
+
+Yeah, that's perfect. Thank you.
+
+So now we have a way of creating the base shipping cost question. I see this. I'm going to break all the other classes. So why is it going to break all the other classes?
+
+Because they don't have constructors?
+
+Yeah. So they Well, they have cons. I think all of them have a constructor or most of them. But what about what's going to be missing from their constructors
+
+getters
+
+shipping costs and the weight. So
+
+they're going to be missing that. But what are they? So if we look at one of them, I think helicopter every constructor does it. So what does someone do? Milk has a constructor. What's what are we gonna need here? Once we save item since
+
+the item constructor,
+
+they do they have to, they have to call the items constructor.
+
+So
+
+once I save it,
+
+I have to now call super. I have to call the items constructor to make this work. Because I can't construct milk since it's an item without providing the base shipping cost and weight.
+
+So here
+
+now where I get these values from,
+
+doesn't matter. So maybe my base shipping cost for or
+
+milk is going to be I don't want
+
+one. And it's waiting to be to give some values to it.
+
+Or I got
+
+a book.
+
+Book maybe when I call super, it has basic shipping cost of five we talked about, but
+
+in maybe weight of the books gonna matter more.
+
+So we want to take it in the constructor and add it to the books constructor and pass that through. So where we get that data from is not going to be up to the subclasses. But they're going to have to call the constructor.
+
+So for bread. It
+
+don't have a constructor. So it costs super, super always has to be the first thing we do in a constructor. So maybe bread has a base shipping cost of
+
+point five and
+
+one.
+
+And helicopter doesn't have a constructor but now it's going to have to so public helicopter and it's gonna have to cuz has to call super. And we've talked about yesterday we wanted to helicopter that if you bought it, you didn't have to ship it because you're fly at home. So maybe we'll set both these to zero. We won't worry about the weight. What is the shipping zero given is the same, same effect using the shared code. And the new kids in the block CD
+
+is probably going to be pretty consistent. So
+
+basic cost of two and oh, point five.
+
+Don't say this is going to be a double
+
+2.00 I forgot to
+
+wait an integer.
+
+Oh, it is you're right. I made it.
+
+So I couldn't have that.
+
+So now we have
+
+different ways were handling these this input in the constructors.
+
+Of course, we changed at least one of them.
+
+It was
+
+book to have be able to pass the way down to make it variable depending on the individual book. So if we go back to our store, now it's broken. So we go there. So now in our book, we have to add a weight. So we'll say this weight is five pounds, or five, whatever it happens to be.
+
+And
+
+we had two of them. So we'll make this one too. So the other constructors don't change because they provided value from other places.
+
+And now when I run this store
+
+the shipping start working but now it's something that's shared in the class. So if I wanted to start looking at what it meant to be sellable versus an item, because I could argue that there's a difference. So, is what it means to be sellable by itself really. The fact that it has a name or is on sale,
+
+or some of that maybe be with the item.
+
+So let's
+
+so for these
+
+if you look at
+
+These just returned Name something they're being passed in.
+
+That's where one
+
+bride returns the type. So a name
+
+helicopter returns a string
+
+that's just hard coded string. And I think this one has the item album title. So
+
+get name has a fairly consistent
+
+implementation as well.
+
+So I could I would argue we at this point probably should make it something that's on the item. So it will become one place a failure. But we have this one stand, what kind of one standout one.
+
+So get named on new kids into blocks of these different
+
+The rest of them are pretty much hard coded values this one's not.
+
+So let's first add an item.
+
+Add public string, get name.
+
+And we'll just add this to string name
+
+and private string name.
+
+The stock name equals name
+
+and our return name.
+
+Now as we move through each of these, notice they all broke it broke again, because the constructor so we can move this. Get name, this duplicated functionality. Get rid of it. They don't have to internally keep the name anymore. This 111 you have to do that because that's now going to be done for it. So now what is passing into
+
+the constructor.
+
+As we go through each one, bread is the type and the bread. So again,
+
+we can take this.
+
+And we have that information here. So we can pass it into the constructor and no longer hold the shipping cost.
+
+We no longer have to hold.
+
+We really, we don't have a getter for type.
+
+That will be setting this to the constructor announcement get rid of that. So our code is getting smaller. As we start moving this functionality into a superclass, which is part of what we're doing, but we're still implementing the interface. We're still sellable. So we'll leave type where it is. So we can can you for helicopter, we now will just take this string
+
+and move it up to
+
+superclass and get rid of this
+
+our source Tigers helicopter or remain for milk. It's just the word milk. So we'll get rid of name.
+
+And let's change this to word milk.
+
+And then for our new kids on the block CD, I wanted to use the album title. And that may not be
+
+well if we don't need to do that.
+
+So if I did want this to be different, I guess it wasn't as different as I thought it was.
+
+I could
+
+change the way
+
+it's interacting here with an override. So if I want to leave an override in place so that it changes the behavior, the default behavior So maybe the name is going to return, we want to make it based on his cool which we have set for. So it can change. So it was cool.
+
+That's true, we'll set it to is cool
+
+is no longer cool.
+
+So the point of that is just that. That is something that is not in our item superclass. But we can still have this specific functionality when we need it with the override. And as we store it, we have to go back to store now and change
+
+the set shipping cost on bread that moves to the constructor.
+
+Actually, it does it let's get rid of it.
+
+And Now as we run our code, everything continues to work but our codes getting smaller. So we can continue with that exercise through each one of the things in sellable. The point is not really to move to new everything, it's more of a demonstrate that the idea of the superclass is to provide this functionality that ever all these things want to use.
+
+So, in
+
+we use our new kid in the block, see, again, let's say we have here we have another, since it has this one variable, it's the one place actually bread bread we better for this. Bread is the one with expiration date, right? or milk. Sorry, I'm trying to remember when I'm at expiration date, so it has expired. So here We may want to change the shipping based on its expired, maybe if it's expired, we're going to expedite the shipping.
+
+So
+
+Alright, nevermind for it.
+
+Public double, get shipping, go back to items, get the right name get shipping cost. The way I usually do overrides is this. I copy the signature.
+
+Go back to my bread
+
+and
+
+paste it with an override annotation.
+
+Now it's not supposed to be a milk sorry.
+
+So here, let's paste it because it has to be the exact signature for an override. So now what I want to do is I want to say if is expired. I want to just use the base shipping cost. So I want to return Base shipping cost. Else I want to return
+
+the standard
+
+shipping cost.
+
+How can I do that?
+
+So what can I do an item
+
+to make it
+
+to read get the base shipping cost in my milk
+
+Can you just do super, um
+
+face shipping cost, or
+
+I can't. It's private.
+
+Could you make a getter?
+
+I could.
+
+So I could make public
+
+double get base shipping cost
+
+protected
+
+that might be a good idea.
+
+So if I make this that'll work
+
+but now when I go out to my store on each of my items that like my bread here now somebody can get my base shipping cost anywhere. I don't want that to happen. So what was just said is correct. This would be where we could use protected. So an item I can make a protected
+
+by shipping costs.
+
+Now here in the milk,
+
+I could return
+
+super dot get base shipping cost.
+
+I don't actually need the super keyword
+
+Because it's inherited.
+
+That works but now over in store
+
+for like a bread
+
+get based shipping cost is not available, consider a different package and it's not part of the hierarchy. So I've hidden it away into my hierarchy. So I can use it as I need it in my items, like in milk, but I can't don't need it anywhere else. So now how,
+
+in this case, I want the standard shipping cost.
+
+So how can I get that?
+
+We're just gonna do the same thing.
+
+By So no,
+
+we don't have to add any any code what we have an item. We put items side by side. We have everything we need an item. That right now for this to work.
+
+And we have sorry.
+
+Um, do we just do super get shipping cost? Exactly.
+
+So we can call the superclass version of the get shipping cost, the one that does the method. So in this case, we would return and now we have to use super because we have a get shipping cost method here. We don't want this one we're using it we want the one that's over here and item.
+
+So super,
+
+get shipping costs, not be shipping costs.
+
+So
+
+now, our code works. We're going to have it now set on whether it's expired or not.
+
+Alright, so if I'm
+
+We use it so
+
+what other features may an item have
+
+that's that's part of the item is there anything it's part of an item that's not part of being take means to be sold. Kevin Did you ever
+
+Yeah, I was gonna say I mean
+
+pretty much
+
+everything that isn't good price because really all you need for it to be sellable is a price. Well, that's true.
+
+But if I'm going to be using it in my shopping cart, I'm building my sellable around that I also I'm going to need to probably want the name of the item.
+
+I also need the shipping cost because I wanted to share them
+
+so for my project for my shopping cart,
+
+to be sellable means that that's basically what I need to sell The item in the cart so what is there anything that item might have that is not part of being sold?
+
+Is it a digital item?
+
+Okay, so it may have a property about being a digital item. That's true. So we can add that.
+
+So let's make
+
+see in our item.
+
+Maybe we want something like public boy in
+
+his digital,
+
+the implementation
+
+limitation of his digital.
+
+There's no way we could just hold a boy and then we could have him passed as a boy, but there's probably something more that they may there may be something more they want to do with this. So in this case, let's not Assume that it's just going to be a simple true or false when the item is created. So it could be some work they want to do. So another example, let's do two of them. So we might want a method like this, that's going to do something. But what if we had something like, get description. So what has to be in the description where it comes from and how it builds, it could be vastly different between these different items. So for our bread and our milk, we probably just want to know, its milk, its bread, what are we going to say about it? It's going to have that information, it's gonna be pretty much his name for
+
+our helicopter,
+
+or for our book, or new kids in the block CD, we probably want some more detail, and it's different detail. Because of the blocks. He's gonna have information on how many tracks are on it. Maybe information about this tracks about, you know, the music production. The book is gonna have, you know, blurb From the author maybe or a blurb from a critic. And those may come from different sources. Maybe we keep our information about new cars in the docks, block CDs in, you know, a file somewhere or part hardcoded partner file, we keep information about our books in the database, or information about a helicopter, maybe we want to go to the manufacturers website and get information. So the different implement implementation of get description can be vastly different depending on what the item is. So there's no just storing it here. And using it, we'd want to make that derive we didn't make a happen when you called it. We could argue the same thing for as digital, you may have to have a different look up. So in these cases, there's no they're more, they could be more than just a getter and setter
+
+and they
+
+are not necessarily something that is
+
+Shared functionality among them that we can inherit.
+
+So what choices do we have to force every subtype
+
+of item?
+
+to have these methods?
+
+and abstract?
+
+We can make up abstract methods that would work.
+
+So is there any other way we could force the same thing?
+
+which make abstract class can make an abstract class with the
+
+abstract methods will work. But is there another way?
+
+Could you put it in the constructor?
+
+Well, we could put it in the constructor if we were just passing the values through. So yeah, we could hold the values. But we wouldn't force the subclasses to implement the code for them.
+
+We just put it in the interface.
+
+We could we could put it in an interface, probably not our sellable interface because So, we've agreed we don't need this information to be sellable. But we could create like maybe a digital interface or a descriptive interface and add them to the item forcing every item to have them. But we've done that. So let's go the abstract class method.
+
+Or actually,
+
+let's do both.
+
+Not that we necessarily always want to do both, but let's do both. So this is what we want our classes to
+
+implement.
+
+So let's make the first one.
+
+So public,
+
+abstract, Boolean, is digital.
+
+In any method signature, I'm going to get an error now because it says you can't have an abstract method. You're not an abstract class. That's okay. I'll make it an abstract class. I'm okay with because items, not something I want to exist by itself anyways. So now we're meaning to roles of when we might want to use not abstract class.
+
+So the second I press, save all the
+
+items, get an error, so we can go through them. And for each of these we're not we're just returned true,
+
+just for now, so
+
+we add unimplemented method.
+
+And actually, let's leave it for returning false, let us add him as the default so that we can don't have the errors.
+
+As this is not really about the implementation of what it means to be digital. It's about of course, the
+
+usage of
+
+all these different constructs we've just been looking at and there's two more over here. So the helicopter
+
+Alright, so now, the abstract class hasn't looked much different than what we've we haven't had to really change anything else, right? We'd have to change the weights was working as a superclass that hasn't changed. Now we just forced every one of our subclasses to give some custom validation is digital.
+
+So the last thing we could do
+
+is let's create another interface.
+
+And I'm going to call it
+
+describable
+
+or just good enough.
+
+And we'll put our
+
+value of string
+
+get description here.
+
+Should it be interface? You see, I messed up I created as a class changing interfaces, just changing the class keyword to the interface keyword. And I want to apply it to all these items.
+
+So I couldn't implement the interface here like this.
+
+And once I import it, that would work.
+
+But what's.
+
+So that's going to work. But what's the downside of doing that?
+
+You have to do it for every single one. And if you add a new item, you have to remember to do that.
+
+Exactly. So where can I apply this interface so that I don't have to have that problem?
+
+To the item class?
+
+Yes. So if I want it in all my items, it's part of what it means to be an item. I could have done the same thing with just being an abstract member. But a reason sometimes you may have it as an interface is that this interface might apply to things that are not items. Other things might be describable.
+
+So I can,
+
+implements
+
+not and now
+
+I have to import it, because my interface is coming from another package. And now I have the same thing where I have, every class is going to require the get description, and then go through and add those methods. But it's forcing them each of my items to do something to implement the description and the describe one two different ways, both coming from the item class.
+
+So let me just get through all these so
+
+you don't have errors. Alright,
+
+so if we run it one last time store, we can see everything is going to still work. The way that before we haven't changed the fact that we're using it as a superclass, we've now made making an abstract method so we can enforce the as digital method. We could also use do the same thing with interface or combination. All right. So any questions on what we just did or why we just did any of it or?
+
+No, oh, met most of your projects are not going to be this convoluted of options, right. So the point of this was to show all the different options So most projects would not end up having an abstract class into the interfaces and interfaces implementing on the same classes that are extending the abstracts. It's usually much more uniform though, I've worked on projects that have been like this, though. So as I was saying they don't exist, because sometimes there is a need for it. But But your projects here, we're not, we're not expected to look like that. Be more of a single, you have an interface and use a bunch of things or, you know, probably never an abstract if you maybe you might find a use for one of your final Capstone. Some of you, but probably probably not, or a superclass, though, is reasonable, that maybe has a single interface on it, this type of thing level. So it seems confusing of how to keep track of all that. That's because the point of that whole exercise was the different ways we can do it, not the final outcome, if that makes sense. And I was making it As I go, so I may went down the wrong path a couple times, so.
+
+So any questions about anything we talked about today? Alright.
+
+So for exercises today, they're individually
+
+it's similar to what you've been doing.
+
+Do I think it goes away from the accounts today and goes to something it'll look familiar since we used it as there was a lecture code. Not exactly what you have here, but or what we did, but somewhere. So you'd be building a version of the pink calculator that we looked at Lecture A while ago, like the one you're going to be building is a little more complicated. So you'd be building a pink cup later, you got to build the classes. You'll build a wall class, so they're not going to go we did it with a rectangle. They're going to help you build just a wall class. And we talked about the time there was options. You could take That's one of them, but mainly because they're going to go with name and color for the class for them size. And then it's going to build different shapes of walls. So rectangle, wall, square wall, triangle wall with different constructors for each.
+
+And then
+
+methods that
+
+some are shared, some are not. Some are shared implementation, some, um, you have to have individual. So that's what you'll be building, you'll be putting those that are test cases for them. So you can just run the test cases like you did the last couple days. So it's pretty similar to what you've been.
+
+You've been working on right now with these walls.
+
+So questions on
+
+what you'll be doing or at least where to start with it.
+
+Okay. All right.
+
+So for
+
+today, There's a pathway event
+
+at three
+
+lessons I've learned in my deaf career. That's a panel. That's actually most students come back and say they really enjoy that one. So that one's usually pretty good. That's like external people coming in to talk about just stories from their career. So
+
+is that today, Brian? I'm seeing resume something. Tomorrow's listens. Today's Thursday. Oh, okay. Were you planning on not showing up tomorrow? Maybe? Possibly.
+
+Not sure what date is half the time?
+
+You just login to this the zoom link every morning or like, What?
+
+Do you just teach the next the next progression? Today's 14 that's what I know.
+
+Okay, yeah. So, so listen to Michelle.
+
+I mean, I'm just looking at your calendar,
+
+which is usually the better choice. So yeah, today's the resume. Tomorrow's the exciting panel. That I just told you about. So, but they're both of three. So that's today, the resume building. And then last my remind you again tomorrow at 8am about the review, if you want to review abstract classes,
+
+though, their information for that in the calendar.
+
+In the fall, I'll remind you that I was reminded every day for the next week or so. So that'll happen. And then I want to warn you tomorrow is long, tomorrow's long, it's complicated. But it's exciting. Well, I find it exciting and
+
+crazy. So.
+
+Yeah, so I
+
+guess we'll talk about why tomorrow. But it's, it's a long, tedious day. So be prepared for that. There's a lot of material. There's a lot of code. There's a lot of new concepts. But I think it takes what you're doing now to a whole nother level. It allows you to start moving out and have freedom to explore more. So I think that's really exciting.
+
+So be prepared. All
+
+right. So Other questions?
+
+Okay. Question about the paperwork. Yes.
+
+Let me check the requirements in modelsim I'm having difficult to understand.
+
+Right. So if you
+
+Yeah, nasty questions or for your pair work, if you come
+
+you can reach out to us and we can help you but for pair work, your you and your pair have to come together. So
+
+we, we couldn't find a solution. We are having the same issue we work together. Okay.
+
+And then if you come for help later in the day, but if you have a question right now, I'd be happy to answer it since
+
+I'm just a quick question.
+
+toll calculated that Java there's a class right? Yes.
+
+Yeah, your credit class the toll calculator class, remember right is going to be a command line interface that you can run to try to have a system main or main mathematic that can run to go through all your totals all your vehicles to calculate the totals and display them.
+
+We just couldn't add you know, a vehicle to that list.
+
+I don't know what platform so I suppose that public static void Main method in here Yes, you are.
+
+Yeah, that will have a public static void Main. Pop so you can run it. Okay. I think
+
+so Any other questions?
+
+Why is the due date On a pair exercise,
+
+so they're doing the same, the same timeframe as the individual exercise. So that was aside yesterday, so to be do technically Friday at 8am, the pair exercises with that being said, the pair exercises are a lot more lacks on weight as long as they get done. Doesn't mean you know, two weeks from now, so Okay, but so the individual exercises, there's a consequence, your score of your score your score, if you don't have them done on time, the pair exercises if it's due am Friday, if you get it done Friday night, I'm not I'm going to be okay with that. Because they're not reviewed for a score that reviewed just for your code and for completion. So even if you get it done on Saturday afternoon, I'll be okay with it. I probably won't look at it sometime next week. So, and I see the question is, does your shell agree and Michelle doesn't actually grade the pair exercises I do. So you can take that Determine whether she's just much meaner than I am about scores or deadlines or that they just have a different requirement. I'll leave that up to you.
+
+Alright, so Other questions?
+
+All right. So then I'll let you go. So for anyone interested, I'm going to call it shell out and I want to see this picture that she's, but for anyone who's not interested, you're welcome to go.
+
+You're not going to show it now.
+
+It's really not that great, but like, I don't know. I
+
+brought it up. Now. We all we're all curious now.
+
+I'll stop recording.
+
+Transcribed by https://otter.ai

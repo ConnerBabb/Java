@@ -1,0 +1,1440 @@
+Zoom
+https://techelevator.zoom.us/rec/share/wOxVHbTA639IE5GX82LcSoITAJvHX6a81SEY-qIMyhyI5dCQ4ZxzJ_QstiY4NeT1?startTime=1591708848000
+https://drive.google.com/file/d/1Xj_6xZKlxkmZBKV6SY5RKDaCPsIjkVTF/view?usp=sharing
+https://docs.google.com/presentation/d/1BkI-BeLJRwIJhp7HJy6tM0sVkva476DBgow9AmN8MqU/edit?usp=sharing
+
+So today, we're going to continue
+
+talking about the select statement. So we're going to expand some of the functionality can do. Specifically, we're going to start by talking about how we can order results and how we can limit results. So just some small things we can do with the query that could really change the outcomes of our data. And then we're going to take a quick look at a couple of numeric and string operations. So there's some functions built into most databases. So we're going to look at, look at a couple of those, just one or two. And then we're going to look at these things called aggregate functions, which are going to change the way we'll need to write some of the queries because we're going to have to talk about grouping to use aggregate functions the way we normally want to use them. So we'll talk about that about how Ruby works. And then we'll end by talking about subquery. So it should be their first look at how we can bring multiple tables together. So right now with today, yesterday, and now today, everything we've done was boost single tables, but that'd be the first of cry leading into tomorrow of combining things, and using the relationships we talked about yesterday.
+
+So,
+
+before we even start, I'm gonna open today's lecture khairuddin Db visualizer. So do that I'm going to go to it and go to File, Open. Go to today's Nope, I forgot to pull today's lecture card. So let me do that first.
+
+And now I'll get to go to
+
+Not there
+
+it is.
+
+And I'm going to start in the lecture dot SQL, if you're following along. So open that. And the, we're going to work with the world database connection again today. So with the same connection we set up yesterday and work with. So let's talk first about ordering. So right now we get results back. And for instance, we wanted to select the population of all countries.
+
+We might select
+
+name to population,
+
+from country
+
+and we get back all of the countries but there's really no ordering either column right? The ordering the way they come back is up to the database engine. And that's often not what we want. We often want data ordered in some fashion, it's understandable to us. So there's another clause we can add to the statement order by, which will allow us to set columns to be ordered in either ascending, which is alphanumeric A to Z, one through 10. Order, or descending, which is Z to A, so reverse or 10 to one order. And we can do that by adding it on to this clause order by and then the column name we want to order. So maybe one order by population and the default is ascending. So if I don't do anything more, and I just run this at this point, we'll see the population as ordered from smallest to largest. If I wanted to order then maybe largest first, I could add descending.
+
+And now it'd be ordered largest to smallest.
+
+So, order by allows us to start to find order of data returning from the columns. And it's not a single column, we can pick we can pick multiple columns. And we can order an order left to right as it reads through the statement, ordering the first group and then ordering the second column inside the ordering of the first what I mean by that, let's do it. Let's do a second query. Let's select
+
+a name
+
+and continent from
+
+ocean Are you are you in lecture final? Are you in student lecture and dbvisualizer?
+
+I'm electric To final if you're working alone, you should be in student lecture,
+
+luncheon.
+
+So we might want to order by
+
+the continent. Let's do that ascending. So we can, it defaults to ascending. So if we don't define an order, either ascending or descending, it will default or we can be explicit and use the A C. keyword or designator to say that we want it to be ascending. And I forgot to buy here ordered by which you often see just for readability to be explicit on how it's ordered, especially when there's multiple columns involved. But if we order by this, and I run it, we'll see. We get all the countries now. They're not ordered by the continent they're on.
+
+Come here to see me expand a little more
+
+See the countries are not ordered by continent. But if we then wanted the names of the countries also alphabetized, we could do that by name.
+
+I'm gonna make it ascending as well.
+
+And then it orders first by the first column continent. So all the continents get ordered together in alphabetical order, and then inside of each of those groupings, the countries get ordered as well, in whatever order we want. So if I changed this to maybe descending just to see the difference, and run it, we'll see that now. From now, it's still ordering by content, ascending, but inside of the continent, it is not ordering, descending for the names of the countries.
+
+And if we get to the next continent,
+
+we can see the ordering restarts for each kind of group. So it orders first by the first column and then follows through each column.
+
+The other thing we can do with order by
+
+let's do the same query again.
+
+But let's select. Let's do the first query again.
+
+So we had we saw this.
+
+But more ordering, we don't actually have to select the column we want to order by, this has to be on the table. So here we get the same ordering by ordered by population, but we don't actually see population in the results, because it'll order the table before it does the final limit limiting of the columns being returned. So we can select the order by data that is One that is available to us, but we're not actually going to see in the results as needed. Right. So that's
+
+order by
+
+questions on that before we.
+
+Hey, how do we know which one is going to be ordered by first? So firstly, line eight
+
+on. So in this one, it's going to be left to right. So to order by the leftmost first, and then the next and just continue
+
+down the line, and then
+
+by like how it's written in line eight, like which one should come first versus second.
+
+In that particular case, that's a really, that's not a really clear comment of which what they're actually looking for. So I would, I actually didn't even pay much attention to that comment. just kind of went with. So if I was reading this, and I assume your exercises are a little more clear, then I would order by continents first because it's larger. Because the thing that's going to happen, let's let's actually change it and look at that, because that actually is a good point.
+
+We order by we switch the order.
+
+And we run this.
+
+What's going to happen is it's going to order by the names first. So we're going to get the names of the country in the comments. We're going to order inside of that. So we're going to get the comments order inside of just the names of countries that start with z. And then the names of countries that start with y.
+
+So we end up with this.
+
+It may be what we want, but
+
+it's not So with that the decision comes down to what we actually care about, right? Are we trying to find out, get a list of the continents for all the countries that start with z. If we are, then that's exactly what we want. But often, we want to order by the largest groups and then move downward to the smaller, the more specific groups. And that's but not by natural data, but what the way it's on the table. So there's, you know, only a few continents on the table and they represent multiple countries, four continents, so unless otherwise specified, I would, we generally would want to order for the larger group first. But yeah, maybe we don't, maybe we do want to find out. I have a nice readable list of continents for each letter of the alphabet for the countries in them. Does that answer your question? Yep. Okay. And leaving, leave this here with a comment of
+
+and I described this
+
+The order
+
+of the columns in the order by
+
+order I ordered left to right.
+
+This one
+
+results can be ordered
+
+can be ordered by columns that appear on the table
+
+but not in the results.
+
+So other questions before we? Okay.
+
+So, the other thing we might want to do is limit the results.
+
+So
+
+we have this, this one,
+
+we get the population descending. And
+
+that gives us the list of all the countries now ordered by population from largest to smallest. But if I wanted to only see, the top five largest countries, according to this database, then limit is what can help with that, it can set the amount of data, the amount of rows of data that's going to be returned. So, to use limit, we just add it to the bottom of the query. The last thing and it's just the word limit with a number of how many rows we want back. So in this case, if I only want to limit this to you, I want to see the top five that I get just the top Five from the data set back, maybe I want to get just the top, I want to find out the largest country by population in this database, then limit one will give me just the top.
+
+So whatever number I want from the data set
+
+is what it'll return. So, if we look at the full data set,
+
+well limit just taking,
+
+you know, just cutting off everything that's beyond
+
+the first however many we select.
+
+So let's leave that at sleeveless one at five. So this can be really useful, especially when we get to
+
+introducing us with Java to doing things like
+
+displaying, you know, the top five sales or displaying the top are finding the highest rated like something will start like Got tomorrow database finding the highest the most read and movie type of thing, those type of situations. Once we don't have to get the data and my language like Java and then sort through it, we have SQL just give us the list we're looking for using limit. So the question here the name and average life expectancy of countries in the world with the 10 highest life expectancies, we're going to do that. We know that's coming from the country database. So select star from Country, Country, the country table.
+
+And if we're going to
+
+select the name and life expectancy, we'd want to
+
+probably order by,
+
+order by comes after from so ordered by
+
+life expectancy and sending it for with the largest
+
+So if we get that we end up with nulls. And they're going to end up at the top of the list when we're descending. So we'd probably want to put a where in Where is going to go before between the front and the order by. So where life expectancy is not no, like we'd looked at yesterday. So removing the nose. And now we have the countries ordered by life expectancy, the sitting from largest to smallest. And then we can change it to the data we're interested in. So name and life expectancy. And now if we only want to see the top 10, or the largest 10, we could say a little bit by 10. giving us the 10 countries with the highest life expectancy. So this is sort of part of what we talked about some yesterday, starting to be able to answer questions that maybe we didn't even know we had about the data. So we have this Data Sets involved. And using queries, we can start asking questions about the data or answering questions about the data without really, even though we didn't know we had the questions, we created the data. And we'll start expanding that more. When we get to adding extra tables, these extra options start lending to that. So that's all there is to limit, it's just adding the extra lemon at the end to get what we want. So it happens last. So so far, the way this is going to occur, is this going to select Get all the data from the country, it's going to apply the where second,
+
+it's then going to order the data.
+
+Select the columns and then limited so mostly we don't need to worry about that ordering. In a moment when we get to grouping we will need to worry a little bit about the ordering a bit and where
+
+but So questions on
+
+that before we move on. Okay. So
+
+So there's a couple couple type of operators
+
+want to look at quickly are not operators, but some of them are functions and some of them are operators. And that's numeric and string operations. They give us the ability to work a little more, a little more fluidly with numbers and strings. So there's two we're gonna look at one for America, look at the method of how to round and later again, we'll look at some other numeric methods. And then we're gonna look at how to concatenate strings and why we might want to concatenate strings. So rounding is a problem you probably ran into yesterday in your exercises.
+
+If we had that,
+
+we might want to, let's see if we selected
+
+something like, if I could spell it, select the GNP divided by the population
+
+from country
+
+and we're gonna have to do where GNP, I'm sure everyone ran into this yesterday where GNP is greater than zero. Otherwise, we'll get a divide by zero error. And we still have a
+
+spot right?
+
+And spell both words, right.
+
+So we ended up with these large numbers that probably aren't what we're necessarily always interested in, right. So what we're interested in is more problems, some significance lower than this. So like any other number, any floating point numbers, it's all about knowing the significant digit, which is just really what do we care about. So we can round, we can round to a significant digit, like we kinda like we do in Java, though it is more traditional rounding than Java's truck truncation. So there's a method built in. And there are methods built into databases. And they're used very much like Java methods, we use the name of the method, the function, and then we put parentheses and pass arguments to it. So the Postgres in this particular method, the round method is a Postgres method, meaning that if you go to another database kind of work in Oracle, or MySQL, or DB two or some other database, they're gonna have a similar method, but it may not be the same name. For instance, if it's been a few years, but last time I worked with Oracle, they're round methods just RND where Postgres is the word round. But they all have the functionality set just slightly different. So then the first argument is the value we went around. So that'd be the output of the division. And then comma, so we're going to comma delimited arguments just like we're used to in Java, and then the scale we went around to, so the significance after the decimal point. So let's say let's go to four because a lot of these numbers will be looked down through here. The first actual digit of interest is in the fourth position to be round to small one now, but just a bunch of zeros.
+
+So now if we do this,
+
+we can now see it's rounded. So we can go to any scale if we want to go to two, which is going to make most of these I said a lot of these to zero, so it's a little too small. We can round to any digit after the decimal point. We can then alias This so we can give it a name. So
+
+so as and let's call it
+
+GMP by now when B by BM
+
+there's a name for
+
+per capita, per capita. Okay, that'll work. There's official name for gross national product divided by population, but I can't remember what it is. So give per capita, that's good.
+
+So we give it a name.
+
+That's actually a Java name. Let's change that to something that would probably be more Postgres friendly. Since it's going to turn everything to lowercase camel case doesn't really mean anything to Postgres won't, it'll use it, it'll just put it all to lowercase. So now we have a name for it. But now that we have it, we can actually Use things we've already had, like we can order by our alias, which is part of what the purpose of alias that we didn't really see yesterday because we didn't have a need to do that. So per capita, and let's order by descending.
+
+So once we have
+
+so there's three kind of things here that we just looked at in this one statement. One is the round method, which is just passing the value comma, the scale to this method round in our SELECT statement, or wherever we're using it. Second, we looked at this yesterday, we can alias the result of this just like we could result alias the result of a mathematical operation. And then part of the purpose of aliasing is that we can then use that and things like our order by to order by an alias, column or output.
+
+So, before we move on to concatenation, what questions do you have on?
+
+Right? Are there any like standard naming conventions for SQL or anything like that?
+
+So I'm not overall for there, there are some when we get to database design, like using either singular or plural for tables, and we'll talk about that when we get there, like I said, or, but there's the naming of things like variables and column names, is more and more environment than it is general SQL. So I'm sure there are lots of opinions and guides and stuff you can find. But every environment is going to have a little slightly different roles. So Different database engine support capitalization differently. For instance, Postgres only does everything in lowercase. So using camel case doesn't, you can and you, it'll make your code readable when it actually prints out here actually change this quickly to what I started with GNP per capita.
+
+Just include the order by
+
+and you can see it lowercase as the whole thing. So why it's readable here. Now it's unreadable, not unreadable, but more difficult to read here. So the convention, database like Postgres will be more to use something like underscores because now you can make it more readable. But then, like Oracle supports capitalization, it is case sensitive, so it's common to use things like camel case with that in a lot of environments. Okay, perfect. Thank you.
+
+Yesterday in the exercises, I multiplied GNP per capita by a million, because I noticed that GNP was in millions of dollars. And I don't know if that's like something that's allowed. Because I think technically GNP per capita is listed in like dollars.
+
+Yeah, it's listed in.
+
+Yeah. Yeah. I think that we technically correct I think that would be, right.
+
+Okay. Cuz like I didn't, I felt weird with all those decimal places. I was like, I don't know if like, that's technically how it would be. And I didn't know if I was allowed to list something in a different scale than the other thing.
+
+So as far as my, my point of view, as far as Can you do it and seek was it allowed? Yes. As far as the exercises, that would be Question for Rachelle
+
+is that it just sees.
+
+You probably can't see her but she's shrugging your shoulders right now.
+
+Well, also, I was confused because it didn't say anywhere specifically that GNP was in millions of dollars. And so I kept trying to enter a trillion dollars. And I was like, it's so mad at me.
+
+At the top of the document, I think,
+
+is that okay? Yeah, at the top of the exercises, so if I read, you know, I should probably try doing that sometime.
+
+But yeah, as far as formatting, I don't think it'd be an issue as long as you got the right number of rows to return. That was I think it's going to be your choice. As far as how you handle the data, it'll probably break my test because it'll expect to see a specific value, but I'll be able to read and see what you did. Second overriding.
+
+Alright, cool. Thanks.
+
+So, so other questions on?
+
+Yes. So the other thing we might want to do is concatenate strings. So SQL has the ability also to put strings together.
+
+But string concatenations a little.
+
+It's the same as what we're used to in Java, but this uses an operator familiar operator, but in a very different way. So the concatenation operator in SQL is two pipes, just like the orange Java. So
+
+if we wanted to catenate two rows, for instance,
+
+maybe if we wanted to display something
+
+well, I guess we use the example here, one to select the name
+
+and let's see the district
+
+From city
+
+and let's start there.
+
+So they want to have these and when they concatenate them together, and they say just from California, Oregon or Washington. So how could we get just California, Oregon and Washington for the district?
+
+Won't be the best way.
+
+He's the end keyword. It will be probably the easiest way. Is there another way we could do it?
+
+Use equals. Yeah. So we could use district equals California or district equals Oregon or district equals Washington.
+
+And that'll work.
+
+You run it, we'll see if we get this, or this is equivalent to in.
+
+So we have a list of orders like that.
+
+That's the purpose of, as was said, at the first answer. That's the purpose of ad.
+
+So we get the same, the same results.
+
+So we have, and now we have the district name coming back, but what we want them to actually display as his city, common name. So we can use concatenation to do exactly that.
+
+So for to concatenate, we would say name.
+
+And we concatenate and we can also use literal values in SQL. So we can use literal strings or literal numbers. So let's put a comment in it would use literal strings, we use single quotes Because everything, oh characters are single quoted in SQL. So just like we would do in Java, we put it there and then concatenate district
+
+and then run it.
+
+And we get the wrong query for me
+
+again, and now we get the names together. City, comma state is a single column. Not really a useful, but useful data, but the column name is not very useful. So that's where we can alias it. So we can group things so we can alias them using parentheses. So I'm just prophecies around this. And then we can use the as keyword to alias it to something maybe like name, state. And now we get a column name. That's makes more sense. And we have the data city comma state And then finally maybe want to order it.
+
+So we can order it by
+
+sorted by district and then by name.
+
+So this is going to be ascending. So alphabetical, it's going to order by district first and then so the state of California Oregon, Washington and then by the name of the city and we get what we end up with. So ordering by the columns again even though we're concatenating them that doesn't affect the ordering the ordering still done on the column basis
+
+when we're using it like this
+
+right. So that's really all there is to catenation it's just like works just like it does in Java only instead of using the plus sign between strings we use
+
+the two pipes
+
+so which is you know, nice and not confusing after just coming from Java and learning or but
+
+So what?
+
+you have any questions on that before?
+
+Are you only? I mean, obviously, we're only concatenating the Select here, but are there other cases where you could use it? And like the fraud or the Where?
+
+No, you really wouldn't
+
+probably ever do that. I don't know if it's actually limit you from doing that, because the reason we're doing it the Select and the reason we generally have concatenation is for the final display of the data. Okay, got it. So. So one of the things we're moving towards, that makes this kind of, I guess, for a lot of these funds to these functions, the kind of missing piece is kind of the end of where we're going with this. or even how sequels used on a common day to day basis. So one of the two most common uses of SQL are all all actually, all the common uses is to get data back that's readable. So two ways that happens is one, it's common. There's a lot of Foursquare reporting engines, which can build reports for people, people. And they're generally don't require programmers to build the reports. But it does require queries. So a lot of non programmers learn to write sequel enough to write queries on their own database. And the goal of that is to get the data back in the way you want it to display on the report. So SQL is based around that whole idea of let's get all the data back, get it formatted the way we want and we get this to Java, we're going to be doing the same thing we're going to be getting eventually getting data from SQL display on a web pages or later this module getting from SQL and displaying MSC Li and when we do that, we want it we're gonna let sequel to the work ordering it and getting it all prepared for us. And our goal being that we get this list back, we can just take it and display it as is. So a lot of these functions in the Select are all about that display. preparing it a lot of us just because sequels couldn't be much more efficient at it than we are or job is or whatever language reason, because it's kind of a specialist to dealing with its data.
+
+Right. So other questions before we move on? Okay. So
+
+the
+
+so there's some other functions built in to do SQL databases, and there are these group of them called aggregate functions. So aggregate function are functions that take all the rows of data, and they aggregate it, they put it into one result. So they take all the data and they build an average. So if we have a list of, you know, 50 numbers, and we take the average of them, that's aggregation, or taking the average and we get the single result, right, the average or if we sum them, if we have, you know, lists of 10 numbers, and we sum them, the final result of those numbers is aggregation. So, you know, if we have
+
+something we're used to like 123 and put it like a, my daughter's do math. So we end up the result of six the six is final result. That's aggregate Have this list of other numbers. So we're collapsing a group into a single item. And there's methods to do that in there around. Exactly these type of functionalities counting something saying, from our list of numbers, the sum is three, the average that's up to the count is 123. The minimum is one, the maximum is three. So taking this set and giving us information about the set of data. And there's a set of functions that are built to the ante standard, and most, most database agents have many others as well. But we're just gonna look at the five anti ones. And that's average, some count min and max. And I will say that average sometimes is spelled out sometimes it's has a different keyword than ABG. Postgres uses ABG. The rest are pretty useful. reversal, just because there's not much else you could call them.
+
+So let's look at working with these.
+
+So for instance, if we wanted to get the average life expectancy of all the countries in the database, we could start by, let's start by selecting star from country. And now let's change this to life, the life expectancy column. And now we have a set of data we want to work with. So this is our set of data. We probably want to get rid of these knobs here at the bottom. So let's say where life expectancy is not No. style, we have our set of data and if we want to aggregate this down to an average We'd use the average method, which is going to be a VG.
+
+And now we get just the average.
+
+If we wanted to take that further,
+
+to show how that kind of bring it back to what we just used, we could then know, use the round method and switch use the output of the average method to go into the input of the value of the round method. And let's round it to maybe two decimal points.
+
+And then we end up with an error. Okay.
+
+All right, we're going to come back to this one. Because we have to learn about casting before we can do that. I didn't realize the average is going to put out a different data type. So I really got to stop just thinking hey, let's try this. Try it advance. We'll come back to that. Cuz I will show you how to do it. We got we're gonna talk about casting at the end. So we'll come back and
+
+cast that. Make a note of that.
+
+I'll remember. So
+
+let's keep focusing on these aggregates before we go down that road. So if we want to get the total population of Ohio, we could do the same idea where we could select, maybe population. We already know we can get the population from city. And we know that district
+
+as the state names is districts,
+
+so that would be all the cities in Ohio as population that's in the database, too. If we wanted to get these some of them, we could do the same thing. So some and now we agreed. There's Other values we saw down to one value. Again, we can find the surface area the smallest country in the world.
+
+So let's select surface area
+
+from country
+
+and we end up with all the surface areas. We want to find the smallest one.
+
+We could use men.
+
+So we can say
+
+minimum, that would give us a minimum surface area if we wanted to get the largest. Let's add one surface area of the largest. We have one of Max you just Max. And so fat list is going to go through and give us just the minimum or the maximum value, again aggregating it to a single, single output.
+
+So that's kind of an interesting question in the middle of this since
+
+let's do
+
+a different order, since that asks for something different.
+
+So if we wanted to get
+
+the count of countries who declared independence in 1991, so cancelable it's not really different, but it's actually the one you end up using pretty much the most.
+
+So count counts the number of records that are returned.
+
+And so if we had
+
+here if we selected star
+
+from country where? And actually let's see what I can remember the column is it's empty pedir. Yeah.
+
+Where Andy, and this year,
+
+they said 1991. So we start from there.
+
+And we get a number of rows back, so we get 18 rows back. So count does allow us to not get the data but to get how many, how many things match the data, how much matches this, or how many rows in the database match. So you can say count, I can count either a particular column or we can count count star. And if we do that, we can see that there's 1818 rows, the match
+
+So it aggregates by giving the total
+
+mash the total value of the matching rather than changing the data or like summary of the data or averaging the data or getting the minimum or Max, it is counts the number of rows that would have been returned, which when we get to grouping and later today is going to be really useful. And so before we move on, because the last question here is something a little different. What questions do you have
+
+for using MAC's
+
+in the example that we have right now, is that the same thing as just returning the like,
+
+limiting it to one and like, ascending order of surface area, like is that returning the surface area, the largest country, that'd be the same thing? It is yes. So the That's a great point, if you ordered by surface area to sending and limited to one, you would get the same result. The same way with minimum if you ordered it ascending and limited to one, you would get the same result
+
+for these because we're looking at the whole table.
+
+So you probably wouldn't use minimum maximum, the everything in the column, but we're heading towards something else where we can't just order it to get what we want. So
+
+good, thanks.
+
+So this next one, the 10th
+
+largest countries in the world, how can we solve that?
+
+Well, I want to take a
+
+surface
+
+would you surface her okay.
+
+But by doing what, so we're going to we know we're going to select star from country
+
+So select name from country
+
+order by ascending.
+
+We're going to limit by 10. So, an order by surface area said he said ascending or descending,
+
+ascending should be descending descending. I said he will start at zero and go up so we want descending so the largest now we get with the largest countries and then limit by 10 and that's exactly it.
+
+So if we would just find the names
+
+no they actually but so going back to things we already looked at earlier today with limit and
+
+order bye
+
+So let's look at
+
+so what then if I wanted to get something a little more interesting finding out the meme or something see I have a select star from country
+
+and
+
+I want to get
+
+get the minimum
+
+population.
+
+So I want to get the smallest country
+
+let's maybe make it where put it where on so it's greater than zero since where population so make sure it has data is greater than zero Okay, so there's this country in this database has a population of 50. So that's interesting. I wouldn't know what country that is. So how do I find out?
+
+That actually is going to cause us a problem.
+
+So here,
+
+I could say well select name,
+
+I get an error.
+
+Because right now what's happening is, SQL has no idea, if I selecting. So what it's doing, it's selecting star from country where population is greater than zero. We'll just leave that. So selecting this for the population is greater than zero. And then it's taking this column and it's finding the minimum value on it and
+
+Now, how does it know which name to display?
+
+That's
+
+actually the problem. It doesn't.
+
+It has no way of knowing which name I wanted. You think? Well, it's the one that's 50. And that's because minimum is kind of easy to think about, right? It's But now what if we change this to average? Or we change this to sum? it. So now there's this discrepancy of 239 columns in the country that it's working with that we've asked for it. We told it, we want a single value for one of the columns. But then we also told it, we want the other column.
+
+So it has no idea what to do with it.
+
+So that's a problem with aggregates is when they aggregate everything down to one
+
+We then have to tell
+
+SQL, how we want to order things, how we want to group things together, which is going to cause us some not problems, but the needing to understand how data gets grouped with these aggregates. So, before we do that, since that's going to bring us into a whole, larger thing, let's take a break. And we'll come back and solve that problem. So we'll come back at 1020.
+
+So what questions come up for you during the break?
+
+All right. So then let's talk about how to solve this problem of making these aggregates something that's a little more interesting to us a little more useful.
+
+To do that we need another
+
+clause, the group by
+
+to the group, my statements going to take in group records
+
+into summary rows.
+
+And then it's going to return it's going to aggregate, not the entire column, but the group's. So it's going to say, allow us to say we don't want the average life expectancy per every country. We want the average life expectancy by continent or by region. We don't want the minimum. No GNP for the time table, we want it by set by region or country, or where the populations are a certain point, it's gonna allow us to group things in the table into groups and aggregate those groups, which is going to make the aggregation a lot more interesting.
+
+So the way it's going to work is that
+
+we said, we left with this problem of SQL doesn't know how to put together like the name of the country with the minimum population because we have this discrepancy of this entire row of data. And then it been upgraded to one thing and then not knowing which thing out of this entire row to pick. So group by allows us to control that allows us to say, okay, we want to group like things. So it's going to group all the like things, all the duplicates, and that's going to become important. Because it's going to change sometimes how we have to group things into groups and then do the aggregation on those groups. So let's look at what that means. And then we'll talk about it a little more detail.
+
+So let's look at
+
+something that we've
+
+might be more interested in. I'm going to take this some population. We're district of Ohio. So what if I wanted to find out the sum of the population of all the districts, maybe all the dust maybe all the states, so we know we could get
+
+the population
+
+the district
+
+in the population from city
+
+And we also know the city has the country codes, we can use the where with that to eliminate to
+
+just the US country code,
+
+which means now we have the states and their population. But there's a lot of duplication in here, right? So if we just to see that if we order by
+
+district
+
+there's multiple entries per state, because there's multiple cities in our database per state, or for most of them, like Arkansas, Alaska, we get one but most of them have multiple cities. So what we want to do, what we actually care about is not the individual city's population. We care about the sum for each district. And that's what we can group by the district so the light districts will go together so Alabama claps into one record, Arizona will claps into one record. fornia will, wherever they live, it is going to one record. And then in this group, it'll some, you know, aggregate that group into one record. But now he knows how to give us this other information. Because now there's one to one ratio to display. So if you wanted to do that we could change group by district, and district population and we're going to get the sum of the population Excuse me.
+
+And now we get
+
+each of the district names
+
+and their, some their aggregate of their, their some of the cities that are associated with them, and so in each group
+
+and then we could
+
+Continue to order by
+
+order by district.
+
+And we get something that's a little more interesting to us. So that's how group bys used, and why we would use it. So we take these aggregates and put start putting them into these groupings. So let's walk by, let's walk through what that looks like on another example. And then we'll do some more queries that use it over here, so some things that we need to know about group by before we probably go much further is that every column, every column in our select, that is not an aggregate. Once we introduce an aggregate like minimum or maximum, or average or Psalm or count, once we introduce one of those to our select, every other column, that is not an aggregate must be in the group by we must tell sequel how to group things. So it's going to group down smaller and smaller groups. So if we end up grouping by something like the name of the countries in the country table, then we're going to end up with just the country table because they're all unique. So we have to be careful what we group by and what we've returned. So there's some data that actually limited by returning because it'll group too small. But in the grouping is going to be applied in order first, so just like the order by was, so we can end up grouping by like region, and then by name within the region, or by continent by region, and then grouping those final aggregating this final groups. So the way that's works and the way it looks, let's say we have a table here and get to it, a patient's table and it has these names on it, as a state on it, so we start there. We have a select last name, average age from patients grouped by last name. So the first thing that's going to happen is the like last names because that's what we're grouping by the non aggregate we're grouping by are going to be moved together. So all the Smiths get moved together, all the jerseys get moved together, the date is in the heart, they all now end up grouped together. And then from these groupings now we have so the group by creates these groupings of like last names and then once we have the grouping, the average is done the aggregate is done on those groups. So the average of this group is taken and then the average of this group is taken. And and this is these last year only one record in that group. But that's okay. That's not happens. quite commonly, and so the average is just the number. And then what gets returned is the like value from the grouping. So, Smith Jones, Davies and Hart with the average, the aggregate that was created from the group. That's what we're seeing when we get when it gets returned. So we ended up with one record per grouping. So in order for it to be able to know how to do these groupings, we have to supply the, how we want to group the other data. Notice we can't actually group by first name, so we can't easily include first name here because it wouldn't change anything. So if we group by first name, we group by last name and it by first name, the groups we'd end up with, it'd be a lot different. we'd end up with actually let's bring up the
+
+original spreadsheet This is from in between Take a look at that.
+
+So if we did that, instead of having these groups
+
+copy this.
+
+I can't. Alright, that's still loading.
+
+still loading.
+
+So what would happen? What would happen is we grouped by this really
+
+let's take this final group table here.
+
+And if we added a second group
+
+by last name, and then we ended up grouping by first name.
+
+Then what happened is that, okay, we have these groups of last names, but now it's going to group again. So it's going Find the repeats here. Well, now we're gonna end up with groups that look like this.
+
+Yes, they're all grouped into Smith, but
+
+Jane, Joe and Bill are unique. And these are grouped into Jones, but Dave and Jill are unique. So we ended up with this, just the grouping, which is just the table, right? So what we're going to get back is just the ages just like we just selected the age because we group too, specifically. So with group by, we have to be careful, we don't end up the, we don't end up with too specific or grouping. If we do we can just end up with the table. So in this on this grouping by last name would be appropriate. If we just started out and group by first name, we would end up with the same thing. Actually, yeah, we would wind up with the same thing because there is no duplication in the first names on this table. Now, if there was then we might end up with, you know, a grouping of, you know, all the bills together and all the dates together and all the gels together. That's what we'd end up with we group by first name, which is maybe not as useful to us.
+
+He ran
+
+on slide seven, you had your aggregate functions before the region in the name. And then on slide eight, you put last name before
+
+the average age is the order of those two matter.
+
+It is not the order here in the select the columns, all that controls is what order my data is going to come back in. Come back on the list to me, so it doesn't matter what order Okay, perfect. Thank you.
+
+So before we look at queries, what questions you have about grouping
+
+to make sense or is it
+
+so confusing? You're not sure what to ask about it.
+
+Can you show the dbvisualizer? Yes. You've been there for this last one. I probably have something wrong.
+
+Okay, thank you.
+
+Okay, someone let's write some grib queries squared by queries then.
+
+So count the country number of countries for each language is spoken.
+
+So this is going to require for language, it's going to require the country language table, which we haven't looked at before, but it's there but it has the languages and the country code and some other information about them. So we're going to select from that.
+
+So we'll start from by selecting
+
+Start by selecting star from country language. Alright. So, what we want to do is we want to count the number of languages that have where the country code is spoken. So if we look at
+
+language,
+
+country code,
+
+so we have languages and country code.
+
+And
+
+we want to count the number of countries or sorry, the number of countries which language is spoken. So let's, let's order these first. Let's order these by
+
+Country Code
+
+maybe descending.
+
+So what we want to know is the count of how many records exist
+
+for each of these countries, each of these country codes I don't
+
+that's not what we really
+
+want though is why is the number of countries reached languages spoken? So how can I change this to start looking at that?
+
+What do I have wrong?
+
+order by language, or country language? Yeah. So what about language
+
+now we get for each language
+
+We want to know how many records exist for each of the languages.
+
+So what aggregate what I need?
+
+About two?
+
+five aggregates?
+
+I'm sorry, what was
+
+so we need some of language and then group by language. Okay. Well, some
+
+is by dimeric. So we can't take the sum of
+
+Yeah, so yeah, so count. So we want do we want to count What do we want to count
+
+number of countries.
+
+So, we can put a count
+
+around country code.
+
+So then what group I will be Need
+
+language which,
+
+so group by goes before ordered by. So it goes after the from before the order by it's after the wear as well if we have one. So we're gonna go group by language. Now let's see if this works. So now we need to get it to order from most to least. So how can we change the order by to do that?
+
+order by count descending.
+
+So it'll do that.
+
+So what if we ended up with something like
+
+name that we couldn't care we end up with count
+
+but we saw a lot of them end up with the question mark. Column question mark, what can we do to ensure that if we don't end up with count out of the aggregation that we can still order by it? set it as a name? An order by that name. So what keyword do we use for that?
+
+As? Oh,
+
+yes, we say as an MP call it
+
+was countries.
+
+And then we can order by countries.
+
+So that we have the query we want, we have now a count of how many countries each language is spoken in,
+
+in this database.
+
+So this is a common usage of something like this is a really common usage of grouping. To find out things quite questions like how many times was this book checkout? How many times was this DVD rented? How many times purchase Have this customer made? What was the minimum amount of purchases in Akron, Ohio in July of 1995? Those type of questions are what these aggregates allow us to start answering.
+
+So let's look at the next one. So
+
+the average life expectancy of each continent
+
+order from highest to lowest. So we know that that's going to be the country table.
+
+We know we care about the continent,
+
+and the life expectancy. I think that's right.
+
+I think goes to the right column names we'll find out and then from country if we can start there. So there we have that and we might want to order by so
+
+And now we have that and now we want to get the average. So for each grouping for each comment,
+
+we want to get
+
+each of the averages.
+
+So how would we grip this then
+
+what what column we grew up on?
+
+Yeah. So we group by group by again goes
+
+for before, after the firmware, but before the order and limit. So group by alternate, which now gives us an error because of life expectancy. So, once I grew by continent, then I have to use an aggregate life expectancy to be in the group as well which doesn't make sense without an aggregate or we have to Use an aggregate. So we want average. So we use the average I group.
+
+And now we get back
+
+what we're looking for, but when it orders highest from
+
+lowest, so we can alias this,
+
+like average life expectancy. And then we can order by it.
+
+And they want the highest, the lowest descending.
+
+We have this inner
+
+How can we get rid of that?
+
+I'm gonna take this whole query.
+
+How can we make this we don't have an article in our
+
+our listener?
+
+Yeah, so we could say where Donnie goes now
+
+or we could also just Limit limited so Antarctic is not in the list.
+
+I think those are both.
+
+Both will work. So
+
+Alright, this
+
+we can't use our
+
+aggregate in the where clause because it's not created the time the where clause we have to rely on the table. If we look at the table
+
+so select star from country.
+
+Then
+
+we could select where,
+
+where's the life expectancy is not equal to naught that would work.
+
+So we can Say life expectancy it's not No.
+
+That would give us what we need. Or we can also say where continents not Antarctica if we want to be explicit that it's not Antarctica specifically we're interested in.
+
+All right, so now we have
+
+that question answers the next sum of all cities and each state ordered by the state name.
+
+So what table are we working with?
+
+For a city so let's start there, select star from city and we want to find the sum of the population of each city and tweet us city. Can we just do this one of the one I end up doing as an example, on the Yeah, we just did this right here. That was the on the fly example I ended up doing. So learning how to do that. So that's not too interesting.
+
+So
+
+what if we wanted to change it, then to do the average? What if we want to get the sum and the average? How can we change it?
+
+Just a comma, then average population. Exactly. So
+
+we get the same stuff at the sum and the average population. So the average population per city is what we're, we're seeing. So we can once we have things grouped, we can use as many aggregates we want, we can use all five aggregates, if we want or other ones if the database has them. The database engine has them. So once we have the groupings, we can keep aggregating it multiple ways.
+
+So,
+
+we have that and to go back to what we did if we wanted to know already friend has that problem.
+
+So questions on group by
+
+because the next thing will be jumping to another topic completely.
+
+So grouped by aggregates, they make sense.
+
+Great.
+
+So then let's talk about sub queries.
+
+So sub queries
+
+are this idea that if we have a query
+
+and it returns a list of items, or a single item, so some values that we need And we need those values in another query, we can embed one query into another. So we can use a query to select values we need and an outer query. Before we get through this, sub queries can be a little more complicated than most of the stuff we're looking at the first time also, we're going to start putting tables together and say, okay, we want data from one table to drive something in the other table. Sub queries are not the main way you do this. They're, they're useful in a few cases. But what we're going to look we're going to spend all day tomorrow on how we put tables together. And there's a much more common way. But let's look at sub queries because there are cases where they're really useful.
+
+So let's start with
+
+this problem we looked at we're looking at here.
+
+So let's say we want to find the names. That's it. Problem.
+
+Let's add a problem where we're going to find
+
+the names of cities.
+
+cities in Europe with a GNP greater than 1 million
+
+and the current records. So
+
+if we wanted to do that, we have two tables now involved, right? Because the GNP of the countries is on the country table. But the names of the cities is on the city table. So what we really want we want to select star from city
+
+is I want to select
+
+the cities
+
+where the country code
+
+select is equal to that's that a
+
+country
+
+with a country code is equal to the code on the country table because that refers to the country and where the GNP is, or vermillion. So I want to select from cities where there's country codes with a gnps or vermillion on the country table. So I could do it like this. I could start from the country table and say, okay, where
+
+GNP is greater than one.
+
+1 million and I get back this list of countries. Alright, so now I could take from the city table.
+
+And I could say, okay, where
+
+country code is in
+
+GBR
+
+ita.
+
+JPN,
+
+fra
+
+to you.
+
+And then
+
+that would give me the names of the cities and countries that have
+
+the GNP greater than 1 million.
+
+But now, if I had to change it to say, Well, I didn't really care about 1 million I cared about 1.5 million
+
+and now it's this and I have to come here and remove
+
+Oh, I see we want to keep
+
+TBR goes away like a good Britain go away. France goes away, so that we have this. And now I get my result. But I have to edit these two queries, right. I have to constantly keep up to date. If I want to change my first query to change by second,
+
+plus, why,
+
+you know, this works fine when there's no six or three or six items. But what if we're in a table where there's, you know, 1000 items returned. So we're not just dealing with countries, we're dealing, you know, like employees, and there's maybe thousands of them that we have that are going to drive on the query. So sub queries allow us to use the result of one query. When it returns the type of data we need for the second for an N or N equals and another query to just use it. So I could rewrite this to say, okay, instead of using this list of values I got from running this query. I want to just take this query put it here and sub queries return one column, because they're driving and in, or n equals. So code was I think what's on there. Now if I run this, I get the same results, because this is returning
+
+this list that I'm using within.
+
+So census returning this list, it is feeds the end statement. Now if I need to change if I want to change it back said, No, I really did care about
+
+1 million.
+
+I don't have to change anything, I can just change my sub query and the outer query gets updated. So sub queries allow us as long as we select a value a single column where there's a single value we use when the equal statement or a list of values like we would use with an N statement. Then we can replace that list of values with a query that selects it for that value with the query that selects that single value or that list. And that's what a sub query is. It's just replacing a value with a query that's going to get the value from another table, or even the same table.
+
+So before we continue,
+
+there are questions that come up for you from that.
+
+I get in theory, but can we do another example? We are we're going to do two more.
+
+And these aren't something you're used a lot. These are fairly specialist type of situations and what we're looking at everything you could do with them just about everything you could do with them. There's a few rare cases can be done with what we're going to learn tomorrow and normally would be done with what we're gonna learn tomorrow. So let's find a name of cities under a given government leader.
+
+So here
+
+let's pick
+
+Government leader, let's find out how to even find out a government leader. So let's say select star from we know we're going to start with country.
+
+And
+
+we want a head of state, let's pick Elizabeth the Second
+
+to be quite a few, several countries in here that
+
+have her as head of state. So
+
+we can, what we want is where
+
+head of state equals.
+
+So Beth
+
+so now we have our list of countries. So here's an example where it's would be a little tedious to go and enter all these by hand. So we want the cities that are associated with all these country codes. That's what we want. So in our city table, select star
+
+From sitting,
+
+we connect the country table to the city table. And we'll look at this a lot more tomorrow how tables Connect by the fact that the country table has the country code on it in the city table has the country code woman. So the country code and the city table connects it to what country that cities in the country code on the country table identifies which country that rows for. So when we select here, we're getting a list of all the countries. And it has that code that happens to match what's on the city table. So if we change that to just to get the code
+
+now we have a list of the country codes.
+
+We want to select from the city table.
+
+So again, that would be aware.
+
+The country code is equal to well, we can't use equal to because there's a list of them. So we'd have to use in exactly And four, and we could go through and type each one of these enter in. So we could go through and say, okay, you know, I ATG Well, that's now there's 35 of them. That's not going to be really that efficient. Or since this query returns, just read the exact list of codes we need.
+
+We can enter in,
+
+but the query
+
+and it will return the value that list, which will then be used in the end. So what it's saying now is where the country code is in the results of this query
+
+where this query returns a country code.
+
+So now if we run it, we get the cities that are in the countries that have The head of state Elizabeth the Second.
+
+So
+
+let's do one more here.
+
+So this one
+
+that's almost the same problem, but let's solve it anyways.
+
+So if we would start the same way, if we want to find the countries that have not declared independence yet, we might say select star from country. So we're going to start there. So we're solving one of these problems. And I will say I'm almost positive. And if I'm wrong, I'm wrong by one question, but I'm almost positive. There's no sub quiz in your exercises today, or ever. For shells give me this look like no, you're completely wrong. So I may be wrong, but if I am, I'm not wrong by more One question. There's no more than one or two, or three or so on there. There's not many. I don't think there's any though. But if you have to solve a problem like this, then you I'd what I would start from, I need to find the list of cities. So that tells me I'm working with the city table. So I would actually start there. Because what I want to find out is I have a list of cities and what I need to get is this name. And, but I need it from information from the country. So the next thing is how do these tables Connect? So this is going into the relationship of relational database. And we're going to go through this in detail tomorrow, like all day tomorrow's about these relationships and how we use them. But at a high level, the relationships are where are the values like so going from this and knowing I need something of the country table. I've been conditioned
+
+From country
+
+and see what values Connect, and we already talked about, they connect on the country code. Unfortunately, this database already has three tables, they all connect on the country code, which is really common. So here we say, okay, the country table in the city table Connect, because they both share a country code.
+
+So that tells me that I need to get
+
+from my city, where country code
+
+is in the list
+
+that have not from countries of the country code of countries that have not declared independence yet. So writing the sub query then, so now I know this is what I eventually need. But I need this to be the list of countries prepared independent yet the list of country codes. So then it's coming back to select star from country in finding out how do I find out countries that have not quite independent yet? That's a problem we actually solved yesterday. So we know that were independence here is not No,
+
+no, this we want isn't all. We want the ones that don't have a value.
+
+Spelling something wrong.
+
+We check it.
+
+So now
+
+still scoring something wrong.
+
+I N d dp
+
+Oh, thank you.
+
+Andy.
+
+Okay, I think that's
+
+third time comparing it with somebody helping me. definitely get it right. Now I have a list of countries that
+
+have not declared independence yet.
+
+So what I want from here is I need the country code because that's where it connects. So then you can limit this to just return that column. I have the list of country codes, and I need a list of country codes here. So when we take the sub query, and move it into the query where I need it, and end up with a list of cities, that interest in the city table, where the country have not become independent yet, and the problem is to find the name. So now I'll be limited Finally, by the columns in the city table, which should give us the names of cities and countries that have not been credit dependent yet. Do a subquery The only other way to do this, for what we know now would be to run the query manually and manually type in out, you know, all the country codes in the end.
+
+All right. So, Brian, for the sub queries to work, do the two tables need to have an overlapping column?
+
+They do? Yes. Okay.
+
+They have to have something that's driving the one piece of data is driving the details on the other. So it's going to be using overlapping column. It is actually so they actually can be used. I'm going to rephrase that some Yes, but they actually can be used as part of a conditional to. So you can say greater than this value that comes out of the sub query type of thing. Like if you when I'm trying to think of an example when you use that, so maybe when you select all of the I don't have to see what all the books that had sales greater than a particular count off another table where you're returning, you know? Yeah, that would stop to have an ID. But there are cases where you could use it, you can use them in a condition. I can't think of a great example of caught my head. But
+
+I don't know if I've ever used like that either, but you can.
+
+So let's do one more. Let's do one that's a little more complicated that brings all this together, or uses some of the things were used together. So let's find the names
+
+of cities with a population
+
+greater than
+
+1.5 million in countries with a GNP greater than 1
+
+million In
+
+and a
+
+anded population
+
+greater than
+
+8 million.
+
+So, a problem that has where clauses in both tables, which is really what I wanted to look at.
+
+So over here,
+
+I would start this with I'm looking for the names of cities. So what I want is select star from cities.
+
+City
+
+and I want it where the population is greater than 1.5 million. So I know that where population is greater than 1.5 million. Now I have my list of cities for the population. 1.5 million, but I need to limit it farther. And I need to do that with subquery. So or from something from the country, I don't necessarily know it's a
+
+sub query. So what I really want is
+
+where,
+
+and sorry. And the country code is in this list of countries. And the country code list I want is select star. country is countries that where the GNP is greater than 1 million in the population is greater than 8 million. So for my query that I'm getting that list of country codes, I would use that. So I say where
+
+GNP is greater than
+
+1 million.
+
+Make sure that works.
+
+And
+
+the population is greater than 8 million.
+
+What happened there, but
+
+so now we have this list that meets both those criteria. So now, I want to drive the list of country codes. So I can change the star to be code the same as I did before. But now I have a little more complex query. I can use the select statement here in the same way. And we end up with the list of cities that are in cities that themselves have a population greater than 1.5 million that are happen to also be in countries with a GNP greater than 1 million and a population greater than 8 million. So what this gives us the point is This one is that this can be part of a more complex WHERE clause, it doesn't have to be the only part of the where clause in the sub query itself can have anywhere clause a want it needs as well. So it can have a more complex WHERE clause. And I'm not going to show it but including its own sub queries, though getting them too far nested is not really usually a good idea. But it's possible. So anything we can do in a regular career can be in a sub query, it's just getting a query that returns one column. Either one value sometimes just one value like the largest. This would be a case where we want to get the city it's in the the largest country, the largest country with the largest surfacer in the world, you get well that would be a good, let's do that one.
+
+So the cities
+
+and the country
+
+with the largest surface area
+
+So, again, we've done this Select star from cities, we know that starting what we want already. So we'll start with the country. So we want to get the largest surface area.
+
+So select star from country.
+
+And we also know it's going to be where surface area right?
+
+Now, do we need a where clause?
+
+Can we get the largest surface the country in the largest surface there?
+
+Isn't insulite you do max surface area? We could, but remember can only return one column from a sub query.
+
+So if we have that, we can't we can return the surface area but not the country. So how can we get the facts the largest surface area
+
+Did you do limit one? Can you limit one? That would give us one record?
+
+So we are going to end up with limit one. But how can we get it so that our top one is the largest surface area?
+
+We can order by order by surface area.
+
+And it's not going to be ascending or descending to get the largest descending. Let's do descending. So that gives us the country with the largest surface area. And now we can change this to code. And now we can take this and we can say, I guess I didn't need to do that. I'm just up here. You can say select star from city where country code equals
+
+and I'm going to put In
+
+parentheses, so it stands out.
+
+I don't think you actually need to have it in parentheses, but I'm going to put it there because now what we get is the same thing only now we have one codes we can use equals when not to use in. And also shows we can use things like limit in order to do our sub query. So we can have anything we can have in a query here in the sub query with the caveat that it only can return one column. So for returning to like the max, which also could do the same problem, we couldn't get the country code. We could only return the back surface area. We can use equals when we know there's only gonna be one item returning. Like in this case, if we're only getting limit one there only can be once we know that always be the case. Right?
+
+So other questions before we?
+
+I thought I was falling, but the answer is different than I expected. Okay, what is I thought we were just gonna get one city. Well, we got one
+
+country.
+
+This is the sub query one country, but when we use that with the country code for city, there's multiple cities in that country. Okay, that makes sense. If you notice what I've been doing there because that's really useful. So pointed out, if you select part of your query, get to have a valid query, you can run that with a green button into a register part you have selected so that or select code from country and run that in a run the part two selected, so it makes it really nice when you're trying to break up queries and work with parts or troubleshoot parts.
+
+So other
+
+questions before we
+
+move on?
+
+So earlier you mentioned that, generally that the share column or this mother was a joke around that. I was curious when you're going between two sets of data. Just something I remember seeing the real world with SQL where you may have two different tables where the data is the same, but it's formatted differently. So for example, like for a mobile telephone number, this this particular table has dashes in it. And this one is just a number without the dashes. But what we did is so that we actually will cover or talk about how to bring together we won't directly so but we've covered the tools needed to do it.
+
+So the way you would do that
+
+we don't have an agent Data it's like that to actually work with. But is that these methods? So we looked at five methods, right? We looked at round, but there's others Postgres has other ones built in other database have other formatting methods. And you would use those to format the output of your sub query to be the way you need it in the input of the other query. So since you can do anything with this select, you can use this formatting methods like the round data, or to concatenate strings, or there's other ones that you can like substring, and do all kinds of things like that. So that's, does that answer your question? All right. So let's do some more queries. And then I'm going to take a look at some more advanced stuff at the end that we won't talk about a lot, but I'm going to show you exist. Let's do the rest.
+
+I'm sorry. I had a quick break before we move on. Okay, there's a time All right. So we'll take a quick break then.
+
+I just know once We get in there, man, it's gonna be amazing and we will want to stuff so
+
+without breaks.
+
+You want to keep going no breaks.
+
+I'm just saying Brian, he's the type he can go without a
+
+vote. Oh, he'll go right through. Yeah, we will
+
+never leave his desk. He's just there all the time.
+
+Alright, so let's take a break we'll come back at a
+
+loving 24. And, well,
+
+you so what questions you have before we keep going.
+
+I had one
+
+are we going to be using like primary keys and like one to many relationships and stuff like that?
+
+We are. That's all day tomorrow. All right.
+
+That's one of the main focuses tomorrow will be on how the relationships work and everything. I think you just listed will be included. So
+
+some other questions.
+
+So let's just write some more queries, just kind of work through the kinds of problems we'll be working on. I've been working on, I mean, introduced, there's a couple of small things I'm gonna introduce with these as well, that we haven't looked at yet. And then at the end, I want to look at some more advanced uses that are more Postgres specific, around some of the things we've looked at. So let's look at this first one. So one thing we haven't really done yet, we've done aliasing of columns. But we also can alias alias tables.
+
+So we can
+
+select name, as city name, but we also can do from city as cities And that's going to become more important tomorrow. But we can alias not only columns, but tables the same way. And what this can allow us to do is start doing something that we haven't looked at either that in our from can actually have more than one table. So we can say select name
+
+from actually the start star
+
+from city country by putting them comma separated, and now we get back all the
+
+cities and all the countries.
+
+They're not necessarily matched up the way we might expect, though. Is you noticed that for each city, there's a full list to the countries. So Amsterdam returns every country. And then if we come down through the next city returns every country. So it doesn't always work out the way we want it to. But it's possible. And we can kind of control that with where clauses and sometimes it's useful. But this is also now we have the problem of what if I want the name? And now it says, well, it's ambiguous because there's a name in both city and country. So which one are you referring to? And this is why we might want to alias table names. So what we can do is I can say, city dot name, so I can say the name of a table dot the column I'm interested in, and it will give me that
+
+and I could say, country dot name.
+
+So we can give a full name to our to our table name column names by putting the table name with it. Or we can alias tables to make it a little easier. So we can say as maybe just the letter C, and then we can change that to that maybe want to change. This is as maybe a CEO. That'll work. But one more thing with tables, unlike columns, the as is optional. And actually not used very much with columns as required tables, we can just do this. So we can say, city and put a space and the piece we put after it will alias it to the letter C, that when we can use that with a column name to get rid of ambiguity and say, for the city table, we want the name and for the country to be we want the name
+
+so
+
+So a little more that we can do with aliasing.
+
+So let's look at. So before we look at the next one, the questions on that.
+
+That'll come a lot more important tomorrow. When we start
+
+connecting multiple tables, not just two but many tables together.
+
+So you're, you're defining the alias down in the from, and then you're able to utilize that in the Select as well.
+
+Yes, so this is. So when we define the alias, we're defining it for the table. Then we can use it in the Select refer to which table we're referring to for that column, which allows us to get around a big city with this case where they both have the column name. Okay.
+
+And then could you give aliases to those in the Select? Yeah, so we could say like as, in fact, we probably would some city name.
+
+As country name and then what we get back is something a little more useful to us
+
+other questions before
+
+alright so for the next one
+
+let's do actually here they don't really say what we want to select but the what we want to look at is name in population
+
+from city
+
+where
+
+country code
+
+doesn't matter does it equals USA
+
+and we want to order by name
+
+and name ascending in population descending What we actually want to look at here is we looked down at Arlington, we can see now it's named by the city ascending the populations in descending order inside of the cities grouping. So when we're ordering by it orders by left or by so kind of grouped by, so orders by the like thing, so all the thing gets ordered together. But then the next column we ordered by is inside of that grouping. So if I change this to ascending, we'll see it's the same result. Only now. It's ordered.
+
+Those two are ordered individually.
+
+So let's put this back the settings it's a better example.
+
+So with limit
+
+that's probably a quick limit, maybe we'll sec select
+
+name in population
+
+From city
+
+and we know that we have the cities here. And then we can limit that. So we want to limit
+
+by 10.
+
+So we can also do what's called offsetting. So this gives me the first 10 Records. So you can see that that's records one through 10. This is going to be 11th record. But what if I want not one through 10, but I want 11 through 20. So I want to limit to 10. But I don't want the first group of 10, I want the second group of 10 or the third group of 10. So offset allows us to do that so we can offset an offset by 10.
+
+Now to get back is 11 through 20.
+
+If I took the same thing and maybe I want
+
+to start at five
+
+so I start here I can offset by five
+
+And now it starts at five and gets the next 10. So offset gives it a place to start with the limit. So it says okay, offset five means skip the first five, then start here and then limit 10.
+
+Limit 10 and return those 10.
+
+So I'll set 10 would say, okay, skip the first 10 then start here and limit the output for the next 10. So this when you when you go to a website, you have paging with the call paging, where it says here's products or one through 20 and you click a button and you see products 2340 that's exactly what's going on are one of the ways of doing it. There's other ways of doing it, but that's what is going on. What are the ways that they can say I want to offset the search criteria the results being returned from SQL by the group. So first time the offset of zero the second time I stopped by 10, third time by that 20 and 30. And it gives you 1010 at a time through the whole set,
+
+said one way of doing it. Alright.
+
+So we also looked at
+
+the concatenation, just to point out, we can do something a little more enter a little bigger than what we just looked at with a comma. So let's select something like name. And we'll start district from city, and we'll just put where country code equals us. So we end up with a smaller set. And we could do things we don't have to just do things like we did with the comma we could also do something more complex like
+
+is in the state of
+
+Want to go away more.
+
+And we get back the statements.
+
+So we can concatenate, just like we would Java, we can Kenny anything together including literals. So that allows us to create, imagine if you wanted to create these to fill. When we get to putting this together with Java, a drop down box and a web page or something like that, or list of data we want to display. Like for instance, if your catering system products have been in a database, you could have got back the menu already formatted using something like this from have sequel to the work of keeping track of how many items are and things like that. All right.
+
+So this one
+
+Again, we've already seen this but it's another kind of
+
+where we select
+
+we get select count.
+
+name from city.
+
+Which thing we count, actually this one
+
+Oh, that's just a comment that goes with this. Okay.
+
+So we count this whether we count
+
+count country
+
+we count the name
+
+we count
+
+the top We're going to get the same result. Or if we count star, which is probably the most common thing to count to this count. So in all cases, all three cases, we get the same result because it's just counting rows. So most cases, it won't matter which column we pick for count. That will immediately go out the window tomorrow when there's a case in your exercise. It's not for tonight, for tomorrow that requires the right column to be chosen for count, but most cases won't matter.
+
+So
+
+let's get the
+
+sum of the population filled in the city table as well as the average and account so we can do multiple things at once. So we already talked about this, but let's show a better example of it. So we can select the sum the population, we could also get the count of the population.
+
+maybe want to Get the average of the population.
+
+Actually, if we can just keep going and get the minimum of the population
+
+and the max
+
+of the population
+
+from that table we,
+
+from city
+
+doing math from
+
+so we can use all the aggregates together. It's not until we introduce the first non aggregate.
+
+So, maybe district
+
+that we have to start doing a group by and then we can group by
+
+district
+
+and we now we get each of the aggregates for each of the districts. So, we can do, we can have all the aggregates we need
+
+as long as the non aggregates have the grip back
+
+And that's something that's not too interesting since we've just done exactly that, but let's do it anyways. It's like men, because this is a kind of problem you might end up using more. So max
+
+population
+
+from city which would give you them and then we can aliases something like
+
+as smallest population
+
+and then as
+
+largest
+
+population
+
+so to get better information from the city table and get the smallest city in the table in the largest, so commonly used together. Then finally let's look at one more example of
+
+I'm doing this now by country code. So we can select for the country code.
+
+The same Actually, we just get this election query,
+
+change this to be by country code.
+
+And then group it. Now we'd have to group by country code. So the largest and smaller city in each country. And then we could continue and do a no sub select to get the name of the country if we wanted. But we're not going to do that. Well. There's a better solution for that tomorrow. So before we start looking at something a little more advanced, just briefly, we're not going to I want to introduce you to it and show it exists rather than
+
+go through in detail their questions. So anything we've looked at today
+
+Brian, would you mind explaining offset one more time real quick?
+
+Yes, so offset
+
+gets
+
+a horse that second
+
+it changes the limit by it gives a starting point to the limit is really the best way to think about it. So we have here and we have a limited 10. I actually run that query
+
+we get
+
+if you look at this data, we get these rows started rolling down to tilbyr,
+
+which is
+
+records one through 10 in this table, right? If we offset it by 10, then offset says skip the first 10. So it's going to skip these 10. And now it's going to start here and we're to get the next 10. So the data we get back start at the 11th row and we get denied Then, if we go back here again. And let's say we want to record 21 through 30. So we could offset by 20. So we say skip the first 20. Now our first one we get back when we limit to 10. We'll start here and go through here.
+
+And that's what it does.
+
+So offset is telling it how many to skip before we limit. So allows us to skip ahead in the Davis data set. That makes sense.
+
+Yeah, thank you.
+
+No, I'll leave it at 20.
+
+So other questions.
+
+So let's go back to that problem that I created. Because it's a great segue into some of these more advanced topics like casting, casting, and something like that. is useful. So let's look at that I said I would show you how to solve it. And I created the problem by see it's up here somewhere commented out by forgetting that, or not realizing that when we do an average, it doesn't return the data type that's needed for rounding. So but it does return a floating point, right, just not the right floating point data type. So it'd be kind of like requiring a float in Java and having a double, or, actually a better example might be requiring a big, double and having a big decimal. So we have to convert it.
+
+We can do that.
+
+So to do that, I need this output to be in a format that this input will accept.
+
+So I can cast it
+
+And there's two ways to cast it, we're gonna look at both, but the Postgres way, which is the easiest way, is to use just double colons, and then the new data type you wanted us, I want to cast this. So what's happened right now is it's actually coming out as the data called numeric. And I need it in decimal. So I'm going to cast the decimal. So I say okay, take this value, whatever I put up including a whole column or the output of average, whatever value I need, and this tells it the cast as this new data type.
+
+And then when I run it,
+
+I get it works, because now
+
+before if we remind you what the error was, which I started there, it says that precision integer does not exist, actually, sorry, average returns this type data type called precision, double precision. I need to invest more in America. So decimals the one we're used to. So we'll put it in decimal, again with double colons and the data type. And now it works because of the steps decimal is one of the values. So double precision is another is a non standard. And I will say non standard. It's a non ante SQL data type that average just happens to return. So that's casting, but I'm gonna look at it. more examples of it. So before we do, though, is there questions on on that first part, and that's the same. So I should have paused
+
+the the error message there was pretty nice. That was pretty straightforward to the point of what the issue was.
+
+Yeah. Don't don't get used to that with SQL.
+
+Yeah, now I see the very bottom of this file, right. Okay. will last the examples we explained
+
+Are there other questions before we look at?
+
+I think there is a problem you have to cast coming up this week. It's pretty similar, I think I think it actually is with average or one of one of the other aggregate functions. Today or tomorrow, where you exact, you end up with the exact problem we just ran into. All right, so I want to there's some other files and lecture code that are not going to write code, we're going to look at it because it is a lot more advanced. And I want to demonstrate that there's a lot more we can do a sequel than what we've seen. Some of you may not use, but it's more of just, we can do this stuff. And everything we're going to look at from this point on is mostly except for one case, which I'll point out the difference is mostly Postgres specific. Someone Open, file open. In these extra advanced examples, I'm going to start with cast examples. So here's examples of casting between different data types. So there's two ways to do it using the cast keyword, where cast, whatever the value is, as whatever you want it to be. That's the anti sequels way of doing it. So for instance, this is taking a 10 and changing into integer. We're not going to see any difference except the data types and this will be taking a numeric 10 and changing into a VAR car. So changing into a string. This one changes it to a decimal. This is taking a value, this value right here and changing it to a date.
+
+Same thing for a timestamp.
+
+We can say we can take true and cast it to a boy in.
+
+so here we can cast as we're doing Mathematics
+
+and get the correct answer.
+
+So all of these here are these are identical to them. But these are done with the Postgres syntax, Postgres is subsp, both because it has to have Sabanci sequel to be enhanced to be a SQL database. But then it has its own version of it, which has just the two colons, which is actually a lot easier to use, in my opinion, but either ones fine to use, if you need to cast. So that's how we can cast between data types we can cast as long as the value is can be valid than other days have been cast, which means any any two data types. There's not the difference between parsing and casting like there isn't Java, it's just we cast, it can treat it that type it will. If we give it an invalid value, we'll get an error. Like if we try to cast ABC to a date, we'll get an error from it. That's the first kind of more advanced usage, but once You actually probably wind up using some
+
+some questions on
+
+where did you say you were when you went to fall?
+
+I went to.
+
+And there's a folder called extra advanced examples.
+
+It's in your lecture cared for.
+
+And we just looked at the caste example. But next let's look at, I'm gonna go through the rest of these. Let's look at date. Next, let's go through an order. So there's also a bunch of date methods built into SQL. Some of them which are actually pretty useful. SQL is a lot more robust at how it handles dates than Java is. So a lot of stuff we ended up having to write manually in Java, SQL can just do for us. So Here, one, the keyword current date can be used to get the current date. There's also current date time to get the current, our current timestamp. To get the current timestamp or daytime, we run that we can see it tells us what the current date is. We can format things. So changing to car, changes it to a character. So this takes the current date, and we'll change it to this format. So it's kinda like using string format or, and Java for date. So if we look at this, it'll transform the data into this for you know, another format. As we continue down through here, we can do things like here is a date, we can use dates and sequel directly just by using a string in the right format. So we can give it a day like this. And then we can use multiplication or addition with SQL dates. So if we give it this date, minus the current date. It'll tell us how many what the difference is between those two. So from the current date and 1231 2000 1800, and six, there's been a negative 160 167 day difference. I'm pretty sure this example is written for it to be used last year. Is that right? Oh, yeah, he'll be halfway through the year. That's right. So we could also do between two dates. So we can say how many days between 1231 2018 and 12 one, using just a minus tells us 30 days, we can do intervals. So current date plus an interval five days, and then put it in this format. Again, after all these ones the next one takes current day plus an interval of one day in this format, and then the same thing minus interval one day says track today, plus two years plus one month we run these we can see we'll get from the current day, five days from now, one month now, yesterday's date, two years and one month from now. So it's pretty robust what we can do, there's an interval data type that actually is part of anti SQL that allows us to say, talk about intervals time intervals in kind of real real time or real verbiage. So we can say you know, interval one day and plus that to the current date two or minus a to find out one day away from the date.
+
+So we can also do things like
+
+find out here, look at this one. We get
+
+Oh, yeah, they notice how long the data is just showing that it can track 30 and 31 days. So we don't have to worry about that either SQL takes care of basically the calendar information for us. And it also knows about leap year. So we don't have to pay attention to basically the calendar formation SQL handles that internally. We talked, we went to intervals and it will come out, right. So when you're working with dates, I actually SQL can actually do a lot more for you often and a lot easier than you can do it with Java. So, or really any other language that I'm aware of for dates, so becomes common to have sequel to a lot of your date work. You want to find out know, what five days from now but then have Java do it just have sequel, return it if you're already doing a query. Right. So to go into the next example, and again, these aren't things you'll be using, maybe, maybe not this entire cohort, though. There'll be Definitely chances to these are just, I want you to see some of the extra stuff that you can do.
+
+Some forecasting, you'll probably end up casting things.
+
+Some math function.
+
+So there's some other math functions that exist, we looked at round, because that's the one you're most likely to need. There's also
+
+examples of
+
+rounding truncation which just cuts off so rounding, you know, rounds up or down, like we expect. truncation just cuts off like a truncation of Java, ceiling and floor just like ceiling and floor in Java.
+
+We can also see we can do
+
+things like plus equals minus equals, like we did in Java as well the shortcut
+
+for hands.
+
+And there's also absolute value. There's other ones as well. Those are just some examples of some common ones. Use ones to excel the different outputs from it. And there's also you can get a random number as easy as this in Postgres. So that'll generate a random number. If we look at that, that gives a random number in this format between zero and one, just like Java's random generator. And then we can transform it using the same formula you put in Java to a decimal that way to an integer by casting it and then to larger numbers. So becomes between zero and whatever this number is.
+
+Actually, I think it's one and whatever that number is no zero.
+
+So we can
+
+that's some extra things we can do with numbers.
+
+So let's look at strings now. So there's a bunch of strings functions. Again, let's just run this, we can see the examples. So things like lowercase, puts it on lower uppercase, puts it on upper length, that will tell you the length of the string substring. So does substring is name from three to two. And so from three to two is going to give you for this, it's going to go start at three, for two, so start at three and go for two characters. So a little different than Java where you give an ending place you give a starting index. So but this index is more of the third, it's not an index. It's actually the third character. So in Java, we would do the same thing we would have say two through five. Yeah, yeah. Because then we would get the characters. Yeah. 234. Then we get to characters two and three. So it's SQL we say we went to third character. And we want two characters from that, which would give us the G and the H. You can also do left and right. So this says give me the leftmost character five characters, the five rightmost, five characters, repeat creates that whatever this character is five times you can put them together. These can be embedded into each other. So here it gets the leftmost three characters and repeats it five times. Imagine solving that problem in Java, you had to write a loop and do some other stuff. Fairly simple in SQL as long as you know about these existing reverse reverses a string. Replace allows you to replace characters in a string. Ram removes left trim our trim removes characters from the left and the right of A string of whitespace sorry, what trim does both
+
+so that's
+
+we can also remove
+
+using left trim, or right trim. We can also not only just remove space, but we can tell other characters we want to remove. So for instance, left trimming, dash dollar sign remove any dollar signs or dashes that are starting on the left side. Right trauma do the same for the right side. So the trim and job is not limited to Earth sorry, sequel is not limited just to or Postgres is not limited just to spaces. So, again, some definitely more advanced uses and some string functionality that's actually much easier here than it is in Java. Right so Last month, look at sub queries in this one not quite as interesting as the other ones. This one's just showing really an A couple things we didn't look at with sub query. So if we wanted to get a sub query that shows the minimum life expectancy in the country table, we could do this. So we get where the life expectancy is not not ordered by life expectancy ascending and limit by one. That'll give us the smallest life expectancy, right? Or we could select men using the aggregate. So this is going to return 37.2. The smallest life expects we know that's a value on the table. We could use it with life expectancy for the rest of the thing to get the exact same result. So Sub query and appointed This is just two things. One is that the output of the sub query doesn't have to be a value that's on the this table itself, it can be, it has to be something that's going to show up here that's going to be equal to that. So we can calculate it, we can use the aggregates to define the value we want. And the sub query can be for the same table, which is really the thing that I mean, if I was writing it, I would end up writing it like this. But showing that those things are possible with a sub query.
+
+And this is the same
+
+type of thing. So here we're getting the name and life expectancy was saying life expectancy is greater than so here's a sub query where said where we can use it not just with equals and end but we actually can use it with the comparison operators like greater than less than, and this is a case where it's doing that. So saying, Get off The countries that are in the group of the app that have a life expectancy greater than the average life expectancies for you. So from the aggregate, on the continent of Europe, so because the where, and then when we order by order by two, we can order by the column life expectancy, or this is saying order by the second column. So order by whatever this second column is, is what that's doing. So we can order by index, but the index don't start at zero, they start basically at one, so it's more of a count. So I wouldn't say order by one order by two if we had three, and so on. That's not as easy to read as ordered by life expectancy, but just know if you see it, that's what Another thing you can do. So again, all those things, if it all making sense to you, that's fine. Those are not things you're gonna have to use. Just want to explore more that there's all this stuff SQL can do. We didn't. This is all supposed to do, but you get to the large databases. The reason that companies buy databases like Oracle is they go way beyond this, the things they can do. You can write whole programs and I'm in whole,
+
+rather large, robust applications on them.
+
+doesn't mean you should but you can.
+
+Alright, so what questions do you have before we
+
+okay. So tonight then four exercises. Let's look at what you'll be doing there individually.
+
+But open
+
+exercises. So Mike here and I'll go instructor course we'll go to your student exercise and This aggregate functions exercises, SQL. And their problems, like we just worked through mostly right aggregates, no, I think
+
+some are not.
+
+And they, they work through really just like yesterday,
+
+therefore, the world database, so the gap is expressed in units millions of dollars. So there's a number beside each one that tells you how many rows are expected to be returned. So just like yesterday, you would look at it. Right, the value, some of these will tell you not the number of rows returned, because they're looking for an aggregate the sub population of all cities in China, so they expect one value to be returned, and this is the value that they expect. So for some of these, you're only going to get one row back because of the aggregates. So they give you a value instead. But you'll work through them the same way and then Push them just from your, your name Java, blue, material support like you did yesterday.
+
+Some questions on what you'll be doing
+
+right now about what we are doing, but he's definitely another file next with this one. So we can check out the notes. I couldn't do it.
+
+So you can't add dbvisualizer but you can using another tool like Visual Studio code. So I would suggest, I'm gonna go out and find it. You can do it in Terminal two, I'm gonna use Finder.
+
+If you go out to see
+
+we get to that module. You're like if you want to look at today's like lecture code.
+
+If you find that file, you can open it in a tool
+
+like Visual Studio code and Maybe.
+
+And there you can see the, the queries here.
+
+Actually, I think Visual Studio code has better sequel highlighting than dbvisualizer does, but you can't run it easily against the database. So can you?
+
+Can you run from the wishes? You
+
+cannot know? Okay. Yeah, that's the, that's the problem. Otherwise we'd be working in it. I like it's highlighting better. But that's just my personal preference. But you can open up that as many of these as you want. You just have one open at a time. dbvisualizer. We can use other tools. They're just text files, any text editor can open them. You can even open them in Eclipse. If you really are missing our clips and feeling sad, you can't see it. You're welcome to do that.
+
+So does that answer
+
+your question?
+
+Yes. Thank you. Okay.
+
+So other questions
+
+just a reminder to
+
+make sure you only have one SELECT statement in between the questions there. Sometimes folks will want to be digging for information and leave statements and hanging out in there and my test think that I should they should look for that
+
+they get mad.
+
+So for that delete them or remember you can comment and SQL by these two dashes in common anything in SQL including parts of things in the middle, which will take advantage of to for security problems next week.
+
+So anything else before Alright, so some things for today. The gear career strategy, I'm Spencer money Christa, do you want to one start today, don't forget them and don't be late. So there's also the lightning talks at four o'clock today and encourage you to attend those. Those are always interesting and good to support your peers speaking, I'd also encourage you to submit one, learning to speak about speak in front of a bunch of people is always useful skill. And I would say it's actually if you haven't spoken to a bunch of people virtually, even if you're comfortable public speaking, you should give it a try. It's a whole different experience as I found in the last few months, than it is standing in front of people so. So those are four code reviews start today and they go through the end of the week, you everyone should have invitations to your teams code reviews, your scheduling the way you are around the career strategy, one on ones. So try to make sure that nobody's conflict if something happens kind of sometimes been in vain. You have to move them around and you will Up in the conflict, just let me know. And we'll, we'll work it out. So don't don't tell them about it Tell me, it's easier for me to change the code reviews them for them. So, but they should, they should all be conflict flee free as of last night.
+
+So those will go for 45 minutes each.
+
+Well, you use this link. So I know normally I leave this open in the afternoons. So if you drop in, you know, if we're doing a code review, we'll be in here doing it. Not that they're private or anything but just let you know. And then, so come be ready your your pair, one of you be ready to share your screen to walk through your code and also the project running. So when we start to review, one of the you'll be asked to do that you'll be asked to actually drive your code in the project. So have one of you ready to do that and be prepared to talk about as well as other things. Be prepared to talk about how you work together. And honestly about problems you ran into code reviews are meant to be kind of brutally honest about how things went. So, and then also be prepared to tell me surprises, you run into the hardest parts, things like that. Just kind of give you a sense of what we're talking about. And also to explain your code and be able to walk through it and say, you know, we've done this and explain your choices, since you know what to expect about kind of what to expect. So, other questions or other things for today?
+
+Quick question, Brian, if you had ideas around, refactoring, should we hold off on those until after the code review?
+
+I'm not necessarily, if you want to refactor before the code review, and you can get it done. It's so it still works. That's fine. I'm okay with that. So I would caution you that many teams have And really many have refactor, read for the code review and broke their entire project and came to the code review and nothing works. And I hear all the time it worked yesterday at work 10 minutes ago, or it worked before we made this change, and then they can't figure out what they what they broke. That happens all the time. So I would caution you get about that to be careful, or to make a backup of your project before you start refactoring it. And then this happened here, I've had that happen. I've done that myself, where I've had to walk into a review and say, no, this worked 10 minutes ago, but I broke something on the way here.
+
+Right before I came in here, so
+
+Oh, yeah, so beware of that.
+
+Anything else? Okay,
+
+then I'll let you go. And thank you and good luck. Thank you
+
+guys.
+
+Transcribed by https://otter.ai

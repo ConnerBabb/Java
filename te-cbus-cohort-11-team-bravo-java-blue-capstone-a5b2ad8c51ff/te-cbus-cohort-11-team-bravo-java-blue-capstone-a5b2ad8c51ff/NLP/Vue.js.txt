@@ -1,0 +1,98 @@
+Book
+https://book.techelevator.com/content/intro-to-vue-and-data-binding.html#vue-js
+
+Vue.js
+The first thing you need is a framework for building components. In this course, you'll use a popular framework called Vue.js.
+
+Learning Component-based Frameworks
+
+In the previous section, you learned about two popular component-based frameworks: Angular and React. Although the syntax and conventions of these frameworks differ, the terminology and concepts that you'll learn with Vue.js have strong parallels in these other frameworks. So, once you become comfortable using Vue, the learning curve for other component-based Javascript frameworks is less steep.
+
+#Installing the Vue.js toolchain
+So far, the JavaScript code you've written has been interpreted by a web browser directly. However, Vue.js uses advanced features of the newest versions of JavaScript that aren't fully supported by all web browsers yet. So, you need to prepare the source code you write to be run by the browser.
+
+Fortunately, like many similar frameworks, Vue provides a "toolchain" of applications that do most of the work for you.
+
+To run this toolchain, you'll use the Node Package Manager (NPM). NPM manages your code's dependencies, like other libraries and tools needed for your project. It also transpiles and builds your code and runs your unit tests and development server. You already have NPM installed on your laptop.
+
+Note: What is a transpiler?
+
+You write Vue components using the latest versions of Javascript. Not all web browsers are fully compatible with all features of these versions, so to make sure that Vue components are compatible with any web browser, you use a program called a "transpiler", which means that it converts one programming language into another.
+
+It's used to convert your Vue source code into a version of Javascript that's more widely compatible with web browsers.
+
+#The Vue CLI
+The Vue Command Line Interface, or Vue CLI, simplifies some of the grunt work of setting up a project and creating new components. You'll use NPM to install the Vue CLI with this command:
+
+Windows:
+
+npm install -g @vue/cli@3.3.0
+Mac:
+
+sudo npm install -g @vue/cli@3.3.0
+This command installs the Vue CLI version 3.3.0 globally (-g) on your machine. The CLI is a quick way to create a new Vue project that includes all of the tools you need.
+
+Note to Windows users
+
+There is a known issue with using Git Bash and the Vue CLI. If you're using Git Bash, you won't be able to use the up and down arrows to make your selections. There isn't a fix for this at the moment. If you want to use the Vue CLI, you need to run it from the Windows Command Prompt.
+
+#Generating a project
+To start a new project, run the following command:
+
+vue create first-project
+first-project is the name of your project, and the name of the folder that is created with your Vue project in it.
+
+The CLI prompts you to pick through several modules and defaults for your project. To interact with the interface, you use the arrow keys to choose between options, the spacebar to select or deselect an option, and the enter key to move to the next screen.
+
+The most common modules used during this program are:
+
+Babel - Converts modern JavaScript to JavaScript code that's compatible with all major browsers.
+ESLint - Checks syntax and common errors in JavaScript and ES6 when the project is built.
+Mocha and Chai - Tests Vue components; an easy-to-use unit testing framework.
+E2E Testing using Cypress - Does black box and integration testing using the Cypress testing framework.
+There are sub-selections for each of these modules, but you typically want to use the defaults. It then begins downloading the tools and generating the files that your project needs.
+
+#Project and component structure
+Again, first-project is the name of the folder you told the command line script to use.
+
+Many files and folders are generated for a new project. One of the main folders in the project is the src folder. This is where all of the source code for your components goes.
+
+Vue components are loaded onto a page using a root Vue instance. You can have multiple root Vue instances on one page, but if components are going to communicate with each other, they need to live inside the same root Vue instance. This Parent/Child component strategy is the main way that you'll build components while you're learning Vue.
+
+The root Vue instance is conveniently called App.vue and lives in the src folder. This is the engine that starts and coordinates your Vue components.
+
+Running npm run serve in the integrated terminal compiles the code and runs it using a virtual server for you to view.
+
+Once you run that command, open the browser to the URL that shows on the screen once NPM has compiled and run your project. It should be something like http://localhost:8080/. You'll see the finished component on the screen.
+
+#Running an existing project
+So far, you've learned how to create a brand new project, what that new project looks like, and how to run it. But what happens if you download an existing project? This is a good time to discuss modern JavaScript projects and dependencies.
+
+If you download or open an existing Vue project—or modern JavaScript project—and you see a package.json file, that means that the project could have dependencies.
+
+Dependencies aren't stored in source control; they're stored in a node_modules folder. This means that before your project works, you need to install any dependencies. If you open up a Vue project's package.json, you might see something like this:
+
+"dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-plugin-unit-mocha": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-eslint": "^10.0.1",
+    "chai": "^4.1.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "vue-template-compiler": "^2.5.17"
+  }
+The dependencies block defines what this project needs to run, and the devDependencies block defines what packages you need to work on this project locally. If you don't see a node_modules folder, install all of your dependencies with the following command:
+
+npm install
+Note
+
+If you open a downloaded project and receive an error after running the application, the node_modules folder might be missing. This is usually the first place to look.
+
+#Video: Installing the Vue CLI
+In this video, you'll learn how to install and use the Vue CLI. You'll also learn more about all the generated files and folders in Vue and what they are used for.

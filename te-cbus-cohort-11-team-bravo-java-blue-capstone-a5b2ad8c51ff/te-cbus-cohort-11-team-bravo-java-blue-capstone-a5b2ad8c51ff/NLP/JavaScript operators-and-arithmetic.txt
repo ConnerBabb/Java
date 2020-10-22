@@ -1,0 +1,32 @@
+Book
+https://book.techelevator.com/content/variables-and-datatypes-javascript.html#operators-and-arithmetic
+
+Operators and arithmetic
+Sometimes, you'll need to perform basic arithmetic in JavaScript. Fortunately, the language provides the following arithmetic operators:
+
+Operator	Description	Example
++	Adds two operands	A + B = 17
+-	Subtracts two operands	A - B = 13
+*	Multiplies two operands	A * B = 30
+/	Divides two operands	A / B = 7.5
+%	Finds the remainder after division (modulus)	A % B = 1
+Just as in Java and C#, the order of the operators isn't always from left to right. JavaScript follows an order of operation that supersedes simple left-to-right processing. This is commonly referred to as "order of operation", or in the case of JavaScript, "operator precedence."
+
+The complete table is quite long. Fortunately, you only need to be familiar with a small subset at this time. The operators are listed from highest precedence to lowest. Since some operators share the same level of precedence, they can be executed in order from left-to-right or right-to-left depending upon their associativity.
+
+Operator(s)	Associativity
+*, / , %	left-to-right
++, -	left-to-right
+You can see the full table of operator precedence on the Mozilla Developer Network.
+
+You can alter operator precedence by grouping parts of the operations in parentheses, just as you can in Java and C#.
+
+#Shorthand assignment operators
+Closely associated with basic arithmetic are the shorthand assignments operators. You should be familiar with these from your work in Java and C#. The left column shows the various shorthand operators; the right column shows what they mean.
+
+Shorthand Operator	Meaning
+x += y	x = x + y
+x -= y	x = x - y
+x *= y	x = x * y
+x /= y	x = x / y
+x %= y	x = x % y

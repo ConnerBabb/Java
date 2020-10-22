@@ -1,0 +1,13 @@
+Book
+https://book.techelevator.com/content/groups-and-aggregates-in-sql.html#limiting
+
+LIMITing
+You can also add another clause to your SQL to only return a certain number of rows. This can be useful for pulling back the top result of a query or for paging results from an SQL query.
+
+If you want to pull back just the oldest child in the table, run this statement:
+
+SELECT * FROM users ORDER BY age DESC LIMIT 1
+It gives you this result:
+
+first_name	last_name	age
+Nick	Smith	11

@@ -1,0 +1,31 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#version-control-objectives
+
+Version control objectives
+By the end of this section, you should understand how to:
+
+Install a Git client on your machine
+Clone a Git repository
+Stage and commit changes into a local repository
+Push and pull changes to a remote repository
+
+Using version control
+Whether you work individually or on a team, protecting the source code for a software project is important. Version control is software often used to help track the changes over time to a codebase. Version control systems are a category of software tools that help teams manage changes to source code over time. They offer three major benefits:
+
+Teams can go back in time when a bug occurs and compare different versions of the source code.
+Sharing changes between team members is simplified, which guarantees that everyone has the latest copy.
+Team members can develop code in parallel through the use of branches and merge them together when complete.
+Watch the below video to see how version control can benefit any type of collaborative team.
+Git
+Git is a version control system for tracking changes in computer files and coordinating work on those files among multiple people. It is primarily used for source code management in software development, but it can be used to keep track of changes in any set of files.
+
+— Wikipedia
+
+One of the most widely used version control systems in the world today is Git. It can be found online at the core of most open-source projects and internal in many different organizations. Even the software that developers use to write and test their code (IDEs) offer built-in integrations with Git.
+
+#GitHub, BitBucket...what's the difference?
+Once you start using Git on your computer, all of the changes you make to a repository are tracked and saved on a local database. Working only with this local database still poses some risks, mainly the possibility of losing your computer or damaging the hard drive. You would be lucky to be able to recover this data. Thankfully, there's a solution that allows you to copy your repositories from your local computer to a remote-based location in the cloud.
+
+GitHub and BitBucket offer remote repository hosting. As a developer, you would update the remote repository with your code by pushing your changes to it. On the flip side, you can download new code from a remote repository, like code that a teammate wrote, by pulling the changes onto your computer.
+
+You'll find that GitHub tends to be more prevalent amongst open source developer communities, while BitBucket may be used more often in corporate settings. They both offer the same capability but usually have differences in pricing and how they manage public and private repositories.

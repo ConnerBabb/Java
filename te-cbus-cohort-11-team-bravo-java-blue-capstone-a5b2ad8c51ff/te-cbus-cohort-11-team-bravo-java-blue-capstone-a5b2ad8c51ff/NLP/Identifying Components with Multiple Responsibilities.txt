@@ -1,0 +1,42 @@
+Book
+https://book.techelevator.com/content/component-communication.html#identifying-components-with-multiple-responsibilities
+
+Identifying components with multiple responsibilities
+Now that you know what to look for, you'll look at an example. Say, hypothetically, that you've been tasked with building a personal blogging application. You open your App.vue component and prototype what your application might look like:
+
+<template>
+  <header>
+    <!-- logo -->
+    <!-- navigation -->
+  </header>
+  <aside class="sidebar-left">
+    <!-- blog post tags & filters -->
+  </aside>
+  <article>
+    <!-- blog posts -->
+  </article>
+  <aside class="sidebar-right">
+    <!-- ads -->
+  </aside>
+  <footer>
+    <!-- copyright, privacy & social links -->
+  </footer>
+</template>
+The basic layout of your application ends up looking something like this:
+
+
+Image - Personal Blog Application
+Before you add any functionality to your application, you should ask yourself some questions. First, is this component responsible for a single piece of functionality? You know the component is primarily responsible for displaying blog posts, but after looking at your prototype, you determine that it's also responsible for navigation, tags, filters, ads, and social links.
+
+Next, is this component easily testable? Right now it is because it doesn't do much. But once you add functionality to the component, testing becomes problematic.
+
+After answering these questions, it's clear now that you can split this component into multiple components. After looking at your layout, you could split the application into the following components:
+
+TheHeader.vue
+LeftNavigation.vue
+RightNavigation.vue
+BlogPosts.vue
+TheFooter.vue
+Why "TheHeader" and "TheFooter" and not just "Header" and "Footer?"
+
+According to the Vue style guide, "component names should always be multi-word, except for root App components, and built-in components provided by Vue, such as <transition> or <component>.

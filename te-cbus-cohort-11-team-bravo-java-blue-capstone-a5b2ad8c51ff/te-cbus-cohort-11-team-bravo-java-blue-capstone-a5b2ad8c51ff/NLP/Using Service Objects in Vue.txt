@@ -1,0 +1,53 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#using-service-objects-in-vue
+
+Using Service Objects in Vue
+Continuing with the example above, if you want to use the Service Object in a Vue component, you can import that into Vue and call it:
+
+<script>
+    import apiService from '@/services/apiService.js';
+
+    // You now have access to the service in your code
+    export default {
+        name: 'user-list',
+        methods: {
+            loadUsers() {
+                apiService.list().then( (response) => {
+                    this.users = response.data;
+                });
+            }
+        }
+    }
+</script>
+As you can see, since the list() method returns the Promise returned from Axios, you'll add the then() method to deal with the data in your Vue component. That's where the data will eventually be needed, so that's where you should write the then() method.
+
+The above code makes a web API call to /users when the loadUsers() method is called. That method could be called due to user interaction, like clicking a button or submitting a form. But what if you need that data the minute the component is shown? How would you load information as the component is shown instead of due to user interaction?
+
+Vue has a way of doing this with something called a Lifecycle Hook. A Lifecycle Hook is a special method that is called at certain times as a Vue component is loaded and unloaded from the page.
+
+One of the most used Lifecycle Hooks is created(), which is called when a component is first built by the browser, but before it's shown to the user. This is a useful method for loading in data from outside resources.
+
+The component below shows users in an unordered list and loads in that data from the API defined previously:
+
+<template>
+    <ul>
+        <li v-for="user in users" v-bind:key="user.id">
+            {{ user.firstName }} {{ user.lastName }}
+        </li>
+    <ul>
+</template>
+
+<script>
+    import apiService from '@/services/apiService.js';
+
+    // You now have access to the service in your code
+    export default {
+        name: 'user-list',
+        created() {
+            apiService.list().then( (response) => {
+                this.users = response.data;
+            });
+        }
+    }
+</script>
+When the component is created by the browser, the created() method is called and the request is sent. The browser then continues rendering the DOM and adding the component to the page. Once the response from the API returns, the arrow function inside the then() call runs, the list of users is updated from the API, and the items are rendered on the screen

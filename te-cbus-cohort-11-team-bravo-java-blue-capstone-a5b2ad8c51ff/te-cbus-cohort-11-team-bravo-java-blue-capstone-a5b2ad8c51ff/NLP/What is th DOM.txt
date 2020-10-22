@@ -1,0 +1,72 @@
+Book
+https://book.techelevator.com/content/dom-api-javascript.html#what-is-the-dom
+
+Introduction to the DOM
+DOM stands for the Document Object Model. It's the browser's internal representation of the structure of the current web page. This chapter discusses the DOM, what it is, and how to change it using JavaScript to make your pages more interesting and dynamic.
+
+#What is the DOM?
+The Document Object Model (DOM) is an internal data structure that browsers use to represent the structure and content of a web page. When the browser loads an HTML document, it needs to translate that into something that it can use to draw a graphical representation of the page.
+
+For instance, you might write the following HTML:
+
+<p>
+    This is a paragraph. And it has <strong>bold</strong>
+    elements and <em>emphasized</em> elements.
+</p>
+Rendered by a web browser, it looks like this:
+
+
+Image - Rendered HTML
+#How does the DOM work?
+When the browser reads in HTML from a website, it needs to turn that HTML text into an internal representation of the structure that it can work with dynamically. That representation is the DOM.
+
+Document Object Model
+
+The internal, in-memory representation of a web page's structure. Typically stored in RAM as a nested tree of objects that represent the elements of the page.
+
+Understanding the DOM is important. HTML is static. It's only read once when the page loads and then it's converted into a DOM. CSS and JavaScript run against this living DOM, not the static HTML document that you wrote.
+
+
+Image - HTML to DOM to Graphical View
+This can be most clearly seen when creating a table.
+
+Most developers write the HTML for a table like this:
+
+<table class="table">
+    <tr>
+        <td>Tech Elevator</td>
+        <td>7100 Euclid Ave.</td>
+    </tr>
+</table>
+The browser reads in this HTML and shows you exactly what you'd expect: a table with one row and two cells. But if you right click on the page and select "Inspect Element", you'll see that the DOM looks a little different:
+
+
+Image - DOM for a table
+You'll notice that there's a tbody element in the DOM that doesn't appear in the HTML code. Where did it come from?
+
+It was added by the browser while parsing the HTML code into its DOM representation. All tables have a tbody, but it doesn't have to be included in the HTML code.
+
+Browsers assume that the content should appear in a tbody even if you don't specify one. Sometimes, the browser will try to fix bad HTML. For example, if you forget to close a tag in your HTML, the browser makes a best guess about closing it and changes the DOM to fit that best guess.
+
+The above also shows another issue. If you write the following CSS, nothing happens:
+
+table > tr > td {
+  background-color: red;
+}
+This is because the style isn't applied to the td elements. Based on the HTML code, you'd expect this selector to apply to the td elements.
+
+But CSS doesn't run on the HTML—it runs on the DOM. And the DOM has a tbody element in between the table and the tr. So, to apply a style to the td elements, you'd use the following CSS:
+
+table > tbody > tr > td {
+  background-color: red;
+}
+#Checking the DOM
+So, if the DOM doesn't always match the HTML source code, how can you reliably interact with it using CSS and JavaScript? Fortunately, you can view the DOM in the browser.
+
+To do that, open the developer tools in Firefox or Chrome and go to the Inspector (Firefox) or the Elements (Chrome) tab. That is a direct HTML-like view of the DOM as it is at that moment. If you change any JavaScript or CSS in your code, you'll see those changes happen immediately in that view.
+
+This is the best way to understand how your browser is interpreting the HTML source code and how it changes due to live user interaction.
+
+Always check the browser
+
+If you're having problems getting a page to behave properly or display correctly, always look at the browser and its DOM representation. Too many new developers go back to their HTML or JavaScript source code to try and figure out what's going on, but the browser is where your code is running, so always check there first.

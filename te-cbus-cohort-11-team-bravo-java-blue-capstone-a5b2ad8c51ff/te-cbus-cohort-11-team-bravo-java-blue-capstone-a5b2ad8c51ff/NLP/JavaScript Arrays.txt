@@ -1,0 +1,177 @@
+Book
+https://book.techelevator.com/content/arrays-and-loops-javascript.html#arrays
+
+Arrays
+#What Do Arrays Help Solve?
+When you saw variables and datatypes, you learned how to create variables and assign values to them. Using what you learned there, your first inclination might be to write the following bit of code to calculate the average test score for a group of students.
+
+let aaronScore = 80;
+let beaScore = 98;
+let billScore = 89;
+let greerScore = 70;
+let kyleScore = 93;
+let margoScore = 84;
+let peteScore = 66;
+let zedScore = 96;
+let averageScore = (aaronScore + beaScore + billScore + greerScore +
+                    kyleScore + margoScore + peteScore + zedScore) / 8.0;
+This will work, but it is a bit awkward for a couple of reasons. First, there's an awful lot of typing. Second, it's difficult to keep everything straight. What if you forgot to include the scores for the two Sams in the class? You can add them to the code easy enough.
+
+let samScore = 85;
+let samScore = 96;
+.
+.
+.
+let averageScore = (samScore + samScore + aaronScore + beaScore + billScore + greerScore +
+                        kyleScore + margoScore + peteScore + zedScore) / 10.0;
+However, the second samScore causes a "duplicate variable" compiler error. But you're a clever programmer and figure out another way -- change the variable names!
+
+let student01 = 85;    // Sam
+let student02 = 96;    // Sam
+let student03 = 80;    // Aaron
+let student04 = 98;    // Bea
+let student05 = 89;    // Bill
+let student06 = 70;    // Greer
+let student07 = 93;    // Kyle
+let student08 = 84;    // Margo
+let student09 = 66;    // Pete
+let student10 = 96;    // Zed
+let averageScore = (student01 + student02 + student03 + student04 + student05 +
+                    student06 + student07 + student08 + student09 + student10) / 10.0;
+Then again, 10 students sounds like a pretty small class. A more realistic size is probably 25 ... or more. Changing the variable names doesn't really address the issue of too much typing, or lessen the potential confusion caused by so many variables. Having to add 15 more students only exacerbates the problem. Additionally, good naming conventions specifically advise against naming variables sequentially this way.
+
+Fortunately, there is an alternative, an array.
+
+#Array Basics
+When you want to work with collections of values, you use arrays. Rather than creating multiple variables, you create a single variable name that has the possibility to represent multiple values. Instead of worrying whether the test score is Bea's or Sam's (Sam 1 or Sam 2), you interact with the variable as a collection of scores.
+
+#Declaring and Initializing an Array
+Here's the syntax for declaring and initializing a new empty array:
+
+let testScores = [];
+This line declares a new variable, called testScores, and assigns it an empty array.
+
+If you know the values of your array, you can provide those values at the time of initialization.
+
+let testScores = [ 85, 96, 80, 98, 89, 70, 93, 84, 66, 96 ];
+#Elements & Indexes
+If you have an array of Numbers called testScores, how do you talk about it?
+
+
+Image - An array of test scores
+First of all, its important to know that each item inside of an array is referred to as an element. The testScores array holds 10 elements.
+
+When you want to reference a particular element, you indicate which one by referring to it as "the element at index X". Notice that the first index starts at 0. In programming, counting often starts at 0 and therefore our first element is at index 0.
+
+Why Zero?
+
+Indexes start with zero because of the way arrays are stored in memory. Think of the variable testScores as a reference to a memory block where the array starts. Once we get to that memory block, index 0 actually means offset 0 blocks from the starting point. Index 1 means offset 1 block and so on.
+
+Whenever you need to determine the last element in an array, the calculation length - 1 can be used. Here, the length of the array is 10 and therefore the last index is 9.
+
+#Accessing Elements Within an Array
+To access a particular element in an array to read from or assign to it a new value, "index notation" is used. The index of the element you are trying to access is enclosed within a pair of [].
+
+    let testScores = [];
+
+    testScores[0] = 85; // update the value at index 0 to 85
+    testScores[1] = 96; // update the value at index 1 to 96
+    testScores[2] = 80; // update the value at index 2 to 80
+    testScores[3] = 98; // ...
+    testScores[4] = 89;
+    testScores[5] = 70;
+    testScores[6] = 93;
+    testScores[7] = 84;
+    testScores[8] = 66;
+    testScores[9] = 96;
+Retrieving a value from an element in the array works like reading the value of a variable, assuming you know the index.
+
+    let testScores = [];
+
+    // ... populate array
+
+    let aaronsScore = testScores[0];
+aaronsScore now holds a copy of the value stored at index 0 in the testScores array.
+
+#Determining the Length of an Array
+What if you wanted to get the last element in the array?
+
+    let testScores = [];
+
+    // ... populate the array
+
+    let lastValue = testScores[9];
+It's cheating though since we know that 9 is going to be the last index. What if someone changed the size of the array and made it smaller? Then lastValue would be assigned the value of undefined because an array element would no longer exist at index 9.
+
+As a programmer, you should strive to avoid hard-coding numeric values into your program. Fortunately you have a formula for calculating the last index at runtime ,length - 1. Most programming languages provide a way to access this value for a given array.
+
+Each array has a property, .length that allows you to retrieve the size of the given array.
+
+    let size = testScores.length;
+That syntax is often used when referencing the last value.
+
+let testScores = [90, 85, 70, 55, 70, 75, 95, 100];
+
+let lastValue = testScores[testScores.length - 1];
+let secondToLastValue = testScores[testScores.length - 2];
+Remember how expressions are evaluated? The length - 1 expression evaluates first and evaluates to 9. That 9 is then used to retrieve the actual last value from the array.
+
+#Useful Array Functions
+JavaScript arrays have many useful built in functions. You can find documentation on them at the MDN site on Arrays.
+
+#push()
+The push() function is used to add a new element to the end of an array.
+
+let numbers = [1, 2, 3];
+numbers.push(4);
+// numbers is now [1, 2, 3, 4]
+#unshift()
+The unshift() function is used to add a new element to the beginning of an array.
+
+let numbers = [2, 3, 4];
+numbers.unshift(1);
+// numbers is now [1, 2, 3, 4];
+#pop()
+The pop() function is related to the push() function. pop() will remove an element from the end of the array. It will also return that element that was removed.
+
+let numbers = [1, 2, 3, 4];
+let removedElement = numbers.pop();
+// numbers now is [1, 2, 3];
+// removedElement is 4;
+#shift()
+The shift() function is related to the unshift() function. shift() will remove an element from the beginning of the array. It will also return the element that was removed.
+
+let numbers = [1, 2, 3, 4];
+let removedElement = numbers.shift();
+// numbers now is [2, 3, 4];
+// removedElement is 1;
+#includes()
+The includes() function is used to see if a given value is in an array. It won't tell you how many times it's in the array, but will return a true if it found the value at all or false if it isn't found.
+
+let numbers = [1, 2, 3];
+let foundThree = numbers.includes(3); // foundThree will be true
+let foundFour = numbers.includes(4); // foundFour will be false
+#indexOf()
+The indexOf() function is used to find the location of a value in an array. It will find the first instance of the value and then return the index to that element. If it can't find the value, it will return -1.
+
+let numbers = ['one', 'two', 'three', 'four', 'three', 'five', 'three'];
+let indexOfThree = numbers.indexOf('three'); // indexOfThree will be 2, the index of the first 'three'
+let indexOfFour = numbers.indexOf('six'); // indexOfFour will be -1
+#lastIndexOf()
+The lastIndexOf() function is used to find the last location of a value in an array. It will find the last instance of a value and the return the index to that element. If it can't find the value, it will return -1.
+
+let numbers = ['one', 'two', 'three', 'four', 'three', 'five', 'three'];
+let indexOfThree = numbers.indexOf('three'); // indexOfThree will be 5, the index of the last 'three'
+let indexOfFour = numbers.indexOf('six'); // indexOfFour will be -1
+#join()
+The join() function will take an array and return a string, putting a value in between every element. The array itself is not changed.
+
+let numbers = [1, 2, 3];
+let joinedNumbers = numbers.join(';');
+// joinedNumbers is "1;2;3"
+#reverse()
+The reverse() function will reverse the array, making the first element the last and the last element first, and reversing everything in between too. It will reverse the array in place, changing the original.
+
+let numbers = [1, 2, 3];
+numbers.reverse();
+// numbers is [3, 2, 1];

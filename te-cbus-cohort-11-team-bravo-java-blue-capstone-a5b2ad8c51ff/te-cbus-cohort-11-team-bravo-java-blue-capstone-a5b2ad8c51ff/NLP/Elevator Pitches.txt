@@ -1,0 +1,138 @@
+Pathway
+https://docs.google.com/document/d/1Ah-ieSoa_bmkVdrJcRkB1TNypJ8lSJTb7LIO3X8IK80/edit
+
+
+Elevator Pitches
+REQUIREMENTS:
+Must be between 30-40 seconds
+Must answer each of these ‘questions’:
+What is your goal?
+What is (are) your strength(s)?
+What are your skills?
+What is your motivation?
+Must have memorized (for panels and showcases)
+Must show enthusiasm
+GRADING RUBRIC:
+0 - No video turned in or video turned in more than 24 hours late
+.5 - Video was turned in, but did not meet any of the minimum requirements,
+1 - Video does not meet the time requirements, missing 2 or more of the ‘questions’; pitch is not memorized
+1.5 - Video meets the time requirements, but is missing 2 or more of the ‘questions’, pitch is not memorized
+2 - Video is between 25-50 seconds; missing 1 or more the ‘questions’, pitch is not memorized
+2.5 - Video is between 30-45 seconds, answers all 4 ‘questions’, speaker is not enthusiastic, pitch is memorized
+3 - Video is between 30-40 seconds, answers all 4 ‘questions’, speaker is enthusiastic and pitch is memorized
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Resumes
+REQUIREMENTS:
+Must include all of the following sections:
+Name and Contact info
+Legal name
+Phone
+Email
+Links to Github and LI
+Must POP!
+Summary
+2-3 sentences
+Must be in fragments
+Should answer the question, “What do you want and what can you offer?”
+Technical Skills
+By Matchmaking, all technical skills should be on resume
+Education
+Tech Elevator should be first
+Description
+Start date - Present (or end date if they graduated)
+Class
+City
+Degree(s)
+Most recent first
+Type of degree
+Major
+Other
+If they have credits towards a degree, they CAN list, but it is not required
+Technical Experience/Projects
+All TE capstones
+Any side projects
+Any previous tech experience that is applicable
+Professional Experience
+Each job has at least 2 bullets
+The student uses action verbs and focuses on impact in role (should not be reusing verbs)
+Each job should have a start and end date
+Tenses should be accurate (past tense for previous jobs; present tense if they’re still working there)
+Must be 1 page (2 pages is fine if they have the professional experience to back it up); if it’s 2 pages, it should be at least 1.5 pages
+Must be saved as a pdf
+No grammatical, formatting, or spelling errors
+Left justify content; right justify dates/locations
+All numbers are written using the digits and not written out (percentages are used where applicable)
+GRADING RUBRIC:
+0 - No resume turned in; resume turned in more than 24 hours late
+.5 - Resume is turned in, but is missing 3 or more sections, is poorly formatted and has multiple grammatical/spelling errors
+1 - Resume was turned in, but is missing 2 sections, and is poorly formatted w/multiple spelling/grammatical errors
+1.5 - Resume was turned in, is missing 1 section, formatting is okay, has several spelling/grammatical errors
+2 - Resumes is turned in, has all sections, but is poorly formatted, and has several spelling/grammatical errors
+2.5 - Resume is turned in, with few spelling/grammatical errors, formatting is decent
+3 - Resume meets all minimum requirements (has all sections, and no grammatical/spelling errors)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LinkedIn Profiles:
+REQUIREMENTS:
+Must include all of the following:
+50+ connections
+Profile picture (approved by PD)
+Cover Photo
+Shortened public url
+Summary
+1-2 healthy paragraphs
+Tech Elevator 
+Under Education AND Experience 
+Following directions from doc
+Experience is updated to reflect resume
+Bullets/details under each job
+Add Technical Skills 
+Add any additional Education (college)
+Add a creative headline
+Joined a minimum of 5 groups
+Following a minimum of 5 influencers
+Following a minimum of 10 companies
+GRADING RUBRIC:
+0 - No LI profile updates made; LI updates made more than 24 hours after due date 
+.5 - Assignment was turned in, but is missing more than 4 items from the checklist, has fewer than 20 connections, has several grammatical errors
+1 - LI Profile is missing more than 3 items from checklist, has fewer than 50 connections, has several grammatical errors
+1.5 - LI Profile is missing 3 items from checklist; has several grammatical errors; 
+2 - LI Profile is missing 2 items from checklist; has minor grammatical errors   
+2.5 - LI Profile has all required items on the checklist but a weak summary OR LI profile is missing 1 item but has a great summary
+3 - LI Profile has all required items on the checklist with a great summary
+

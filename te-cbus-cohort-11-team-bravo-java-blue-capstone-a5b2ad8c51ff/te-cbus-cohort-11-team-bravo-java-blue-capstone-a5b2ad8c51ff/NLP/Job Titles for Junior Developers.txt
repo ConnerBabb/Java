@@ -1,0 +1,29 @@
+Pathway
+https://docs.google.com/document/d/1NhZKnvqQ2FGTfczwm5IjplzKJAkzpEeO5GczmdUQkpg/edit?usp=sharing
+
+Job Titles for Junior Developers
+
+There are numerous titles that can be utilized in a job posting for a Junior Developer. Below is a snapshot of various titles to keep on your radar. Many job postings will also include “Entry”, “Junior”, or “Jr” in front of the titles as well.
+
+.NET Developer
+Application Developer
+Application Support Analyst
+Automation Developer
+Back-end Developer
+BI Developer
+Coder
+Database Developer
+Development Intern
+Front-end Developer
+Full Stack Developer
+Java Developer
+Programmer 1
+Programmer Analyst
+QA Analyst
+Software Apprentice
+Software Developer
+Software Engineer
+SQL Developer
+Test Automation Developer
+UI Developer
+Web Developer

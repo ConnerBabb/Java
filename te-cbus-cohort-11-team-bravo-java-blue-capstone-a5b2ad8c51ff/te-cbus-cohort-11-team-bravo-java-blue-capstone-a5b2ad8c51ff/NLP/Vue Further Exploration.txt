@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/component-communication.html#further-exploration
+
+Further exploration
+When you're creating a new project, you have the option to add Vuex to it using the Vue CLI. But what happens if you have an existing project that you want to add Vuex to?
+
+You could add it manually, but you'd have to do several things:
+
+Add the Vuex dependency to your package.json file.
+Run npm install.
+Add a /src/store/index.js and the boilerplate code.
+Import store/index.js into main.js.
+Add the store to the Vue instance to make it available in all components.
+Thankfully, there's a simpler way to do this.
+
+#Vue CLI plugins
+The Vue CLI uses a plugin-based architecture. If you inspect a newly created project's package.json, you'll find dependencies that start with @vue/cli-plugin-. Each CLI plugin ships with a generator, which creates and modifies files, and a runtime plugin.
+
+When you use vue create to create a new project, some plugins are pre-installed for you based on your feature selection. If you want to install a plugin into an already created project, you can do so with the vue add command:
+
+vue add plugin_name_goes_here
+Before you run the vue add command, keep a few things in mind:
+
+vue add is specifically designed for installing and invoking Vue CLI plugins. It's not meant as a replacement for normal npm packages. For normal npm packages, you should still use your package manager of choice.
+It's best to commit your project's current state before running vue add since the command invokes the plugin's file generator and might make changes to your existing files.
+To add Vuex to your project, you'd run the command vue add vuex. After you run the command, you'll see what files were added or changed. You now have everything you need to start using Vuex in your existing project

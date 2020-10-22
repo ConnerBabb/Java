@@ -1,0 +1,990 @@
+Zoom
+https://techelevator.zoom.us/rec/share/xfFWaIr9rG9Ic8_OwV2BGb95D47nT6a82iJP_vQFxB2ihJ7eGLbzc8cvjHZWAZg3?startTime=1591968229000
+https://drive.google.com/file/d/1J0QIRAswKsprQPlA0L3XA0tCNb32JHkj/view?usp=sharing
+https://docs.google.com/presentation/d/1c9tuCcQ8x2Yd4YLpPMZFF8OZHSdWOQfro_g5GmCpo2U/edit?usp=sharing
+
+So today we're going to continue with the
+
+looking at the data manipulation language portion of SQL, which is said on Monday there's three distinct separations are the language. And what we looked at so far this week. So for the last three days has been the select statement, which is how we can read data. So today we're going to look at the other, all the rest of the DMR portion of language and the language we'll look at inserts, updates and deletes. And that's going to bring us to a couple problems around this thing called ri, referential integrity, and constraints. So we're going to take a look at those. So we're going to complete looking at the manipulation language today. And then tomorrow we'll look at the other two languages, the dcl DDL languages or segments. So we're going to start today by looking through Looking at inserts, and then we're gonna look at deletes and updates. And then those three things are going to bring us to the need to understand referential integrity, and which will, is part of that we need to understand this thing, these things called constraints, which is how we apply referential integrity. So we'll walk through that. And then at the end, we're going to take a look at this idea called all transactions. So in a lot of this, a lot of these issues worth. The reason we're talking about referential integrity and transactions today is that so far, nothing we've done is changed the database in any way. We haven't changed any data. So we run the query, and the Select query in the database is in the same state after we ran the query as before, so it does no, it makes no changes. Nothing's different. And that's the way select works. So that's everything we've done so far, hasn't made any changes to any data. It's the same way, if you go and do a Google search, you don't change the website. So the search results you get right you get the results. And the websites and the search engine stays the same. Same thing with select. So but data has four things that can usually be done to it. So and we talked about when we have data that we're working with, and data being stored of those four actions by talking about what's called the crud. So the crud and you'll hear that term quite a bit, when talking about data will say, you know, what's the crud of your operation? What's the crud of this method, or this object? What's the credit of this database? they're referring to what four operations can do in data, there's four basic ones and which ones can you do with what you're working with. So the credit is crate which is We'll look at one of the things we'll look at today insert, read, which is what select is update, which is changing things, not adding things, but changing. And then deleting which is removing. So it's the ability to add data, read, look at the data up, change the data that already exists and delete the data. So, so far we've looked at the art, the read. And all data, including databases have all four of these operations available or possible. So we're going to walk through the other three. So the first one will be insert. So insert allows us to add a new row to a table.
+
+So lots of ways to put data into the database.
+
+And the basic syntax of it is insert into the name of the table, the list of columns you're inserting, and these don't have to be every column in the database. Because if the database table, if a column can be null, we don't have to include it. And then the key word values, and then a list of the values to put in those columns. So the order of the columns here is not dependent on the table. They don't have to be ordered the same as we see them in dbvisualizer. But the order of the values in the order of this columns they must match. So the first value will be for the first column and the column list. The second value will be for the second column and so on. And then they match to the actual database by the name. So they'll use the name to
+
+attach to what column are going into the database with an order.
+
+So when I pull up
+
+analyzer.
+
+And let's just play a basic insert. So I have an extra database here that you don't have. And I'm, I'm just going to demonstrate it and then we'll work in the world database for one so you can follow along with and the reason is, is because we go, I'm going to kind of destroy portions of this database and have to rebuild it. So I'm going to see we get a new copy of sequel commander here. So for each of these, I'll start there, and then we'll move over to world for ones of those you'd like to follow. Follow along and what a follow on can. So in this database, again, the one you don't have, it just has three tables, address clients and phone. And let's see, we select star from clients, see what's in there, and it has just a few names.
+
+So if I wouldn't inserted a new one
+
+I can insert
+
+into. So insert into starts the name, and then the table name. So clients value or the rows or the columns. So I'm going to put a client
+
+ID,
+
+first name, last name, and active. And then values. Again, I'm putting the whitespace in just for readability. I'll be on one line, and then the values, you can put a new client ID so five, let's put in
+
+opening
+
+john in our database and then
+
+you can see when I run it after I run the insert, and they see when I get response back, all I get back is just okay, success. I don't get any other information. back, because there's nothing really to return about, he says, so this worked. If I select again now, you can see that John's been added to the table. So
+
+the order of these
+
+do the same thing
+
+doesn't matter. So if I could switch last name first
+
+and put active in the middle,
+
+so it doesn't have to match
+
+the table.
+
+But these values do have to match the order that's listed here. So last name was put in.
+
+That was put in.
+
+So things six, make them false and first name
+
+Again, we just get an okay.
+
+And now they've been added and see if they added it in the correct order because it lines up from these names to the names of the column, and then these values to these names. So the last thing we do if we want to insert, we often don't want to insert every column. So I may not want to insert every column.
+
+So
+
+actually, I'm going to get the one that
+
+is here, so
+
+gotta want to ID but maybe I'm gonna put Stephen and you know, I can't remember right now how to spell his last name, so I'll just leave it at that. And since I don't want to have a last name off be set to false. So different. So I remove the column from there. And now why insert it? We have. So we can take pick and choose the columns we want to insert, as long as the columns aren't required, and we'll talk about that we get to referential integrity. That's part of what that will be about is how columns get required or how they affect the ability to do things like choose not to insert them. So the best thing we can do with insert, if I want to insert every column,
+
+I can
+
+insert into
+
+clients and I can skip the list of columns if I'm going to do everyone and just go for values and the values we're going to put in, but at this point, now I have to put them in the order that they are in the database. So if I put an eight, so put a first name, let's put Rashad
+
+and then
+
+so we end up with
+
+being able to insert by not giving the column names, we have to have every column included. So and so before, the first question that always comes up from this is, well, what if I want to insert multiple rows? According to anti sequel, you repeat this or this multiple times. So if you want to insert 10 rows of different values, you would do it like this. There is ways in most database engines to make that a little shorter. There is a way in Postgres to make it shorter, but I'll leave that to you if you really want to find it. But it's not much shorter, not by really much at all. So Traditionally you do one insert per, per row you want to, because it's about a single row insert is. And when, if you look at like this script that creates the DVD store database, it the whole end of it is just filled with insert after insert statement written out in this manner. Right? So before we
+
+look at them. Excellent.
+
+Do you have any questions?
+
+And, and I see your comment and you can't that's actually a person I know his name.
+
+Or at least so at least, that's the only last name I know them by. So I'm sure they have another one but fair enough, fair enough.
+
+So the next statement would be what if we want to let us to add data but what if we want to change it? So update allows us to change specific row columns in the database or the data in specific columns. for specific rows. Oh, wait, I promised we would do something in the world database for each of these two so you can follow along. So let's do that before we look at update. Let's go back to insert.
+
+And I'm gonna open up the
+
+another
+
+lecture card for today. So we can go through that as well.
+
+Which is the lecture SQL.
+
+If you didn't see it, I figured out that you can actually get multiple copies of dbvisualizer. Open under File, New Window will actually create a whole new copy. So you could have multiple files open at the same time, and just in multiple instances of the application
+
+will not let you do more than one of the sequel commander.
+
+Oh, it'll let you do one sequel commander per instance of the application.
+
+Okay?
+
+So it's still not as nice as having, you know, two of them in the same one, but it's better than
+
+some of the other options.
+
+So
+
+let me go to world
+
+and there's two two things in the lecture. For this so the first one says this is working with the world database we were working with all week. So add cling on as a spoken language in the US. So if we were asked to do something like that, if we look at the world database, first we would want to look at what table we're working with the same way we do with and select or
+
+delete. So languages are stored in
+
+country language. So let's start by selecting from there.
+
+And so Okay, so we have the country language. So what we're going to add click on we're gonna have to add a country code, and it says to the US, so we know the country code, the language and then these other values, we're gonna have to add something or maybe not, they might not be required, but we're gonna act like they are. I'm not sure what they are not. We're gonna treat them like they are Until we get to later when we talk about how we can go. So, to write that we'd write, insert into the table name we're working with. So country language, the column names we want to insert, which is going to be all of them. So country code, language is official, and percentage. And then the values in the same order. So what the country code for the United States, the language we're inserting, as click on is official, make it false. And as a percentage, we'll make it 18%. So, we run that, again, we get no only feedback we get as successful. But now in our select here, we can do where Look where country code is equal to us. So we can look at all the entries. And we can see click on has been added to the table with our values.
+
+So now it's saying doing the same thing
+
+to adding it to Great Britain. so here we can do the other syntax. I'm actually going to take this and move it up here. So if we're going to do every table, we can insert into country language. And we can skip the listing of the columns again, as long as we're going to do every column. And then we do values. Now the order does matter. So let's see they want to integrate Britten's, that's going to be GBR. And then, click on and again, we had to pick something for his official and percentage. We'll make it false and I don't know 57% and maybe down to see in both the Select, we could change this where to where? What is it language equals click on to verify it and see that it's in. The two entries are in in the table. So they're at the first time this week we've changed one of our databases we've added that to the world.
+
+So just to make sure again, before we look at update other questions
+
+does it add after you press Command period?
+
+It does it adds when the SQL statements ran for executed
+
+all right So
+
+so we go back to our table for update, we use the command, these table command update,
+
+and then the table name.
+
+And then we do set in the column we want to change. So let's say update last name
+
+equals the new value we want to set it to.
+
+And then aware with this select the row we want to change. So this case, I remembered how to spell Steve's name, so I will possibly spell it and I will set it and I want to effect this row. So be cool. Find it seven. Now if I run this, again, I'm just going to get a success.
+
+And but now the rows been updated.
+
+I can also do multiple rows. So I could say update clients. Let's set
+
+set.
+
+know, last name was last name
+
+equal to let's put it this something else
+
+joads and we'll also set
+
+into a comma active equals true and our where we'll be watching this row
+
+so client ID equals six.
+
+So we just get our success and we look at it. And we're client ID equals six is down here now. So now it updated both the columns, we get update modal model columns, by comment delimiting them after the set. We can also update model rows with our where. So wherever. If we do select star
+
+from clients, where, let's say,
+
+first name,
+
+equals or like.
+
+And we'll find all the first names that start with J. think there's a few in there now. So that's four rows that have first names to start with J.
+
+So we could take that like Where, and we can use it with an update.
+
+Set. Let's set for these what's that last name
+
+equal to? I don't know.
+
+We'll just set them equal to nothing. So remove their last names to the update successful. Now we do this select, we can see each of the ones that start with J have been updated to be empty. So we can update multiple columns with comma comma delimited. List after set, we can update multiple rows by creating an appropriate WHERE clause. So whatever is selected, our WHERE clause with the select statement is what's going to be updated in our table when we run it. Those are the rows that have been updated with an update statement. In this course, this can be used in combination, we can update multiple rows in multiple columns at the same time. For instance, if I moved this where, with the statement here that said at two Germans inactive, and then I ran it and then the Select could see what update all those, both columns for those four rows called the same time as well. So before we look at doing it in world are there questions about update?
+
+These are considerably easier than select, aren't they?
+
+So let's take a look at here update. So let's update the capital of Houston of the USA to Houston. So we know that that's going to be in the
+
+city table.
+
+So let's start with select our country table right because the capitals on the country table. So let's take a look at that table. I'm gonna select star from country from
+
+So figure out what we're going to update or change is similar to figure out how we're going to select. We'll take a look at the tables based on the problem so it says we're up to the capital the capital is held in
+
+this capital column.
+
+So I need if I want to make it to Houston This is a city ID so has a foreign key relationship to the city table. So I need to find out the ID of the city of Houston.
+
+So I can do that from select
+
+star stars like Star from city where name equals
+
+Houston
+
+that's where I'm at.
+
+semi colon. Okay, so it's 3796. So I just put a comment there. 3796. So if I wanted to now complete my UPDATE statement, I know it's called capital and it's all in the country table. So I could say update
+
+country
+
+set capital equal to the value of 3796. Where
+
+code equals USA.
+
+update that analysis, select where
+
+code equals we can just get the one row Are soon.
+
+And if we look at it
+
+we've changed the capitals, country code. Now we also could do this.
+
+So let's change it.
+
+So we can actually take advantage of sub selects here and select what we want from the other table. And let's change it to
+
+see what will change the canvas because I know it's in the
+
+database
+
+though I must return me, Id
+
+more than one. Okay, we all know Houston only returns one
+
+That works. So the problem we're running into is that my sub query do we use with an equal like in this case would have to with a set can only return one row. And it was getting multiple rows back because there's multiple chromosomes in the database. And before that it was returning more than one column, because I have added two stars that have ID. But once I have it two returning one row and one column, it works. So either one of those will work. And if we look, it should be the same, same value. So there's a case where you could use you can take advantage of sub select.
+
+So if we wanted to
+
+go back here, update the capital of the USA to Washington, DC, so back to Washington and update the head of state. So again, we need to find out the country code for Washington. So I'm going to select star from
+
+city where name equals
+
+Wash them to see see if it's like that.
+
+Okay, so it's not like that.
+
+And like
+
+I was just watching.
+
+So the code is 38133813. So if I was going to write a query to update this again, update country, I'm gonna set capital equals two, three a 213 And we're also going to set the head of state, head of state to someone else. So let's set it well, let's make a job.
+
+And then where
+
+code equals. So our where statement to perfect just the row we want. And we also we could have replaced this with this sub query, that would have been fine. But you can do it either way.
+
+And now if we go back and look at
+
+the entry,
+
+you can see the head of states went updated as well as the capitals from the backs we can do multiple rows, or multiple columns and rows.
+
+All right. So
+
+So any questions on on that,
+
+okay. All right. So the next one is delete.
+
+So delete removes rows from the database. So delete removes entire rows.
+
+So if I wanted to going back here
+
+with clients, so my Select
+
+star from
+
+address, actually let's use phone
+
+and let's say I want to delete someone's phone number.
+
+So I can delete
+
+and I to use the command DELETE FROM there's no no columns needed here because it's going to delete everything the entire row. So column from and then the table Name somebody's phone for this one. And then where and I need a where clause, the select which rows I'm going to delete. So let's delete row number five. Actually, let's delete three, we'll do one out of the middle. So where phone ID equals three.
+
+And
+
+I can run it.
+
+Now select phone. And there he's gone.
+
+So let's do another one.
+
+So we could have again anywhere clause since they were phone, maybe where phone ID is greater than three, which will select four and five.
+
+So I'll run it
+
+and I select and the tables are empty. So didn't want See what I did wrong?
+
+When I ran it like this,
+
+what did it run?
+
+Everything is gone.
+
+Everything's gone.
+
+just ran the first line. Exactly. So delete without aware statement deletes everything in the table.
+
+There's no going back. There's no restore. There's no undo and SQL, it's permanent. So, if you forget the right aware statement, you will delete everything in the table. If you accidentally run the wrong line of a delete statement, you'll delete everything in the table. It'll delete. If you have a where statement that selects too much it'll delete too much. So eventually, in your career, you will delete a large table that you need happens to everybody. I deleted a table at a large bank I was working for here in town. And I took down the entire call center for a whole weekend. I deleted all their incoming call data for about two or three days worth of data. Oh my god. And yeah, so they weren't pleased. But then again, they shouldn't have allowed me to be actually making changes in their actual database. So that they change that after that. But everyone gets a story like that. Hopefully you only get one. That's the only time I ever did that. I learned a lesson from that. It was also in the days when backups were on physical tape. So in order for them to restore the backup, which was only done a couple times a day, they had to wait for this tape to be mailed, or actually was delivered by courier came the next day and then it took hours. To restore, so
+
+what about if,
+
+like, like, anytime we are about to delete, what about if you just push to the GitHub and do the deleting? If it is the correct one
+
+and
+
+gone, if it's not, don't, you know, just just pull from the origin? Because the database, the database was not pushed to GitHub. Okay? databases Don't, don't do that.
+
+So the real answer is there's, we're gonna look at a way to make things safer. We're gonna make it away that if I would have done one simple thing, I wouldn't have had quite the concerns. And now, these days, this was quite a while ago, and I can't imagine a modern company allowing anyone to actually work in their live database. Now, should have been done in a test database first and then carefully done a live database but back then, if Just like oh no, I need to make the change. It's Friday night how to make it real quick before I leave, I just do a live. So, so delete is quite powerful. it deletes things with three three words you can delete an entire table so you have to be careful with it. So the way I suggest working with it is in the way I do now is you start out with select and whatever you select, which I guess now it's nothing because I deleted everything but whatever you select here
+
+from
+
+so from this clients where
+
+client ID
+
+if you run that your work statement with the select whichever rows come back in your where statement with the Select is what's going to be deleted. If you use that Were statement with a delete. So it allows you to try to devise anytime you're deleting to always start with a select write your where statement, make sure it's the data you want. And then at the end, swap this line, or these two lines for the Delete, actually, it's just this line, select star from for the word delete, and you'll end up deleting the right thing.
+
+So Brian, you can
+
+delete those and now I know tables with delete, but if you just want to like delete one value, do you have to use update?
+
+Exactly, yes. So if you want to delete a value, you're not actually according to the database, you're not deleting it, you're changing it to an empty value.
+
+Okay, it has a look at it as you've deleted the value. You've just changed it. So it's okay. Got it.
+
+Alright, so So let's
+
+do this a couple deletes in here.
+
+So here,
+
+delete. So back to the languages for these. It's asking us to delete English as a spoken language in the US. So we had to figure out how it has that.
+
+So if we were going to do that, we'd want to find out how we can find that exact row. So I'm gonna start Select star from country language. And now we'd want to figure out how we can find the row that's associated between English and the US. So it's going to be a country code in language, so my wear should include both of those. So country, code equals
+
+and language
+
+And language equals.
+
+So this gives me one row with this where. So now I just want to change point delete it.
+
+change this to delete, I can run it.
+
+Now then if I want to verify it, I could select again and it's gone. I'll go back to delete.
+
+Same delete all occurrences of the click on mine which we added.
+
+So we know from that we can select
+
+star from country language where language equals
+
+click on
+
+the run it we get the two rows. Those are the two I want someone delete all occurrences so I can change it to delete with that WHERE clause that from WHERE clause. Now, run it. And just to verify, I'll go back to a select. And they can see they're gone now.
+
+So that's how we just did with working out with a select and then changing it to delete is how I'd recommend you work with delete and actually update to you'll get the best results because then you figure out the data you want to change First, the rows you want to change and then you can write the part that does the change. So any questions so far on or any of these?
+
+Right? So for all these, that's there's nothing more to this is all they do. So it's not like select where there is all these extra things.
+
+Okay, So let's
+
+hear in the world database, exam it up and up two copies in the world database so you don't end up with
+
+someone to try
+
+and world. Let's make sure this is working the way I think it is with these two. I'm gonna select star from entry
+
+and where code equals
+
+Okay, so I have that so I'm going to delete that record
+
+and just this statement here.
+
+I get an error.
+
+So are statements right? Delete from country where code equals USA is the proper delete syntax. But what it comes back with the error is update Delete on table country violates foreign key constraint F key country code on table city. So it's saying that there's a key USA is still referenced from the table city. So why don't we delete the record here on the country table because the code is being used on the city table right now, as a foreign key
+
+that
+
+that um, ability for it to keep
+
+the integrity of the data is called referential integrity. So it's saying that you can't delete this because I've been told these are linked. I've been told that this key is a foreign key between country and city. So as long as cities using it, you can't remove it from the country.
+
+So if I went to the city table,
+
+select star from city
+
+and make where country code
+
+equals okay?
+
+So these are all the instance words using it. So as long as these exist, I can't delete it from country and I changed it and do not follow along with this next part if you're following along.
+
+I'm going to restore it afterwards. So
+
+I delete all the cities that use Country Code.
+
+Well, now I have another problem. I can't, because some of these are being used as the cow a capital on the cat as a capital in the country table. So I can't delete the cities. And I can't delete the countries right now, because therefore their foreign keys on each other.
+
+So could you use join?
+
+So not to delete though
+
+so what I'd have to do is I have to go find all the instances of cities that are in the country code USA on the country table and remove them. So maybe if we do an update,
+
+update was a capital
+
+no update, sorry.
+
+Update country
+
+and let's Set capital equal to know where and again do not follow along with these, these steps right here. And, yeah, so what's the norm where it's the US? that's worked. So now we should be able to leave the city because the other cities your cities are probably not being used as capitals of other countries.
+
+And we can and now
+
+I can leave I still can't
+
+country language.
+
+Alright, so we can clean that up. So now we'll delete
+
+from
+
+country language where
+
+code equals swatter remove all the language entries because the country code is being used in the country languages foreign key. So it has the same problem. I get rid of Those outs country code
+
+and I can delete it. Now let's see.
+
+So now I was able to delete one entry
+
+and
+
+it's, it's gone.
+
+So
+
+verify Select star from city. Most cities are there. But of course all the cities that were in the US are now gone the same way. So if I set the same farm from country language I've deleted a large portion of data to get rid of one line in the requirement to do that is referential integrity. makes it so we have to put thought or care into how we're deleting things and it forces us to do it, it forces us to have this consequence of if you're going to delete the country, you have to clean up the city table, you have to clean up the country language table. And the idea is to maintain what's called integrity of the data, so that we don't end up with a city that's listed in a country that doesn't exist.
+
+So when that happens,
+
+for record referential integrity is this idea that it's a property of the data not of the database. It's not a property
+
+that, like we put on a class. It's
+
+a property of just like we think about how of what data is and it's whether or not the data within Tegrity is about Whether or not it's valid, it's valid. So an example is the foreign key must exist on the primary key. Or we end up with what's called orphan data. So in this case, we have two tables, primary table and related table. And we had the company ID one, it's pointing to the primary table and it exists here. That's associated record. That's a foreign key, it's valid. So if we do a join between these two tables, if I start on my related table here, and I do a join them to the primary table, it's going to get all the information. But here, the company ID 15 doesn't exist on the primary table. That's what's called orphan data. So now what's going to happen is if I do a join from my related table, onto my primary table, and I have 15 here, I'm not going to get the data back Like I expect, I'm going to get actually on you, I'm going to get either an error, or I'm going to get a bunch of nodes or other data that I, or nothing, actually, in most joins, this is going to disappear. So I'm not gonna end up getting this record unless I make sure I use a left or right join properly. Because it doesn't exist on the other side. But it should, if I'm using company ID 15, it should exist on the company table. So in data integrity is the idea that if I use company, Id 15, that it does always exist on the primary table, that company Id always exists. So records are always properly associated. Because without that integrity very quickly, the data becomes unusable. Or we have to manually all remember everyone working in it has to constantly remember that, Oh, I'm using a new company ID. I better make sure it exists and that doesn't really work out. So referential integrity is the destination of how much integrity what is our data guaranteed to have in our database. The more referential integrity it has, the more likely our query, we wanted to promise with queries, we want into cases where we have a bunch of data we don't need any more. Having this record is really kind of meaningless here and the related table, it doesn't have any meaning because it's lost this relationship. So having it there is now just a waste. And if we show you a list, or we're showing a list of products are something that we're showing to our customers, and now they select it, and they can't get to those values that they're expecting, like the manufacturer values, then that's a problem. So imagine if you went to Amazon and you went to look at a product and you want to click on the description, and it came back to us with a bunch of null values, when that kind of thing happens. I'm sure you've seen that kind of thing happen, I'm sure in various websites or other places, especially mass marketing emails, that's where you see it most I find that's what's happened. They've lost integrity of their data. So when they went to select it to build that marketing information for you, or that web page for you, they couldn't select pieces that they were expecting. Alright, so we're going to look at them and next and how this gets applied to the database, how we make the database, aware of what integrity we want to enforce. But let's take a break first. And we'll come back and talk to you that so we'll come back at 1026.
+
+So there before we move on, are there any other questions?
+
+Right. So what we're going to talk about now is we have this idea of this referential integrity. But we have to tell the database, what we care about. And we do that using these things called constraints. And we'll learn tomorrow how to actually write constraints. But today, let's just walk through what they are, so we can read them. So constraints are things that we can or rules we can set on a table or column that says this is how we want this data treated. So there are a set of default constraints on their database. Many DBMS systems have more Postgres actually just has these the default ones not default the anti sequel once them once they all share. If you go to someplace like Oracle, they have many more. So the constraints are not no no
+
+takes the
+
+Make sure that you can't put a null value in a column that it says this value has to have
+
+a value.
+
+The second one unique says okay, this column every value in it has to be a unique value.
+
+So we can't put, you know, if you put in
+
+the name, Sally once you can have the name Sally twice. If it's like the first name column, you have it set to unique. So every value has to be unique. Primary Key is actually a constraint. Primary Key does two things are actually more than two things. But two things we care about. One in forces not non unique. So it automatically applies those two other constraints to it to any column it's attached to. And then it's what's going to allow foreign key relationships to be established in a way that were Interested in for that we have to delete the foreign key really uses before we can delete the primary key. So the primary keys actually do a little more than that they
+
+expand beyond that to
+
+help the database optimize data. So database optimized searching of their data based on the primary key. But there's to get into database administration or database development, you'll get a lot more into that but just know that that is actually picking how what the most efficient way to search a table is or select a table is by the primary key because of the way to optimize it. So foreign keys and other constraint it allows, and it's how we've already used it. It sets the data so that There's a relationship between two tables. And just like we saw with the world database, you can't delete the foreign, you must delete the foreign keys before you delete the primary keys. And then to insert the foreign key, it must exist the the primary value must exist on the table. So why a foreign key relationship doesn't actually have to be with a primary key, it generally will be and should be. So, Nexus check. So check is specifies a list of acceptable values on a table, for instance, we could write a table or column, not a table column, a column that maybe is phone type. And we could say the valid values in this column are homework, mobile, you know, maybe other and those would be the only values we could insert. So a check could be used for that another, though, maybe a little cumbersome for a check. Another thing it can be used for, for buy be used for. So if you wanted to, you know, have a list of so you can only valid insert valid state codes. So you have to use H, TX or AZ for the state code, you couldn't use xx. So check can do that as well. Now whether you should use a check for that, something like that
+
+is
+
+kind of controversial. So I've most places I've worked, we didn't use checks, we should use foreign keys because they do the same. They provide the same value, but they're a little more. they're easier to change. But we'll look at that tomorrow and we look at DDL so check provides a set of values. And then default provides a default value for No. And if no value if the value is inserted and all it sets the value to some default.
+
+So those constraints
+
+The ones we just saw working stopping from things being deleted come from the foreign key in the primary key constraints, the other ones come from what data can actually be on the table. So we can control more than just what can be removed or what must exist we also can give the database directives on how we want this column to be treated Do we want it to always be unique value that we want it to always exist? And then if we use it millet table do we want to make sure that you know the connection is always there.
+
+So before we
+
+move on with that,
+
+are there questions on
+
+there that
+
+good so let's do some other queries that are affected by affected by this go back to lecture sequel to reconnect my world database since I disconnected So I'm break I went through and I restored my world database so that we can continue working after I deleted all the countries and or deleted the USA and all the cities in it. So let's look at these so
+
+let's try adding
+
+all fish to see try adding office to the country language table. So we can insert
+
+into country language
+
+and language
+
+and values and we want to add it says all fish.
+
+So here we get an error that says country code violates a constraint so we get a not null constraint. So if we look at the table itself
+
+Select star from
+
+country language.
+
+It's saying that the country code
+
+is required. So we can't just insert
+
+into the table without providing a country code.
+
+So country code
+
+as a not null
+
+constraint.
+
+So now let's try inserting it with the same thing.
+
+Only let's try giving it a country code now. So we'll say,
+
+country code, and we'll give it the country code of
+
+ccz.
+
+And we get an error that says, oh, That's not fair I want.
+
+So let's do
+
+is official.
+
+And we have to say that's true or false or false. Let's try again.
+
+I guess they're all required didn't rise that percentage.
+
+Visually, we'll get to the right air.
+
+So make up 50.
+
+Okay, so now we get the Eric wanted. So we try to insert it with the country code a zzz is not allowed because that country code doesn't exist in the country table. So we get an error that tells us that violates the foreign key constraint. So we get we're told we're violating a foreign key constraint. There's two things that could be happening. Well, there's only one thing but there's two directions that could be occurred. So that means that we're trying to use a value that doesn't exist on the other table. When there's a when there's a relationship. between them. So in this case, it's saying for
+
+the country code
+
+it must be present in the country table for us to use it as a country code on this table. Because the country code has a foreign key constraint against country or code on the country table.
+
+So here
+
+this is country code has a foreign
+
+key constraint.
+
+So
+
+it's easy must be on country table to use it.
+
+Just to comment away to these failed because they're going to continue failing if you come back and run this particular code. And then we've already looked at trying to delete the US. So but now that we have some more I guess context around it. sleet from country. Where code equals, say, we get the foreign key constraint. So for contracts, this is going the opposite way. This is saying we're trying to be already talking about we're trying to remove it, but it's being used. So the
+
+code is used as a foreign key on
+
+another table.
+
+So we have three,
+
+three examples here. We'll move on into the type of errors that it'll generate. So for each of these, we'll get an error that tells us what the problem is. And from that, we'll have to determine
+
+how we want to solve it.
+
+So let's look at some of the other constraints here.
+
+So
+
+let's try
+
+inserting
+
+English as a spoken language in the US. So insert into country language. And we know that that's going to be country code. Language is official, and percentage. And again, you would want to look that up on the actual table. You just type that out like 10 times in a row. So it's kind of stuck in my head at the moment. So
+
+that will work better values. And we'll say,
+
+English.
+
+False, we'll set some default values for there, because it's not going to work. So we get an error because this violates unique constraint. So the other ones we looked at reviling not know they were violating foreign key relationships. This one says Okay, there's a unique constraint on the language that says that for each country, the language can only exist once. So we can have English with the combination of English in the US multiple times in the table. The same way, since we had done before, and it's been removed since then, if we put
+
+click on back
+
+the first time it's going to work.
+
+And then if we run it again,
+
+it's going to fail because of that unique constraints.
+
+And then finally, let's relocate with update country. And we'll set continent
+
+equal to
+
+outer space, where code equals sign
+
+And we get an error that there's a check constraint. So it says okay, that we violated a check constraint with the cockpit. But it doesn't tell us a lot of information about it. So remember, a check constraint is a set number of values, a set list of values we can use. So saying outerspace is not in the list of values we can use as a continent in this database for that column. We know that because it says it violates check constraint. And it just tells the will it fail, but it really doesn't tell us much about why it violated.
+
+The check constraint.
+
+Notice for all these, it doesn't give us a lot of information about what's going on. Just there was a constraint, some of them a little more helpful than others. But even these names that we look at like here, country can continent check, which gives Some information about what's happening. Or if we look at, let's go back up to the foreign key one. The main pieces of information are one of the big ones, the fk country language, country code. And the error, those are actually variable names. Those are names that a developer chose. Which means if they pick poor, poorly defined names or names that aren't, don't communicate what the constraint does, it can be really difficult to figure out what the constraints are in a database. So one of the challenges of working with a database especially when you didn't design, which will be most of them, especially considering they get quite large, often having thousands of tables interconnected together in various different ways, is how to know what constraints exist. And I would like to tell you, there's a nice Oh, just go here and it shows you but there's not. It's actually not easy and it's slightly different in every database. So let's look at some ways of kind of finding some of that information in Postgres. So databases, SQL databases keep track of themselves in themselves. So they keep track of everything about the database in the database. So there's tables that are set up that tell you information about the data, the other database tables. When we look at here, and we see public, that's where our tables are at. But there's also PG catalog and information schema, which are tables that define Postgres and define our database. Not things like what's in our database, but things like what constraints we have or what tables exist or what those columns are, what data types, those columns are, or what users can use them, or how much memory they can take all this information about the actual database We can take advantage of that somewhat. So there's let's look at here. So we haven't seen this before. So databases actually are separated into what's called schema. So we won't go much farther into that. But information schema, said it has information about the database. And that's where we can find some information about the constraints. So if I select star that's, that's what it's doing. It's saying I'm selecting this from this other area information schema instead of public. And then this is the table name. I get some information about the tables. And I can see that in the world database.
+
+There is
+
+on the table country
+
+there's a check.
+
+It's called country continent check. Now, remember, A developer named this. So that may not be too useful. But that doesn't give me a lot of information to go on, does it? I know there's a list of values now that are associated with this column, continent. But I don't know what those values are. I don't know what the valid values are not from this.
+
+There's also
+
+constraint column usage.
+
+That gives similar information. A getting a list out constraints tells us the columns as constraints drawn, and their names of them, but it doesn't give. If they're properly named, like f ki, k PK, that tells me it's a foreign key primary key. But again, that was named by a database developer, so they could choose to call it anything they like. But they named them conventionally then I can kind of see, okay, there's a check. There's a foreign key, there's a primary key and these are the columns still not that useful.
+
+So keep going. This one's even less useful.
+
+It tells me
+
+the primary keys in the database, which is kind of some useful lists, but not great. So in all of these, there's not a lot of information. And this is a common problem running into a database and working with it and having to try to figure out what the constraints are can be a very frustrating experience. So the way it usually gets handled is there are queries that can help and I'm going to show you one that's Postgres specific. And it's still not great, but it's the best I've found. But usually, they're cataloged and documentation held by the database administrators. And database administrators are developers who work just on the database and take they set up the database, they define the tables, they define the constraints that kind of control the database in my experience, database administrators, just like you ever seen. movie where the group has to a group of people have to approach like an old like Angry wizard and try to get them to do some favor for them. That's kind of what it feels like working with a database administrator. You're not the powerful angry wizard. You're the person groveling going, please help me. That's how it always felt for me because they have complete control over the database, they can choose to be helpful and tell you Oh yeah, here's all the constraints in the database, or No, you go figure them out. So there's not an easy way to figure them out. There's no magic go here.
+
+So there's a query here
+
+that shows all the database for the public schema, for this only works in Postgres. And if I run it, this is actually fairly useful. And it has all the tables, the column, the names of it, again, those to be useful but has to pay off to name them properly. And it tells me some of Including the actual values of the check. The check has to be Asia, Europe, North America, Africa, Oceana in Arctic or South America, so it gives me some useful information. So there's some other ones that tells me there's a foreign key country code that references country country code. So that's a lot more useful. I can read that and try to figure it out.
+
+So
+
+that query, it's in today's lecture code, though here, you're not going to run into databases that have this problem will give you the documentation of how they're related. But that said, will work for Postgres. I'll be honest, I have no idea how that query works. I don't know what it does. It looks I can't read it. I found it on StackOverflow and I ran it so If you're if you're thinking, What's that doing? That's my answer. I don't know. I just know that it can show me this information.
+
+I guess.
+
+No, I can. I'm okay. Did we get down here? I think I don't know what these depths. I'll stop there. All right, so questions on constraints. And tomorrow I'll show you a way to look at individual table, easier NC constraints individually, not for the database before table but we have to be able to read DDL before we can do that. So and you probably won't be allowed to do it in most working environments, but I'll show you how to do it.
+
+So that's there making sense. So
+
+the last thing we're going to talk about today is this. These things called transactions. So a transaction, that high level is a single unit of work setting up this grouping of SQL statements as a single unit of work. And then we take multiple statements that can change the database, and we group them together into something that must see this one or fail is one. So if we have, you know, two or three updates, and they must all happen together, or they must, we want them all to fail together, we can create what's called a transaction so that they they will do exactly that. And just for some vocabulary, rabbit some of these transactions when these weeks when they succeed, we'll do what's called committing them. So it's like pressing the Save button while you're working on a document. If they fail, them will roll them back. And that that's like closing your editor without saving changes. So we'll just ignore the fact that Ever working on anything and not save the changes?
+
+So that's what they're going to be.
+
+So an example of when you might need a transaction because we won't want to wrap everything in a transaction, because they do have some expense to them. And we'll look at that it meaning by expense, I mean time and efficiency wise, performance wise, not it but saying that the next week both in Java will wrap everything in a transaction. But normally, we don't we don't we never wrap a select statement is transaction because they don't change anything. So here's an example of when we might, we might need a transaction. Let's say we have an application and part of it is go back to your bank account classes where there was a transfer, right, you build a transfer the donor withdraw from one account, and it doesn't deposit into the second account. So if that data was not just in the class, but it was calling a database to public They do the transfer. And so the transfer starts and they do with the withdrawal from accounting, which is probably what's going to happen because they want to make sure the funds exist before they deposit them into the second account. And then the system crashes.
+
+So what's happened now?
+
+So account a is now out $100. Right? Let's say there's, I guess they withdraw the transfers $100 counties down 100. But account be the deposit. query never occurred. So the insert, the update never occurred there. So now for the owner of account as lost 100 from their account, but the person that was going to never gained it, and it probably was lost because it's a system crash. So there's no record probably what was going on. So that's a problem. Well, we have a case like that the The withdrawal and the transfer have to happen together for it to be complete, then that's when we need a transaction, we could put them in a transaction so that if that system crash occurred after the update of with for the withdrawal, removing the money from the first account that it wouldn't be saved until the deposit into the second account was complete. So they would do both the actions and then once they both were safe and everything was working, that it would save both changes at the same time. That's what a transaction allows us to allows us to mark code that we simply want to try and we want to decide if it worked, it all worked, and then save it or if we want to revert it or roll it back and ignore it. Which allows us which is going to be really useful for things like testing, because, or in this story where I deleted that table. If I would have been working on a transaction to try it out first, I could just quite rollback and it would everything went back to normal. So it can be great for in development purposes. But in real systems, they're used for exactly that kind of scenario. I just talked about what we need to have everything happened together. But we don't want to have everything in a transaction because of just performance. And we'll talk it when we get to the very last thing about connection transactions, that'll probably it'll, that performance issue will stand out a bit more.
+
+So there's a test
+
+for transactions called the acid test.
+
+And it's for rules you're supposed to apply to a transact to a set of to something you're doing so a set of work that determine if it should be a transaction or not. And also not should it be a transaction but if you have no 10 lines of code, which lines of code Which are 10 SQL statements which SQL statements should be in the transaction, which should be outside of it? So that's also another common problem if we have, we're doing that transfer and let's say it takes five SQL statements to get what we want. Then how do we know if we want just the first two, all five or four? Where do we want to stop the transaction is
+
+important as well.
+
+So the acid test is about determining not only what should be in a transaction, but where you should end. So because as you probably notice, programmers love to come up with names of things where the first letter starts with another word. I came with those are called but they the acid test is stands for these for some, some of them sounding made up words. But the first one is toxicity which means that It needs to be atomic it needs to be all or nothing. So, that just means what we started talking about this, this set of actions either need, they need to occurs one, and if they don't occur is one, it's not a row action. And one of the great one of the ways we can test this a kind of a litmus test for it is where we talk about it. When I say I'm going to transfer money between accounts, I'm going to transfer money from my account to yours. What I'm talking about is a set of actions, right, removing money from account one my account and adding money to your account. So if any part of that fails, then the statement I made I want to transfer money has failed, right? If those but there's actually steps in there, if any of those steps fail my by the action I wanted to do failed. So it's an atomic action have, it has to automaticity it must happen all together or not. So that's the first test. And that's the where, what should be in a transaction things that need to be atomic. And then the next one is more about where do we stop? If we have 10 SQL statements? How many do we need it. And that's consistency. So part of what we want from a transaction is when it's done, the data should be left in a consistent state, meaning that we should have enough things in the transaction that when we're done any rules we had against the data before, so things we might apply, or conditions we had, that they're all still true afterwards. So we leave it basically, if we, if we have a check that is checking for the amount of money in the accounts, and we actually transfer the money, that should still work. If you know, when someone checks their balance, they should still be able to they should see the proper balance. So it should leave the data. Basically the data base untouched except for that one change we just made. That's consistency. So we should have enough things in the transaction to create that.
+
+And nothing more. So it should end there.
+
+So then isolation is, does the final state of the transaction this goes in? So the steps of the transaction? If we just did the manually would we end up with the same the same state with the data be in the same place? So if we, without a transaction, we manually know we moved money from the account and put it in the other account? And those all occurred? Would? It'd be the same as we executed these together? There's a note there's something more about ice isolation is that what if I transfer money to your, I say I'm going to transfer money to your account, and then I guess I need more than one per so I say. Now I'm going to transfer $10 to Ben's account, and I'm going to transfer $10 to James Count and I will transfer $10 to Greece's account and only have $20. And the transfer starts up in
+
+is doesn't take into account that
+
+if I done those serially, it's going to fail, the third one's going to fail, because I'm going to be zero. So, isolation is where the transactions still allow that to occur. So will still allow for other actions going on at the same time to recognize that there's changes going on. And that's a little more complicated than the other ones because that
+
+involves using other parts of the system.
+
+And that durability is what it's done is it's been committed, it's been saved what remains so even after a catastrophic event like system crash, or a power outage, or just a regular and that's what a database does for us anyway. So it means that we actually make the change to the database. So that's the acid test. And really what it for now what you really the two pieces you'd really want to take away from it is that what's in a transaction should be things that happen have to happen all or nothing. So we did they all occur together or none of them occur. And that the minimum what we need to accomplish that all or nothing needs to be in the transaction and nothing more. So we don't want to put too much in the transaction, we want to make it so it's isolated to just what we need to do that. So for that transfer, there's probably going to be two statements in the transaction, an update for account a and an update for account B. And if there's other parts, they don't need to be there. The other pieces are more about larger system design. And I will also add that while I've heard people say they've been asked about the acid test in the interview I've never heard this term, like in the workplace. I've never heard anybody. I've never walked into a room where somebody said, let's apply the acid test. We talked about all these concepts. I never heard anyone talk about atomicity. I've heard consistency and durability type of words, but those are a little more common usage anyways, or sound like real words at least. So, the concepts are important here, not necessarily you memorize the word acid test store these pieces, but the concepts of that the transaction should be all or nothing, that only the minimum amount should be in it. And that it should be such that when it's done, it's done. Things go back to a regular state. Those are the important concepts and you we're here to talk about those. And I'm not saying Do you want work to work workplace where they do talk about this in that way that I just never encountered one or every heard these terms until
+
+I got here.
+
+But the concepts we did talk a lot about. Alright.
+
+So questions about that before we look at how we do these.
+
+So let's look at the syntax. So transactions are actually fairly simple to work with
+
+on their face. So
+
+if we come up to actually I'm going to go back to that clients database to demonstrate this first part because it'll be a little easier
+
+if I get this
+
+so this is that database you don't have.
+
+That way I can remove things without doing any changes at all matter. So remember, we select star from clients
+
+And it has these name first and last names that have these people in it. If I want to use a transaction, I could say start
+
+transaction.
+
+I will say in some databases it's begin transaction so to start but Postgres to start, and it really, it's pretty easy to figure out, I think a lot of most of them support both. And then I'm going to write my code.
+
+So I want to delete
+
+from clients.
+
+And then I can make two choices. So I can start the transaction, I run this as a single line of code. So I run it just like any other SQL command. Now I can delete from clients and if I select from clients They're gone. Now I can choose to either save that change, or to revert it. If I want to revert it, I can use rollback.
+
+If I issue the rollback command,
+
+now, they're back. So it works once. So when the rollback commands issued, the transaction is over. So if I do something else now I'm not in a transaction in logger, which means that I can't rollback The next thing I do. So every time we issue a rollback, or save the change with a commit, which we'll look at next, we have to start a new transaction after that, in order for it to use so we can't if we forget to start a transaction, or something's happened that stopped our transaction. We can't just use rollback we have to be inside a valid transaction for to occur.
+
+So if I do the same thing, and now I
+
+start transaction
+
+and I delete all the clients again, we can see they're gone.
+
+And I do a commit.
+
+So now I use this command commit.
+
+And I select from them. And now they're really going, the transactions over it's been saved. It's just like i'd ran the command that leap from clients with outside of without a transaction. There's no way I can't revert at this point. If I try to rollback now. It's gonna say no, there's there's no transaction here. So anything we any code we want to put in a transaction, we have to start with start transaction. And then we choose rollback or commit rollback. If we don't want to say the changes committed we do want to save the changes.
+
+And they don't have to be in this order. So common
+
+way of working just like this
+
+I commonly have this at the top of my SQL files. That way as I'm working, I can say, Okay, I'm going to start transaction, and I'm going to run this code. And then I check it. And I like the way it worked. And then I choose rollback or commit. That's a common way of working for development, not in production. So but anything I put between them, if I'm writing code that I'm going to keep, like in an application, I can start transaction.
+
+And then I can delete from
+
+clients, and then I can commit.
+
+And I can run this as a unit.
+
+And normally, you wouldn't have one well, for deletes maybe. But normally, you wouldn't probably have one line of code and you'd have a few things going on in your transaction. But what will happen here is if this runs, and there's something else after it, so delete From phone and there's an error that occurs here. So SQL fails, it's going to end. And it'll never commit. So my change whenever occur. So if I choose this and run this all together, then they all occur. And if there was no errors or commits, but if there was an error, it's not going to save the changes for me. Or I can now maybe I do manually or rollback. It works. That's the worst case scenario. So in code, it's common to wrap multiple things, it makes these all or nothing. It's was saying if clients doesn't successfully delete, then don't delete phone is what we're doing with a trans transaction in this manner. So working with regular code, this is how you're right you're right start transaction then the code that you want in the transaction, then a commit. In testing, you can use the start transaction with rollback commit To test things out as you go, it worked with the database without worrying about harming it. But you have to constantly, every time you commit a rollback to start the transaction again, you have to see to kind of remember to do that. When we get to Java next week, Java is going to handle all this for us, we'll have to be I will have to understand when a transaction because it will change the way things work for sometimes, but we won't have to write start transaction.
+
+Alright, so let's look at
+
+Yes, right is so is start transaction. Is that almost like keeping a state of the database?
+
+Yes. So that's a great question. So let's look at that. Because that's actually the next goes right, right into the next slide. So transactions, what the way they work they're on. They're attached to what's called the connection. So when I open up DB visualizer, and I connect Here to the world database, I have a connection, I make it just like when you go to a webpage, you make a connection to that web page to get information from it. When I open up the second copy of dbvisualizer, and I go to world, I make a second connection. They're not shared, they're not the same one.
+
+If I have
+
+another application,
+
+or the developer sitting beside me it in a workplace, then we all have our own connections to the database. It's kinda like we're in connection, like you make a phone call, you call somebody. And that's your connection to them, right? You're talking to them on your phone call, but let's say they have two phones, or actually even not two phones, they have a feature that allows them to switch between lines, and somebody else calls and they have a connection to them too. But you're not sharing that connection or you can't hear each other's conversations. They have to switch back and forth between between you And that's what these tools do. And transactions occur on the connection. So what actually happens is, we have a device and we make our connection like dbvisualizer device or an application application, probably a better word, not I think about it, but device or application, and it makes a connection to the database. And we have another one. So device two makes a connection to the database. And they started transaction here, the transactions occurring on the connection, which means that there's basically a copy of the data made, and this is why they're kind of inefficient. A copy of the data made onto the connection and the changes are made. So if it doesn't mean the entire database, it's just what's needed. So if we were doing the account setup, then on this connection, there would be a copy of the account information. So the amounts the balances of the accounts for a count and count B. There'd be the update done to account a and then the update done to account B And they would all occur here on this connection, which means while it's going on, this device can't see the change happening to them, nothing's going on. And then when there's a commit, those changes are saved into the database, they really are. The relay is like pressing the Save button there, it was come overlay, it takes the data and shoves them into the database all at once. So it all happens at the same time. Because that's important. And that's part of the whole isolation portion and consistency portion of the durability as well of the acid test. So it takes them and it makes all the changes at once the database does that for us when we commit, and now this device can see it. And if we roll back, it doesn't really it's not like when you make a change in a document, you hit Ctrl Z instead, it's more like if you were outside in or not, not as if you were, say writing a note to somebody. You were going to leave for them and you decided You don't want to leave the note and you crumple it up and throw it away. Nobody but You knows you're writing that note, right? It's affecting nothing. You've just tossed it out, it's gone. So that's the same idea, with a rollback to says, okay, we don't care about these changes, let's just throw them out, all occurring on this one transaction. So that's why transactions are, we don't want to use them all the time, because we don't want to constantly end up copying data onto our connection. Because we can't see it, which means why we're working on something in a transaction. If we decide we're going to do everything in a transaction and during our development, then our team members can't see our changes until we commit them. So we choose even in development, you'll be picky sometimes about what you do in a transaction what you don't or you'll commit often so that your teammates can see the changes.
+
+So to see that working, I'm gonna come here
+
+I'm going to move up in this one to the clients as well. Let's go to the top thoughtfully these out since you won't really use them, but I think there's one more line of
+
+because one more table of data in here, I think address those data.
+
+It does. Okay, so there's
+
+these addresses here. And if I see from over here, if I select
+
+star from address,
+
+I can see them.
+
+So I'm going to start a transaction.
+
+And now I'm going to delete
+
+from address
+
+and run that line of code.
+
+And it's deleted and now select star from address here
+
+shows me they're gone. I come over here and I saw Start from address, they're still there, because they're deleted right now on this copy to be visualisers connection. So, but this copy can't see it because it's using the actual database it's not using the copy on the connection. So now when I commit it
+
+come back over here
+
+they're gone.
+
+So we're gonna go to the world database now since I've deleted everything in the clients database, there's nothing more to
+
+guess demonstrate there.
+
+So let's do
+
+transaction and let's delete
+
+from country language. I think we can delete that entire table without doing anything. And I'm gonna make a select here from it, select
+
+star from Country language.
+
+So I can see it here. And I'll now take the same select and put it over here. So we can see him both. Now I'm going to start a transaction. Now if I forget to start the transaction, and I run the Delete, it's going to be permanent. I can't roll back unless I've started it. So I'll start it. And now delete from country language and select star from it. And the tables empty, whatever here.
+
+I just ran the whole file and only do that.
+
+Over here, it's still exist.
+
+So last time we committed install the change occurred. Just hop over here. This time I'm going to rollback So I wrote back, we can see the changes have been reverted here. But over here, there's never been a change. So as far as this copy, the application is concerned, this connection is concerned, there has been no change. Nothing's been going on. As far as this one's concerned. While I was in the transaction, everything was deleted, but when I rolled back, it disappeared. If I would have committed then it would have became saved and would have been the truth for both.
+
+So questions before we
+
+go, okay.
+
+I was just gonna say so like, if you start a transaction and you delete something or whatever, like you take some kind of action, can you interact within your connection with the new set of data that's been altered? Yes. So you can still like do select and test to see if the data was so Connect without committing that. Yes,
+
+exactly. So um, that's actually the kind of the, one of the points of a transaction and the whole idea of putting multiple things. And normally, we wouldn't put one line of code in the transaction, maybe delete. But we would, instead have multiple lines. And that's what it allows us to do allows us to make changes to the database on our connection, and make all the changes we want. And then make sure it's how we want it and then commit it and then it overlays it all at the same time, so that if there would be a power outage, it's all happened. Like it all happened is one giant action ended so it maintains it. So it doesn't do it serially, like we would have to do do an update and it changes this table, then it changes this table in this table instead it takes it all at once and overlays the data. So it happens all in one big action. But why wouldn't a transaction we can our connection we'll see the effects we've had in the transaction, no matter what how many tables we do, or how many queries we do or what we do,
+
+which is
+
+when development and testing that's
+
+a large part of how they're used. So you start a transaction, you do a bunch of stuff, see if it's what you want, and then commit it or rollback. In fact, we'll use it heavily next week when we get to from Java from integration testing, because we'll use transactions to change the database a lot and then put things back to where we found it. While we're doing unit like unit like unit test in our Java code, but there be integration because I have the database but
+
+is that enough room for error there with the transactions if connection to was updating the database while connection one was initiating a transaction?
+
+So yeah, there is the called collisions, and they can occur. Yeah. So there are ways in a database to make sure they don't occur. But that's up to that's more up to the database administration level. So So what it what it does though it when it does this overlay it doesn't. So they are smarter than what I'm think I'm making them sound the databases. If you're making multiple changes on mobile connections, it's not that they just keep overlaying each other, they'll actually take that into account as they they work. You won't see the changes, but you can see you can end up with the risk is you end up with a different result at the end than you expected. Because somebody else could change the data in the meantime. Not that you're ever right there change. Does that make sense?
+
+Yeah, that that totally answered my question. Thank you.
+
+Are there other
+
+questions?
+
+Let's do a couple other
+
+final transactions here there's a couple of the bottom of the lecture code here. So we just did that with the country language table. But we'll put it in here so that we have it so that we could start transaction
+
+and then we could
+
+delete from
+
+country language nowhere and then we can roll back. Let's put a select up here so we can see it Select star from
+
+so here what's already here, the tables listed but just to make sure it's still there. There's a select now go down to run the start transaction and then the delete that I can do the Select And it's gone.
+
+rollback
+
+and it's back. If I ran these all together
+
+you can see they all were successful. And nothing's really changed so it didn't really help anything to run them all together with rollback. Putting a commit at the end would be make more sense because if there's an error while something's going on it would automatically roll it would automatically discard it when we're rollback atomic is just guard the transaction. So for instance, if the when it's on this connection, if there was a power outage, for instance, that transaction just lost, because disappears when the cache disappears if it wasn't committed, which essentially rolls it back.
+
+So if you tried to like
+
+before, delete from country language, say you put like, delete.
+
+Wait, we're in country language.
+
+So you tried to delete like a line or I'm trying to think of something that would just fail all the time. So if you just put something that like failed there, it just wouldn't do anything.
+
+Well, it'll stop and won't go to the next line. So, okay, whatever, whatever that failed.
+
+Command did. It'll do that. But then oh, yeah, then the.
+
+So in this case, when we're doing dbvisualizer, we start transaction. We're gonna have to then manually go, run, rollback, rollback.
+
+Oh, gotcha. So
+
+when we're working with it's like a scripted thing where it's doing it automatically, it'll roll back when it fails. When we get to Java next week, it'll roll back when we throw an exception. So so it works. A little transactions work a lot differently when you're running things like automated scripts, or running from a language like Java than they do when you're just running it here in dbvisualizer.
+
+dbvisualizer was a lot of manual intervention required. So
+
+so
+
+try to update all the cities and rollbacks so we could do the same thing.
+
+So let's do more than that.
+
+Well, we'll do that we'll do one more. So transaction
+
+and if we wanted to update so we've done most things for delete, we could update city table set country code equal to say, with no WHERE clause and then rollback.
+
+So if we start transaction
+
+we run that and now we can do a select
+
+star from city
+
+And we can see that there all the country codes have been updated. And then we can roll it back. And now do the Select again. And they're back to normal. So it's any change to the data. It's not just delete all the examples. Everyone's been doing a bit about delete, but it's actually any change. So let's do something more. So we start out before trying to delete a country from our country code. From our country table, let's let's do that again. But now let's make it so we can actually do it with referential integrity in a transaction so we can roll it back.
+
+So I'm going to start transaction
+
+and before we were trying to leave the
+
+US country code from the country table. So to do that, we need to have referential integrity with country language and city and city had integrity with The capital so we know before what we did earlier today we have those three steps four steps we have to do so let's do them. So the lead from
+
+country language where country code
+
+equals your setting
+
+now we need to remove the capital so we remove the referential integrity from the city table.
+
+So we'll delete
+
+from
+
+or no not delete sorry, update
+
+city
+
+will set capital
+
+equal to no where country code equals say. Now we want to remove Now we can remove that will allow us to remove the cities now from that, use the USA country code, we can either update to a different country code or just delete them. So let's delete them. Delete from city where country code like it was for say. And now finally, that should remove all the referential integrity we ran into. So we should be able to delete from country where code equals USA. So something like this might be more like what we do with a real transaction. So a rollback.
+
+So we start the transaction.
+
+And now we're going to get rid of the country language because there's referential integrity between where the country codes equal to USA. There's referential integrity between the country code column on the country language table and the country table code. So that's going to clean that up. And then we're going to remove the capital where country code.
+
+Oh, that's actually sorry, that should be
+
+country work code
+
+equals. So we're going to move the capital setting that we looked at earlier today from the country table. So we remove its referential integrity from the city tables ID. And now, that will allow us to delete all the cities that have the country code of USA because the referential integrity from the capitals Gone
+
+are the
+
+constraint and now there's no foreign keys so using the country code USA and either the country language or the city tables, we've cleaned up all the foreign keys now we can finally should be able to leave the country entry and we can so now if we select Select star from country where Cody goes, you say it's going our connection. If we select star from city where country code equals USA there's none of those. And if we select star from country code, where country code equals USA, country language as you can see, this one is for things that are transaction I'm doing other things. I'm working as I want. Now this transaction eventually this thing called timing out. Eventually this timer will expire and say it's taken too long, and it'll auto roll back for me. But that can be a while, usually, but I don't know what the setting is on Postgres, but it's usually about 20 minutes or so. So now, I know these don't exist, but I can roll back All these changes that he's made in that transaction.
+
+And now if I look,
+
+this country is back.
+
+All the cities are back.
+
+And
+
+the languages are back. So if I would have committed, they would all be gone permanently. And there'd be no way to recover them without reloading the SQL file we haven't. We don't originally built the world file.
+
+So other questions on transactions.
+
+So I would encourage you now from today, forward since today, everything you've done before, as this word that will come back to you called idempotent. Meaning that it makes no change. That's a fancy way of saying that nothing changes. Everything's in the same place before as it was after which is what select is. But now you have four three commands, that change things permanently. So to use a safely, you can do all of your testing and transactions, make sure it's what you want, and then choose to commit it. So I said, I work personally and I work with the database script, I essentially have, like I deleted this at the top of my script, or sometimes I'll do this too. I'll put start at the top and those at the bottom. So I kind of remember the beginning and ending, but I just have them there. Then you just select them, run them that run your commands, test them, and then choose whether you want to save it or not.
+
+But you can work however you however, it's comfortable for you. That's just
+
+how I do it. I mean, it's the right way. How I find it easiest.
+
+Alright, so anything else? All right.
+
+So for exercises.
+
+Today, there's both individual pair
+
+And they're very similar to yesterday. And the last few days, the pair exercises use the world database again, the individual exercises DVD store again, but I'm gonna open up the individual exercises because there there's one difference and actually for both of them, it's the same difference that not all questions
+
+are going to say
+
+that are going to be things where, like they were where you wrote where you write queries. So some of these are going to be no actors to actor table. But if you look, they find one. So here. They ask you to write a query to lead Euclidean pie from the table. It doesn't tell you whether it's going To see it or not, it asked you did it work? And then to explain why or why not it worked. So some of these have, some of them are like what you're working on where you have five rows, where you write a query that's going to do particular thing. And then other ones have the same thing. So you delete mathematical from the category table. And you talk about you have to explain why, why it worked, or why it didn't work somewhat work some some we're gonna have errors. So on these ones that have this your answer here to succeed and you get an error, it's okay to have an error. Because that's, that's part of the question. They want you to explain why you haven't there.
+
+And this last one.
+
+I don't do that. Don't do that number. 12.
+
+Look like Rochelle stepped away, but I'll tell her You're not doing number 12.
+
+So she's back.
+
+You're on mute. Your mute Michelle.
+
+Sorry, my Internet's My son is.
+
+Yeah, that's fine. That's fine. We weren't upset you stepped away I just was. So I told him not to do number 12. So, because it's the one that tells them to do check database metadata. And yeah, there's, there's no point in that.
+
+But there's pointing to it. But
+
+yeah, that's just running the query to showed you. There. I put in your lecture codes, there's no there's no real work to it. So. Alright.
+
+So any other?
+
+I had a question. Yes. We were doing our homework on like when you were showing us the start transaction, and you know, do what you need to do and rollback or commit. And when you were double checking with their SELECT statement, like our We'd love to keep our SELECT statements in there. Or if we want to double check or show
+
+off to defer to her cuz I'm
+
+Go ahead. I this one I have to read line by line. So I run it, read it, examine it, it's fun. So see whatever.
+
+Sorry, I didn't mean to be so negative Go for it.
+
+So do we need the Select or start transaction and roll back inside of each question or can we put them at the top like you did?
+
+I would so not all questions here are going to need a try some will some won't. Not all will do your transaction so the ones that need a transaction and begin Rochelle correct me if I'm if it's not what you want, but I would I think you should put them in individual questions.
+
+Gotcha just makes it easier for grading.
+
+Yeah. And also it points out since the idea is using them at the And I want you to do that to practice your pet to practice in more than once it kind of reinforces this should be in a transaction, this should not be in a transaction. If this wasn't our exercise about transactions and constraints, then I would tell you different, but
+
+Okay, so anything else? All right.
+
+So.
+
+So today then,
+
+for those of you who have your career started, you want to once again Don't forget them or show up on time. And then code reviews does you have code reviews, there'll be in this the same link. And also there's a Rochelle started sending out emails to the whole court yesterday, I think the first one out called days of code. Those have exercises for you to work on. While we're going through SQL, we find that even though it's only a week away from Java, by the time we get back to Java nine There'll be, it can be difficult to come back to it. There's it, it disappears very quickly when you don't be doing it for four weeks, and you're learning a whole new language after that. So we found that just a very small problem, just even a few minutes of just working with job every day can really help. So that's what those point of those emails are. So I would suggest solving the problems in them each day. It's not that you won't catch up people before we started sending out the days of code. Done fine. It just it's a little more of a challenge two on that first day back a little more of a shock if you don't do them. So they're good practice to they're awesome. Most of them are interview questions or whiteboarding type questions, so they're good to practice. So that's what those emails are at. It's just you do those? Right. So if you need help setting up a project or anything, let us know we can help you set it up. That for most days, you can just shut down the new project Java Yeah, go from there. Alright.
+
+So anything else?
+
+Yeah, that was cool that you guys work together yesterday. I mean, I just saw little dots. I don't know what really went down but good job on you guys for that and just encouraging you guys, you know to utilize river as well to throw out a question out there if you can't, you know code with others or be in the same listening space while working just to be willing to throw questions up on the blue channel to say hey, I'm I can't figure out this one Why isn't this working? Because we're seeing a lot of chatter and the other classrooms that you guys are pretty, pretty quiet. So that's fine. You guys are very individualistic people and that's cool, but just know that it's okay to to to reach out like that. Because a lot of times Brian and I, you know specifically, probably won't go to answer your questions or get to it fast. than someone else in the class, we already answered the question for somebody else and they already know. So go ahead and share each other's
+
+knowledge and that's all I got.
+
+Transcribed by https://otter.ai

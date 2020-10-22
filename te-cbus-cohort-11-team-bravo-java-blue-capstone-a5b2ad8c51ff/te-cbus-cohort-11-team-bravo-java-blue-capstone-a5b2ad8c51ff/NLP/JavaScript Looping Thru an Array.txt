@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/arrays-and-loops-javascript.html#looping-through-an-array
+
+Looping Through an Array
+If you were to create a for loop that goes through our array of test scores, it might look like this:
+
+let testScores = [];
+// ... array is populated
+
+for(let i = 0; i < testScores.length; i++) {
+    let value = testScores[i];
+}
+Again looking at the three parts of the loop:
+
+initializer - let i = 0; - i will be used to track which index of the array you are looking at. Remember that arrays start at 0.
+condition - i < testScores.length - before running the body of the loop, you check to make sure i is less than the length of the array so you don't try to look at more element than the array has.
+iterator - i++ - after you look at an element at i, you want to look at the next one i + 1.
+#Calculating the Average Test Score
+Using our array of test scores, write some code that can be used to loop through the array and calculate the average. You have a few steps that you need to consider:
+
+Add up the sum of the scores within the array
+Divide the sum by the number of scores you're averaging
+let testScores = [90,75,86,45,93]; // our array
+let sum = 0; // the sum of all our scores
+
+for(let i = 0; i < testScores.length; i++) {
+    sum = sum + testScores[i];  // add each score to the sum
+}
+
+let average = sum / testScores.length;
+In this case, you know how big the array is because you still see it. More realistically, you will write this kind of code within methods where you didn't explicitly create the array.
+
+function getAverage(testScores) {
+
+    let sum = 0; // the sum of all our scores
+
+    for(let i = 0; i < testScores.length; i++) {
+        sum = sum + testScores[i];  // add each score to the sum
+    }
+
+    let average = sum / testScores.length;
+
+    return average;
+}
+#Scope
+Notice that you have your sum variable declared outside of the for loop. If you remember from the previous discussion of scope, variables once declared are in scope. That variable remains in scope until the end of the block when it is discarded and goes out of scope.
+
+Given that you want your sum variable to exist outside the loop, you need to declare it in advance of the loop. Any variable declared within the loop is reinitialized with each iteration of the loop and won't be available after the loop is finished.

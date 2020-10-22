@@ -1,0 +1,727 @@
+Zoom
+https://techelevator.zoom.us/rec/share/tMIvH4Dh7UhOHoXH2kDzR7RwBqS1T6a82iYZ-fJZmh3BNhKSZRxA8yhR0K-DyHb-?startTime=1594993786000
+https://drive.google.com/file/d/19F8TDmuUiH9FTBK6dMAt1ITBWenV0fq1/view?usp=sharing
+https://docs.google.com/presentation/d/1IVoRcyMvsKBTKD5F4k848FO3zWZMKf8ktJRH1vNqUe8/edit?usp=sharing
+They're sure message from Skynet. All right.
+
+The pathway drip email. It's Friday so it's pathway drip email day. My favorite name for an email is drip email. I know it's perfectly fine marketing term, but it always strikes me as kind of odd. Week 11 review on Friday of week 10 high student dot first name. matchmaking is next week. Tuesday's matchmaking day, a bunch of matchmaking reminders. You've probably heard all of these already. But being prepared, looking prepared, being ready to take notes wearing guys wearing a shirt with a collar. Bump, bump, bump, bump, bump Bump. If you have a choice about a place to do this a place with with good with good connectivity is better than a place with bad connectivity. I know that whether you're able to To be heard clearly and whether you sound like a robot john or not, shouldn't be counted against you. But frankly, it's still even this even in the age that we're now living in. It is still all about that first impression. It is that first 20 seconds that forms an impression. That's difficult to change. And so you want that first impression to be as good a first impression as you can.
+
+The drip
+
+email also says until you receive your first job offer, you should continue to submit a minimum minimum of three formal job applications each week and update Hunter. The matchmaking interviews and applications don't part is don't count as a part of your three applications. Next week, we'll have a job fishing workshop. The job fishing workshop probably is one of the most valuable things we do here because people send an application in and then they don't hear anything. And then ago, well, did they get it? Did they read it? Do they? Are they interested? Have they fill the position? And what the job fishing workshop does is sort of how do we how do we follow up with that? How do we how do we seek out other positions? And then what's the process of that, that follow up that we do of contacting the person and in a polite in a polite way, following up and pushing yourself ahead of other candidates who might just be sitting on a stack of a virtual stack of resumes. So again, preparing for upcoming matchmaking interviews, using hunter to track job applications by by Sunday night, applying to at least three per week, and a list of key resources. All right, so that's the that's the drip. That's the drip email for this week, which I am contractually committed to talk about on Friday mornings and now I have does anybody have any questions before we move on
+
+three to one Okay.
+
+The student book, I think does a nice job of covering what we talked about this week in class. You know, you don't have to read the student book, you could go off and search for resources on your own, you could guess that the answers to things you could search for random websites that cover the information that you want. The the advantage, from my perspective of the student book, is that it covers the same things we're covering in class at about the same level that we're covering it in class, but provides a slightly different perspective provides different examples provides another another another coverage for basically the same material that we're that we're trying to that we're trying to cover in the program. So I if you haven't been using the student book, I recommend it highly. Some parts of it are, frankly, much better than others. The coverage for this material I think, is very good. And so I commend it if you're not reading the student book, if you're not following the student book I, I commend it to your attention, a couple of tutorials and a couple of references for JavaScript and then we'll start looking at our start looking at our code examples. Anytime I'm faced with learning something new, I always Google whatever that thing is space tutorial, and hit enter and see what comes up. Because there are four most anything that you want to learn in this field, somebody has written a tutorial for it, and some are, some are better than others. And these two that I've provided, I think, are maybe not the best, but ones that I have ones that I have referred students to for a while. I'm very fond of the W three schools material for JavaScript and for other things. They have the advantage of not only providing sort of step by step guidance and how things work, but also for most everything that they for most everything that they cover. They also provide a You're working example that you can go see the code, execute the code, change the code, run it again, see how it changes, just to see how things work. If there's some concept in JavaScript that I can't remember, and there are lots of them, because I use JavaScript, I use JavaScript, I use JavaScript, but I don't use all parts of JavaScript. If there's something in JavaScript, I need to need to use that I don't remember. I will Google that. And I there's a W three schools example for it. I will click on the W three schools example for it and go look at it, because I know it will explain it in plain language. And there'll be actually an example that shows the use of the code. And those are the two things that I want as a developer is a simple explanation of what it does. And then to see some code that actually uses it. So the W three schools, the W three schools and the JavaScript dot info,
+
+JavaScript dot info again, as
+
+the tutorial leads you through Not only the basic things in JavaScript that we've done, but also a bunch of a bunch of more advanced stuff a bunch of the newer JavaScript concepts from that are that are used in the in the more modern, the more modern implementations of JavaScript, the more current usage of JavaScript. Do I know all of it? Absolutely not. Right. It's a matter of I know, I know enough to write a basic program, I know enough to read a lot of JavaScript. There probably will be times even today as we're working through our example when I may have to go look something up. And that's just the nature of doing this. That's not a that's not a mark of my a mark of my, my imperfection as a programmer, and I have lots of them. But it's a mark of just this is the nature of what we do. There's a core set of stuff that you use over and over again, that you'll learn and internalize and things that fall at the edges of that you'll have to go look them up and so Having, having these tutorials as places to go, and then the references, the Mozilla, the Mozilla reference, which you've probably seen before, sort of the official the official standard for the things that the browser has to do and how it does them. The Mozilla documentation is pretty uneven. Right? The Mozilla documentation can be very dry and very technical, and get involved very much down into the details. Some sections of it are better than others. But it is sort of the final word on what JavaScript is supposed to do. The Truth About what JavaScript does is what's actually implemented in the browser. But the Mozilla documentation indicates what it's supposed to do the standards that the people who are writing the the JavaScript rendering engine that runs in the browser about what it's supposed to do. And again, my friends at W three schools have in addition to having tutorial Over this material, also have a reference guide, basically a list of all the different JavaScript commands, you click on and it takes you to that command, it talks about that command, and then gives you an example of the tutorial sort of takes you step by step through a topic and teaches you about the topic in a in a in a, in a building block kind of way. reference material takes you directly to the specific thing that you're interested in, gives you a definition of it, talks a little bit about it, and then shows an example so so I come into your attention to student books, the tutorials and the references as ways to figure out what you need to do to be able to solve problems or to figure out what's happening when you're either looking at somebody else's JavaScript or trying to create your own JavaScript zeamais have any questions about these references?
+
+All right.
+
+So mostly what I'd like to spend the rest of our time doing today is taking a look at two sets of two sets of sample code. If you haven't yet, please, please add and commit, and then commit your changes to your own repository. And then you should be able to do get pull upstream master on that repository, and pull in today's and pull in today's examples,
+
+today's lecture code.
+
+And if I can get to where my files are here, there we are.
+
+So, in module four, this is, this is module four. You should have in addition to yesterday's at 23, underscore event handling, you should have a 24 underscore week to review. You don't have all of these folders Do you have a student lecture after after class today I will provide I will push up this lecture final which contains a final copy of the final copy of the game that we're going to look at. inside of your student lecture folder, you should find a an examples folder and a ship dash game folder. I'm going to work I'm going to leave ship dash game alone so it doesn't conflict when I push it up and you pull it down. It doesn't conflict with changes that you will have made in ship dash game. I'm going to be working on a folder that you don't have, but I'll provide again later on ship dash game dash with dash John's dash changes that I'll be working on this one. This is an exact copy right now this is an exact copy of ship ship dash game. And we'll go through and I'll make changes to this one and then when I push it up, it won't conflict with the changes that you've made in ship game. But I want to look at the other one. First. I want to look at examples. Examples are just some examples of JavaScript, JavaScript usage against the simple assembly against a simple HTML file. But I think they cover many of the things many of the things that we've, that we talked about in the in the questions this morning. And so I want to work through those. If I look inside of examples, examples has in it, an index HTML, a j s folder with JavaScript inside of it, an empty image folder, and a CSS a CSS folder with a single CSS file inside of it. I'm going to go back up one level, and open mine with Visual Studio code. I don't know how you open Visual Studio code in your environment. But if you would open Visual Studio code on this examples folder. We'll look at Visual Studio code. With the contents of the examples folder I'll have the contents of the examples folder. In the Explorer in the left nav,
+
+and I'll get rid of some of these things that have previously been opened here.
+
+And so this is our This is our starting point for this example. Is everyone here? Anyone having trouble getting here? All right, very good. Ah, so we'll, we'll run this. We'll run this just to see what it does. We'll open it in live server and run it in live server, just to see just to see what it does. And it's an awful design. The, but that's okay. If I say that because the the author of this told me that it's an awful design, the CSS is not very good, but it's good enough to demonstrate our purposes. Right. So I have basically three, three different things we're going to look at here. There is an event listener, there's an event listener that is listening for someone to click this change colors button. And when we do, it will some walk randomly set the color to a different color. And we'll look at the look at the code that was written to do that. And if I click it again, it will change it to a different color. And if I click it again, it will change it to a different color. And it has about five colors that it goes through and it's randomly picking them we're back to red again. If we get to purple, we will display the message I like purple, the button is no longer listening. And we have removed the event listener from that button and so I can click it again as many times as I click it after I get to purple. It will not change again because there's no longer in an event, there's no longer an event listener against that button.
+
+And so
+
+we'll look at that process of doing that. We'll also look at the ability, the ability to hide to create and hide elements. Who's your favorite instructor? These, these don't show up as clickable but they actually they actually have, they actually have events associated with them. So if I click over Brian, it comes up and says, great answer with an alert box. If I click over Steve, it comes up and says what, with an alert box. If I click over john, it does the same thing as it does for Steve. And if I click on someone else, after it displays the alert box, it unhides something that was already in the page. There was already in the page, this text box, a label and an Add button. So as the event the event associated with the someone else button, unheated that section on here that that I think it's a div on hid those elements so they were displayed.
+
+If I type in
+
+someone else like Rochelle and click Add it will add it will in the event listener that's defined for that Add button. It will add Rochelle to the list and it will also then hide this this set of elements this label this textbox and this button that were previously displayed. They are still defined in the page. It is just that they are set to display none and so they are not being done. Play we can look at, we can look at how that happens. So that's the second. That's the second piece of this. The third piece of this is a propagation example, that is clicking on a child labeled D as in delta, clicking on a parent labeled C as in Charlie, clicking on a grandparent labeled B as in boy, clicking on a great grandparent labeled a as an alpha. And because these are because it will, as we'll see in the code when we look at it, because these actually are a child, a parent, a grandparent and a great grandparent, in terms of how they are defined in HTML. An event that's clicked on the great grandparent says that a click was detected here
+
+in a. If I click on the
+
+grandparent, it tells me it adds to the text that was there previously, and says in the grandparent that a click was detected here in the, and it tells me the great grandparent that a click was detected here. And it came from the not from a. If I click on if I click on the parent C as in Charlie, it tells me that the click was detected here, but it also bubbled up to the grandparent. The the information that we look at inside of the event that tells us what happened, what the target was, tells us that C was clicked on. And also the event is detected in the great grandparent, and again tells us that the target was C. And then finally, if I click on the child, the D is in delta. It tells me that the click was detected indeed, but it also tells me that the click was detected in the parent as having the target of D It tells me it was detected in the grandparent with the target of D, it was detected in the great grandparent with the target of D. So if I, if I refresh this page, I can get rid of all of these extra messages. And if I click on D, it just shows me that it was detected here in the child. It was also detected in the parent as having the target of D, it was detected in the great and the grandparent with the target of D. It was detected in the in the great grandparent with the target of D. We don't do anything other than displaying a message. But we could. And that's the point here is that whatever, whatever in this propagation, wherever the wherever the event occurs, in this case, a click event. It occurs not only in that element, but in all of the parent elements of that element all the way back up. And we could if we had an event on the whole pay on the whole body, if we had an event in HTML, if we had an event on the document, if we had an event on the window, we would see all of those events to all right. So that's what this does. So let's look at let's look at some of the code that actually does this. And I'm going to go back into I'm going to go back into Visual Studio code. And we're going to look at, I'm going to look at the JavaScript. So we'll start we'll start at the top of the JavaScript, the JavaScript as you as you have seen, probably at least a couple of times now, the JavaScript begins with a document, add eventlistener DOM content loaded with a scope that starts here and goes all the way down to here
+
+all right.
+
+So, first of all, I have inside of this scope of this event listener which waits for the waits for the The content to be loaded to the DOM, I have all the things that aren't inside of a function. Y are the things that are inside of a function. Usually not inside of this event listener for DOM content loaded. Can anyone tell me that?
+
+Because you can't stop it from happening if it's not inside a function.
+
+Write if it's inside a function if it's inside a function, if it's in a function, we're not going to call it right. If it's inside a function, we, we process it, we look at it. But we never execute any of the code inside of a function until someone calls the function. So all of these other functions that are defined here and I'm going to collapse them just so we can see What all of them are, all of these other functions don't get called, unless don't get executed, none of the code inside of the functions get executed unless somebody calls them. And so we can go ahead and process them, we can go ahead and look at them. But we'll never try to do anything with them until something actually until something actually calls them. And so that's why in general, even though we could, we could put them inside of the event listener for the dot for the DOM content loaded. There's no reason to. When we refresh the page, when we load the page, initially, we will execute all of the JavaScript that's not inside of a function. Alright. So we have created an anonymous function here. The anonymous function that begins here and ends, where does it end it ends about Let me see if I can find the end of this. If I click This curly bracket, it highlights, let's see, kind of put it before. Yes, from all the way from all the way from this curly bracket on line three, all the way to the curly bracket on line 28. This anonymous function only gets executed when the event happens of the DOM content having been marked as loaded to the event that generated the event that is generated by JavaScript that says, the DOM has been loaded for this page. And that event gets fired when the page is initially loaded. That event gets fired anytime the page is refreshed. If you do an f5 or click the Refresh button in the browser, we will we will fire that event. And so there is no code outside of this event listener other than code that's inside of functions. So when this Initially is scanned, there is no code in this JavaScript file that gets executed. Because the all the code is inside of this event listener, when it says the DOM content loaded, or it's inside of a function. So there is nothing for JavaScript to do. There's no code for it to execute until this event fires that says the DOM content has been loaded, based on our discussion in the quiz, about trying to do things, especially adding event listeners to elements that aren't defined.
+
+Why do we do this?
+
+Why do we put this code inside of this anonymous function that doesn't get fired until the DOM content gets loaded? Anyone
+
+Are we ensuring that we're not adding any function to a null value? Or I guess setting it to null, making sure that everything is populated in the actual HTML and CSS,
+
+making sure that we don't trying to add event against a null object? That's exactly correct. Because Color button, Color button doesn't exist here. This, this, this, the element with the ID change the color, that button that we clicked on to change the color of things. It doesn't exist until the DOM finishes loading until until the browser has had the chance to take in the initial set of HTML, and actually create those that button, right? Because until then, it doesn't exist. And if I should happen to execute line five, before the browser has had the chance to create the button that has the ID changed the color, then line five, the constant the constant Color button would be no And so and then the event, we would do a dot event dot add event handler. And we'd create an error, we probably continue executing, but there would not be an event handler associated with that button. Because at the time that we tried to do the dot event dot add event handler, there wasn't there wasn't a node available, to be able to hang that event on to be able to associate with that click event that we're trying to do.
+
+All right. And so all
+
+of these things and so most java script will be written this way. But, but sometimes JavaScript is not is not written this way. Sometimes, sometimes programmers will decide to depend on the kindness of strangers, or depend upon the speed of the speed of the browser to load the document object model, and they'll simply start sticking in
+
+add event handlers and add event listeners
+
+without putting them without wrapping them. inside of this, this event listener waiting for the DOM content to be loaded. It's it's a crapshoot, right? It might work, but it might not. And it might work in one setting. And it might not work in a different setting. It might, it might not, it might work on a browser that's running on a machine that's not very busy. And it might not work running on a machine that has lots of things going on lots of lots of tabs open in Chrome, because it's just a program and it takes the amount of time that it takes. And so if you're if you're not specifically waiting on the event for DOM content loaded, you're kind of you're kind of rolling the dice to see if that event, that object that you want to attach the event to actually exists by the time that you try to execute line six.
+
+All right. Does anybody have any questions about that?
+
+All right.
+
+So these are our I'm sorry, was there a question?
+
+Okay, so these are our add event listeners. Visual Studio Code allows you to double click on something and it highlights all the all the instances of it. And so we can see here in the DOM content loaded event listener, the event listeners that we're creating, to be able to act on to be able to act on the things in our code, and also what we're going to do. Alright. So this first we're, we're looking at here, lines five and six. We're looking for an ID, we're looking for an element with the ID change the color. That should be the button that we were clicking on. In fact, we named it Color button. And on once we found Color button. We said dot add event listener, click event, and we're giving it a named, we're giving it a named function. And so this is a This is one way for us to associate a function with an event is by simply naming the function that we want to execute when that event occurs. Another approach, we have a get element by ID looking for the element with the ID and list item, the button that allows us to add another instructor to the list.
+
+And it once we find the once we find the node, add another that is the node with the ID and Li. We add an event listener on the click event. And here we use the notation the fat arrow notation to create an anonymous function that is a function defined actually inline as a part of the event handler. From the opening from the opening curly bracket to the closing curly bracket, and any valid JavaScript Go inside of here, including it turns out even the ability to add another event listener, all right. So we display the we display we call what what is what displays that alert message up at the top. And we'll see that down below. we display the we display the alert message, alert messages, our modal. modal says nothing else can happen within the browser until we've clicked Ok, on that. On that alert message. One of the reasons that it's dangerous to put alert messages in your JavaScript code is not the fact that they're dangerous in and of themselves, but that you forget to take them out. And so if you forget to take them out, that means that your your program that's running will stop at the point that you display what hopefully isn't too silly an error message or message that you're using that you were using for debugging purposes the one that you forgot to take out. And then the whole program will stop and wait for somebody to click on the OK button before you can continue. That's the reason that alerts are tend to be frowned upon as a debugging tool is not because they're, they're bad in and of themselves. But it's difficult to remember to take them all out much safer is a console dot log, which even which, although you shouldn't take them out before your code goes to production, it's kind of like not a big deal, because the console dot log doesn't display to the user running the browser, it doesn't, it doesn't stop the action of the browser from proceeding forward. So it's not nearly as visible or jarring to the user or to a tester or to your boss's boss's boss when they're trying to go through the website and look at it. A console message is just a console message. So alert messages are frowned upon. They certainly work you can certainly use them if you do use them for all but Please, please, please, please make sure you take them out before your code actually goes to production. So after we've decided that we want to add another, we, we go through the process we go, we get, we find the list div. That is we get element by ID list and div. We come up with a node for it. This is the div. This is the div that contains the information that contains the the label and the text box and the button. On that on that node that we found, we go into the class list and remove a class called d dash none. And we'll talk about d dash none in just a minute. We go through then and find the Add a button. That is the button that is defined the button that is defined as that label that label and textbox and button. It has a it is the it is the the only button that is a part of that add div. Notice here we've done a query selector not on not on the entire document, we've done a query selector not on the entire window. We've done a query selector specifically on this div that we're looking at the div only contains a label a text box and a button. And we're looking for the thing that is of type button the where the element type is button, because it's not dot button that would say a class. It's not pound sign button that would say that it was an ID, but it's just button which says we're looking for a thing that is an element of type button and we find it and we put it into the Add button. The Add button
+
+constants that we've created here, the place to put this node. And then we create an add an add event listener, a click event on that button, so that when somebody does click on that button after they've read the label after they've typed something in the textbox, when they click that Add button, we'll call the function and name to list. And notice that we're doing all of this inside of an event listener. All of this all of this is triggered by us clicking by us clicking on that button that says we want to add something. So we have removed the this D underscore none the display none. To make it visible, and we'll look at that. I promise we'll look at that in just a second. We've found the button again, not not the button, not the first button on the screen. Remember, query selector query selector finds the first instance of something query selector all would refine would find all instances of something. query selector is going to find the first button, not the first button in the document, not the first button in the window. But the first button inside of this div, this div that has the ID list add div. And so there's only one button there, we find it we add an event listener to it. And we'll see down below the method, add add name to list, which actually does the work. Alright, so let's go look before we go any further. Let's go look at the class gi none. And I'll go look for the Class D none. Since I'm looking since I'm looking at the things that are a part of this example, it's reasonable for me to expect that d dash none is a part of my CSS, right? So I go look at my CSS I go into main dot CSS, and I start at the top and I start looking and I look for Dina and and it's not there. There are some classes as defined here, there's some stuff to put on the to put on every div. There are some stuff classes for light for light gray for big font for blue, for pink for green for our different colors that we're using. But there's no deed ash none. Well, where the hell is it? All right? Well, a way to find out where it is, is it's we have running code, we're blessed with having running code that we can go look at, I want to go look at the
+
+code. And if I go look at the code,
+
+this is the code that's running. And I can do f 12, inspect, or right click and say inspect. And it gives me a number of a number of things here that I can look at the console is not displaying any errors, and that's good sources.
+
+shows me all the things that were loaded
+
+as a part of as a part of, of building this page. And that's our index dot HTML. And this is again, what's downloaded. What's the downloaded from whatever source this came from, not the Document Object Model, not what has been modified after it's been loaded. But what was actually loaded initially. And if I look inside of CSS, I don't see one CSS.
+
+Shouldn't you see one CSS? Let me refresh this.
+
+Why is there just one CSS here? That's funny.
+
+I was so confident there was going to be another CSS here. Because the CSS that should be here, the CSS that is specified in the in the link is a CSS that does bootstrap. Because the author of this if I go back to the I'm going to flip back to the to Visual Studio code. The author of this in the index dot h tml specified not only that we would be making use of a style sheet style sheet CSS,
+
+but also
+
+that we would be making use of a style sheet. That is the bootstrap style, the bootstrap CSS and the dash none. I just happened to know because somebody told me about it around the campfire once. I just happen to know that d dash none is a part of the bootstrap CSS. But that's the only CSS that's loaded. So if it's not in main dot CSS, and it's working, and it is, it must be in bootstrap dot CSS, and I don't know how to show that.
+
+So let me see
+
+this is the this is the browser again. altern stackpath like that.
+
+Yep, there it is. Okay.
+
+Because it loaded down it said stackpath boots. Strap content, a content delivery network CDN comm and it put it in a different folder, my bed. So this is the this is the bootstrap folder that the browser put it in. And if I look inside the bootstrap folder, there is a CSS. And if I look at it's got two sets of CSS. It's got a bootstrap dot min dot CSS, the dot min CSS is the minified. css. And you'll love this. This is all the CSS. This is all the CSS by Greg this over this way. This is all the CSS in one line. Okay. If I scroll over this way, you can see this is all the CSS all in one line. This is called minified, CSS minified CSS and minified files have the the carriage returns and line feeds taken out of them to save space. It also has sent me an ordinary version of the CSS that's readable. But what I can do even with the minified CSS in modern browsers, originally, you'd look at some fish and go, I don't know what to do with this. I can't read all of this modern browsers. Chrome in particular has this has this set of curly brackets at the bottom left hand corner of the main window that says to format it, and it goes through and it knows enough about it to be able to find to find the ends of lines to be able to find the curly brackets and put an extra space after them to take the opening curly brackets and be able to indent things. And so we can, even if we have just minified CSS, we can reformat the minified CSS and the browser to be able to see to be able to see its
+
+definition and
+
+if I want to find
+
+Let's see what was the thing I was looking for in the code I was looking for in my app dot j. s, I was looking for D underscore none as the class. And so if I look at, if I look at D underscore none First of all, if I look at, if I look at my HTML, I'll see that. I'll see that this section that we're looking at this div, this div with the ID list, add div has the Class D underscore none set when the page loads, and that will cause it to not be displayed. How does that work? Well, we found the CSS now, so we can go back into the browser and look for D underscore none. And just to do that, I'll do Ctrl F for find I get a little search window here at the bottom. I go d dash no And it takes me to that. And it not only sets it off not only sets display to none, it also marks it as important as exclamation point important, which gives it the highest possible priority and CSS higher even than the priority of higher than the priority of inline styling. So we look at, we look at the order in which CSS the order in which CSS is provided to us for rendering. We look at the we look at the the, the the precedence of it. We look at the
+
+what's the word I'm looking for the, the,
+
+the
+
+somebody helped me with the word.
+
+We look at a
+
+priority. priority is priority the right word. We're looking at Is it? Is it on an individual element is it on a class is and on an ID precedence, I guess precedence is the word I'm looking for. And, and the the pound sign, the pound sign. I'm sorry, the exclamation point is the highest the exclamation point important. That string there exclamation point important, sets it as the highest possible sets as the highest possible precedence. And so I don't want in the media query, I want the general one here. And so here in the general in the general CSS, we've set d dash none within the CSS that's provided for us by bootstrap, d dash none basically says display none. And much of the styling that we end up doing in the real world in CSS is based on adding and removing classes, rather than we could set the object to display none, and we couldn't take display none off of it. That can be Is that what we do is we have a class that sets it to display none, like d dash none if we're using bootstrap, and then we add or remove that class to have it be displayed or not displayed. And so in the in the HTML in the HTML for the page, I'm going to go back to Visual Studio code in the HTML for the page when they when we initially create the page, we have this div. This div has the class d dash none applied to it, which says it's the display is set to none. It's there in the in there in the DOM. It exists in the document object model with a label with an input field of type text, and with a button, the only button inside of this div and it sits there not displayed until somebody says they want to add an instructor. And when somebody says they want to add an instructor, we set the display class we remove the class the dash none. That's what we're doing. That's what we're doing. inside of this event, we're removing, we're finding this div, we're doing the class list, we're removing the dash none. If it doesn't exist, it's not a problem. It's not an error. It just doesn't remove it because it's not there. But the dot remove removes that class if it's there. And then it finds the it finds the the button by doing a query selector again on that do not on the whole page, not on the whole window just on that one div, finds the button and then adds an event listener that if somebody clicks on that ad name to list button, that will go do that work. All right.
+
+questions about any of that? All right, thank 10 minutes.
+
+JOHN, you froze for a little for me. Did you say we're going on break?
+
+Yeah, take a 10 minute break. 1045
+
+Rachele, did I just freeze up there at the end? Yeah, we heard
+
+the summary and then it was. You said any questions and I think when you said any questions and there was like a pause, and we didn't know if you were pausing to wait for questions or if you were frozen Then I realized you may have been talking because when you came back in it was and then we heard Tim and I are 10 minute break. So anything in between there
+
+is the audio been okay otherwise mostly?
+
+Yeah, mostly it's been okay. But it's toward towards the last Yeah, overall it's been mostly steady. Like, we can hear you but there'll be times that it gets kind of glitchy but we can still hear what you said. So,
+
+alright, if it gets too bad jump in and let me know. Okay,
+
+I will. All right.
+
+All right, welcome back.
+
+Any questions before we continue.
+
+So I'm looking at two more of these, of these, adding event listeners that are contained in the opening section of this code. And then we'll briefly look at the functions that are called that actually, that actually do the work. But frankly, a lot of the work a lot of the work is done here in the creation of the event listener. And so we've looked at, we've looked at the ones above and I will look at when somebody clicks on the list When we get an event, we have an event handler, an event handler that looks at the get element by ID, the list. And I want to go back to the HTML and just look at it for a moment. Look for a moment at the HTML that does that. The list is the a numbered list. And so the event handler is not on the individual list items, the event handler is on the unnumbered list. And so regardless of where an event, a click event specifically happens within the a numbered list, the event will be handled by the event handler that we're about to look at. The ones that's associated with the the numbered list itself. And so we'll need to look at we'll need to look at the target to determine which which list item was actually was actually clicked on. And that's what we do. And that's what we do in the event handler that we look at starting in line 17. So we go get the, we go get the node for the numbered list, that is the item with the, the element with the ID, the list. And then we are adding an event handler, adding an A event listener on that list, not the individual items inside but the list itself a click event. And then a handler is the, the handler that we call is this is this anonymous function.
+
+Yes. You are not sharing your screen, I think.
+
+I'm sorry, I didn't understand what you said. Would you mind sharing your screen? Oh, I'm not sharing my
+
+screen. Okay. Sorry. I thought I was sharing my screen.
+
+It must have gone away at some point. There we go.
+
+Can you see it now? All right.
+
+Yes, very good. Okay, sorry about that. Thank you. Thank you for letting me know. So this event handler, this event handler on the list of the numbered list itself, not the individual elements inside a click event, when a click event happens on that list, we execute the site the code inside of the anonymous inside of the anonymous function. So we look at the target. In effect, what was clicked on what was where did the Where did the event come from? We do event dot target event is passed as a, the the event is passed as an argument or parameter to the anonymous function. This doesn't have to be called event it could be it could be called E. It could be called Bobo. It could be called x, y, z, z y. It's just a placeholder just like a placeholder for any argument or parameter. We can to either call it the word event, or use E to specify it. But again, it doesn't have to be that name. Whatever name we have to use, we use there we have to use the name here because we're looking on the target of this event that has been passed. And so we look at event dot target and we look at the inner text that is the text. That is the text that is inside of the target. The target was a list item, list items have a property inner text. And if the inner text is equivalent to the string Brian, then we create an alert that says great answer. Otherwise, we call what and what displays the alert that says what and the question marks. And so that's how we get Brian says great answer. And something other than Brian says what if anything, if any other if any other list item, inside of if any other list item inside of the unnumbered list. gets clicked. All right. It also turns out if somebody clicks happens to click on the unnumbered list itself, a click item on the a numbered list itself will display what because that because it's not a list item with the inner text of Brian, and the else takes care of every other case. And so that's, that's that event listener. And then the last event listener in the section at the beginning, we create a constant called the the prop divs. that are that are we do a query selector all finding all of the finding all of the divs that have a property, a property class associated with them. And if we look at the HTML code, if we look at the HTML rather, we'll see that the product Class is applied to the class,
+
+the div
+
+that has the text, great grandparent, it's applied to the class that has the text grandparent. It's applied to the class that has the text parent. And it's applied to the class that has. It's applied to the class that has the text child inside of it. So the query the query, select the query selector all returns not just the first instance of that, but all the instances of it. So this constant prop divs, is actually a node list. And then we can use on that node list that we've created. We can treat it for these purposes, we can treat it like an array, even though technically isn't an array. It's an it's a, it's another list, we can use the for each on it however, the for each allows us to loop through. And as we loop through as we loop through each time we make up a name that's made up name div could be anything. But whatever name that we take as an argument or parameter, each time we go through this loop, that is each time that we execute the scope of the each time we execute the scope of the for each, we're going to get one value out of that collection. So the first time we go through, we're going to get the node that's the first instance that we found in the select all the next time we're going to get the second digit, the second node that we found when we did the select the selector all and so forth. And so for each one that we find div then contains during that one iteration as we loop through one One div contains one node. And on that one node, we're going to add an event add a click event listener. And that click event listener
+
+is going to is going to call
+
+is going to call the function show prop message that is show the show the propagation message. All right. And so that's the event handler that we that we call to set, the event handlers, the event handlers, the event listeners, on all of those divs that have the prop have the prop class set on them. And for each of them, each of them has a separate event listener for each of the instances that exist in that collection, in that collection of in that collection of nodes. And each of those, and each of those event listeners is a click event listener that calls the function Show proper message. All right. And so those are the event listeners that we generate when this code first starts running. Questions about that.
+
+And so all the rest of this, all the rest of these functions exist in service of the event listeners. So the show prop message gets the ID attribute and if it finds an ID attribute on that particular on that particular propagation message,
+
+it
+
+sets detected at to be the place that we found it. That is the event target I'm sorry, the,
+
+the ID of its parent.
+
+And we call and we call we do get attribute to get the ticket. The idea Deep, which tells us which tells us the ID that it was detected at. And then we use detected at, what do we use detected at. We use detected app to say where, where it was found the ID, the ID value of those fields. If we go back to index dot HTML, the ID of those fields is the the A, or the B, or the C or the D. And that's how we can say where, where what the source was.
+
+We're calling the,
+
+the event target, getting the parent of that target and getting the ID of it. And we say where it was where it was detected. And then we're displaying. We're pulling in the query selector, finding the paragraph Setting the inner text of the paragraph to actually be the inner text of the paragraph plus the string, click detected here, and then say where it was detected detected.
+
+And
+
+and if it's set, if it has the class
+
+if it has the class no propagation set, no props, it will stop propagation and not pass propagation up. And so this again, this this function exists as provides the service to that to that class. To find out where the propagation actually started from what the source was, and to pass that information to display that information. Adding a name to the list. Adding a name to the list
+
+finds the list
+
+creates an add name to the list is called after we when we click the button to add it to add a name to the list. So we have a label a text field, a label a text field and a button. And if somebody clicks the button, we find, we find the list element. We create a list item, we look inside, we get element by ID, the, the value the inner text, the inner text of the the name that's being added. We say get element by ID f name and get the value inside of that inside of that text box. Sometimes it's hard to figure out what is inner text what is value. And again, I frankly sometimes do it by trial and error. Text Boxes. text boxes have value most of Other things have inner text. But sometimes I just have to try it to see which to see which works and which doesn't. So we create a we do a create element to create a list item. We go and get the name out of the text box and make it be the inner text of the list item that we've created. And then we do an append child with the list with the list item that we've created. adding it to the list. We go and get the list add give. The list add div is the entire list. Once we've added I'm sorry, the list add div is the is the div that has in it the label and the text box and the button. We go and find that thing get element by ID. And then we add back a D underscore none Add to that div that has in it the label the label the text box and the end the Add button, so it's no longer shown. So we click on we click on something we say we'll want to add something we take off of the the nun to have it displayed, we add something we call the Add name to list. And as the last step, the Add name to list does after it's added it to the unnumbered list, we call recall, add. We call the class list dot add, adding the none to that div that has in it the label the text box and the button so it's no longer displayed. So we're toggling between displaying it and not displaying it. What is the simplest function here? What just calls the alert and displays what and then the change color the change color is an interesting and interesting function because actually uses math Rand Get color generates a random number math dot random, if you look it up generates a number in the range, zero to one, zero is inclusive one is exclusive. So it's going to generate numbers in the range of 02 point 9999999.
+
+We initially set the color class to be blue. And then we check the value of random, the value of random is, is less than point two, we set color class to green. If the value of random else if the if the value of random is less than point four, we set color class to pink. Else if the color class of random is less than point six, we do a bunch of stuff. That is we set the color class to purple, we actually remove the event listener that we created up at the top, we can only remove event listeners that call a named function. So that's a reason that that event listener Had a named function as opposed to having an anonymous function is our line 68 could not remove the event listener unless the event listener when it was created that it called a named function. And so if it does call a named function, we can remove it. And that's what line 68 does, it looks at the looks at the target. That is the thing that the thing that was that was clicked this button, this area that we're changing the changing the color for, and it removes, and it removes that event listener. It removes that event listener that click event listener, so it can't be changed anymore. We get the text by doing a query selector on any instance of a div that has the ID color changer, and specifically the query selector returns to us. Then the paragraph, the paragraph that is that is a part of that deal that has the ID color changer. That's what line 69 does. And then we set that the text that is the paragraph that's defined there, we set its inner HTML to I like purple button is no longer listening, I would have not used dot inner HTML, I would have used inner text. But again, I'm not the author of this. inner HTML is dangerous. Inner inner text is safe. All right? line 71 adds the class big font to the class list for the text. And big font. Again, we often do styling with classes. And that's exactly what we're doing here. We've got a big font class that changes the font size. And all of that is if random is less than is less than point six, and then we go back into our else if, if random is less than point eight, we change the core class to read.
+
+And then
+
+if random is less than one point nine, we change the color class to yellow. Otherwise, color class stays the color it was originally it stays blue. And then we do get element by ID, color change color changer. That is the ID applied to that particular element. We do a set attribute. This is another way that we can set a class attribute. This replaces the class attribute that's there. It doesn't work on the list. It sets it as the only the only class attribute will be color class. And so we can set any attribute that we want on an HTML element. But because with classes we're so often having multiple classes and we're removing classes and adding classes, JavaScript eventually developed a a class list with a dot add and a dot remove. And so that's what we ended up that's what we ended up using you Usually tacked on classes that the author chose here to act directly on the attribute and did a set attribute, setting the class attribute to be the color class, which is how the blue or green or pink or purple or red or yellow get implemented. And that's and that's the example that you saw earlier. That is the code that let's see if I still got it running here somewhere.
+
+Yep, let me make f 12. Go away.
+
+refresh this, click to change colors. And it randomly chooses a number and chooses a color to display.
+
+And eventually we'll get to purple.
+
+And once we get to purple, it has removed that event, remove that event handler and I can click on the button as long as I want until I refresh the tool, reload the initial event handler. I can click on I can click on anywhere in this list and if I click on Brian It's going to say great answer. If I click anywhere else, it's going to say, Well, what. And if I click on someone else, it gives me the it says what first. And then it gives me the opportunity to add a name. This is the div that had the D, none applied to it initially, I can add Matt, and I can click Add, it will add it to the list. And then it will do reapply the dean the D none to the class, so it's no longer displayed. And that's a pretty typical way of having in effect, things pop up in a page is to go ahead and create them do display none. Now that the risk here is that even though it's not displayed here, if I do f 12, and I go into the, into the DOM, if I go into the for this page, if I go down, if I go down to about where this is with my selector and select this and go down to where the button is Right below where the button is, is actually the information is actually the information. That is the, the label, if I expand this the label, the, the, the textbox, and the name, it has the class display none. So it's not being displayed. I actually can I edit this here, I can edit this attribute and remove this class. If I take off display none, this will read this worry redisplay. And it will actually display the label the text box and the button there. So again, this only I'm only changing it in the DOM that's currently executing. But I can do that to see what's happening. But anything that's sent to the browser, the HTML, the CSS, the JavaScript, anyone that knows enough to press F 12 can see everything that's happening.
+
+All right. questions about any of that?
+
+I have a question regarding non java script. So can you go back to the demo script?
+
+Going back to JavaScript? I'll go back to JavaScript in Visual Studio Visual Studio code here is the JavaScript
+
+for line 68, line 68. Yes.
+
+My question is, are we allowed to call the function itself inside the function so you have the trench color function there, but it's inside the same function says change color. So basically, you're calling yourself inside it.
+
+I am not calling the function I am not calling the function change color here. change color is being passed as an argument or parameter. The remove event listener takes the Remove event listener, just like the Add event listener, takes two arguments or parameters. It takes in the name of the name of the event. The function that's going to be called function change color takes in and change. Let's see, the Remove, remove event listener, let's see if I can get it doesn't provide IntelliSense. For me, remove event listener, like add event listener takes in an event name as a string, and the name of a function. And so that's what I'm doing here is I'm providing I'm providing the name of a function. Now, in answer to your question, yes, a function can call itself right, I can JavaScript, JavaScript does allow me to allow me to execute code recursively not a great idea, but you can do it all right, but I am not, but I am not. I am not calling the function here. I am passing the name of the function as an argument or parameter.
+
+I see what I mean. Thank you.
+
+All right. Very good.
+
+Other questions about this code?
+
+Yeah, john, the dienen. Class Name. Is that Dean,
+
+the dean on class name. Yes.
+
+Is that a common naming scheme for for that type of class to that's going to be hiding the elements? Or is that just a thing we're using in these examples?
+
+It's very common. bootstrap, the bootstrap the bootstrap libraries, even though some people, some people like to talk trash about them. The bootstrap libraries are in in very widespread use and lots of code. And so in this in this bootstrap in this bootstrap library, you'll find lots of different styling for lots of different styling for buttons. Things like dienen, which is in fairly widespread use, you'll see that in lots of lots of code, you can certainly make up your own, you could make up your own CSS class that did exactly the same thing. But this made use of bootstrap for some of this other styling too. I think the rounded corners on these displays and some other things were done using using bootstrap style. And you know, if you've got a library that does a bunch of stuff and you're familiar with it, you tend to use it. And so people who have used bootstrap in the past will continue will tend to continue to use bootstrap, bootstrap, bootstrap. things come into and out of favor. And bootstrap is kind of out of it's not chic to use bootstrap now, but bootstrap is in pretty widespread use. So di, d dash, none is a is a fairly common, a fairly common thing you'll see as a class to set to set display to none.
+
+Okay, perfect. Thank you so much. All right. Other questions?
+
+All right.
+
+So I didn't change any of this code. This is the same code that you have. This is the code that's pushed up. I want to go back and look at the other example that that I will be changing. So in your
+
+let's see, and not there. But you know,
+
+Here. All right.
+
+In ship game, I'm going to suggest you open ship game, I'm going to open ship game with John's changes, you don't have that one. I'm going to make my changes here inside of that inside of that folder. inside of that folder there is a CSS folder, an image folder, a JavaScript folder and an image HTML. So I'm going to open this in, open this in Visual Studio code, and open a new instance of my old instance of Visual Studio code. Open a new instance of Visual Studio code.
+
+And again,
+
+I have in the in the left nav, I have a folder with CSS with main dot CSS. I have an image folder with a number of JPEGs. A picture of a boat a picture of a flag, a picture of an iceberg, a picture of a treasure, and a picture. Have waves. And we'll look at we'll look at how we're using those in a minute. We have some JavaScript that provides a framework that we're going to be working in. Sometimes the hardest thing about doing something like this is sort of figuring out what path I'm going to follow. How am I going to arrange things? How am I going to relate things to each other. And this, this gives this gives us the advantage of, of setting a direction for us to follow. And that's the reason that I provided provided this code is it sort of sets that it sets the direction that we're going to follow about how to do this and we'll look at that in a minute. And then the index dot HTML really isn't very much stuff, right? It is a head. It is a body. The body has a section, we have an h1 that has a class announced that we'll be using. We have a class that is the button container that has a reset game button at the top and we're going Do all of our work inside of a div with the ID frame. And so we're going to use that frame and in effect, fill in that frame, creating a game grid. For, for what for what we're going to be doing. Let me let me show you what we're going to create. And I'll provide I'll provide this to you. I'll provide this to you later about what we're going to create is a
+
+is this game.
+
+And it's really sort of the skeleton of a game
+
+for sailing, for sailing a ship around and avoiding pirates. So if I open this in Visual Studio code, you don't have this yet, I'll get I'll give this to the
+
+class. Most of it by the end of the class. If I run this, if I run this using live server
+
+I end up with this red with a ship,
+
+starting at the first position at the top left hand corner, and I can use the arrow keys on my keyboard. To move the ship if I press the right arrow key, the ship moves right if I press the down arrow key, the ship moves down. If I press the up arrow key, the sheet the boat, the ship moves up. If I press the left arrow key, it moves left. And my goal is to move the ship all the way to the treasure at the end. And when I do that, it tells me that I win. There's a reset button that will that will put the boat back in the top left hand corner and redisplay play. Each time that I refresh the page I will get a different arrangement of squares with pirates in them. So each time I do refresh each time I do refresh, I randomly select about keen percent of these grids to put a pirate flag inside of, we'll see how we do that. And then once that's done, I can use my arrow keys to move around the keyboard, and then be able to get to the pirate treasure. So I win. Again, it's it's a framework on which you could build a number of other things. But just getting to this point is a bit of JavaScript. And all of this is running just in JavaScript, just on the browser, not dependent on any other resources anywhere else. So we'll take a look at we'll take a look at how one might create something like this. And then I'll offer you some suggestions about what next steps could be to make it a more make it a more robust or more interesting game.
+
+Alright, so that this is what we're going to build.
+
+I go back to here, and I'll close this one.
+
+But most of the work, as you can see, there's not very much in HTML. It's mostly it's mostly all in the JavaScript. So in the app JavaScript, do we have a framework. And we'll just sort of go through, we'll go through and look at the framework, look, look at the framework and build on top of it. There is a create grid, a call to create grid at the top of our code. And then a number of functions are defined, most of the functions are not complete, we'll need to to fill in these functions and create some other functions. So we'll start at the top. We're going to add events, add events and functions to move to move the grid and win the game. I don't want to call create grid until after the DOM loads. And so again, I would encourage you to code along with me if you would like it. If not, if not. I would appreciate your questions and help solving problems but I think it's a value to do This and if you need me to stop or need to redo something, I'm happy to do that or happy to explain things. But But I'm going to start by creating an event listener for the DOM content loaded. And actually put the Create grid inside of it. And eventually I'll put some other things inside of there are also things that I want to happen when the game when the game starts. All right. But for now, I'm just going to create a document. document dot
+
+add event listener.
+
+I can turn off capslock.
+
+document should be lowercase D, thank you very much. document, add event listener.
+
+And the event listener that I'm working for is the only one that's hard. It's the DOM
+
+content
+
+loaded
+
+and I'm going to create a
+
+an anonymous function that is comma,
+
+empty parentheses, fat arrow, curly bracket.
+
+And then whatever goes inside of that anonymous function is going to get executed is going to get executed when that loads. So I'm going to move that up here. I'm going to reformat this, I can right click on the background and say, format document or I can do Shift Alt F. And that reformats things for me. And the other thing I'm going to do, frankly, is I want to make sure that this is working correctly. So I'm going to make use of I'm going to make use of console log
+
+console dot log. And I'm going to say DOM. loaded.
+
+Can I think you have a type online five DOM content?
+
+I probably do in line four. Five?
+
+Yes, I do. Thank you.
+
+CEO in TMT, as my dotnet students know, it's clear, even in the first day of working with me that I was not hired at Tech elevator for my typing skills.
+
+Just so you know.
+
+But I do have redeeming qualities. And I'm sure we'll find them eventually. If I, if I run this, I should be able to see that this runs, it might not do very much, but it but it should run. So if I do index dot HTML, and open with live server, it should open for us in a browser.
+
+And if I do f 12.
+
+f 12. should tell me if I
+
+look at console.
+
+Oh, it gave me an error. It tells me that there's an uncaught reference error row is not defined. So I've got a variable. I've got it. Variable defined there@app.js line 34 that I haven't defined yet. So I'm gonna go ahead and create a definition for it even if it's not correct. So I can get past this JavaScript error, because I really like to see that the DOM got loaded correctly. All right. So I'm going to go to
+
+their, I'm sorry, Say what? It's the console printed, downloaded right above the airs. Okay?
+
+But like get rid of the error, because that error is stopping anything past that from executing. And so and frankly, I shouldn't, I shouldn't have sent this to you with an error in it. So I want to go ahead and I want to go ahead and get rid of this error. So app dot j, s line 34. I'll go back to Visual Studio code. That's going to be about line 34 here. And here, it's trying to use row. So I'll create a new instance of the thing of type rho
+
+constant
+
+Co ns t row
+
+equals No.
+
+And if I go back, live server should refresh and see if it and now it's not displaying any errors. So I can refresh, I can refresh the screen, and I can see that the DOM was loaded. So I know that I'm getting into that. I know I'm getting into that code. All right. So our first task is to create that grid that you saw, and it's currently a 10 by 10. grid, I'm going to build a 10 by 10 grid, one of your one of your challenges for this game later on, if you decide to expand it is to build a grid have to build a larger grid or build a grid of arbitrary size. But I'm going to limit myself to doing a 10 by 10 grid. And so we'll go ahead and we'll go ahead and create finished the, the Create grid function. They're they're reset game, the reset game is going to call is going to call in a minute is going to call create grid.
+
+Oh, it calls
+
+it calls create grid. Okay, so so the event listener, the event listener when the DOM is loaded calls create grid. And again, if I double click, by double click on any of these, any of these things in Visual Studio code, it highlights all the instances of them. And so I can see this create grid that I this create grid here,
+
+creates the grid. And what I'm going to do is I'm going to, I'm going to create rows.
+
+And then on those rows, I'm going to create, I'm going to create, I'm going to create individual individual squares in that row. So I'm gonna build this one row at a time starting from the bottom, and then within each row, I'm going to build squares inside so I need to tell it however, where the frame is because build row is going to
+
+create a row. Oh,
+
+john, you're cutting out.
+
+Present john. You lost.
+
+I'm back and you're now
+
+Yes, I hear you heard that. All right, I'm back. I reset my connection. We'll see if that works.
+
+Alright, so what I want to
+
+do is I want to do create grid. Before I can create grid I have to tell it how to find frame and so I need a I need a constant frame. And I'll find frame with a get some frame has
+
+an ID. I'll do a document.
+
+get element by ID
+
+and give it the name, frame. Okay,
+
+frame. That is the deal. The deal. I'm going to put everything in. I'm going to pass that I'm going to pass that
+
+rows zero through nine. Idle row. Hey, john, you're cutting out still kinda. We'll get you for a little bit and then you'll go back out again. Let me see if I can do anything here.
+
+Yeah, we can see your screen is the audio Do whatever is in line with me.
+
+I don't know that
+
+makes any difference, but try to get rid of my
+
+background.
+
+We'll see if that makes any difference. All right.
+
+I'm not going to call build row, I'm going to call build row over and over again.
+
+And then after I've called after I've built up all my rows, I'll reset game which reset some of the some of the text field, three positions, the shift and some of those things. But we're focused initially on focused initially on on building the grid that we're working in. And so again, build row takes in the reference to the frame.
+
+And
+
+want to find I want to create a deal, the deal that is the row. And so I'm going to do document create element.
+
+Document create element.
+
+And it's going to be an element of type div
+
+And I'm going to apply a class of row to it, and wrote some of the styling things for it I've previously defined previously defined the class row up in my CSS. So on row.
+
+I'm going to do a class list add
+
+of the class row.
+
+And then on to add, and then on to take that row that I've added. And I'm going to add it added at the end of inside of but the end of frame. I could do a I could do and add an add child, but I'm going to do insert adjacent element and I'm going to do frame They inserted JSON element and add child require two pieces. That is a place that we're going to put it and a thing that we're going to add. So I'll do frame insert a JSON
+
+element.
+
+Insert,
+
+insert adjacent element.
+
+I'm going to give it a string that says before end.
+
+And the thing I'm going to insert is the row that I've just created.
+
+And now that I have that, now that I've actually inserted it and I actually could have done this step, I actually could have done this step before I inserted it. I'm not exactly sure why. Why the author of this exercise suggest that I do it in this order for reformat this to make it pretty
+
+well The code will actually create the rows. That is we'll call we'll call build square.
+
+We'll call build square on
+
+the row that I have inserted and add the squares one at a time. Again, for i equals zero, i less than 10 i plus plus, we'll call build square build square is going to be that the individual squares in the row, adding them one at a time. And build square.
+
+Build square doesn't exist. And so we get to build build squares right here, build square takes in a row, that is the element and account. And then and then creates, creates grid grid squares and adds them and puts them in as a part puts them in as a row. So Will each time we call it, it will add, it will add a grid square, a grid square an ineffective div to this to this row. So we'll create a div, a div to be, in effect the container. And the container is going to be what has what has just waves inside of it. What has a ship inside of it, what has a pirate inside of it, what has the treasure inside of it. So I'll create it as a constant container. And we'll create a new instance a new instance of an element that is document. document, create element, create element, and it's going to be a thing of type do the answer very popular and so we're going to use we're going to use a div. So that's my container that I've created.
+
+And I want to take that container. I'm going to add it I'm going to, I'm going to
+
+add the class square to it square defines the CSS square defines a number of things defines the border defines the background. That's where the waves come from and other things. So on my container,
+
+see you in TAINE, our container dot
+
+class list
+
+dot add.
+
+And we're going to make this make this a square.
+
+Hey, john. Yes. I don't know if you were talking to us, they're cut out on my end. I wonder if you cut your video if that would help. I'll try cutting my video.
+
+See
+
+here, here.
+
+We'll see if that helps.
+
+So this then adds, as we go through for each one with a grow with a row and account, that is the row that we're adding it to the element that we're adding it to. And the count. We'll do that I'll come back to the randomly creates pirates in just a minute.
+
+And then we do a row.
+
+That is the row that we're adding thing, insert, insert adjacent element,
+
+and we're going to again add it before the end.
+
+Before end,
+
+and we're going to add is the container that we just created.
+
+And I believe
+
+that this is enough.
+
+Because we've created we've created with build square we in a row, we've taken a row and account comes through initially through as we get to 01, or two or three or four or five dot dot dot nine, and we create a container, we add it to the row in the Add Row. In the build row rather, created a row we call build square 10 times to put the squares and inside of the Create grid, we call build row. 10 times and build 10 rows to display. And so if I go then back to the go back and
+
+go back into the code, I have a grid,
+
+turn off f 12. So we can see
+
+that now we have a grid, a 10 by 10 grid, 10 rows 10 containers in each row. Each container has a border. Each container uses the styling of the GIF for the background for the wave color. You'll notice if you look carefully that they're they're
+
+all the same,
+
+but that fine.
+
+Now it's actually it's actually sprinted across all of them. That's nice. All right.
+
+And so
+
+an F 12.
+
+We see we've got the DOM loaded and we're not reporting any other errors. All right. And so we have them from if we start at the top again, we've got the we load the data, we make sure the DOM is loaded, we call the Create read. In the Create grid, we call build row 10 times in bill row, we call build square 10. times we create a, we create the row, and then we use that we add the row at the end of the frame. And then with that row, we call build a square 10 times to put the put the containers in the row. And then and then do all that build individual containers within each of the rows
+
+to build the grid. And so that's how we build.
+
+That's how we build our game grid. All right,
+
+questions about that? This is one of about three ways that I've seen we we are For this previously, as a student exercise this is about this is one of about three different ways I've seen, I've seen students approach doing this. I think this is easier than the other ways in. I'm not really sure. But this this way certainly certainly provides a good a good example of creating elements of creating elements appending elements, building up building up something from scratch.
+
+Go back
+
+to the
+
+food.
+
+If I go back to the browser rather.
+
+And look in the browser, and look at that
+
+side of frame, which will go smell in the DOM as the code is executing. And if I look inside of any of these rows, any of these rows has them 10 squares inside of each of the 10 rows, and so that's how we built up. That's how we built up this game grid with 10 rows, and each row having 10 squares.
+
+Alright.
+
+I don't see anybody have any questions. JOHN, are you seeing their faces when you ask a question, or are you looking for Adi audio from us? I'm happy to have any tunes in yet.
+
+Could you show the DOM content loaded event listener? One more time.
+
+If you're speaking, john, we can't hear you.
+
+No, I'm not I was asking the person who asked
+
+a question to repeat it. And now
+
+I'm looking to see if there's anything.
+
+Oh, sure. Could you just show the DOM content loaded event listener? One more time, please?
+
+Did he leave? Is he gone now? He's gone. Oh, excellent. He may have gotten dropped. I don't know. He's still a part of the meeting. But Good job guys.
+
+scared him. Yeah, we scared him away.
+
+All right, I'm back.
+
+Yay.
+
+Exciting.
+
+Me reshare my screen.
+
+All right. Someone had asked a question that I wasn't able to hear about looking at something.
+
+So I would just like to see the DOM content loaded portion one more time.
+
+document dot add event handler, DOM content loaded, a comma. And then an anonymous function in the anonymous function is empty parentheses, the fat arrow notation, a curly bracket and all the code for the anonymous function is inside of the curly brackets. And all I did was a console dot log and calling create grid.
+
+Perfect. Thank you.
+
+All right. Other questions. All right.
+
+So I want to look at I want to look at adding pirates, right. So I've got a couple of things. I got a couple of things here. But this is probably a good a good place for me to take a break and reboot my computer and see if I can get rid of some of the other things that are running here and decrease my decrease my bandwidth use and see if anybody in the house is trying to do stuff that using bandwidth and so on. Let's I've got 11. I've got 1141. Let's get back underway at 11 1151. And we'll continue forward. Great. Thank you for your patience.
+
+JOHN,
+
+john, are you listening?
+
+Okay, I think I'm going to mute you because I think your mic stolen
+
+I guess I won't come on. Let me
+
+Did you pirate some of your neighbor's internet john?
+
+another family
+
+I don't know if I've done any good or not. We'll see.
+
+Looking at your website, I have no doubt you would be able to hack into
+
+your neighbor's internet.
+
+Yeah, actually my neighbor and I, my neighbor and I share internet So, okay, you don't we don't not all the time, but you If his internet goes down, if his internet goes down, he uses mine If my internet goes down to us, we we use his so
+
+but I have not had this problem.
+
+All right, if I
+
+Alright, Shall we continue?
+
+All right, so
+
+we've got a grid 10 by 10 we're going to populate it. We're going to populate it with a a random a random number of pirates. So in our Am I am I am I sharing my story sharing my code. am I sharing my screen? Can you see it? Yes. Okay, very good. So here in here in line 57, randomly create and blow this up full screen randomly create pirates but not on the first element first elements where the ships going to be. So I don't want to put an element on that on that first one. And so, in our, in our in our build square, I'm only going to create pirates, I'm only going to create pirates in the in the second, the second, the second row and beyond. Alright. And so what I'm going to do, I really don't want to put pirates in the last row either. And the reason I don't want to put pirates in the last row is if I'm just randomly creating pirates, it's easy to create a block around the treasure that I can't get to. So I arbitrarily decided in doing the game that I don't want any pirates in the in the first column. I don't want any pirates in the last column. And so that's what I'm going to do, I'm going to, I'm going to not create pirates in the first column or the last column. So if the if the if the count, and the count starts to zero up through nine, because when calling build square, I get 0123456789. So if the count is greater than one,
+
+and
+
+I can get in the right place here,
+
+and
+
+that should the ampersand and the count is less than nine, which says I won't do it in the first column. I won't do it in the last column. I'm going to roll I'm going to roll 100 sided die. And when I roll that hundred sided die, if the value that I get back is less than or equal to 15. I'm going to add a pirate on this particular square. And so every time I come to create a square, I'm going to decide whether or not to put a pirate in it by taking 15 chances out of 115 times 115% of the time, I'm going to create a pirate in that square. And I'm going to add a pirate by just adding the pirate class to this particular to this particular container. So I'll say container, container, class list. Add. And I've actually got a pirate class that I will add, if that's true. And you can go look at the pirate class and see what it does add to add a pirate. And I want to see that this works. And if it works, we'll come back I want to look at, I want to look at rolling a die because I'm interested in random numbers. And I want to show you how it works and also want to prove to you that it's providing providing a fairly random distribution of those numbers, which you may or may not trust, but you don't have to trust because you can prove it to yourself that it's working correctly. And so if I go back then. And I dropped this squadmate right away. So I have to start live server again. And if I start live server on this
+
+and drag it over to this screen,
+
+a Java a misspelled pirate on that, on that a thank you, but you just made p p i r,
+
+a T. And we'll go back to the live server. And sure enough, there's pirates. There be pirates. And each time I refresh this, it will randomly select randomly select 15 chances out of 100 it will it will provide pirates and sometimes it will look like random. Sometimes it will look random and sometimes it won't, because that's the that's the nature of things that are fairly close to being random is sometimes they look like random and sometimes they don't.
+
+Should we add to what I check to see If there's already a pirate class there so that we know we get 15 every time,
+
+you're never going to get exactly 15 every time, you're always going to get some other number other than 15. And I and I can show you that when we look at, we will look at how this gets distributed, because we'll generate will generate random numbers or generate random numbers. If you're asking for 15 of them, you will get as few as eight, you'll get as many as 23, some, some distribution like that. And so it's not that, could we do that check? Yes, absolutely. And if you wanted to do that check, you certainly could. I frankly, don't care how many pirates there are, I want about 15%. And I probably because I've eliminated the first column and eliminated the last column. I probably ought to set that number up a little bit. We can see we can see if we go back and set this number and say we want we want 80% of the squares to have pirates in them that if the number if the number is less than or equal to 80 we'll get we'll get pirates there. And I would contend that this is like way too many pirates, right? So 15 1515 may be a good number of different number may be right. And that's part of the challenge of part of the challenge of creating games. It's one thing to create the it's one thing to create the the mechanism, the mechanism that makes it work. It's another thing, it's another thing to get it to be the point of being a playable game. So, but yes, you certainly could check to see if it's there. You could do container class list contains pirate to look to see if there's a pirate class applied to that container and either added or not added or put it somewhere else or whatever. Okay. Our roll die is a is a function that I created based on based on the random that we saw before. And all that all that all that math dot random does is as jack can generate a number between zero between zero and one zeros inclusive one is exclusive. So it's really a number between zero and point 9999 repeating nine. We multiply that by the number of sides, we add one to it because it's because that would give us zero up to one less than that value. I went and looked at, I went and looked at math dot floor in the Mozilla documentation. And it gave me a line of code remarkably like this. That I just manipulated until I thought it was pretty providing the right information. And frankly, what I did initially to test it was I went into Chrome with this running. I did f 12. I went into the console, and I said roll die.
+
+And I said a six sided die.
+
+Not a 60 sided die, but a six sided die and
+
+roll dice is not defined. Is it all lowercase?
+
+What have I done wrong?
+
+It's called roll die and takes in a number of sides. It's a function. I'll copy and paste it to make sure that
+
+I screwed up
+
+at least some other way.
+
+This is running refresh this.
+
+Did you restart your computer because maybe
+
+your server isn't working. Nevermind, I did I started live server here it is okay. Roll die and put in a six sided die. And I hit enter and it gives me one and I do up arrow to repeat it and I hit it. Again, it gives me a six. And I go through and it gives me what appear to be all the different values. And you go, yeah, that probably looks right. But how do I really know that it's how do I really know that it's actually generating the right number of those? And are there enough ones and are there enough sixes. And one of the things that I frequently been confronted with in doing this sort of trying to prove to myself that the values that I'm getting are correct. And so Frankly, I just wrote this little utility function, and all it does is it runs it runs roll die, some number of times, I've got it inside of loop, that for each for each of the regardless of how many sides I tell it, if I side on a roll, I want to test roll die on a 100 sided die. It's going to call this 100 100 times 100 times this this for loop. It creates this array initializes each of the elements to zero and then runs through and sets result uses the square bracket notation to set at that element, the value that's there to that that value plus one. So if I get a one, it sets the result at at index one to one, if I get another one, it sets the result at index one to two. If I get another one, it sets the result at index 123, and so forth. So it finds it rolls the die, this would roll the die 100 times 100 times and then I just do a console table to display the results. So I can do test roll die. And this exists just for the purpose of testing roll die to see if it's correct because I'm not not a particularly trusting soul. If I do test, roll die and give it a number of sides.
+
+It will run
+
+if I do test roll, die.
+
+For a six sided die,
+
+it will show me that for a six sided die, it got as few as 77 twos, and it got as many as 113 threes. And this is well within the range of a normal distribution of numbers. If I run it again, I'll get different numbers right here I got in numbers in the 80s, and numbers in the 120s. But I'll get a different value each time as I'm generating these random numbers. And if I wanted to do 100 sided die, I can just say it's a 100 sided die, it'll run at 100 times 100 times for each side. So it will run at 100 times 100 times 100 times 100 sides, and it will give me some number in the range probably of 70 to 120 130. For each of the values and advice as I scroll up and down, I can see I've got a what's the big number I've gotten. I'm very concerned about the very first Number that it's a reasonable number and it is it's in the 80s. For a one, I'm very concerned about the last number, that it's a reasonable number and it's 110. I'm looking for things that are outside of the range of about 70 to about 70 to 130, that tells me that this is probably working correctly. And that each time that I run it, like the last number isn't always smaller than the other numbers, the last number is always bigger than the other numbers. And again, it gives me a good a good sense of whether this is a a fair
+
+roll of the die.
+
+And I just created this little this little utility functions to be able to test that.
+
+All right.
+
+So I roll the die. I roll the die I roll 100 sided die if it's less than 15 Then I add a pirate All right. I will need to know the ship location at some point because as I am As I am moving the ship around, especially resetting the game, I want to know, I want to know the ship location. So reset game.
+
+Some work, here's a reset game is there a reset game?
+
+There's a function reset game, it currently doesn't
+
+do anything. Right after the reset game function, I'm going to create a function to find to find the ship if there is one and there may not be a ship at this point, there may not there may not be there should be a ship. But there may not be a ship. But I'm going to write a function to get the ship location. So function
+
+get ship location.
+
+And it's not going to take in any arguments or parameters. And it's just going to do I could do this in one line, but I'm not going to I'm going to create a constant co ns t result.
+
+Hurry su lt I'm gonna set that equal to
+
+document get element by ID.
+
+Because the ship, the ship
+
+is in the ship is in the frame. So I'm going to look in the frame.
+
+So document,
+
+get element by ID.
+
+And the ID is going to be
+
+frame. And inside a frame, there is one thing that has the class that has the class boat. So I'm going to add a query selector. And again, could I've done this in two steps? Could I've done a document get element by ID frame and get an object a node? And then on that node, do a query selector? Yes, but it can also change these one after another. So document dot get element by ID frame gives me a node, that is the that is the node that that has the Id frame that do that everything's going inside of. And then I can do a query selector on it.
+
+A query selector, getting a single element,
+
+that is the one that has the class boat associated with it. That's what that's the 80. That's what our ship is going to look like.
+
+And then I can return
+
+result. And I could have done all that in one line, but I chose not to, frankly, because it's nice sometimes to be able to set a breakpoint on something and see what that value is, after it's been calculated and before it's been returned. All right, so that gives me the that gives me the ship location, which I'll which I'll use later on. And then
+
+I'm going to do a number of things,
+
+a number of things in reset game. And in reset game, I'm going to change the I'm going to change the announcement up at the top I'm going to put in the word play. That's what it says initially. But it will change at some point when I win or I lose. And so I'm going to have the reset, I'm going to have the reset, change it. So it says play. So I want to find I'm getting too many of these into brackets here. I want to find the announce object that's at the beginning of the HTML. So I want to constantly announce in Oh, you can see, I'm going to set it to the query selector, the call and the class announce,
+
+document.
+
+query selector
+
+on the class announce,
+
+and then on that class,
+
+I'm going to set its I'm going to set its inner text to the play
+
+It's enter text
+
+be equal to play, exclamation point,
+
+I'm going to set the starting location of the boat and the location of the treasure. So I'm going to go get the frame, I'm going to go get the frame that I'm putting everything inside of. And I'm going to find the first child element, the Child Elements or rows. And we'll find the first child element of that. That will be the first the first container in the first row and want to add to its class list and add boat, and then we'll go look and see that this is indeed, this is indeed putting the boat at the beginning at the beginning location, when we call reset game So I'm going to get the frame. So I need a constant for frame.
+
+And that's going to
+
+be document,
+
+get element by ID.
+
+And the ID is going to be frame.
+
+And then I want the.
+
+And then on frame.
+
+I'm going to find the first element. The first child that is an element. So the first element child, the first child, it turns out, and here's the two choices I have. The first child could be the text associated with something. Because the if I have an object and it has text, like inner text associated with it, technically that is a child. I don't want that. What I want is the first child that's actually A separate element. And that's what first element child gives you. It's a subtlety. But sometimes it's important because you, you might not want the text associated with something to be the thing that you get, you actually want the first real element, the first thing that has angle brackets around it in HTML, as the thing and that's what I want here is I want the first element child. And that's going to give me the first row. And then the first element child of it is going to be the first container in the first row. Could I have found this some other way? Absolutely. But this refers to it in terms of a child, sibling, parent relationship. And that was the goal of the author in doing this, and so I've tried to follow that. I've tried to follow that model of doing this. So the frame has everything in it. The first element child is the first row. The first element child of that is the first container in the first row, and then I'm going to do a class later. Just a class list, add a class list, add a boat to that. So dot class list add class list add. And what I'm going to add to it is the boat class. And that should give me the boat in the very first in the very perverse position in the very first position of the first row. And if I go back to my view, that's what I have, I'll turn off f 12, so you can see it better. And now my boat is in the first the first container within the first row. And I'll do the same thing with treasure except I want treasure to be in the last the last Child Element, the last element child in the last element child that is in the last row in the last container in that row. And so I've already got frame and go back to my Visual Studio code.
+
+And so I'll set frame
+
+last element child, last element child, last element child
+
+and set the class list
+
+and do an add
+
+in and the class I'm adding there is a treasure.
+
+And again to somebody points earlier, if there was another thing if there was something else in that position, I probably want to remove it before I put boat in. If there was something else in the last position, I'd probably want to remove it before I put treasure in. But I already said that I'm not putting anything else. I'm not putting pirates which is all the only other thing I have now. I'm not putting pirates in the first column in column with index zero, I'm not putting, I'm not putting pirates in the last column that is the column with index nine. So there's no chance that there's going to be anything else here. And so if I go back to my, if I go back to my code, I see now I've got a ship in column in position one, the first position of the first child, and I've got treasure in the last column, last row, the last position of last time. And again,
+
+multiple different way
+
+of doing this. This is just one of one of several different ways I could have, I could have selected these particular locations. And so that's my, that's my reset. That's my reset game. And I'll call reset game from a button from a button later on from that reset button. That sets that sets things that sets things up. All right.
+
+Any questions about this?
+
+All right.
+
+I'm going to, I'm going to leave the rest of this including the examples for you. I have a PDF, I have a PDF that steps us through the process of setting up the pieces of moving the ship. I, I don't want that that's a little bit long. And I don't want to I don't want to take any longer on this. I think I've done the essence of what I wanted to do. The the example that I'm going to provide you provides a complete example. I'll also provide a PDF that sort of steps you through the steps. You'll be able to see When you look at the when you look at the PDF, how far along how far along I've gotten in this process, we have, we have reset the game, we have not gotten to the point of moving the ship, we move the ship, we move the ship by looking for the by looking for the next, the next sibling, the previous sibling to move left and right. We look for the we find the parent and we find the previous sibling of the parent to move a row up. We find the next sibling of the parent to move a row down. And again, we go through all of those details. We go through all those details in in the PDF which which Brian so so kindly provided. So I'll provide you I'll provide you up when I push this up. This will have in it what we have done so far. And then there is a complete solution that shows a complete working version, the version I showed Earlier that, that moves the ship around, doesn't let it fall off the edge of the earth and the top bottom left or right, and prevents you from going into the pirate areas. And also a list of a list of suggestions for additions additions to this basic framework, to be able to, to be able to, to make it a more playable game to actually lose when you encounter a pirate, to set a timer to keep score, and again, a number of a number of suggestions about how to take this how to take this basic framework and build it into into into a more playable game. All right.
+
+Any questions about any of this?
+
+All right. So that's that's all I have for today. I'll push these other things up. I'll let you know when they're there. I apologize for the connectivity problems earlier. Hopefully this has been helpful to you and looking At the details of looking at the details of manipulating and working in java script, and next week, we will begin working in JavaScript in a slightly different a slightly different context, as we go through and start using Vue js, a framework that allows us to, to organize to organize these JavaScript pieces and their relationship to each other a little bit better. And again, we'll spend Monday through through five days too early, too early in our final week, working in working in Vue js, again, Vue JS built on top of on top of what we've done in JavaScript. All right.
+
+Any questions before we close?
+
+All right, very good. I will push these additional pieces of code up. If you have questions, please feel free to reach out. I'm around I'm around all day. If you have questions and I'll be available off and on through the weekend if you if you have questions then. So thank you for your attention. Again, I apologize for the connectivity problems, and have a have a great rest of the day. Thank you all very much.
+
+Thank
+
+you soon. You're
+
+very welcome. You didn't want them to give themselves a hand.
+
+I don't want to I don't want to put Oh, don't put Brian in the position of having them. Having them not do it for him. So, okay.
+
+Thank you, Rochelle. I appreciate your help. Yeah, thank you, john.
+
+Hey, john.
+
+Yes, sir. Hey, man, do you have time? I have a good issue and I wanted to see
+
+if maybe you knew what was going on with that.
+
+Absolutely. Let
+
+me let me go ahead and if you want to, you could should be able to share your screen and I should be able to see what you're doing. Okay,
+
+okay, I'll share my screen here.
+
+Let me turn the recording off. Okay. Oh yeah.
+
+Somewhere here,
+
+there it is. Stop recording.
+
+Transcribed by https://otter.ai

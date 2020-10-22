@@ -1,0 +1,18 @@
+Book
+https://book.techelevator.com/content/vue-router.html#router-view
+
+Router view
+The <router-view></router-view> component is a functional component that renders the matched component for the given path.
+
+When you add Vue Router to a new or existing project, your App.vue looks like this:
+
+<template>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link>|
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+  </div>
+</template>
+You now know that <router-link></router-link> provides navigation to different components. The next part of that is the <router-view> component below it. This component takes whatever the current component is for the given path and loads it

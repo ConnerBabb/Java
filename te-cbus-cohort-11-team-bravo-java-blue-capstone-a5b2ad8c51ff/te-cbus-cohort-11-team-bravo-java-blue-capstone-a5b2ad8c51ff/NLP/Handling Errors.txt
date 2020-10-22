@@ -1,0 +1,59 @@
+Book
+https://book.techelevator.com/content/web-services-consuming-post.html#handling-errors
+
+Handling errors
+There will inevitably be a time when you'll encounter an error when interacting with an API. You might receive a 4xx or 5xx status code from the server, or your request may not reach the server due to network issues, such loss of connectivity or failed DNS lookup.
+
+#Network errors
+RestTemplate alerts an application of any errors by throwing Java Exceptions rather than returning error or status codes. This means using try/catch blocks.
+
+In the case of general network I/O, errors that prevent the request from reaching the server, like the server being offline, or prevent the response from coming back, like a cut cable, are reflected as a failure to access a resource.
+
+RestTemplate throws a ResourceAccessException to alert the application there was a network I/O problem:
+
+try {
+    restTemplate.put(API_URL + "users/remove/23");
+}
+catch (ResourceAccessException ex) {
+    System.out.println(ex.getMessage());
+}
+Since the error is related to the network, the application usually can't resolve the issue unless the error is an invalid URL or a similar configuration issue. Frequently, the only course of action is to report the error and possibly allow the user to retry.
+
+#Non-2xx response codes
+Assuming there are no network problems, there are still potential errors that are reflected in the response status code. In the previous chapter, you learned that status codes 200-299 mean success; all others, like 1xx, 3xx, 4xx, and 5xx are errors of one kind or another.
+
+What about 1xx and 3xx response status codes?
+
+Even though 1xx status codes are part of the HTTP specification, you won't often see one as a response from an API. 3xx codes are typically used by servers that host websites. For example, if a URL changed for a page, the server responds with a 301 or 302. Web APIs typically don't change endpoints as it may break existing applications.
+
+RestTemplate throws a RestClientResponseException for any response status code that isn't between 200-299:
+
+try {
+    restTemplate.delete(API_URL + "users/remove/23");
+}
+catch (RestClientResponseException ex) {
+    System.out.println(ex.RawStatusCode());
+}
+RestClientResponseException has several useful messages that can clarify and potentially allow the application to understand and correct problems:
+
+Method	Description
+getRawStatusCode()	Returns the raw HTTP status code value
+getStatusText()	Returns the HTTP status text
+getResponseHeaders()	Returns HTTP response headers (may be null)
+getResponseBodyAsString()	Returns HTTP response body converted to String (may be null)
+#Putting it together
+Now you know how to handle different types of errors, how do you put these techniques together?
+
+Here, you cascade the catch blocks:
+
+try {
+    restTemplate.put(API_URL + "users/remove/23");
+}
+catch (ResourceAccessException ex) {
+    // Handle network I/O errors
+    System.out.println(ex.getMessage());
+}
+catch (RestClientResponseException ex) {
+    // Handle response status codes: 1xx, 3xx, 4xx, 5xx
+    System.out.println(ex.RawStatusCode());
+}

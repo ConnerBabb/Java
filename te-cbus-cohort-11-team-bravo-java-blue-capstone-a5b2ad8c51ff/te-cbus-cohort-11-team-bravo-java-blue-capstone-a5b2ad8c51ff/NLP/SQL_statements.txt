@@ -1,0 +1,12 @@
+Book
+https://book.techelevator.com/content/introduction-to-SQL.html#sql-statements
+
+SQL Statements
+The Structured Query Language is a declarative language, which means that it's a language where the developer defines what they want from the computer and not the step by step definition of what the computer should do, like in JavaScript or other imperative languages.
+
+SQL statements can be classified into three types:
+
+The Data Definition Language (DDL) that allows a programmer to create new tables and define the data types of the columns on tables.
+The Data Manipulation Language (DML) that allows a programmer to insert, update and delete data from the tables and select that data back out again.
+The Data Control Language (DCL) that allows a programmer to specify new users of the database and which tables and actions they have access to.
+You'll look at all of these languages in SQL, starting with the DML, and more specifically, SELECT statements

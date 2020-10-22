@@ -1,0 +1,45 @@
+Book
+https://book.techelevator.com/content/inheritance-ool.html#subclasses-are-their-superclass
+
+Subclasses are their superclass
+Now, you can create a new GrandfatherClock in a program.
+
+GrandfatherClock myClock = new GrandfatherClock();
+
+myClock.tick();
+myClock.tick();
+
+String currentTime = myClock.getCurrentTime();
+You can create a new GrandfatherClock, but what if you wanted to create a new CuckooClock later? To do that, you would have to change your code in two places, but the rest of the code is the same.
+
+CuckooClock myClock = new CuckooClock();
+
+myClock.tick();
+myClock.tick();
+
+String currentTime = myClock.getCurrentTime();
+Notice that not much has changed. But because programmers strive to make as few changes as possible to their code, they'll find ways to change even less code than that. You can make the code more flexible by treating a GrandfatherClock or CuckooClock as a plain Clock.
+
+Clock myClock = new CuckooClock();
+
+myClock.tick();
+myClock.tick();
+
+String currentTime = myClock.getCurrentTime();
+Since a GrandfatherClock IS A Clock, then you can save a GrandfatherClock in a Clock variable. The same goes for CuckooClock. This lets you dynamically choose which kind of clock you want.
+
+Clock myClock;
+if(choice.equals('cuckoo')) {
+    myClock = new CuckooClock();
+} else {
+    myClock = new GrandfatherClock();
+}
+
+myClock.tick();
+myClock.tick();
+
+String currentTime = myClock.getCurrentTime();
+If you think about it, inheritance is very powerful. You could define different kinds of clocks, but use the same code to work with all of them. As long as your code knows how to work with a Clock object, it can also work with any object from a class that inherits the Clock.
+
+#Building a real application
+Below is an additional video that updates your bookstore with new products by taking advantage of the inheritance principle.

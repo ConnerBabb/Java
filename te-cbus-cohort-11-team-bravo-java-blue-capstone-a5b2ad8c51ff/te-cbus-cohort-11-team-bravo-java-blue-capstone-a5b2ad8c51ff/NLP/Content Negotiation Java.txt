@@ -1,0 +1,44 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-java.html#content-negotiation
+
+Content negotiation
+When the getTodos() method went from returning List<String> to List<Todo>, how did Spring MVC know to switch from sending strings to sending JSON data in the HTTP response?
+
+Content negotiation is an HTTP mechanism that's used for serving different formats of a resource at the same URL. The client specifies which formats it can understand in the Accept header of the HTTP request. JSON is the default format for Spring MVC.
+
+The switch from a list of strings to JSON is handled automatically by Spring MVC based on the return type of the handler method.
+
+For example, here's the return type of List<String>:
+
+@RequestMapping(path = "/todo", method = RequestMethod.GET)
+public List<String> getTodos()
+It returns data as an array of strings:
+
+['Wake up', 'Shower', 'Drive to work'];
+Here's the return type of List<Todo>:
+
+@RequestMapping(path = "/todo", method = RequestMethod.GET)
+public List<Todo> getTodos()
+It returns data as an array of JSON objects:
+
+[
+    {
+        "id": 1,
+        "task": "Wake up",
+        "dueDate": null,
+        "completed": null
+    },
+    {
+        "id": 2,
+        "task": "Shower",
+        "dueDate": null,
+        "completed": null
+    },
+    {
+        "id": 3,
+        "task": "Drive to work",
+        "dueDate": null,
+        "completed": null
+    }
+]
+The great thing about Spring MVC is that it provides these capabilities out of the box

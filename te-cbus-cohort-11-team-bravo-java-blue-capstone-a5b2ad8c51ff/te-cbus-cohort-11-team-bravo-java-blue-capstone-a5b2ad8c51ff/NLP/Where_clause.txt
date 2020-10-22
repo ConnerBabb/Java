@@ -1,0 +1,80 @@
+Book
+https://book.techelevator.com/content/introduction-to-SQL.html#the-where-clause
+
+The WHERE Clause
+What if you don't want all the rows that are stored in that table?
+
+If you want to pick and choose which rows to pull back from the database, you need to use a WHERE clause:
+
+SELECT * FROM countries WHERE continent='North America';
+Result:
+
+code	name	continent	region
+CYM	Cayman Islands	North America	Caribbean
+CHL	Chile	South America	South America
+CRI	Costa Rica	North America	Central America
+DMA	Dominica	North America	Caribbean
+DOM	Dominican Republic	North America	Caribbean
+...	...	...	...
+In defining a WHERE clause, you're telling the database which rows you want. Here, you're telling the database to pull rows where the data in continent is equal to 'North America.'
+
+Equality in SQL
+
+In most languages you've seen so far, you typically use double equals or triple equals to see if two things are equal. In SQL, you use one equal.
+
+#Conditionals
+Specifying conditionals in WHERE clauses narrows down which rows to select from the database. Much like a conditional in an if statement, the WHERE clause conditional only selects rows where the conditional evaluates to true.
+
+All of the standard conditionals that you already know are also available in SQL:
+
+Operator	Numbers	Characters
+=	Equal To	Equal To
+<>, !=	Not Equal To	Not Equal To
+<	Less Than	Alphabetically Before
+>	Greater Than	Alphabetically After
+<=	Less Than or Equal	Alphabetically Before or Equal
+>=	Greater Than	Alphabetically After or Equal
+IN(value1,value2,...)	Is Value in List	Is Value in List
+BETWEEN value1 AND value2	Is Value Greater Than or Equal to value1 and Less Than or Equal to value2	Is Value Greater Than or Equal to value1 and Less Than or Equal to value2
+IS NULL	Equal To Null	Equal To Null
+IS NOT NULL	Not Equal To Null	Not Equal To Null
+LIKE '%value1%'	N/A	Contains value1
+NULL Value in SQL
+
+NULL has a different meaning in SQL than in other programming languages. In OOP languages, NULL means that a variable doesn't contain an object. In SQL, NULL means that a value hasn't been set on the column when the row was submitted. So a column is NULL if it doesn't have a value. For example, if you have a table of people and need to put Madonna or Cher in the table, the last_name column for those rows is NULL.
+
+#ANDs and ORs
+You can put these conditionals together in a SELECT statement to get the rows you want.
+
+For example, if you have a people table and want to get all the rows that represent children, you could write a statement like this:
+
+-- Select all children from the database
+SELECT * FROM people WHERE age < 18;
+You can also combine these conditionals using the keywords AND and OR to make more complex statements:
+
+-- Select all the first names of children with a last name of Smith from the database
+SELECT first_name FROM people WHERE age < 18 AND last_name = 'Smith';
+#LIKE
+LIKE is a special conditional that only works with character data. It's considered a Fuzzy Search operator. Take a look at the following SQL statement:
+
+-- Get all last names that end in son
+SELECT last_name FROM people WHERE last_name LIKE '%son';
+This statement returns all rows where the last_name ends in son. The % is what is called a Wildcard. It matches anything, so the above statement returns names like Erickson, Benson and Danielson, but it won't return sonny or Wilsonn. The string must end in son because the % is at the beginning.
+
+If you want to only get rows where the last_name begins with Ba, write the following:
+
+-- Get all last names that begin with Ba
+SELECT last_name FROM people WHERE last_name LIKE 'Ba%';
+If you want to only get rows where the last_name has the string ski anywhere in it, including having the string start with or end with ski, write the following:
+
+-- Get all last names that contain ski anywhere
+SELECT last_name FROM people WHERE last_name LIKE '%ski%';
+You can have as many % in your LIKE condition as you want to do very powerful fuzzy searching in your database.
+
+#Review
+So far, you've learned a couple of different clauses that you can use to build SQL statements:
+
+SELECT lets you define which columns you want to pull data from
+FROM lets you define which table you want to pull data from
+WHERE lets you define which rows you want to pull
+A lot of SQL statements use those three clauses, but in the following chapters, you'll learn some other clauses that help you further refine your results.

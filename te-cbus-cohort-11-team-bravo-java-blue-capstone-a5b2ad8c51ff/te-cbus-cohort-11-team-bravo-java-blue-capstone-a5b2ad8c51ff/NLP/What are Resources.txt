@@ -1,0 +1,7 @@
+Book
+https://book.techelevator.com/content/server-side-api-2.html#what-are-resources
+
+What are resources?
+Most applications you create consist of resources. Resources are the objects defined in the application.
+
+For example, in a calendar application, the resources could be "days", "months", "years", "events", or "alarms." In an e-commerce site, the resources could be "products", "reviews", "categories", "carts", and "orders." These are the building blocks of the application and the pieces that hold the data and behavior that the application defines

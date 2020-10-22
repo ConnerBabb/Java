@@ -1,0 +1,59 @@
+Book
+https://book.techelevator.com/content/dom-api-javascript.html#dom-manipulation-with-javascript
+
+DOM manipulation with JavaScript
+To create a truly dynamic web application, you'll need to know how to change the DOM after your page has been loaded. Adding and showing new elements, hiding or removing existing elements, and moving elements around the page helps you create dynamic user experiences. You can do this using the JavaScript knowledge you learned earlier in the week.
+
+jQuery pops up when I search for DOM manipulation
+
+In the early days of the web, browsers implemented their own APIs for working with the DOM. Unfortunately, they were all different. To address this problem, a library called jQuery was created to unify the DOM API into a standard set of functions that handled the incompatibilities between browsers. It become an over-night sensation and was widely adopted.
+
+Over the years, these incompatibilities have been resolved, and jQuery has lost much of its purpose. There has been a move away from jQuery towards a more "vanilla", or plain JavaScript approach to manipulating the DOM. If you wish to reduce the number of search hits involving jQuery, use "vanilla javascript" in your search string.
+
+JavaScript has many built-in functions that you can use to manipulate the DOM. Below is a list of the most commonly used functions.
+
+#DOM selection functions
+#getElementById()
+The first function you'll learn about is getElementById(). This function gets a single HTMLElement from the DOM and returns a reference to it.
+
+Imagine that you have the following HTML:
+
+<h1 id="title">Welcome</h1>
+You could select that from the created DOM with this code:
+
+let titleElement = document.getElementById('title');
+IDs on elements must be unique
+
+If you haven't been doing it already, start making all IDs unique in your code. There must never be more than one element on a page with the same ID. As you start to use more functions in JavaScript that rely on element IDs, you'll understand why.
+
+If there's more than element on the page that has the same ID, the getElementById() function returns the first element it finds with the requested ID.
+
+#querySelector()
+querySelector() selects single elements that don't have IDs. querySelector() takes a standard CSS selector and returns the first element it finds that matches that selector.
+
+For instance, imagine that you have the following HTML:
+
+<ul id="todos">
+    <li>Walk the dog</li>
+    <li>Mow the lawn</li>
+    <li>Go shopping</li>
+</ul>
+You can select the first list item by calling query.Selector():
+
+let firstListItem = document.querySelector('#todos li');
+You can also call querySelector() on any element, and it searches within that element. That means you could do the same thing with this:
+
+let todoList = document.getElementById('todos');
+let firstListItem = todoList.querySelector('li');
+Couldn't you use querySelector('#id') instead of getElementById('id')?
+
+Yes, you can. Using querySelector() to select on an ID is much slower than calling getElementById(). If you only need to get a single element and it has an ID, use getElementById(). Use querySelector() for selecting single elements without IDs.
+
+#querySelectorAll()
+If you want to get all the list items above, you can use querySelectorAll() instead. This returns a NodeList of all the elements, which you can use as an array:
+
+let allListItems = document.querySelectorAll('#todos li');
+Again, you can also select inside of another element:
+
+let todoList = document.getElementById('todos');
+let allListItems = todoList.querySelectorAll('li');

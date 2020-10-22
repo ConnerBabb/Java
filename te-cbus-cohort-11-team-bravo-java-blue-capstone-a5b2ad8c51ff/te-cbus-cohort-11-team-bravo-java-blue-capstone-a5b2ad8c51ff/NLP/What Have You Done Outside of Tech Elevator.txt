@@ -1,0 +1,36 @@
+Pathway
+https://docs.google.com/document/d/1LPWSUwohawOe9Y2jMvlEXNYE2CDjZbQvS_v0KEEw4lI/edit?usp=sharing
+
+“What Have You Done Outside of Tech Elevator?”
+ 
+The million-dollar question that is becoming a favorite for employers. You’ve likely heard someone recommend working on a side project, but what does that mean and how do you get started?
+
+
+Plan now so you have an answer
+There are many things that you can do that give you something to talk about in answer to the “What have you done..” question. Because that’s the key - having something positive, real, and substantial that you can talk about with knowledge and enthusiasm when you get asked the question.
+Starting sooner is better than starting later. Specifics follow, but you do not have to wait until you learn skill X or how to do Y before you begin developing your answer to the question. You can start now.
+
+
+Explore a passion if you can
+This is so much easier and convincing to talk about if you can relate your outside efforts to something that you care about. What do you care about? A hobby, a sport, some specific type of data, some specific programming language, a place, or a period of history. Why is this important? Two reasons, This is going to be at least a little work and you need to motivate yourself to move forward and get it done. That turns out to be easier for something that you care about, at least a little. Secondly, you likely will need some domain knowledge and/or vocabulary about the topic to be able to research and talk about your topic, whether you end up writing code or not.
+
+
+You don’t need some huge project to have something you can talk about
+Keep track of meetups, podcasts, books read, etc. You may have limited time, resources and might need to be creative with the time you have (a podcast while commuting, an evening every other week at a meetup). These are things “outside of Tech Elevator”.
+Did you self-study another coding language before joining Tech Elevator (i.e. Python, Ruby, PHP)? This is an opportunity to plug what you know in addition to our curriculum.
+Do a small project. You might balk at the idea of creating a mortgage calculator, but what if it allowed you to track the last 6 calculations, or create a budget that the user must first log in to see? 
+Create the beginnings of a larger project. With a set of user stories and an outline of the data that you need, you can begin the process of creating a larger project, even if it’s too ambitious to complete during the cohort. It’s important to understand what you want to do, the portion that you are currently working on, and the scope of the overall project. Any of the instructors are knowledgeable about how to look at a larger project, define its pieces, and point you at a starting point.
+
+What happens if I don’t finish?
+The employer is looking for you to create an experience in addition to your classroom projects. At the end of the day, they’re interested in hearing:
+How you’re designing the program
+What roadblocks you’ve run into
+Different approaches you might take if you did it again
+Where you want to take the project in the future
+
+Here are some lists that can be used to generate ideas for projects
+https://github.com/karan/Projects
+https://javascript30.com/
+https://github.com/swkBerlin/kata-bootstraps.git (A repo with skeleton projects set up for 9 different languages with testing frameworks and build tools already in place)
+
+

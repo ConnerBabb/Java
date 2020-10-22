@@ -1,0 +1,115 @@
+Book
+https://book.techelevator.com/content/vue-router.html#router-link
+
+Router link
+In a traditional web application, if you had links to your home and about pages, they'd look like this:
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+You can use the same code in your Vue applications, but this approach comes with several problems. Now that all of your configuration is in one place, what happens if you decide to change the path from /about to /about/overview?
+
+Using the approach above, you'd have to search for every link and update it. But if you're using the Router Link component, you can update the Vue Router configuration, and the change applies everywhere that you reference that link.
+
+Back in your traditional web application, you may also need to let the user know what page they're on by specifying the "active" link. This often involves looking at the path and adding a class to the current anchor tag to indicate that's the page the user is on.
+
+<a href="index.html" class="active">Home</a>
+<a href="about.html">About</a>
+With Vue Router, you don't have to worry about how to implement this because it works right out of the box. The Router Link is another Vue component, and as you'll see, it provides several great features. This is one of the many reasons why <router-link> is preferred over using the anchor tag <a>.
+
+#Static route matching
+You've seen an example of this earlier in this lesson, but it's a good place to start. Consider the routes defined in the following router configuration:
+
+const routes = [
+  { path: '/', name: 'home', component: Home },
+  { path: '/about', name: 'about', component: About },
+  { path: "/services", name: 'services', component: Services },
+  { path: "/products", name: 'products', component: Products },
+  { path: "/contact", name: 'contact', component: Contact }
+];
+When you want to provide a link to one of your routes, you use the <router-link> component.
+
+If you want to build a navigation bar that links to all of your routes, you can use the <router-link></router-link> component with the to prop being the path you want to link to:
+
+<header>
+  <ul>
+    <li><router-link to="/">Home</router-link></li>
+    <li><router-link to="/about">About</router-link></li>
+    <li><router-link to="/services">Services</router-link></li>
+    <li><router-link to="/products">Products</router-link></li>
+    <li><router-link to="/contact">Contact</router-link></li>
+  </ul>
+</header>
+#Named routes
+The above code works, but as mentioned earlier, there's good reason to use the name property on routes. What happens if you use the path for every link in your application and want to change it later on? What if you want to change the /products path to /products/overview in your application? You'd need to update every instance where you used <router-link></router-link> .
+
+In that same scenario, you could define your router links using a named route like this:
+
+<header>
+  <ul>
+    <li><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
+    <li><router-link v-bind:to="{name: 'about'}">About</router-link></li>
+    <li><router-link v-bind:to="{name: 'services'}">Services</router-link></li>
+    <li><router-link v-bind:to="{name: 'products'}">Products</router-link></li>
+    <li><router-link v-bind:to="{name: 'contact'}">Contact</router-link></li>
+  </ul>
+</header>
+Then in src/router/index.js, you can change your path, and any router link that used the name products has its path updated to the new one:
+
+const routes = [
+  {
+    path: "/products/overview",
+    name: "products",
+    component: Products
+  }
+];
+#Dynamic route matching
+There are times where you need to display the same component based on dynamic data. For instance, you might have a /user-profile route that uses the UserProfile component, but it should be rendered with different information for each user. With Vue Router, you can use a dynamic segment denoted by a : in the path to achieve this:
+
+const routes = [
+  {
+    path: "/user-profile/:username",
+    name: "user-profile",
+    component: UserProfile
+  }
+];
+In the example above, :username is the dynamic segment. This means that the following URLs all map to the same route and component, but they display different information based on the username:
+
+http://localhost:8080/user-profile/frank
+http://localhost:8080/user-profile/mike
+http://localhost:8080/user-profile/josh
+When a route is matched, the value of the dynamic segments is exposed as this.$route.params. You'll learn more about this in the route object section.
+
+#Router link active classes
+When building out navigation, you'll typically want your users to know which page of the website they're currently on. Usually, you'd do this using CSS to style the "active" route in your navigation. Vue Router helps here by adding the classes router-link-exact-active and router-link-active to the link or links that matches the current route:
+
+<a href="/about" class="router-link-exact-active router-link-active">About</a>
+They sound similar, but it's important to understand the difference between the two classes:
+
+router-link-active is applied when the path matches wholly or partially with the route you're on.
+router-link-exact-active is applied only when the path matches exactly.
+Why are there two different classes?
+
+Imagine for a moment that you have two routes: /about and /about/team.
+
+The link for /about would be partially matched when you're on the /about/team page. This means the link for /about receives the router-link-active class, and the link for /about/team receives router-link-exact-active as well as router-link-active. This is useful in circumstances where you have a nested navigation system, and you may want to apply some styling to the "About" link while you're on the "About Team" page.
+
+Both of these classes are customizable through CSS. You can add the classes to your CSS and style the active route so the user knows where they are:
+
+a.router-link-exact-active, a.router-link-active {
+  padding: 4px;
+  border-radius: 4px;
+}
+a.router-link-active {
+  background-color: gray;
+  color: blue;
+}
+a.router-link-exact-active {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+Caution using route path '/' and router-link-active
+
+The matching behavior for router-link-active only needs to match partially with a route. If you have a route for /, like homepages usually are, the <router-link> for that route matches with every other URL on your site, like /about and /contact, since they also contain /.
+
+It's typically best to stick with router-link-exact-active for your styling unless you have a reason to use router-link-active

@@ -1,0 +1,152 @@
+Book
+https://book.techelevator.com/content/inheritance-ool.html#extending-classes
+
+Extending classes
+Look at the Clock class from a previous chapter:
+
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // Overloaded Constructor
+    public Clock() {
+        this.hour = 0;
+        this.minute = 0;
+        this.second = 0;
+    }
+
+    // Constructor
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    public void tick(int numberOfTimes) {
+        for(int i = 1; i <= numberOfTimes; i++) {
+            this.tick();
+        }
+    }
+
+    public void tick() {
+        this.second += 1;
+
+        if (this.second >= 60) {
+            this.minute += 1;
+            this.second = 0;
+        }
+
+        if (this.minute >= 60) {
+            this.hour += 1;
+            this.minute = 0;
+        }
+
+        if (this.hour >= 24) {
+            this.hour = 0;
+        }
+    }
+
+    // Getters and setters
+    public String getCurrentTime() {
+        return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+This class defines some simple behavior for a basic clock. In fact, every clock needs the above functionality.
+
+But every clock is different, too.
+
+Say, for example, that you want to define some different clocks that make different sounds. First, you'd define a GrandfatherClock class that ticks and tocks every time you call tick().
+
+You could copy and paste all the code from Clock into a new class called GrandfatherClock, but it's best not to, as this violates the DRY Principle: Don't Repeat Yourself.
+
+Instead, you can have GrandfatherClock inherit the code from Clock instead.
+
+// GrandfatherClock.java
+public class GrandfatherClock extends Clock {
+    // Subclasses must redefine parent Constructors
+    public GrandfatherClock() {
+        super(); // But it can still use all the same code!
+    }
+
+    // Constructor
+    public GrandfatherClock(int hour, int minute, int second) {
+        super(hour, minute, second);
+    }
+}
+This is all you have to do to make a new GrandfatherClock class that behaves like a regular Clock. In Java, you have to reimplement the constructors in the subclasses, but you can still call your superclass's constructors using the super() special method. When a subclass calls the super() constructor, it runs all the code in that constructor from the superclass.
+
+Next, add a tick tock sound to the GrandfatherClock:
+
+// GrandfatherClock.java
+public class GrandfatherClock extends Clock {
+    // Subclasses must redefine parent Constructors
+    public GrandfatherClock() {
+        super(); // But it can still use all the same code!
+    }
+
+    // Constructor
+    public GrandfatherClock(int hour, int minute, int second) {
+        super(hour, minute, second);
+    }
+
+    public void tick() {
+        super.tick();
+        if(getSecond() % 2 == 0) {
+            System.out.println("tick");
+        } else {
+            System.out.println("tock");
+        }
+    }
+}
+Here, you can see the use of the super special variable. Once you've create your object, you can use the super variable to call code from your superclass. You want the GrandfatherClock's tick() method to behave like the Clock's tick() method, but with some extra functionality.
+
+Your tick() method overrides the super tick() method. You didn't have to call super.tick() but if you didn't, the original tick code wouldn't have run. By defining the code as above, you run the original tick code first and then add in your special functionality for GrandfatherClock.
+
+Now, make a CuckooClock. A CuckooClock makes a Cuckoo sound at every hour.
+
+// CuckooClock.java
+public class CuckooClock extends Clock {
+    // Subclasses must redefine parent Constructors
+    public CuckooClock() {
+        super(); // But it can still use all the same code!
+    }
+
+    // Constructor
+    public CuckooClock(int hour, int minute, int second) {
+        super(hour, minute, second);
+    }
+
+    public void tick() {
+        super.tick();
+        if(getSecond() == 0 && getMinute() == 0) {
+            System.out.println("cuckoo cuckoo");
+        }
+    }
+}
+Now, you have two new clocks sharing the same functionality of Clock, but with their own special features

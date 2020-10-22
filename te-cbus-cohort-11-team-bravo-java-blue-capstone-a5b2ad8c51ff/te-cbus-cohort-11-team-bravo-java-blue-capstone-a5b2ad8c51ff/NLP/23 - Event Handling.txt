@@ -1,0 +1,1469 @@
+Zoom
+https://techelevator.zoom.us/rec/share/wvMsbK3J93pORrfhyV3cHaMfLtzKT6a81SQZqfJbxBn9DDWormRxrjCgXWTo5DJ8?startTime=1594905444000
+https://drive.google.com/file/d/1tqg5MdlYiYO0fmr6kLwa_sSxAazkkXxx/view?usp=sharing
+https://docs.google.com/presentation/d/1IIEF7LIHqsazbN_Z5BEETwA1dF0cD9Yv72X9FouG1oQ/edit?usp=sharing
+So today we're going to talk about event handling. In, we're going to Well, we're going to start by talking about Vin handling in general, what events are because Vin handling and events are not specific to JavaScript, every language deals with events in some way. So we're going to talk about them just really what an event is what that means. And there's a whole idea around it called Event Driven Programming, which is kind of what we'll be moving into with JavaScript. With web applications, it's the way they kind of have to function to deal with the user. So we're going to talk about those. And then we're going to talk about this idea that has been handling, which is how we'll actually deal with them in JavaScript. And again, we're gonna look at the JavaScript specific implementation of event handling, but it's not unique to JavaScript. And then, as part of that, we'll deal with event propagation, which about a sleeve, what that means when to when we get there. And then some more details of event handling in JavaScript, we'll actually walk through and do some examples. And then finally, this idea called event delegation, which is, again, a better way, or a way of handling events of like things in JavaScript. That is a little more web specific.
+
+So first, let's talk about what an event is.
+
+So in what an event is, what happens when the user does something or a user or a system does something, it's when something occurs, it's actually used the same way that we use events just in common language and we say there if that happened, that was an event last night. I went to an event it means something was happening.
+
+And that's what it means in
+
+programming as well, it's something occurred. So the user click the mouse button, the user typed the letter on the keyboard, with a system finished processing something. Those are all events. There's something that where the kind of standard flow of doing nothing has been interrupted. So when I click my mouse here,
+
+there's an event that has occurred.
+
+And that event is told this web application, the Google Slides application that I'm where I'm clicking, and Google Slides has responded by drawing the edit box around this
+
+text.
+
+When I click and hold my mouse and drag, there's an event. There's a few events has occurred. It's told Google Slides that I'm holding and dragging my mouse across this area and it's responding by highlighting text. So everything we do every interaction we have with the computer, whether it's moving the mouse in any way, clicking a mouse button, or typing on the keyboard or on a device, doing something on the touchscreen. Those are all events. Every action the user takes is an event no matter how small. The same way. There's events that are going on in this computer all the time. There's events happening as the clock changes, there's events happening in something like the zoom application as network speed changes, and as different data streams are intercepted. There'll be events going on. So what these events look like, there's events that like I just talked about, I'm sure happening in zoom that are internal to the office. application but there's also most of them are more global their system events, meaning when I click the mouse button here, I'm not. Specifically I am, to me, I'm specifically clicking in the middle of my Google slide. But to the computer I'm not, I'm just clicking on a point. And it's it's view area. So what happens when I click this mouse button is the operating system detects something was clicked. So actually, the hardware initially sends the signal that something was clicked and it knows that it was clicked it this x, y coordinate a particular pixel. So it events start start off. System events or user events start off from the operating system. And it doesn't know who to tell. The operating system doesn't doesn't know who cares. So it acts starts screaming out, the user click the button. It's almost like the traditional town crier walking through the street, you know, yelling out the news, the yelling the operating system, the user click the button in it doesn't care who's listening for it. Who cares about that is yells out this has happened. The browser has told the operating system that or Toad itself is listening for when the operating system is yelling about the user clicking a button. And it specifically told the operating system I care when the user clicks a button.
+
+And it's inside of my window.
+
+So I care when the user clicks a button in these coordinates. So the operating system actually doesn't tell the browser itself. Then it's yelling out the user, click the button, and it's here in the app, the browser's listening, and it does do this thing called listening. So that means it's registered to listen to have to hear events when the users click the button. And it looks at the events and says is this point inside of my boundaries? If it is, then it cares about it. Now the browser knows the users click the button somewhere in the browser.
+
+Now,
+
+the browser starts yelling out the user click the button. And it's, again, our application then, or the web application has also told the browser is listening. For events, and this listening for events would be like telling someone with a town crier example saying, Okay, you go to the window and listen for them to yell this particular word. So they've told an application essentially or this thing called a listener to listen for when the users click the button. In now, not is inside the browser's reference. But now, it's inside of
+
+its window.
+
+With the developer has been more specific than that the developer said, I care about when the user clicks the button.
+
+And it's inside of this window.
+
+So at this point, there's multiple levels all just yelling out the users click the button for anyone who's interested to care because multiple applications may Claire care, the users clicked right here and each one of them is doing this thing called listening where there, they register something to pay attention to events and there's that way the users click the button inside of a certain area to finally the developer said in this web control, so this input field, if the users click the button in that input field, I want you to call a particular set of code a method. So much like our controllers worked in AI API's, where we had we told them to call you know our controller methods when certain routes were the user went to certain routes or in j unit, we told him to call particular methods one before each test is the same idea. We register, we listen to these events, we tell it to listen to these events and to call a particular method when that occurs, so that means for us to handle events. We have to Take advantage of this idea that there's this kind of crier going on yelling, the users click the button in this particular situation, users click the button the screen. But what we're going to pay attention to is what the browser the browser's point of view. We don't care about the OS from inside a web application. The browser developer had to worry about the LS portion of it. So we're going to so for all systems, and what we're going to do as well, is that in order to find out where their events affect our application, we're going to do these things called listening. So that means we're going to reach to this thing called registering listener. And we'll get back to what that means in more detail. So that's going to be like telling the browser that we're interested in particular events occurring, we're seeing where the user clicks And they have to be clicking on one of our pieces of our page. We're interested in when the user types in the type a particular key, we care if they typed the letter A, we don't care if they typed the letter Z. And then the listener will call functions we provide that when those things happen, and then our functions will react in some way. So
+
+when I've clicked here,
+
+to kind of recap, the OS has started yelling out, the users clicked at this point. The browser's listening to the OS and it has a listener registered which is like sending for the countdown Christ like sending someone to the window and saying, Okay, if they, if they yell out, the users click in this area. Let me know. In the listeners told the browser Okay, somebody clicked inside of your area. This area, the screen that is in your boundaries. The developer of this application has told the browser has registered a listener with a browser that said, if somebody clicks inside of this control, I want to know about it. And they've pulled it, they've given it a method to call when that happens. So the browser's seen that somebody is started yelling out, somebody clicked in this position. And that listener seen that it's inside of this control. And so they've now called a method called a callback method that the user the developer, has provided. And that method is decided that there's text here. So they need to draw the boundary around it, for it to be used. So in order to react to events from the user, we have to do a few things we're gonna have to build, we have to rush to the Lesnar which is actually not to build we have to come We've had to write one line of code to say we want we're interested in these particular events. And where we're interested in them occurring at, because here, the browser cares if I click here. But this web page, this area, here's part of the web page as well. But nothing happens when I click here, because it's decided it doesn't care about where we click in most of the time, we won't care. If we go to something that's a little less busy, like Google's page. You know, it's I click here in this empty space, this page doesn't care. I'm clicking there, nothing should happen. So it's just ignoring the clicks, all that interaction is still occurring. But the Google Developers have told it not to listen for events in these areas, which is the default not to listen or not to care about these things happening. And then when I click here, things happen. So the Google Developer said when they click inside of the spocs
+
+then
+
+I care, I want to take some action.
+
+So Event Driven Programming is this idea that we have to wait on the user to take action, and then respond to the user's action.
+
+Because
+
+we go to an average web application or website until the user does something, there's nothing to do. This page is loaded. And there's a lot of stuff that goes on in this site, even though it's even Google's simple site. If we look at the amount of JavaScript they have on this simple page. It's quite large. This is all JavaScript. And it's continuing. So a lot of JavaScript on this page. But that JavaScript right now is doing nothing. It's waiting. And that's what Event Driven Programming is that we have to wait until the user takes some action. And when they have that action, they raise the event, then we can respond to it. Which is why I can click here and get this drop down box with the clinic search, or I can click the search button. And if I had a tournament, it would take me to the search, where I can click the about button and it takes me to
+
+a different page
+
+that I can't get out of it. Or when I hover my mouse over these fields, it puts a highlight on it and brings up a tooltip of what that field does. So all those actions are being responded to, by code that's changing the page by the JavaScript but When I'm doing nothing, there's nothing for the page to do. And most applications, or many applications work like this, right? If you think about most applications you work with when you're just computer I've seen outside of the web, if you open up Eclipse until you do something, there's nothing for Eclipse to do. Everything you do is in response to your actions. On most websites, they display the page. But there's nothing else for them to do but display their content until you as the user takes action. So events are the way we respond to the user, and how we know what the user is doing. Or not just the user but also other applications. But we're going to focus more on the user. So there except for a couple will focus mainly on the user. So they're a change in the situate the change in the state of doing nothing That's something's happened is what an event is.
+
+So before we look at,
+
+make this more specific to the web and some of the pieces are there questions?
+
+So the web, the web application has a group of events. inside of it. The browser has a group of events we can pay attention to for the, for a web page, or web application.
+
+So in they're divided into
+
+HTML and browser actions, there's things that that HTML in the browser events they create.
+
+And there's also user actions. So
+
+everything that's happening every time not only do we move But that when a form is being submitted the pages the different states of the page being loaded, when it's completely finished loading, when the value of Texas change when we resize a window, there's events that are happening for all those some driven by us. So when I resize the window here, there's an event going on that my moving my mouse, but there's also the browser's raising another event saying I'm changing size. So events are not just changes in the user's behavior, but they're also changes in the system's behavior. They also assist him he also uses internally events to communicate its own, its own changes of state that are unexpected, not unexpected, in that they're surprising and they should make an exception but that there, the normal state is to be doing nothing and now something's changing. And it's Changing because of something finishing or something, the user taking action. And it was not something that it was going to happen at this exact time. It's something now that's occurring, like when I suddenly resize the browser, the browser fires an event internally that says the browser has been resized on top of the event about my mouse moving. And the fact that I clicked in holding my button. So there's a bunch of these web events going on. The ones the browser, specifically use are called web events, because the ones that we can capture and we can
+
+we act to earn our applications.
+
+So all right.
+
+So the common ones
+
+We're going to have mouse, they're going to be divided into really three big sets or four big sets. The first one is there's going to be mouse events. So things that are happening with the mouse. Examples of a mouse event would be a click or double click a mouse enter, being the mouse has moved over control. And we'll look at these here in a second. Some examples of these and then mouse leave, which is a mouse leaving, in fact, maybe easier. I'm going to go to the event demo in today's lecture code and run the events HTML live server.
+
+Just so we can look at
+
+some of these more visually happening.
+
+What happened to the
+
+slides? So,
+
+so click event. When the mouse clicks on something is pretty self explanatory. We click on something and here we saw the background changed. I click and it's making it's responding and we'll look at how it's doing that. But there's also double click. So clicking the mouse twice in quick succession is a different event than just a click event.
+
+There is enough I can't, I can't respond to it. But there's
+
+writing right click the mouse button is a click event as well, it's just click. And we'll talk about why that is and how we can use that. There's mouse enter. So you can see there's an outline of the control here, in a large, thicker black border. So when I enter, when I mouse enter, it means to start going across the border of a control. There's the box around everything. html, right? So everything's everything's being rendered in the DOM, everything's in that box model. So when we enter the border of a box, that's my center. When we leave the border of the box, that's mouse leave. When and there's not a vent here on this page for this, but when we stop our mouse and do nothing for a second, that's what's called a hover event. So it's even event that the user is paused, which is what allows me to as I move across here, There's a very slight pause. You see when I just in clicking the button, where it Gray's and then there's, it's not even a second but slightly pause later, there's that pop up that occurs the tooltip. That tells me this is the shape button. And that's the hover event compared to the mouse server. The reason you'd have them separate is allows me to click this button without having to see the pop up every time. If I pause slightly over, now I get to see the pop up. So there's hover there's also events. And we'll look at the key press events in a moment there but there's key price events key press key up and key down. Let's come back to those few moments. And then there's those are the events that we have going on in the browser from the user because the only two ways the user actually can interact with the computer is either by clicking the mouse clicking the mouse moving the mouse, so the mouse interactions or typing on the keyboard. And every key on the keyboard, as far as the computer is concerned is just to key it, knowing that it's the letter A, or that there's significance to the escape button versus the Return button is a function of the application or the application portion of the OS, not the hardware, the hardware doesn't care. It's just a key press. So that's the only two interactions the user really has is either the mouse is on something. And the mouse can only do so much it can move, it can pause. It can click, and that's really the end of its interactions and the key keyboard can just press keys. That's all we can do. So there's not a lot of interactions users can actually have with our application. But there's Lots of interactions that the application they can cause in the application. So some of those is, when I submit a form, that's an event. There's actually there's an event for this form submitting now.
+
+When I change something,
+
+I start typing here. That's an event.
+
+And we're gonna look at how all these are working, because these changes going on our response or responses to the events that are occurring. When I make a selection here, that's an event. So there's the there's change events. So this will be a change event. there and this will be a change event. There's also two more events that we need to be aware of, specifically around forms. And that's this idea of focus. So focus is In our controls our application, that's what takes. If the user does interact, that's what's going to take the interaction. So, right now, this window is what's called focused. This one, the back here is not, it's not in focus. It's not in focus, because if I click, it's going to come into focus. But if I started typing, the one that's receiving the action is this window, it's the one on top. Usually, for just windows, it's the one on top in the Windows operating system is always on top and the Mac OS sometimes it's not, but that's a whole different. That's not in the web realm of the web application. But if I click here in this textbox, this textbox now has focused because if I type, that's where the action occurs. So focus is The thing that's selected for perhaps something that happens when we leave that field, and we change to a different thing to have focus, like when I click here, the focus has moved from this field to just the browser again, then that's called a blur. So lose focus is a blur. To gain focus is fires of that focus. When that same thing loses focus, it fires a second event called blur. That lets us know the users left filled. So we can tell the users entered the field by focus, we can tell they left it by blur. And that's actually what's changing the red and green and inside of the textbox is the focus and blur event. There's also a bunch of stuff that happens around the document. For instance, when we load the page, we said there's different steps. Right, there's that each email starts loading, and it goes sequentially. And there's events that occur along that lifecycle is different pieces are loading. There's one specific one that we're going to pay a lot of attention to. And that's when the document object model, the DOM is complete. But there's other ones out, they can tell us different stages. There's also the event for unload. So when we close the page, and it starts removing the DOM, that's an unload event. And that's the event that I'm sure some of you ran into where you get to a page that won't let you leave. It keeps popping up saying Do you really want to leave our page and it kind of makes it very difficult to edit the page? That's unload. That's not there's there's real uses for it outside of just ignoring people but. So everything that's happening, there's some event occurring. That's letting
+
+us know what actions the user is taking.
+
+So, before we
+
+so the way that we work with these is this idea called event handling, in event handling is that there's these things going on this kind of choir going on yelling that all these things are occurring, right? So we have to tell it, what we're interested in. We have to decide and know what we're what we care about. So we have to pay attention and say, We care. When this form submits, or we care when the user enters is filled, we care when the user clicks here. We care when the user clicks here. And we're going to write code that's going to Register this thing called an event listener. And by register, we're going to call suspend. It essentially is an API in the browser, where we're going through JavaScript that tells it that we want to be notified when this thing happens. And we're going to pass it a function for it to call when that happens. So it's going to be called an event listener, and event handler method. And then when the user clicks the button, the OS is going to raise the event. The browser is going to hear the event because they're listening as well, to the OS events. And then when it happens, when we've told it, we care about that button, it's going to raise an event and our listeners going to hear the browser's event that the button has been clicked in the browser is going to tell us events and not having to worry about like coordinates. screen, we're gonna be able to say for this DOM element, I'm interested in this action occurring with this DOM element. So when the browser sees the button has been clicked, and we have an event listener registered, you'll call the callback function, the function we've given it to call. And that'll be our JavaScript where we can take action and change the page in some way. or do something else called API or anything we want with JavaScript. So we'll have an entry point into our JavaScript knowing that this thing just occurred. So that's how the event handling is going to work. In this whole event handling process is going to be handled completely inside of JavaScript. It's not HTML, it's not CSS, they're not involved. They're involved as we may manipulate the DOM or we may manipulate to, to work with that. But it's completely JavaScript that's going to be handling it. So the event handler is going to be the code in our job. It's our function that handles the event. So this is just really vocabulary. And the callback function is the event called the listeners, we have three pieces. Now we have the listener, which is what is going to find out about the event. The callback function, it's going to register with the event handler, that's going to tell us when the event occurs, then a callback function that we write that responds in some way that does whatever we want to happen. So let's look at some of this now and the code of this page that we were
+
+just looking at and then we'll look at some of the other pieces.
+
+So in this page,
+
+bring up
+
+js file.
+
+So first there is
+
+let's look at how an event listener is registered.
+
+So here's an input box. It has the user ID user input.
+
+So in the JavaScript,
+
+input field is
+
+document get user ID user input, so it's getting this this field.
+
+And then on that
+
+field, it calls this method out of it listener
+
+and then we select the event. Were interested in, in this case, it selected the focus event. Again, the focus event is not when I click here, it's when this field gets entered for intake starts stopping the action. So if I click refresh the page, I click here and I tab into I get to that field. It also fits changes its background red, because a focus not because of the mouse click.
+
+So I've said I'm interested in the focus event.
+
+And then there is
+
+an anonymous method.
+
+The anonymous function is my event handler. That's the callback function. So the callback function is what's going to be called when this event happens. So I've told the listener when there's a focus event, on this inputfield call this function. It's just I passed the anonymous function in this anonymous function, I can do anything that I like with JavaScript. So it's going to send me just like when we done
+
+the methods like map. And
+
+for each of those, and they had arguments that sense, it's going to send a single argument. And that's the event object.
+
+So
+
+the event object is an object that gets passed to every event. Sometimes we're going to care about it. Sometimes we're not going to care about it. And we'll choose what to say just if we don't care about it, we'll just won't put an argument there's JavaScript if they send the event object and we don't have a variable to handle it. nothing bad happens. It just goes away. So but if we do want to handle it, if we do want to accept that input, we put a variable here and it'll pass as the event object. The event object has details. About the individual event. So one of the more important ones is it has a property on it called target. The target is what clicked what the event occurred on. So this is a focus event. And it occurred on this input field. So target event target is going to be this input field. So I can use it. Here I use the input field by selecting it from document get by ID and selecting it with a selector. But here, these two are actually equivalent right now. It contains the same as this because the event said this is the control. This is the thing, the DOM element that this event occurred on. So that's the target. It also then this event object, include some other pieces of information. So if it's a mouse event, and it depends on the type of vendus if it's a mouse Event then it tells us which button was clicked. So right and left mouse button there just button click. But there's something in the event object that says this was the right button or this was the left button. Keyboard events like a key press has details about what key was actually pressed. There's not a particular event for the letter A being pressed, there's just a keyboard key press event, but inside of this event object that passes it has details it says the actual key that was pressed was the letter A or the number six are the up arrow key. So it gives us information about which key was actually pressed. If there each of so each event has different things that may be in this event, object, target will be in all of them. But the other things that could be there depend on the event type and of course JavaScript. So that's comes from documentation. I wouldn't saying I want to work with a click event, we can look at the click events documentation for JavaScript to see what this event object is going to contain. So this gets the event object. And then using the event object, he's his vit target, it just changes removes the green background as the red background using DOM manipulation.
+
+So that's the focus event on the here.
+
+So when it leaves the field, it turns green. So here's the same filled input field, which is the number the document user ID, user input.
+
+It adds the event listener for the blur event.
+
+So there's list of these events, but they're actually these names we were looking at. Back here are the actual event names. We will pay attention to.
+
+So in this case, we're looking for looking at the blur event.
+
+And
+
+it's saying
+
+on the blur event, it's going to add the green background, which is what it's doing. So when I enter the field, it changes the textbox to the red background. When I leave it changes it to the green background because of the blurb.
+
+So there's this
+
+something else going on here. So I click here on this field, and this dev kits, it toggles through red, green and white.
+
+When I click on this field,
+
+it does the same thing and I'm inside of this input field. We looked at the input fields background is changing. To read, because not because of the click event, but because of the blur event. And changing the green because of the the sorry, because of the focus of it now changed to green because of the blur event.
+
+And when
+
+I think I click here, notice the background back there is changing, but
+
+the textbox is not because it's being changed by a different event. So why, when I click on this input box, is the diff changing?
+
+it because if we look at the
+
+click event,
+
+for this div, it has the input div, which if we look at what that is, that's the user input, which is this div here. And it registers is just To the click event is when the mouse buttons clicked. here for the event handler, we take new arguments because we're going to use the event object. And then it changes the red and green background.
+
+But for that input field,
+
+there is a keydown event. There's a mouse, that's imperative. There's a key down event, there's a blur that there's a focus of lead, but there is no click of it. But something's obviously happening when I'm doing this, and that's because of something else we have to understand about events. But before we go there,
+
+what questions do you have?
+
+I do have a question about the blur event can
+
+bring to Visual Studio Code of focus. Yes.
+
+So I'm I'm 23. How does that happen? I agree background and then Event target. Okay. Is that a function?
+
+It's a function. Yeah. That's just someplace in here. Yeah. Well, that's a function that just
+
+made that reasonable.
+
+Okay, cool. I was just like, you could have done it exactly how it was in the above example as well, right? Yes. Okay. Cool.
+
+Why? Why I chose not to use the function the above example, I'm not. Not sure.
+
+So good. gives us more examples to look at. So
+
+yeah, that was the reason I'm sure. Yeah.
+
+Give it to us. caught up.
+
+So other questions before we okay.
+
+So in order to understand what's happening here, there's another idea we have to understand called event propagation. So event propagation is The idea that in a web application that not only does this input field receive the event, when I click on it, but its entire hierarchy does. And it receives everything receives the event twice. So propagation is this is this two phase idea of when we raise an event, it's going to start at the document level. Actually, we know at the browser level, but we'll think about the document level. And it's going to pass that to HTML, which is going to pass it to the body, which is going to pass it down until it gets to what's called the target, which is the thing that actually occurred. So if we click submit a click event, is the thing that was actually clicked on. And then after that, it's going to pass the event, the same event that Up, called the bubble phase. So there's two phases, three phases, the capture phase, which the events being passed down to the hierarchy,
+
+the target phase where the event is
+
+being raised for the actual thing that occurred on and then the bubble phase when it goes back up the hierarchy. So let's want to go Electric Code. And there is a delegation, that propagation demo will open its HTML file on live server. So this will be standard hierarchy we would expect to see in HTML, right? If we inspect this to look at the source actually might be better just to look at the
+
+source here. We can see it has just
+
+div tag with a div tag inside of it with a div tag inside of it. down to a button. So forms a hierarchy with that looks, looks like this. This is a visual representation of that hierarchy. And the buttons the thing and of course, we can click on. So when I click this, we'll see a set of events occurring in the two phases. So I click the button, the capture phase has started in it when things are being marked red or where the event is at that point. Now we're in the target phase, and that we started out to the bubble phase, it starts back up. So what that means is that through these phases, that on each of these items, there's an event fired if any of these things are listening for this a click event, then they're going to be told the click events happened
+
+during that second phase
+
+so
+
+It only goes down to does it?
+
+Can I do point zero seconds?
+
+Let's find out.
+
+I can. I've written more expandable my thought I did.
+
+So it
+
+fires this event
+
+at each, each level, so
+
+the HTML tag gets in the event, the click event before the button does, and so does the div, the section, the main, the body. And then after the button gets the click event, they all get it again to these to this capture bubble phase. Now the browser, by default is going to ignore the capture phase. So it's going to ignore
+
+the things that are in red.
+
+There there we can ask for them, but by default, we'll ignore them. It's going to pay attention to the target phase and to the bubble. phase. So by default, we're going to get any event that's occurring in the bubbles target or bubble phase. And we're not going to get events by default that are in the capture phase. So the coming going down the hierarchy to the target. We can ask for them though, which means we could capture an event here at the section of click event here to section and make sure it never gets to the button. So that's event propagation. So what's happening here when I click on this input field, it's changing the div because the div has a click event attached to it. And when I click here, propagation, since this is in inside the hierarchy with the div, I click here and during on the input and during the bubble phase, the div gets a click event and the Dibs registered for a click event. So that when we register for
+
+C, it's fine that click event here are the diff.
+
+the click event for the input of it gets any click event that's occurring, including the ones that are captured or bubbled from another source from another target. It doesn't just get the events for the click events where it's the target. It can check if it's the target using that target portion of the object that we see. We saw
+
+here, the event target, but
+
+it's going to get any click event in this hierarchy in the bubble or capture phase well, simply the bubble phase. So if you look hits tabs so fast, you can't See it. But there's kind of see if you watch really close, you'll see that the input field changes the background color before the dip. And that's because it's received the event first.
+
+And then in the bubbled
+
+the div then gets the event in response to it, or gets the click event in response to it. So we often don't want that to occur. I click on the input field, I don't want the div maybe to change colors because I want the user often to be more specific. I want them to be able to say, you know, I'm clicking here and this is what I, I want to change the background color of the div. If I'm clicking here, I just want to input text. I don't want to change you know the background color.
+
+So we can
+
+handle that we have to handle that not
+
+at the deep level. We Don't write code that says is this event for me instead, what we do is at this level in the input field, we can stop the event from bubbling. So
+
+here
+
+on that input field, if remember, this was the document selection above, it's in this input field variable up here.
+
+So we can add an event listener.
+
+And we can register for the click event.
+
+Now, if I'm going to stop the problem propagation, I have to get the event object. So I'm going to get the event object
+
+and pass it to my anonymous variable
+
+in here,
+
+in my
+
+using the event object, there is a method on it stop propagate.
+
+If I call that
+
+now when I click on the field,
+
+it stops the event from bubbling. So that's I couldn't do this from the blur event because stop propagation in the blur event would have caused the blur event from stopping to propagate. So I had to capture listen for the click event on the input field. And now when I click on it, nothing happens the input field that's the focus event causing it to change to red background, but it doesn't propagate the event out to the div.
+
+If I click on the div, it still changes
+
+as expected,
+
+so we can stop that phase
+
+by calling the stop propagation on the event
+
+So before we continue with the questions,
+
+so I guess I understand this stop propagation, but I don't understand the factor of leaving the event out versus leaving it in.
+
+Yes, sir. What do you like when
+
+you just made your event listener right there? And you included the event within the parentheses right there? Yes. Pass. Why does that make a difference?
+
+So every time the event of events callback method is called, so the variable is called. So this method, JavaScript, the, the browser's event handler, is going to pass this event object. So that's a variable, a parameter and my method to to capture the event object to hold it. So but it's JavaScript, right? So if I don't care about that event object, like let's find an example. Don't like here, don't use the event object, right? Often I don't need it, I'm just going to change the text of, you know, the h2.
+
+So, in that case,
+
+if I do this, and I don't have the event object, because it's JavaScript, it doesn't care. So if I don't care about the event object, I don't need to create a variable for it. Just like when we done filter map, and it passes the four arguments. No, it was one of them passes four arguments, they all pass three arguments, but there's functional methods, they pass multiple arguments, and then we there were, we could choose to get the aggregator, the current value,
+
+the index or the
+
+array itself. We will just create very For the aggregator in the current value, because that's all we cared about. All those other things are still being passed. But because it's JavaScript, they just get ignored. And that's the same with the event object. So I, when I write events, I tend to always write them like this, because I might need it and it's always there anyways. But if you don't need the event object for that handler, you can write it like this. This makes total
+
+sense.
+
+But if like if the stop propagation, we have to, we have to use it.
+
+So the questions before,
+
+if so you said if you do the stop propagation, you can't do that on a, an event that that thing is listening for.
+
+Don't know you can Oh, so but it's going to stop it from so the div is listening for a click But before I stopped propagation, it was getting the click event for anything, its hierarchy. So it was getting it when I click here. Well, not now that it was. So it was changing, it was getting the click event because of the bubble phase. So when I stopped propagation, I stopped it on this input field. So it says when something clicks on the input field, don't propagate the event up the hierarchy. So now when I click in the input field, nothing happens to the div. But the div still has the click event. It's just I'm stopping it from going from the input field to the Dev.
+
+Okay, gotcha. So, if you put a new click, like event in there, it would still work. It would just keep it from going on.
+
+If I wanted to do something in the input fields,
+
+yeah, like unclick.
+
+Yeah, in fact, the events right here I can do
+
+if I let's see what can I put filled
+
+Because I think I have the right syntax.
+
+So now I'm handling the click event, but I've still stopped the propagation from moving forward. All right,
+
+well, thank you.
+
+Sorry. So I have a question as well. So prior to deciding this stop propagation, there is no click event on the input field. Is that correct?
+
+There was no there was a click of Mount there was nothing listening for it. So this is an important distinction. It's actually the probably the hardest part of of event handling of jibber jabbering for the vets every time I'm doing something No matter what I'm doing, there's events going on. The events don't stop. The listener that we register, we register listener, we say we can care about this event. So before I put this event on, I commented out the click event on the click event listener on inputfield. The click events still happening, which is now nothing's paying attention to it. So I don't care about the click event on that fulfill, but the click events still there. It doesn't go away. When I add a listener, it doesn't add the event. Instead, it adds gives me the ability to react to the event. It's saying when the event occurs, then call this method. It doesn't make the event occur. Does that?
+
+Yeah, it's more like it's kind of one of those like a tree falls in the turns around to listen to so make sound. Now you're just saying, alright if this tree is paused to these people that everything's okay even though
+
+Yes, so, yeah, yeah, I guess yeah, it would be.
+
+It makes sense in my mind,
+
+though. So if you think about it, like you're talking about driving down the road at 100 miles an hour on your motorcycle the other day in the meeting. You did that. That was an event that occurred if you would have got caught doing that. That would have been a listener that would have caught you. But your event you still did the event. There was just nothing they're paying attention to it outside of you nothing. Nothing that cared if there was no Highway Patrol that noticed you doing it. That would have been a listener
+
+doesn't change.
+
+But that wasn't gonna happen.
+
+Got it. That makes sense. Thank you so much.
+
+So other questions before? All right.
+
+So I guess let's take a break then. Since
+
+we'll come back at 1025 and continue.
+
+So what
+
+questions do you have coming out of the break?
+
+Is does Mozilla have like a giant list? I'm assuming of events that we can include in the event listener.
+
+There are large events a list Yes. See if I can
+
+still
+
+remember what you're looking for that
+
+essentially, even if we want to Make an event be ignored. We stopped to listen to it correct? You would certainly in this case we wanted to ignore the click you would still have to listen to that.
+
+If we just want to ignore it and do nothing, yeah, no. If we want to ignore it, we just don't do anything.
+
+So I meant like more of this in the example that you have right we wanted to ignore the plague and not let it affect in the hierarchy. We still had to add a listener to say stop
+
+Yes, if we want to stop it from happening.
+
+Sorry, I misunderstood I was thinking Nord is just do nothing. If you want to take action and stop it, then yes, we have to listen for it and capture it. And I captured but handle it by stopping it.
+
+Here in the
+
+actually I'll put it in reverse. So it's permanent. The Mozilla
+
+are affected. Thank you. So Much.
+
+You'll see when you go through that list, there's a lot of them. There's things even things like clipboard events, you can tell when something's in the clipboard or coming out of the clipboard, not in the clipboard beside going in or out of the clipboard, things like that. So there's a lot of and a lot of network events, a lot of events
+
+like commuters, parents completely driven by
+
+events going on off nonstop.
+
+So, so other questions before we
+
+move forward. Okay.
+
+So
+
+now we have the propagation, we've seen that. The next thing we could run into
+
+is
+
+here on the forum, I'm going to
+
+click it and there is event
+
+for this form
+
+on the form, it's added event listener. And this form is a variable that, if we look at the back at the top is a document query selector for the form on the page.
+
+So
+
+for the forum adds an event listener for the Submit. So when we capture a form from submitting, we don't capture the click event of the button, we capture the event of the form actually submitting their different events, there's going to be a click event on the button, but that has nothing to do with the form. So what we can do with the form smiting is we can do something like validate it before it submits, make sure the data is the same length right length, so the right data is there. But if we want to stop it from submitting, so in this case, What I want my form to do is to change the inner text to this. So I click Submit.
+
+And you see it does change the text, but then it goes to
+
+the form action.
+
+So it's common in JavaScript, we don't want our forms to actually submit, we want them to do something else, especially when we start working with API's with JavaScript, we want to use an API to actually do the form interaction, not the standard web form interaction. So we want to stop it. So different controls like buttons or links. So anchor tags, they have what's called default actions. Default actions are things that happen when they receive an event or a particular event. So when a button clicks, this button clicks it submits the form, that's default action. When we click a link, it automatically redirects to the location and the href So, if you think about all the stuff before today that you could do with a website, all you know, you could submit a form on it, you could make links, you could do all those actions. Those are the default actions that the browser has for those controls those elements. But we often want to override them, we want to stop them. I don't want this button to make the form go to this other URL. I just want it to submit the form and change the text. So in the event object, if we want to stop the default action from occurring so
+
+or form this default action is submit.
+
+We can use the on the event object call method prevent default, and that'll stop the default action. So I can stop a link you can stop a link from going to the new location or you can stop a button from
+
+Processing something.
+
+So we'll save that. And now when I click Submit, Once it loads it goes, changes the text in any of the formula it stops. It's done. Because that's at the end of its default action.
+
+Yes. Thank you for your comment. Yeah, like clicking a link where they could capture the fact that you click the link and then make a decision around that to either stop the default actions and stop the link from continuing to click or to continue by letting you
+
+letting it continue its action to redirect.
+
+In fact, that's That type of usage will be one of the common uses of this. But as often will want to stop buttons and forms from doing their normal action, because what want to do with them is something else, especially as we said, we start getting API's involved.
+
+All right, so let's look at the rest of these events.
+
+Here the page before that if there are questions on
+
+we just talked about,
+
+I'm assuming, later on, we're going to go over what happens when you do prevent default. So the later topic, what do you what do you mean by say, when you submit a form, and you prevent the default, and what happens to that form,
+
+nothing gets done. We now have to do something with it. In our JavaScript so yes and no, we're going to go over things you could do with it. But when we say we prevent default, we stopped the fallout from occurring and there is no farther thing that happens in us we make it happen. So
+
+So other questions before we
+
+all right, so looking through these, some of the other events on here, we looked at the sorry, the blur in the click event, and the focus event. So, drop down box select fields have a change event. So they also have a click event, but we don't often care about the click event because the click event this means that I'm clicking on the field. The change event is when the box has changed. So here, it's registered for the Select field, which is the stop now box. And it says, a record for the change event. So when its contents changed, and then in this case, it's just setting this h2 in here to its text, the value was text. But so there's also a change event, that's when it's changed. Notice when I click on it, if I don't change anything, the event doesn't fire. And it only does that if the card is changed from what it was to a new value. So, input fields also also have a change event as well as things like radio buttons. So this change event, mouse enter and mouse leave we already talked about but on this input field is input div, which is this div right here, not not formed this Here, when it's content on its so we know that that kind of oranges sections, its margin being pushed towards pushing out. But the blue section is it's a where it's border buttons. So when they enter that border section, so the border, the padding, the the internal content of the control, a mouse enter event fires, so it's just saying you've entered the internal portion of the boxing of this element. And when I leave that section when I move my mouse out of that the mouse leave event fires so
+
+far because of that.
+
+So now if there's a mouse enter, you see here, about an event listener mouse Enter to that input div, and it just adds the thick border class and mouse leave removes it which gives the effect of that border changing.
+
+Looked at that one already with the background look in the form Submit.
+
+So the last one is keypress. So in this input field, there's the click event, but there's also an event that fires when I press the key, that's just duplicating the text into this other field. So that's the key down event. But there's actually three key press events.
+
+There is key up,
+
+key down,
+
+and key press.
+
+So key presses an older version of the event. It's the key, press meaning went up and down. key down is you press the key down. You don't release it, it's just the keys been pressed down. Key up is you release the button, you release the key. So the key is going back up.
+
+So those are two different events.
+
+And we would choose which one we want to handle
+
+which one and we can, we can pick that do we care when the user presses the key down before they release it? Or do we care when they finally release it? That's the Option key up and keep key down. So in this case, I'm capturing the key down event. So every time I press the key down, it adds the letter to the film before I release the key.
+
+So I'm gonna get down
+
+but in that particular event. Sorry, let me just scroll away yet. It doesn't really do anything with the key it says when there's a key down, just change the value to whatever was in the input field. But if I care about the key
+
+interesting this and there's another method down here. and here we can see we can add event
+
+events inside of other methods as well.
+
+So these events handle
+
+these key presses
+
+and they handle it on the key down. It changes the
+
+color of the box to read on the key up.
+
+So if I hold and press down the W key, does the W. Same fight Abby eskie. When I release them, it removes it The background. And it does that because it has because if I press you know the G, nothing happens, it only happens if I press redo that in the right place, or I press the G, nothing happens. So not only does that if I press one of these keys when I'm when the browser or the body of where I've attached the event has focus. So it finds out that it's which key it is to know which box that it should change the background for using the event object. So here it gets the event object. And actually, it's here it gets the event object and pass it to this method. But this code could be up here just would be duplicated, which is why here, so the event object on a key
+
+board event has a code in it.
+
+And that code
+
+tells us which key
+
+the user is pressing.
+
+So there's a list of these codes.
+
+So Brian, what what is in focus here when you're changing these keys or the colors of the boxes,
+
+so in this case,
+
+I have the event attached to the body of the document. So as long as the browser's in focus with this document open, it's going to receive the event because the body is in focus with the with the browser.
+
+So there
+
+so there's a code
+
+on the keyboard. Sorry, you have to link to it somewhere.
+
+gets sent in either here
+
+where's the code list?
+
+good practice
+
+that that thing will have any object that can tell us
+
+what
+
+key has been pressed. So in here, I can see if I want to see it's our key w will tell me if it's been pressed. So I look and see if the code is equal to key w, t equal to key a under the letter A has been pressed as D so on. I can also check for things like if there's a second key down, there's better the shift keys down So the key board event, or the key, the event object for a key press or key up or down, has this code in it that we can check which key. So in this case, I'm only checking for the Ws, D keys and then changing something
+
+individually depending on which key was pressed.
+
+So, before we move on to actually coding suppose now or there's other questions.
+
+All right, so let's I'm going to change save this
+
+For the clothes that
+
+I'm going to go to the product reviews
+
+which is I'm open up my server.
+
+So the product review should look familiar. It's what we we ended with yesterday, though, only has one review now
+
+what HTML actually was inspected
+
+don't really care much about HTML that doesn't tell me much. The elements will
+
+open up its JavaScript
+
+and it has some
+
+pre written code.
+
+And a lot that we wrote yesterday or version of it to the code we were yesterday, it has just one review, and the name and description. So there's some things I would like to make this page do. That's a little more interesting than what we ended with for one. like to be able to click here and change this description. To I'd like something to happen with sad review button gets clicked. And I could be able to add a review to this list. So we need events to do all those things. So let's work through how we can make that work. But before that, let's look at what's available on the HTML.
+
+So if we look here,
+
+in the HTML, there's an input field that's hidden, it has display none. In fact, I'm going to just remove that From the dienen class, I'm going to remove the display none, which is going to show us all the hidden elements on this page.
+
+So there's a hidden field here.
+
+And there's a hidden form. And there's just a form where it has this display none attached to it by CSS. So it's done display. So what we'll want to do is write some JavaScript so that when this is clicked, we remove, take this content, put it in this field, and then remove, hide this and show this. So a lot of the JavaScript that does that's actually been written, we just have to write the event to handle it to make that happen. So let's start with that. I'm going to refresh the page so everything goes back to normal
+
+But before we do that
+
+we need to talk about
+
+before we can even start that we have to talk about these methods. So those methods we saw yesterday, they were at the bottom of the filled right, and they were, they were starting everything off, they were the ones we filled out, and they were populating everything.
+
+So
+
+we
+
+want to
+
+we want these to run when the page is loading. But the, these are doing DOM manipulation, they're changing the document object model. And we know that the page loads sequentially down the document. And as it loads the Document Object Model, it loads pieces one piece at a time from the HTML. And if something takes a while, like that's to stop and download some JavaScript or apply something that it pauses, it blocks until it's done. That pieces done and then it continues. Which is why I'm sure if you've seen web pages were part of it a load and there's pieces that aren't loaded make they load a second or two later. Or so that's what's happening. Which means that just because we can have the page is loaded, the HTML is loaded doesn't mean the document object models been created yet. It doesn't mean it's all there. So we need to make sure that these events which are going to have DOM manipulation in them, like set the page title, which you know, sets this page title using DOM manipulation, if you remember from yesterday, or sets the description and displays your views, that it only occurs after the document object model is done, that it's loaded. The same thing when we register events, if we try to register event to an object To an element that doesn't exist in the document object model yet, it will fail. Because it has to exist before we can register an event with it. So there's an event that we need to wait on before we start things in our script running when we're working with the document object model. So yesterday, we just done things directly. And really, for any of those that work, it should be inside of an event that makes sure the document option is loaded on a simple page like this, it's going to be loaded by the time our script runs, we can pretty much guarantee that it's because there's not much going on, but on any when we get even slightly larger than this, then we're gonna start running into problems. So to do that, the event we're going to look for is the DOM content loaded event. I think I have a slide for that.
+
+So
+
+we're going to add Added event on the document itself. For DOM content loaded, and DOM content loaded is not that the HTML, there's a older event that you'll see, a lot of times ready or loaded those two events being used. Ready is that the page is completely done loading, we don't really care about the browser being done rendering it. And loaded as HTML has been loaded, those were previously used a lot. You see a lot of older examples using them. But the problem is, once too early, it's possible for the HTML to be loaded without the DOM being done. And the other ones too late. It's, we've paused until everything's ready. And as soon as this document object models loaded, we don't care how long what the delay is between that and this display being built. We can start working as soon as this is ready. So what we want is dumped the DOM content loaded event. So on the document, I'm going to add an event listener to the document. So remember, the document is the DOM. So mounting event listener on the dock on the DOM itself. And the event I'm going to tell it listens for is DOM content loaded. And so I'm listening for when the document object model is complete.
+
+I need my
+
+anonymous method. I don't care about the event object in this case, because all I'm going to do here is this is where I'm going to move all my code that I want to start running with the page. It's also where I'm going to do all of my other event listeners. So anything I'm going to do with the Document Object Model, whether it's DOM manipulation or events should start from here. Now the methods don't have to be here because Merah methods aren't called that is prepared. So the method calls should be here. so we can write most of our code methods and just start kind of start the process. So this will the DOM content loaded will kind of work similar to the main method in a job application. It's where things will start for our webpage as far as our JavaScript for dahmer, for dominance relation, or events. So when we have that event, and now this page, these pieces are guaranteed not to be created to the pages successful to the Document Object Model successfully been created. So now let's get this title working.
+
+So to do that, so let's actually
+
+let's walk through I guess this event, I guess we looked at the events, we really haven't talked about these pieces. So the event listener, that we're going to write the event listeners will start with, the element that we're attaching the event to, in this case is document. But if it's, if we want to attach to something like the document, you know, query selector, we want to attach an event to all the div tags, then it would be like this. If it was, so we're going to select it the same way we did for DOM manipulation, we're going to select the element we want to we're interested in. Excuse me, and then we're going to call the addEventListener, which is an API method in the browser. And then that takes two arguments. The first argument is a string of the name of the event that we're interested in. And these are case sensitive. So this has to be spelled and case just like this. And then the second argument is a function. So an anonymous function that we want called our callback function, the function we want called when this event occurs. So those are the four parts the element, the method, the API call to the browser, and it is internal API. So we just think of it as a method call to the browser, the event name, an anonymous method, where we take action when dealing with the event. So all of our code is going to be in this anonymous method for this for each event.
+
+So if I wanted to,
+
+I want to make it so when I click here, it shows this input field
+
+and gets rid of this. Then I would attach the event to I can attach to the event to this paragraph. So we can attach an event to pretty much anything in the document object model. But not all of them have the same events like a paragraph is going to have a change event because nothing changes.
+
+form fields gonna have a change event.
+
+So let's see how we can select that it has a class of description. So we can use query selector to select this element by description. And we can add the click event to it. So when someone clicks on it, and then we can, we'll look at, we'll toggle this away and toggle the input field in. And there's actually already a method that does the toggling here, and we'll walk through what it does, but let's add the event first. So I'm going to add the event inside the DOM content loaded. I can either load added here, or I could write a function. That does it. For me, I'm going to add this first one here. We'll look do both today. So there's examples of both. So first I have to select it, I'll select it as a variable, I don't have to I could do it all in place. But for this first one, we'll do it as a variable.
+
+And it's gonna be the scription. So on the document,
+
+I'm gonna use the query selector.
+
+And select
+
+by that Class, Class description was cut and paste that so. And then, on this element, I'm going to add an event listener.
+
+And I'm interested in the click event
+
+and
+
+my event object.
+
+And now this is where I'm going to do something when the user clicks. So there's a method down here, toggle description, edit, and when This does is it gets the next sibling, the next siblings the input box. And it takes the value from the paragraph
+
+and sets it to
+
+the description. So it's always going to set it back to this default description. So we're going to see that that's gonna make it look kind of weird at one place but we're not really my nurse in the events today. So don't worry about that.
+
+And then
+
+actually be easy to fix that but that's okay.
+
+It then is going to
+
+remove the high D nine is the class member as the hidden the display none. So it's going to remove that from the textbox the input field and it's going to add it to this paragraph. And then it's going to call textbox focus. So the focus Mac method on the control will move focus to particular element. So if the user starts typing, they'll be typing directly in it. So it'll have the appearance of just being ready to start working. So let's call this method
+
+and we'll pass the variable.
+
+All right, so now
+
+we come back here.
+
+I click here, we can see now it's ready to type. It gives the appearance
+
+have
+
+it hides the one field.
+
+It adds the other field puts the text into the textbox. And it sets focus so I can immediately start making changes.
+
+But I can't get rid of it.
+
+So we need more So I want to get rid of this in two ways, or three ways, there's, I want to be able to save my changes, and I want to be able to discard my changes. So a common way of saving and discarding would be to press enter, or to press escape.
+
+So let's make it so it does that.
+
+So we're gonna add another event listener. And this time, I'm going to add it to
+
+let's see where we can add it. I want to add it here
+
+to the input description.
+
+Even though that's been hidden, I can add it because it's still in the DOM. So now, again, I'll create a variable for it. And I'm just put description say document.
+
+get element by ID
+
+and an ID of input description.
+
+And then we can use that.
+
+We're going to add a bit
+
+guess, Brian, I'm sorry, I got lost when on the click event that textbox goes from just normal text to being like an input box. Do you mind going over that for me?
+
+No. You see that so we can
+
+back to our starts. Okay, so in the click event, this code down here, what what's going to happen? So the first thing is going to do the click event happens here. So it it looks for the next element sibling, which is here, which is that hidden input field. It then remove it changes its value. So if I can change the value, I can but changes value, I'll leave the changing of the value to your imagination. So it puts the text of this description variable here in it into the input field, which is just a textbox. So then it removes the class list from the class list that has this dienen.
+
+So it removes that.
+
+Which shows that and then here, it adds the dino in class, which hides that, and that we just had text in it from that, and then it sets cause focus, which is the focus of the control. So then it sets focus here.
+
+Okay, so it's more of a swap. It's not like actually converting that description to an input box at all.
+
+Exactly.
+
+It always will be there. There's no way to convert elements. There's no way to change this paragraph into an input film. Instead we we swap out the pieces. So, but to the user, it feel it looks like it's changed.
+
+I mean, yeah, you just tricked me That's for sure. So
+
+So I did I answer what you were.
+
+Yeah, that was perfect. I'm totally understand it now.
+
+So now in the second one, I'm adding the event listener to that input field that was there. So the one that shows up, so the input field itself and I'm going to listen for a key up event. I can, we can listen for key down as well. I tend to listen for key up. It depends on what I'm doing. If I'm If you're writing something like a game or something that needs to be really responsive keydown is probably what you want. If you're, if you want to give the impression of typing, most people, when they type, they expect the letter to be written to the screen when they press the key down. But I use Canva a lot when it's a decision, like saving or escape because people will press the button and pause. I don't know, I do I do that sometimes you'll press it and you're trying to make a decision. You can't change it right. You've made your decision now, but you still are looking at one last time. And then if you're wrong, trying to figure out how you can get out of it. But so key up will means it won't happen to they released the key giving them that experience when they're cancelling but either one would be fine. There's that's just a choice. between those two.
+
+Yeah, exactly. That's That's exactly it. They get that feeling of I can somehow save this
+
+But we know they can't
+
+wait a second.
+
+Sorry. diabolical.
+
+Yes, yeah. Well, they could they could sit there for as long as they want. Looking at their information, you know, it's kind of like being trapped on a trap in our old movie, right? So, but we're getting the event and we're gonna need the event object this time because
+
+we have to
+
+see what key they pressed. I want to specifically look for two keys, I want to look for the Enter key and the Escape key because those are the standards for saving and discarding.
+
+So to do that,
+
+we'll say if
+
+the event dot key and there are some other ways to do this, you'll see a lot of documentation on code and some other ones in We'll use key.
+
+And if I look at those key codes
+
+for key,
+
+the key code for enter is enter. So that's easy. So to say if it's equal to enter,
+
+then
+
+we'll save and there is a method down here
+
+called exit description at it. And
+
+with safe, true or false, it, what it does is it just reverses the process that we had before. If Same is true, did it takes the value that's in the textbox and sets it to the paragraph. And if it's false, that it just does nothing with that just ignores it goes back to the original paragraph. Because remember, the original paragraph is still there, it's just hidden. So we're going to change it before we unhide it. If they Save. If not, we're going to just unhide it.
+
+So there's that if they press the Enter, they're saving. So we'll call that exit,
+
+description edit. And
+
+we'll call event dot target, because that's the box that there were this events occurring. We could do a query selector and select the event or use this input field it would work the same. Use event target
+
+and truly want to save
+
+and then if the event dot key equals escape,
+
+find escape.
+
+Place in here, I guess I can search for it.
+
+So it's the word escape.
+
+So My key look for the key code of escape. If that happens, we'll do the same thing and just be false.
+
+So let's go back to the page.
+
+So now we click here. And if I press the Escape key, this goes back. I click here, I make some changes and press Enter. Now it seemed the change hasn't really saved just updated the page with the change.
+
+If I go back, it goes back to the original text because it used that description variable at the top. Again, we're not really worried about that as much but I am worried about the fact that Not every user knows they can press escape.
+
+So if they're here and they want to do something else, they probably
+
+want this to go away.
+
+They probably also want to end the editing, if they move off this field.
+
+So there's a few
+
+few things I could do, we could have, we could use blur, but if they move the mouse down here, the blur event hasn't occurred into they click someplace else. So that's an okay experience, but it would look a lot nicer if as soon as they exit this field, it goes back to this so it has the impression of this. That would be a much better user experience. So we could add use the mouse leave event on this field to give that experience
+
+SWAT another event.
+
+To the input description,
+
+add event listener and we'll use mouse leave.
+
+Again, we'll get the events we can use the target, we don't really have to, but we, we could use the input description variable just the same. And I just really messed up that. Let me try that again.
+
+So now we'll just do the same thing we did. If
+
+when we done the escape, just copy this code down here.
+
+Alright, so now when we save it,
+
+you can go back
+
+to our page, and we don't reload here.
+
+And now, we click here. And now we move our mouse away. It gives an experience of the Edit stops. And as we make changes, we want to change it we can for making changes and we move our mouse away it
+
+goes back to what it was.
+
+So now we have that changed.
+
+So before we continue on to the next piece of our questions
+
+can you register the events in HTML and pass it to the method from HTML if you call it from
+
+HTML,
+
+you mean registered inside the HTML using click on Click. And those events, you can but it's the same way as using like the bold tag. Now it's bound to that HTML in that way. So it's not expandable. That's an old method of doing it. And it's still used in like email and things like that. But it's generally considered really bad practice to hard code. Anything the JavaScript should be. All the behavior should be in the JavaScript separated away from HTML, but should only be structured. But yeah, so what type is bringing up there is an older syntax for events. That is where you can register events in HTML using special attributes like one click, they don't all exist only some of the events. Definitely, but it's considered really out of date and bad practice at this point to use, though there are still some occasions like emails, because email, you can't have any external files. That's the one place that it's considered still acceptable to use kind of CSS inline styles. But thank you.
+
+So
+
+the
+
+next thing we're gonna do is get this form working. So if I get rid of all the display nuns, we can see there's a form here. So when I click this add review button, I want this form to display so the user can populate it.
+
+So the ad review buttons here
+
+and it has the idea button toggle so I can select it from that.
+
+So and there's also a method down here.
+
+Show hide form, and it works about like this one did up here. Only it works with the whole form. So what it's going to do is it's going to remove the hidden tag
+
+from that form.
+
+From that form, it's going to remove the display of none. It's then going to change the text to this button to say hide form instead of add review, and then if it's hidden, so if it's hidden, that's what it does. If it's not hidden, then it resets all the values back to the defaults and basically swaps everything back to text add review, and the puts back on the display none. So this methods down here that does that.
+
+So we'll use that.
+
+So I'm going to add
+
+the event to this button button toggle for
+
+So let's do it a little differently. Let's create a new function called something like handle input form. And we can call that we have to call this function from inside of
+
+the DOM content loaded. But
+
+we can have this
+
+these events be inside of functions as long as that they're only accessible after the DOM has been loaded.
+
+So using that we can
+
+take advantage of the fact we can use methods.
+
+Alright, so now let's say we're gonna put it put the event on
+
+In this method, we're going to attach it to this button, which knows the button toggle form. So we can say, document. get element by ID, and we know that it's button toggle form. And I probably don't need this button for anything else.
+
+So
+
+let's add the event listener directly.
+
+We're going to add the click event.
+
+And
+
+we're going to need the event object. Why are we going to need the event object for a button? Any ideas?
+
+What is the button have that we're gonna have to stop?
+
+Before action,
+
+exactly as a default action. So we're gonna need to stop that default action
+
+So we're going to call prevent default on
+
+the button.
+
+And then we'll call that show hide form. So to do that, see event preventDefault default, that'll stop the default button action. And then that show hide form method swaps the form from visible or not visible depending on what it already is.
+
+So I'll save that.
+
+And now I can
+
+click Add review in the form shows
+
+and the button text changes. And I click it again slots back and forth. Now it toggles because all that methods doing remember is it's just looking and saying, does the classlist contain this D nine so is it hidden if it is hidden, removed They're hidden and change the name the text to hide form and it puts focus to the first field. If it's showed, showed, then it calls reset form value, which just puts all these back there defaults and then adds the dienen class which hides it, and then changes this button text to add review. So it just toggles back and forth. So now we have that working.
+
+So the next action will want to take
+
+is to say actually be able to save the review.
+
+So when I click here, it submits. We can see it's submitted back to the initial page.
+
+It
+
+the initial starting point is here, we get the question mark. Because there's a bunch of empty fields from this form. So the form doesn't have a
+
+action associated with it.
+
+Let's find the form and look at it.
+
+Actually, let's look at this an HTML might be easier to find.
+
+So this form here in the HTML, it has no action associated with it. And when there's no action, it just submits back to the same URL. And it has no, if you look down through here, there's IDs on each of the form elements, but there's no names. So that's why we just get a question mark up in the URL, because there's no. So this forms been set up for use for JavaScript. When we're using the JavaScript, we don't need the name. We don't need the ID, because that's what I'd use for their for JavaScript, and for CSS, where the name is for the form submission. We don't need the form to have an action or even a name Because JavaScript is gonna handle that.
+
+So
+
+because of that, we need to capture which event.
+
+My click this button in the form submits, I want to stop it and do something else. So what event Do I need to capture?
+
+A quick.
+
+So that will stop the bug that if I click the button click, I could use that. But I can't stop the form from smelling. So when I'm working with a form, I don't want to capture the button click because what I care about is not the click of this button. What I care about is the submission of this form. So I want to take action at that point because I need to prevent it. So we can do that using prevent default, again, to stop the form from actually submitting.
+
+So here
+
+on the Save review button, let's look at it to see what how to select it on this button and save review,
+
+I will add Alright,
+
+so let's fill in the form wrong place Sorry, I need the form
+
+on the form has no name. So we're going to select a buy form is the only one on the page. We can prevent default and then we can save review. So you're right we actually could get the button click and do pretty much the same thing but we're going to be preventing the button from clicking
+
+Not the form submitting,
+
+which is a fine, fine line difference. But
+
+so let's get
+
+on document,
+
+we'll have to use query selector. And we'll select the form.
+
+We need the event.
+
+And let's do
+
+first thing we'll do prevent default, which will for not form, I'm sorry,
+
+query selector add event listener.
+
+And now
+
+submit is the event. So let me walk through that since I'd messed up typing that. So we're using query selector to get the form is only one on the page. So what issues form we're adding the event listener for the Submit event. And then this is our event listener, we get the event object we call prevent default to stop the form from submitting. And then there's a save review method down here, that will need to populate.
+
+So I'm going to call that
+
+and
+
+it doesn't do anything yet.
+
+But let's just put
+
+to make sure it's working. Let's just do a console. log
+
+sat review.
+
+Now if we go to the console, you should see that we add the review. We click Save review. And now the form didn't submit. See, the URL didn't change. It didn't refresh the page. And we're in the Save review method. So when I'm working with events I commonly use console log like that to verify my events working before I do more work, or alert boxes if you're familiar with those, but console logs a lot less intrusive. If you're not for just for testing purposes, if you're not familiar in JavaScript, you can do this.
+
+And this will happen when you type alert. So it's an easy quick way to test if something's happening. The console logs a lot less intrusive. So so now we're there in the Save review, we have the form stop from submitting. So at this point, the pieces we need to do are not really event related. It's more something we didn't really look at with the document object model. Yesterday is how to really work with form fields. So well use that
+
+So before we look at that there questions,
+
+is the prevent default that you're using on the form is like, Is that how you would go ahead and take somebody's submission, and then, like, retrieve their content that they're providing you without refreshing the page?
+
+Exactly. Okay. In fact, that's exactly what we're going to do. We're going to get the content they put in, we're going to update this list of reviews. And we're not going to refresh the page what we're doing it, we're gonna do with your dominant.
+
+Thank god cuz I've been struggling with that one. So I'm excited to see.
+
+But the piece we're going to be missing today is that if you weren't a persistent, save it, you need an API to call and save it to a database or something. But that would be the next step would be to have that actually submit to an API and then call back to the API to get the data and the data page but
+
+That's the missing piece.
+
+But like in the same idea, you could kind of have your page like hidden, and then you would change the class to make it present. And then hide the form.
+
+Yes. Yeah. Okay, cool. I'm using this by preventing default on actions and providing our own allows us to the goal of most pages nowadays is to never refresh the page unless it's a complete change of page. Like if somebody is on your page and they click you know, your to go to a complete new area of your site, then that's where you refresh everything because there that's there moving right. But if it's there on the same area, then the goal is not to refresh the page anymore, because it's intrusive. We'll talk a lot more about that next week with you. We talked about single page applications
+
+so are there Questions.
+
+All right. So, um, I guess we'd go and take a second break today. So we'll take it out. We'll come back at 1136 and finish this
+
+So let's complete this save review method. So this next part is more around the manipulation of the form itself then with the events. So what we're gonna want to do with it is we had this form submitted, we're going to want to get each of these elements
+
+build
+
+one of these JavaScript objects
+
+and then add it to the page.
+
+So it was also added to the review reviews as well.
+
+So that it's there for next time.
+
+So some of the adding it to the page, there's already a display review method here. That allows us to add a review that we wrote yesterday. This is the template version of it we looked at at the end of yesterday, but it's what we were yesterday to add to the visual review in the for each. It's just been pulled out into a single method with the for each app here. So we've already written that yesterday. So today, we just have to call this method to add this new reviews, we have to get into that JavaScript object to do that. So in the Save review method, we're going to
+
+get
+
+the values from the form
+
+create a JavaScript object
+
+from them
+
+JavaScripts Specifically, not just any JavaScript object, specifically review object,
+
+add it to the reviews array.
+
+That's hopefully clear enough. And then we're going to
+
+toggle the form.
+
+So we're going to hide the form again. So let's say this I hide the form, maybe it's going to be should be clear and hide the form, because we don't want the old values to be to be there. So what we want is the experience of someone's typing something in. And now this form hides and re shows it should be back to its defaults. Which is what that hide toggle thing already does the toggle function it already does, that was pre written. So these are the steps we're going to take. So let's first get the values from the form
+
+So to get a value from a form field,
+
+let's get.
+
+But we can actually kind of combine these two steps fairly easily.
+
+So let's start creating a JavaScript object.
+
+And if combining these two steps, if anyone finds it confusing, I can separate it again. I do sometimes I write code to compact, but I think this will be I think this would be actually maybe clearer than having them separated. But if not, please let me know. So we know we have this JavaScript object that has to look like this for it to work. So I'm just going to grab this object
+
+that's really what We need to create only we're going to get rid of each of these values and get it from the forum. So the reviewer, it's going to come from the reviewers name here.
+
+So let's see how we can get that. Let's look at it. It's
+
+has the ID of name. That makes it easy. So we can go document dot get element by ID, name. And then to get the value of a form filled, to get the text of like a paragraph, we use text, but a form field we use value,
+
+value.
+
+And then we're going to do the same thing.
+
+Comma, not for each of the other films so the title we'll see Select it. I think they all IDs and it does ID of title. So get home ID title home get the value
+
+review itself
+
+is this bottom filled. So let's look at it
+
+it has an idea review. So that makes it easy. So review
+
+and then the rating
+
+as an idea of rating, so
+
+So before we continue yeah conflict.
+
+Thank you.
+
+So fortunately the next thing I'm going to do would have found that maybe if I paid enough attention, but
+
+so before I do anything else to make sure I create this object, right because if this objects not right, the rest isn't going to work. I'm going to do a console table of it. just print it out. And this isn't required. This is just a step, I often take them working on this type of thing. Or you can walk through and debug too.
+
+So
+
+but we'll just put it in some texts like this is the, let's put a name and title rating of four and review. That way we can make sure they're going in the right place. Save review. In our console, we have reviewer name, title, review rating, so that's correct. And get rid of this line. Now, that was just there for a quick test. So just like with Java, if you go one step at a time, like any programming language, actually any program and if you go one step at a time, make sure it stuff works before you move on. Things go a lot faster. And that took what 30 seconds to check. So now if there's problems with The next couple steps I know, it's not the problem, my object. So the next thing you need to add it to the review arrays. So let's go and look at that review arrays because I care what it's called. It's called reviews should have guessed that but.
+
+So
+
+reviews and it's what's the method to add something to the array in JavaScript?
+
+And, sorry, what was it?
+
+Is it push? Yeah, push, what if I wasn't added to the beginning of the array?
+
+On shift
+
+and shift. So
+
+you review it.
+
+Save it, let's go out and put.
+
+So we can refresh kind of one how to debug. So I'm gonna go out here, and in my JavaScript, I'm gonna select the JavaScript Let's come down here to save review.
+
+And we'll put a breakpoint here.
+
+And now
+
+this button is this page and very responsive but
+
+again, we'll just type
+
+something and press a review that goes to here. This is also where I could have verified my object and will step in now I want to see for three views object, I can see it has
+
+that array has my object in it.
+
+So I'll remove my breakpoints. We don't keep hitting it, and press resume. Alright, so now we've added to that array. So the last step is we're going to add it to the array. I guess there's two more steps at it
+
+to the page
+
+There's already a method that we've already looked at that method, the display review method we wrote yesterday. And it takes an object to the style of this type. So we can just call display review, and pass it that object. And that's the kind of we were yesterday. So we know the objects in the right format. So we should have to do nothing else. And now we'll clear the form. And we already know how to do that. We've already done that. It's the show hide form method.
+
+So let's come back here. And now let's
+
+give it a try. So we'll add a review.
+
+Let's add, I'll just pick something from the past.
+
+And the three star review, something save review, and it's appeared on our list.
+
+We got another review. Again, I'll pick something else.
+
+And they appear in our list.
+
+So now we have it automatic updating this page without refreshing the page. But that was, it's not a lot of work. But when we got to this point, we had to manually build an object, we had to put it in the array. So we would have it next or for later if there was an API call, or somebody would do it here to save it. We call this method to display it. And we have to run
+
+all this code here
+
+to add it, and then we have to close the form. It's a lot of steps, just update this page. So it would be really nice if we could write the code in such a way that when we add it to this array, it did all that for us. And I know you're hoping I'm going to say, yeah, we can, well, we can next week. That's what view is going to do for it. That's what it means to be reactive. So right now we have to manually make everything occur. When we talk about reactivity, just to kind of bring the idea up. Since the next two weeks are going to be about reactivity, it means that
+
+we'll bind this
+
+to this array, meaning we'll connect them and then we change this array, this will change automatically. That's what it means to be reactive. We talked about a reactive framework, it means instead of driving things by saying Okay, now I need to add the reviews to the array. Now I need to add it to the page. Now I need to share the form instead, we'll drive it by, I need to add the data to the list, I need to add the data to this variable and the You will take all the other actions for us, doesn't mean you have to tell it what to do. But what to tell how to behave in a more simple way than writing out a bunch of code. And that's what it means to be reactive, it means to start driving the pages around the data instead of around the structure. So just coming out, that's where we're going. But today, with vanilla JavaScript, we have to do all that manually. And it's not going to do anything special. It's good to just write JavaScript for us, but we'll look at that next week. So any questions of what we looked at so far, we have one more thing to look at, but
+
+I say that cuz I don't want to give you false hope that we're done. Right.
+
+So the next The last thing we'll look at is this idea of called event delegation. So before we look at that, I'm gonna ask one more time if there's questions about what we just did, but about anything from today, because it's going to kind of build into this other concept.
+
+So just to clarify real quick, the reviews array that you created right there, we didn't actually have to add the new review to that for this particular web page. But it's just, I mean, I see its purpose in the future.
+
+Yeah, we, we didn't. So now if we would have skipped this line, this would have worked just fine. Because the display review has been separated out, we just called it. But it's kind of taking the place of where we would have caught an API or done something to persist the data. In the users, we generally don't want the user just to see their own review. Then they go away from the page and the reviews go on right and nobody else can see it.
+
+You So make sense
+
+that that's kind of fulfilling that space. We're just not there yet.
+
+Okay, so other questions before?
+
+So would we normally like have an empty review array and get the other information from the database and add it to the empty review array that would be tacked on to?
+
+Yes. Okay. So normal page flow, because the reviews are probably going to be in the database, not not just an array, right? That they are going to be an array on the user's machine. That's going to be true. So that's not going to change, but they're not going to be hard coded. So what we would have on this page load, so there would be here where the page is loading, there would be a method that goes and makes an API call and retrieves the list of array, the list of reviews, this array would still be here, and it would populate this array. Then from that API call, and it would build the page the same way. And then when we got down here, and we're saving it, instead of just putting it into that list of reviews, we would make the API call to add it to the database. And then we probably would still put it in the list of reviews. So we don't have to do this the get again, we just do the push or the put and make the change on the user's machine manually. But with view, we'll do the API call, put it in the array, and it will reactively update the page for us. So that's the way we normally would actually do this, we wouldn't have it just hard coded that because right now, it's only you know, as soon as I hit refresh, it's gone. If another user comes to the page, it's not they can't see it. So it's not really useful. That's all stuff coming in over the next two weeks.
+
+So that's what we're building towards.
+
+Alright, so let's look at the last topic. And that's this idea called event delegation. And it's kind of a specific, not specific, but this problem of close this, I'm gonna go to this, the next set of election code is event delegation demo. So I'm gonna pin that and open it in live server. Open its index, and it's HTML, so we can look at it. Actually, it's the JavaScript enough.
+
+So we have a list like this.
+
+And the way this particular page works, if I click on one of these items, It changes the background to whatever
+
+colors listed.
+
+It's just a click event and it just takes the text and just changes the background color for that Li that list item to that text. But the click event, we have a choice of where we're going to put it.
+
+So if we put it on the list item,
+
+that's going to work. But now we have 123456 events.
+
+And if I want to add a new one,
+
+then when I add this new event, this new item, I have to add an event handler for it. Right.
+
+So
+
+I which means that when I add this, I have to write extra code An event listener and I have to keep track of what's in this list, because each one has to have an individual event listener. That works. But it also means that when I'm loading initial lists, I have to write 123456 event listeners, or after write a loop that goes through and finds each of them adds an event listener. So that's tedious, tedious. So that's okay, maybe when I have seven or eight things, but what if I have a list of 10,000 employees that I have to show or a larger company of 300,000 employees last come at work for that's the range they were in. So I want to, you know, be able to show you know, 50 or hundred plays at a time. And as I go through, I have to now each time that changes loop through and find each one of them and attach an event listener to it to make their names clickable. That's possible, but it's tedious in a lot of ways. work. And it's also very brittle, it's gonna break pretty easily anytime you have that many things connected. So
+
+we know that there is
+
+this propagation occurred.
+
+So I click the button is propagating in this way, what we care about is the bubble going back up. So what if I captured the event not at the button, but here at the div or at the section. So if there's 50 buttons inside of this div, I captured the click event for all of them here. So not at the button level. So going back to our page, what if we captured the event for the click not on the individual allies. We took the manager propagation and captured the click event on the URL. And then we checked which ally it was in applied the changes we need to that individual list item. That's event delegation. It's meaning capturing the event at a higher level on the propagation during the bubble phase. And then looking at the event, so interrogating the event object to find out what the target is. And then applying it to the individual target. So the event object has the target. So there's a couple problems this possibly brings up. So there's no guarantee that if we're working with, for instance, allies, or this URL, or any or div, that the only thing inside the only child
+
+of the element is
+
+the type of control we're interested in. Right. So we looked at yesterday that things like divs have Text nodes and things that we're, we don't always think of as being existing. And those things can take over have can spark the same events. So the click event from anything inside of any child or anything of the descendants are going to cause this event to be captured. So that means that if these Allies had, like icons inside of them, that had click events, we're going to end up capturing the icon here at the UL level as well. If they had no span tags, we're going to capture the events from the span tag, we may not want to do that. We may but we may not want to. So we need to do two things we need to verify first, that is the type of control we're interested in. And then we need to identify the target which one it was, and then apply whatever changes we need to that target. And then we can have one of that, that handles all of the items inside of it. Whether there's more None of them are 500 of them, or 300,000 of a move won't matter. There's one of them handling them all. That's a delegation, we're delegating the mental higher level in the bubble propagation. So here, this is already written, but we'll make a couple changes to it at the end. But let's look at how it works. So
+
+the way this works, is that
+
+let's refresh it.
+
+When we click
+
+one of the Li, so it adds an event listener. Here.
+
+It's adding it not to
+
+the individual list items, it's adding it to this unordered list. So the container and this could be a div or a section, this could be anything. So anything that's containing the other pieces. We haven't used the unordered list because that's just not what this page was laid out. This could be a bunch of divs work the same. So we're applying it here this level. So the actual click events are going to be here. And it's going to when it propagates to here is when we're going to capture it. So we apply the click event to it. And in our event, we're using event target node name. So the node name, remember we looked at yesterday tells us the tag name, or the node type, if it's a text node or so it tells us the name of the node, which is going to be the name of the element, the name of the tag, if it's an HTML tag, which that's what we care about. So we'll putting it to lowercase we don't have to, but that just makes it less error prone. And then we're checking if it's an ally. So that means that we're only going to care about this event. If it's an Li, inside this as a child, so something else is in here this Bob the event like a span tag, or an icon or something like that. Or div, we're not going to care, we're just going to ignore it unless it's an ally.
+
+And then
+
+event target
+
+is what triggered the event. So event target in propagation is not where we're capturing the event. It's where the event started. It's the target. So that means that if this yellow, Li with yellow, and it was clicked, it's the target. So the event target object is going to be this individual list item, even though we're capturing the event here on the unordered list, so we're making sure that it is a list item, because that's the only ones we care about in this choice is going to be based on just what type of children we care about. So maybe one and maybe we have to have an or statement or you know, and statement or not, and it can't be two things, an or statement that checks a few different things. And then knowing Now that it is an ally, we can use the event target, which will be the individual one. And then here's just changes the style background to its text. But it's taking advantage of the fact the event targets where the event started
+
+to actually apply the change.
+
+Which means that when we add our new list item, orange, and this button, all it does is create a new Li Adam element, and then it appends it to the UL list. When we do that, it just works. We don't have to do anything more to it because when we click the orange, it's quick event automatic is already there. So these events are always firing just side whether we decide to listen to them or not. So the click event occurs, but our event listeners on the unordered list, so we didn't have to register a new one. It's still there. It captures the propagation of the click event from the New York Orange list item and then makes the same changes if it does the other ones, only now targeting the orange, the new orange one that was added dynamically to the DOM. So
+
+what questions do you have about that before?
+
+That make sense?
+
+So let's change.
+
+This added orange to be something a little more interesting. So we can better I think, demonstrate how adaptable This is. So I'm going to do two changes. I'm going to go to the HTML and just down here, by the button, so right before the button Going to add an input type. And I'm going to add it as a color picker.
+
+Id
+
+I guess we'll just call it that. It's going to add a color picker control, which is gonna allow the user to select which color from a visual chart instead of typing in.
+
+And then.
+
+So let's see what that looks like. We can see it's right here. And this control, it's part of html5 allows the user just to select any color they want. And it'll set it to the RGB values. So let's change add orange to something like add new color just to make it match what it is doing. Now over in the JavaScript. Here in the ad orange, we have for an ad document, Li instead of enter text, which is adding this next item instead of just defaulting it to orange. Let's get document, get element by ID.
+
+And I did. I did give you that, okay? And then
+
+we'll use the color
+
+picker ID
+
+and just get the value of it, which will give us the hexadecimal value.
+
+And
+
+save it. So now we can pick a new color, and we can add it and it sets it to the background.
+
+There's to work, we can pick
+
+as many as we want. And they all work
+
+with whatever
+
+color the user selects
+
+because the of the event delegation
+
+because it's being delegated to the URL, and using these values are all valid. So colors so we can change the background color to any of them. And we can add, we could keep doing this too, we had hundreds of them, and it would continue working with the one event.
+
+So let's add another delegated event,
+
+which so let's just make it so right now they have here, but if you double click, it removes that. It goes back to just the default background. That way, we can kind of talk through how we add the delegated event again. So to add a delegated event, we're going to start with we want the events on these items. So the Allies that's the thing that are many. So event delegation always occurs when we have many children that need the same type of behavior, which is a common thing and less minutes. What let's type things are going to be.
+
+So
+
+we pick a parent, or an ancestor element that's in its hierarchy that we want to receive the event on, that we want to use get used to propagation to get the event. So again, we'll pick the DL, if we pick body, we're going to get click event from the h1, the paragraph, the input, that's a lot of things to get the click event from. So we want to pick something that is closest we can we want the nearest parent or the nearest ancestor in the hierarchy that contains all of the things that we need. Because the farther we go up the hierarchy, the more kind of noise we have to deal with. So the closest container here is the UL, that's the one I'm going to choose like we did before because it'll allow us to do do that
+
+in a way that is
+
+we don't have to really worry about anything but just
+
+those few allies.
+
+So I'm going to add a new event listener here. And we already have the Li selected by its ID, which is cars.
+
+So I'm going to use that. So we're going to add another event listener.
+
+It's going to be for the double click event.
+
+And I want the event object. So I'm going to use it and I'm going to have to have the event object so we have to interrogate it for the delegation to work. And then the same way as before, the first thing I'm going to check is since they could have I don't know, right now, when I look at this code, I do know there's only allies in here, but there's also Could be, other things can be added. I, since I'm working with the container, I don't know exactly what might be here. So I need to verify it's what I'm interested in, which is the Li. So event, I'm checking the target. Remember the target is going to be what actually was clicked on somewhere going to check the target. And I'm going to ask it node name,
+
+which is actually going to be equal to Hello, I
+
+think I'm not sure enough. So let's just put it to lowercase or to uppercase. So the point of that is because like, I think it's like that, but I don't have to worry about it if it's to our lowercase or uppercase, and now we'll just take the same thing we know we want the target, which is going to be one of these list items, which is going to be event target is going to be the same as selecting have the same value in if we'd done something like query selector with, you know, the Allies class that points to the individual one. And just like before, we'll set the background color. And we're going to set the background color to transparent, which is the default background color. And the reason we have to do it that way is because the author of this chose to use the background color property instead of using CSS. So we have to put it back to its which is fine for this example. And I think I spelled something wrong. Maybe not.
+
+So now
+
+we have this delegated event. We click on it, we double click and nothing happens. So let's figure out why.
+
+It goes missing in an in background.
+
+Now Thank you.
+
+You know, video so cozy and telling me that and I was just going along and ignoring it.
+
+So,
+
+now we click now we double click, and it's still not working.
+
+So something else is going
+
+wrong here, wash for the background between Are you missing style?
+
+I am. Thank you.
+
+So I'm just going to pretend like I was doing this on purpose too.
+
+So that you could check in.
+
+Now it's working.
+
+So now, as we add the new
+
+colors to it,
+
+it gets both the delegated events. So we had the one event and as we add each, as many things as new items we want
+
+they just work from single event. All right.
+
+So questions.
+
+So I'm going to
+
+bring up that event delegation is not, you can get through most things without delegation. There's nothing here that I had use of it negation to make work. It made things a lot easier. And maybe write much less code and much less confusing code. But the concepts a little more difficult than just attaching it to the individual events. So it's night want to point that out because it's something that can work with out
+
+what's interesting
+
+anyway, so it's something that if you don't quite get or it's not making sense, you can actually do everything you need to do without it. You can just make your life easier. If you considerably so especially for larger projects. So it's get it's one of those topics that if it's, if you're picking one to not get today, fully, this is the one. This is the one that you can get by without. And learn more when you need when you run into a problem when you need it. But it does make sense it can make a lot of things a lot easier.
+
+So other questions before
+
+so then
+
+today for your exercises.
+
+Let's look at them.
+
+Let me pull up.
+
+They're similar to yesterday. Only. Just two of them
+
+and
+
+workspace
+
+And there's some, you'll definitely want to follow the readme for these particular exercises. There's so there's two exercises The first one is shopping list. And you're going to continue from where you worked out yesterday
+
+and go through
+
+and where's the shopping list that is
+
+in your grade to go through and
+
+add
+
+these Mark items complete and complete in a toggle all for them. So I'm not going to and then there's tests for them. So inside of the shopping list folder, you've run npm install before, so you'll be run out again to install the setup the test. So but you have this half To be run inside the shopping list folder, the one that has the package dot JSON, there's two projects and they both have a package JSON. So it needs to be done inside of a shopping list. So with the package JSON, for it to work. So if you run it in, you have to run it again and calculator. So needed run at each one thing by you'll learn by the end of the cohort is that you have to run NPM a lot, installs a lot and
+
+you'll learn just
+
+and they all take a while.
+
+So
+
+you run it in the shopping list folder. And then once it's been run, you can run NPM run test now let's run the shopping list test. I'm going to open up a new terminal here
+
+and we'll open it for instructor.
+
+If you don't know since we haven't done this before, in Visual Studio Code See what I did, there's terminal new terminal. And you can open a terminal, open it to your, it asks me which folder I want to open it to. So it opened it to this folder here. And it's a bash shell so works just like the terminal, it is the same terminal is in. Not it's not the same, but it works the same as the one that you're used to. But you can also just go to regular terminal, and wouldn't Mac terminal to work to. So either one. So let's figure out where we're at. We have to change them to a shopping list. And now run npm install.
+
+And the reason I'm doing this, I'm going to show how the tests work.
+
+So why that's installing because this might take that's going pretty quick. So these are downloading a bunch of stuff. Some of the NPM installs will take a minute, sometimes they can take actually 15 or 20 minutes. They're really thinking how big the project is. We get to the view projects. They get kind of Sometimes, but
+
+in the meantime, let's look at
+
+calculator.
+
+So the second project calculator
+
+is
+
+somewhere,
+
+but
+
+you'll be running.
+
+You'll go through each of these things to our listener to the calculator. It has a test and it's basically just a calculator page.
+
+Don't think that's the right one. That's the shopping list. Sorry, let me get the calculator page that you're just going to make work. So when someone presses seven, you No, which is seven plus it should add to show should wear her calculator. I think that's kind of like the overall functionality. I think everyone knows how a calculator works. So you should make this work like it looks like it should work. If you were given one of those like little calculators the bank gives you for free that book just like this. That's what how it should work.
+
+So
+
+let's go back to the test now. So for the shopping list test or for the calculator, test two because I think it has tests. You can run you want NPM run test, and this is the readme for both. And it's going to run some tests. And it's going to run them through this program called Cypress. Which we may or may not see start up it's on my other screen.
+
+Which my computer may not have enough
+
+have the ability to actually run? Why have zoom running?
+
+Yeah, even without zoom running, it runs really slow generally, again, this is
+
+this is really slow.
+
+I ran into a few things that they had this module last quarter where my laptop wasn't strong enough to run, zoom and do the thing I wanted to do at the same time. So I'd have to actually stop the video and make things happen. So it looks like it started up as took a really long time. So it comes up. And if we run all specs,
+
+we'll see from opening
+
+and you see it's being controlled by automated software and then Again, it may or may not work for my computer right now. It looks like it's going. So now it's going through and running the test.
+
+Oh, you have to have no get on live server running.
+
+Yeah, you probably have to have it running already. I don't know. I always get it backwards. So you're not just have it running when you run the test. I can I remember. I can. Some of them. You have to make sure it's not running before you run the test.
+
+This is all in the readme. I didn't read the readme. I'm just
+
+gonna have us just do it. Yeah.
+
+Did the NPM run test headless but I guess it's the people like it what to see the
+
+it should work. It'll work for you, if you follow the readme. Maybe
+
+I need to get out of this here. So you can also run it like this NPM Run, test
+
+set, right?
+
+And
+
+it'll run in headless tells it not to show the browser, and it should run it to show you the results. But that's all set. It's all in the readme.
+
+It should work better. It'll work better for you if you actually follow the directions instead of just trying it like I was doing.
+
+So
+
+that's how you'll do your exercises today. Now, something to be aware of if you're not going there, guess
+
+it's because using electron and wonder it's so slow.
+
+So there it's running the test. So this is what they look like when it runs headless.
+
+Which is more like you're used to seeing you see them all failing.
+
+But
+
+so there's two sides, but they're not.
+
+It's not equal amount of work between the two pieces. So if you're trying to so there get there, the results, seven tests have failed. So if you're, if you're not, don't have them, just keeps sorry. If you need to turn this partial work in to or if we tell you know, if you're, if you're getting the concept and you have enough to get the to turn it in, it's fine. If you're doing that, be aware that completing the shopping list is not 50% of the work for this exercise. It's I don't know how much but it's not it's, it's pretty small compared to the calculator. So if you do that, as a lot of people have done in the past that that I've done half of it. I've done one project To um, that's 50% that's not the case. The shopping list is pretty small, the calculators really large. So
+
+be aware that
+
+if you're in that that case that situation where you're taking advantage of that or need to just Just be aware of how many tests overall not
+
+the fact is just two projects.
+
+I am surprised Brian that you ran that I think it is it running somewhere something because for me when I run the shopping list from the student exercise default, the passes through the test automatically without doing anything.
+
+Anybody else happened to try to run it on theirs or anything.
+
+I'm still trying to install it's taking a while
+
+you're NPM installs to infer
+
+i don't know what i want running.
+
+There's a good chance that I read Got it yesterday and it's still running
+
+at 81. And I think when I ran it, it was at
+
+8081. Yeah, I have something else going somewhere.
+
+Oh, it's probably you know what it is. I was running today's lecture cut on 8080. So it's running the test against today's lecture code.
+
+So I think that's why they're the way is there is because when you guys run your student exercise, I think three of them will pass by what's been given to you already.
+
+That explains why I was having the other problem to see what's on port 8080. Something that's Yeah.
+
+I have something running on port 8080. That,
+
+that looks like an API.
+
+message. So anyways, yeah, I have something running that's on port 80 and the tester so that won't happen to you. It'll work for you. It's because I don't close things and my machines a mess right now.
+
+So, yeah, it should go better for you.
+
+Alright, so other questions for today before.
+
+So
+
+see for the afternoon is an event. So you have the overview of the base 22 employer showcase at three today. After that at four, we have the side project review here in the classroom for anyone who's interested. that's optional, but I would encourage Kurt mean to be interesting. So if you have a side project, you want to show everybody and have them either just
+
+to show it or
+
+have get feedback on it. Bring it along, and you're welcome to do so. You're just be open to whoever wants to do that. If you don't have a side project or don't want to show don't want to show everybody you work. That's fine. Just you can just come and watch or just come and comment and just look at them. So there's no requirement if you show up that you have to show everybody your side project or even talk about your own side project. So don't feel like that. That's going to be no, you don't have one or you don't want to talk about it, that you're going to be required to. It'll be completely optional who wants to demonstrate there's
+
+so that's it for They'll be here in the classroom like,
+
+and then tomorrow will be a review day. Reminder, I won't be here. JOHN will be here. So I'll answer. I'll be checking river stuff later in the afternoon. So if you need anything, the job would be here to walk through a review tomorrow of this week. So
+
+any other questions or
+
+anything else you'd like to bring up?
+
+Is the review tomorrow gonna be like one massive class,
+
+no jobs. Sorry, I guess Sorry, I forget. So this module, John's not teaching this module for dotnet matters. So he's taking, he took over so he could, since he's new, he's teaching John's module four. So he's the instructor available to fill in
+
+massive class
+
+that we did talk about that. Just everybody like the entire cohort just in one giant class, but
+
+I thought that'd be a good introductory format.
+
+to tap Andrew.
+
+Andrew, he did teach the whole cohort. This is
+
+just for old times sake. He used to be an instructor on stuff here and it was always great. Just pass everything on to Andrew.
+
+So used to be the default. So
+
+So if there's nothing else then Ah, thank you and have a great afternoon. And Monday, we'll take a look at view.
+
+Yes, I did have a few questions. But it was it's about the interview yesterday. So let's just quickly if you have some time, okay, sure.
+
+Sure. I did have a question. Well, we have one more tomorrow.
+
+Not not that's required. All right.
+
+Cool.
+
+Transcribed by https://otter.ai

@@ -1,0 +1,58 @@
+Book
+https://book.techelevator.com/content/component-communication.html#importing-components
+
+Importing components
+Now that you've identified the different components in your application, you need to use them in your main App.vue component. Continuing with the previous example, you'd end up with the following components:
+
+/src/components/TheHeader.vue
+/src/components/LeftNavigation.vue
+/src/components/RightNavigation.vue
+/src/components/BlogPosts.vue
+/src/components/TheFooter.vue
+To import and use a component within another component, you need to perform these three steps:
+
+Import the component.
+Declare the component in the components object.
+Use the component in your markup (template).
+<template>
+  <the-header></the-header>
+  <!-- Step 3 -->
+</template>
+
+<script>
+  import TheHeader from './components/TheHeader'; // Step 1
+
+  export default {
+    components: {
+      TheHeader // Step 2
+    }
+  };
+</script>
+If you import all of your components and use them in your App.vue, it would look like this:
+
+<template>
+  <the-header></the-header>
+  <left-sidebar></left-sidebar>
+  <blog-posts></blog-posts>
+  <right-sidebar></right-sidebar>
+  <the-footer></the-footer>
+</template>
+
+<script>
+  import TheHeader from './components/TheHeader';
+  import LeftSidebar from './components/LeftSidebar';
+  import BlogPosts from './components/BlogPosts';
+  import RightSidebar from './components/RightSidebar';
+  import TheFooter from './components/TheFooter';
+
+  export default {
+    components: {
+      TheHeader,
+      LeftSidebar,
+      BlogPosts,
+      RightSidebar,
+      TheFooter
+    }
+  };
+</script>
+You've achieved the same result, but now your application is split up into components that each serve a single responsibility. This makes your application easier to test and more maintainable. Future developers—including yourself—will thank you for the work you did here

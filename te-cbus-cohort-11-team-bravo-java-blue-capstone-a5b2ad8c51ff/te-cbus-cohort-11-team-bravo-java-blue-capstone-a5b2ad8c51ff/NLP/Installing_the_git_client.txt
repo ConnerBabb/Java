@@ -1,0 +1,31 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#installing-the-git-client
+
+Installing the Git client
+A git client provides the interface that allows developers the ability to contribute and manage a git repository. While some developers prefer applications with a flashy user interface, others prefer to work with the command line where they have the highest level of control.
+
+Below are the instructions to install the git command line tools.
+
+Windows
+OS X
+Visit the Git Website and download the Git Bash for Windows client.
+Run the Git Bash for Windows installer. Leave all of the default settings as they currently are.
+Once the installation is complete, a new program called Git Bash is installed.
+#Configuring Git
+Once git has been installed, it needs to be configured with a name and e-mail address so that it can associate modifications to a user.
+
+From a command line, execute the following commands:
+
+git config --global user.name <name>
+git config --global user.email <email>
+
+The Git workflow
+
+Image - Git Workflow
+Working with Git requires you to follow a simple workflow. This workflow starts from getting the code copied and running on your machine to distributing changes to other developers on the team. It's broken down into the following steps:
+
+Initialize a local repository, or clone a remote repository onto your computer to work with.
+Make edits to the repository contents by modifying its files.
+Stage modified files for Git to mark which are included in the next commit.
+Commit staged changes, providing a clear message indicating what modifications were saved.
+Push the changes to the server for the rest of the team and pull their changes into your local repository.

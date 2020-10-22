@@ -1,0 +1,1666 @@
+Zoom
+https://techelevator.zoom.us/rec/share/1_FYI6rV2GdJXY3qsBDeGb97JaL5X6a80XRK86cMyEsq6u5z-pppfhKg1FzZ9dfy?startTime=1589549186000
+https://drive.google.com/file/d/1x-iQi7B_IdL127K9j7P80CAhXlFnuuNh/view?usp=sharing
+https://docs.google.com/presentation/d/1iUOwqC604xyJrG2sNiGiKcYwsHEh5fV0e5xkRsL18Gg/edit?usp=sharing
+
+So this quiz challenges, something that we haven't talked about about yet. And that is actually a harder skill than writing code. And that's reading code. It has a lot of requirement to be able to, to be able to follow what the codes doing, which there's no trial and error with right. There's no experimentation that you have in your writing code. So it's, it's hard.
+
+Let me get to
+
+see like this. Alright.
+
+So the first one
+
+is something we looked at before it deals more with this shorthand operator where We have x equal to two, y equals five, and then x or y plus equal x, if you remember that that would be the same as y equals y plus x. So it's going to be two plus five. So y is going to end up being seven.
+
+But I don't think that's the one that caused
+
+problems. That's the others, like this next one. So for this one, given an integer answer, it is a for loop where it's going to start at zero, it's going to loop 10 times so from zero through nine incrementing, one, one at a time. And that it's going to if I, so the current iterator, the current iteration is modulus of two is equal to zero. So if it's an even number is going to add it to the answer. So let's track what
+
+This will be doing.
+
+So we're gonna have AI, and we're gonna answer.
+
+So they both start at zero.
+
+And we're also gonna be iterations. So the first time through AI is going to be zero, that actually is going to be true, but when we add zero to zero, it's going to remain zero for answer. The second time through
+
+AI is going to be one.
+
+And now this is going to be false. So answer is going to remain zero. The third iteration is going to be two. Now this is going to be true, so it's going to be zero plus two.
+
+The fourth iteration is going to be three.
+
+And this is false because it's going to be modulus of one. So I am just going to remain to the fifth time through increments is going to be increment from three to four, four is even. So this is going to be true, which is going to add those two. So we're going to get six, then the next iteration is going to be increased to five. That's going to be false here. So this remains six.
+
+The next iteration is going to go to six,
+
+excuse me iteration seven. So that is going to be true. It so that is an even number. So that's gonna go to 12. next iteration is going to be is going to be increased to seven, this is going to be false. So this is going to remain 12. Because that line of code won't run.
+
+Then I'll be decreased the eight on the ninth iteration
+
+and that is true. It is true that modular to eight is going to be zero. So that's going to add these two numbers together. And that'll be 20, then I will increase again, so it'll go to nine, and that'll be the 10th iteration. And that's not true. It's because it's an odd number. So this will remain 20. And then I will on the 11th, I gets increased again, I agree it's increased to 10. But now this condition, i less than 10 is false. So the loop ends. So the final answer, value of answer is going to be 20. Does that make sense? seeing any questions on this one before we
+
+look at the next one.
+
+So let's look at the next one, somewhere. So what value does the preceding fragment of code display so it's Similar thing like this one has
+
+slight difference in it.
+
+So when we're looking at loops, in order to read them, what we have to figure out is what the loops how it's going to iterate how it's going to change in move. So for this one, I, our iterator is going to start at 10. So on blue on the first iteration, this is going to be 10. And now answers called sum.
+
+I is going to loop while i is greater than zero.
+
+So as long as this number that started 10 remains greater than zero, it's going to continue the loop. The change is i minus equal three, so i minus three each time. So it's decrementing by three each time. So this loops going backwards. It's so the First time through,
+
+and then
+
+we'd look at the first iteration, so is equal to 10 at that point. So the only line of code here is it takes the sum this value up here. And it adds whatever the value of is to it. So the first time through the loop is equal to 10. So it's going to be zero plus 10. So it's going to end at 10. And then I is going to decrement by three.
+
+So it's going to be 10 minus three, it's going to get a seven.
+
+And now it's going to go here. It's going to be the sum again, so 10 plus seven. So 17 that is going to change again, it's going to go back up here and change. So I was going to decrement by three and then it's going to add the new value of i which is four to the song which is now seven Team, so for in 1721 now is going to decrement by three again. So that's going to be one and now it's going
+
+to add
+
+the two together. So 21 and one. So the new value, the sum is gonna be 22. Now is going to decrement by three again, so it's gonna be negative two. And now this condition is greater than zero is false. So the loops done, it doesn't go through this code again. So at the end when it exits the loop, and prints this line sum is equal to 22.
+
+That makes sense. Any questions about this one?
+
+So number four,
+
+is about scope. Right now. Pure that at first But that's what it's about. And it uses that implied scope we talk really briefly about yesterday, but just long enough for me to tell you don't use this, at least here at Tech elevator. And the reason is actually demonstrated by this, that it can be error prone. So for this, what's going to happen, there's a for loop in this line here is going to be in the implied scope. Because the single line after it becomes the implied scope. So this would be like if we had the same code.
+
+Here.
+
+If we rewrote this code using
+
+proper braces, and brackets, it would be this. So I'm guessing when you look at this, where there's an error is maybe a little more apparent
+
+because it's clear the scope is here.
+
+But here, it's a little less apparent because it's an applied scope. It's only the next line. So since there's a break, or actually doesn't matter if there's a break or not, even if this here was on line four, it'd be the same. Same problem. Since it's not this line of code, I is out of scope. It doesn't exist any longer. Because is declared in the for loop, which only gives it to this single block. So line five is going to cause a compiler. It's going to tell you that is not available.
+
+Does that make sense? Yes.
+
+All right. Go back to the last question for one second. I did have a question. Sure.
+
+When you go through the loop, maybe the first time you set it just gives 10 some equals to 10 plus zero,
+
+it doesn't
+
+decrement by three The first time you run it, that's correct. So the order
+
+Let's is going to be
+
+cool. So the order is going to be, this is going to run first. That's the first thing happens.
+
+And then it's going to go here.
+
+Run that code. Actually, though I actually that's not quite correct. Let me refresh that. It's going to not go there. It's going to go here and check the Boolean condition. And if the boy and condition is true, then it's going to go here and run this line of code.
+
+Then it's going to start the
+
+looping by if after this is done, it's going to go here and make the change. Then go here and check the Boolean condition, then here and check the code. So the red is the first time only. The first time only it sets up the variable it checks the condition make sure True. If it is it runs the code. And then after that for each time through the loop it
+
+after the loop completes, so the
+
+loop runs the first time the code block runs the first time, then it goes, makes the change checks the condition again and keeps repeating. So, answer Yeah, thank you.
+
+So the next one, five.
+
+So, given the following loop,
+
+it's asking what is going to print out so for this loop, it's going to start it is zero. I is going to go while it's less than five, so zero to four.
+
+And it's going to increment by one.
+
+So it goes through the loop. It's going to set create a variable Sum,
+
+which is going to be equal to zero.
+
+sum is going to be equal to plus equal the value of i.
+
+So let's look at this here. So the first time through is equal to zero. So some sum is also equal to zero, and zero plus zero is going to be zero. So it's going to print.
+
+See, down here prints, it's going to press zero.
+
+And then because it prints it here in the loop, so it prints each one, one at a time. So then it goes back now is equal to one.
+
+So some
+
+gets reset to zero. So now some z equals zero. So zero plus one is going to be one, so it's going to print one on this line, then it's going to go back to the loop is not going to be equal to two.
+
+Sam is going to get reset to zero,
+
+then it's going to add zero and the two. So it's going to be two.
+
+And the next time through is going to be equal to three.
+
+Because it when increments than sum is going to reset to zero. So zero plus three is going to be three, and then it prints so that's three.
+
+And the next time through is going to be equal to four.
+
+Some is going to get reset to zero.
+
+So zero plus four is going to be four.
+
+And then it prints
+
+and then is going to get set to five.
+
+This boy and condition is now false. So the loop ends. So what it's printed is 012345 Because some is inside the loop. So it keeps resetting some to zero each time it gets recreating some for the answer that it kind of seems like it should be, especially after the other ones. And is to get an answer where it became cumulative, where it became one plus two plus three plus, or the sum of all of one through zero through four.
+
+This sum
+
+would have to be out here, to not be reset to be cumulative. Because it's inside the loop and not outside of it. Every time this loop restarts, everything in that block gets run, including the creation of sum, which sets it back to zero.
+
+Does that make sense?
+
+This one usually does want to see what it is but seeing that can be difficult
+
+because it requires
+
+Kind of walking through how the codes running in your mind. That's what reading code really is, is almost walking through in your mind how it's running, it's more than just reading the text of the code.
+
+So questions on this one before we continue?
+
+Yeah, I, I put a
+
+enter, return after every number would print out. So
+
+it the reason it doesn't is actually something we'll talk about today.
+
+It's because it's print instead of print line. So if you've got 01234, and you have returns between them, you've got the important part of the question right? Socrative may have marked it wrong, but that really doesn't matter because these scores this hope these quizzes are about a check of your knowledge, so they don't count in any way. Fact, nobody looks at them. Besides Rochelle and I. So don't. So if you if it's said checks these answers, and technically, the return would be incorrect. But the important part of this question was actually recognizing the resetting to zero. So if you got that part, right, don't worry about the does that make?
+
+Yeah, yeah, I didn't see that it was print instead of print
+
+line. In effect, we haven't talked about print yet. That's actually today's material. So Alright.
+
+So the next one
+
+sets up
+
+an array of integers.
+
+So this is going to create
+
+a new array of 10 numbers. So it's going to create
+
+an index
+
+and a value for this array and it's going to be used Row 1234679. And then the values are all going to be zero to start with.
+
+So this line of code creates an array that looks like this.
+
+And then there's four. And there's an iterator ix. And remember this here is just a variable. We said we call it an eye. It's just shorthand for iterator, but it can be anything. We can call it whatever we like. So they decided to call this one eye x and they're starting at zero. They're going y i x, they're looping while is less than length. So this array is going to loop starting at zero and go to one less than length. So that's going to be nine which is going to be time to be the index of this array.
+
+And it's going up by one.
+
+It is going through here it's getting the value of the of the of ix The iterator and multiplying it by two and assigning it to the location in the array. That is the index in the array that has that same number. So I x has been looping the first time through is going to be zero. So that's going to assign this to zero. The second time through second iteration is going to be one. So one times two, it's going to assign it
+
+no one. So no.
+
+Next time through, it's going to be two. So it's going to assign it for next time through, it's gonna be three, it's gonna start at six. And is going to x is going to keep 1224 to assign an eight. And you see the pattern is going to be double whatever the iterator is But one of the one we're actually interested in is index three. So we're interested in this index. So the value that's going to be here after this loop completes is going to be six, twice the index essentially.
+
+Does that make sense? Or questions about this one?
+
+Let's go down to
+
+last one. I think it's the last one. So for this one, we have an array. String cities. Remember the syntax we looked at slightly yesterday, the static initialization where it creates an array, and this will create an array of cities populated with Cleveland, Columbus, Cincinnati, Akron, Dayton and Toledo. So with six six items inside of it, index 01234 and five. So then it called looks for cities at index three So we can see what one is by seeing that this is index zero. This one is index one. This is index two. This is index three. So our answer is going to be this this element from the array.
+
+That Any questions about that one?
+
+Let's clear that. I think that's the last one. It is. Alright. So any other questions about I guess we walked through the quiz if you have them or just from yesterday before we start looking at today.
+
+This up
+
+and
+
+All right, so um
+
+so the final thing I say about the quiz is that I know that quizzes really demoralizing.
+
+So just to put it out there the average on that quiz, I haven't seen the average this time, just which quite one of the questions is usually in the 20s. So don't be the more like, so if you got a score that you felt was low, really low on the quiz. Don't feel bad. It's normal, because it's introducing this idea of reading code. Unfortunately, the reading code is not something we can talk about it but doing it is, what is the only way really to practice it. So there's a few few others that come up like that, where, but it gets easier with practice. All right.
+
+So let's talk about what we'll going to be talking about today.
+
+So, so far,
+
+we've been working with these programs where
+
+everything's come from another piece of code setting values for us, we're missing a huge piece. And that's that everything we've written has been these little chunks of code, but we can't interact with a user. So we're missing the ability to be able to ask the user what they want, or have them give us a value. So today, we're going to look at command line interfaces, which is going to allow us that's gonna allow us to expand out. It'd be able to ask the user for what they want, we're gonna be able to ask them questions and get the responses on the command line. So typing in Terminal,
+
+but we still can interface and communicate with the user
+
+So what we're going to look through today, we're gonna look at the system library, and we've already been using system out, we're gonna look a system in and how to use that which is, like it sounds is the opposite of out. It's going to wear out clauses to put values out to the terminal, and it's gonna allow us to get values in from the user. Then we're going to look at parsing strings. So we looked at casting data, which was changing data between two like data types, like from int long and long to end, parsing is going to be changing in between unlike data types, so taking a string that might have numbers on it and turning it into an actual integer or double. Then we're gonna look at something called command line arguments. And which is a little different than the command line interface stuff we're talking about. And we'll talk about why show why switch second way of getting in information from the user, we'll just kind of look at that as kind of a demo of this exist. And this is how it works rather than a deep dive into it. And then we're going to write a program. So we'll use everything we've learned this week to write some code and write an application. And then at the end, we're going to talk about pair programming. So
+
+So today, we're going to do work.
+
+So today, I want to instead of just walking through the slides,
+
+I want to do a little differently for these topics. Which means we're going to probably have to bounce around some slides a little bit, but I think that'll be okay for this. Instead, I want to let's go to an open the lecture code and want to solve a problem. And as we solve the problem and write some code,
+
+we're going to have to talk about these so we can use them
+
+So I'm going to go to eclipse. And I've already pulled the lecture code. So I'm going to then actually go to File, Import. I could have right clicked, I don't know why I CIT changed.
+
+And Maven, existing Maven projects.
+
+I'm going to browse
+
+to my development folder shoveled with materials, you'd want to go to your name Java materials, module one, command mine programs.
+
+And following along, you'll want to go to still a lecture How am I going to lecture final and then just open it up.
+
+So in the command, my programs lecture, expand that. And they go to source main Java. There are no test cases today. Since we'll be writing one things we'll talk about as these command line programs. For the way we're writing them today, we're starting with them, there's no easy way to really write test cases around them. And we'll talk about why when we talk about testing in a couple weeks.
+
+So I'm gonna then open up combat tech elevator.
+
+There's a second one here that has a second example that's pre written that you can look at later. I'm kind of like the other sample code and the other lecture code. I'm just gonna close that. And we're gonna be looking at start with earth to sunwave converter. So we're gonna write a program.
+
+And
+
+what it's going to do is it's going to take in a number from the user, that would be their weight on Earth. to their weight on the sun, not not exactly but rough estimate. So if anyone's an astronomer into astronomy or mathematics and like, no, that's not your correct calculation, we get to it, it's not going to be. And we're going to So to do that, we have to understand the workflow of a command line program, we've been using them, that's what get is gets a command line program. Things like LS and CD. Those are actually programs that are written that run inside by show. So you're just using those when you're typing those commands, you're running small, little command line programs. So they all work with the same flow. So with a command line program, unlike things like a web application that we're used to working, we're more used to working with our desktop application where there's all these things going on. And we're moving by Often doing multiple things at once. And sometimes we're doing something when other things occurring, command line programs are sequential, it's going to be, they're going to take in data from the user, they're going to ask the user something, they're going to calculate some result. And that may be calculating a result like we're gonna do today. Or it may be taking an action, like when you ask get to commit your changes, and it moves into the repository, but does something and then it's going to tell the user a result, or not, the result may be if there's no error, just don't do anything. So all command line programs are gonna follow that pattern. They're going to take data and calculate something or do something. And then they're going to give a result to the user and then they're just going to repeat that if they need to.
+
+So that's what we need to do as well.
+
+So the first thing in this code
+
+if we're going to write a earth the sun wait condition
+
+Then we need to be able to do the first step, we need to be able to take data from the user. If we know how to print, send data out to the user, we can ask them a question. We've already use code that does that. So we can do system, dot out, print line. And if we wanted to find out, ask them to enter the weight on Earth, enter the
+
+earth weight,
+
+then we could and we know if we run this as a Java application, like we've done for a few things this week. So by right clicking on the name of this file, or to Sunwear converter, and run as Java application, and we're going to come back and talk about what this actually means when we talk about
+
+it in a few moments.
+
+And we can see it prints are question. But we don't know how to this point to get
+
+an answer.
+
+So that system out system outs putting output on to this console, if this was running in our terminal, it would be on our terminal. But we need to be able to have when a user types here, I can't even do because there's no and no taking no input. I guess I get a terminal. When a user types here, I need to be able to get that input, because that's how I'm going to get information from them. There's only two ways that a user interacts with a computer. They either act interact through the keyboard or they interact through the mouse. For most computers, I guess modern touchscreens, there's a third way but
+
+so
+
+With terminal, the only way they interact is the keyboard. So we need to basically be able to find out what they're typing.
+
+And that's what
+
+system n does. So when we talk about system and and system out, and that's these system dot out, or if we look, there's also system dot n. That's what we're referring to my system in and out. We're talking about these. Their objects are these things in Java, these libraries in Java, they give us access to what's called a standard input output stream. And we'll talk a little bit more about what streams mean in just a moment. But system out allows us to put data on this bat stream output system analyzes the capture data that's on that, coming from that same source.
+
+So but we have a
+
+kind of a problem with system in sis men works great, but it's kind of hard to use with it. And we'll talk about why in just a moment. But I want to talk about how we set it up and use it before we talk about how it's working. So, system out has these nice methods like print line, print, and we'll print and print f that we'll see today that but these this line, this nice message just says print this, and we tell it to print something. It's easy enough to use that we know we started using it on day two, didn't have to understand really what it did. You said that Oh, you type in system, dot out dot print line and give it some text, it's going to print it out to the screen. So it's really simple. System n is not quite so simple.
+
+So we need to make it easier to use
+
+and Java has a built in
+
+library that will do that for us called scanner. And it doesn't only work with just system. In this idea, I said this system and points to this thing called a stream. These things called streams are going to keep coming back up, we're going to talk about what that what a stream is in just a moment. But scanner works with other streams. And we'll see we'll use scanner for multiple things throughout the cohort, at least through this first module.
+
+So
+
+we can use scanner to make system and easier to work with. But that's going to require us to do something we haven't done before. So scanner is not something everything we work with so far is something is just available to us. scanners, not we have to do what's called import it we have to tell our code that we want to use it and before we can use it
+
+so let's
+
+got here and I'm going to import scanner and import something. And what import actually means is, essentially we're telling Java what to use some other piece of code. And for today, we'll, we'll leave it at that. Next week when we talk about objects. We'll talk about important in detail what it means. And But for today, we're going to say we want to use import. And what we want to import is this scanner and to tell it where it's coming from. We're going to call it Java dot util dot scanner.
+
+So, Java dot util, dot,
+
+scanner and scanner will be with capital letter.
+
+And the rest will be lowercase. And
+
+again for today, since this is the only thing we have to do this with at this point I'm going to leave it it just essentially we copy and paste or add this line of code to your scanner to our file in our our code.
+
+Next week
+
+we're going to go and take a deep dive actually the next two weeks will go into really deep on what all of this means and what this really means. So for today, we're just going to take it as we add this we use it by adding this line of code. So now once we have that up here and notice it goes right under package, so this is one of the few things that go outside of block said everything in Java goes in these blocks.
+
+So
+
+the
+
+the two things that don't is these are these two lines.
+
+Everything else will will said we'll explore that more. But we have to have some context around objects before we can do that. So now we can use this though anything, we've had this and this import down here in our code. So I'm going to create a scanner. And to do that scanner, like everything in Java is a data type. So we can use it just like we use int or string, or double or any of these other data types. So that means we can declare a variable to hold one and that's what we'll do. So let's create a new scanner. And the name of the data type is the last thing in the import. So word scanner, and we'll give it a name I'm going to call it in
+
+because it's the input stream it's in,
+
+compared to system out, so I'm kind of mimicking off of the system name for out eukarya n equals n Now we can use that new keyword. Again, it's the second time we've come up again, we've come to it, we had to use it with a raise yesterday. So we'll talk about this in detail on Monday. But with things like it and double in, they just exist. We say, Oh, we want an ad. And there, isn't it there. Because their default is that thing that zero. But for everything else in Java, it doesn't just exist, we build a variable and say this is going to hold a scanner or like yesterday, this is going to hold an array, but then we have to tell Java to create as one to build one for us. And that's just like with the array using the new keyword again, when you use the new keyword. And then, just like we did with arrays, we have to tell it what we're building, we're building a scanner.
+
+And then we're gonna have some parentheses
+
+because when we build a new object We have to sometimes give it some information. And so here in these parentheses, we're going to have to give it
+
+we have to pass it. And this is the first time we really pass something to
+
+this that system in. So just like we have system out here, we're going to tell it we want to use scanner with
+
+system in.
+
+And that's going to wrap scanner, the scanner clot library around system in making it easier for us to use.
+
+So again, we're going to declare if we're going to import it.
+
+Then we're going to create a variable for it using that as a data type.
+
+We're going to tell it we need a new one, just like we did for arrays
+
+with the data type scanner, but then in parentheses after it, we're going to have to give it a start. value. And the value, we're going to give it a system, just like we would use just about
+
+that, again, I
+
+hate having to keep saying this. But this line of code I know doesn't make a lot of sense right now. It will by the end of next week. But today, we're going to take it kind of as it just works this way. And I really hate it just works this way or take this as this magic thing type. But there's a lot we have to talk about before we can really describe that. Yes.
+
+So you couldn't use system in on its own but you're just wrapping it in the scanner package to make it more usable. Yes.
+
+Exactly.
+
+And we're going to talk about why now, WHY WE WILL WRAP THIS IN scanner. To do that we have to talk about streams. So Now that we have scanner, now we can use it. But in order to use it, we need to understand what system is doing. It was just a mouse doing too. But system out, we don't have to worry about the hard side, because that's the output side it deals with that. So in order that to talk about that we have to have a high level understanding of streams.
+
+So stream
+
+is named a stream because it's
+
+looks and behaves like a natural stream. I'm going to clear this terminal. So we have a terminal we're working with right?
+
+And
+
+from this terminal, and our program,
+
+swift have a program. Put it up here. Well, consider That purple box are our program.
+
+And between
+
+our program
+
+and our terminal, there is someone that wanted
+
+this
+
+flow of information.
+
+So it's a stream, it's moves non stop. It's just data being shoved nonstops it's like a pipe. So it's called a stream because of a water stream, you know it's moving non stop and things are just flowing.
+
+So when you
+
+put when you put data in system print line, it we prep, prep, enter your earth Wait, what's happening is it's getting pushed on to this. This can are getting pushed one at a time in order on to the stream. And then this flowing towards this application because this attach thing you can also think of it is that it's like somebody, it's a one of those tunnel slides. You seen them in a playground and somebody's staying at the top, pushing each letter off into the tunnel slide as fast as they can. And they're going down one at a time. But on the other side, as they're moving through
+
+on the stream, so we have these letters here
+
+that are moving down from our program.
+
+There is
+
+a gate that's stopping it.
+
+So when we when this stream gets pushed down, what happens When these get here, whenever terminals ready, this gate opens. And then it allows in these letters. So then they spill out, and they end up printing on our terminal. So this controlling of this gate portion, it's a metaphorical gate. It's it's actually stopping the data and holding it. But then we kind of open it up. But think of it like a flood gate, or like, that's being handled here. on the output side, getting things into the streams, the easy part. That's why system out is easy to use. We just throw things onto the stream. There's a second stream that's also connected called the input stream. And it's the same. It has a second stream of information
+
+that's flowing this way.
+
+And when a user types down here, so the user types in Something, it goes into the stream, and it flows through here. And the same way there's a gate here. There's one here that we have to open and close to get the data out. And speed, we want it. So controlling this kind of gate at the end of the stream, that's the more difficult action we have to take with system in the system in library is kind of low level controlling that we have to really understand this gate. But scanner makes it so we don't, we just have to understand what data we want, which is why we use it. Because most the time we don't care about the details of how the stream is working. All we care about is what data we want from it. And doing that making using something like a library like scanner is not something we're doing just because we're starting out any anybody using this if they didn't need the inner workings of stream, the streams and Would you scanner because that's the whole purpose of the library is to say, okay, you normally don't need that. So we've dealt with it in the core language so that when you do need it, you can choose to use it when you don't. You can choose to make it easy. Most the time you'll make it easy with scanner. So that's what we're controlling was why we're using scanner is because we need to control this side the harder side now.
+
+So
+
+before we
+
+move on to look at how old it was scanner, what questions do you have
+
+was like, Oh, wait, we're looking at scanner more.
+
+Yes, we are. Okay. Yeah, we're gonna look at some methods. We're gonna look at in detail how it works. We're gonna look at how we use it. Does that make sense? What methods we're letting you loose. It's good to it.
+
+Like the way that you described it now it seems like skin is like a blocks and the holes that kids play with, like the star shape and the circle shape. And it only allows through the blocks that are the ones that it wants, but I don't know. So I'm
+
+not allowed to anything scanner doesn't stop from what's coming through scanners more like a door person. They're holding the gate shut, and they're letting they're letting people in in groups. So if we tell the door person, we only want people in five at a time they let five people were and then they close the door and hold it until we're ready for the next five people. That's would be more what scanners doing. Otherwise, because these streams flow non stop if we didn't have something like that we would just get overwritten with information. And we're going to look at that that's actually going to be something that we come up against When we next time we encounter scanner. But for this
+
+we won't, because users can't type that fast.
+
+So like when a website goes down because there's too much traffic that problem with scanner,
+
+it's not with it. Not a problem with scanner for
+
+like a
+
+we talked about a DDoS DDoS attack. That's actually something different. It's similar. It's a similar idea of overloading something but it's not with scanners specifically. So again, not with this scanner but a very similar scanner this more complex when you're trying to watch if you've I assume most people have used something like Netflix or Hulu or some other streaming service and it cuts out for a minute or two and has to catch up. Or if you're old enough to remember early youtuber constantly would stop and say buffering That's what this is. And that's when we're going to encounter it again, when we have to start dealing with large pieces of data that computer sending to us instead of just our user typing. We're old enough to remember the YouTube buffering, buffering. I you know, I say that but that I've talked to you I've had people in classes is like, Oh, I don't remember that.
+
+Oh, goodness.
+
+Alright, so
+
+let's look at how we're going to use it.
+
+So a scanner, we're really going to be everything in scanner, everything coming into stream is going to be text because it's all users type, no matter what they type at, it's a string. So we're going to mainly use this one method called next line. It what next line does is it holds the gate closed into the user presses Enter. And when they press enter, they have a carriage return the string Then we get the text, and it just sends it to us as a string. So it's going to pause, it's going to hold it, it's going to allow them to type some code into the code, text into the streams, they type in hello world, there's a carriage return. Once that carriage return is next line opens the gate, letting out the stream in, it's going to discard the carriage return the new line. So we're going to get the text hello world, the user typed. And then it's going to close the gate and wait on the next thing to happen. So that's to use that we're gonna use a, we just call this method, next line on our scanner object. So let's go do that in our our code. And it will. So if I want to get the answer to the inner of the earth, wait, now, I could say, string. We'll give it a name like Earth wait.
+
+equals, in our variable, that scanner
+
+Next line.
+
+And now just so we can just temporarily I'm going to do a System
+
+dot out dot print line.
+
+It birthweight there.
+
+We can see it prep back out, we'll take that line out after we check it.
+
+So
+
+I'm gonna run it again.
+
+Now it asked for that I give it some number and it puts the number back out.
+
+If I
+
+put a breakpoint here, we can debug like we did yesterday with test cases we can debug these job applications by we right click on the project, instead of choosing run as we can use, choose debug as not the project file.
+
+And choose job application.
+
+So I'll switch to the debug perspective.
+
+And then start stepping step over to ask the question creates the scanner. Now, when I step, if you'll notice, it pauses, it's going to sit here forever, it doesn't go to the next line. So what's happening right now? Is scanner is basically we told scanner Okay, what the next line so it stops everything and says, Okay, we're going to wait into the user types of carriage return. We don't care what else they type, they can type a whole novel before they type a carriage return. But we're gonna wait here we're not going to do anything to a user types of carriage return, our code won't move farther. So I'll come down here and type something. Something and then press a carriage return. And now we go to the next line. If we look at our strength birthweight can has the string that I typed in it. Because next line returns it that value and I've captured it in this variable. And then that's what's used to print it. So resume up to that point. And then I'll go back to the Java perspective by going up here and clicking on whatever this I don't know, I always think it looks like somebody wearing a Sherlock Holmes hat smoking a strange pipe or something. But whatever that is. I'll click there. And hit OK. Be back to the Java perspective. So that's how the next line is gonna work. Now we're getting an integer, right? So we're getting
+
+birthweight as a string.
+
+And as you explore scanner because if we look at what the scanner can do, it has we look at next there's next Big while we don't do this yet, next Boolean, next byte next, double, next, float next in next long. So each one of these will get that data type. So they'll get the next integer. So the next time a user types numbers, which means that they type letters, it won't get it, it'll ignore it. Or they have to type a number. So it can be tempting to use those and we're not going to use them, we're going to do something different, but I'm gonna explain why we're not gonna use them. And you can use them for other some uses. I would use them. There are times when they're definitely appropriate to use.
+
+But the problem with all those they deal with
+
+the,
+
+the datatype they are so an integer. So let's look at next step. So next gen does the same thing. It waits on the user to do an input of number It opens the gate on a character turn just like this dexterous line does. So the user inputs a number they type in one zero, so a 10. And they do the carriage return, the next n says, Okay, let's get the value. And it gets the 10 off the stream. And then it closes the gate. And the next line still there. Because do line is a string character. It's through the computer. There's no difference between the letter A and a newline. character, it's just another character. So it's still hanging out here in the stream. It got left behind, because we told it, get the next end. It says, Okay, I got the next step. But you didn't tell me to get the next line, the next new line. So I use that as kind of a key window put up and get the data but I'm gonna leave it there. So now when we go to use it again, if the user types another number, I can't edit that But I can. Yeah. What's the what's going to happen is they're going to type the next number. So they type 20. But now, it's never going to even they type this, it's not going to open up again because it's going to when it does, it's going to say, okay, that's not
+
+that's not a number.
+
+So, anytime we use something like next end, to get rid of this leftover newline character, we have to call next line right after it anyways. So if we want to call next it, we have to call next line to clean up the stream. If we won't use next double, that'll work but then we have to call next line to quote the stream and sometimes that's worth it some time, but we're not going to do that today. We're going to use next line.
+
+So 220 So,
+
+before we take a break, or what questions do you have about what we looked at so far?
+
+Okay, so let's take a 10 minute break then we'll come back at 1032
+
+and keep going
+
+So what questions came up for you over the break? Okay,
+
+so now we have
+
+a way to get data in, right?
+
+We're getting
+
+the data into any string verb, but it's, we know it's going to be we want it to be an integer. But we need to, if it's going to be a weight, so we need to do some calculation with it. So we need to actually be able to do multiply it by the sun's gravity so we can get the earth weight
+
+or the weight on the sun.
+
+So, in order to do that, we need to convert whatever's in this string to a numeric type. And when we're doing that, when we're going from a non line datatype like string to a to another data type that's not like like, integer that's called parsing, we need to do something called parsing, compared to casting, which is where we're changing them between two light types, like integer, long string, an integer are not alike. It's possible that for any string, what's in there may not be numbers, you know, could be letters ABC, which are not going to effectively work and be able to become an integer. But it also could be, you know, a number 10, which will, will become an integer.
+
+So we're parsing
+
+each of the types we've looked at with the exception of string while now scanner in array. So the types we looked at earlier in the week on Tuesday, those basic types, they all have what's called a wrapper class. And these wrapper classes are going to come back a few a few times, right? actually quite a bit when we talk about collections next week, but for each of them, it's normally the name of the data type just with a capital letter. Except for integer energy is different. It's that word integer spout out. But in carat car is character spelled out. But the others are just the same data type name with a capital letter. And they each have a method on them. That allows us to allows to parse a string or try to parse a string into that data type. And if you can't parse it, if it can't, doesn't work, then we'll get a get an error comically out of bounds exception, get a parser that had failed. But if it does work, it'll create a type an integer or long or whatever we needed to create. So let's use that here. I'm going to get rid of this line here. So we're going to take integer and Let's change the name of this earthway. Because that's really what this is going to be. And we'll change the name of this string to user input, because we don't know what it is yet. It's what the user gave us. And then here we'll say integer for the capital I, and spelled out
+
+parse Ent.
+
+It's in the list. And then what is pass it the user input.
+
+And
+
+save it. Now.
+
+Let's run it.
+
+And actually, I'm going to stop it because I wanted to run that debug,
+
+debug it.
+
+And
+
+next time, next time, we'll definitely work I'm going to put a breakpoint and now and now we'll try to get a debug Alright, so now we have we get our user input, let's give it a value, we'll give it a value of like 100. I need to run mine. So now we get down here. And we have our user input value 100. And we're going to parse it. So step over that line. And we can see that our earthquake integer now has the integer in it.
+
+Let's run it again.
+
+And debug again,
+
+actually won't matter.
+
+And now I must put in another value, put an ABC.
+
+So our user input,
+
+we step is going to have ABC in it. We know that's not an integer that's not going to be able to parse an integer. So let's
+
+see what happens. I'm just going to tell it to continue. So we don't end up in the Java code.
+
+And it did anyways, we get this number format exception for string ABC so that we get an error when it can't parse the value. How do we deal with that how we deal with the fact that it may not be able to parse the value is something we'll deal with in two weeks with to where we get to this topic called exceptions. So for today, we're just going to our program is going to crash if somebody gives us a weight that's not an integer, but that's okay. So now we get have the weight as an integer. So now we can do the calculation which is just stuff from Tuesday, so we can say and son weight, and to do that, we would just need to take said really roughly, the weight Earth weight we were given and multiply it by the sun's gravity. Give
+
+Oh stuff.
+
+So now we have the calculation. So now we've done the first things we've taken the result. we've calculated data. And now we need to give the result. Well, we know how to do System dot out dot
+
+print line
+
+and
+
+the sun Wait,
+
+you know, do that we can do that. Save it. We can run the program. We give it a weight and it prints out the new weight. Which is fine. It gives it the answer, right? That's actually give me there's a couple things I don't like about this program I want to make better. So the first one is when it runs. I don't Want to type my answer down here, I want to type my answer up here. So we can make that happen. And the second is when I do give it a value. I want it to look a little nicer than this. So we need to explore a little more with system out to do those things.
+
+And what system out
+
+we've already looked at print line, we've used that right it prints a line adds a new line. That's what we've been using since Tuesday. There's also print. We saw it on the quiz today but print if I have four values. Let's do System dot out dot print. Just temporarily. We'll just print ABC guess
+
+if I print them
+
+Something they print all together, compared to print line that we've been using,
+
+where
+
+hit the Run button.
+
+Where they print on individual line adds a carriage return. So print just prints our text just sequentially, without any without adding anything. So we can just change with the first problem, we can just change this to a print. Maybe let's make it look a little more like a prompt.
+
+And now we get rid of these down here.
+
+Now we can print Earth rate.
+
+And that's a small change, right? That's really small. But
+
+it gives a little better user experience. But now,
+
+I would like to have this look a little nicer too. I would, it would really be nice if we can make it. So it look kind of table like. So there's another prank. There's also printf. So printf, we're not going to go into a lot of detail about today, I'm going to we're going to use it, I'm going to explain the basics of how it works. There's two links on these slides that will give you more detail. And I'm going to leave it up to kind of yours when you need it to yourself study to figure out how to use it.
+
+But the way it works
+
+is that when you use print f you give it a format, which is a string that has these things called format or something. And then it can be more than one there can be as many as we want in the string this string. And then you do a comma and then a list a comma to list delimited list of All the values that go into these formatters. So they're kinda like placeholders. They're just placeholders for where data is going to be, and they give some detail about how to change it. So for instance, this one, they all start with this percent sign that says there's going to be a format and they all end with one or four characters, SDF 40 would say what kind of data were for, it's going to format and then the characters in between those to tell it how to format in this case, it says, Put 10 characters always make whatever string is given be 10 characters long. And if there's extra characters, like books, only four characters long, so it's going to add six spaces. If there's the the minus sign there says put them on the left without the minus sign, it would put them on the right. And there's some other different symbols, things in those links that you can do with that. Another example here, actually the one that you're probably the most common one to use is for a decimals. For instance, here we have a decimal format. So it's a floating point for matter. This is says the format or starting, this has, it's going to be a floating point number. This says make the number four in length and use two places after the decimal point. So this number is now going to print out. It's going to have an output of something like
+
+Well, there's $1 sign, the total cost here
+
+and it's going to end up looking like 4.25. That's what it's going to print out us. So it just route I think it rounds to no truncates to this number to whatever decimal point, we tell it, and it allows it to be up to four. So if we put a bigger number and it would fill up x wouldn't, it would only allow it to be certain size, and there's combinations those you can do. So that's what a printf does. Again, we're going to have a really fast because we're not going to go into detail about it something that given that documentation when you need it, if you know it exists, there's gonna be a lot of topics like this, these, here, this exist. Here's the basics of it when you need it. If you know it exists, you can figure out how to use it, as long as you know these formats exist. So we're going to use it. Well, I have an example of using it. So I'm gonna use printf to format this data a little better. So first, what I want to build is I want to make it something like and it will turn out exactly like this, but my let's build it so it's something like Earth pounds, and maybe some space of some sort, and then maybe some pounds, and then we'll put a line.
+
+And then our no Earth weight.
+
+And then our
+
+splayed on the sun, something like that.
+
+We can do that with print off, actually kind of easily. Well, with some trout air, every time I use print off, I did end up doing a lot of trial and error, a lot of little change of alignment goes try it. Another little change, try it. That's pretty normal with maybe it's not No, it's how I end up using it.
+
+So, I'm going to first make this header
+
+set. It's not gonna look exact like this. It'll be somewhere the ideas what I want. So system, dot out dot print. F. Now I'm going to build my formatters. And I can have text in here as well, literal text, but I don't need it for this top header. So let's say the first four Mater will be there, and we'll say it's going to be 15. So always take up 15 spaces, so what kind of build my column you would like in Excel or something. And we'll put a few spaces between it hard coded, maybe four. And then we'll do the same thing for the second header. So that'll be our two formatters, they're both going to be strings, they're both going to be 15 in size, with any extra spaces going to the left.
+
+And then
+
+we need strings to populate both of these. So the first one we'll put in our Earth, pounds would be our first string, and this string is going to go in this format, where that's going to be placed there. And then we'll do our second one.
+
+And these can be variables too. They don't have to be Little strings,
+
+pounds
+
+and
+
+and then the second string will go into the second for better. So this list of strings here just populate for each of these to make that clear this first one here is going to go into this placeholder. And then the second one is going to go into this placeholder, they just go in order for the placeholders or the formatters in the formatters, again, are defined by this
+
+present time.
+
+All right, so we'll see what that looks like.
+
+With a run out again.
+
+Let's give it a weight
+
+so we have kind of a header.
+
+So let's go to the Next line, let's build this line here,
+
+we can actually just cut and paste that.
+
+Hold down the key again, we'll do System dot out dot print f again, I could do a print line when we do the print f because then I can put easily put two carriage returns on it by doing percent in ADS carriage return instead of four matter. And this time, I don't need any
+
+texts going in
+
+there unfortunately, is not a format that makes it repeat the same character. Some languages have a way where you can pass in like just one character and have it repeat out. It does not have that.
+
+I'm sure there are libraries out there that do that though.
+
+Alright, so it looks pretty good. We're a little off maybe. One more. All right, so now the next line. We want to get The text. Well, we already have a format or up here. I'm just going to grab this format or let's print off. And here we'll just pop but we weren't the first one to be the earth weight.
+
+And the second one to be the Sunway.
+
+Now, these are
+
+integers, and I'm using them in a string. It's not going to complain, see if it works.
+
+It works. So we have a nice little chart type thing there. But
+
+string and integer are not like types, right?
+
+So why did this work? Does anybody have any
+
+ideas
+
+we actually already talked about this week. why this works.
+
+We'll take a guess. Sorry.
+
+What's the coercion?
+
+Um, yeah, it's the same concept.
+
+We didn't call it that this week though.
+
+I'm casting,
+
+it is casting. But it said unlike types had to parse not cast.
+
+Anybody
+
+idea why this cast wide a lot of the cast, going from integer to string when we had to parse to go from string to call this extra code to go from a string to an integer?
+
+Right. So we talked about Kevin,
+
+she's gonna say Is it because it's being sent out to the console? So you got in a
+
+party that would actually work for a lot of other types of work. wouldn't work here because of being sent out. It's going to convert it. But the if you remember we talked about the concept of widening and narrowing. So narrowing meaning it's going from a large data type into a smaller data type widening means going to a smaller data type to a large to a bigger one. And widening was always implicit. Meaning we don't have to tell it to do it. It just happens because every integer can fit in along. Well, there's no such thing as an integer, a whole number that can't be represented as a string. So that's widening, even though they're different data types, since every value can be represented. it widens and allows casting to happen. So it doesn't force so but now we have this print if we want to make it even a little
+
+sci fi just asked a question about that. So is it Java that is doing the whitening or is it System dot out that
+
+is. It's Java, that's drink lightning. Okay.
+
+All right. So we got getting rid of this extra line. Maybe we could replace that with a System dot out dot print line. Just for a little better look around one more time. We give it a wait.
+
+And we get back that answer.
+
+All right. So now we have all three pieces, we have something that takes an input calculates data, it gives output. And we've talked about how we could make the output even look a little nicer.
+
+So questions on what we looked at so far.
+
+I'm kind of confused over the, the number of spaces the 15 s are the number of characters. I'm sorry.
+
+Yeah. So there is, if we would.
+
+So it's saying when you print This string,
+
+make it 15 characters in size. And if there's any extra, populate them here at the end.
+
+And then
+
+so move the text to the left, which is what the minus sign does. And then yeah, there's full amount of spaces. So it makes it so this string will always be 15 characters inside it will populate it with spaces. If it's not, if there's not enough room, and then the minus side puts it to the x and the numbers just how many spaces can take up.
+
+Okay, so we've got our 15 spaces, and then you hard coded in an extra four.
+
+Yes, yeah. Okay.
+
+Make sure
+
+yeah, I didn't really need to put in the extra four. I think it makes it a little more readable for the code itself, but it's not really necessary. Okay. They're not really doing anything right now. where they are. There's four extra spaces here that wouldn't be here otherwise, but that's all they're doing. That can be done with nothing. So
+
+I had a question. Just looking at the print F. Yeah.
+
+I'm sorry, you
+
+three sure mute.
+
+Okay, sorry.
+
+I felt or if I'm just like looking at it wrong, but it goes like print line string, print string and then it says print line again. Is that supposed to be print F for the Format Data?
+
+For the
+
+is that on the on the slides? On the slide? Okay, sorry. Okay.
+
+Yeah, sorry. Oh,
+
+yes, yes, it is. Alright, so as we print up, yeah, thank you for bringing that up. Yeah, I cut and pasted that I'm sure I
+
+missed changing.
+
+So Other questions?
+
+You know, what's the Present and what is the end?
+
+So present in is a shortcut or alias to do a carrot to do a new line. So if we took this out, actually, let's take this out and look at it, because I think that's actually good.
+
+It all print stuff, those prints are pushing it down to the next line. And it's like when we looked at the shortcuts in regular strength for print line, you would do instead of presenting you would do backslash n, which we only looked at briefly, but by the end of the court, you'll be really familiar with backslash n.
+
+That's right. So if there's no other questions, and well, let's look at another way of doing this but we're not going to code this. I already have to work the code. We're just going to look at it. Because I want you to understand the concept exists. But it's you might have, you'll probably have to write it at some point. But I'm not doing this cohort. So when you know how it works, but more than actually write out the code today. So it's the same exact program, but it just takes the input slightly different.
+
+So I'm going to go
+
+out the terminal. And the reason we're not writing it out is because it's in like we if you remember from reading hello world The first time we had to do it in Visual Studio code and compile it with Java C. And this requires all that so
+
+I'm going to go into my module one, c 05.
+
+And then
+
+lecture final, and there's another this is in your folder as well, or there's command line arguments. I'll look at the bring up the code here. You see here in the project, but we can't run it from
+
+Eclipse because it has these extra arguments.
+
+So what command line arguments are? Let's talk about them before we guess, get too far into the code is that there what when you go to terminal and you type something like Get, get commit dash m, my comment, those extra things. So the first part like get, that's the program you're running. Or when you type ls, that's a program you're running the extra pieces, everything after a space is our command line arguments. Those are values you're sending to a program. So
+
+get add dash, a,
+
+you sent one, two arguments to it. Those are just like, you're populating variables for
+
+So when you type,
+
+get commit dash m, my comment, there's three arguments you've sent. And we look at a Java program, they all start out with a static void Main that we've been looking at. And there's a string array here of arcs. So when you type those arguments in for Java programming on the command line, they get populated. That's what the string array does, they get populated into this arc, the string array. So when we type if get was a Java program, it's it's not Java. It's actually written in four different languages. But it would be that when you type the commit, I share my comment, it would populate this ARBs array, the string array, such that the zero position is the first one commit. The second first was second Position index one would be the dash M. And then after the space, the third position or index two, would it be my comment. So then you could just use this in your code.
+
+It's already there when the program runs.
+
+So here in this cared,
+
+it does the same thing we just wrote, it has one extra piece that it's going to print out whatever arguments got sent to it. And then it's going to do the same earth, the sun weight calculation and print it out pretty much the same way.
+
+So here,
+
+when we give arguments, they're going to go to string arcs. And we can't debug this, which is why I'm walking through it like this. And then we can just use those in our code. So here, it's going to go it's going to walk through each of the arguments in the array, and it's going to print them. So let's look at that. So over here, let's code first. I need to to actually build it or compile it, so I'm going to run Java C. Earth. I guess I could have printed this and checked on the class file, but I didn't. So we have the class file now, which is what we run. So when new Java,
+
+pull this out, so
+
+your birth weight converter, now give us some arguments. Let's give it a few of us give it one to start with, and see its argument at God. And the zero index was 120. So this
+
+when I typed in this right here,
+
+it populated into this array. And then you can just use the data right here, and that's printing it out here in the command line, and then using it down here again.
+
+So if I had more than one argument
+
+Hundred Thousand 10 or 12.
+
+See now there's three arguments.
+
+And what's
+
+happened is this, again, these three arguments are taken, and they get passed into this array, such that and the zero position of the array is going to be the first argument, the index of one, so just an order is going to be the third, our second argument. The second index is going to be the third argument. Whatever those happen to be that is to start strings, because we said everything I'm estimating output are strings, because it's just text. This array is going to be populated with that. And then we can just immediately use it, which is what the rest of codes doing.
+
+And then it's just using it down here in the same code. We already wrote. To use, it loops through each of the arguments in the array, and then just applies the same code we already wrote to each one individually, which is why it's doing multiple at once. All right. So the takeaway from this is that when we have arguments, with our program on our command line, like these, or like the get add, commit, that that's where they go when the program runs, is inside of this array. That's what the string arrays doing. So we can get immediate access to we don't have to do anything extra in Java, to get immediate access to command line arguments. But we use a lot of command line arguments, pray for your whole career, there's a good chance you won't use many of them. The one place you have a high chance of using them is writing codons for job applications. We'll talk more about what that means later. The card. So
+
+So what questions do you have about that? Okay.
+
+All right. So let's
+
+so before we move on, the next thing we're gonna do is actually write it, write a program.
+
+What questions do you have from today?
+
+All right. So let's use what we talked about all week to write something. Actually, we'll write a game, rousing game of rock, paper, scissors, because we have everything we know to do that. If we can focus on the code, there's no no complexities in a program like that.
+
+Sorry, I thought I heard a chirp was somebody trying to ask the question before we start talking. Okay.
+
+So,
+
+before we can write any program,
+
+we have to know what we're writing program codes, code. And out projects don't start in Eclipse, they don't start with code. They start with knowing what you're doing what you're going to build. If you don't have a plan, you'll almost always end up well, not building what you want, because you'd have didn't know what you wanted. But you're also usually end up redoing a lot of work. And going down a lot of places you probably don't want to be in your code. So you end up wasting a lot of time. So we need to have some requirements. So let's start there. Let's make some requirements. Let us make them here in this list. So
+
+if
+
+If you're building, if you suffer a game like rock, paper, scissors, what should you do? Not from the game, but from, from a program point of view for what we know from this week, we have all everything we know, need to build this.
+
+What type of action should it take?
+
+So I'll give you the first one. So that to kind of give a sense of since it's the first time we've talked about requirements of what type of thing I'm looking for. So the first thing we're going to have to be able to do one thing is going to have to be able to get the user's choice, right. So we're gonna have to be able to get to user choice. So one requirements stuff is going to be get users choice.
+
+So what else will we have to do?
+
+This choice, display the choice Yeah, I could
+
+display joy
+
+We're going to be validating in these programs.
+
+We can do some simple validation, but we don't have what we need to do to do complex validation yet. So we're not going to use anything we haven't learned this week, or that I would better expect you to figure out from this week. So there's one thing that we're going to have to go figure out. But we have, at this point, all the tools to figure that out.
+
+What else might
+
+sit on the plane rules?
+
+The roles were any role.
+
+So So apply the roles. Okay.
+
+determine a winner.
+
+Yes, but don't have to determine a winner.
+
+Way to output the winner. I'll put the winner
+
+So we're getting pretty close, I think to
+
+our I'm assuming we're playing the computer, so we need to get a choice from the computer.
+
+Yeah, computer choice.
+
+So I think with those, that would be a basic game, right? That would give you everything we need to do.
+
+Let's make a second set, we'll call this
+
+are these requirements, what's called the MVP requirements or the minimum viable product meaning that if these requirements exist, we have a program we have what we need, but the house of extra ones. What else might be want to make a program to
+
+display and well, like say congrats if they want or say you suck if you lost,
+
+all right, so we want to have an extra extra
+
+guide you Or you said you want to use sock. Okay.
+
+So what else?
+
+What else? Are user friendly interface?
+
+user friendly interface will be good.
+
+Not gonna really go too far with that today. Or maybe not at all. Because if we don't get to these last requirements, we won't. We may not get to any of these last requirements.
+
+I would offer to play again.
+
+Yes, Yeah, that'd be a great one, multiple games.
+
+I can play
+
+multiple games who wants to keep starting the program for over and over again.
+
+We'd have to maybe limit the user's options to rock paper or scissors. Okay. So limit options. So that's probably Yeah.
+
+options to
+
+rock, paper
+
+scissors
+
+Yeah, but something we don't have to do. You're right, but somebody probably would definitely would want to do.
+
+All right track of wins and losses.
+
+Yeah, that'd be good.
+
+There's one game.
+
+I'm sorry. Could you set up the amount of players in one game? amount of players in one game?
+
+So see what happened like multiple players?
+
+Is that
+
+Oh, coming off on this game?
+
+Yep. Yeah, it's, it's pretty much a two player. I could be more than I guess. But guess we had the rolls my kids do which with all kinds of various objects besides just rock and paper and scissors. We can. You can get more but that's probably pretty good. I think that's a good place to start from. I we're not Gotta get in the time we have left, we're not going to get through all of those extras anyways, if we get to them at all. But we, we can get this, I'm sure we can get those first six done. And then maybe a couple of the other ones. So let's, now that we have this, now we can write our code. Now we can start coding. So this is a really simple course application. And it will, in large scale application, this process here of coming up with these requirements can take months for a really large application, or weeks or days for something smaller. So this is an important process we read. That's one reason I wanted to choose something this simple is that we don't have to think a lot about it, right? There's not a bunch of alternate things we can do. So I already have there's already a beginning point up here in source main Java. com that elevator, there's a rock, paper, scissors, java file. And all it has in it is it already has the scanner setup. I think because I forgot to delete it, that's okay. That's being passed system in. So we have the ability to system and and system out and has the input of scanner already done. So what the right the rest of the code.
+
+So when we're doing that,
+
+when we're right working from a set of requirements, if we try to build the whole game, even something as simple as want the symbol at one time, it's going to create a bunch of extra challenges we don't need to deal with. Instead, what we can do is we can pick one option out of our list and just build it without thinking about the rest. So we can figure out how to get user's choice or how to display the choice. We don't have to do them in a particular order. It's we're building software. So we can actually go in any order we want. So for something a size, we may want to get the choice before we display the choice, but we don't have to. And this concept of doing one thing at a time, something we'll talk about a lot through the cohort, you'll get tired of me talking about it actually. It's called vertical slicing. It's this idea that we can build software and these little pieces and focus on one problem at a time, and then come back. And if we have to make changes to what we did, that's fine.
+
+So let's pick one of these.
+
+Get user choices, probably a good, good option. So how do we get the user's choice?
+
+So should we first print Rock Paper, scissors, question mark. Okay.
+
+So we're going to ask them for something
+
+we're gonna print
+
+Something like this.
+
+Then how do we get there actual choice.
+
+What did we learn today that would allow us to get
+
+name
+
+get us next line.
+
+Choice equals n dot. Next slide.
+
+Alright. So we have the user choice at that point. We can test it if we want. I put a breakpoint in here
+
+and we can debug
+
+and I Put in some value
+
+and
+
+need to step over. And we can see that we have the users choice. So we actually solved the first problem. Now we have a way of getting users choice. I don't know if we solve the problem in a way we can use it for everything else.
+
+So but let's
+
+solve this.
+
+So let's look at if we had the user's choice. What's the next thing we'd want to do?
+
+Do we need to assign values to rock paper and scissors so we can compare them in a way the computer understands?
+
+That's a good question. That's a great question.
+
+How? How are we going to do that?
+
+I would say like assign them number value.
+
+Use. So how are we gonna assign the number of IDs?
+
+So, paper is greater than rock. So you would say papers. Two and rock is one, but then it's I don't really know. Because different things, the different things. So I don't know anything about that. Let me think on that.
+
+So we need a way for that when the user makes the choice. They type in this something that we know what they've met.
+
+That's one of the
+
+challenges here is that when the user types in Rock, paper, scissors,
+
+the computer doesn't know what that is.
+
+How do we make that distinction in code of what that means with what we know from week?
+
+To week, say, scissors can we set
+
+Like scissors is greater than
+
+paper to be true.
+
+Okay, but how would we apply that though?
+
+We're starting to declare the variables.
+
+Okay, so we need some variables. So what what type of variables do we need? What type of variable?
+
+We're doing strings. Okay,
+
+so what is what's the string gonna be named?
+
+Rock, paper and scissors. Each of them are going to be separate variables.
+
+Okay, so we're gonna have string, rock,
+
+string, paper
+
+and string scissors.
+
+Alright, so how are we going to populate this
+
+How do I know? user choices? What the user typed in which variable to populate? Or how do I connect them?
+
+to a bunch of if statements?
+
+Okay, so we're gonna do a bunch of if statements. So what are we doing right? What's the Boolean condition?
+
+See if user input is one of the variables.
+
+Okay, so but what is the actual syntax?
+
+How do we how do we write that?
+
+So, user input is equal to rock.
+
+And
+
+we're gonna be doing random number generation for this. I know
+
+we're gonna have to so
+
+Is that gonna work though? That line of code?
+
+So we remember we talked about the equality operator. What does it work with?
+
+Um, I think if they like typed in rock with a lowercase r, wouldn't it not work anyways?
+
+Well, yeah, if they typed it with lowercase r, that wouldn't, that would be a problem. But even if they type it perfectly, right, yeah, it doesn't work with string. The equality operator does only works with numerix. So we don't know how to actually compare a string right now. We will on Monday, but
+
+today, we don't know how
+
+can we maybe make an array with that contains Rock, paper, scissors and have the user input? One, two or three,
+
+back in Word, one, two. So we're saying create an array
+
+So let's put it maybe up here.
+
+You're saying a string array?
+
+or What should we call it?
+
+Choices,
+
+choices, okay?
+
+And then
+
+we want to put the values in it.
+
+And we just do with the static initialization to make it all in my mind like that. And then we want to change them to putting to give us numbers.
+
+So what numbers do we have there? Give us for rock.
+
+Zero, right?
+
+Zero, okay.
+
+So I'll put it so a common
+
+convention in
+
+command my UI To put the command that you want to use the type in parentheses beside the character or to surround a particular character like, this is a common way of doing as well, but we're not getting characters we're getting numbers. So paper, assume one and two
+
+that firt.
+
+Alright, so we have a user choice like that.
+
+And now it is something that computer can understand, right? And it also gives us a way to rank them because now they're numeric. And we can display them because we have text available in our array.
+
+So that because way while we're still getting the user choice
+
+so I think This will work.
+
+So if we have other ideas or thoughts on that, or questions,
+
+or the brain can really see which one is better by just comparing the numbers because you know, beta is no the best one in here.
+
+You know, we can't just by comparing the numbers directly, but we know that zeros rock and ones paper and twos, scissors so we can write the rules around that. And we can just say,
+
+does that make sense? Please? The best right? Yeah, yeah,
+
+we get this compare them directly, we have to understand that the rules are right. Alright, so what's the next thing? We have the user's choice and a way we can use it now? I think we should get the computer choice computer choice. And this is where we're, if this is the part we're gonna have to expand out a little bit.
+
+So how do we get to computer choice?
+
+The idea is
+
+I mean, we could just skip the random number generator and just give the computer an array.
+
+Okay their way but how so they're always How will we make them choose something different each time
+
+there'll be a pattern
+
+is always pick up, like the kid always picks rock, right? So it will be a very fun game we can. So we probably need a way to randomly get a value. So what do we need to actually get? What do we actually need the computer to figure out or pick randomly?
+
+A number zero through three or no zero through two? Sorry,
+
+yes, you were to two.
+
+So, this is something we haven't talked about. But we have talked about a few things this week that gives you enough to start looking at especially with scanner today. They brought up there's a scanner is one of many libraries A lot of you have used like Math abs. And earlier this week for your absolute value calculations. Michelle brought up in the chat that there's a lot of libraries out there. So we can look for something that could do this for us. And there's actually a few ways to do in Java, there's two main ones, and we'll just have to pick one. So
+
+that
+
+will go
+
+search for something like
+
+Java get random number and range.
+
+And we'll just pick one. No idea.
+
+Actually, the site is often pretty good.
+
+Math random. something you've already
+
+you saw because you used it are used for absolute value early this week.
+
+So
+
+math fan is going to give us a number between zero and one.
+
+And
+
+okay, because trying to load a video
+
+so for getting that we can calculate
+
+a number two ranges exists.
+
+I'm not going to read the rest of it.
+
+I'm just going to copy the code that I need
+
+here
+
+and we're gonna get it.
+
+I feel like we're doing it the hard way though. Yeah, let's do. Let's do it this way.
+
+And my minimum value is one Zero, right?
+
+Which means that that's three. And that does nothing.
+
+And I'm missing
+
+parentheses and I don't need this parenthesis Oh no, I need that. I don't need this last parentheses. So I think that's going to work for a choice. We need to find out, we need to make sure that that's actually going to work. So I'm going to do a quick system dot out, dot print line, and just print it.
+
+And let's run it.
+
+And
+
+let's make it easier. Let's temporarily comment out this line of code and we'll run it Got to run again. Got 110. Okay, so we've seen it pick off three numbers,
+
+that line of code work. So
+
+the reason it works is because when it takes the
+
+this point, I would come back and now figure out why it works. Never just use code and without understanding it. So you'll find that
+
+this is the one that we probably should have used.
+
+But what is essentially doing it's taking and turning the zero through one in a number by multiplying it by the number, the highest number we want, which is going to put it into a whole number range for the value
+
+which is
+
+gets the random number that just generated Didn't that range and multiplying it just by the number we want. If there's a minimum range, it's not zero, you have to put that in so that it starts at that, at least at that minimum number.
+
+All right, so is using three, they're not going to give us an array out of bounds. Like we're never going to get three there.
+
+You're You're right, we are going to get three their army is going to give us kind of bounce. So good catch. What we actually want is to so
+
+we have a computer choice.
+
+The computers picked one of these three randomly. There's about there's other ways to do math random or random numbers in Java. You could have found any one of them and it would have been just fine. But the point is Is that at this point you have you can find that stuff this the bait the things in the kind of the basic libraries or the beginning libraries or it's bath random is a built in Java feature. Okay,
+
+so we have the computer choice
+
+so what should we do next?
+
+The outputs the user and the computer choice along with who's one but I guess you need to determine that with if statement.
+
+Yes, we need to figure out who won right.
+
+That would be the next
+
+next level that
+
+Alright, so we have now we have have these two choices, the numbers, they're both 01 or two. And 01 or two we know is always going to equal rock, zero rock, one paper and two scissors. So we actually have three options that can happen. Either there can be a tie,
+
+player can win.
+
+Or the computer can win, right? I mean Rock, paper, scissors, there's lots of ties. So that's a pretty viable option. It doesn't matter which one we pick with start with. What we can do is we can solve two of these, and there's only three conditions. So if we solve two of them, the other ones are else. So we can do it. That applies if we have three mutually exclusive conditions. What kind of statement does that apply? We probably need do we need it if two f three f statements Then if else if else if.
+
+Else and else.
+
+Yeah. So when we have three mutually exclusive things, or multiple mutual exclusive solution or options, then we that implies we want elsif. So,
+
+of these three, which one should we start with?
+
+We want to get rid of the possibility of a draw.
+
+Yeah, that's an easy one, right? If the numbers are the same, it's a, it's the draw. So we say if
+
+computer choice
+
+equals
+
+but the user's choice is a string.
+
+So how do we what do we do to get that into
+
+an integer
+
+parse
+
+to parse it. So
+
+maybe we could change this to declare the variable names make more sense user input, and change this to user choice equals
+
+integer dot
+
+parse int, and pass it to user input.
+
+Of course, if they choose the letter A, it's going to get an error, but that's, that's okay. So now we'll do user choice here.
+
+double equals not single.
+
+All right. So now something's going to happen. If there's a tie, we can just tell them at that point, right? Say something like system dot out print line
+
+was a tie.
+
+Draw or whatever you want to call it.
+
+We have our first option done.
+
+We should have our first choice done, we could test it if we wanted to. That condition should happen pretty quickly. So what happened right away?
+
+And maybe test it again to make sure it doesn't always happen.
+
+And
+
+oh, yeah, that didn't happen. So, alright, so we have our first condition. So now we need our elsif.
+
+And for this
+
+let's figure out if
+
+we figure out the player one.
+
+So what are the what are going to be the state conditions of the player one? What's the rules? This is where we're going to apply the rules.
+
+player chooses rock and
+
+computer chooses scissors. uses paper computer chooses rock in player to scissors and the computer chooses paper.
+
+Okay, so we need to go through. Let's go through those one at a time. The first one was the user chose. So user choice equals zero, right?
+
+And
+
+the computer choice. So if the player chooses rock, the computer has to choose scissors for the player to one, correct. So that would be three. All right, so that's our first elsif, the player one.
+
+So we can put that then, in some parentheses,
+
+you need to
+
+what the cute player chose rock.
+
+The user chooses rock that wins when the computer chooses scissors, right?
+
+and ignore three note.
+
+Oh, you're right. Thank you.
+
+So yeah.
+
+So then we can do it or the second condition if the user choice equals one and the computer choice so if the computer players chosen paper, they win when the computer choices chose rock, right?
+
+So that means the computer be zero.
+
+And then the final condition
+
+would be the players chosen scissors, which means the computer would have happened chose
+
+done again.
+
+Chose the middle condition paper. I think that's right.
+
+So there's our Boolean condition. Complex, right? It's multiple portions. But if we Don't like that like we just did. we'd done it one piece at a time. They're not hard to come up with. So if any of those conditions are true, then we can say System dot out dot print. Line.
+
+You one now we know
+
+else.
+
+System dot out dot print line.
+
+The computer one.
+
+Let's try it.
+
+So we got
+
+to tie that time.
+
+Computer one that time. We assume that it worked. Okay.
+
+Computer one.
+
+Got a tie. So at least we're getting
+
+I'm going to quick for it.
+
+All right, so we have the computer choice. We think we have determined winner, we have apply roles. We have an output the winner. And now we want to display the choice. That's just another system. Print. Right? So we could probably do that before this and have it system dot out print line and something like
+
+you chose.
+
+How do we put the Player's Choice there? So they can read it?
+
+Is it plus user input?
+
+Plus, while user inputs going to be 01 or two? Actually, I wanted to print Rock, paper, scissors
+
+choices user input. Yeah,
+
+choices at user input are actually user choice. Because that's where our integer version of it. And then we could say plus and the computer chose. And then we can do the same thing with that random number, right? Because that's what the computer chose.
+
+Computer shows plus choices.
+
+Computer choice.
+
+Slides getting kind of long. So I'm going to drop it down
+
+and lower my scroll bar width. So all right,
+
+wrong bracket.
+
+Going, we should be able to do that. All right, so let's try it.
+
+So if we choose just pick a number chose paper that computer chose rock you won.
+
+You chose rock the CreateSpace paper the computer one
+
+slip paper card.
+
+Well the way the way that you have it set up paper when are tied 99% of time. Okay. That's okay.
+
+That's completely okay.
+
+So I'm not focusing on building a real, actual viable game.
+
+Yeah, I know there's
+
+we're not taking
+
+Brian so we don't have to clean up the new line since the program just kind of executes once.
+
+Yeah, well, we don't have to clip the new line because we got it from next line instead of next time.
+
+I got it.
+
+All right. So
+
+we have a really simple game that's been pointed out
+
+that somebody finally noticed after like seven chords of this, that's very imperfect. But it's a game. It's a complete application. The point of this is not Rock paper scissors. The point of this is you have the tools after one week to build real programs. They're command line based, but it's, you can still make them work. So there's one more thing I want to add to this because it's just a couple lines of code. And it's from the requirements. I think it makes it much better. And that's can play multiple games. How can we make this we can play multiple games. Okay,
+
+unless like player inputs q for quit or something.
+
+Yeah, I can work so how can we make an infinite loop around all
+
+this So if m is greater than zero and just i plus plus so
+
+so the i greater than zero and then i plus plus and make it go, that's Yeah. So we we know we need a for loop, right? We'll put it here, we don't want to keep rebuilding scanner or this choice, we just want to start from the Player's Choice each time. So we have three pieces, we have the where we're going to build something to iterate over, right. And then we have a Boolean condition, and then we have the change. So if you remember, from the very end of yesterday, only the Boolean condition is required. The other pieces are optional.
+
+Which means we don't have to build the iterator.
+
+We don't have to build a condition that changes it. What's the simplest Boolean condition? That's always true? True,
+
+the word true.
+
+So if only the blank condition is true,
+
+when not loop forever.
+
+Because that condition will always be true, it never changes.
+
+So that means if we put our entire block around all of this
+
+that it's going to
+
+essentially be an infinite loop. Essentially, it is going to be an infinite loop. Which is not necessarily good. But we need a choice now to quit.
+
+How can we get the choice to quit?
+
+So in the Boolean portion of the for loop, you could have if user employed input is equal to either like a, I guess an integer works. So if they enter like 10 or something it quits.
+
+So you want to have an antenna quits.
+
+Okay, I'm okay with that.
+
+about something like that.
+
+Or
+
+tend to quit.
+
+Doesn't matter what number it is.
+
+It's going to be an integer, see, maybe, or tend to quit.
+
+That's okay.
+
+So where should we figure out? If the user wants to quit?
+
+Let me check it.
+
+What line should I start that on? I'm sorry.
+
+What did you say? Um,
+
+okay, maybe after view play a long time, maybe we can ask if the player wants to play by morons. So they want to play Yes or No?
+
+Okay, so you want to ask after the game, you want to say, okay, we can do that.
+
+They can't say yes or no, because we can't do strings we already figured out but we could have them do one or zero, right? Okay. So if you want to do that, we could say at the very bottom, we could do a second choice.
+
+smell. print line.
+
+Do you want to play again? Something like
+
+Yes, we'll be zero. Is this what you're talking about?
+
+Yes, or no? Yes.
+
+Yes, that's correct. Have backwards and when a boy would beep, that's okay. And then we have to do another get the choice again. So, let's Okay, so let's How about and
+
+play again? And what can we use to skip getting? having to do the parse?
+
+Where scanner
+
+can just choose some
+
+difference in?
+
+Yep. So we can use multiple methods, right? So add next line, we could also use next end. So that's going to get at the one or zero. So what do we have to do after that?
+
+Every time we use something like next,
+
+what's leftover?
+
+You got to clean up,
+
+gotta clean up. And we do that by calling next line again. So this doesn't really seem as any code because here we parse it the other way we just have to call the next line. And then we need an if statement, right? So play again equals one, four. Then how do we quit? How do we end this?
+
+Break? Break? Alright.
+
+So let's try it.
+
+We have our rock paper scissors first choose something. And when do you want to play again?
+
+Yes.
+
+Scissors one do you want to play again? Yes.
+
+Okay, do you want to play again? No, no And so a little more interesting. Right? So it now it can play multiple times. I mean, I can I can tell you from experience this, this game will keep a at the time, I guess, eight year old busy for about five minutes. So it has some some viability. But again, the point isn't Rock paper scissors. The point is that that's something we didn't have to talk about required, we didn't have to talk about how it worked. The point is that you can write a program, you have what you need, you can turn this into something that you know, calculates the distance of your runs or keeps track of a log. Now it can't keep it yet in a file anything or save it permanently, but it could do anything that where you get input from the user, make some decisions and spit it back out.
+
+So So any questions
+
+Hey, Brian, line 21
+
+I guess I can you explain me why you're asking string user input
+
+instead of int user input?
+
+Oh, we could do either way.
+
+The reason we did it there is because now we have an example of both. So everything comes as a strike, everything is going to be a string, something has to change it from a string into an integer. We need to do that manually with Parson. If we do that, we're always going to get the string it's always going to progress. If the user types the wrong thing, it's going to err actually looks look at the difference.
+
+So let's run it.
+
+And this first choice used to type the letter A, they get a number format exception. So let's run it again. And the second choice So they number, they type a letter A,
+
+we get a completely different problem.
+
+But we still got a problem, right? So the difference is really just how do we want to code it? What choices do we want to make them coding, we have two choices, we can either get it as a string, which is always going to be God as a string, we can parse it ourselves, and then use it. Or we can have it do the parsing for us, it's still going to get as a string, it's just going to parse to an integer for us and give us the integer. But then we have to clean up the next line. Either way, we write two lines of code. You can choose either way when you're getting an answer off the stream. When we get a little more complex uses, like the menu systems and stuff. There are some reasons you would choose one or the other. When you get to one, if we had the tools, all the tools we need to start validating the users choice to do things like make sure that This is a number, then we would want to get as a string. So we don't get that error. The second we type in number we get it when we try to parse it. And we could check it first and then tell the user things like, Oh, no, try again. But right now, it's really a choice of which two lines of code we want to write. So that makes sense to answer your question.
+
+It does. Thank you.
+
+All right. So Other questions? All right. So
+
+we only have one more thing to talk about today. It's not going to take that long, but it's also then like an hour and 20 minutes. So why don't we take a 10 minute break and come back at noon, we'll finish up. It won't take said don't take more than a half an hour so well, hopefully, but it won't take that much longer, but that way, we can at least get a little break here.
+
+So, when's the breakdown?
+
+To 12 Thank you
+
+problems
+
+Thank you. We're so
+
+sorry I first thought that maybe you're gonna do questions No,
+
+no, no thank you. I just forgot So, so you
+
+Alright, so So,
+
+put up the exercises. And then I'm also going to go
+
+open up
+
+I got a big bucket, just because they Read these are easy to read in their looks, I find them easier to read.
+
+Maybe I'm going to go to the Remi
+
+programs
+
+and you're going to steal exercises. Right? So you're gonna be writing for command line applications like we just wrote. These were two of them the earth, the sun, way converter and then the rock paper scissors, you're gonna write two things like that. The the four things like that. I'm sorry for each of them. There's already a class Are file built for you Sorry. And I don't think there's no test cases for these. So that's because as we get into testing a little more, we'll talk about that when you have these user interfaces that they're rather hard to test. So we'll talk about ways of dealing with that. So for each of these, you'll test them just by running them and checking the output yourself. There's a temperature converter linear convert Fibonacci and decimal to binary. If we look at the temperature conversion, you'll ask them, please enter temperature. You ask them if the temperatures in Celsius or Fahrenheit. Again, if you want to figure out a preview from Monday on how to find out if they've entered an F or C, then you can do that. And I would encourage it, it's actually pretty easy to figure out. If you look up how to check strings but We haven't talked about that yet.
+
+So
+
+I think and I'm going to
+
+I guess I'll verify Rochelle, since then we haven't talked about string equality. If they do like a 01 for these, is that acceptable?
+
+Or is it going to? Yeah, it's fine. As long as it's communicated, what the requirement is to
+
+what they want the user to do.
+
+So if you, if you choose that route, you would just change this to show that you type 01, like we did for rock, paper, scissors. But you can, it's you can't figure out streaming quality, it's fairly simple to figure out, just have to spend a few minutes by looking for it. And then, I shouldn't say fairly simple, it's fairly simple to emulate. But we'll talk about why on Monday. It's not necessarily simple. Linear converts the same thing only going from meters to feet. so to speak. The opposite of whatever the users, whatever the users showing, is decided. So for the Fibonacci sequence is a little different. You're going to enter, they're going to user is going to enter a number. And you're going to your code will calculate the Fibonacci sequence. If you're not familiar with that, you can look it up. It's the sequence where each number in the sequence is equal to the sum of the two numbers perform it. And we'll print it out not up to not the first 25 numbers in the sequence that can be in our 25. But such that the largest number is the biggest Fibonacci number before 25. That makes sense. So it's not the first 25 numbers in the sequence. Instead, it's the numbers that are smaller than that number if they're less than that number.
+
+So
+
+and then, decimal to binary
+
+is You're going to take in
+
+this and there is something here, I'm going to say you're gonna have to figure out, because you're going to get a string of numbers separated by a space, and you're gonna have to figure out how to separate them. So I would suggest starting this with just a single number, and then get that working, and then move on to if they send more than one number on the string. For this, you're going to take the number, you're going to convert it to binary. There's a lot of ways to do this. There's a there's multiple built in ways to the Java language, but I would prefer you to do it manually, meaning actually write the code that determines the calculate calculation, the algorithm that changes it from decimal to binary rather than just calling to binary on the string class. Because it's an important as a lot of important information on it motivate interesting problem to solve, save this one for last. I mean, do this when absolutely do the other ones can have all working this one's much more challenging than the rest. If you have the other ones working, then I and this one and not this one, then you'll be in a lot better case. Bob better situation than only this one not working and the other was not working either because you ran out of time. So definitely save Jessamine, the binary to last. So that's what you'll be building. It'll work just like those two programs we've written today. So questions on what you'll be doing. Right. So that's what we were doing for individual exercises, but said today you also have pair exercises. So we need to talk about what pairing is because there's usually some misconceptions About what pairing is. So let's talk about that before we talk about how the exercises work or getting the exercises or looking through the requirements. So, pair programming is not two people working on a project, just two people working on a project together any way they can. It's a very particular way of working. So it's a practice where multiple programmers when they're in person, they work on a single computer, but you can still do that remotely. It works actually very well. class code, a lot of students said that one of the things they ended up liking, we thought it was easier to pair remote. And I've done it through my career many times. So you just share a screen on one person's computer and you work together on it. So it's working side by side on one computer collaboratively with two roles. And one person takes this role of what's called the driver that means They write the code they're typing. So that's the person's computer you're looking at. They generally don't come up with ideas. They can they can contribute. But their main job is to type. Their job is to figure out is to usually figure out the syntax and other person, the navigator is thinking up ideas, but they don't touch the keyboard. That's actually an important thing in pairing the person is navigating has two responsibilities. Their main responsibility is to be thinking about the problem, offering solutions and to be constantly reviewing the code the first the drivers typing, the driver types in their secondary responsibilities to their secondary responsibilities to think of solutions and so both people are working on the solution. One person is typing and the other person is reviewing and they're collaborative deciding on how to solve the problem. But the important thing is it's only in one computer at a time. The navigator doesn't type only one person types that are talking So which is different than working separately, and there's some roles to pair programming. So we're going to go through the basic roles of pair programming. And there's lots of different books and things about pair programming out there. I took these roles, a paraphrase these roles from an article I read years ago, called everything I need to pair program I learned in kindergarten, which is actually I think, one of my favorite takes on the pair programming roles. Because it simplifies them without trying to describe them in a bunch of technical terms, it puts them down into just regular term everyday terms. So if you're interested if you can find the article one line, if you really want to read it, and this is paraphrased from it. So the rules, the first rule is share means both people working order everybody because in one case, since we're an odd number, there'll be one group each pair assignment that has three people Instead of
+
+two, in that case, two people navigate and one person drives, and one person types or two people do the reviewing.
+
+And they all work together. But
+
+you own everything together. Every line of code, every character is owned by both developers. So that means you succeed or you fail together. There is no, this was my solution. This, you caused this problem. It's, you're both part of everything. And you both own it all. So the second play fair, it means that there is no Oh, I'm the driver, you're the navigator that switches and it needs to switch in a on a regular basis. So if we're here where you're where you're getting started, I would suggest setting a timer either time limit a number of codes every 10 lines of code, isn't there's multiple problems you're gonna have, you can even do it for the entire like, there's nothing there's two problems in the pair program or you could switch off for the two problems. That's fine, too. But it shouldn't be even a every day on the drive today on the driver tomorrow, the driver should be, you know, for the next 10 minutes on the driver. So it should be pretty fairly constant switching off. When you're starting out said you should put it in some kind of limit some kind of quantifiable limit of When this happens, we switch it. But in real pair programming, it's often a matter of you think of it as I have an idea, give me the keyboard, but instead it becomes I have an idea. Here's the keyboard. So you shoving your keyboard at the pair so they can type or you talk about your idea, a concept switching back and forth like that. But when you're starting and learning kind of the process, subtitle of it, but even in there even in that case, there's still limits it's still you know, we've been going at this for half an hour Let's switch if if that type of interaction is not occurring. The next is clean up. So Deep any defects, any problems that occur, and there's going to be problems your code, there's problems with everybody's code. They belong to you as a pair. They're not a single person issue there is never it's never your partner's fault. If you're thinking they caused this, that means you weren't pairing which means, in the worst case scenario, you weren't involved when you should have been so you weren't doing what you were supposed to be doing. Or in the best case, you were part of it. So every problem is caused by both partners. There is no such thing as a problem in pair programming caused by one individual. And if you find yourself thinking backs, an easy trap to get into, that means you're not doing you're not pairing. That means you're being being a bad pair and you're not participating, or you were participating and you're trying to place blame that you're partially responsible for. So either you were supposed to be typing or you're supposed to be reviewing on to the other person. So every problem is joined every problem repairs caused by the pair not by an individual. And that means that they solve the problems together. They don't. One person doesn't say, Oh, you cause this, I'm going to go get coffee, you fix it. It doesn't work like that. Everything solved together. So the next rule, hold hands and stay together is that all work must be done in pairing together when you're assigned to be a pair in a project. And this isn't, this isn't an academic thing. This is something that happens in just about every development environment, especially here in Columbus, it's really popular in Columbus, you get assigned a pair and you're expected to work like this. And if you can't, it becomes a huge issue, which is why we're going to practice it because it's a skill. Most people have to kind of learn how to do these things. But in this one, you're going to work together on everything on that one on your pair assignment. So when you're assigned pair work, you do everything together. It means if Somebody needs a break. If they say, you know, I need to get coffee, then you both take a break. One person doesn't keep working where the other person takes a break. So both parties break. And there's no exceptions to that there's no singular work done. So it's always the pair working together, they work as a unit.
+
+So the next roll
+
+Say you're sorry. So there's this concept called a egoless programming. And it's this idea that we're not connected to our code. We're working to solve problems.
+
+So
+
+our solutions, not necessarily always the only solution. And even if it's the most efficient solution doesn't always mean it's the best solution, even if we're sure it is. And if we're working in a group team, and just because my solution might be slightly better than you If your solution works, there are times when the concession is to use the other solution for the benefit of the team and for the pair as well. Which means that sometimes you have to put your ego aside and say, know what, I think my solution is better, but I'm going to go with theirs. If it solves the problem, that was the right choice. And your parish should be doing the same for you, they, because if they're following the same benefit, it means that they're working back and forth and trying each other's ideas. And if you try it, it doesn't work. Then you say, well, because I didn't work, let's try this other solution. It also means that you're going to get criticism from your parents. Not criticism necessarily as like, you know, you've done the horrible but I don't think this idea is going to work. And you can't be defensive about that. You have to be open to it. And you're going to be giving criticism saying I don't think work and that has to be in the same way it should not be. That was a bad idea. It should be I think this is going to be a problem or this isn't going to work because here's why. And then with the solution of, here's how I think we can solve it, or no, I don't know how to solve it. But let's work on that together. So this is one of the bigger pitfalls, this particular particular issue. So be careful of it. It's kind of ingrained into most of us that to kind of be defensive when someone's challenging our work. But in a team in programming, especially in a pair team, that's the norm. So those are the basic roles and it all comes down to basically we're going to work together as a single unit. And it seems really counterintuitive, thinking why would you put two people in the same problem? Well, in multiple studies and in multiple environments, and every environment I've been in where they start using it, everyone starts usually liking it because two developers working on the same prop mumble produce a solution faster than a single developer or faster than two developers working on two separate problems. Two developers working the same problem can solve the two problems that would have been assigned to two developers separately, faster than those two developers can do them in parallel, not working together. It's because you're constantly catching each other's bugs. You're constantly getting over. If you think when you've been working this last week, every time you've ran into a problem, and you've been stuck. And you probably spent a long time trying to solve it, having someone just to talk to you about it that is in the same situation as you can really speed that up. I'm sure some of you I hope some of you have talked to your peers and for some of the problems and found solutions that way. Well, this is a constant working non stop like this. This kind of problems getting stuck happen at all levels. That's not a starting out thing. That's just a programming thing. So pears, give it a vat. They also there's typos. I know I've talked to many of you this week where you've had a Single typo and you're like, I can't believe it was just that those are really hard to see in your own code, but they're easy to see in somebody else's code. So having somebody constantly watching over your shoulder is a means that those kind of errors don't happen. And there's often take a lot of time. So pairing has been shown over and over again, to be more efficient and working separately, even on across the same amount of work. It's hard so a lot of environments because convincing a manager that two people should be working on the same task is not always easy. And a lot of environments in town there, there are companies in town, like color, and fuse that they pair everything. You don't touch code in their environments unless you're paired. Back that's one of you can get I know at least one of them over which one I know one company in town that you can get disciplined for touching card without your pair
+
+and then other common companies. Don't use it. Other companies in town, the majority use it for certain problems. The last place I worked, it was, oh, here's this stuff, it's not that hard. So we'll sign it out to, you know, a few people to do it individually. But then there's this one part that is more challenging, so you to pair on it. Or we have a couple parts. So you to pair on this YouTube pair on that. And then this kind of boilerplate template stuff that we do over and over again. Other people could do it individually. So it's often work use like that. I've single out things but there's very few places that you'll work that you won't pair. But it's possible. And in same company, like large companies, one team may do all pair, the team beside them does not. But for the companies that pair they'll they'll talk to you about an interview and they want to know your experiences. They want to know that you understand these roles and how it works. Because it is it is a skill. So let's talk about before we look at the project, some common problems they run into, especially here? Well, not actually it's everywhere, but some common problems. And so the biggest problem is skill levels. So everybody, every developer, everywhere is all different skill levels. In a class like this, you're not on an even playing field right now. Everyone's been here a week. But some of you have come in from with no, you've taken previous classes in Java. Some of you have experienced in other languages. A lot of you have seen haven't seen, only code you saw was in the pre work. And so there's a level between people that have college classes in Java or other programming language and people, those of you who haven't done any coding before this week, or the pre work, so it's all over the place, and that's normal. That's the way it works. That's the way it works in the workplace, to every team you're on, there's going to be somebody a different everyone's going to be at different levels and different skill levels, different experience levels is really the way to think about it. It's not really skill, it's more of experience, somebody you know, it's been doing it for 10 years is going to, of course, be faster at things and work through problems quicker. This one's been doing it for your year.
+
+So you can use that to your advantage.
+
+So it means that when you're working,
+
+even if you're not at different skill levels, both of you have value, you just have to be open to it. So the person that higher skill level has the challenge of not taking control of encouraging the other person to to bring out extra or to give ideas, and to listen to their ideas and try them. Just because they can't describe how to do it in code doesn't mean their idea of how to solve the problem is a great or won't work. So maybe they can tell you ideas of how to solve the problem. And the person that a little more experience can solve the problem in code and changing the syntax. It also from that point of view can be used as you can help them learn how to do it in, in this was, you were talking when I came in the room, the idea that teaching somebody something is the best way to learn it yourself. That's really true. It's amazing. That's one of the things when I took this job, I was amazed by how much I didn't know about Java that I suddenly was learning because people were asking me questions that I never thought to ask. Or in looking at things in ways I never thought to look at it. So you can it gives you an opportunity to learn if when you're in that position. And if you're in the other position, the position of the person who's less experienced. Don't think your ideas are not valuable. You have some ideas of how to solve the problem. You still have ideas of your ideas. Have, you can still challenge how things are being done. And you should be doing that. So you will have the challenge of not always filling. I know a lot of people report, they don't feel like that they can contribute. Because the other person's at a higher skill level, they can still contribute, you can still contribute a lot. In fact, my favorite pair partner I've ever had in my career is somebody who was a much different experience level. At the time, I had quite a bit of experience and they were a junior developer. But what they did
+
+in the reason we worked really efficiently together is they challenged everything. Everything I wrote, they said, Why is it doing this or let's try this. And they were really strong problem solver, even if they couldn't always write in code and I could write in code So that grouping of that constant challenging, then we worked really efficiently together. So remember that experiencing code is not the only thing that it's part of this. So, right. So the other challenges, I guess the the other two are what we just talked about. There's also be careful of scheduling and reliability for the next few days, you're gonna have to figure out when you can work together. So you're going to be open to that. And talking through that. And then we see a lot of problems, especially this first time of just lack of communications of expectations. And I mean, well, we hear this about every cohort is, oh, yeah, we plan to work on Saturday. And but you didn't talk about how that's going to work. And the one person's thinking, yeah, we're going to get up work at 7am on Saturday, and the other person's thinking, yeah, I want to get started at 7pm. And that's us. So be careful with that with parents as well. That's again, that's workplace type stuff as well. And I'm only bringing up the last one because it happens every cohort. And my goal, every cohort is not to be the class that has to deal with it. So right? So some violations. So things you can't do. taking turns doing the assignment is not pairing. The pair assignment is about the pairing more than the assignment, what you're going to be given to do for your pair assignment is what you're doing for your individual assignments, just more problems. Thought about the problems, it's about the pairing. So doing it individually means you're not doing the actual assignment, the actual assignment is the pair. splitting the assignment doing half the same, the same idea. If you say, Oh, yeah, I'll do this. If you do this half, we'll put it together. That's not pairing. That's not doing the purpose of the Society of the work. So working in your assignment without the pair, your pair is also the same.
+
+I ended up
+
+Or, please don't rewrite your partner's code after they've left. That's really disrespectful. And in the workplace that will go. I've seen some of the worst fights I've seen in my career in the workplace has been caused by bad. So if you wrote the code together, you should only be changing it together. And if it's a pair assignment, you should only be changing it together anyways. And then finally, for here, if you come to ask us for help, your pair has to be with you. I encourage you to come ask us for help on it. If you come and say, you know, we're stuck, and you want to have you come, that means you're not working together. So your pair has to come for any, anything like that. You're asking for help.
+
+So questions on
+
+what pairing is or how it works?
+
+So let's look Yes, actually, so you assign assignments on a daily basis, so pi You're going to work on those assignments or I'm going to get them so we can work on eignet San Jose San Fran novel, right? Well, so
+
+there's the individual assignments we just looked at. Those are for you to do as an individual that you can work with origin collaborate, and we're about to talk about your pair assignments, which are more work that is for you to work on as a parent with your pair.
+
+Two different assignments. Okay,
+
+there are two different assignments. Yeah, the pair assignments are, they're due at the same time. But they, since they're individuals working on it, and it's about the pairing, they're not scored, and put in the same way. Instead of being scored by Richelle and put in the scoring the dashboard, the pair assignments will eventually be reviewed by me and I'll give you just comments on it. Now, if you don't do it, then you're you'll get comments a lot faster, but the common will be you do Turn into work. So they. So that means also when you're working in these, you want to, you want to work on with your pair when you work, but you want to keep in mind that the individual assignments have larger consequences if they're not done on time, then there's assignments can actually affect your score and the score and of course, is one of the reasons you can end up unfortunately, you know, dismissed. One of the only two reasons so, like any academic thing, you have to keep that up the pair assignments, if you can't get done, if you don't get them done on time, we'll, I'll make you very uncomfortable but that you they're not gonna affect your score. That just be me badgering you to get them done.
+
+So, you can decide which is worse. So
+
+if Yeah, all
+
+right. Be testing so it means we cannot collaborate on individualism. Simon's theory is that we can come together work together so
+
+you can collaborate on individual assignments. In fact, I would encourage it. But just make sure you understand all the work make sure you understand what what you've come up with. Yeah, but I encourage you to collaborate on your individual assignments. But the differences the pair's if you didn't see them and river last night, and I'll river look at it, and the topics channel, get my mouse to get them on their screen here. Maybe
+
+I posted the topics for in this way. I'll post the pairs for each week that have them. pairs for week one. Your there's a list in here of everybody and what team you're on. And so for the person you're paired with for this week, You have to do you have to collaborate with them on your pair assignments. That's the only person you can work with in the pair assignment. For your individual assignments, you can collaborate with anybody and collaborate. This person can collaborate with anyone else in the class and collaborate with people in Java green.
+
+Anybody would you want?
+
+And I encourage you to collaborate with people because it's, but in either case, you need to be sure you understand what the solution you came up with. This still needs to be your work, but you can talk through it and work through it. that answer your question?
+
+Yes, okay. All right.
+
+So getting your pair assignments
+
+in good bucket, you should have
+
+that I was the worst possible way to get there, but
+
+You'll have seen a new repository show up in your Bitbucket list that you probably haven't been in Bitbucket since last night. But there are each one of you have a repository. That is
+
+it's gonna say team, your team number
+
+two on one of these repositories listed team one Java blue week one pair exercises. So you're going to want to first step up is cloning. So a pair exercise I don't go through that in detail is detail about how to do them because there's two of you. So I expect you to figure out some more of those details on your own. So you're gonna want to clone this repository. I'll give you a hint that if you go to the repository
+
+and
+
+There's that button that you can get the address that will write the whole command out for you to clone it. So clone. And then, as you're working with get, you're going to push and pull in your pair to origin. So you're going to push the origin, and you're going to pull from origin to get your partner's work. And they're both This is going to be origin for both. So there won't be upstream involved for your pair, just origin. How you work with you and your partner is going to be you. Some people like to one person clones this and everyone works in that compute that machine using tools like like this tool, zoom, and I think Google Hangouts allows to do it as well. You can take control of somebody's machine and work so you can actually write code on their machine by taking control of it. I think I think Hang on. Do that I know zoom, zoom Well, how you communicate, you're gonna have to figure out as well, you're gonna have to be able to see each other screen. So either, if you need to sign up a zoom account, if you haven't already, that'll give you 45 minutes at a time. I will tell you that I actually know the two of you. I think it's unlimited. I might be wrong, but I think if there's only two people, it's unlimited. And it goes to the 45 minute limit when the 30 when a third person joins, but in worst case, you have to restart it every 45 minutes. hangouts is a little less feature rich, but it's unlimited. Definitely unlimited for any group. I'm pretty sure it's unlimited for two people. So what you'll be doing is, you'd be writing two more programs, one that makes change and one that calculates the they gets a separated numbers separated by spaces like this. So you're going to have to work together to figure out how to break up a string into parts based on the space here, and then calculates the weight on Mars, and then gives you the weight, the calculation here based on those numbers, so just like the decimal binary, I was just starting out with one, get it working and then work through, then come back and get the string working. So if you work through this together, it's going to give you some of the solutions to that you need to look out for your individuals. The order you work on these is up to you. Some people prefer to pair first, because they like the idea of collaborating the first time through the material, other people that they prefer to work individually first, so work out with your pair, how that'll work best for you. A lot of people will say, we're going to pair until like five o'clock and then in the evenings, we're working on individuals. Other people will say I'm going to do our individuals then we'll, you know, meet over the weekend or in the evening, however you want to work. It's that's fine. That's up to you, between you and the pair your pair
+
+Questions,
+
+understand what you'll be doing and how you're going to be doing it.
+
+He said these are do like assignments homework.
+
+These are do the same as homework. So they're due Tuesday. This will be Tuesday at 8am.
+
+Right for Friday we show
+
+Yeah, I think so.
+
+Okay. Yes, Tuesday, so whatever. Yeah, Tuesday at 8am.
+
+However, like I said, make sure your individual exercises are complete by then. But if you go that you have to complete the pair exercises, but there's a little more leniency on the deadlines around them. So I would give your individual exercises preference if you're getting behind.
+
+So the questions for today
+
+Brian, could you please well As to how to pull from Bitbucket.
+
+So, I'll walk you through the concept or is this for your pair exercises or for your individual?
+
+I have no problem with the new gym. I kind of got used to it but you know individually I try to pull something and I got issues could you help me with this.
+
+So you start with, you would go to the main team folder
+
+and then click the clone button
+
+and it gives you this address.
+
+Keep a copy this address and then run that command in Terminal. You do not want to run that command inside of your exercises folder, your Java blue materials folder, you want to put it someplace else, like make a new pears folder or put it just in development. But do not put it inside of Java blue materials. That's the dead because that'll put you don't want to get folder inside of another get folder. So if you run that in Terminal, it will, like if I, for instance, run out and run this terminal now, and I need to get back to, I'm gonna go back to development and I think I already have a pairs. So I'll make a directory, pair and then CD into it and then run that command. It'll clone that repository. And then I'll have the source code and then you push and pull by seeding into that folder instead of it and you would pull your partner's work with get pull and you would push your work but get but add commit, get push. I know I went through that kind of fast but again, it's part of since this is was part of the material this week for part of what I want you to work through together is that process. If you get stuck when you're working together that process No, definitely come see us. We'll be glad To help you out, but
+
+I'd like to really give it a try as much as possible.
+
+All right, so the questions
+
+I'm trying, right, I'm trying to go to module one
+
+to chapter five, but for some reason it doesn't show.
+
+Have you done the poll from upstream today?
+
+I did it yesterday.
+
+If I did the change command on my terminal it works but I don't see it on the website. I just see until loops and arrays
+
+in your folder. It won't be there into push.
+
+Oh, okay.
+
+It gets it gets into Bitbucket when you do the push.
+
+So Other questions? Kevin.
+
+Thank you, man. Good luck. And I think you have a event today three. I guess I should have looked at that before.
+
+Supposed to remind dropout.
+
+Yes, it.
+
+Three. There's the alumni panel. So don't forget about that. And then Monday, I'll warn you the quizzes a week review instead of just a one day content.
+
+Right. All right. So have a great weekend, everyone and I'll talk to you.
+
+Thank you. Take it easy.
+
+Do you have a second to look at my eclipse? Because I think yesterday whenever we did the debugging stuff, okay, now it just acts really weird all the time. Okay. Take a look.
+
+Let me done. Oh yeah. Recording and sharing
+
+It's gonna stop recording
+
+Transcribed by https://otter.ai

@@ -1,0 +1,14 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#using-axios-to-make-web-api-calls'
+
+Using Axios to make web API calls
+To interact with web services, you need a way to send HTTP requests and process the results. Axios is a library that is used to make calls to Web API services from a JavaScript front-end application and provides many easy ways to process the request and response used in the HTTP interaction.
+
+To make a simple HTTP GET request, you'd call the get() method on axios:
+
+axios.get('/users');
+What does this call return? Does it return the value of the HTTP response that is returned from the backend?
+
+Earlier, you read that waiting for a network call in a JavaScript application is a bad idea. If you waited for every network call before a user could continue with the application, the user interface would slow to a crawl.
+
+To prevent this, the request is made asynchronously and the application continues executing code. To do that, Axios—and many other asynchronous functions in JavaScript—returns a Promise.

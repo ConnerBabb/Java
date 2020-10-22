@@ -1,0 +1,202 @@
+Book
+https://book.techelevator.com/content/dom-api-javascript.html#changing-elements
+
+Changing elements
+Once you've selected an element, you can change it by accessing its properties.
+
+#Changing text with innerText
+You can change the text inside of an element using the element's innerText property.
+
+// Get the first list item
+let firstListItem = document.querySelector('#todos li');
+
+// Change it to say 'Update Documentation'
+firstListItem.innerText = 'Update Documentation';
+innerText allows you to update any text information on the page. If you set innerText on an element that has child elements, like ul, those child elements are destroyed:
+
+// Get the list
+let todoList = document.getElementById('todos');
+
+// Change list to say 'Update Documentation',
+// destroying all line items in the process
+todoList.innerText = 'Update Documentation';
+innerText also puts the literal text that you type in into the DOM element. Any HTML added to the text prints to the user and doesn't render as DOM elements:
+
+// Get the list
+let todoList = document.getElementById('todos');
+
+// User will see '<li>Update Documentation</li>',
+// and will not create a new line item
+todoList.innerText = '<li>Update Documentation</li>';
+#Changing HTML with innerHTML
+innerHTML acts like innerText, but it will render any HTML added as DOM elements:
+
+// Get the list
+let todoList = document.getElementById('todos');
+
+// User will see 'Update Documentation'
+// within a newly created list item
+todoList.innerHTML = '<li>Update Documentation</li>';
+Be careful when using innerHTML
+
+Anything passed to innerHTML is read and rendered into the living DOM of the browser. That could be dangerous. If you take input from a user and then use innerHTML to put that into an element, you're setting yourself up for a Cross Site Scripting Attack (XSS).
+
+If a user can add HTML to your page, that means that they can embed JavaScript into your page using a <script> element. Then they can use all these methods to completely rewrite your page, including making it look like a login page that sends usernames and passwords to their own site instead of yours.
+
+Never send user inputted data to an innerHTML call. When taking user input, always use innerText to add their content to a DOM element.
+
+#Getting and setting input element values with value and checked
+You can get the current value of an input element with its value property:
+
+// Get an input element
+let todoInput = document.querySelector('input[name=newTodo]');
+
+// Get the text the user typed into the input field
+let newTodoText = todoInput.value;
+You can also set the value of an input field by assigning a new value to the value property:
+
+// Empty the text field back out
+todoInput.value = '';
+Some select boxes have multiple values
+
+While this also works for select elements, it's possible for select inputs to be configured to have more than one value selected. value only gives you back the first selected value. To get them all, access the selectedOptions property instead.
+
+For radio and checkbox elements, you can get their status with checked:
+
+let finishedCheckbox = document.querySelector('input[name=isFinished]');
+
+let isFinished = finishedCheckbox.checked;
+checked returns a boolean: true for checked and false for unchecked.
+
+Setting values and checked won't trigger events
+
+You haven't learned about events yet, but you should still be aware that setting values on fields programmatically in JavaScript might bypass event handling code that you want to trigger when a value changes. You'll learn more about this later and how to get events to trigger after you set a value.
+
+Keep in mind that setting values in JavaScript can have this effect.
+
+#Adding and removing classes with classList
+All elements have a variable called classList that allows you to see, add, and remove classes from the element. This is the main way that you'll change how something looks on the page using JavaScript.
+
+// Get the first line item
+let firstListItem = document.querySelector('#todos li');
+
+// Add the class `done`
+firstListItem.classList.add('done');
+
+// Remove the class `priority`
+firstListItem.classList.remove('priority');
+#Creating new DOM elements with createElement()
+Instead of supplying HTML to innerHTML to create DOM elements, you can create DOM elements directly using createElement():
+
+let newListItem = document.createElement('li');
+newListItem.innerText = 'Update Documentation';
+createElement() creates a new DOM element and returns it. You can then call all the normal functions on that element that you can call on any DOM element, like innerText.
+
+This element isn't on the page yet, so it won't show up to the user until you insert it into the living DOM.
+
+#insertAdjacentElement()
+You can add new DOM nodes to the end of your list with insertAdjacentElement('beforeend'):
+
+let newListItem = document.createElement('li');
+newListItem.innerText = 'Update Documentation';
+
+let todoList = document.getElementById('todos');
+todoList.insertAdjacentElement('beforeend', newListItem);
+This adds the element as the last child on the element with the ID of 'todos' (before the list ends).
+
+To prepend the element to the list, you can use insertAdjacentElement('afterbegin'):
+
+let newListItem = document.createElement('li');
+newListItem.innerText = 'Update Documentation';
+
+let todoList = document.getElementById('todos');
+todoList.insertAdjacentElement('afterbegin', newListItem);
+This puts the element as the first child of the list (after the list begins).
+
+There are two other position identifiers: 'beforebegin' and 'afterend':
+
+let newHeader = document.createElement('h2');
+newHeader.innerText = 'Todo List';
+
+let newFooter = document.createElement('h2');
+newFooter.innerText = 'End of List';
+
+let todoList = document.getElementById('todos');
+
+// Place the Header before the list
+todoList.insertAdjacentElement('beforebegin', newHeader);
+
+// Place the Footer after the list
+todoList.insertAdjacentElement('afterend', newFooter);
+This one function allows you to choose where you want to put new DOM elements into your page. The table below shows you what each position identifier means:
+
+Location	Meaning
+beforebegin	Put the element before this one
+afterbegin	Put the element inside this one at the top
+beforeend	Put the element inside this one at the bottom
+afterend	Put the element after this one
+#Traversing the DOM
+There may be times when you don't know which selector to choose an element with, or you need to work with a specific child of an element and need to loop through or walk through a list of elements. For this, you can use some element properties to get an element's children or parent.
+
+#Selecting children with children and childNodes
+If you select an element:
+
+let todoList = document.getElementById('todos');
+You can get all of its immediate children elements through the children property:
+
+let todoItems = todoList.children;
+children returns a HTMLCollection object, which you can turn into a real array with access to map, forEach, and all the other array functions with this:
+
+let todoItemsArray = Array.from(todoList.children);
+You can also get children by calling childNodes:
+
+let todoNodes = todoList.childNodes;
+This returns a NodeList object that contains all the nodes inside that element. You can also pass this to Array.from() to get a normal JavaScript array.
+
+What's the difference between `children` and `childNodes`?
+
+children returns elements that are children of this element. That means that it only contains other HTML elements and not the text that might be in the element.
+
+childNodes returns nodes that are children of this element. That includes text (including whitespace) and comments that are in the DOM.
+
+For an example, if you had the following DOM structure:
+
+<p id="message">
+  This is an <strong>awesome</strong> paragraph.
+  <!-- with a comment -->
+</p>
+Calling children on the p element returns one child: the strong element. children only returns the children DOM elements. Technically, there is only one inside the p, and that's the strong element.
+
+Calling childNodes on the p element returns five children. The first is a text node containing 'This is an ', the next is a strong element, the next is another text node containing ' paragraph.', then a comment node holding 'with a comment', and finally a text node that holds the newline after the comment.
+
+The one that you use depends on what you want to do.
+
+#Getting an element's parentNode
+You can access an element's parent using the parentNode attribute:
+
+let todoList = document.getElementById('todos');
+let todoListsParent = todoList.parentNode;
+#Getting adjacent elements with nextElementSibling and previousElementSibling
+You can select the next and previous sibling—an element that has the same parent—by using the nextElementSibling and previousElementSibling properties:
+
+// Get the first line item of the todo list
+let firstTodo = document.querySelector('#todos li');
+
+// Get the next line item
+let secondTodo = firstTodo.nextElementSibling;
+let thirdTodo = secondTodo.nextElementSibling;
+#Removing elements with removeChild
+You can remove elements with the removeChild function.
+
+// Get the todo list
+let todoList = document.getElementById('todos');
+
+// Remove the first item
+todoList.removeChild( todoList.children[0] );
+Since DOM elements must be removed by calling removeChild() on its parent, if you have a handle on the item you want to remove, you can remove it with this:
+
+// Get the first line item of the todo list
+let firstTodo = document.querySelector('#todos li');
+
+// Remove it, using its parent property
+firstTodo.parentNode.removeChild(firstTodo);

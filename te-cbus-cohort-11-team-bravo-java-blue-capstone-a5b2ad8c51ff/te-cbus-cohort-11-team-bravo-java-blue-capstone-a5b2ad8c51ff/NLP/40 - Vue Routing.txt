@@ -1,0 +1,1609 @@
+Zoom
+https://techelevator.zoom.us/rec/share/5d12Ne-uy2BJUI3Tr2SEBpw8Lp3oX6a81SVNqKINyU_CdKXCcDMCt7Yy2F_n_ije?startTime=1595941897000
+https://drive.google.com/file/d/1Z1SI1OegcRukAKChuGlpuSEpnGovIUrV/view?usp=sharing
+https://docs.google.com/presentation/d/1pDBzxWIuyDOjjsC2kM1KFeNPVfn3gYq9CAmZCYj9PqE/edit?usp=sharing
+Hey, Brian. Yes,
+
+I can't find the slide
+
+slides.
+
+Okay, let me make sure I. Alright.
+
+So I'm David about another another part of view called the router. So another piece of it. And what the router is going to do is allow us to start go from having everything single page to or not single page but from that one view of and be able to start moving between sections of the site using links and other navigation to be able to start dividing things up like like an actual site where there's multiple pages.
+
+So before we
+
+What to do anything, I'm going to go to the lecture code. And terminal, I have the lecture code open for today, and I'm going to start the npm install. While we're talking about why we're gonna use v router, what it does. That way it's ready, we get to the code shim in the right place.
+
+So today, we're gonna, then we're gonna start by talking about
+
+the problems with single page applications. We already talked a little bit about what a single page application was a couple weeks ago, but we're going to go back and talk about this problem they create. That router is going to help us solve. So we're going to look at the problem of the single page applications and view router and what it's going to do for us. We're going to look at, again, if used versus components. We talked about that a few times, but today, we'll start separating them out more So we'll refresh what that is. And then we'll look at how configuring the router, and this thing called router view, which is part of that configuration. And then accessing using parameters with routes. And we'll talk about what routes are we've already explored. There's quite a bit in API's, but we'll revisit that. And then this thing called router links, which is going to replace our anchor tags on pages to build links between parts of the site. And then we'll take a look at doing redirects with the router and what that means and how that works. And then handling for for errors. And then we're at the end after that'll kind of take us through everything with router. And then we're going to talk about the view lifecycle and the lifecycle hooks, which is we're going to see today, but we're going to use a lot tomorrow. And then there's kind of a tack on a theater doesn't really fit anywhere else. For view call watchers that we're gonna just take a quick look at
+
+that. So
+
+Let's talk about the problem that router is going to solve for us. So what we're building with view, the way we're using view is a single page application, if Remember, a single page application is one that it delivers a single HTML file. And then in that HTML file, other pages each page is built and created by dominant relation. So we deliver a single page of HTML with a bunch of JavaScript, and then that JavaScript does dominant relations to change the way the page looks. So an additional page, if we had note for sites like a homepage, let's say a user's page and a forum page, it would deliver an index HTML for the homepage. And then, if you the user navigated to the Users page, then it would go back to the server and then we get the fully formatted user HTML for the user page and deliver that to the browser. And then if they navigate to the forum, a forum page in the same site, it would go back to the server, get the fully formed HTML and delivered and there would be three HTML files, the index HTML, the user HTML in the form HTML. All four fully delivered fully formatted with data when they're delivered to the browser and rendered. And if there's any changes in those, the browser would go back, make another request to the server for an entire new HTML page. So if something updated in one part of the any of that HTML, they would all be reloaded, that's a traditional web application. With a single page application, it delivers just one HTML file the index HTML, or in this case, we'll use index as the example it'd be any anything really. But it delivers a single HTML file. And then since in a bunch of JavaScript and the JavaScript manipulates the page, single file two different different views of the page. So when the user navigates the site, they're on the homepage. They're an index HTML. When they navigate to the user page, the users point of view, these are exactly the same. But what happens from a technical point of view and the single page application is the JavaScript does some API calls in the background to get the new data that's needed. And then it builds the user's pay user page out of in the index HTML and DOM manipulation. And then the user navigates to a forum page. And the same thing happens the browser goes back and in the background, the JavaScript makes a request to get whatever new data is needed. And then it updates that single page index HTML, again with the DOM of it to give the view the impression there on the forum page, but according to the browser, all three pages are on the same index HTML. So it's rendered one HTML page, which means that it's history. As far as it knows, it's only been on one page users have the experience of being on three pages. But the browsers have the experience of only being on one.
+
+And that's going to cause
+
+some issues. So that means the browser can't track what's going on in a single page application. As far as it's concerned, you go to the index HTML, and you've been on one page no matter what you do there. It's one, one entry in the history according to the browser. So the problems is creates is that when there's internal pages in a traditional app, is the user navigates between these sites. If they press the back button, they're going to go back to the user page because the browser's history is defined by The HTML request is made, the full request is made. So is the CMS, the response to those so each of these in the traditional application is a new request for the browser. So the Back button goes from the forum page back to the Users page, the user pages back button again, they go back to the homepage. And then they if they hit the back button homepage, they exit the site wherever they were. Previously, if they were someplace previously, let's say they weren't. So they go back to some other site. In SBA application, they go to the homepage, navigate to the user page in the form page, they hit the back button, the user would expect to get back to the user page. But what's going to happen is the browser says, Well, this is all one, one entry. You've only had one request, because he can't identify these background requests going on. Because they're happening in JavaScript, not by the browser. So when they hit the back button here, it's going here, they exit the site, because hitting the Back button on any of these pages is the same as hitting it from this page in the traditional application, because of the way the browser tracks history. So that's a problem. And that also means the refresh button doesn't work. So the refresh button, what the way the refresh button works is that it keeps track of and actually the Back button to the right is the browser history works. It keeps track of each request being made. So it makes a stack of requests. And if you hit back, it just pops the last request off and goes to that repeats it and just keeps going down through the stock for each request, if you hit the refresh button, despite what appears it doesn't go back to the URL. What it does is it gets the last request it made and returned that request. And since in a traditional application request is the entire HTML page, you refresh the page on an sp, sp application, a single page application. If you're three pages deep, if you're on that form page and you refreshed it, you're going to get the home page. By default, because the browser is going to refresh its last request, which was the one to get the initial starting point, the index HTML and its initial state.
+
+So refresh isn't going to work.
+
+And it also means that the history for the same thing we've talked about the history can't keep track of what's going on internally. So when the user goes through their history, which they're used to using for lots of different purposes, or to bookmark something, then it actually has to next work better for the next one. When they go to the history they're going to see one entry. So they don't see model entries, which can be make a lot of tools that work with them. Pages, not work correctly either. And then finally, user can't bookmark an internal page by default. So here, in the traditional application, if they bookmark the forum page, they come back and they send this URL to the forum page. The browser makes the request for the form page. And every they get the full HTML on the form page. So works just fine. Here, if the the single page application that they bookmark the forum page, there's nothing that identifies to the site, the difference between this page and this page because it's being done in JavaScript. So no matter what the internal page that he bookmark, it's always going to go back to either two or four or four. In a lot of cases, because the resource the server won't know the resource exist either. When it asks for the forum,
+
+portion of the URL, it's going to say I have no clue what that is.
+
+Because I only have an index HTML in The same way, even for the browser as well, it's just going to be the starting point that the browser and the server no exist, because the rest of its being built by JavaScript. So there's these problems with a single page application. And a lot of those are actually fairly serious problems in the way users want to use a web page or need to use a web page.
+
+So that this these problems are what router solves.
+
+So a router
+
+is a library or freight part of a framework that allows us to emulate all those pieces. So it's going to allow us to emulate URLs. And it's going to do that by handling them internally. So it's going to want to use your bookmarks that are on the forum, and they come back. It's going to identify to the server that know The first part is Yours, give me the index HTML. And then with the rest of URL, I'll build the JavaScript, we'll build the form location to start with, that the user wanted. The same way with the Back button or the history, the router is going to allow it to be that if the user press the back button, they go to where they expect. So to override the kind of default behavior and provide the experience that users expected, the same with the refresh button. So and then, probably even more importantly, it's gonna allow internal pages, it's gonna allow the users to experience pages the way they they're used to experiencing them in an application. So again, with the traditional one users, our experiences, they move between a site between the homepage, the user page and the forum page, that they have a URL like they go to site COMM And then they go to the user page, maybe the user slice their name, and they give the forum page form in the URLs identifying where they're at on the site. And a single page application. As far as the technology is concerned, the only URL is just the site.com. The rest of these URLs are not really needed. And don't have to exist. In fact, what we've been doing so far, they don't really they haven't existed. It's always everything's been in one place. But we often want to mimic this functionality. And then we also often want to have it in our own site. So we can build things separately, we can build, you know, the form separate from the user page separate from the starting page. And that we can identify which components are loading for which of those pages. So routers going to be able to allow us to build these traditional URLs and then identify where in view in SP application where they're going. So routers not specific to view every all of them The racket frameworks and actually some other a lot of other frameworks, well that do SPI or do similar things have this concept of router. So there's a react router, there's a router for Angular, there's routers that exist that are just routers that you can plug into any of them. But we're going to look at his views router. So the one specifically for view. So that's the problem that is going to solve so before we move forward with looking at a little more details of that what questions do you have
+
+what is going to solve?
+
+Alright, so, um,
+
+stop stuck.
+
+So this project today's lecture code has The router already installed. There's a couple ways you can add router to a project. And I'm not going to for this command you don't need to follow along because I'm not going to complete it I'm just going to show you the menu and then cancel out of it. So if you're on our view create
+
+I was project because I don't anyways
+
+when we go to few create on the menu, on the options we can have just like what we could select View x, there's also a choice to select router and that will add router to a project. So we'll see out of that. And we also just like when we added view x we use view add view x we can also do the command view add router. And I'm not going to run that either because it's already been added to this project to add it to the next Testing project. So it's just like we would view x we had two choices to add it, we can either add at the beginning or we can add it later by command. We can do the same with router and
+
+which is here.
+
+A, what it's going to add
+
+is we see in the main, I just like with view x, where it added the store, it's added the router and it's added to the view instance
+
+telling it we're going to be using a router
+
+and then there's a new router folder.
+
+And inside of that there's an index dot j s. So very similar to the way view X was configured only this index j S will be for the router and I will tell you a few using a different versions of the view command line interface, I think the newer version names is something else. But it's the same thing. The internal parts identical the name, it's just the name of the folder and file. So if you're if you end up using a newer version that has a different name, still something we're about router. Just be aware that the names not required to be router with index j s, that's just what this version creates. And inside of it, it looks pretty similar to what we've seen with view x.
+
+It creates an instance of the router.
+
+And then here, it does two things that are going to be these are the sections that were really important to us this first one just so we can understand it. And then the router will actually do work in a moment. But we need to understand these two, two lines. So the first one base, process environment, basically base URL basically cells with the starting point of our application. So we don't need to worry about setting this it's set for is processed out environment gives what's called an environment variables for view, which are some variables that view sets. And then some that we can set ourselves if we, if we want. But in this case, the base URL is going to point to where V is running at. So that's going to be when we run this on run server, it'll be you know, HTTP localhost at Port 8080. But one point is this history mode. Because if you're here, when we're running inside of NPM, server, which is what view is running inside of in the node server, then that's not going to matter much. But if we're running on an actual web server, like if you deploy to Heroku, you deploy to GoDaddy or dreamhost, or any of the other servers that That history mode becomes important. So history mode is going to allow us to have URLs that look like what do users used to. So they're going to look like this. They're going to look like you know, issue AD AD slash app slash home. And that's what a user is used to seeing in their, their browser. The problem with history mode is that as far as the browser is concerned, that's fine. It's just making a request to that. But when the browser makes a request, it's going to make it to http localhost 8080. App dot home in the server has no idea what that is. So there has the server has to be configured to understand history mode as well. It's a simple configuration, but it's not something outside of the scope of what we're going to talk about. That's something as server administrator would do not something a developer generally would set up. We would just need to be aware that it could be a potential conflict when we're using history mode with a host with a server The standard mode is called hash mode. And it looks like this. And what it does is this part is the part the server can understand. And then it puts a pound sign as a directory, and then the part that is for the view router to use. So the parts it's important to view. And if you remember, the pound sign, Bill just put a fragment in the URL. And the fragment of the euro is a portion that is not for the servers for the client. So this causes the server, any server to say, Okay, I'm going to deliver the resource at this location. And then this portion is for the client. So I'll just pass this along. And then allows the view router to determine where it's going to go. So that's two modes that the router can run in. By default, it runs in using the pound sign on what's called hash mode. And we can enable what's called history mode, which is what we have enabled and because it allows us to build the URLs that look like URLs users are used to. But it requires that the server to be configured to do that the node server, which is what? When we do NPM, run serve, that's what that is, is already configured for that it's precuts betzest normal configuration. And it also means that as we're moving around the site, what viewer is going to be doing in the background is taking advantage of this API in the browser, not a web API, but application API, called the history push state, where every time we move to a URL view, the JavaScript is going to be manually adding history to the browser, so that the browser gets the history of moving between URLs. So it's going to appear to a user that there's no difference between our standard or single page application and a traditional application. But in reality, the view is going to be amazing. collating all this for us, or the router, the routers can be anything all the scores by as we move between URLs by accessing the push state URL and adding history to the browser. And by doing, taking care of the URL with the server.
+
+And that's not knowing that is, the details of that is not as important as just knowing that history mode. If you're ready to deploy to your company's web server, it may have to have the admins change something may not work out just as is with a web server.
+
+So
+
+So let's take a look at
+
+I see a plot starting to apply this and then as we do that, we'll talk through The parts of router and how we actually coded. It hopefully some of what we talked about will make more sense as we see it actually working. So I'm going to start by, we have this little dummy, do NPM run serve.
+
+Hey, Brian. Yes. So the default mode is the hash mode. And to get it to get you into the history mode, do you just have to come into the index.js and make this change?
+
+Yeah. So when you when the menu choices that when you add router, it'll actually ask you do you want this in history mode? Yes or no? If you pick No, and you want to change it, you just change the mode here. Yeah. Okay, cool. You can do it either way. So, um, so this project is what we've been looking at for a week. Now it's the review project again. But now it has the components that we built out last week. So all the mini small components has the router in it. It has the store in it, the view x store.
+
+It's been expanded somewhat.
+
+It now has multiple products. So it has five products in it.
+
+And then the first one that we were used to working with.
+
+And it has an app and it's also Well, we did that last week. So and then it has the views folder setup, but it's empty right now. And then app view itself has been set up to load nothing. So when this starts, we're going to see it's actually loading nothing.
+
+Running but
+
+so the first thing we need to do is we have all these components. But we need when we have we talked about the idea of views via AWS last week as being representative pages were components or pieces that those views use. And that was something that was kind of useful last week. But with router, that's really important because the pages are what we're going to route to. And that's what's the user is going to see as what they click to a link and they go to a new page like they go from the homepage, the Users page. That would be two views, the homepage view and then the Users page view. they clicked to the forum page. That would be the form page view. So what users would think of as pages inside of a website, each of those pages would be a view. So we're gonna have to start defining those. So, our views to remind you again, what they, what they are, is they're going to have components. And from a code perspective, the views and components are going to be identical. These are just components. But from an organizational perspective, a view is going to represent an entire page. A components can represent a piece or a widget on that page. So a view will be there's going to be made a multiple components, and then we're going to route to the entire view. So in a traditional site of view, is going to represent what traditionally would be an HTML file. So with To get something to load here, we need a view that can show us a list of the products that would probably be a good starting point. There's a product list
+
+component here.
+
+And it lists out all the existing products. We have multiple products. Now something we didn't have before, we just had the review page before. So we need a view that can list this.
+
+So down here in the views, I'm going to create a new
+
+component that is going to act as the view
+
+and it's going to be
+
+let's call it products.
+
+Instead it is just a component there's nothing special about it only it's organized into the views folder just for organization of these are what we route to. And you the these build themselves using these components.
+
+So let's fill out the didn't work
+
+that way, using this snippet to fill out the parts of and then
+
+we will just see out a div
+
+give it a class products are a single container
+
+and we're going to add two components to it. So we need to go down to the script to add those. So I want to add the product list I'm going to import
+
+the product list from
+
+Hornets
+
+product list
+
+and I put that in the wrong place to me fix that
+
+should be outside of the export too. Default.
+
+And then here in our component section of the export
+
+product list, also this component, the name,
+
+quotes.
+
+And then that allows us to use the tag up here. So let's just add
+
+the h1
+
+products
+
+and then the product list.
+
+So this view is not going to do much more than this.
+
+It just kind of wraps the product list
+
+in the product list component and has a single component, which is a common use of a view the idea being that product list is the reusable component. This component even though all it is, is just loading another single component and showing it is represents where we're routing to, it's going to represent a page. So we want to have, we don't want to route directly to the product list, we want to keep that separate. So we becomes reusable. And then we'll wrap it in a view component, so that we can route to it. So to say this, okay, this is may only be one component. But here's the page that it's part of.
+
+I'll save that. And we started to build to see anything because we can't get to it yet.
+
+In order to get to it, we'd have to import it into the app view, which means we only have one page we can go to. And we want users to have a traditional experience to then go to multiple pages by the URL. So to do that, we're going to have to set up the router. We have to configure the router for URL route that the user can go to that will load this products view. So James
+
+Ryan on line nine, put the at symbol instead of period. Is there any reason or is that interchangeable period,
+
+so it's not interchangeable.
+
+So a period says starting at this folder, which would be here in views go to the components folder, which doesn't exist because scammed us so I could do dot dot and that would go to source and then components. Since this is this is a path to starting from over you're starting at the Add symbol is a alias for source so similar to the way todos an alias for your home directory on the file system. It's a Lesson view for the source folder.
+
+Oh, cool. Yeah.
+
+All right. So here in
+
+the index j s, that's part of router.
+
+We're gonna set up the first route. So the first thing we have to do is we have to import the component that we want to route to the one that represents the view.
+
+So I'm going to import
+
+see it was
+
+from
+
+products.
+
+And I'm not going to use it, we're going to use it down here when we define the route instead of not to put it into an Add Component or components section like we did. Before. That we have to use it. So here in this routes array, which is just being passed here, so in some cases, you'll see the routes array just as an array.
+
+Looking
+
+as an array right here.
+
+So just like this. So if you see configuration looks like that, it's the same thing, we're just putting it in a variable outside of this for
+
+just to make it easier to work with.
+
+So we're going to build this routes array, which is going to be passed to the new v router along with the modem, the base URL. inside of it, we're gonna have an object for each route that we're going to create. So I'm going to create a new view out a new JavaScript object, and it's gonna have three keys that but that every one's going, or most of them are going to have, the first is going to be the path. The path represents the URL. So just like when we would Request mappings for API's and we had to define the portion of the URL that's going to map to this. So not the HTTP localhost 8080. But the portion after this, the screen and map. So pretty better here. So the portion that goes after the domain and portion of the URL, that's going to tell us that this is where this is going. So if I just want it to be localhost 8080. So that is kind of the default starting point, I can put that just forward slash. And that's going to tell it that I want this to be the default route that goes to for the site. And then the second key is going to be name and I'm going to give it a name. So products, and we're going to use this name when we want to access this route internally. So when we go to the Link to different pages we won't link to the path will use these names to link and it will provide the path for us. But we'll get back to that when we get to linking between these routes. And then the third thing, the third key is going to be component. And for component, we're going to list the component we want to route to. So what this is saying is for this URL, or this route on the URL,
+
+go to load this component.
+
+And then we're naming it this so that that's like a variable name that we're going to use internally.
+
+So that creates our first route.
+
+Save it
+
+and once saved Unless I'm
+
+forgot to actually do the important
+
+so this should be
+
+yeah symbol for source views.
+
+products so I need to import this not Yeah, I put the name there instead of the
+
+now I can't find product list. So let's go look at products and see why they do the same thing.
+
+products list again.
+
+And that works. Okay. So
+
+we have our route. So we should be when we come to this URL, we should now be seeing a list of products, but we don't. Because there's something else we need more we need. So we have a route. But everything still driven around the starting point, the app view. That's what if you remember, we look out on Friday, changing it to something else. But here, that's the starting component, the view look view loads when the page is first rendered. So in the index HTML is first rendered the JavaScript loads, in this case app, and it mounts we talked about it has that starting div that it builds Everything, which is
+
+here in the app.
+
+So we have to
+
+put something here. To tell it we want to display the output of the router. So the router is now sending output back to view and it's saying, okay, you're going to this. And here's the products component.
+
+But Vue
+
+retrieves it. It has no idea what to do with it. It doesn't know how to display it, because we don't know we don't have any place for it to display. Because as far as views concerned, right now, there's the index HTML. And the only thing that knows how to display is this app view. Everything else builds off that So we have to put a tag called the router view in the location where we want the output of the router to go. So usually it's going to always be in the same place the route view. But since it's a tag, it allows us that if we wanted to put it someplace different, we could if we wanted to wrap it like inside of header and footer, we can have the components from the router being changing, just pour a portion of the screen.
+
+We're going to just change this div
+
+and put the tag router dash view
+
+we don't need to put any arguments on it.
+
+Save it and we do that we see that products now
+
+are each one at least is displaying.
+
+Got to figure out why the rest are not displaying so
+
+Now, when it routes, and it goes to this URL, which is that's the same URL there. So just a slash. It says, Okay, this is the path you're trying to go to. So load the components products. So it goes to the products component, it loads this component.
+
+And then
+
+it renders it.
+
+It adds to the DOM with this route view tag is, which is just in right here inside of our
+
+main app, you div
+
+which is why it's displaying on the screen now.
+
+So I saw the problem with products. It's because product list and I made the other one singular or On this single line, this one should be the opposite.
+
+There. So now we see the list of products.
+
+So before we
+
+move on it
+
+continue more there.
+
+What questions do you have?
+
+How does it know which router view it wants? Because I'm assuming we'll have more.
+
+Now what does have one? Oh,
+
+sure. It's like one.
+
+The reason it's a fact I don't know if you can have more than one. The reason that is it's a tag is because it allows you to whether just saying, okay, the app fee is always going to be the route of you. It allows us to do things like build a header here
+
+and
+
+footer here, or other things around it. And this have part of the part of the page be what we're render our components are rendering, rather than the whole thing. So this allows us to do things like have reusable, like a consistent header because system menu, system footer, is the reason it's a tag. But they'll generally only be in fact, I think they're only can be one router view. I'd have to look into that.
+
+To make sure there's not some
+
+way around that. But yeah.
+
+Did that answer your question?
+
+Yeah, so we're just going to be changing. Like, if we wanted to go back, like we're only going to be able to change that portion of
+
+our app view.
+
+Like that's, I don't know if I'm gathering what's
+
+so. So the, the back functionality is going to be handled on the background. For us, and that's about the URL. We haven't built any new other URLs yet, we just have the starting one. Because if we don't define that starting URL, then when the site starts, you can just go to the domain, you have to go to a URL inside of it. So the router view is just since the router is loading, just loading a component, just loading the products component that we might have called it a view to separate it out for organization, but routing is just a component. And a component is just this template is going to be added.
+
+It's going to be cloned and added to the DOM.
+
+So all the router view is saying when you're adding it to the DOM, added here, the URL, the history is all going to come from these past. We're going to go So we have a starting one, we're going to have ones that. And hopefully that made hopefully will make more sense when we have more than one more than the starting one.
+
+So let's let's get
+
+right before you move on, I do have a question.
+
+I try to follow along and I do have a problem in index.js. It says,
+
+it says you do you find products, but never use this. So my browser is not rendering.
+
+So make sure that
+
+this line, that this lighting, whether it exists with products, and that the spelling between this and this are identical, and the components are spelled. I had that problem. Last night when I was working on this when I misspelled component. It's a plural I made it plural. And so those are the three, three spots that could could be coming from.
+
+Do you think? Did you find it?
+
+Yeah, just got it. Okay. So
+
+let's kind of recap the not recap, but look at this configuration again. So all the routes, again, are going to be this array of these objects, again, with the path, that it's going to have the portion of the URL. So this particular path would go to
+
+a URL that looks like that.
+
+A name that we'll come back to that's a variable name. And that's going to become important to us later. And then the component that we're loading, so all routes are going to have those three pieces. I say all routes, but when we get to redirects, that'll change But the base routes are going to have those those pieces
+
+and then we're going to add that
+
+that's the same thing.
+
+Alright, so let's define let's take a look at another need now. So I have these products and they have this five of them now. So if I was going to another page
+
+like a products
+
+like the review display page
+
+there's now an individual product for to these and what I would like to be able to do it Be able to have another view like a product detail view
+
+that I can go to and
+
+go to URLs like this products one. And I get the first product, no product to and I get second product. So have a URL that I could go to to get to the product page and then have a key or dynamic ID, that I can pass in the URL to identify which particular product I want to load and want to show the user. So with routes, we can do something similar to that as well. So routes also can allow us to define path parameters. So we look we use path variables and API's, right we use them quite a bit. To pass ideas. The same idea exists here. It's just first exactly the same idea, we're going to pass a variable, a value into a variable through the path.
+
+So, we're gonna add a product detail view.
+
+I'm gonna add that first. And we'll just leave it empty just so it's there so that we can route to it. And then we'll
+
+come back and populate it. So what a file.
+
+I'm going to create product
+
+detail view.
+
+Again, I'm going to use the view snippet.
+
+And I'm just going to put an h1 just here, this says product
+
+detail
+
+just so we can see a loading, just sort of something low. There. And then
+
+go back to
+
+the routes.
+
+actually move this, the routes off to be split, right? So we can
+
+and then we add a new route that goes to this page. And I want it to look this route to look like this. So I wanted to go into products and then an ID. So again, the base URL is this. So when we define as the route the path for a route, it's going to be everything after this. So I want my route
+
+to be this so that
+
+it will book another object here. Again, the first key will be path and it's going to go that's the path. I want to be able to go to The second, we're going to name it, my name is product
+
+detail.
+
+And then I need to import that component i just built. So I go import that import
+
+product detail from
+
+views.
+
+product detail
+
+on that
+
+detail.
+
+So we're saying when it goes to this URL, I want it to load the product detail component. So save that
+
+We can see now it does load the product detail component. But of course, now it's hard coded to, to make it a three, two, again, I go to three, it doesn't work. So I want this to be variable. I want that to be something that is dynamic. So just like when we set path parameters, and the request mappings of API's, remember, we would set IDs using
+
+syntax that look like this.
+
+And in Java, we're gonna use a slightly different syntax is the same idea. So wherever we want a path parameter, we're just going to use to find a variable name with a colon in front of it. That's going to create a path parameter. So now, this is telling the view router that it's going to be this URL with some variable data after it and when you get that variable data, put it in A variable named ID press access later.
+
+So once I save that,
+
+you see now no matter what I go to, I get product details as long as I have something there, and also doesn't matter what I have there because it's looking for a URL that is products, and then something else. So I have to use this in my component to actually load, make sure it's going to the right thing and to load whatever I want to load dynamically.
+
+So we need to be able to get the
+
+that ID and our component
+
+might go back to the component while we're right here.
+
+And just to show how we can get it, and then we're going to move into something a little more useful.
+
+We can get it by
+
+accessing the route with $1 sign, just like we did store for UX.
+
+And then
+
+when we have a path parameter, it's going to put it in this thing called params. And then dot the key we're interested in
+
+have to put it into a variable before it can do that.
+
+Yeah, I have to. Alright.
+
+So let's put it into a computed property.
+
+Get puram
+
+return this dot
+
+route
+
+params.id
+
+Was it because you didn't have it surrounded a tag right?
+
+Oh, you're right. It is. Thank you.
+
+That saves me having to go to look up why that didn't work before.
+
+I didn't
+
+Yes asked, I didn't have a base tag on the template.
+
+So we can get rid of this because we don't need.
+
+This is what we need up there because we don't need this on the top and get rid of this computed property. So it's not confusing later.
+
+So there we can see the path parameter. Now, we can access it in that way. I put four.
+
+It's four, if I put it to ABC,
+
+it's ABC. So whatever value I send in this portion of the URL gets put into that path parameter. And I can access it using route with $1 sign, just like we did the store the same pattern we had with the store, dot params. So that's a object. I think it's built out of all the parameters that are passed when they before In the path or from the query string, and then dot the key of the parameter. So it's going to be route dot params dot whatever name I defined right here to access it, which means we can access it in our page to do something with it, like load a product, or set something in the store or call an API whatever we need to do to get information or display the page.
+
+So
+
+we need to finish this product detail, component
+
+or view
+
+To be something useful, so I need this to be able to
+
+load the proper
+
+the correct product when this page loads.
+
+So I need something I need a way of getting this
+
+when the page starts.
+
+So there's these things we're going to come back to. I'm just going to use it now and we'll, I'll mention what it is and then we'll come back to them go through a detail towards the end of today. But here in export default, give it first its name,
+
+product.
+
+detail,
+
+not equal. That's
+
+it I'm going to use this method called created. So create is what's called a lifecycle hook. So we're going to come back through the lifecycle hooks in detail later today. And we're gonna use them a lot tomorrow. But lifecycle hook is a method that gets called by view automatically, at certain points when the page is being is certain points as the page is working for is the components working. So created is called when the components being created. So allows us to do something like on page load.
+
+So
+
+I'm going to set here lifecycle hook. I want to get that ID and that's going to be a product ID. So let's call it the active product ID. And we'll get it from the route so the start route.params.id.
+
+And then what I want to do In the store,
+
+the store the view x store,
+
+there is this active product that sets which product we're looking at currently. And there is a set active product mutation that sets that. So I want to set that to in the store so I can when I use the store above it will get the right product. So I'm going to say this
+
+dot store
+
+and we commit
+
+and then that mutation name set active. Me no good. I miss typing out if I don't want this copy it. Select a product maybe
+
+And then the value we're sending to the mutation, which is going to be that active product ID that we just got from
+
+the route and I spelled it wrong.
+
+So when this page is created, it's going to set that active product using the ID from the route.
+
+And then we'll
+
+build a computed property
+
+that will get the product
+
+get the current product
+
+by returning
+
+this
+
+store, state and if remember the store
+
+has a list of products in it.
+
+So, products, and that's an array. So let's call the find method on it. And that is need to pass an anonymous function to it.
+
+And what is return when
+
+this ID equals
+
+the active product ID we
+
+product
+
+and I had the right, I hope I got that right.
+
+Active product.
+
+So just get the product with the active product is, is equal. And this is going to give us a product then to work with up here. So, to show that we can say here now
+
+let's just call products Just gonna print out the object but
+
+we can see the product ID for
+
+is this book. Let's try it too.
+
+Want to figure out what's going on there but
+
+Okay, so it's going to go through and get this is going to give it the product then that we can work with out of the view x store for this page. All right, so what? So there's more to do there before we can. We have that working. I think we'll make the product make a little more Sounds but what questions do you have at this point?
+
+Brian, I'm kinda wondering why we need to set the
+
+the params ID to the store, variable active product ID to then go ahead and pull it in our computed property.
+
+We don't for this page.
+
+So the reason we're doing that is because we want other things accessing this to know what product we're actually actively working with. So I should have pointed that out better that then since we're doing that, we're just going to go and use it in this page. But that's kind of setting a record of Hey, this is what the users at and we're gonna have multiple components being loaded that uses this product. So think, Okay, well know which product they're working with. Okay,
+
+that makes sense. Thank you.
+
+So either
+
+All right. Well then let's go and take a break and then we'll come back and keep looking at this. So let's make it even. We'll come back at 1030. So
+
+all right, we'll do it. Would you rather let me get back from
+
+break since we missed it
+
+All right, so
+
+What other questions do you have? Before we start again?
+
+For the router params that we're using, we're using ID because that's what we specified in the router index.
+
+Yes. Yeah, if we change the name
+
+for instance, if we change this to
+
+Xyz
+
+then
+
+To save it
+
+then here we would use
+
+the same thing.
+
+Okay, nice rise that should be
+
+that works I think ones will strike Monza
+
+and
+
+see it works the same
+
+way. Now if we select different products we should still ask for
+
+a Mac ID.
+
+That's all the questions are. All right.
+
+All right now it's working.
+
+Now should be loading different products for different IDs and the This, if you missed what the problem was, was loading on the same product is that this was added as a single equal sign, though assignment instead of equality, which always returns true, so it was always finding the first one.
+
+Alright, so now let's finish this product detail page. So now we have the product that it's being
+
+brought out. And
+
+for our product detail, let's go ahead and put
+
+this is going to be our
+
+old app view, which is essentially what this is going to become from last last week. The one that actually displays all uses all of our components that we had previously. So
+
+Id AP
+
+class equals main.
+
+And we could go
+
+get that from last week, but it's not that much code. So let's just go ahead and
+
+this is gonna be the product
+
+name.
+
+We'll see by using it by naming it in our computed property, this product, we can use it just like we did in our old view, like we did with these loop directly.
+
+So put it in our paragraph for a description
+
+and product description
+
+or div.
+
+So we're gonna put it in something new here called actions. We're going to come back to it. But we'll be eventually going to have is some navigation here. And actually inside of this will already put the one that we do already have href
+
+and that we don't have that yet. We'll come back to that.
+
+And then our
+
+classical SWOT
+
+display.
+
+These are star summaries. So our average
+
+Summary. And there were a sweat four or five star summaries,
+
+summary reading equals one.
+
+Ready to repeat that four more times four
+
+to
+
+four.
+
+Again, we're not building anything new here. This is what we had in our app view last week.
+
+But this is just now where it's going to display
+
+and then we have to do some imports and some CSS.
+
+I'm gonna get a bunch of errors right now. Not
+
+a review is to should be review list when you close the review list tag.
+
+Thank you. Okay, I've do the five imports. And actually, I'm gonna make this go quicker.
+
+I copy and paste these and I'll put them in river if you're following along so you don't have to
+
+type them all out.
+
+It's already the other screen up opening reverse so I can paste those lines of code and the next couple, but it's going very slow.
+
+On your training, try go
+
+Nope, So that's not working
+
+again you can't see what's going on but I'm logging into river are trying to because it always takes me at least four tries with my password before I successfully go.
+
+Stover okay so make up his post in the chat here. I know we'll make it permanent but
+
+rivers not really working out Okay.
+
+All right, so they're finally successfully got it. And then we'll have to add the components. I'll do the same for them. Hopefully it won't.
+
+snap to the name web components.
+
+Let's put those in over.
+
+What we're gonna end up with,
+
+then is what we had.
+
+Save everything.
+
+I know I'm being greedy. But can you copy and paste like line 14 and up
+
+as well?
+
+I'm 14 and up. Yeah, what I'll do, I'll just copy and paste the whole thing.
+
+So now we have
+
+ionic four. Let's go back to product one, which is the one we're working with, mainly. So we have the page that we normally were used to the ones we were working with before. Still working. If we change the ID don't change between the different ones. The other ones don't have any other reviews. Remember, we looked at him in the store, they were all empty. So right so now we have a product page that depending on the ID loads of different products, In its reviews.
+
+So now what we need is a way to get from
+
+the starting page
+
+to a page for each of the reviews.
+
+So
+
+if we go back to
+
+our product listing page, the one that was listing all the pages
+
+we need
+
+here
+
+on this product name, I want to be able to click on it and have it take me to the individual reviews. So we need something different for that we need to add what's called a router link. So normally what we would do is we'd add an anchor tag right and with an href that pointed to Chris if I click vs here, on the second line, I want to go to the URL products, too. And I could build an anchor tag that went to this URL, and it would work. But the problem is that if things change since there's no this ID that actually exists on the server, it's going to fail. So instead of using the anchor tag in view, to use our routes, we use what's called router link. And it's another tag that replaces the anchor tag and works pretty much the same. But instead of using URLs as href, it uses takes a JavaScript object that defines what route we're going to by name, and also any parameters we want to send.
+
+So here, let's add one.
+
+So round, whatever we want, just like an anchor tag, we, we were setting that here, you know, we would set it around this code or this name or So it's going to work the same, we're going to set router link. And we're going to end the router link tag on the other side of the thing, we want to be the link. So just like an anchor tag can be an image it can be. Now I'm really just anything that we can click on.
+
+So
+
+this creates the last step
+
+is going to turn product name into a link.
+
+And then it is an attribute of the tag.
+
+I'm going to set I'm going to V bind to
+
+equals
+
+an object. And this object is going to have the key name and it's going to be this one of these names from the router configuration. So I want to go to the product Detail page.
+
+I'm gonna get the product detail name.
+
+And
+
+go back to products here, the main page. Now I have links if I click on one,
+
+well nothing's happening because
+
+the product detail requires an attribute requires a parameter. So, along with name, I also can send parameters. So to do that with a comma because it's an object, and the second key is going to be params. And then another object of the parameters, so Id colon, and what I want here is the product.id. So they'll send that as a parameter. And it's going to take this and build the parameter for this.
+
+Now we have this
+
+and I have something called a gun
+
+or something not saved.
+
+So as we go to each one and click on it, you see it gets the product ID for the link. It builds out the link based on that name and parameter again, the name from here and then the parameter name from here
+
+and creates a link. If we actually look at these, inspect is
+
+what it's built
+
+in is
+
+is an anchor tag. For us, but by using router link, it allows us to refer to the route by the name instead of the path. So the path changes, we don't have to update our code.
+
+So that's how we can create links. So now, before we move on, I'm going to create a couple more in our product detail, what what questions do you have? Okay, so let's go to the back to the product detail page. So this page and I want to create a link right here. Remember, we had to add review, I'm gonna put that in. And then I also want to link to go back back to the main Products page. So that was that action section. Up here
+
+somewhere, too.
+
+Two things to it.
+
+The first one I want a router link.
+
+I want us to go back to the main section.
+
+So I could do this to not router view router link Sorry, I could say to
+
+a path
+
+and back to your products.
+
+We can see that a word this a work. Actually, I think I put it in the
+
+wrong place but
+
+it's under the wall display.
+
+I think that's what we had before.
+
+Subtle work But when I used to like this,
+
+I can use any link I want, I don't have to have something on the site. So if I want to say, you know, to get a link to
+
+some other location.
+
+Well, if I need the HTTP part, I guess to make it work, we can sync it. I can link to anything from there because what is building is just an anchor tag. But the problem with this is that if I change my routes, I have to come through and change all of these.
+
+So if I bind to,
+
+like we did before, then instead of treating this literally, I can use these names
+
+like we did before.
+
+So I bind to with name colon And products and then if I decide to change my link my path I don't have to update this link it'll update for me. So for internal pass we should always use the named pass from the routes
+
+but the anchor that the router
+
+will allow either
+
+or the router link will allow you to either
+
+Yes, quick question how's it that you're able to just say name products without making a call like to like kind of like how we do it store? How can we not have to do that for this?
+
+I guess when
+
+I guess I'm not sure what you
+
+said. How can you say like be bind to and then just name probably Without making a call to the actual like, your router?
+
+Well, because router link when we v bind to automatically looks into the router configuration, the router like tag,
+
+yeah. Cool. Thank you.
+
+So when we v when we bind to? That's a good question because it does kind of, normally we would have to tell it where it was coming from. But when we do when we bind to on the router link, it looks for an object that identifies something inside the router configuration.
+
+Okay, that makes sense. Thank you.
+
+Alright, so now we have the product. So let's take a look at
+
+we looked at democrats already
+
+and we looked at that
+
+and the router link
+
+and setting parameters There's some more information one of these. Okay, so here's another thing that we're not going to see in our code. But I'm going to point out
+
+so router link can also
+
+create links out of tags. So for instance, if we tell it we want our tag our router links to be created as Li tags. Actually, let's do that.
+
+We looked at this now
+
+we look at this and it's a anchor tag.
+
+On the router link, if I add
+
+tag equals
+
+the tag I want.
+
+You can see now it's built the tag as a Li, which actually works I'd have to style it to make it appear as a little So we can create any tag into a mic using the router like so.
+
+Take that out.
+
+And the other thing is that there is a keyword exact
+
+that if we're going to, let's say an address like this,
+
+if we're going to this address like
+
+I don't work so products without the ID.
+
+If we had
+
+if we had a path set up such that it was sliced just products. If we go to products in the URL that'll work. But if we also get a product with a slice shafter it'll work as well by default. So exact, we put the exact keyword, no router link and only go to that path Exactly. So it will, meaning that if we're going here, it will send it it will send this. So that's only important on this first. First, like, if we're gonna use a routing tool, we often have to use exact. But you can see it worked on the one we just we just did. So it's also only for mainly opposite for using paths as well. If we wanted to render exactly what we type, the exact keyword will make it render the path exactly as is typed. Again, not something you probably won't need. But if you do, knowing that it's there just to kind of plant the seed that there is this idea that if it's building a length, it's not working, that the exact keyword can help. But if you're if you're just using if you're always using the names, the names pass, you won't run into it inside the view application.
+
+All right. So the next thing would be to is to bring in the add new reviews page. So before we do that, other questions on anything we've
+
+looked at so far,
+
+want to go back to the route
+
+and we don't have any any view
+
+to
+
+bring in this added review. So add reviews, remember, we built it last time, it has the pieces of the form that to add a new review, and last week we had it so that there was a link here, that when you clicked it, it expanded the new review form in place, but let's move it to its own view. So We can route to it as a separate page.
+
+So we're going to need another
+
+component or another view. So add view view. I'm just going to put it in the scaffolding for right now and we'll come back and put the rest in a moment. Actually, this is indeed something so let's put an h1 add review just as a placeholder.
+
+Now let's build a route to it.
+
+So we're going to import
+
+add review
+
+from
+
+source views,
+
+add review
+
+and we'll create a new path
+
+path want to create is if we go to, we need the product ID. So we'll have it two products, then the variable ID and then add review.
+
+And we'll name it
+
+add review.
+
+And then the component is going to load will be the Add review component. So now if we go back here in our URL, and we go to add dash review me correctly and review we get to add review page. So now we need to build the page So, Zachary, I'm not sure what you mean, by a preview of the review
+
+with the model, in this case,
+
+I'm like, I guess some features allow you to preview what your reviews actually going to look like on the website instead of just how it looks on like the text fields where you're actually inputting what you're going to review. Or Yes, you could.
+
+Yeah, you could send your sentence links to an object, you could bind that out to display and make a review that's not there yet. It's like a good fit that
+
+so
+
+we have our path and it has an ID in it the same way.
+
+So now nest Indigo finished the ad review page, and the view is just going to load The component.
+
+So, add review.
+
+And this needs to be in a div.
+
+So, div.
+
+Close the div.
+
+Just because template needs that container, and we're going to add a component called add. We have a component already add review
+
+and
+
+then import
+
+review.
+
+From
+
+reviews,
+
+exam question for you. Yes.
+
+How come we didn't do this for the product detail portion, because then you have a component already built.
+
+We didn't. So the product detail portion was our app view last week. So the product detail actually loads, uses all of these components to build.
+
+Cool.
+
+So add review. And now nothing's now we have the form.
+
+So now if we go to the Add review component that's already been built, or mostly built, it builds that form that we looked at
+
+from last week.
+
+There's a method down here where it gets the product ID from the route. So it's getting it from here. Here's a case where she's using a directly creates on the new review. It sets ID equal to that product ID. It then commits the review to the store. But the next thing we'd want to do so this is what we did last time. Last week. The only difference is it sets the ID as part of the review
+
+the product ID.
+
+And now once they save in a review,
+
+transfer view, Ned Smith, they stay on this page.
+
+But if we look
+
+in the store,
+
+we can see that it typed down the mutation. If we learned State. Let's see that's on it for. So products for I think will be.
+
+It has our new review in it.
+
+So it's updated the data, but it's just stayed on the page. So what we'd really want is run a page like this after they add the review that they're taking back to the product page where they can see the review. So here, we need some code that says after we store this review, that we redirect the user back to the product page, if we could do that with router as well. So to do that, we'll access the router through this dot router. And there's a method on the router called push. And push will allow us to redirect the user to another page, another URL It works just like a router, like we set a JavaScript object that has the name of the path we want to go to. So we want to go to product detail.
+
+And then if there are params, optionally, if there's params.
+
+You set the params.
+
+And object for each of the params. We know there's a pram ID that's required. So the pram here is going to be
+
+this product ID.
+
+And that will redirect to the product detail. Route and pass it the ID with the product ID
+
+Staff we have this
+
+we put in a review.
+
+And we press Submit. And we're taken back and we see our review just like we did before. So because of this the redirect back so we can redirect from inside of any place inside of really the component using router push with a named named path. So it looks like your router link away It forces it to occur instead of waiting on the user to click an action.
+
+So then back to
+
+our
+
+review now, our products
+
+Detail page wherever it went.
+
+So Brian, just real quick. So you added that to the add new review method at the end of the method so that after everything else had executed, then it would go ahead and push you back to the product details page.
+
+Exactly. Because once it pushes, it's going to leave this component and it'll stop executing. So yeah, so it does the so all the stuff we did from last week, it does the guy committed the mutation to the store within the review, and then it then it does a router push after that's complete. Okay, cool. So
+
+are you able to check to see that the commit actually happened before you redirect?
+
+So for view x, we don't really have to we can trust if it didn't throw an error that it worked colic sequel, you know, we tell sequel to do an insert. And if it has an error, we can trust it. When we start working with API's tomorrow, then yes, we We can catch we can watch for an error and you know, show the user an error or behave appropriately. However we need to. But from view x we can, we can assume it's going to work. So it's kind of like if we were adding it to an array, because that's really all we're doing. He's just happens to be another library. So back in our product detail page, I want to add now it's linked to get to add a new review. So up here in these actions
+
+after that last router link, I'm going to add
+
+see a space and P SP for space and just a pipe so it'll kind of build a menu like effect and a second router link. This time is going to be. So with V bind. The shortcut for V bind an alias is just colon. Somebody use that here.
+
+It can save you a lot of typing so.
+
+So we're going to V bind it to
+
+it in name. I'm going to go to add review. So the name
+
+of the route when it gets to,
+
+and then it requires parameters. So params takes the ID. And I have that right here in this
+
+thing is product ID.
+
+And there's the object name to send. So we'll build that router link.
+
+And the router link will be
+
+actually just put us down to there.
+
+Review,
+
+close the tag.
+
+And then we have our two so we click Add review.
+
+We can now
+
+add the name,
+
+add some of the review.
+
+And
+
+review gets added.
+
+Like we have that problem back in the
+
+average summary, but that's another another issue.
+
+Actually, we can fix that that's going to drive me crazy.
+
+That's in the average rating rate.
+
+Turn
+
+To fixed
+
+Alright, so
+
+now we have links between to the Add review page, and it redirects back here. And we can go back to the back products we can go to another one out to review
+
+and this one that has review so
+
+so we can go through each of the
+
+products added repeat each of the passes the IDS in the URL. So notice as we're moving between these, we're not passing the whole objects around, we're just passing the IDS around. That's going to be something we're going to keep seeing. pattern is gonna be some we're gonna see when we get to API C will pass the IDS means we have to go back to the server and get the data for that ID. We will, or with view x will store it like we're doing now. And that's what allows us to do that just to pass the ID because view x is handling, storing the large portion of information, so we don't have to move it around between URLs. Alright, so before we look at the next thing, which is doing redirects.
+
+Other questions
+
+are what questions do you have?
+
+So Brian, your back button and refresh and everything still works, because we did the history change as well. So they're
+
+all working
+
+because the router is I'm using those named routes. It's calling each time I go to one of these routes but it's doing in the background, so Things happen in the background. So it's calling the browser's History API, and are called the history push API. And it's setting history. So it's artificially creating history in the browser. So the browser sees these as actual URLs. So allowing the Back button to work, allowing refresh to work, allowing your user to see
+
+have a bookmark for this page.
+
+Come back to it.
+
+And it works. So if you're not sure what I'm doing here, this is incognito mode. in Chrome, it loads with no session. We haven't talked about session. It loads with no history, or
+
+No.
+
+Nothing identifies who you are, until you use it in public. point of it. It's used we use a lot in development because we'll start using a lot more when we get to later in the next couple days when we start adding things like Djibouti and stuff because if you aren't like logged in, it won't be logged in. So in this case, it sees this as two different connections. So by going here, this would be like if you if somebody else went to it, that wasn't me that that was already been there didn't have the history. So we can use it like we can bookmark the URL and come back to it. Something we wouldn't be able to do generally with a single page application without router.
+
+So other questions before
+
+something else we might want to do fad products here?
+
+Can I go to this your products now it goes nowhere. What probably be nice that if I'm When somebody does go to products, it makes sense that of products. Now five or number is the product page that if I went to just products, it would be the list of products. But I already have a page that has a list of products. And I want this to be the list of products because I want this to be the homepage of the site. If I don't have that, as the homepage of the site and the main page of the root of the site, then if somebody comes to the URL, they're going to get nothing or for four. So I want them to have a starting point without having to remember more of your other than the domain. But I also want products to show the same thing. So that's what a redirect can do. So what I can do is I can make it so if somebody does go to products,
+
+instead of getting nothing
+
+they're automatically taken back to the home. See the root page, which has the information that makes sense for products.
+
+So it's going to change the URL for them it's going to,
+
+but that's okay because that's really where they belong with products.
+
+So to do that, we do that in the router. And we're going to create what's called a redirect. And it's another object in the route. And unlike the other ones, it only has two pieces. So we don't have a name for it, because we're never going to call it directly. Instead, we give it a path. So somebody comes to product, x. So without an ID.
+
+Then the next part is we're going to say redirect
+
+to name.
+
+And we give it a name of where we want to redirect to, we want to redirect here.
+
+And that's all we need for this. So what this is saying is if somebody comes to the Euro
+
+products without an ID
+
+that
+
+if they come to that URL, go redirect to the route with this name. You can see that that's what loads.
+
+Now they still have their original URL.
+
+We don't change the actual URL for the browser.
+
+It just instead redirects to
+
+the same component.
+
+So redirects are really useful for when we have exactly the situation. It makes sense that somebody goes to the Products page that they should see this list.
+
+So question Okay.
+
+All right. So the next thing that we run into
+
+would be what if
+
+what happens when
+
+a user goes to something that doesn't exist?
+
+We go somewhere else.
+
+That doesn't exist. So currently in our site, what happens is this, they get just an empty page. So what we really want to have happen is an air for for air.
+
+So let's build that ability.
+
+So the way we're going to do it is that in the components, we can make a path that is kind of a catch all
+
+and we can do that by say creating a path
+
+that goes to just a star. So it says, everything else ever this catches every path. So the way the routes work is coming in if if elsif. The first one found that matches is the one used. So if we have multiple paths that match the URL that users trying to route the users trying to get to, then the first one it finds is the one it's going to go with. So if we sort of put in a path, it's a catch all. That's everything, it has to be the last path, because otherwise it's gonna block every other route after it because it's going to be the first one found. So if we put this first everything will go to it. We put it last then it will go through all of these and if it hasn't found one that matches then It'll kind of it'll go to this one. And with that path, let's give it a name, like, not found.
+
+And we're gonna have to have a component.
+
+So let's create a new component not found.
+
+And it's going to be a view component. And it has to be a view because it should be a view and has to be a view should be a view because it's a whole page is going to be loading for for is a whole new location site for for most sites is actually is a page that they just load when they don't find anything else that we're looking for or what. So we're going to create not found and it's not there yet. We're going to create a component in views called not found. We're getting an error when I say that, because that doesn't exist. Let's go create it. So we're here in views Create a new component called not found view
+
+and
+
+use the view snippet. And let's just put a div on it
+
+and we'll put
+
+each one
+
+we can make a stick however we like. But we'll just put a generic
+
+four four page not found.
+
+Somebody come here and we get a big go someplace that is not part of our site. We go to that page. We go to someplace it is. Then we get fat.
+
+So we pretty nice have a link back to the homepage. Let's put that in.
+
+So we'll create a router link.
+
+And we want to route going to bind it to route two.
+
+And name.
+
+Let's go back to the main page, so products
+
+to products.
+
+And let's give it a
+
+two products.
+
+router link.
+
+Now we have a link, they'll take us back to the Products page. So if the user gets to a place that they don't expect, we don't have a page to deal with it. They can use, they'll get an error and get back. So we can build a catch off that we can use to create emulator for for. Because without that we don't get a four four because the server, it's all happening inside of this one index HTML file. So because of that the index HTML file has already been loaded, the resource exists. So as we're manipulating the DOM if these routes, if the route doesn't exist, this we solve this nothing happens. It doesn't load anything. So we have to emulate the four four.
+
+If we notice, when we get the four, four,
+
+free, go to the Network
+
+tab and simply go to
+
+ABC.
+
+We actually get a 200 back because as far as this browser is concerned, this was a successful request. Got the resource, the index and then the four four is actually coming from the fact that it could not update the DOM to what's expected for that URL. It's not the route doesn't exist. So we're emulating the for for for the user, the user is not going to come here and look here and check, you know, they're going to see that and hopefully click the Products page or go someplace else.
+
+But in the end, what we're all we're doing is emulating that behavior. Alright,
+
+so another problem.
+
+So this review has these four reviews. So you go view for this, I Five, four products has five products, I'm sorry, that's the wrong thing. We have five products.
+
+So let's go to product six.
+
+So this nothing happens. It's the same problem. There's nothing to identify that this product doesn't exist. To tell the user, hey, you're going someplace that's not valid.
+
+Even if it's invalid ID,
+
+it's,
+
+we get some console errors, because now it's the wrong data type. But from the user point of view, they don't see this right? Unless they come in here and look at it. So from their point of view, everything's working fine, not working fine that it's going to a blank page.
+
+So we need a way of saying, if you go to a product that doesn't exist,
+
+that you also get an error. Or you get told you get densified in some way. In fact, I don't think you should get an error. I think that if I went to a product didn't exist. What I would want to happen is it just takes me back to it. You see this on a lot of sites, the product doesn't exist. So this goes back to this page. So if you get a product does exist, you get the product, you get a product doesn't exist. You get the list of products, to kind of form you pay, these are the products that are there.
+
+But we can't use this.
+
+Because when we go to this route,
+
+the sex that doesn't exist.
+
+It gets caught here
+
+correctly. Because the route says if you go to products and there's something after it, put that in a verbal ID, it doesn't know what that ID is. So we need something more. So there's two ways we could do it. Probably the easiest way would be to in our product details page, when we're loading the product to see if it exists. And if it doesn't, then do a router push to back to the beginning point. That'd be one way to do it. That'd be pretty okay way to do it. But there's also a little more advanced way to do it called navigation guards and let's do it that way. So we can use a navigation guard. So what navigation guards are okay?
+
+Nope. So, navigation guards are
+
+our methods that are called before and after things happen in the router. So, we can use things like before each, which
+
+will tell us
+
+which run before every routers process. So before it will load any router to run before each. There are things like after each that after every routes process so as it's loading it It runs
+
+and then you can put them one at a level of
+
+before before this particular path runs before this particular path runs So there's quite a bit you can do with them, we're just gonna look at a simple one just before each, which is usually what probably the most common one you'll need. And I'm going to send
+
+here in river, I'll put a link to the documentation for them. Because they can do a lot more than what we're going to look at. But one of the things you'll be using them for very soon is your Capstone next week, and we'll take a look at this on Thursday and Friday. Navigation guards are a way you can make sure the user is logged in. So to make sure that a user is authorized or authenticated, to you go to a particular link is through navigation guards. But let's use it today to make sure our products exist if they're going here. So do add one, we have to put it down towards the bottom after where this const routers to find
+
+between As we need this variable
+
+because on that variable, the router,
+
+we're going to
+
+call the method before each.
+
+And that method is going to take anonymous function. And it has three arguments. One, two, that's the state the route we're going to, from the route we're coming from. And next, which is where we go next. In many cases to a next are going to be the same thing. But we're going to see we're going to use next, a very particular way. So the first thing we need to do is we need to identify which route they're actually trying to get to. Because before each is going to run before every route. So I'm going to do if, and on to I'm going to say if you're going to the named route
+
+product detail.
+
+So if you're going to this route, or if we're going to go to add reviews because it also has an ID or to name equals
+
+add review.
+
+So if you're going to either one of those named routes, if that's the name of the route you're going to, then we're going to check if the product exists. So I'm getting an error here because
+
+you have an extra parentheses in this.
+
+Oh, thank you.
+
+Alright, so these are the things without expecting to get.
+
+So as before we're done. At the end of this before each, we have to call Next. Next is a method. So when this gets passed in to and from our objects that are about to and from next is a method that goes to the next thing. So if we just call next, it's going to go to wherever it was going anyways, it's going to go to the next location, next route. So we're going to end by calling next.
+
+And
+
+then inside of here, I still have
+
+an empty block, that's fine. So the next thing we're going to do is get the ID from the parameter. So they're trying to go to one of these addresses. There's a parameter ID. So before I got it from the router, but now I'll get it from two. So const ID from the two object. It has the params ID and then I can do some With it, what I'm going to do is I'm going to import the
+
+view x store.
+
+So from
+
+att and it's in store,
+
+x, report the view x store.
+
+And then I can use it down here.
+
+And I'll say, let's see if there's a product in the store state products list, I'll call find, and this is what we were done before to find the product. So I'm going to do the same thing that we were doing already inside the display object in this return where the product ID equals the ID
+
+and then what to say if
+
+product does not exist have not product. Then with next, if we call it like this, it will go Just wherever it was heading anyway. But if we send an object with a name, it will go, we can redirect it to a new location. So I'm going to say, if that doesn't exist, the product doesn't exist. Then next, go to products, which is the main page. So to recap what this is doing, for every attempt to go to a URL, every route someone goes to, so every time they come to, for everyone, any path they go to, and the site before that is going to run this code. There's two or three things it's passed by default. So just like when we call like, you know, map or filter, there's a set of things that gets Pass automatically, there's three things pass three arguments passed. There's two, which is object representing where they're going to the pot route, they're going to from an object representing wet Pat route they're coming from. And then a method next, the next method, well automatic, we'll send them to the next location. And then it's saying if it's checking the to object, the name to see if it's the route, product detail or add review, which are these names here, product ID or add review. So saying, Are you going to one of these two routes, the two that have the ID, because what we want to do is make sure this ID exists. If it is one of those two, then on the to object, so representing where they're going. There's parameters and we know there's a parameter ID because those two paths have parameter ID.
+
+So we get that out.
+
+And then in the view x store, it loops through the products. And its products is an array. So it causes their refined method, which just returns the product where the product ID, this should be two equals, with a product ID equals this ID. So it returns a product, or it returns undefined if it's not found. So then it says, if not products was taken advantage of the truth, the nature of JavaScript, because if this products not found this, this result to false because undefined is falsely so it will always be false. So if it's not, if it does have an object, then this will be true. So if it's false, then call them next method. And obviously can take an argument of an object that tells you the new location to go to and we send it that object with the name of a new route the route we want to go to, which is our starting route products. And then if all this is any of this is false if any of this doesn't happen if products exist, then it just like this if statement or if it's one of the other routes that are just called next which just basically says move along to the next thing.
+
+All right, so let's see it working and then we'll come back to
+
+questions so so now if we go to product six, and I haven't saved Nope.
+
+So
+
+the sale
+
+so seeing with product six, I got a product five that works. Good product for it works.
+
+If I get a product six now,
+
+I go back to the product page.
+
+If I go to products, ABC, for all these cases before we get nothing. Now if I go to any product that's not a valid product ID five anything with a valid product ID in the URL, it will go back to the starting page with the list of products.
+
+Right. So what questions do you have about about that?
+
+My first question is on the two parameter. Yes, the name that's something that's already built into to right. Yes.
+
+So the documentation link on route on navigation guards, they talked about these objects and what parameters what they have so that there's Set objects that have certain information about the to and from locations.
+
+And then my second question is, can you have you can have multiple before each, right?
+
+I think you'd write you'd write all the before each in this in here. Okay, you got to do multiple things. Yes. No, I'm sorry.
+
+No, I'm just gonna tell you if you wanted to do it different, you know, check for a different path. Would you write it? And this block again? Or would you set up another before each?
+
+You would write it in this block again, and you can move like this out into a method and have different methods, functions that you call to, to handle that. To make it easier to read, and these are to work with. But yeah, there'll be one for each router for each.
+
+Okay, cool. Thank you.
+
+So the main useful you'll see for for each would be for login. Like there was the pre authorize annotations and API's that made sure you were logged in before you actually could get two particular routes. So before we will do some more thing, you know, make sure you have the JDBC token.
+
+And we'll, we'll take a look at that later this week. But
+
+two other questions before
+
+Alright, so we have a little bit more to get through. So um, let's take another break. We'll come back at 1148 and finish up.
+
+So after the break, what questions do you
+
+do you have
+
+So I mean, like, obviously in this tutorial, we're kind of like using just the product IDs. But it seems like nap guard could get pretty crazy. If you started dealing with like a bunch of different URLs or different parts of the website,
+
+what it can, but often you don't.
+
+Often you don't need it. For instance, if we were doing this thing with the IDs, I probably wouldn't do the IDS enough guard. We just until we have authentication and authorization out of them. There's not a lot of, there's not a lot of really easy examples. So it make more probably more sense in the product detail in the Add review to make them check that when they're when they're loading the product and do a router push to wherever they're going, rather than carrying a knife guard. So it's often What you're what's more common to see here than half guard is for things around authorizations does this does a user have the ability to see this page? So they, they do get kind of crazy. You do end up with a lot of code, and sometimes for a larger project, but not me, not as much as you're probably imagining, because of these ID checks and stuff probably wouldn't be done here. And also, there's another thing that we haven't looked at, but and we're not going to directly but we can actually do these NAB guards. Like we could do a, it's called before enter would look something like this before. enter my camera, but the exact syntax, but I think it's I think it's just like that. And you can write code there for it. Actually, I think it might be function. Yeah, I think that's what it is. And you can write code that's specific to this particular path. So you see that a lot as well. So that can break that up. If you're doing something like the IDs or something that's specific, particular to a path.
+
+Okay, cool. I'll have to check that out. Thank you.
+
+So other questions before we
+
+are actually questions about anything we looked at with radix what we're gonna look at next is not the next few things we're gonna look at are not about robbing. Okay. So, um, so we have the page routing now, but there was something. It was a product detail that we used here this created that I said we'd come back and talk about. So let's talk about what this is actually doing. And what this is so view has a thing called lifecycle and we've rented life cycles before life cycle is just the steps that something goes through, as, but from the time it's created into the time it's destroyed. So life cycle an object is from instantiation into it, its reference gets removed. life cycle of a j unit test we looked at it there is, you know, it had the before test and after testing before class, it was the standardization of the class and then the running of the test. And there's all these different steps through it. So life cycle is just that it's from this time something's created to the time something is destroyed. In view components have a lifecycle. And those lifecycle have what's called hooks, and hooks are places in the lifecycle where we can write code for you to call. If we write code we identified we want it to be ran at this particular part in the lifecycle view. We'll run it So created is one of those hooks. And what it's doing is saying when you get to this part in your life cycle you've identified to us as created, run this method, whatever codes in this method, run it. So the viewed lifecycle hooks allow us to do some interactions with the components at times like before the ponents being created, been created, which is what creates doing. So it's saying as in so let's look at
+
+that lifecycle. And
+
+I'm actually gonna bring up
+
+the, there's the link to this documentation here in the slides. I'm gonna bring up the documentation. For one reason I have a really great diagram in here. That's way too big to fit on a slide. So I couldn't distill it, put it in there, but it's, it's I can't recreate it better than they've done. So we'll look at this diagram and their diagram. models, this lifecycle, the lifecycle of a component. So every component we use goes through this, whether it be a view, a component, a sub component, they all go through the same, same process. So, they start with, you don't need to have a deep knowledge of this or anything more than this exists. So you don't need to memorize the lifecycle of a component. The main thing to end up using is created, but knowing that there's other ones out there available can be useful. So it starts by if you can, and it starts in the first thing it does is it sets up and starts registering the events. So that we've set up events, right, we set up all the events for the actions that the user can take. So retros those it does things like sets up the template, it starts building the component in that way by create it's doing it by creating It by getting ready to create it in memory, and then it's going to attach to the DOM. So the first starts, that's there's a hook called before created. So if we want to use for before created, we would just use that hook name before created as a method. And then that code be ran at that point in time. So then it sets up an injection. So it starts injecting the other components. So we have components within components. So it puts them together, and it sets up the reactivity. So it's saying this changes, this is going to react and start setting up those pieces. And then there's a hook that we can run right after that occurs called created. So this before created and created is all about this reactivity. So created runs after the variables have been set up and the activities been set up, but before anything's actually in the dark So that's a place that will commonly load data. It hasn't loaded the DOM yet. So it hasn't created the HTML, but it has the variables created. And it has an knows how they're going to react, how things are going to react. So that's a common place, that's the most common one to use. So that's essentially in a traditional page will be like one page load. So that's when before the page loads, we can do things like we'll use it tomorrow to call an API today where you use it to set up the store with the something coming in from the path. So then created occurs. And then this whole process here is it goes through it, it's taking the template and building the HTML in memory. And that's what all these blocks are for what exactly each one means isn't that important? know that it's creating the template. It's applying this it's so it's building out the template with the CSS and everything, getting ready to put what's called mounted to the DOM. So Have you ever heard the term mounted mounting before it's from its old computer term, that just means to attach something to connect it. So after it has the HTML all built, so all the DOM objects created, but before it actually adds it to the DOM. So think about when we've done it manually, this would be where it hasn't been a variable. And then we had to append child or, you know, inserted Jason to actually add it to the DOM. So when it has it there in the variable, right before it attaches it to the DOM, there's another hook called before mount that we can write code for. And then it attaches it to the DOM. So then it actually mounts it. And there is a hook called mounted. So mounted occurs after the DOM has been created, after it's been attached. And so now it's rendered in the browser, but before anything starts happening. And then once it's mounted, this section Here is where the user is interacting with it. So everything before. Everything before this, everything up this way, is occurring before the user interacts with the page at this point is when it gets attached to the DOM so the user can finally see the page.
+
+So this portion
+
+is what's happening while the user is interacting with the page. So every time there's a change in the interactivity, there's it goes, and the user makes change. So data changes and it goes here to before update. So as a hook before update sets before the DOM is updated for activity, the DOM is updated and changed. And then there is another hook for updated. So we can also write code It'll run right before any changes made to the DOM while the page is running,
+
+or right after any changes have been made.
+
+They're not something you'll end up using a lot. But they exist. And then when destroy is called means when we're leaving the page. So if I'm here, on this product page, when I click back the products, the products details, what's called destroyed, it's removed. So it's being removed from the DOM, because now the DOM is the Products page. So that's what it means to be destroyed. It's being torn down. So before anything happens when it gets told to be destroyed. So when we're leaving the page, there's a before destroy hook that we can call. So we could write code to do something like annoy the user with saying Do you really want to leave Page, if we wanted to write here using this hook, and then it does the teardown, where watchers, which we're gonna look at in a minute, it gets rid of all the child components, it destroys all the event listeners. So it removes all of them. And then it's removed from memory. And that's then there's a final hook for destroyed for after the page has been removed from the DOM. So these hooks again, you don't need to memorize them. It's more about knowing that they do exist in the kind of this URL lifecycle, there's steps in the lifecycle. The one we're almost always going to be focused on is created. I think in the things I've done with view I've used created a lot. And I think I used before mount a couple times where I wanted the template to be built, but it's not attached to the DOM. You because You can do some things with the stuff in memory. Actually. I think I've used mounted a couple times to Where the DOM exists, so attaching to like new events and stuff like that, but almost all of your use will be with create, which is just where the page loads. So if you remember that one, you have pretty much every and then you remember that these other things do exist.
+
+That's pretty much all you need from
+
+the life cycle. But
+
+so questions on
+
+on that.
+
+And again, for any of them, any of these things in the red circles, the hooks, like if we wanted to create before, destroy code runs before destroy, it would just be the name of the hook for for destroy as a method, and then whatever codes in that block is what run at that point in the lifecycle. So it's pretty similar to the way we've been annotations and j units. The same idea before test two before class.
+
+You know how a lot of especially SPS will have like a loading thing for users to watch. So they don't get bored. Like while it's loading, where would that go in that chain of events.
+
+So probably, so the page has to be mounted at that point. So that probably wouldn't occur actually, in this lifecycle, what would occur, but everything occurs in lifecycle, but it would occur.
+
+Just right here.
+
+Just once the page so it might start once mountains occurred. That's probably where to start. It we're actually going to look at doing that tomorrow. Because when we get API's involved API sometimes are slow. And we'll have to load watch the show loading will show loading animation and talk about how that works. Because tomorrow, yeah, both both the rest of lecture saw the rest lectures the week or tomorrow, so it's definitely more. So that's camera, which half so but we will look at that. But yeah, you would, because it this until this happens, the user can't see anything. It's not part of the DOM yet. This is when it becomes part of the DOM.
+
+So until then, it's got nothing the user can see.
+
+Does that answer your question?
+
+So any other questions on the hooks?
+
+So those will come a lot more important to us tomorrow with web services, or API, guys. Right. So the last thing I want to look at is these things called watchers, and these don't really fit in with anything, they're useful. So that seemed like a good time as any to talk about them. And they're kind of simple, but they they're really powerful. So they're, so what a watcher is, is that it gives us the ability to Rate reactivity will not exist. So view sets up all this activity for us. But there's oftentimes when we want to react to something, when it's not happening, when view is not going to react normally for it. And watchers allow us to do that allows us to basically watch a variable and when it changes, to react to a right to run some code. So these are gonna, these are really important with things like API's because they're happening what's called a synchronously we'll talk about what that means in detail tomorrow. But at a high level, what it means is that it's going to go do something where we keep working, and then it's going to come back and change things at a later time. We don't know when that's going to occur. So a watcher allows us to watch a variable and say when something changes this run this code, so it allows us to add extra reactivity. So I wanted to create a simple watcher example Because it's one of those things that you don't need a lot, but when you do need them, you do have this thing that you need to watch, and you need to change. So in this, these actually watchers can be used for if the voting example was talking about because you can watch for data to be complete. And when the variable or the array gets loaded, wherever you're watching gets loaded, then change it to loaded. You know, we moved the loading animation type of paper. So I'm going to add a new view.
+
+I'm just going to call it
+
+watcher dot view, because it's going to be an example of a watcher. And to get to that view, we're going to have to add a route. So to give us a
+
+one more example of a route to so
+
+in our routes, that's the store from the router index GS, got out a new route. It has to be above this one, subscribe down here.
+
+path and the path will just make it
+
+water
+
+the name of it will be watcher nothing's gonna link to it it's going to go through directly but in our component will be that watcher component we just built which we need to import as well. So here import watcher from
+
+the ground quick question about routes. So now you mentioned that the start one has to go to the bottom
+
+is there any other way could you ever run into issue depending on the order of how you set up your routes?
+
+It's possible
+
+usually you want to they need to be distinct. So let's see when
+
+is your maybe like a order simulate if this is your home, like one do you want to set that one up first, or is that Are
+
+you Julie do want this one first.
+
+But it really doesn't matter.
+
+Because as long as they're distinct, you're not going to run into problems.
+
+What about the redirect one? Or does it not look for the redirect until it has gone through everything first?
+
+No, it it's just part of one of the other paths. So if that was a,
+
+but it's going for
+
+products, so nothing else is going to match because this is product ID it doesn't match this. So so you're not get you shouldn't run into problems. So you have distinct paths until you get to something like a catch all. There are more advanced things you can do with pass that we're not we won't be looking at. In some of those. Do you have things like wildcards and stuff in the path outside just to catch up and that's where you could run into problem. with them, but we need to find a distinct past like you normally would be doing in most cases, then you shouldn't run into problems.
+
+All right. So now we have our path our watcher, we need to go set up a template. So just put an h1. Let's call a watch, for example.
+
+Just to make sure it works before we go further,
+
+we should really go to
+
+we should see it's a water example when we do. So we're there. So now we can go out and watch her to our code. So what I'm going to do is just add a simple inputfield just a form films, we can watch Something to watch something we can change text, add a V model, and it's going to be to a variable called question. And I need to down here. See, let's add the name,
+
+water
+
+and data
+
+in no return and we need the question.
+
+So this is going to be bound to this.
+
+And what are they?
+
+Nope, I forgot that. I'm going again.
+
+doing that.
+
+So these need to go inside this div. All right.
+
+So
+
+now here,
+
+inside of the export,
+
+I'm going to create a watch for it. So it goes into a section called watch to watch this too. And then you identify the variable, the thing you're watching, so questions, what I'm going to watch is going to be something in data you're watching needs to be a single thing and data. So it's going to be question
+
+then colon, and then a function.
+
+And that function can take two values he has actually if you look up watches, there's a multiple different things that can take. But the two most common, which we're going to look at are new value and old value. So it's the new value of the field and the old value the fields of that data. And there are other arguments that can return as well or passes. Well, those are the ones we're gonna pay attention to. So we have something to use with these, let's create an old hold value, let's give it a different name. So it stands out and a new vow.
+
+And then up here,
+
+just so we can see them. Let's create a div
+
+with the old value,
+
+old value variable.
+
+And then what we'll do is we'll set those arguments to these values just so we can see them on the screen without having to
+
+and then here, all we're doing our watcher is will say we could do anything we want in our watch here, but we're going to do is we're going to update those two data values to the old value. Add this new vow equals the new value. So What the way it's gonna work is anytime this changes, it's going to call this function and it passes it a preset set of arguments just like we're used to with other JavaScript functions where they get called for us. And two of the arguments, the first few arguments is going to pass are the new value, the old d value, the old value. And then our function all it's going to do, because what we're really interested in is just a watcher set up is just going to update these which are going to reactively update the screen.
+
+So we have it here.
+
+We can see as we start typing, they'll advise empty one, the old values one two ways 12123. So as we change something, we just always get the last value, it was in the new value. It is
+
+That's what a watcher does.
+
+So some uses for watches, times we using it will use it. We use them sometimes with API's because if an API is gonna update question, then we might need to watch it to see when it's been changed. Another nother place watcher are sometimes used for is for things like predictive typing. They can be used for that. But most of the time, you would actually most of the things of what they can do. You can also do with a computed property with the exception of the asynchronous stuff of API's. So generally you will use a computed property but if you do need to watch something to change, when you don't know when it's going to change, that's what a watcher does.
+
+So questions on
+
+Okay, so questions about anything from today?
+
+Quick question about us so we can look at something like
+
+anything that we've worked on today. I think that's it was like, the ID thing before that you had something there
+
+on like here in the route, sir.
+
+I think it was under like detail or something like that.
+
+Yeah. Okay. So for example for the const active product ID. Yes, I just wanted to confirm that. The params thing is kind of equivalent to like semi colon.
+
+Like you need that you're going to use the prime SEO center
+
+So yeah, so the,
+
+this part is always going to be the same. So route
+
+gets us to the router.
+
+Just like we use store to get to the view x store. params is an object that gets populated anytime there are parameters in that route. And then the final part, the ID comes from whatever name we give it here. So anytime we want to get a parameter from a route, we call route to get to the route and then params to see what parameters are there.
+
+So that's required, is that what you're asking? or?
+
+Yeah, just kind of asking for clarification on what params actually was sort of like how we could think of it.
+
+It's an object. So it's a JavaScript object and the keys of the object are whatever parameters exist on that for that route. So it builds an object based on these points. parameters and JavaScript objects, just key value pairs. They're closer to a map in Java than an object. But it builds an object out of the keys that we give it here and then the values the user sent. So
+
+and
+
+this case would build a key ID, and put in the one as the value. And that would be the params. object. So it actually we build it to we've built it a few times today. Let me find one of the examples where we build it.
+
+Well, there's one.
+
+So we build it here to send to the router. It's the same thing. It's exactly the same thing that only the router is building it on the other end for to send to us or to make available to us.
+
+Okay, thank you.
+
+Trying to build off of that a little bit, is there a specific way to Handle queries? Or is it the same way as params?
+
+So they're also part of params. There?
+
+That's a good question. You won't handle them as much inside of a view app directly. Because that's part of what view x is doing for us, is not allowing us not to. So in the workflow of a view app, of a single page application like this would be more of, we've asked the user what they want, we get their query data. And if we're passing the API, we would pass it through the query string. But here, we'll put it in the store the data store, and then go to the next page and it can be retrieved from there. So what we can't actually access and they will be in the parameters. Yes, we generally won't. With inside of it, SBA. You don't use the CSP as we're passing around things on the course.
+
+Okay, that makes sense.
+
+So Other questions?
+
+Where did we first make the current product? Id was that in the store?
+
+They current isn't?
+
+Didn't we have something like that?
+
+The active product ID? Yeah, that one? Yes, that is in the store. We didn't build it today. We just it was already pre built, but it just was added to the state of the store. And it's just so that each of the components can actually know the active product. Which question Why? It's a quite honest question, why it's there because we don't actually use it.
+
+We pass it in the URL.
+
+Technically, there's, when we click Add review.
+
+You don't really need this because we know what the accurate product is. But
+
+that's where it's at.
+
+I guess we could probably use it three, direct them back to a place.
+
+We could Yeah, if we get to a point outside of we could say back to the product, you were just out and towards changed.
+
+Yeah. But don't answer your question about it.
+
+So other questions
+
+sprouter makes sense.
+
+At least enough to write write the routes.
+
+So, when you've already done this, you're not doing something really new here. The syntax is different. But these routes are just the request mappings from API's. They're doing the same thing. And they're actually
+
+almost the same.
+
+The syntax is different, but I'm saying here the path just like before, the name is new, but we had Methods before and then the component is just taking the place of the method. We had path variables before just has a different syntax. So these are doing the same thing as the request mappings. I think in the past people have said that's precedence instead that made it even easier to think of. Since you've done a lot of request mappings in the past, I mean, it's been a few weeks now. All right.
+
+So if there's no other questions then
+
+for today, your exercises
+
+this
+
+there's similar to what you mentioned. Last few exercises so nothing
+
+too differently now to be with the router.
+
+So it's not going to render so so it has a step by step through the our test cases for them.
+
+Just like there have been in the last few days
+
+for each of these is going through setting up the router to get between the different pages. So very similar to what we just spent doing.
+
+And whether so
+
+so setting up the page that you were working with,
+
+and then displaying, moving between these different pages, putting the links in to go back
+
+and then going to
+
+so each of the different views So setting up the routes for those, and I think there's, I think it's said, if I remember right, that a lot of the code for the views already exist, or the components already exists, there's a few change, you have to make most of us with the routes. So that's what you'll be doing your questions on that. Okay. And then tomorrow, there's two tutorials out there, get in post, they're both out, I put them in separate folders when keep them sitting, keep the information separate, just for your organizational purposes. But we'll be doing covering both tomorrow. So we're covering both two lectures, the guest lecture and the post lecture that we did part of it today. So with the life cycles and a couple other pieces I threw on,
+
+so
+
+we'll be doing both of those. So if you want to do the tutorials for those, I would encourage you to do both both tutorials before tomorrow. And to also be exercises for both But we'll talk about how that's gonna work tomorrow.
+
+And then today
+
+there's a review of the capstone projects at two o'clock. So Dogra through what the options are going to be this court for capstans
+
+lightning talks at four o'clock so
+
+remind everybody if you have past two exercises or anything you're cleaning up those are due Friday. I think 11:59pm right show
+
+Yep. It
+
+because we're assigning we're doing GET and POST
+
+not the new exercises but pastor
+
+pastor oh yeah pastor I'm sorry. Yeah,
+
+yeah Friday's into the module.
+
+Okay. Yeah, the new exercises. We'll talk about those when we assign them tomorrow. Meaning that I have to figure out how to answer that question before I tell you. And then Thursday at four, I set up the side project review Part Two, specifically to keep you accountable since he asked that ask for that accountability. So we'll have that at four on Thursday.
+
+So any
+
+anything else for today anyone that
+
+that Capstone kickoff or review session today, that's not optional, right? That's a required
+
+that is required and you want to attend it because that's what's going to tell you the capstone options and how to make the choice and all the stuff about getting on the capstone projects.
+
+Thanks for pointing that out. Because
+
+I should have done so.
+
+Alright, so if there's nothing asked them thank you and good luck.
+
+See you guys
+
+Transcribed by https://otter.ai

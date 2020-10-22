@@ -1,0 +1,25 @@
+Book
+https://book.techelevator.com/content/intro-to-vue-and-data-binding.html#component-based-javascript
+
+Component-based JavaScript
+What you need from JavaScript to support a bigger application is what developers had for years in more structured languages like Java and C#. Those languages are built to leverage good programming principles that let you reuse your code and make sure that one piece of functionality doesn't affect other pieces when they run together.
+
+This idea of grouping together the data—represented as variables—and behavior—represented as functions—for a certain concept in one place in your code is called Encapsulation.
+
+As you'll see, when you want to create components in Vue, you build those components as objects. Those objects hold the data for that component and the functions that represent actions that the component can use to perform logic and operate on its data.
+
+None of these things are easy in traditional JavaScript, but they are built into Component-based JavaScript.
+
+To understand components, you need to reconsider how you look at your site overall. Instead of having all of your code in three separate files, you'll start thinking of having a main HTML page that defines the main content and structure of your site, and then, include small components made out of HTML, CSS, and JavaScript to act as one single front-end element.
+
+
+Image - Components are just HTML, CSS, and JavaScript working together to perform one piece of functionality on the page
+You should now view your web page as a collection of components working together. You can think of components in this model as custom HTML elements. They're a small collection of HTML, CSS, and JavaScript that you include on a page to handle a specific piece of functionality on your site, which is exactly what a normal HTML element is.
+
+Think about the <select> tag. If you include a <select> tag in your HTML, it renders to the user in their browser as a GUI dropdown element. If you click the dropdown, you'll see all the <option>s that you included in the select element. It has structure, it has data, it has a basic look and feel, and it has behavior. That's a component.
+
+The components you make are more complex than a regular <select> element, but the principles are the same. You'll define new HTML tags that have structure (HTML), a basic look and feel (CSS), and contain data and behavior (JavaScript).
+
+There are many component-based JavaScript frameworks out there. Two examples are Angular and React. Another popular one, and the one you'll use to learn component-based JavaScript, is Vue. Vue is a very lightweight, but powerful framework for building components in JavaScript using many of the skills you've learned in this course.
+
+Before you can fully jump into making a component, you'll need to learn about the tools you'll use.

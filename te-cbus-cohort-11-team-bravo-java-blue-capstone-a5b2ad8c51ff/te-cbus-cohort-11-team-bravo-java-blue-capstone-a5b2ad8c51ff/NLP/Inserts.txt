@@ -1,0 +1,31 @@
+Book
+https://book.techelevator.com/content/inserts-updates-deletes.html#inserts
+
+INSERTing New Rows
+Now that you can select data from the database, how do you get it in there in the first place?
+
+#INSERTs
+To add a row, use an INSERT statement:
+
+INSERT INTO countries (code, name, continent, region)
+VALUES ('JOE', 'Amazingland', 'North America', 'Central America');
+This creates a new row in your countries table and fills in the column of that row with these values.
+
+SELECT * FROM countries WHERE continent='North America';
+Result:
+
+code	name	continent	region
+JOE	Amazingland	North America	Central America
+CYM	Cayman Islands	North America	Caribbean
+...	...	...	...
+The format of the INSERT statement is:
+
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+The columns are optional, but use them
+
+Technically, the column list is optional in an INSERT statement, and the database assumes that your VALUES are in the same order that the columns were defined in when the table was created. How do you know what that is?
+
+There are ways of looking it up, but it's best to simply list out the columns. There's a chance that the columns are in a different order on dev versus production and other little hiccups. List out the columns in the INSERT statement so you don't have to worry about it.
+
+Remember: It pays to be explicit

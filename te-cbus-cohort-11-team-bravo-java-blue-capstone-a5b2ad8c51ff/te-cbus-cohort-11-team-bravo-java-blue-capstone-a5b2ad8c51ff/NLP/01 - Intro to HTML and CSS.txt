@@ -1,0 +1,1253 @@
+Zoom
+https://techelevator.zoom.us/rec/share/xv0yCJrBxjJOR53J9W_bAagALt3Xaaa80XQb__RemU0GYzAik5y1f0eiqqz2_Dyn?startTime=1594041395000
+https://drive.google.com/file/d/1tQ_QxILBq3hb7jMyGmseuMY30bhLBzeL/view?usp=sharing
+https://docs.google.com/presentation/d/1M9KsLbUgIXRz4d2t8nqcpOy4F2VHRLRpCf1bsbx52L8/edit?usp=sharing
+So we're going to start today
+
+by talking about two of those languages, HTML and CSS. We're going to focus mainly on HTML today, because the rest of the week is going to be on CSS, going through different aspects of it, and some more advanced usage of it. So I know you learn, you talked about
+
+both of these in your pre work, it's probably been a while.
+
+We're going to go a lot deeper into why there's not much deeper, you can go in HTML. So we're going to talk about it with some concepts that you probably weren't covered, as directly in here, some more theoretical concepts, but how HTML should be laid out today and how it should work. And then we're going to go fairly deep into CSS and some of its newer features, like grids and Flexbox and stuff throughout the week. Because in order to build a web application, we have to have a good sense of three different pieces. web applications, web development spilled into three distinct pieces, it has a separation of responsibility much like we've been talking about in Java, but now it's gonna be forced on us by multiple languages. One is going to be the structure of the page. And that's what HTML was.
+
+So it's kinda like the skeleton of a page.
+
+But it doesn't have anything to do with the way the page looks, which is one of the things that can be difficult to divide, because it seems like it should. The second part is CSS, which is the presentation of the page that has nothing to do with the structure and all about the way it looks. Then the third is behavior of the page, and the state of the page, which is going to be JavaScript. So this week, we'll focus on that structure and presentation. Next week we'll focus on actually the next three weeks after this we'll focus on learning JavaScript. For the behavior, it will do that by next week focusing on just what's called vanilla JavaScript, which is just the JavaScript language, kind of out of the box with nothing extra added to it.
+
+And then
+
+the week after that, we'll focus on a framework called Vue. js, which is one of the current frame, current popular frameworks along with react and angular that are, is in use. So we'll look at that. And then on the fourth week, the final week, we'll complete talking about view and seeing how it works. But we'll also bring all this together and everything from the core together with these API's. Finally, there will be API's sprinkled in throughout into a full application. So that's our final goal is to what I just showed to have a web front end with our API, back end and the building all of it
+
+So, with that today,
+
+I should stop and ask any questions before
+
+we jump into. Okay.
+
+All right. So today we're going to take a look at HTML, we're going to take more Look at that, we're going to look at some of the some of the tags and some of the usage of it, we're going to take more of a look at why it's used, what it is, and the rules around it. A lot of those rules are around how it should be structured, and how. So we're going to look at that we're gonna look at the document structure of it, the tags and what's called attributes. We're gonna look at this idea called semantic HTML. And then and then we're going to take a look at using HTML to create forms because that's forms are what's going to eventually allow us to send data from. Or one of the ways we're going to be able to send data and collect data from the user, and then deliver it to our server or API's. So and then we're going to take a very, as we go, a very basic look at CSS. And I mean, really just come to the basic This is what it is and using a couple elements, because we're going to spend the rest of the week more than that. So we'll do most of this by building some stuff. But I want to start just by talking about what HTML is. So HTML is Hypertext Markup Language. So we've heard hypertext before so hypertext can if we remember we talked about HTTP. They should be protocol was hypertext transfer protocol. So The bid being the main protocol used to transmit data in the web. html hypertext. Markup Language is the main language for documents on the web to deliver documents. So it defines we're going to learn it defines the structure of a web page, or web application.
+
+For today, well guess for now we'll say page.
+
+So it's going to define the structure. It's not going to find anything more than that. And we'll talk a little bit more about what that means. As we get some pieces of it. It's going to that structure is going to define this bow, a browser, a web browser is going to display a paid web page. This is going to be the same. We're talking about a web browser that's embedded in an application like an IoT Internet of Things application like your refrigerator. They're generally using better browsers to display sleek web applications which are just webpages
+
+In with just some JavaScript back end.
+
+So HTML is
+
+uses tags, we'll look at that represent what's called elements. So we'll talk about each of the tags representing a single element on the page. And then those become the building block for a site. So like this. Here, we're looking at slides. It's a web application. It's a web page. In the end, it's just we call it an application because we've talked about view. It's reactive, and it's feels more like a desktop application, but it's just a bunch of web pages. It has HTML that defines its structure. So
+
+that's the high level what it is.
+
+So the structure the document structure of HTML, They're just text files. And like our Java files were. So their source code and they're broken into four parts. So actually, for this, I'm going to go
+
+to Visual Studio code.
+
+So the main editor we're going to be working in is going to be Visual Studio code, which is available, which if you haven't used it yet, I think most of you have it just about everybody has to do the one to do the one on one exercises. But it's this icon here. That should be in your dock. And if it's not, it'll be available in your Launchpad. You can also open it on from the command line, just protecting code. So we've used it throughout the cohort. We're going to use it heavily for this module.
+
+So I'm going to
+
+go here
+
+and I'm going to open today's lecture folder in it to do that.
+
+Go to File
+
+and choose Add folder to workspace. If you're for you, you also, if you saw this screen, you would click on Open Folder. Or since I already have some projects open, you probably don't, you might have an Open Folder button here as well, we won't open the entire folder, we don't open individual files, we're working with HTML and CSS JavaScript. And because we open it as a folder instead of an individual firewood are treated as a project group together. And that's what we want. And we'll, we'll talk about why when we start editing file, so I'm going to go to today's lecture code
+
+for
+
+and just open the entire lecture folder. So the student lecture in front of you
+
+Closest welcome screen to
+
+we'll have this index image in the images. We'll come back to that later. But for now, once I have this open, I'm just going to create a new file inside of it. To do that, I'm going to right click not on site, it didn't really matter, actually. But I'm going to pick just click someplace in the folder, choose new file and just name it.
+
+Let's call it something like HTML structure.
+
+Structure dot HTML.
+
+HTML files are going to be in dot html. They also can technically be a dot htm, either one then
+
+so I'll give everybody a moment. If anyone's following
+
+following along to catch up
+
+okay sir, anybody not ready to continue.
+
+Alright, so let's look at the four, the four pieces.
+
+The first piece of HTML document, I'm gonna try to get these situated because he both
+
+text a little bigger in this read is called the document type declaration. So the document type declaration is something that tells the browser what kind of suit what kind of source code this is, what kind of document it is, what it contains. And that's going to start with doctype and it's already populated the rest of it for me, obviously decoded. So doctype. html tells the browser, this is an HTML document. And that's the code that it can expect. Now, that's actually the default type for most browsers not for document in itself. And that's because there's actually other types of code that a document can contain. That tells us, whoever's showing this, what it is. So it's the first required line of an HTML file. If it's left out, most modern browsers will assume it will default it but it technically should always be there because not all browsers, especially some mobile browsers, and some more esoteric ones, require it. And it technically is required to be valid. So that's the first part. That's the first of the four parts of an HTML document.
+
+The second is
+
+tag called HTML in a tag is a, essentially what is code inside of the pointy brackets. So the greater than or less than signs, and there's two pieces to it, there's a starting tag, and there's an ending tag. They both have the same text, the ending tag has a back forward slash that tells it that it's ending. And this starts to create a hierarchy where things inside of this are become children of it. So the second piece is that in the HTML tag is required because it tells where the documents begins and ends. So this says, this file has HTML on it.
+
+And this is its scope.
+
+If I put more text out here
+
+today It's not part of the HTML document. Now, most browsers will actually Monaco error when it sees that but we technically could have other information there if we wanted, because this is setting the scope of the document. So that's part two. And then the third piece is the content is broken into two pieces. One is called the head. Not to be confused with the header. It's the head of the document in the head of the document contains what's called meta information. It we won't need to get too deep into that. But when that information is information about this document, it's going to contain things like its title. It's going to contain things like other documents we want to include like JavaScript and CSS files. So it's going to add in some other things we'll look at as we go through the module. So it's going to be information about the data And then the fourth piece that's required is body. And the body is the content. So the only part that is actually going to display in a browser is going to be inside of these body tags. Even though we're going to learn, we're going to have a lot of HTML code that's doesn't display. In fact, probably the majority of it.
+
+So we have those four parts that are required.
+
+And it builds a structure.
+
+Well, this is the same thing, but it's wrote, but only this, this entire HTML document, only this part that has the white background, so is going to be what's rendered or displayed in the browser. The rest of this even though it's the majority of the code, in this particular document in a larger, smaller, larger documents won't be is all about how to display it.
+
+So the tags themselves
+
+are made up of
+
+the defined elements on the page. So each one of these things each tag will refer to as an element. And we can add more elements. For instance, if we want to add a header this header
+
+could add the opening tag and the closing with content in between. This header now becomes a child of body. So every tag have an opening and closing tag. Some of the tags are what's called self closing. Which means that
+
+which are if they were we had a self closing like
+
+linebreak
+
+self closing tag includes the site the ending in itself at the end. Not all tags are self closing, we run into some that can't be self closed that would do require having both the opening and ending tag. I'm going to remove that. So you don't have an example linebreaks that's old code that should not be used anymore. There's probably a better example. And then each tag can have what's called attributes, which are key value pairs that are on the tag themselves. ID
+
+equals
+
+heading, and they can be model, class equals
+
+and each of these key value pairs it are what's called attributes. We talked about elements We're talking about a full tag that's going to be rendered on the page or displayed on the page. We talked about a tag, we're talking about one of these, opening and closing. And attribute is one of these key value pairs, that's on the opening portion of the tag. It's part it's inside of the brackets itself.
+
+And then as we form these, they form set hierarchies. So as we put tags inside of another, we'll talk about them as a parent child relationship, meaning that in this case, each one is a child of body. Body is the parent of h1. h1 is the body is the child of HTML. And HTML is the parent the body. And there's a little more to those relationships we'll talk about later this later this week, or actually tomorrow. We'll go a little more detail when we talk about CSS selectors, but for today, There's it starts to form a hierarchy on the page. So for this amount of code, I'm going to run this page now. Actually, I'll save it first. Something you will have to get used to in Visual Studio code is it doesn't autosave when you run things. In fact, it uses you telling it to save, as we're going to see is a way of telling it to update things and the next step we're going to take. So you have to get used to manually saving something that in clips, most of you probably get out of the habit of doing since Eclipse auto saves for you a lot of different places. So to run this page, I'm going to go back to this view. This view here is kind of the package explorer in Eclipse this first icon and there's a tool built in, there's actually a plug in that was added to your copies of Visual Studio Code called live server and live server runs a web server inside of Visual Studio code that can show us our HTML documents or in CSS and JavaScript to work with them. So to run something in live server, I'm going to right click on the file I want to run. So it's always going to be an HTML file, in this case, the HTML structure HTML. And there's an option for open with live server. If you click that, it'll open it. You can also when the page is open, click the Go Live button here that has this person with the circles around their head icon with it.
+
+Quick and then I'll put it back you see it's doing something in my browser over here. And it's rendered the page this is the header. So this content on the page
+
+All these actually ended up on the, this HTML, this page when it's displayed is this code. The rest of it is all structured. Because that's really that's in the end, what HTML is a structure. It's not about, it's about the content as far as this text is part of it. But it's not about really anything more than how the page should be divided up. And when I say structure, it's not necessarily structure on the page, not things in a particular order on the page. It's about a structure in the hierarchy of these elements, which are going to become really important to us with CSS and
+
+JavaScript. All right.
+
+So let's add a few more
+
+pieces.
+
+So the header, one of the common pieces we can add is the title and page. title. This is the title.
+
+And when I save it,
+
+when I save it, it's going to automatically update in my browser because of live server. If it wasn't for live to read have to manually press the refresh button in the browser as soon as I save the updates, so this title sets the title of the page, it's what's going to be displayed things things like browser tabs, or the browser toolbar.
+
+So we change that
+
+a little more to the body.
+
+So this, we talked about semantic HTML, we probably wouldn't want an h1 standing alone on the page. We probably want to in some kind of semantic container, and we'll talk about what that means in a minute. So let's put this in a section.
+
+Save that and nothing's changed on the page. But we've talked about semantics in a moment, something actually has changed the way this page has been viewed by the browser.
+
+And then
+
+maybe we can add a div, which is a kind of generic container for when we don't know what else to call it. We just need things to be contained. And a paragraph, which is text, just a paragraph of text. So this is some text. So we've added all that infrastructure. But all of that we've have no very little of this actually ended up on in the browser. It with this the hierarchy we've created. This paragraph now is a child of the div which is a child of the section, which is a child of body which is a child of HTML and growing the Other way, we could say that HTML is the parent of body and head bodies, the parent of Section section as the parent of h1 and the div and the div as the parent of the paragraph. Because they're embedded in the tags. So we'll come back to that hierarchy because it's going to become really important to us. Alright.
+
+So the next thing would be to
+
+actually use this to build something out more interesting than just this is a header. This is a page. So before we do that, though,
+
+if you have any questions or so far,
+
+I know HTML is not the most exciting, exciting stuff, but it's going to be important. So let's I'm gonna go ahead and just Get rid of this HTML structure. I'm going to go back to the project. And now inside this site folder, there's a file called index HTML. I'm gonna open it and it's empty.
+
+So I'm going to go and open it in live server as well.
+
+We can see in live servers running on live server selves running on port on ip 187 dot zero dot zero dot one. So I went to seven dot zero does that here at one is the IP address of local host. So we've been using local host with Eclipse, which is a domain name that gets translated to 187. So it's this machine. It's running on port 550. And then it's pointing to the site index HTML, the folder site, index HTML So the resource is pointing to the URL crates crates it to the server on this on this port the live server server on a local machine with this resource, which is the hierarchy the resource folders in structure we created or we have. Yes.
+
+Isn't that is this where you share
+
+that, like if you go to the dark fests of techie people that they wear this shirt, this is like, there's no place like one to 7.00 or something like that. Yeah, that's
+
+their, their information.
+
+Yes. You just did.
+
+Yes. So, that is a popular shirt when you go to conferences. Various other uses of one to seven zeros or one, replace home. So
+
+So now when you see those, you'll
+
+you'll be in on it. So
+
+Alright, so Alright, so what
+
+I want to do is, what we're going to we're going to do, I should say, is build a HTML page with some basic styling for a fictional restaurant, because that'll give us some structure to work with.
+
+So I have an empty HTML file here we're going to start with
+
+and Visual Studio code can actually has a template templating system built in for HTML. If we're an HTML file, we can have it build that basic structure. There's basic layout, there's basic four parts for us. And to do that, if we place a exclamation point and press tab and an HTML file, it'll populate out the structure for us. So we don't have to keep typing the doctype and HTML, the head, the body, we can just then work in the body of the document, which is what we really care about and make other changes that as needed. So let's walk through what it created because it's a little more complicated than what we originally talked about. So created the doctype it then create an HTML tag, and it put an attribute on it language.in the language tag does kind of what you're probably thinking it does, it sets the language that this documents going to be written. So it sets the English language. So the importance of that it defaults to that actually defaults to actually not caring, and taking whatever the browser tells it it is. So if you leave that out, it's things will work. But it helps to find what character set for the browser to use the display and then it built the header Second of the four parts are the head sorry about the header. And that has the title in it. And then these two tags, which are called meta tags. We don't need to know much about the meta tags right now. But they're tags that define information about how to display this web, this web page. The two things these one defining. The first one is saying that it's using this character set UTF eight, which is the standard,
+
+you know, keyboard character set.
+
+And then the second one that actually is there, and we'll come back to this viewport meta tag, when we talk about responsive design later, this module, but it's there for devices. So it's a tag it's required for touchscreens to essentially work, not not to work to the freedom to scale properly. Not even touchscreens, I said that wrong for things like phones and tablets device screens to scale properly. So it's there for that purpose. And usually it is always, we don't really touch it even when we're doing mobile development. And then it gives us the title. So let's change the title.
+
+So let's change the title to
+
+bits and bytes.
+
+Which be the name of our fictional restaurant. We'll save it.
+
+And nothing happens because we haven't done anything that has content yet.
+
+Mike down here to body and let's had
+
+hello world.
+
+See, and it's not up here.
+
+So we essentially just done hello world in
+
+HTML
+
+Because again, every language you have to start there, right?
+
+So now let's talk about
+
+what if we instead of having this hello world text
+
+what will we use if we wanted to put
+
+this name of the restaurant name Bits and Bytes large on the page.
+
+So we want to put at the top of the page we want to put up large text.
+
+What might we use? h1,
+
+h1, h1 would be a good choice because it's a heading. So h1 refers to a
+
+top heading a top level heading.
+
+So
+
+one thing we'll we'll talk about is that it really kind of the thing I said there, I'm going to put it in large text on the top of the page really shouldn't matter for me to choosing you. An h1. By default, the browser's going to render or display the h1 as large text. But that's not really the reason I'd want to use h1. The reason I want to use h1 is because I wanted this to be the top header of the page. So you think about when you go into a book or document, it has the top come to the title segment. And then as you go down through the index, there's sub headers and sub headers under those sub headers, sub headers, and so on through different levels. So there's a hierarchy of headers, h1 through h6 in HTML, the format same hierarchies. The reason we would choose to use h1 or h2, or h3 is not because of the size. It's because there are headers on the page.
+
+And they are
+
+and you want to form a structure those
+
+So we have our headings.
+
+And now let's look at
+
+more of what I'm talking about when we say
+
+that we want to have headers. If I want to have a second if I want to have a tagline with us, so we want to say, you know, welcome to our restaurant or something similar to that.
+
+So what tag might be good?
+
+For those of you
+
+a div, so why div
+
+cuz, okay, well tags actually need to have a, we have a lot of purpose in our tags.
+
+So if we want to have a tagline, it's text, right?
+
+So what tag Does anyone know a tag might be a good signifier of text
+
+and you say p
+
+Paragraph would be a good indication for that.
+
+So maybe saying welcome to
+
+the rest Welcome to write
+
+to the restaurant.
+
+So what if I wanted to put like a menu? The word menu here?
+
+probably want to div because there'll be a section by itself, okay, containing different things.
+
+So why would I want to use a div as a section?
+
+If maybe you're containing like a header and like paragraph text that all belongs to like technically one thing
+
+okay? Why would I want to use a div?
+
+So for the word I would, I would eventually want to use a header. But this brings up an interesting thing, actually a couple things, both answers to both types of div. Because it's a common, you see it all over the internet, I'll just use a div here. div is generic container. It should be used when we in there's lots of uses for them. But it's they should be used when we have no purpose. We don't know the true purpose or can't really define it. What what this says we just want things grouped, but we're not. But our grouping is more about our needs for CSS or JavaScript, or some kind of placement rather than. So we can move things together, not because there's actually a form some kind of content. And this concept is called semantic HTML.
+
+So let's look at that before we keep going.
+
+So semantic HTML is Is the meaning that their tags have meaning in the, to the browser. And that we should try our best to form the sections of our pages semantically using the tags that have the meaning for the section of the thing we're using. Which means if we want text on the page, in most cases, we'll want to wrap it in a paragraph. If we wanted this to be the top header, we should use h1, if we just want big text, we should not be using h1, we should using a paragraph and then using CSS to format it. So one of the pitfalls of HTML, is it. Originally HTML did everything.
+
+html5 things got completely divided.
+
+And it's slowly been developing HTML what is the structure so still all this old content all your all your big text, use an h1? h1 has nothing to do with the fact that it's the text size has all everything to do with the fact that it's better than made header. So some elements aren't what's called non semantic. They don't define content. They're used their purposes to group content, when we don't have a clear definition of what it is or what's what it's forming on a page. For example, div and span are those. They don't define really any anything about the content, they don't tell us anything. Or, more importantly, the browser anything. So semantic elements clearly define their purpose. So some of the semantic elements and there's a lot, there's a huge list of them are things like header, or main or section or article. And here's the same page laid out semantically and without semantic elements. So if you look at this one, you really can't tell when anything is. It's a bunch of divs. What's the purpose of each piece? Were semantic elements header, nav, section, section aside footer, It's very clear what the split each piece of the page which each section are being created. So that's important to developers, right? It makes it easier to read our code. But it's actually a bigger, more important, bigger importance to it than just
+
+making your code look nice.
+
+And that's that
+
+the importance of spending gift meal, and I think probably the biggest importance of screen readers, so screen readers, if you're not familiar with them are devices used by visually impaired people with a visual impairment. It reads the screen to them. And screen readers take heavy advantage of semantic HTML to divide up the page to say you know, you're not reading an article. You're now or this is the header. This is the navigation elements of the page to read those in different manners so Without semantic elements, a screen reader can't tell the difference of what the parts are. It can't tell if this is the header image, or this is something important in the text of the page. The semantic elements have give it signposts that they can say, okay, you want to see the navigation elements, you can see what links you can go to,
+
+then it'll
+
+just show those pieces or could have those pieces. So that's one of the importance. The second one is that you know, everyone, building web pages putting things in a searches is all about optimization of the search engines. If you put everything in a div tag, a search engine will treated as everything's equally important. Search engines use semantic elements to properly index the page. So the header is not really important in the search. The the article text is much more important. So by having sections, articles and things like that, it allows it to better index the page for for search results. So you end up with better search results on your page when it gets indexed. And then it makes the code easier to read and right. If I come back to a page, and I need to edit the navigation, and there's a knob tag, I know right where to go on the page. So it's kind of breaking up our Java code into, you know, proper methods. So we can easily determine where to go when we have problems, the same ways, the semantic elements, it allows us to easily find, well, I need to fix the header that's right here. And also when we get to CSS and JavaScript, it was more easily to say, Well, I want to get I want to do something inside the sections or the aside and not affect the other pieces. And then, and that's the last one kind of goes into this, just the developers what, what pieces should go in each part. So semantic HTML. So HTML is more about the semantics and is about content. It's about putting the content there, but not really the way it looks. And on this slide, if you're interested more reading more about semantic HTML, there's two links to one, the W three schools definition of it.
+
+It's information. The other one.
+
+The way if you're really interested, I would suggest going to the Mozilla developer docs on semantic HTML.
+
+If you're not familiar with Mozilla, they're the developers. They're a
+
+open source company that's been around for pretty much as long as the World War One World Wide Web has they built the first web browser available publicly called Mozilla. And now they currently build Firefox, but they're also kind of the go to place for documentation on Main HTML and CSS and web technologies. So they have some pretty good documentation on semantic HTML. why it's important, a lot more detail than I just wanted to
+
+write So with that, let's go back
+
+to the page we're building.
+
+So if we wanted to have
+
+a structure where we ended up having something like, you know, menu
+
+sorry, menu is a tag, but
+
+I want just the text menu.
+
+And under that something like lunch and dinner.
+
+You know, it's just showing a menu on our page.
+
+If we're going to structure this properly, we want to start breaking this into the pieces that we're, we're working with are semantically. So the first is this. What is this actually forming on our page?
+
+anymore.
+
+I'm gonna restart this live server because I don't think it's picking up.
+
+So probably forming a header right?
+
+That's gonna be the header of our page tagline with the title. So semantically, we don't change the h1 of the paragraph, those remain the same. But we would wrap it in header.
+
+Nothing's changed the way it's displayed. But now we've given
+
+some definition to
+
+how this what this record
+
+I'll tell you that header, we probably want
+
+a main section
+
+that's going to have
+
+our pieces.
+
+So, if the header is bits and bytes, what is menu?
+
+This B section
+
+will be a section eventually, but the text menu, what's it representing? So you're you're right, it's gonna be a section. It's a list ultimately. So Li maybe. Yeah, yeah, life for the menu items, but what's the word menu represented?
+
+It's a sub header, command, the menus contacts.
+
+It could be a paragraph, but I'm gonna make it a sub header. Because it's if you think about if you're building index of a book, the menu would definitely be one of the headers. It's the it's one of the contents that we're interested in. It's going to have content inside of menu itself, but this word is forming
+
+a sub header of one of the sections of
+
+the pay this page.
+
+What about lunch and dinner?
+
+Are those the same type of thing.
+
+That'd be a sub heading menu.
+
+They would be so if there's sub heading or menu, they should be the next level down. So we should never have an h3 or h2 on our page if we don't have an h1, h2, h3 if we don't have an h2 We can get the same effect that the size and the shape or the size and the text of that we have for h1 h2, without using h1 and h2. So the only use should be used when we're actually building a hierarchy of headers which is what
+
+we have here
+
+and I wish you could
+
+save it and now they've raised himself there's a sizing difference that by default, but that's not the reason we picked use it because we're going to change all any bad any we would like with CSS. So that we already talked about these probably should be sections. So the whole main section is the menu. But lunch and dinner should each be in their reach a section to themselves. Sorry, see, nothing's changed. We've added a lot more structural code. But we haven't really changed the page being displayed much at all. But semantically, now we've created the idea that there's a the main portion of this page is a menu in that it has two sections lunch and dinner. So we've created so got this document now when opened up by anything by a browser
+
+You know, scored display exactly the same.
+
+It allows us to see it by our car intent rather than just display the content as generic generic groupings.
+
+All right. So we probably want to add
+
+a tagline that some of these are some items.
+
+So, there's lots of things we could use to add items I'm going to use, but what I'm going to put here is just text.
+
+So paragraph,
+
+me full stack
+
+and we start to get the list of items. I'm not putting them in a list because even though To list of items, it's not actually going to be an ordered or unordered list in any way. And that's what Li and ul should be used for.
+
+So it's just text. Alright.
+
+So the next thing, there are some images in this folder. There's some for lunch, there's some for dinner. And there's one for each of the items we'll be adding. So let's add an image two to this, which is going to require us to talk about a couple more things. So I want to add this full stack sandwich image to display here on the page.
+
+So to add an image, there's a tag image tag. And this is the first time we've looked at it. We have to worry about the one of the attributes. Specifically, the attribute we have to worry about is the source attribute. So src. So certainly image so the attribute is a key value pair, so SRC saying the source of the image. So the location of the image is going to be a path. And these attributes serve to change the behavior of the way the tag works. This particular one changes the behavior by saying where the image is located, you want to be displayed. So the path we're going to give it could be either a relative path or a relative path or an absolute path. So it's the same ideas on a file system but relative and absolute or mean something slightly different on the web. It's relative or absolute based on this URL. So a relative path means is coming from, it's a path where it's coming from the same server. So if the image is coming from one to 7001 5500, then that means we can give it a relative path or on the same server. If they're not, we can't we have to give an absolute path. So a relative path to index HTML would be this. Or possibly even less depending on where our starting point is. And absolutely path would be the entire URL. So absolutely pass a little easier to probably understand it's the entire entire URL. It's what we're normally you know, we're sending it to a friend. It's what we have to send them including the HTTP that's crumbs, hiding. A relative path is on the same server from the location is in the file system on that server. How do we get there the same as it is on. So the same as it is when we work with a file system. So we're here in site.
+
+So we need to go to images,
+
+lunch, and then full stock sandwich. So we start with images.
+
+And then I guess there's another folder menu,
+
+images, menu,
+
+then lunch folder, lunch, it looks just like a path on our file system. And then our you can see it's actually helping me and then I'm going to solve close the tag which means I don't need the ending tag, I just put the backslash stand there.
+
+So we save that. And then we get
+
+our image displayed.
+
+It's large, we're not going to worry about that because the size of the image is not something we need to worry about with HTML. HTML is about just getting it on the page, or getting it to be rendered as part of the page. And what section that goes in and where it goes, but not how it looks. So we'll come back to that with CSS in a minute.
+
+But let's add
+
+maybe a couple more.
+
+Let's add there is what was the other ones?
+
+Us burger, so I think it was something like the Universal
+
+Serial burger
+
+MH.
+
+Source equals
+
+and we want this image here.
+
+I said doesn't work the way I thought it would
+
+we see that
+
+we have the second one.
+
+And if we want to add the dinner items
+
+for dinner, there is the rack of RAM and array of vegetables. So why those rack of RAM
+
+image tag
+
+the source again we can use the
+
+relative
+
+so I'll close it. And then finally I'm excited the last one which is
+
+First of all Ray
+
+source.
+
+We have the page here. Now we have,
+
+oh, it's not a great, very nice looking page. But everything's there. So we have each of the images to the sections in the items. So before we will continue if there are any questions or what questions do you have? All right. All right. So let's take a break then, and we'll come back at 1021 and continue and
+
+before we continue Have any questions come up for your over the break?
+
+So branch should the sections mostly be used within a more
+
+general? I'd like container like main or footer or header?
+
+Usually Yes. So if you think if you have the main content, have a document, it have sections, just dividing it into the pieces. It is it may be appropriate in some cases to have, you know, the body just broken into sections as well. And so it really depends on how your page is laid out what parts it has, if you have a head. If you have a header, you probably would have broken into at least a header or main or Maybe a header in a single section, or two sections type of thing. Thank you.
+
+So Other questions?
+
+All right. So let's try to maybe improve this somewhat by adding a little bit of CSS to it. So CSS, we're going to spend a lot more time on CSS this week. But today, we're going to just a really the basics of it. So CSS is Cascading Style Sheets, and we'll look at what that means to be cascading later this week. And it defines the presentation for the documents what's the what says, you know that this text should be a certain size, or a certain font or a certain color? Not the HTML The h1 may make the text larger, but we can change that. And we can use a paragraph tag to make text look just like an h1 tag if we want, if we that's what we want. So CSS is divided into agility, we're going to have it that we will look at some other ways to do it. And in most cases, we're going to have in its own file, a CSS file that will import or link into our HTML file, using the link tag. And each of CSS itself, it's broken down into parts of a selector. And today, we're not going to really look at what that means. We're just gonna use a couple and I'll explain what we're doing. We're going to use tag level ones today. And then some curly braces and inside of that, a set of roles and the values. So it's a role like height, colon, and then the value we want to set that that after that property to And then each different types of elements have different rules that we can use for them.
+
+So with that kind of knowing
+
+a high level of what it is, let's build a CSS file and link to it for so we can make these images at least look a little better.
+
+So to do that, I'm going to go back to Visual Studio code.
+
+And I'm going to create a new file in the same folder as my index dot HTML. Actually, let's make it more like it should be. Let's create a new folder to generally you'll want to CSS in its own folder.
+
+Let's create a folder called CSS. Excuse me.
+
+And inside of this folder, CSS folder Create a new file. And we'll call it
+
+maybe something like site dot CSS.
+
+It's just an open text file just happens to have the dot CSS extension on it.
+
+So inside of this we can write.
+
+We want to do something to make these images, smaller, just make them look a little better. So if I wanted to select all the images on the page, they are for this IMG, right, that's the image tag. So my CSS, I can identify, I want to do something with all the tags by giving the tag name and then my curly braces I'm saying for all the images on the page. Page, change the height and put it to 200 pX, we'll come back tomorrow look at what PX means. So pixels is what it means. But we'll come back and the different settings and we'll use each one. So we save it, nothing's going to happen, because right now, the CSS, the CSS file is not linked to our, our page.
+
+So we need to do that.
+
+So to link a CSS file to
+
+an HTML page, we're going to do the header or the head. So add a tag up here. And why the link tag which means we want to link a document and it's going to be in two pieces. So Arielle, or relationship says, what kind of document we're linking What relationship doesn't have to this document. And its relationship is it's a stylesheet
+
+And then
+
+the hyperlink reference.
+
+So the location href is going to be equal to where it's located on the server. And again, it can even be their absolute path. If it's on a different server, or relative path, and it's on the same, so we'll just get a CSS. And then we can choose site CSS because it's relative. And we get that because index is here, CSS folder, site CSS.
+
+And now when I say that,
+
+you see it, change the images, because it applied the CSS when it linked it.
+
+So now the images are all constrained to 200 height.
+
+But there may be some
+
+other stuff that I want to do. Now I have the CSS linked.
+
+I can't Oh, I forgot to complete the link
+
+can add other changes to my CSS and as I save it, live server will automatically update as well. So, so I can see both of them at once. I'm going to take my site CSS, if I right click on it, I can choose to split to different location I'm going to split Right. Which means that I've moved my CSS interest into another pane
+
+and then
+
+let's change the font of
+
+This on this page.
+
+So we can do that
+
+by font family tag. And if I want to apply something to everything on the page,
+
+what if I want to play something to all the content?
+
+What tag might be a good place to apply if I want to apply it to everything? Is it body? Yeah, body would probably be good. That's where all the content is. We don't need to apply something like a font to HTML or header or the head tag.
+
+So badiy
+
+and we can use font family. And there's multiple font families, but I'm going to change it to be Arial. You can see it's autocomplete for me and some of the other ones we can pick.
+
+And what this is doing, it's creating what's called a
+
+kind of a fail fell over saying, if you have errors in your system, the Arial font use it. If you don't use Helvetica and if you don't have either one of those, use whatever sans serif font you have, depending on the device, save it. And we can see now the fonts changed. If we want to have a different look.
+
+See, we can pick
+
+a very different look depending on which ones
+
+which family we select.
+
+Let's try one more.
+
+And we'll talk about later. There's other
+
+options we can get from places like Google Fonts as well. What is that is the arrow and help the sincerest form so now we've changed that look.
+
+And so while we can use any font we specified has to be something on the user's machine, it doesn't go download if they don't have it. I'm not all machines have the same fonts, there's a set of what's called web space safe fonts, which is what we've basically was looking at with Visual Studio cover showing us ones that most systems are going to have. In this case, most systems have Arial. Older Mac's, will have Helvetica, which is going to look almost the same. devices like a phone may not have either one of these. So you don't even want to, but they probably will, because those are pretty common. Both are pretty common ones that have to be on devices. So you generally want to pick something to get the display you want. That is from the what's considered the web safe list. So there's this kind of a limited set of those. And then bullets I'd look at later in the module, how we can expect And that using Google, Google Fonts or bootstraps, fonts, libraries, or Font Awesome or some other libraries available. But for today, we'll just keep it with one of the website fonts like Arial. But it's changed the look of our page.
+
+Now, if we want to change,
+
+like our header, that's the default h1 size. But it said that we don't pick h1, h2, and h3 because of the font size. We pick them because we want it to be you know, the first header and the second sub header, or the sub sub headings. So if we do want to change
+
+the way it looks,
+
+I can select the h1. If we only have one h1 on the page, then that's going to select that one. If we have multiple, it'll make them all of the same. We can say font size, maybe we want it to be 50 px, two gets a little larger. So we can control that on any elements. For instance, if I wanted my paragraphs. Now, though, the while 50, all the ones that were in paragraph tags, probably not what I want. But that's what I was saying we can make a paragraph look like the header, it'd be the same size in display look exactly like that if we want. So we don't want CSS, we don't worry about in the HTML, we don't worry about what it's going to look like just where it's going to be placed and how it's being used. CSS is going to change the way it looks. So now we have a larger header.
+
+We also maybe want to
+
+change the color of the spot.
+
+So we can add multiple roles to any particular CSS element. So if I wanted to change The font color, the foreground color, which is what the font is, it's just the word color. And then I have to give it some information here. But the web colors can be as simple as I want to make it red. And now it's red. But we're also on something a little more. A little more control than just red, blue, green type of colors. We want to be able to select from anything in the range. So let's look at a few ways of setting color, the color title and CSS.
+
+So there's really, there's four ways really
+
+we're going to get two of them, and it will fall to mention there's the other two exist.
+
+So the first way is what's called named colors.
+
+So we can set this to cornflower blue
+
+named colors was about 140 of them. And they are just that they're colors that have names. So send
+
+us into this link.
+
+And there's multiple links like this, but this one has kind of nicely organized into groupings. So the named colors and the red spectrum, ones in the pink spectrum, and so on.
+
+So we just pick any of these names
+
+like
+
+and like the one line green
+
+and that's the color becomes.
+
+That's one way of picking Setting the color. But these named colors aren't always as detailed as we want. We often want a little more control. Oh, in James, your comment of the color pull that up that just to be clear, that's Visual Studio Code doing that.
+
+I'm sure that's what you meant, but
+
+I've always like looked up the RGB codes specifically online, I'd never realized you could just hover over it.
+
+Yeah. That's pretty cool.
+
+So um,
+
+so the other way we set it is what's called the hex code. And
+
+I'm going to actually pull up another
+
+page for this.
+
+And I'll send you this as well. I should have sent you I guess the main part of this page
+
+The hex codes are
+
+a code. That's one hex. So it's a number between
+
+Sorry, it's two values.
+
+The hexadecimal range where the first two represent red.
+
+So they're between 00 and FF,
+
+the second to represent green, and the third to represent blue, and the red green blue value, then mix, make a mix to form pretty much any color
+
+or almost any color.
+
+So
+
+it starts with all zero
+
+is
+
+the absence of color so it forms black. And then as we do things like getting close to farther away from that, going towards F, it gets lighter to when we finally get to all F, I don't think it shows on here, but it forms white. So it takes a range between zero all zeros, so six zeros and six apps. And then in between of those, each one of these individuals then form the first to form the amount of red going to be at it. And then the secretary the amount of green, the last, the amount of blue, it ends up being all 1616 What is it 16 million some colors that a computer can display can be formed this way.
+
+So with that,
+
+I come back up to something like the color picker. We can pick any range of colors. And then we can use that also inside of our CSS. And we do that by using a pound sign telling us this is going to be accessible. You give it the hex color, and we save it and it displays that color. So there are two more ways using RGB instead of which you kind of saw.
+
+This is going to suck in hex now
+
+I go back to
+
+what are the name colors
+
+might be easier to see, I think it'll do an RGB then you see it's picking similar thing with red, green and blue values.
+
+If we change it, we could also use RGB With the values as well, there's also a RGB, which allows us to set how transparent it is. And there's also a fifth one actually called HLS, which we won't go into. But almost all the time, you're gonna end up using either the hexadecimal value or name color that can get all 16 million colors that border computer can display.
+
+Hey, Brian, yes. Do you have a favorite color that you remember the hex code for? Or did you have a particularly traumatizing experience with a color and a website that you will never forget that hex code for?
+
+I don't know the hex codes or any of them. I'm not a designer. So I tend to use the name colors and just hope for the best or I tend to do this.
+
+That looks good enough.
+
+Just kind of hover over and click something
+
+So, yeah, I'm
+
+so I wish I had a better answer for you. I do have some really traumatizing experience around colors but on on web pages, I'm trying to do image recognition, but that's a whole different thing.
+
+Okay, gotcha. I think
+
+I'm gonna do a lightning talk about that later this card, so I'll save that for that.
+
+But yeah, so that's, that's how we set
+
+colors of pretty much all these things we can do. The foreground color, we can also do the background.
+
+color. This is gonna look probably the way we want it.
+
+Let's just pick yellow.
+
+And see now it has a
+
+background on each one.
+
+And we'll learn some other places we can set as well. Common the same way but the point That was actually more around the X rays.
+
+What's the best way to set the whole background of the website? Would it be body or would it be that the Okay,
+
+so background
+
+we set this background color go here, the whole body of the website becomes yellow.
+
+Now that's
+
+obviously bad. Alright.
+
+That's
+
+it. So
+
+before we move on, and that's really all we're going to look at for CSS today. So we're going to go into more detail than you ever want to go into a CSS or the next few days.
+
+So there any questions on
+
+Alright, so let's take a look at
+
+the next X Factor we'll want to talk about with a web page is really, how do we get user input? So this page is not dynamic in any way, you know, displays the page. It's, I mean, we need to make this look nice. We need more than what we are done with CSS so far. But it's also doesn't do much. So what if we wanted to get user input from the page? What if we were for instance, we wanted to take reservations.
+
+So when we want to get user input on the page,
+
+if we want to be able to get
+
+the user to give us some information that we can then pass on to the server, we can use forms and forms are
+
+a way for See, do I have
+
+a way for the client,
+
+the browser to
+
+get information from the user and then submit it to the server. And that's really their main purpose is to submit information to the server. So they're going to become fairly important to us because this is one of the ways we're going to one of the only ways they're going to be able to interact with the user, or get information more than a click from a user. So let's build a form. And to do that, we'll build
+
+let's put a registration page
+
+and let it go here. I'm not sure where to close site CSS for now. I'm about another page here in the main site folder. The file and just call it something like reservations dot html.
+
+And we'll
+
+build the template use the templating for it. So again, that's an exclamation point tab in an HTML file. We'll build out the template template. And maybe we can change this to something like reservations.
+
+And then we probably want some
+
+content. So let's actually grab the header off the other page.
+
+And now we'll build a main
+
+section for this page. And this page will have its main we'll just be thinking about one thing so we don't need a section Its secondary header, its subheading will be reservation
+
+form.
+
+And we're going to build a form.
+
+But we need to talk about some aspects of what it means to go to form. So since the forms purpose is to submit Server data to the server, it's going to be a URL, it's going to require two things. One a URL to where it's going in the server. So something like one of our API endpoints,
+
+or
+
+another location on the server that it can submit to, or that can receive the values it's going to send. So
+
+that is going to be in
+
+the action. So there's always going to be an action attribute is going to have a URL where this form is going to be sending data. So our forms not going to really be sending data anywhere, we don't have a back end to send it to. So let's just put a place and a placeholder in there. So something like API slash reservations might be where we might have a fictional
+
+API to work with.
+
+So now that we have that, let's take and put the second piece which is we have to have a method. So just like when we do API calls with our rest template, we had to pick whether it's a post or get or put a delete, we have to do the same thing with a form. It defaults to a get. But we often want it to be a post, now put into lead are not available from HTML forms, those require JavaScript. So it's either going to be put or post or get. The choice is going to be able to almost the same as we had before, again is going to mean that the form is going to travel on the road. So it's going to be in the query string. So it's going to be up in the address like this, this data, a post means it's going to travel in the message body. So a form that post is going to be
+
+one that
+
+we can't see the values for the traveling in the bodies that can be encrypted by SSL, or HTTPS. But we have another consideration that we didn't have with API's. And that's the idea of bookmarks. So bookmarks are actually though, people don't pay much attention to them. They're actually pretty important. That's how people can get back to our site. It's how search results often get displayed there how people can send a website to your friend and say, hey, go look at this. Those are all through the URLs and how their bookmark bookmark will URL was one of the can be returned to and get the same result. So get requests or book markable, which means that if a get request, we can save the request, since everything's in the query string, we can send it to our friend and say, No, take a look at this, this page, we can also take it and we can store it and come back to it later. It can be indexed so that, you know, search engine can be in a search engine results so that someone can click on it. And though, if you know all, everybody here on this call clicked on the same link, we'd all get to the same page. That was what it means to be bookmark one, that's what a get request is going to be. A post request is not going to be book markable. Because it's content. It's important content is in the message body, not out on the query string. So it's not bookmark which means that we'll choose posts from our forums. When we do that, we are making the decision that Somebody can come back to this, which often we don't want. If somebody is logging in, we don't want them, we want to be able to get to the login page, we don't want to necessarily be able to do the login itself by clicking a link. The same you know, if they're making a purchase, we don't want that bookmark, one of the product bookmark. So that's but that's another consideration with post and get from a webpage, is how we want the resulting link to be treated. So from a form, we've picked our method, we're almost always going to end up picking post. The default is good. If we leave that off, it'll default to get but there are occasions where we will want get, for instance, we are building a forum for someone to select you know what product have you, we may want it to be get sick and come back to that product later. So we pick a method so all forms are gonna have these two pieces. This URL can be two things because that doesn't look like any URL we've seen before. It can be either relative just like the image source or the link source for the CSS. And when it's relative, that means that it's on the same server. So this HTML in this API, both would have to be on, you know, to this HTML is going to be on one to seven, dot zero dot one, Port 550 550. If the same API is also in the same exact location, then we can use a relative link. If they're in a different location, like if it's on localhost 8080, we'd have to use a absolute like. So relative links will look like this on the same host. Absolute link is just going to be the full URL like you would go to a postman or
+
+a browser.
+
+So can you see the one since that's not real, we'll just leave it at relative
+
+And then inside of
+
+the form to actually take
+
+values,
+
+we're going to use what's called input elements. So input elements are things that can take user input. It's their tag that starts with input. They're going to take a type. So we'll say text is one of them. And they're self closing. So we come here, look at this. I'm not on the right place, let's go to
+
+actually open up reservation.
+
+In live server, you could also be on a live server right clicking in the middle of the file, you have multiple files at once, as long as they're on the same site. So since these are on the same site, I can open up the second live server as well.
+
+And now this is the input element. And I can type here
+
+From when a different element type it's as easy as changing it to. I want a checkbox. Now it's a checkbox. I want a radio button. Now it's radio button. So the type says what kind of input
+
+I want to have.
+
+So let's change this to back to text because that's what I ended up with.
+
+And then
+
+I probably want to label for it.
+
+So there is an input out there's another tag called label.
+
+And with the label tag, let's give it a name.
+
+See, it creates the name
+
+but you see what I Click on the element itself.
+
+It does what's called focus. So focus means when I, if I type or if I take action, it's going to be what precedes the action. So right now, this has focused because if I type, that's where it goes. I click out here, out here, the main page, jaws focus, when I type it, nothing happens, because that the page can't handle it. So if I want these to be linked, I could do that using an element on the label things for and I have to give it a name. So that means I have to name my input element.
+
+So use ID
+
+and let's call it reservation name. In this same ID
+
+are using my four
+
+and the reason I'm going to do this is this we saw before when I clicked add to click here for this to get Focus. But now when I have it, the label, I can also click on the label, it's a small thing, but it can make the page a little easier to use. So groups is basically is one, one thing.
+
+So Id,
+
+the ID attribute on the input is for internal page usage. So it says get should be unique for the entire page. So for any given page, there should be one thing that has this ID. And you'll see that violate a lot. You'll see that on StackOverflow and other sites all over the place. You see, oh, just put, keep everything the same ID. That's invalid HTML. And it's going to cause problems causes problems for JavaScript and CSS. And there's no reason to do it because we have the class attribute that does exactly what people are trying to accomplish with the ID attribute.
+
+Id is meant to be unique and unique identifier on the page.
+
+It's only for the internal use of the page. It's used. It's used for JavaScript, it's used for CSS, it's not used off this page. Which means it doesn't give us a lot of value or a form outside of putting the label with it or manipulating with CSS or JavaScript. So form elements have a separate separate attribute.
+
+And that's name.
+
+Name,
+
+which often is the same
+
+is the key that's going to appear when the form submitted.
+
+So let's change this to a get so we can see what I mean.
+
+And we have to have a button to submit it.
+
+So input type equals submit, we'll create a submit button.
+
+So when I submit the form, I've given some values, no hit submit, we can see in the URL up here, since it's a get it went in the query string, this key, and we know that the query string is built of key value pairs, right? So the key is what's going to be used to warn the server to identify the data that goes with it. That key comes from name. Not from ID. The name sets the key, it's going to be used to some of the server. The name is for ideas for internal usage only on the page.
+
+So let's put this back to post. We've seen that. Yes.
+
+Real quick. What is the comment starter in HTML?
+
+Oh, the comments. That's a great question. So comments are started with like this.
+
+Okay, I was struggling. Thank
+
+you. This is a carpet I chose, but leave that there.
+
+And comments are multiple lines of HTML. That's the only only comment syntax. So
+
+so far elements.
+
+To recap, they're gonna have a type, which is going to tell us what it is the ID, which is the unique identifier and on the page, the name, which is
+
+working on an HTML that works in JavaScript.
+
+Yeah, that's for JavaScript. Probably
+
+not I saw your comment in chat. So
+
+the name is the key. And the idea of turn away. And I was pronounced it's a common interview question, what's the difference between ID and Name? So
+
+comes up quite a bit.
+
+Alright, so now we have our first form element boat. So let's build some build this form out a little more, because the reservation form is going to require more than just a name right. Let's put a second element in. Maybe we want to get the number of guests.
+
+So input ID, let's call it
+
+number of guests
+
+called names. Same thing, number of guests.
+
+And I could make this type text.
+
+And they can type it in here. But then they can type anything.
+
+So I can also use type number.
+
+Type number will only allow. I'm typing characters right now nothing's happening. It'll only allow me to type numbers and it also has a spinner that comes with it to increment or decrement numbers.
+
+So they can just come here and increase it.
+
+Let's put a label on that
+
+number
+
+But they're all
+
+just going off to the side.
+
+So you
+
+can say the input area. Let's find out. Now you can but I'm not sure if it'll have the same
+
+size.
+
+Doesn't matter what it is type. Let's text.
+
+It ends up after it. It also doesn't have the same effect of being able to stop focus. And a third thing it has is that we can't now easily changes with CSS by affecting all the labels. So the answer is yes, you can. But it's, there's some advantages to using the label tag.
+
+I don't necessarily want the US to push out like this.
+
+So this is now where we talked about Dibs at the beginning being generic, kind of generic container. I don't have any it's not really a part of the page. I need things grouped.
+
+So I'm gonna wrap these in dubs.
+
+Each of the labels and the input
+
+what's the standard for like, tabs? Like when are you supposed to put one
+
+Anytime that you technically anytime that you and I'm going to fix tabs here
+
+so could
+
+Yeah, I guess if I would do it way wants to do it probably won't have the problems. But anytime you change the hierarchy is when you should have a tab. So anytime you go inside of a one, so these two are on the same level, they're both child children domain. But then these three divs should all be on the same level because their children a form, but then their children's retagged on one. The exception is you'll often see HTML head and body on the same level just because those are so standardized. It just pushes everything out to start with kind of that beginning point already pushed two tabs over. So you see those but that's the the general standard is tabs are split into indentation
+
+in the children should be in done it. Okay, that makes sense.
+
+So by adding the divs here,
+
+now they're going to stack differently. So now they're on top of each other, rather than there's a reason for that. We'll come back to tomorrow, why devs are doing that. But it's also going to give us a way of affecting
+
+each grouping separately.
+
+So but before we do that before we try to apply more CSS to it. Let's look at some other things we can do. So we probably want to date right.
+
+So div, let's give it a input type.
+
+Probably always come back to the title. It's called ID, reservation date.
+
+name equals
+
+reservation date,
+
+type. Again, I could use text for that. can use date. And what dates going to do is it gives me this field that looks like this. And the user can click on it get a calendar or they can populate it manually, and it will keep the formatting for me.
+
+Put a label fat.
+
+So we probably want a time for you to get a reservation, right.
+
+So let's do an input
+
+and put
+
+ID
+
+reservation time.
+
+With a name.
+
+The ID and Name do not have to be the same. They come They are, but they do not have to be. So. And then we'll say type equals time. So type time is going to be similar to date.
+
+But it allows you to set
+
+time in this manner based on
+
+and it'll keep the time format for us.
+
+Again, for any of these, I can use a text box. But html5 adds these elements that make it easier to take this type of data. So let's say reservation time.
+
+And then maybe we want one more let's do for taking the reservation and maybe want to determine if have a checkbox for us as a special occasion. So it was a special
+
+occasion.
+
+type equals
+
+checkbox. Where do you see what that's going to look like? And let's put a label for it.
+
+Fix this first.
+
+So you notice when I submitted that when I saved that it has worked even though I had ID instead of ID. So one thing we're going to find here I find with web
+
+development, is that it
+
+See, how can I put this? It is very,
+
+he was very forgiving, you know, basically say, Well, I think this is what you mean, we'll go with it. But it also would go out of its way to protect the user at the detriment to develop developer meaning that it'll hide errors. It won't tell us anything. things wrong often and just do its best. Which HTML is not that big a deal. It's easy to figure out and we get the JavaScript you'll find that incredibly frustrating, and CSS as well.
+
+But see, this needs to be
+
+special occasion. All right.
+
+So now we have a form.
+
+And again, the last one was the submit button. If we want to change the way it's text we can add value.
+
+And about make
+
+reservation
+
+if you don't want to say submit
+
+and if we wanted to
+
+now let's import the CSS For this, so again, if I'm going to import my CSS, I'm going to use link relation stylesheet href, the location of the CSS file, it's in the CSS folder. And its site CSS is our current one, we could have multiple we have multiple of these links as well. But we just use the same one. You can see now it's automatically applied our font, it's applied
+
+the form but I want to do
+
+I want to make these look a little a little bit nicer. without going too far into CSS. I'm going to go back and get my CSS file again.
+
+Let's move this to split right
+
+and
+
+close this so you can see what we're working with. So let's do something with these divs which is part of the reason we wanted to use them. So we can say, div. Let's take for every div on this page. Let's give it maybe a top margin. And we'll talk about what margin means tomorrow, maybe of just 10 px. So now they split out a little bit more. Now maybe for label all of our labels.
+
+Let's give them a width of I don't know
+
+100 and strike 100 px.
+
+So before I do that, and I'm gonna explain tomorrow what this means.
+
+Let's see just inline block.
+
+Maybe these a little bit more.
+
+That's looking a little better.
+
+So we'll stop there. That's it. least give some look to the forum. It's a little better than what it was spending the better. And I know weight issues, some things that we'll need to discuss, like why do we need display inline block on the label, but we'll come back to that tomorrow. But by having a separately, we can change the look. So now we have a form, we're going to submit it didn't do anything right now. But I probably want this available from
+
+this site.
+
+I probably wouldn't be able to get from here to the reservation form. So let's add a new element to this main page. Before we do that, do you have any questions? I guess I should.
+
+Yeah, could you go back?
+
+And then can you like the label for what is that calling? Is it the name or the ID? It's calling the Hop ID.
+
+So other questions before we?
+
+Yeah, I did have a question.
+
+On the
+
+when you set up the link to a CSS
+
+to do when you put in stylesheet. Is that like, do you specifically have to put in stylesheet? Or can that be anything or how does that work?
+
+So there are other things we can link in.
+
+Nothing that we're going to do this cohort, but other examples are media files. Like you can typically like in music files or video files into a page. And there's some other content you can do that with as well. Like Silverlight content. And which is an interactive thing that is built by Microsoft, it's pretty much gone now. So, there are other things that you can link besides style sheets. So you should tell it that you this is a style sheet. If we take it out, I think it's gonna be up to the browser, whether it's gonna work, I think chrome will not care. Let's find out. Although it does care, okay, so you take it out, Chrome will care, some browsers won't some will. Chrome actually does care.
+
+So it
+
+so yes, you're always going to have a link for a style sheet. It's really the only type of link we're going to use and probably, except for a few rare cases, the only type of link you will use, but so it's always going to be there. Does that answer your question?
+
+Yes. Thank you.
+
+Brian, can you specify the input types?
+
+Are they
+
+like SQL compatible? Like when you use a date and things like that? No.
+
+Okay, just great.
+
+But they can be. So we can be can format it. If you remember, when we were doing controllers, and API's, we could set a date format, right? We looked at that one time, we could set a date format that's going to be sent. Well, the date format no matter what you look like here, because you can actually change this to be pretty much any date format you want. It always sends it as year, month day, with dashes in between. So you can set up your controller to accept a year, month day date, and then get this date in the controller then turn it into a date object like Java to make an SQL compatible. But out of the box, it's not
+
+I thought they were gonna help us out there.
+
+Doesn't seem too
+
+bad though. Because because they don't. I mean, to be fair for HTML, it doesn't know, or care if you're using SQL or no SQL or database at all, or Java or Python, and they all have different ways of handling things. So it just does it its way and says, You, you adapt to me. As long as it's a standard format, and it's a consistent format. No other language or trouble with that. This might not be the format they use by default. So you might have to tell like in Java, that's not Java's default formats, we have to tell it. If we were going to go to SQL directly, we'd have to tab. There's ways you can tell sequel to this inquiry date, and here's a format of 10 so it can read it.
+
+So other questions before
+
+Alright, so let's build this link.
+
+So I want to play link from here
+
+to here, when the link is just a place that I'm sure once from everything can click and it'll go to the location. So these links are the whole reason. This is called hypertext. And we've seen Hypertext Markup Language, hypertext transfer protocol. hypertext is text that has links to other content that can immediately be accessed by the user. So let's put a link between these two pages, we can put it maybe we don't want to put it in the header. So let's add a new section. Not the section tag but a new element to the page section of the page. Let's add a nav section. So the nav element is for navigation, which is what this is going to be its menu navigation. So to add a link
+
+we use the anchor tag which is just the
+
+letter A
+
+href which is the hypertext reference or the hyper reference, the same as it was up here, it's just going to be a URL of where we're going and just like the other ones that can be absolute or it can be
+
+relative.
+
+These two full files are in the same folder. So we're going to choose the file name. We don't need anything else because they're in the same location.
+
+And then
+
+we want text for the link. So the text for the link will go inside of the tags, the the anchor type, so maybe make a
+
+reservation.
+
+Alright, so we have our
+
+make a reservation here.
+
+We click it.
+
+It'll go to our reservation page.
+
+So in our reservation page, we probably want a way to go back.
+
+So let's add, same thing.
+
+Let's add a nav,
+
+and our anchor tag href. And we're going to go back and they get into the same folder, same location, it can go anywhere. So if we want to go to, but
+
+let's see, let's call us maybe
+
+have to change this in a moment. You mean us it's text, so we add it. If we click here cmca go, it can go to any location. That's the absolute with an absolute path. Let's get back to where we're at. But that's not where we want to go. Where we want to go is to our interest Turn on index HTML files in the same directory. So that we can click on it and go between the two pages.
+
+So
+
+before we look at other things, what questions do you have?
+
+Sarah, remember from the free work
+
+some point I think we like, had to give it some kind of direction to like open that link, either in a new page or in the same page. And I noticed that you didn't do that is that just like the default,
+
+the default is open it in the same page, the same browser window. There is a way there's a couple different ways to make it. Go into a different tab. But if you Yeah, it's most links, you're just going to want to replace what's there. Yeah, blank is that posted in the chat. The blade directory will tell it to go to a new blank document. And there's even ways to say I want this in a new blank browser, or if it's in a new tab if it's a typo browser. So there's but yeah, the default is just the same, the same place. And we'll usually leave that because when you open into a new browser, a lot of malware software will actually detect that as a malware possible malicious attempt and tell the user warn the user with a scary message of they're trying to still this is potentially a scam, phishing scam and scare them off and close your page. And also a lot of ads blockers will block pop ups, which is that's considered a pop up if you bring up a new browser.
+
+Other questions? Okay.
+
+All right. So keep in mind
+
+the structure of HTML that it's about structure that's going to be important for what you're going to be doing today.
+
+So let's take a look at
+
+your exercises for today then.
+
+So
+
+are we are we done?
+
+We are. Yeah, we're done early. Yeah. Okay. I don't have to be done. I can find something else to talk about.
+
+I got no intent there.
+
+I'd actually was thinking about it the back of my head. I was thinking we should build an API for this this summit too, so we can see the connection. I'll take it. another hour. But then I was like, it's also the mock interviews today starting so
+
+that'd be nice.
+
+So what are we doing today
+
+is
+
+very similar to what you did in the pre work only it's going to pay a lot more attention to the structure and the proper usage of HTML. Because something I know that the basic kind of HTML class like on freako camp, they don't it's use this tag, but not a lot of this page needs to be structured in this way.
+
+So this is going to be around where around that.
+
+So the requirements are going to be to build
+
+it's basically they're calling it they call it a fan page, but it's another nother tribute page. It's pretty similar requirements. So you want to you have to start from I think they give you see what they give you.
+
+They give you a starting HTML, but I'm pretty sure it's just a blank file set to build your own CSS file and link it in. Yeah, it's just a blank file. So it's gonna give you really nothing to start with. You're gonna want to have the content of a main title and large heading.
+
+Related image information in a table. We didn't look at tables, but
+
+Can everyone else hear Brian? Oh,
+
+no, I can't. I can't.
+
+I thought it was my
+
+last.
+
+I was like of course the one thing we didn't look at him here he is cut now for me. I
+
+just want to build the suspense.
+
+You hear me? Yeah. Now we can. Okay.
+
+We might as well but
+
+Alright, so the
+
+Yeah, so you want to put in a table so we didn't look at tables
+
+but
+
+the but there's a lot of HTML types in what
+
+we looked at the base one basic ones because you can you can find that there's quite a few of them. I don't know what their account is, but I think It's getting close to 100. And some now at this point, so you can use any tag, any tags, you can find that fit
+
+your needs. So use
+
+a table tag work this out, I'll warn you when you as you start laying things out tables are not fully out there for tabular data. So that's what we'll be building here. And it should include this information. It doesn't I don't think it has to be exactly, but it gives some examples of what it might be. It should have two or three code quotes using semantic elements. So again, you might want to look into what the semantic elements arm and how you could use those. Set a two or three links to something. Either ship section headings for the tables, quotes and link section. You'll want to style the content using CSS, just you don't have to be very complicated CSS just basically the level we looked at today, starting with domain tags. So You're gonna want to set your set the font of either page or just part of the page, you need to set a font someplace, the font family someplace on it.
+
+Use a different color background for the page, and probably the text color as well. So
+
+make the quotes display in italics. Again, there's a way to do that both in CSS and HTML.
+
+I can show does it matter whether you CSS or HTML Fantasticks? Third, use care if it's in italics?
+
+I don't know. Okay.
+
+I look into that and don't get back to you guys. Okay.
+
+So I guess since we didn't learn how to do metallics in CSS, probably HTML is going to be one of them. But so you're gonna want to set out the main topic. All. And
+
+so yeah, I guess there's a little more CSS, there's a little more CSS that, um, that we looked at as well here, but it all can shoot can be applied on just the tag level, like we looked at. Again, we even through this week, we won't look at all of the various things you can do with CSS, we're going to focus more on how CSS is used to layout pages, not
+
+you know, how you set
+
+the font, you know, make bold text or change the sizing of the text, we're going to focus more on, how do I lay this out in a grid type of thing. Alright,
+
+so there's the information from the requirements. There's an example page.
+
+And that's part one.
+
+Part two is you're going to build a form that looks like this. For this, it can go just like our friends Did it can go to just a dummy URL. So the action should just go just make something out and put it in there.
+
+Since there's nothing really gets submitted to.
+
+So that's what you're rebuilding those two pages. And I think there's a separate folder for this one. Let's check. There's a form, which has an empty HTML file
+
+to build the form and how do we get multiple folders in there, I was able to get the first one in there. And now I can't figure out how to get any more in there. So
+
+you can
+
+see this
+
+in here, you can go to File, add folder to workspace.
+
+Gotcha. Cool. Thank you.
+
+So, um, but when you're opening, your thought was opening these exercises,
+
+I would open them up The
+
+like five something this one says mines instructor my copy of it, I would open with this level
+
+I would add folder to workspace but I would have been at the high
+
+at the
+
+like the student exercise level.
+
+Oh, gotcha. Okay, that makes sense
+
+when you have that.
+
+So other questions about what you'll be doing?
+
+I don't care as far as viewing CSS or HTML for the tags. Thank you.
+
+So not already posted the how to do the CSS in italics.
+
+That would be the better way to do it.
+
+I don't know which way that they had.
+
+There is an HTML tag that does metallics but it's considered out of date.
+
+css will be more appropriate to determine something should be in italics. Right So
+
+the other questions.
+
+So tomorrow, there's a tutorial for tomorrow. Tomorrow we're going to focus on CSS selectors. So how to select something from and CSS more than just a tag, and also some other elements around it.
+
+Right. So if you weren't, and then
+
+today, your
+
+mock test you whenever you start I'm sure everybody is well aware of that. So
+
+those are the caption reviews of Scott's out of
+
+sorry, am
+
+invitations for Thursday 214123. We may be able to get through all of them in that timeframe. If not, they'll be a second time at one to two. So everyone's required to be there's going to be there for all of them. I'll be sending out details of how we're going to be presenting. They'll be able to shorter than last time, a more focused on the requirements than the code. So what's called a product review or product presentation, which is what you would do. At the end of when you build something, you go into the product owner and say, This is what we built you.
+
+So I'll send this details out.
+
+I know a couple of interviews during that timeframe on Thursday. Those of you who do I know who you are, and we'll, we'll work out, we'll make sure make sure you can come after the interview. And we'll make sure your team goes afterwards.
+
+All right. And let's see.
+
+And also, I know I'm leaving the link open in the afternoons. So today, tomorrow and Wednesday, it will be unavailable because it'll be being used for mock interviews. So between the hours of two and five, after about five years before or after five, you're welcome to use like normal hooks will be open. But right.
+
+Right, so anything else?
+
+Okay, and I'll leave you to it. Thank you.
+
+Good luck
+
+guys have a good day guys
+
+Transcribed by https://otter.ai

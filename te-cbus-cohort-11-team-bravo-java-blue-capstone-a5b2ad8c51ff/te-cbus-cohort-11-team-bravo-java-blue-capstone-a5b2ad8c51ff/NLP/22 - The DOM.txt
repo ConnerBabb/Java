@@ -1,0 +1,1323 @@
+Zoom
+https://techelevator.zoom.us/rec/share/-ZVoI4H6yXxLWdb_2QLkA4x4MqPYaaa81iMZ-fAMxExWRSyr8RN4x7CA76p_oKll?startTime=1594819682000
+https://drive.google.com/file/d/1v2ASj5MXVx3bGr7lhaZOcXVCpXyK8l-9/view?usp=sharing
+https://docs.google.com/presentation/d/1VL5DaeU6vfGEy3QSdRx-OeP92WkXSradpYgYkjoZOGE/edit?usp=sharing
+So
+
+we have our named function.
+
+And if we want to turn into an anonymous function, if we move that we'd essentially be taking we have to assign it to something or use it in someplace. So it has to be assigned to a variable.
+
+So what we end up with is
+
+this
+
+moving out something like constant
+
+equals
+
+this, we put that back.
+
+So the anonymous function just removes the name, but it's still fine. And as long as we use the function keyword in the same way, the word function, the parameters and it's assigned to a variable. Remember when we're calling a method, if we have a method like function, some method, and it takes a function as an argument,
+
+and we're calling it
+
+some method.
+
+And we're creating a function
+
+that
+
+does something
+
+we're assigning this
+
+to
+
+where citing this function. We're creating here to this variable here. The same way we're doing it up here, because that's what is happening when we're calling a method of passing a parameter. We're just creating the function in place. So this would be somewhere to is if we were calling it with another literal If we were calling with a little string, and we call the sum method, and we called it, we created the string in place here. That's the same thing. We're just instead of hard coding the string, we need to function so we're creating the function as we're sending it, but it's still assigning it to a variable.
+
+So at the core, that's what an anonymous function is, it's function without a name that we assign to a variable instead of having ready in our code. The difference is that when we create a function like this, it in JavaScript loading the code it recognizes function is something we can call which means it's available for use anytime after it's been declared. So like kinda similar to a party. function in Java, right we, we create the function and we can use it inside the class. When we put when we assign it to a variable, it's now part of that variable. So we have to use that variable to call it. So not though the relationship or the comparison is not exact. It's much more similar to a public variable where we have to use the class name to call it in Java. Here, we have to use this variable now to call it, but when we use it, we treat it the same way. For both of these. We just treat it like this, and then pass our parameters in. in JavaScript either looks for the function, or it looks for a variable that has that function. If there's a variable, that name that has a function in it, it will call the free variable as a function. So before we move to the next level, because that's kind of level one of the anonymous function Is there questions on that? Is it
+
+making sense? Okay.
+
+So but we know that's not how it where we, we end up but we can, we can use anonymous functions in this way. It just about every place we need them. But
+
+there's this keyword that
+
+we don't really need.
+
+So what we can do is we can get rid of it.
+
+So taking the same thing, we get rid of this. But now we have this kind of dangling set of parentheses with some variables in them that seem to be kind of misplaced now. So when we get to the keyword to indicate to the JavaScript that this isn't just two variables in parentheses, we have to we use the Error operator to tell it we want to pass these parameters into this block. So we're saying take these parameters, use them in this block, which is all functions doing to a function saying, here's a function, take these parameters, and they're going to be available in this block. Back at the beginning, it was the same way, here's a function take these parameters to be available in this block. So the arrow operator is telling JavaScript that these parameters are
+
+something that go with this block of code,
+
+just like a function would. So now we have the function declared in this manner. And then we went to one. When there's two parameters, that's where we're done. That's as far as we can go.
+
+If there's one parameter,
+
+so the same
+
+method, but do one parameter and it has its pram, one,
+
+we can use the air operator.
+
+And this way, a pram one, but now we just have a variable set out by itself, which is actually valid code. So we'll use the arrow operator to say that variable goes in that block of code. Same way if it's no a no parameter function, so a function that had no parameters,
+
+what we what we write anonymously, we say that
+
+there are no parameters that we want to pass into this block of code, but we want it to be reusable code. We had this block to be a function, but we have nothing to pass into it. So before we look at kind of the last piece of using it
+
+there are questions are.
+
+So now we have, really Three, two ways we can perform right anonymous functions, one with the arrow operator, one with the function keyword. And then the operator itself has different syntax issues depending on whether we have 01 or two parameters, though, for one parameter, we can this is valid. Just so you could always put it in parentheses, that's fine. So let's look at how we use it now. So we have a method like
+
+on our re
+
+dot filter.
+
+Radar filter is just a method. And it's if it was a Java method, we're actually it's a method that would look something like function filter. And then it has
+
+a
+
+variable here, a parameter that it takes, that's a function.
+
+So since we can define put a,
+
+our function in a variable, we can pass them into other functions. In this case, the filter function. It takes one argument, and it's a function. And we see this a lot. We saw this with map we saw this with reduce, we'll see this with we saw the methods we wrote out with our do math method. We'll see this a lot in JavaScript where if a method takes another function function as a parameter, because then it can change the way it works filters writing a bunch of code for us. So it's writing a bunch of code in our, where it's taking the array. And it's creating a new array. So it's doing some code that would look like const, new array.
+
+Empty and then
+
+for each item in the new in the old array,
+
+it's going to say if
+
+this function
+
+if this function we pass it, the item
+
+equals true, then new array,
+
+add or add item to new array.
+
+Then at the end, it's returning the new array. So it's writing some code like this. This is obviously pseudocode. But it's something that looks will be similar to this that we have to read, we have to write every time we're filtering something. So it's using our function here to determine if we want to include it in the new array. So the part that's different, the part that says that no, this values in a certain range, it's in between. I think when you work with a lot, it's 13, and 19. Or it's a five four letter word, something like that. That we want to add it to this array. Our function provides that functionality, and they're going to call our function here. So when we need to pass a function in, we have two ways we can do it. We could create a variable here.
+
+So const Our filter function
+
+equals
+
+no function.
+
+And it tells us what parameters they need us to take. So filter takes the item. And there's some there's a couple others we could take, but we'll just use the item one. And then if something is true, if
+
+something about item,
+
+then return true house we return false. So we could write that we could apply it to this variable. And then we could pass the variable into this method. And that would pass the function to the method. And we could do this either the function keyword or with the error operator doesn't matter in most cases. Or what we most likely will do since we this isn't reusable. Since we often don't aren't going to end up reusing this, we're going to reuse it with this one called a filter. The same way that we could, if we were calling a string, we could create a variable called string equals my string and pass them to some string function like this.
+
+We know we could also just do this
+
+and create the string right there, avoiding this extra code
+
+this extra variable.
+
+So we can do the same thing here.
+
+We're going to do that. Then we're going to replace this with the function.
+
+So the function is this.
+
+So we're gonna replace This with the function in just write it in place rather than having to create a variable. First it's going to assign it to the variable in the method. Of course, we can use this syntax or we can more commonly because it's easier to write. And really having that word function there is not doesn't do a lot. We can use the other syntax. And now we're just creating the function almost like a literal function in place as we as we go and passing it to the parameter rather than assigning to a variable first. We could do to either said, Does that help or does that answer your questions that you had? You have other questions? Okay,
+
+I guess I kind of had a question.
+
+It doesn't seem like that big of a deal to assign a function to a variable. So like, is there? Is it bad practice to do that? or zero? Really? Is it just a personal preference or
+
+you're right? It's not that big of a deal decided to a variable. All you're doing is creating one extra variable, that's just some text. So if that helps you kind of keep track of what's going on, then do that. That's fine. You won't you see it a lot. When you're going to reuse the function. You see, you'll see that it's not I wouldn't say it's bad practice. It's more common just to write it in place. And but while you're working through it, So you'll see more examples of it look like this. But there's nothing wrong with setting it to a variable first and passing the variable. And if that's what makes more sense to you go ahead and do that. And then
+
+you'll probably naturally work towards this as it's just less code.
+
+But until then, don't
+
+you're not harming anything by doing that. And you'll see it a lot when they the piece that is being passed in the function might have reusability inside to a variable and then use it.
+
+Okay, cool. Thank you.
+
+So Other questions?
+
+Okay. So I'm going to spend time on that because anonymous functions won't go away. They're, they're pretty integral to Java. Script, they're used throughout it, actually to pretty much every modern language, including modern Java. So this whole concept of not naming functions and passing functions around is something that is core to the JavaScript language, at least that we'll be doing over the next. So you'll be using a lot in the next few weeks.
+
+So let me go ahead and close this. Save that. Oliver, did you have a question before we move on?
+
+Um,
+
+so I don't have a Would you rather but I guess I have one.
+
+I was thinking how to ask this. So the homework that was due today, I didn't get to the challenges, but I do want to see the answers. How can I make that happen?
+
+The ones that are due today
+
+cinda. You want to see the answers to the challenge question.
+
+Yeah, I just didn't get to them
+
+yet. Send a shower message. So we remember and we can send you the answer.
+
+Okay, thank you. Appreciate that.
+
+I see you've already turned it down. Right. So
+
+I hope so.
+
+The challenges don't count like, Oh, that's right. They don't count anyway. So yeah, yeah, the challenge was yes, we can send you the answer. But both forget by the time classes done, so please send us reminder. That's one thing that can be sure.
+
+Michelle, did you go 100 miles per hour last night?
+
+Know I only went like 60
+
+Yeah, I know speed even like Kevin.
+
+You'll get there. I promise you. That's what I just said, man. I just happened.
+
+It's true that throttle. Unit a little bit more good.
+
+So then, if there's no other questions, let's start taking let's take a look at today's we're going to be looking at today. So today we're going to be looking at the document option model. And this is where we're going to start integrating JavaScript time with what we did all last week. So we're going to bring it together with the HTML. But before we do that, we have to understand how we're going to do it, how it's going to work. And so we have to understand how the browser at least at a high level, how the browser actually uses HTML. Because what we're going to manipulate with JavaScript is not going to be the HTML, it's going to be the browser's kind of view of it. So we're going to start by looking at what the document object model is. It just kind of reviewing it up Looking through what it means, what it means and how it separates from HTML, and CSS as well. And then we're going to take a look at this idea called Dom traversal. Which is just a way of moving around the Document Object Model, it's going to feel very familiar, because it's going to use things that are similar to the way we select things and CSS. And then we're gonna look at DOM manipulation, which is changing the document object model with JavaScript. And then that's actually where we'll spend a lot of time because that's the part that's going to be interesting. It's the part that where we can take JavaScript and start changing the page. And then at the end, we'll take a look at doing DOM manipulation, using or actually using HTML, HTML templates, which is another HTML tag to make DOM manipulation a little easier. So we'll just take a quick look at that since we're gonna take a pretty deep dive into templates when we talk about view because we're integral to it. So let's talk about the document object model. So the document object model is a programming interface for the graphical representation of the document that will go to the browser. So that means it's an interface for the programmer to use. That allows us to access the way the browser's representing the page. So allows us to see how the browser's representing the page and to manipulate it. And this representation is not just HTML, it also includes styles. So it's everything the user sees the browser takes when is this process called rendering. We've talked about HTML rendering, but really talking about that means it means as it goes through that one line at a time to the HTML, what it's doing is building out the This document this model that says how it's going to represent it on the page, it's then that's things like, okay, there's going to be a division here, and it's going to have a border. So I need, I'm going to draw a one pixel border, and it's going to be red. And it's going to have text inside that this font size, and it uses this font. And so all the stuff, it needs to actually draw the page. And it represents that in this model, the document object model. And then once it's been loaded, once it's been rendered, it ignores the HTML and CSS after that. Now what it's doing is it's working with the document object model. So the document object models not HTML. It's going to when we look at the best representation, we can view of it, it's going to look like HTML, but it's not that we'll talk about what it really is more about. We're going to look Got it first and the death tolls. And so it's the presentation. It's the model of the presentation being given to the user that's based on that HTML. And that's an important distinction because there's going to be times where they're going to diverge, we're going to see some examples where HTML says one thing, but the document object model actually changes it in some way. So it's slightly different. So when we're doing selection, selectors, they're especially when we're trying to move around or use things based on the relationship that has to other things in the model. Because the DOM is going to be a tree structure, like we've seen for HTML already for inheritance or for many other things, is we're using the parent child relationships in the siblings to try to determine how, what to select somewhat like what we didn't CSS. There'll be cases where there are things in the way that we don't know about from the HTML and the doctor. From an object model.
+
+So CSS and JavaScript, both, they don't actually select anything from the HTML, they select it all from the DOM. Which is why when we started working with CSS, we hadn't talked about the DOM yet. But I kept saying Don't, don't pay as much attention to the HTML, as you're paying to the dev tools. The dev tools should be where you're looking at to see what you how to select something, because that's the best representation we have of the DOM.
+
+So let's look at
+
+a page.
+
+Look at a page that's not external, like facts. Let's bring up a
+
+page maybe like LinkedIn.
+
+Everyone's been using a lot of LinkedIn right price recently, so everyone knows what it means to have a good LinkedIn page. And we hear about that a lot as well. We'll bring up somebody's LinkedIn page and listen Look at the document object model and see what we could do with that.
+
+So inspect it.
+
+And for this LinkedIn page,
+
+this model here in the elements is, is a representation of the document object model. It's not a representation of HTML. It's a representation of what's being displayed here, which is going to look a lot like the HTML that was sent we can see a closer representation of the true HTML by view page source. But
+
+that's actually not usually that interesting.
+
+So
+
+this model allows To see how the browser's so we can actually manipulate the model. And that's what we're gonna do with JavaScript. So for instance, I'm not a big fan of ads, and there's a couple of them here.
+
+So let's
+
+find the dev tools. I can select it right, there's the ad.
+
+Make sure I get the right thing and not all right.
+
+There it is. So this
+
+section is even better.
+
+And there it's gone.
+
+So maybe we can
+
+find this one.
+
+And remove it from the document object model. We could start
+
+this week. Could you know aid is pathway? I'll tell you, there's rules about what should be here. So we could
+
+make some improvements to the pages by manipulating the DOM.
+
+And you change a number of the connections, Brian. Number, the
+
+number of connections, can you change that to another number?
+
+To which, yeah, please have only two connections. Can you make this like 500?
+
+Yeah, so that would be good. Let's see if we can find it. It's it's 500. Plus, once once you get that high, alright, so yeah, so we'll say well, there's 500 plus connections.
+
+Maybe we can change.
+
+What other ideas
+
+change. Let's see this about it's not a very good description. Let's change it to I think a quote. That's more fitting.
+
+So we'll change it to
+
+something I've heard
+
+Rochelle say a lot.
+
+So we can manipulate the text, we can manipulate
+
+the parts of the page.
+
+We maybe don't want to have that text.
+
+So everything here is in, in the model. Maybe we want to
+
+including things like We could take the image
+
+maybe make that a more exciting image.
+
+Paste
+
+maybe we can there we can
+
+refuse to believe I can't.
+
+So we can change. So we changed those descriptions.
+
+If you click on her picture and then will it like refresh everything else Ah so Now we have a something we're missing. We change anything about this page as we go. So
+
+but I don't know if anybody's went to it.
+
+See, where's Chad here?
+
+Anyone wants to go to the paint that same page and look at it in the chat to see what you see when you get there.
+
+So, when you for those who have loaded the page,
+
+whatever sales page you, you don't see my changes to they're not there. So when I'm making these changes, I can change anything on the page. Anything that's here, anything that's being viewed. If it's in the browser, I can manipulate it using this model, because this is a representation of what my browser is displaying, it's not actually changing the server. I'm not actually manipulating Michele's actual LinkedIn page. I'm changing my view of it. But that way, we're going to change things that we're going to select what we want to change.
+
+And then we're going to pick what we want to change about it.
+
+Like, we want to edit the attribute, and then we want to change that attribute to something else.
+
+And save it and update the page. That's what we're going to do with JavaScript.
+
+So
+
+this is exactly how it's going to work. But it's not going to change the server, it's not going to change anything but the representation the viewer has of the page. And when they hit refresh,
+
+it's going to go away.
+
+Going to go back to the original document object model. Because what I've changed is the DOM, not the HTML, not the code. But that means that's going to be really powerful. That means we can manipulate anything that's in this document object model, which is everything being viewed on the page with JavaScript, and we can do it dynamically as we go. So everything I just did manually, we're going to do with script, only, we're going to use it to be a little more useful than changing out images to we're going to do it to actually give the user more Which experience. So let's walk through now the parts of the DOM and how, how this actually is represented because we're gonna have to understand how it's represented through to do these type of changes to make these selections and to do the changes. So the DOM reps is represented in what's called nodes. And those we can see them represented. It's going to start with HTML. So HTML is going to be the root node, we've already talked about that being the root node. And it's going to be the only node that doesn't have a parent. So kind of like the object and no inheritance in Java. So it's the starting point, or the root folder on a drive and then all the others elements are going to have a parent child relationship, ancestor relationship with this HTML node. The elements themselves have children and parents. And we can see that here in this representation, let's get down into maybe a part that's not just the header.
+
+Let's select something that has
+
+this div. So as we expand it, we can see there's other divs inside of it, this expansion is showing us. The other nodes inside of this one that are children and this one, are the ones they collapse up to, are the parents of those ones that are on an equal level, are were referred to a sibling. So this all should sound familiar. We've talked about this tree structure quite a few times. So we're going to work just like we did with CSS, we're going to work with the document object model, which is what we were working with CSS. And we're going to do it in the same way and talk about it in the same way with these different pieces these the way now, we're gonna have to understand that there's a difference between the nodes, which are the representations being created in the document object model, and what's called the elements. The elements are the HTML tags. So the div tag is an element, but it also is being represented here by a node. And that's going to become an important distinction as we go. For to date, not as much, but just that there's a dip, except we'll see a few places where we have to select one of the other. So let's close that. And so this representation here,
+
+if we were
+
+going to bring up a simpler page now, so the dominant Example.
+
+pull that up. And
+
+so it has some pretty simple
+
+HTML here, just a body and a div in three h threes. I'm inside of it.
+
+So we look at it.
+
+See, its nodes are the HTML tag. There's a head. That is a child of the HTML body that's a sibling of the head. The body tag has the div tag here inside of it. And a script tag that we'll take a look at in a moment. And then the div tag inside of it has these three h3, there's also this text here you can see the text is being represented as something too.
+
+So the text is going to be
+
+Going to be considered a node as well.
+
+And that's going to be something that's going to cause us some interesting,
+
+interesting challenges in some cases. And a way of thinking about things is that text is a no but it's not an element. It's not a tag. So here, again, the node is represented by parents and children, things in the same order as siblings, and we're going to talk about it as next and previous sibling. So next sibling will be things that on the note on the tree map are to the right, which are things that
+
+in CSS
+
+are going downwards. So in this case, the next sibling would be this way.
+
+These would be next.
+
+So, the next sibling a child, one would be child to the next sibling a child to be child three. And they will also talk about this previous previous is going to be going this way.
+
+So, the previous sibling of child three will be child two, and tribe one will be to child one. So, next on in this manner since they represent Chod the first tile be represented to the left and the tree chart means that
+
+in the tree representation next is going this way
+
+and previous is going this way. And that descript that distinction of knowing the next the two
+
+directions for the way the siblings are going to go
+
+is
+
+going to change how we manipulate, it's going to be important for everyone how we manipulate the DOM.
+
+So
+
+we can almost think about it or actually kind of think about almost like a joystick on the on the tree chart where parents going up, child's down next is going to the right, previous is going to the left and you can start moving around the document object model by saying, okay, we're starting here. I want the parents, parents, siblings, previous siblings, first child, which is the style tag to start manipulating how we We do the selection and do them a little more. So we'll use that in JavaScript. Only we won't use it in the same way we use the CSS tags reason, slightly different way to manipulate where we're at in the DOM and move around in that called Dom transversal. It means to move through the DOM, the Document Object Model, by using these relationships.
+
+So we actually use that quite a bit in JavaScript.
+
+So let's look at
+
+this page again.
+
+pull this out so we can see both.
+
+I'm gonna make this
+
+a little smaller. All right.
+
+So, before we start taking a look at doing that, do you have questions? Okay.
+
+So let's
+
+take a look at how we can select
+
+some elements here. So what we're going to do is for each time we select something in the document object model, we're going to start in JavaScript with the key word document. The document variable is gives us access. It's already pre pre populated by JavaScript. It gives us access to this document object model to the DOM, which remember, is a programming interface to everything else to all these nodes. So we're going to start with that. So I want to get Let's do something simple. There's a value here we can get some things. Let's get
+
+maybe just the text of the stuff.
+
+So to do that, we would start with document. And then we can we have three choices. There is get element by ID, get element by ID allows us to select by the ID
+
+of
+
+that's on the tag. So it's supposed to be ID should be specific to the page. So that allows them to select something that is unique to the page ID. The other thing we can select by
+
+His query selector
+
+query selector takes any CSS selector. And it needs to be a CSS selector. So if we were selecting by ID, we would use the pound sign. If we were selecting my class would use the.if, you're selecting just by a tag, we would just use the tag, the same way we'd use in CSS. And there's a second version. So that'll select the first thing that it finds that matches that criteria. query selector all will return all of them. So if I return h3, which we know is a CSS selector, that in CSS would select all of the h3 tags on the page. Then query selector all would return all of these h3 tags, query selector would get me the top one, but I wouldn't want to rely on that because that's not very
+
+precise selection. So
+
+if I want This I can use get element by ID.
+
+And if we have an ID available, we generally want to use get own by D because it's a little more optimized than query selector for selecting IDs. So it's a little more efficient. However, if we notice when I was writing that there is get on my class name, get almost my name, get almost by tag name. Those are all what's called deprecated, meaning they're going away and be replaced by query selector. So queer slipway, go by ID is more efficient than query selector for IDs. query selector is more efficient than these other methods. So really should be the choice between get by ID for IDs or query selector and Id was left like that, because it's such a common case. So we're going to get the ID and for that, we're going to pass it the ID name.
+
+So div one
+
+and now we want to get the text from it.
+
+So
+
+let's just get tickets.
+
+And let's put this in value.
+
+Save it, go to the console.
+
+And we get undefined. Something went wrong.
+
+Oh, it's not text it's inner text.
+
+There. So we get
+
+div one, I got actually all the inner text of it. So div one text and the three child text because when it renders, it's rendering as all text inside a div one. We'll talk about kind of how that's working. So I got all the text in of dim one byte by doing that.
+
+So
+
+I can see it here. If I say document inside of the console, and I do a selector.
+
+You can see it tells me what shows me what I've selected from the DOM hasn't changed anything, but that can be useful for comparing it to one. When I select div one, I expect to get this. And then when I run it, this is what I got back. So we can test our selectors there.
+
+So to answer the question on deprecated. So be deprecated means that eventually, maybe the options will stop working. It means that They're planned to be removed from the language. There's things that like in Java that have been deprecated, since Java one. So for what that was 1995, six, so and they're still working. But it just means that you should stop using so that they can remove them for a future release. There's other things that get deprecated in a year or two later, they're gone. JavaScript tends to remove things rather quickly to the detriment of old code. And they just tend to break old code. And they tend to that would there's two paths, you can either make sure all your code works, not remove things, which is the path that Java generally takes. Or you can break everything and make everyone fix it when things change, which is more of the path the JavaScript tends to take. So it's just two different kind of thoughts of it changed. So deprecated means that they're going to be removed in the future when that future is
+
+slot some.
+
+And back your question. Yes, if we have it loaded in a browser, we can get anything that's in the browser. If it's in our browser, it's open for us to manipulate with JavaScript or to retrieve.
+
+So let's do
+
+back to elements.
+
+Let's do another one.
+
+So can see.
+
+So this next one is already been
+
+out but so it gets the document IDs in the first place. So now it's going to get the first child the node value. So it's going to retreat get div by ID one. It's going to get the first child of that, and the node VI is going to tell us the value that is currently assigned to it. So if you're looking at this, if you're looking at HTML, it's going to appear This is going to be what we're going to end up with, but it's not. So let's save it and look at the console.
+
+See what prints out is div one text.
+
+So when we get the first child of the div, the first child is not the h3, which is what it wasn't HTML. The first node child is the text. So text itself forms about
+
+everything is being represented has to form a node.
+
+So the first child is the text.
+
+We get a list of the children and access them by index. so here we can get a list of all the children so we get element by ID, and then we can use child nodes. child nodes is An array. So we can say the index. So index one. So the childhoods array is going to contain all of the children here. Actually, let's see it. What do you document,
+
+get element by ID,
+
+one,
+
+child
+
+nodes. And we can see that the node list for that div one is text, h3, text h3, h3.
+
+So it's
+
+there's five children. Here we go.
+
+And if I get one,
+
+then when I'm going to get to stage three, which, someplace in here I can see the value but which has the value of child one. Skip the console, so we can watch it run. So I'll save it in the JavaScript runs, and it gets the three. But what I got was not the name, I got the node name. So the node value tells us the content. The node name tells us the name of it. So it says what this was, what we selected was an h3 tag. Because the first child's in h3 tag, if we changed it to zero, which we know is text, we'd see it's going to change and say the first child is text. So the node name could tell us what type of note it is. The node value to tell us the value of the node by change the standard value.
+
+Oh, it's no because that's, we'll come back to that.
+
+So why we might want this is now we could do something like, check if the thing we're working with is, you know, an unordered list? Are we working with the right tag? Or no, if it's an unordered list that we ended up selecting, then we can do one, we can apply one to the CSS, if it's a div, we can apply a different set of CSS. So we can make choices in our JavaScript, we can select and find out what the node name is we have access to, to make choices. So we can also use this to move around the nodes. And this is what we've talked about with transversals. So in this one, we're going to select the document. Again, we're going to start with div one. So it's going to start by selecting here. And then it's going to say okay, get the first child, the first child, next sibling, which is here.
+
+So we've selected here, we got the first child,
+
+which is just by chaining on dot first child dot next doubling, which is going to be this h3, and then set attribute, which we don't attribute is if we add an attribute
+
+in the wrong place, yeah, not up to up here.
+
+Try it again.
+
+So add attribute, and
+
+I think it's read.
+
+But that's what that's what an attribute is.
+
+So we're telling it, set it attribute
+
+class to red background to red background.
+
+So when I run this, my save, it's gonna run.
+
+We can see that it's has the red background. If we look at the
+
+The document object model elements theme display here we can see the change. So change the JavaScript make show up here in the document object model. If I look at the view page source, it's not there, because it's not in the original HTML. So view page source shows us the original HTML, it starts search of the source of the page. But doesn't necessarily show us dynamic changes that occurred, it only shows as a starting point. So here we see it because this is showing us the document object model, which is what's currently being displayed. So here we have, the class name is displayed. So now we have we also could determine if something has an attribute.
+
+So here document get element by ID, div one.
+
+It's going to Ask if it has the attribute class. So we can make a and if we just look at save it in the console, we'll see it returns true because it's selected
+
+for div one, get the first child, next sibling. And then it says has attribute
+
+has attribute class. So that says, Okay, the next set the first div, one's first child's next sibling.
+
+Then
+
+it's asking doesn't have the attribute class and it does because we just applied it on the line before. So that returns true. return this and we'll see now we get that change. So what this is done, it's done the same. thing, but let's look at how this is work. It's going to set the class attribute again. So in this case, it's flex get element by ID, div one.
+
+So we start by selecting
+
+div one, and then it says get the last child. So the children are here. The last child is this h3 here. Get the previous sibling so we know previous is going to go up. So the previous sibling is going to be this h3 here
+
+and then set the class to the red background, which it did.
+
+So we can also select our parent node. So in this case, we're going to select we're going to start by selecting H three which is going to get The first eight streaks is just query selector in our query selector all. Then parent node is going to select its parent, which is going to be the div. And then it's going to set the red background to the div here. And we do that you'll see it appear. It is. So now it all has the red background.
+
+We also can remove a node.
+
+So in this case, what we're going to do, and we're going to select
+
+the div one again. So div one last child, the last child div ones here. And then we're going to call remove on it. This remove method
+
+That
+
+the items removed from the document object model.
+
+And if we look, again, if we go back to the page source, it's still there in the page source. So we just removed it from the representation. Kind of like when we were looking at your shells page when we removed the ads, they were still there. They were still there in HTML. We just told the browser to stop doing it. So so we have so so far, we've been working everything with nodes. And there is a distinction between nodes and what's called elements. But we're going to look at that as we go. We'll also work with elements and often what we want is the element. So the node is the difference is that the Notice the rubber is a representation of this h3 tag, if we were having it for that one. So it's a representation of it that that represents where it falls in the hierarchy inside the mod object model. The element is the tag itself.
+
+So it's kind of a child of the node or a property of it.
+
+So the element is just this tag, which they're going to have some different properties. So if so far, we doing everything with nodes. We'll also work with elements as we go today.
+
+So before we go further, further
+
+questions or what questions do you have?
+
+Do you mind going over lines 43 and 44? Again, for me? Yeah.
+
+And they really aren't connected. I don't know why they got put together. Hi, I bought probably actually deleted one of my comments. But so this one, they do something somewhere I think that's why I add them together. So it's gonna start by getting document for ID div one just
+
+so that means it's going to start by selecting
+
+div one.
+
+And then it's going to say get the first child.
+
+The first child a div one is this text, right here. Because it's getting first child gets the node. There's also first element job which actually, well not to confuse things. Listen, stay with us. So first child gets the next first node, which is this div one text that it says get next sibling. So next sibling, are nodes in the same level with the same parent in this regard, isn't going down. So it says get the next sibling, which is this h3. And then it's going to check. It doesn't have this attribute class. So now on this sibling, it's going to say, does this exist and return true or false,
+
+which is what we see
+
+in the console returning true because it does exist.
+
+The next line, and for the next line I got, I'm gonna have to comment out this because that had a different class sibling at the time that it ran. So in this case, it's starting to the same place because there's really nothing, no place else we'll start much from this little small card. So it starts with the div tag. And it gets by ID and then it says, get the last Child. So the last child is here.
+
+So this is last
+
+and then get the previous sibling. In previous in this representation is going up.
+
+So it's going to go to get the previous sibling.
+
+So previous, which is this h3 right here. And then it says set create the class with a red background. So it creates this class with the red background on this h3 because it's the previous sibling. Does that.
+
+Yeah, that was perfect. Thank you so much.
+
+So Other
+
+questions?
+
+Okay. All right. So it's 1030. Sorry. Yes. I think I missed something. What what's the
+
+training how to ask this? What's the point Like how does
+
+this work in the real world. So
+
+what is what's going to allow us to do is going to
+
+be able to select
+
+pieces on the page and won't change the change the class to change the CSS class, which knows the entire presentation, we're going to be able to remove pieces. So we're going to be able to insert new, sexually new HTML tags on the fly as we go. We're also going to be able to add them. So we'll be able to add or remove them. So we're going to be able to change anything about the page. So that we're word application is the majority, not the majority, but a large number of pages. So if we go here, let's see. This might not be this might not work the way I'm hoping it will
+
+Because it maybe it's probably more complicated than
+
+I thought what I wanted. I want to inspect this actually
+
+be source,
+
+pick it up to an application like this.
+
+Let's see. So in this source, all that top part is a bunch of
+
+CSS and JavaScript being called.
+
+And
+
+so so far we're still in the script in the header.
+
+might not be the fight in here, but
+
+this is where we get a bunch of div tags. Finally,
+
+So the so here is a bunch of div tags, okay? So almost
+
+just like this, we're gonna find that it's often just a single div tag starting out, or a single section or single main. And the entire page is built in this manner by building out the by manipulating the DOM. And that's actually, when we talk we hear about single page applications. That's what they do. It means there's a single HTML file, but there's an entire site being built around that file by DOM manipulation. So every time you go to a site and you click something in a new form appears or disappears or changes in some way like you select your country in the States, a different list of states appears or provinces appear, based on that. That is all being done in this manner. So it's actually used extensively for modern web applications. We'll do more changes this way as we go as we get moving through the rest of the cohort than we will in static HTML.
+
+Okay, that helps.
+
+I guess my confusion was when we were changing Michelle's LinkedIn, and it wasn't permanent.
+
+I was
+
+yet used to any of this was permanent. So it's not, it's permanent. It's not. But if we are JavaScript loading every time so if I wrote JavaScript, and I could get LinkedIn to include from Michelle's page. And every time every anyone went to it that JavaScript ran it did all the changes we did manually, then it would have the effect of appearing permanent. LinkedIn wouldn't have the change, but the JavaScript making it and that's actually how most web modern web applications work. They work by Changing the document object model as they go, rather than having a bunch of static HTML that they keep pushing out. And so they have very little HTML with a lot of JavaScript, if that's the changes. So today what we're doing and we're going to move into doing some of that, which hopefully will clear, make a little more sense tomorrow will really bring it together with events because until we have events, it's really hard to imagine how it fits in since we can't react to things yet. Everything's still static. But right now, we're just talking about how we do it. Not really applying it to anything practical yet because we have to understand how we make these selections before we can do that if that makes sense. Yeah, it does. I trust the process. I trust you it'll, it'll concrete once it once I see it done on a page maybe we own yet. Yes. So there's there's a lot of steps before We get there. That's that's the thing. This isn't something we can jump into without having a bunch of different concepts in place first. So right now we're just talking about the first of them. And really, that is the probably won't be apparent and how it's useful until tomorrow. Today a little bit, but tomorrow when we get events, then then things really become dynamic. So you'll probably end today thinking, why would we do this? Why would just write it in the HTML?
+
+And that that'll be a fair thought after today, but we'll change that tomorrow.
+
+So Other questions?
+
+All right. So let's take a break then come back at 1045 and continue.
+
+Alright, so before we continue, what questions come up for you during the break
+
+so is an element, a node or a type of node Is that is that accurate? It is. And all elements are nodes. Not all nodes are elements. So it might be more
+
+accurate to say that all elements are in a node, as we can refer to it by the node in an element is going to be a property of a node might be a better way to think of it. So everything's a node. And then for things that are elements, because not all nodes are going to be elements, then we can get the element out of the node. So we kind of get us calling it get her on the element for the node. Does that make sense? But you can just think of it I guess, tears won't hurt anything to think of all of the to note, but not all nodes or elements out of work.
+
+Right. So are there questions before we
+
+I have till noon Brian
+
+I'm staring at this list I'm like, man, I don't know.
+
+I can't
+
+that's a very
+
+Yeah. I've actually seen the list so I don't I'm not sure which companies are on it right now. So
+
+but then even then it depends on really what you're looking for not
+
+but mostly well then they all that criteria.
+
+So
+
+let's keep looking through through this is one more thing about the DOM I want to point out I'm going to show it example of it time, a common time when we are coming to believe it. That the DOM and the HTML don't match, and one of the ones that I run into quite a bit. So I'm going to go to the DOM table example. I'm going to load it in live server and load the HTML. And you can see it's empty, appears empty. But what's inside of it is this HTML. So it's a table. incorrectly formed table, but that's okay. So it's a table with two rows. And the way that you would probably write a table, but if we're trying to select something with this, and we were trying to get this row, and we selected table, it looks like we could select first child and get the row or second child and get second row, right. Or maybe you know, it's child even an odd to get the different rows. But let's look at the actual Dom representation of a table.
+
+So when we look at the table in the document object model, we're going to see that it's not quite the same, it's added this T body tag. So the table body tag or element in between here. So the DOM representation has an extra tag right here, or an extra element right here. So that means it has an extra node there as well. So if we select table, first element, or first child will be get is t body, not row. So point this out, because it's one it's an example of when the DOM doesn't match the HTML. That happens, it's rare. There's only a few there's not that many cases, but it does occur. And also use tables a lot, right? There's lots of tabular data on that we need to represent. So also keeping in mind we're using a table the DOM represented is not always the same as what you wrote in your HTML, there's also a T head table header that sometimes will be inserted into the DOM as well. So we can't trust. That's why when we started CSS, and I said don't trust the HTML use this is that was the reason why, because we didn't understand we hadn't talked about the DOM yet. So really, saying Oh, it's might be different wouldn't have much as much meaning as just pay attention to this, you'll get the right things. And that's going to be the same for JavaScript. Now, give a sense of why.
+
+So save anything.
+
+So the next thing now that we can move around and we can see there's different ways to move we can move last child first child, first Child Element last element to the siblings, parent child, the child nodes, that we can move around the document object model from any starting point. We need to be able to do some manipulations with it. We've been able to change things. And we did a little bit with classes, but wanted to be able to do more than that. So DOM manipulation is the ability transpose moving around the DOM to get to where we need to be. DOM manipulation is the is manipulating the DOM changing it in ways. So like we started out with Michelle's like den page when we were making changes to it. We were doing DOM manipulation. And we want to, we need to be able to do that from JavaScript. That's where things are going to become really useful.
+
+So
+
+let's look at
+
+doing that and we'll look at it by First we'll talk briefly about what it is and then we'll just do an example project type example of it. So DOM manipulation is just what I described. It's what we did. We're going to To change the DOM in real time, using JavaScript, we're going to do it by selecting elements using Dom transformation. So we're going to use their IDs or their tags or something about them that we can select just like we select in CSS, we're going to select the elements starting element in the DOM, and then we're going to manipulate it by either changing it by adding children by removing children by so by adding removing pieces of the DOM, or changing things like add CSS class.
+
+So we're going to do this by
+
+selecting usually the elements instead of the nodes. So sometimes we will work with nodes. But most of the time, we're going to select the element. So a lot of what we looked at is going to be parent element, or last element child instead of last child and parent node. And for all these methods that we're looking at here, and these properties, there's many many More than we're looking at, we're looking at just a kind of sampling to show you that what exists. So there's there's a lot we're not we're seeing there's more available than the amount we're not seeing as much larger than the amount we're seeing that that's what I think I'm trying to say. So let's, knowing that we're going to select the element, we can set text or HTML using inner HTML, enter text. And we'll talk about when to use each and what problems we can cause by using the wrong one. We can create new elements, we create a new tag, essentially in the DOM, by create element. And then we can change we can manipulate its attributes by set attribute or remove or its classes directly by this thing called the class list. So the way we're going to look at doing this today is what's called vanilla JavaScript. And it's gonna be important as we not this week, but as we move into next week. vanilla JavaScript is something you'll see. It's actually a search term that can be used as well how to do something in vanilla JavaScript, we're taught when you hear that phrase, it's referring to JavaScript is not relying on any outside libraries or resources. So just pure JavaScript. Without something like next week, when we add view, we'll be doing the same type of things. We'll be doing it inside of a framework with frameworks and libraries. So this is a lot of examples you'll see will may not match what they can if you look for vanilla JavaScript examples, compared to examples for react or view or even jQuery or some of the other libraries that make a lot of this work a lot easier. But saying that I just said it makes it a lot easier. But you still need to know how to do it this way, because you'll still end up doing it just using straight JavaScript a lot. So it's not a it's not one of those things. We're learning it so we can make it easier than forget about the hard way. You'll end up using both both methods quite a bit. So let's look at this in product reviews. There's an index file we open up. And it just starts out with this. I'm going to open so we can see. It's HTML. And it has Well,
+
+just a description starting out.
+
+So not nothing too interesting right now. It has some CSRS already written for us. And we have this app j s, where there's some code where there is a
+
+list of
+
+reviewers
+
+have reviewed reviews for and there's some other things like name of a product and a description. So starting with this HTML that just has a few tags, we're going to build out a full review page that looks like
+
+that's like nope, you can't see that.
+
+Let me find here, bring up an image, you can actually see that
+
+it's going to look like
+
+it's going to look like this.
+
+So we're going to build out
+
+reviews dynamically that are going to
+
+have this look and filter for the page. But we're going to, we're going to do it starting from this. And we're gonna do all through DOM manipulation. So which is a real world usage of DOM manipulation because if you had reviews, you don't know how many there are usually right there. If people are adding reviews, each time they're loading, you need the dynamically create a review segment for each one.
+
+So let's keep that.
+
+So I'm going to pull up the inspect.
+
+And the first thing we'll do
+
+is let's set
+
+this up again, select it, this name. Somebody going to look at the code here, and we can see there's a page title. It's an h2 inside of that there's a span that has the class name. So we can use DOM manipulation to set that name.
+
+So I'm going to do that by, there's already some methods in here in the app j s. And that we have these open versus closed ads for more space. And there's one that says set page title. And if we look down here, at the bottom of the script, set, page, title, sub page description, display reviews methods are being called. So as we edit this method, it's going to run those three methods. So sub Page Title I wanted to set to, again that span so what I want to do is select that. It's going to be inside of the HTML that has the ID, page title, I want to get the span with the class name. And I want to change its text. So that means that the document, I want to get it, let's get on with it. And it was what page title.
+
+So that gives me the page title. And then, using that same thing, I'm gonna use query selector because now I have a class I'm working with because I want this class dot
+
+name.
+
+That gave me the span.
+
+So you can see we just like CSS when we go down different levels. We can do the same thing with the selectors. So they work very similar to the CSS selectors. So here I'm saying, Get document by ID page title when doing that now I'm working in this context. So when I use the query selector audit, it's selecting only something from this context. So it looks for name. So if there's another name on the film, because it's a class, there could be multiple, right? I'm only going to get this one is in page title. And now I have the class and then we'll set the inner. So we're going to end up with we want to set inner HTML
+
+equals test. So that's what we want to happen.
+
+So we have the full selector now, and we see we can test it here in the console.
+
+But here in JavaScript,
+
+I'm going to start to a const for that page title. Like could you All together, remember to put it in a couple variables to make it easier. So document, we start with the document, get element by ID. And we know that it's page title because that's what we just tested. And now, I'm going to use that variable. So when we get element by ID, we use query selector and we store the value into a variable, we have a reference to that element or that node in the DOM. So we can use that variable just like we as that thing. So now, just like here, well, I guess refreshed when I went to the next level, and I had to retype this. The output of this is here, so I can use that in its place. And use query selector on that to select name. And then I'm going to set inner HTML equals and there was a Variable up here name that we use
+
+out again. So name.
+
+Now we save that.
+
+And now it has the name printed on the review page. So we need to talk before we go too far about this inner HTML, because it has some risks. So inner HTML allows me to set the actual HTML on the page. So right now this is coming from a hard coded variable. But if it's the full reviews, imagine if it's coming from a database, and users enter that into the database. And so somebody decides they want to be
+
+creative and they enter the name in the database
+
+as something that looks more like this
+
+Now this used to be in double quotes to make it work.
+
+So we know that this isn't going to really do anything, it's just going to pop up an alert. If I run it now the page the alert pops up. Because what it's done when it's created to the DOM, is it's put a script tag
+
+in
+
+or did this taste II use an image tag. And when there's an image, if there is, if this can't load, there's an error attribute that it has. And then it calls this JavaScript about one it also could insert a script tag with something else. But the important thing is the inserted JavaScript onto the page. And it ran because its inner HTML, because it's being rendered as HTML. Which one do we use inner HTML, it says render this like it's HTML. So if there's JavaScript in there, it's going to run the JavaScript. So if here Yeah, alert popped up, but somebody is putting this into your form, and or actual review site and they're putting the review in, they decide to put JavaScript in that downloads a keylogger, instead of just making a word pop up. And then you go to every user comes to that site sees the goes to the review, and it downloads the keylogger. That's called a cross site scripting attack. And outside of SQL injection is the second most common kind of devastating attack out there. Actually the one that particular ones kind of reflected cross site scripting attack, because everyone that goes to the page gets the JavaScript. In fact, it's really prevalent when people lose their access on social media, or, actually more commonly when they believe they have because there's suddenly a post that appears in their name. Then making it appear someone's taking over their account. That's almost oiss cross site scripting account. Attack. There was a case a few years ago where an ad network had a cross site scripting attack in it that was downloading a keylogger. That ended up being served on the New York Times website was a New York Times fault. They their ad network, this that there was JavaScript in one of their ads. And they weren't taking the proper precautions. So everyone that went to the New York Times for a few days had a keylogger installed on their machine.
+
+Just like with SQL,
+
+SQL injection. This is fairly easy to prevent, though, sometimes we'd need it to be HTML. But the reason you go to sites and they don't let you use like river for example, river in the end is actually a web application, because it's using JavaScript and the river application completely rendered an agent Gmail is using JavaScript DOM manipulation in the background using this container called electron to make it look like a desktop app or feel like a desktop application. But it's really just a browser with a web page and then running. The reason they allow you to do things like use the B tag to create bold, it has to have their own syntax is because of this problem. They can't just render the HTML because they can't trust it. So they have to have other syntax. fixing it is as easy as not setting the HTML, we can set the text. And now what prints out is harmlessly the text that was inserted. The JavaScript is pretty harmless, it prints out on the page. And if you go look at reviews on a lot of sites, or if you look at forum posts and a lot of forums, you'll see all kinds of sites that are filled with things like this. So Got a few years ago, I set up a forum that was completely unprotected on the internet. Actually, when you have a forum, it was a WordPress page that had one of those make a comment here about this article when there was no article, it was just an empty article. And within like a weekend, there was like 10,000 posts of template cross site scripting attacks from this bots going around.
+
+So
+
+and within by the, by the end of that I host deleted it. So unfortunately not so there to show off because it's too, too insecure. So we can prevent it by using inner text. So your default should be never to be use inner HTML should be these inner text unless you know what you're less you know why you're using inner HTML. And you know, it's safe. And there are reasons we will. So let's put this back to name
+
+and Before we continue, are there questions on
+
+And it was kind of a detour away from the DOM manipulation. But there's since there's two choices there, it's important to know which one we need. And why it's important to make the right choice. So now we set the text and we have the
+
+title loading. So let's move on to the next piece.
+
+So we also have the description. And we want that to load here. So let's look at the DOM to see what's available. So there's a paragraph that's empty right there that has the class description. So we can use that to set it and there's a set description.
+
+So we can say document.
+
+query selector, and that was the class description. So with query selector, we can select a class and we have to use the dot because it is just like a CSS selector where you have to use the dot That's how it knows it's looking for a CSS class. And then we'll say enter text equals, and if we look at the top of this file, there's a description.
+
+And now we have the description.
+
+So the next piece we want
+
+is
+
+a review.
+
+So what we want we want this to look like before we write this and dominate the place we need to know what we wanted to actually appear as. So I'm going to it just to show what we're Our goal is I'm going to cut and paste this because we're going to just comment it out.
+
+We want to review
+
+each review So one review to look like this.
+
+And for scrubbing, we agree that's what
+
+it looked like in the sample.
+
+So that's what we want one review to look like. So we know there's going to be a div is going to be an h4, there's going to be a div that's going to have images of ratings. If it's like a two star review, we would just want it to look like that.
+
+So one star for each rating.
+
+There's another h3, that's the title of the book. And then there's a paragraph
+
+about that has the review itself.
+
+And the div is going to have the review class attached to it. This is gonna have the rating class attached. So this is what we want one review to look like. So if we were doing this manually, we would start by creating one review.
+
+And then I'm going to comment out that review
+
+We're going to build those dynamically using JavaScript because we don't know how many reviews there are. Currently we do we know there's four, but it's just an array. So I'm going to add one. And in the, in most applications, we wouldn't have a hard coded way we would be getting it from an API from the database. And we wouldn't know if there's four of them, or 10 of them or two of them.
+
+So we'll create this structure using DOM manipulation for each review. And to refresh over here,
+
+the reviews are in this array.
+
+So we can see when this is being displayed, the reviews are going to be inside of this div main. They're going to be attached after the description and if they Multiple reviews, we just want them to go down the page, one after the other. So now that we know that, we can save it until then, so display reviews, let's write this method.
+
+The first thing we're going to have to do,
+
+we're gonna have to get the container that we're going to put patch these two. So if we look at lists, we already decided to this div. So it's the thing with the ID main. So let's get a reference to that, so that we can store it and use it. So const let's call it main equals document, get element by ID. And we use main. So now we have a reference to this. And now we're going to loop through each of the reviews. And for each of the reviews, we're going to build this structure and then we're going to attach it to the document to the Dom, we're going to attach it as a child of this that we have a reference to. So that's what we're going to the process we're going to do. So we need to loop through that Ray, which is called reviews. So we didn't look at it yesterday, though. But there is a another
+
+method on the IRS code for each.
+
+And we're going to use that.
+
+And I'm going to bring up quickly bring up the documentation for for each. So, so for each works like just like a for each
+
+loop in Java,
+
+each time through, it's going to set the current value the first argument to the next item in the array, or the thing we're looping through. We also could obviously get the index wrong In the array, but what we really care about is the current value. So this works just like a for loop in Java does, or for each loop, where each time through the next items, it gets put in the variable. So our anonymous function says we don't care about the index, we just care about going through to the reviews just needs to have something to hold that current value.
+
+So for each,
+
+we're going to write our anonymous function here. And it's going to be actually just one argument. So our review or singular review, we're going to pass it into something where we're going to build a review. And then we're going to do a few steps in here. The first step is we're going to create
+
+a div as the review container
+
+and then
+
+we need to set if remember Here in our one we're building this div should have the class review. Set
+
+the class equal to review.
+
+And then
+
+we're going to add the reviewer.
+
+Add the rating.
+
+Add the title
+
+and add the review to that container. So each of these pieces, we're going to add each of these to this container we're going to create.
+
+And then finally we're going to
+
+add, so insert the
+
+div the container div
+
+as a child of the main
+
+says are steps.
+
+And we have some methods down here for some of them that are already kind of pre defined. But so the first thing we need to do is create a div, new div. So I'm going to build a variable to hold it. And let's call it container. That way we can because we're going to have another div for the images. That way we can clearly know this is going to be the parent container. So on document, there's a method create element that allows us to create a new element. And we just pass it the element we want to create the name of it. So I want to do so that's going to create this a div element, and it's going to put it in this container variable. So now I can work with this container variable. So I can take my container variable, which is that div, and I can set attribute
+
+and we saw before we can set the class attribute
+
+And we can set it to review.
+
+And then lets
+
+me move that down to here.
+
+And now let's insert it. Since we have the div, let's insert it onto the main at this point. So here, I didn't save the HTML. So we save also. So we want that to go away before we do this. So we have the main. Remember that's going to the main container. And we can call method insert, adjacent element. And I have to give it two arguments, one where I want to insert it and the second argument is what I want to insert. So let's look at insert adjacent element. So where are Want to insert it is going to be a string, one of these four strings before begin after begin before and after after end. So the way it sets up is that the first tag, the beginning of the tag
+
+of any tag is the begin is
+
+this going to call that again,
+
+and then the ending tag. So the one that has the slash is going to be the end. And then for each of those, it's going to be before or after before means that in the if it was HTML, the the line above it. So in the DOM, it's going to be the previous position. If it's after it's going to go after that tag, so it's going to go inside of the tag as the first line. And then, in before, after, in before ends going to be before this tag. So it's going to be the last line of defense. Beside the tag, or after end is going to be the next line after the tag. So, after beginning before end, inserted inside as a child of the element before began and after in inserted before after the element as a sibling.
+
+So
+
+that's what we're going to use to decide where we want in service we want to be a child.
+
+We want it to be
+
+let's put at the bottom. We're just it's flow down at the bottom. So each thing does get attached the end so we wanted here
+
+after or before end
+
+So, here we say you want it before. And. And then what we want to assert is the container, which is that.
+
+And there's the poor depths, because the review adds the space around them.
+
+So Brian, like, this is a good idea to do it in JavaScript and not static HTML, because we don't know how many reviews we're going to have.
+
+Exactly. So when we get to this eventually, to the kind of final state, these reviews will be coming from an API. So we won't know if there's one review or 100 reviews. So we won't know what static HTML we can build. We won't, and that's part of the division of the data. We won't know the data. So we'll build containers for the data and then we'll populate The actual data and its structure with JavaScript.
+
+Okay, that make sense? Thank you.
+
+Alright. So now we have
+
+the divs appearing.
+
+Or remember what I want now is these four pieces. So let's look at add reviewer. So the Add reviewer method takes two arguments, the parent, which is going to which we called container, and the name, which is the name of the reviewer. So I'm going to call it here, add reviewer, add reviewer. I'm going to pass it the parent which is container and then we're at for each and there's a sink. So for this review, let's go up and look at what's available. So as reviewer
+
+I think IntelliSense would have told me that anyway,
+
+So from the array I'm going to pass from this item into for each I'm going to pass the reviewers name to this method. And that method just is there. So it's makes it well, the division of responsibility, right? It makes it separates out.
+
+So it separates out what
+
+just the code the need to add the reviewer.
+
+Run it in, you misspelled add reviewer on line 69. Before that gets me off,
+
+thank you. Yeah, I
+
+think that's like at least one brand smack.
+
+Alright, so I'm
+
+here. For going to
+
+we need to create an h4 We need to give it the name. And we're going to attach it to this review div, which is the container. So
+
+let's do that by creating.
+
+So Constance was caught reviewer
+
+and again we'll say document create element, and we tell it we want an h4
+
+and then we'll say reviewer.
+
+Inner text, we're going to set the inner text of our h4
+
+to be equal to the name, the reviewer name that we passed into, yeah. And then on the parent, so we could attach inserted Jason element beforehand because I wanted just to be at the bottom. But if we go to the bottom, we can just start at the top and just push each thing on to the bottom of it. But there are other ways to do it. So there's also a There's a sort of JSON element. There's also a sort of JSON text in a sort of JSON HTML. When we want to add text to into an element or around an element or HTML around it instead of a full element, again, an element would be a tag could think of it like a tag. There's appendChild, which is going to add a new element. It's just like adding it before and it's going to go to attach it onto the head. There's remove child which removes a child that we identify, we select it down to the final child that we want to remove. And then we call remove child on that element to remove it's a Child Element. There's a cert row insert tell South which can be used for tables and insert before which inserts the element before the selected child and there's some others inserting, adding and removing as well. But I just wanted to point out that there's other things besides the sort of JSON And there's three different assorted Jason Jason's, excuse me. So let's use a pen child, that's probably the most useful to pat some to the end. So we'll say a parent, append, child. And we'll append that h four to it. And remember that parent is that container we built up here, and then passed to the method, not that method, this method. So that's that div that we're building. So let me save that. You can see now the reviewer name. Now inside of our div, there's h4 for each one of them with reviewers name. So the next piece we want to build is the review itself.
+
+So the review itself is going to have
+
+Is it now the rating, because if we're appending child, this will go next than the than this than this than this that way if we append, this will be on the end first than this the end of this the end. So it was kind of stacking them with the top thing we want on top first is we're using appendChild. So we have to do this one next. So we're going to add the rating. So if we look at add rating method, it's exactly the same as the number of stars.
+
+So we're going to call
+
+I'll just copy and paste that so I don't
+
+and we'll pass it the container the same way. And then on the review, the individual review will pass the rating. And let's go look it up that array and see what that rating is we know how to use it.
+
+So there It's just an integer, it's a number.
+
+So that's what it makes it easy to work with. So the Add stars, what we can do is we can loop, one through this number. And then for each one of those, we can add one of these images. So we'll create a div for the rating. And then we'll loop once for each rating number and create an image, attach it to this div. And then we'll attach this div to this review, that will attach to me that's being attached to me.
+
+So,
+
+here in add rating, we're going to
+
+create a div
+
+ply
+
+the rating class
+
+Then we're going to
+
+loop
+
+once for each rating
+
+and create an image.
+
+Attach
+
+the image to the rating
+
+div
+
+and that'll be in the loop. And then we'll finally attach. append the rating div to the parent. That's what we're going to do. So first, let's create our rating dove. somewhere. Got a variable for it.
+
+document, create element
+
+div
+
+Now we're going to apply the weighting class. So last time we use set attribute
+
+like this,
+
+that's fine.
+
+There's actually a better way when we're dealing with CSS classes than set attribute. Set attribute works with any class, we can change something's ID, we can change its source of an image, we can change the href of a link any of those attributes on a tag, we can change the set attribute, but there's a specific object class list for classes. classlist then has some methods like let's see, you see them here. But it has, we can't, but it has some methods like contains. So we can see if it contains a particular class, or Add to add a class or remove so it makes it really easy to work with the classes. So I'm gonna say class list.
+
+Add.
+
+And then we want to add the rating class.
+
+So let's see what that looks like. We haven't done anything with it yet though, we didn't get an error. So that's good.
+
+So now we're going to loop once for each of the ratings.
+
+So that's just a standard for loop. So for if we need to go between two numbers, that's just a regular for loop. We can't do a for each because there's nothing to loop over. We're just counting. So in equals zero, and is going to be the number of stars. And then we'll do and plus plus, I could use die, it doesn't doesn't really matter. So here we need to create the image element now. So const was called Star equals document. Create element And we're going to create the image.
+
+So that's creating
+
+this image tag. And now we have to set the source in the class.
+
+So
+
+star class list, add in it was rating star.
+
+And then on image elements,
+
+there is a source property directly we can use. And we set that to
+
+this.
+
+Now we're going to append it to the div that we created. Up here. The rating div. So rating,
+
+append child
+
+and we're going to append the star to it.
+
+And now, we're going to append the entire rating dev
+
+to
+
+the parent.
+
+We have the stars, one for each review.
+
+So as you can imagine, if you don't start from this, this gets very confusing very quickly trying to keep. So basically, if you don't end up writing out the HTML at the way you've wanted to figure out what you're trying to build, doing it, at least using vanilla JavaScript, you end up with this idea of having to keep track of the entire HTML in your head. If you write it out first to see what you want, and then it becomes a matter of, Okay, this is a child of this div. So I need to append this to this and now I Need to append this to this. So you can use the relationships you can see in the HTML, when you build it to determine what gets appended, anytime something's inside of a tag, it has to be appended to that tag,
+
+or inserted.
+
+And then
+
+so before we continue, since there was a lot I know right there, what questions do you have?
+
+So you don't actually have to return the parent after you make the append.
+
+No. It's so it has a side effect of we passed the paradin. It's been changed because JavaScript passes things around my reference. Okay, so similar to C, Java, that can get tricky. How the references work in JavaScript, can
+
+we when you're doing simple things like this, they work great, but
+
+You spent hours wasted hours, a couple between cohorts a couple breaks ago trying to figure out hours actually was days trying to figure out how something references a reference was going bad. So
+
+I got another question. That's, that's Go ahead, Kevin. Sorry. No, you're good. I was gonna ask you figured it out.
+
+I didn't. Another instructor used to be here was a JavaScript kind of genius. We still here he's just not. He's building stuff now. He figured it out. After me looking at it for hours me showing it or I keep saying I was like two days, hours over two days and showing it to Steve and john and everybody else. I showed it to him and he was like, Oh, yeah, it's right here. That's it. This is the problem. So
+
+So no, I never figured it out. But I did get the problem solved.
+
+I was just going to ask, you keep referencing like vanilla JavaScript. And I guess I don't really know what the other type of JavaScript is.
+
+So non vanilla JavaScript would be things like Vue. js, or react or Angular, jQuery, any of those libraries or frameworks that make all this easier. So one of the big things that we need to talk about events more before we can really talk about what it's going to do for us. But one of the things that those libraries do, the reason they're so popular is that it's a lot of code to make this happen. So now this code has to run every time there's an event that changes, which means something has to trigger it. And it's going to take care of all that for us. It's going to make it so we can write. We can basically write this, give it some identifiers, and it will generate all this code for us. I say generate cuz that's really what it does. It's still has a bunch of JavaScript it does in the background. But we won't have to write out all this code, but we still will spend a lot of time he can't do everything. So we still end up manually manipulating the DOM quite a bit. So this is a case where, oh, here's the hard way. Now, here's the easy way, you'll never touch the hard way. Again, this is a case of here's the hard way, then we'll show you an easy way that you can use when you can, but there'll be lots of cases that where you can't.
+
+Okay, cool. Thank you.
+
+So I did have a question, how, I guess I'm just kind of lost how the formatting is happening. Because like, I understand what's happening with JavaScript, but like, how did you get that border around?
+
+all that. So when we added these classes,
+
+like the review class, yeah. If we started looking at the file, since we'd looked at it, there A CSS file here that has a bunch of CSS built out. So we're applying these CSS rules that are been pre built for us. So if we were starting from scratch, we would have to figure out the CSS too. But I
+
+just wanted to make sure that I didn't miss something. And I didn't want to say anything that JavaScript was doing all that which that's amazing if it is, but
+
+that would be, but no, it's not CSS is doing all that we're supplying. So we would write something like this out, like we would set normally set the class or figure out the identifiers we want in our code for CSS, we would do the same thing. And then in JavaScript, we have to do things. Like set the attribute for class or I think it's easier to use the class list and set the CSS classes or just build code that matches the pattern the selectors and CSS is looking for.
+
+Yeah, I was gonna say so. In a scenario where we would build this ourselves completely, we would probably do that in HTML and CSS first, to get it to see how it work. And then we would apply the JavaScript using those references.
+
+Usually, yes. Okay. So you might, you might build it out to see the way it looks with like two or three reviews, and then go down to one and then build it out. So it's then. So you'd pretty much build out what we have here, when we have started the having the one review. To start with. Let's have something really simple, like, I'm gonna add one, one input field here, type of sample. It gets really complicated. As you can see, now, it's only complicated. It's just a lot to keep track of the hierarchies a lot to keep track of.
+
+Yeah, I mean, it could get if you didn't have a plan, it would probably do that quick.
+
+It does. Yeah, because everything's, you have to nest everything using the append some inserts, so keeping track of what's nested in what What you need to append this to next is not that hard if you have this in front of you. But it can be challenging if you're trying to keep track of all this in your head. Thank you.
+
+So the next two pieces
+
+we have the name. If remember from our HTML, the name is just going to be an h3. So that should be fairly simple. We're just going to create an h3 tag, we're going to append it to this div, which has already been appending to the main and that should be all we need to do. So title is going to take the parent in the title, so let's call it first up here. So add title takes the container. And then for since we're in this for each, we'll call the review and I think it's just title this
+
+And now down here and that title
+
+will create an h3. That guess what it was, let's check. Yeah, we'll create an h3. We'll set its inner text to the title. And then we'll append it to the parent.
+
+So we're going to say const skarn. h3
+
+equals document. Create element.
+
+And we want it to be an h3 tag.
+
+In now, we'll set the inner text
+
+equals to the title. And then the parent. append child
+
+h3
+
+event.
+
+Now we have the title. And then finally, the review is just a paragraph tag. So it's the same thing with the paragraph tag. So we're going to create the paragraph tag, set its inner text to the review, append that to the review, which has already been appended by the to the main. Let's go ahead and write the code demo. Call it. So we're going to const we're going to create a paragraph tag equals document, create element.
+
+Paragraph
+
+and then we'll set the inner text
+
+to the review.
+
+And then we'll take the parent in the pin child of the paragraph. And then up here. In our original method, we'll just call the Add review
+
+Set the container.
+
+And it's gonna be review dot.
+
+All right dot
+
+review.
+
+Save that we should see the full page now. chum.
+
+So, we have the whole page filled out now using
+
+this method. So what questions do you have before we look at templates
+
+so it's making sense.
+
+Okay. All right, so well done.
+
+Brian. I do have one question. I guess the public versus insert adjacent element.
+
+So you're using the append on a div versus an element.
+
+It doesn't know what div is an element.
+
+So it's two methods doing pretty much the same thing. So what it does is that if we have
+
+an element like a div
+
+and setting here and we want to add something to it,
+
+it's inserted JSON element lets us pick four places to add. We can either add it here, so after
+
+see, after begin,
+
+before begin,
+
+before end, or after and we could pick one of these four places and add it from this keyword. So, there's also though, it lists of children in here. So we have this every control, or every element has,
+
+you know, set of children in it.
+
+And what append does is just say, Okay, take whatever element is and just append it to the end of the list and make another child. So append is the same as doing before end. They had a so appendages to shorter, another method something somewhere.
+
+Okay, cool. I didn't know if it had to be used on distinctive things. So
+
+thank you. They both work on any of the elements.
+
+The reason I'm showing you both is that inserted Jason Allen has more Ctrl has four places. So it's useful because there is no insert to the start or insert right after before. But appendChild is the most commonly used one is just before end. in a pinch, it is much easier to write than all this.
+
+And we'll actually find in JavaScript, a lot of fat of, hey, there's three ways to do this. They all work exactly the same. Or almost the same with minor changes. There's a lot of that JavaScript. Right? Now, Java seems to be very rigid, right? There's you do it this way. That's the only way you do it. in JavaScript as they went, they kind of said, Okay, let's a pinch off, hey, let's make it more useful a certain JSON element, and it adapts. And then it's up with different versions, which is good and bad.
+
+So the questions before
+
+So, I want to look at one more thing called templates, and we're not going to code it was gonna walk through the code. I want to show you that it exists, you won't be expected to write them today. Let me rephrase that. I do not believe you'll be expected to write them today. I'm fairly certain you don't. Or shall there's no templates and jokes. From Michelle's face. She doesn't believe that you have expected write them today either. But they're going to become really important next week. So I want to serve them. I don't think you'll actually ever be used them yourself in vanilla JavaScript, you'll be welcome to do so. But we'll use them in view a lot.
+
+So all this code we wrote, we just wrote a lot of code
+
+to create this, right.
+
+So I'm going to there's a second HTML file here. template HTML. It does the same thing. But let's Look at its comparable JavaScript. So the first part is going to be the same. So it's from here down.
+
+And that's in the app template j s.
+
+So it's comparable JavaScript
+
+is a lot smaller. These first two the set page description and title with the same, then we get down to the display review.
+
+We have
+
+Um, let's see all that all that
+
+all of this.
+
+So the template version
+
+is this for the same thing.
+
+So the way it works way template works is that if you remember we started by writing a what we wanted it to look like. Right? And then we commented it out. But what a template does it says if we're already writing the way we want one Have them to look. Why don't we turn it right? We turn it into a template, we give it a special tag. And we say this doesn't belong in the DOM, this sets outside of the DOM.
+
+And then
+
+when we want to use it, we'll create a copy of it. Instead of creating a new h4, creating a new div, creating a new h3, what we'll do instead is that we'll create a copy of this. And then we'll just change the h4, the h3, the writing div and the paragraph in that copy. But now we're working in this really small context where all we have is this to work with. So every time I say h four, it can only be this one, because that's the only thing that's there in this small context. And I don't have to call the crate for it. Every time I say, you know paragraph, it has to be the review is the only paragraph in this small context. That's when a template does So if we look at the index template, so these pages are identical, we see they look exactly the same. If we look at their DOM,
+
+we inspect it, the only difference we'll see
+
+is that there is we can see the template in the DOM is just doesn't display templates don't render, but there are there in the DOM. And that's going to be important because we're going to take advantage of that. But they don't render on the page. There's no nothing on the page for us, they're hidden.
+
+So in our template version,
+
+we have this same code.
+
+We we removed all the content. So now it's just a button now it's an empty h4, an empty h3 and empty paragraph in that one image so that we can make a copy of it later. And then we will wrapped it in this tag template. And we gave it an ID so we can refer to it. So this template tag is one review, only it's empty. It's just all the tests, essentially the tags needed to create one review in the order in the hierarchy that go in.
+
+We can see that if we look at it here,
+
+we get this. It's been identified as a document fragment, meaning it's incomplete. It's not in the DOM. And we can see that it matches exactly one of these with no contact.
+
+So then in our JavaScript,
+
+the first thing is the user template, we have to make sure we can use a template because it's a newer feature. And a lot of older browsers don't support it, including some versions of earlier versions of Chrome and Firefox, even though all if they if the user has the newer versions, they will and there's some mobile browsers that don't support templates. So the first thing we always have to do is we check to see if a template exists. Well, we can't ask a browser, do you support templates? Because if they don't support templates, it has no clue what a template is to say yes or no to. So the way we find out if a browser supports something is we try it. So here it says, okay, create an element, create element, just like we did for dibs in age. So create a template tag. So create this tag. And that's going to create a node. It is basically say, if it has this thing called continent, then we know that the template was created. If it doesn't, then this is maybe undefined this may be normal, because every browser may do it slightly differently. So when we so the implementation of all this is up to the browser's JavaScript is not does not have a equal implementation across all browsers, which means that some things that work in one, some things that work in Chrome, don't work in edge, or don't work in Firefox, or they work differently. So we don't know what templates going to create, we do know that if it returns a node that senses the DOM, it's going to have a content. So it says, okay, create an element. And if it has the key content on it, then we know it's a template. And if it can create one, it can support them. Otherwise, we just print out an error says your browser doesn't support this. Normally, we would do something better here. So then it starts out the same way it gets a reference to the main, just like we did to be the container that we're going to push things on to. And then it loops through all the reviews. So this point is the same as what our code did. The differences right here.
+
+So here,
+
+it's going to get the template by ID,
+
+it gets the content of the template. So the content of the template is this. So it gets all the content inside of the node, which is, which is the div and all of its and while maybe all of its children, and then it clone node creates a copy of that node. And true tells it we want all of its ancestors to not often ancestors, I'm sorry, all of its children and their children, so all of its hierarchy. So if we clone node on this template, with false, what we get is this div tag. If we clone that with true, what we get is this div tag and the h4 and this div and this image, so we get all this sweet because it's basically close. Your clone your children and their children with true false clone your children
+
+and ignore their children.
+
+So that creates it. Here, we put it in the template. So now we have a reference not to this template, but a copy of it. That's in memory. So we created a copy of it, and it copied everything in it. So we have this blank HTML to work with. That's in that template variable. And then we can just use query selector or get on by ID to select the items but when we use query selector h4, no, it would be better if I put the side by side. So we use
+
+put the right thing there.
+
+There we go. So we use query selector h4, and we're working in this template. We're now in this context, there's only one h4. So now we can very easily select things. So it makes it easier to work with, we say, oh, get the query selector h4. So that's HTML equal to the reviewer. Get query selector h3, we also don't worry about order anymore. Because these are in place already. They're already in the order, they need to be in the in the hierarchy. So we get days three, we set the title of the paragraph, set it to the review. Now we still have to loop through the stars. So that hasn't changed the ratings. But now for each one, we get the image can we call that clone node on it, which makes a copy of the image puts it in here, and then we just append it using a pen child to this div by getting query selector rating for the rating class So we go through and keep appending them to the script. Now this means that the minimum review we can have, is always going to be a one star review. So everything has to have at least one star. We could fix that we could change that. But that's the way it's set up here. Because this one's not going to go away. It's in the template already. So we actually add one until the rating. So we essentially are adding the later stars. And then the same way to before we just append it to the main. So what so what templates doing, again, is this allowing us to create the seal on advanced the structure, the tags, put it in the template, clone that node out of the DOM, and all of its children, and then work in that small context to select things to change them, and then append that template which is the clone of that template, which is the portion
+
+to
+
+or the chrome of the sorry, the clone of the templates content, which is this portion into the Document Object Model when we need it.
+
+So what questions you have about that?
+
+Are you able to remove things from the template?
+
+Not from the template itself that you could remove from while you're creating that clone. Yeah,
+
+yeah. Okay, cool.
+
+Once we have it closed, we can it's just we could do anything we want anything we could do to the page we could do to what
+
+we essentially making it
+
+preparing it. Yes. Yeah, nevermind. So
+
+that was a good go where I wanted to
+
+so Other questions?
+
+Got a question? I guess about? Not Not this topic specifically, but um, just dance in general, I guess. Right.
+
+Um, so I think earlier, when you answered my question, you said it had to be in the browser in order to get information from other websites, right.
+
+So
+
+in order for you to get information from the DOM, the DOM has to be rendered, which would be inside of a browser. Yeah, or a toll that another tool that can render the DOM, so
+
+Okay, so this tool, for example, would be like an iframe or something which just generates website and then you can just set its display to like, zero or something.
+
+Yeah, that's inside the browser. So
+
+websites get like the weather or something from like, weather channel or something.
+
+I kind of it's the same idea. There's what's called Virtual browsers that Java has brought browser called headless browsers. Actually, they're, they're called. So you can load basically the document object model into a browser that has no display. It has no, it's on an application, it's a variable. And then you can go through that and go through the DOM there to get information. JavaScript has them, just about every language has headless browsers to do that. So we'll probably be. So that's called screen scraping. That's the main way you do it, or you can just grab the HTML to scrape it from the HTML using something like curl.
+
+That's pretty cool. And you don't have to use cookies or anything. If you do that, right.
+
+It depends on the site. If the site requires cookies access to content, then yes, you have to send the cookie you have to send a valid request to get the content. So
+
+okay, thank you so much. That's pretty cool.
+
+So the questions so
+
+that's the stuff on the template. Okay. I have a question regarding
+
+brakes and whatnot.
+
+Are we Yeah, we didn't take them. And I think Yeah, we're
+
+not doing that today.
+
+Um, well, we're pretty much to the exercise portion. So I wasn't paying attention and
+
+you know, Brian don't need like, I know I know.
+
+So, yeah, so sorry. That definitely shows right I forgot to take a break. And Justin taught us last night they need time to marinate on the concepts
+
+gotta go in
+
+depth and think about
+
+what you just talked about.
+
+I want started working. I should. I want started working about three years. an afternoon on something on a Friday. This is bright kids, this wouldn't work nowadays, and took a break about about 930 or so. And came out and to be informed by my wife. It was 9:30am. And so I do that. So yeah, you have to stop me.
+
+I tend when I get focused not to stop until I've done
+
+so. Alright,
+
+so I apologize that I didn't give you another bite today. I did not mean to skip it.
+
+Did you say it was 9am? Like the following day? Yes.
+
+So it could be much worse. One Just no. Just missing an hour for a break. I could have kept you up tomorrow morning.
+
+And we take
+
+the break that we missed today. 10 minutes before class starts tomorrow.
+
+I don't think that would work with it.
+
+I've heard Justin's presentation yesterday. That's not the way I understood it. I don't think it was, like chemotherapy built it up and so,
+
+alright. So um
+
+so let's take a look at what you'll be doing today.
+
+So for exercises today, you'd be doing something similar to what we just did here with the reviews. I was pulled up from here.
+
+I've probably been
+
+easier to pull it up. Yeah, there's three. So you're going to start out with a page that is somebody start with an index page and a JavaScript page that has So methods like that we started with. So set page title display groceries smart completed, they're already been called down here. So you don't have to worry about that you just have to populate these
+
+these
+
+methods, so you're gonna have to add some variables for it. So you got that a list or an array like, like is in today's example, I don't think it has to be that complicated just array of single strings is all it needs to be and then a title.
+
+Go back to the readme page.
+
+And, yeah, so it tells you what you need. So you have to have at least 10 items. And then you're just going to populate
+
+let's look at the HTML
+
+Should have opened, that would have been easier. I was wrong.
+
+Some HTML, here's where you can add it. So there's a unordered list in here. So you can add Li items. an ordered list requires list items Li for each of these. So you just got Li items with the names, or the grocery names to this list using JavaScript and DOM manipulation.
+
+And
+
+then when the application load, there's
+
+so much there's a for tomorrow, so when you mark the complete button,
+
+okay, and then when so in this final method, sorry, I thought they were asking you to write the event listener and that's for tomorrow. In that final method, what you're going to do is, you're going to loop through all the list items, and add the completed class to so the ones you've already created. So the first set, your first JavaScript is going to create the list items. The second one in that mark completed method is going to go through, find that list of items, and then add more completed to everything in that list. And then there's some tests that you can run as well, that you'll run by finding running the test dot html that will test against the page or there's functions at least. So that's what you'll be doing there.
+
+Any questions? What are we doing?
+
+This is it. Huh? Sorry. Okay.
+
+So the Will you be doing for your exercises today?
+
+And then
+
+tomorrow, we'll be doing a Vin healing. So they're handling, I think it's one of the most exciting topics of, actually of the whole cohort. Because events are not just for JavaScript. They're global. They're used all over the place. And it's what actually allows us to interact with a user. Maybe we have the CLR, wait on them to respond. But we'd still ask a question, we'd have no response. Events are true interaction. That's what allows you not to have to have the computer ask you where you want to click, you just click and something happens. So we'll talk about that tomorrow, specifically with JavaScript, and how to work with it in JavaScript, which will make all this that we done today interactive, where we can have the user make a choice and have something happen instead of just when the page loads,
+
+which definitely makes them more interesting.
+
+And so
+
+there is a tutorial out there for it?
+
+And
+
+then I don't think I have anything to tell you today except your Yeah, just the external mock interviews but I'm sure nobody's forgot that so.
+
+So questions, any other questions today about anything or?
+
+All right, then I'll leave you to it. Good luck on your mock interviews this afternoon. And thank you
+
+guys
+
+Transcribed by https://otter.ai

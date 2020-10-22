@@ -1,0 +1,1278 @@
+Zoom
+https://techelevator.zoom.us/rec/share/58lTaLPyql9OYLfDuWTYfahmNbT3eaa8h3QY_6cOmkei2hrtRp2IScLpV1BRFDJ4?startTime=1592228171000
+https://drive.google.com/file/d/1f7dhtUN794S0ej_1ETnl4npiHnYiWSkN/view?usp=sharing
+https://docs.google.com/presentation/d/19bzArHlSY7s9CU30_amBhEfkdJGTKsBnJG7uKSxvHD0/edit?usp=sharing
+
+Okay, so for
+
+this week, we're going to
+
+move beyond the basic syntax of the language that we were doing last week. So last week, we were doing stuff that's pretty much the same across most programming languages, definitely across between Java and JavaScript and C sharp, and they are about the same. But this week, we're going to start talking about some of the more complex features of the language. Specifically, we're going to start talking about objects. Now, we're going to start today by looking at what objects are. And we're going to focus on one particular object string that we've already used. But looking a little more detail what it means that strings an object and things we can do with it. So why last week, everything you seen was familiar Because it worked about like JavaScript with small differences this week, it's going to, it's going to depart from that. And objects are important in Java, Java being an object oriented language. They're one of the foundational aspects of the language. And so much so that we're not really going to spend just a day or two talking about and we're gonna spend the next two weeks talking about, that's going to be our main focus on not only how to use them, what they are, how to use them, how to create our own, and how to work with them, how to design them, and how they work together. So
+
+let's talk about
+
+let's talk what we're gonna look at today. And it will look through
+
+what objects are
+
+a little bigger for this day. So we're going to start today by talking about a couple definitions. So We'll come back to these a few times throughout this week. And that's objects in class. So it's two different parts of the language. And they have two different distinct meanings. So we'll talk about what we mean when we talk about an object versus a class. And then we've been working with these, what's called simple data types, or primitive data types, recently, int, double float. And we're going to expand that into what does it mean? Why are those different, I've made a couple statements last week that we're going to find those eight are, are the exceptions in the language. So we're gonna learn what that means. Which means we're going to have to actually look into some a high level of how Java handles things in memory. And then we're gonna look at this concept called immutability, which is going to be important to work with string. And then we're going to look at equality now specifically with string, but it's more for objects in general. And then we're going to focus on on string and look at some of the methods that provides some of the functions It provides.
+
+So that's what we'll be walking through today.
+
+Before we start anything, I'm gonna go ahead and open the lecture code that way to do it so we could walk through it again. So I already pulled, but I'm going to go and Eclipse File Import. Or you can right click on the package or Project Explorer and choose Import
+
+from the list choose Maven existing Maven project
+
+and then browse
+
+to my development folder, my, my Java blue materials folder. One, Introduction to strings. Again, yo, if you're putting this right now you want to get us to the lecture, how many the lecture final
+
+and then once it's open, I'm gonna go and finish
+
+I wanted at one more time since it was across the weekend. I'm sure everyone's pretty familiar with that process by now. So I'll stop walking it through each day. But open up source main Java, comma televator. And lectures were all the code we're going to look at today, we're going to look briefly at house but we're not going to do anything. It's that's an option. That's a class file to build an object for a couple examples. Right? So without them, let's talk about what objects are. So So we talked about early on that, like on day two, that programs are all around two things, this concept of data and this concept of behavior, so state, which is data, it's the values that are holding on to and then behavior which is things that can do so for instance, in a stroller, In class, the state is that it's holding particular characters, it's holding the word hello, you know the letters H e LL. behavior is things that can do with that. So it can transform. As we'll see today, that word into all uppercase letters or all lowercase letters, those would be behaviors. So again, a scanner, something we've worked with the state of scanner would be that it's working with system in that when we build it, we pass it system on and that's its state. Its behavior is is the ability to do next line, and to get the next line from
+
+the source that it's working with like system and
+
+so everything we've been working with so far just has state they just have value. So double ant, boy in each of those just have a value assigned we assign a number 10 to them, we sign a true or false to them. But they don't do anything. They don't have any actions that can really, really take with them. They have no behavior. So objects are in memory. The official definition is there an in memory data structure, and the data structures word we'll come back to a lot in the next few weeks. That's just a way of organizing data. And we'll define that more officially tomorrow when we look at several data structures. But there may be data structure that combine state and behavior into a use usable, useful abstraction. And that last parts not important yet. What is important that this data structure way of containing data, that combined state and behavior into something that where it's like so all of the behaviors and all of the state for string are part of a string object. So we don't have to go outside of that to work with strings. We have everything We need captured in one place. So objects live in the computer's memory and they only exist by their executing, we don't write objects and source code. And that's going to be an important distinction. We, and also one of the more difficult distinctions to start with is that there what's created by source code rewrite the things that exist that are running in memory, we'll look at a lot more in that detail as we go. Each object we're going to find is distinct. So if we have five string objects, each one's completely distinct. And we'll look at a lot what that means as well. But it means that if we change one, at a high level, it means that we change one The others are unaffected. Objects are not written source code. They're not source code instead, that was created when our program executes based on our code. So they're the thing actually doing something. And then everything in Java is an object the entire language Everything's an object with eight exceptions. And that's those primitives. What we'll see are called primitive data types, byte short, int, long, float, double, Boolean, and car that we worked with last week. So those eight that we focused on last week, and we started with, we're going to find those of the exception in the language, those are not the rule. Those are the only thing in the language behave the way they do. So that's a high level object is we're going to come back through and look at some of this running and what this means, but in order to talk about objects in detail, we also have to understand this other concept called class. So with class where an object is something that exists in memory that is created from our source code and rerunning a class is our source code. That is actually what is running.
+
+So are we not running sorry, that is actually what we write
+
+So we're going to see this object created off of
+
+this house
+
+source code in a few moments.
+
+But this code is a class. It's not an object, it's a class it's going to build, it's going to tell Java how to build an object. And so a class is like a blueprint for an object. And that's really the best way to think of it. It's defines how to create an object, and what state it can hold and what behaviors it can have and how those behaviors works. It defines everything about what an object is going to be, but it itself never exists. It's just like a blueprint. So we had a blueprint for a house or a building for let's make it something smaller. So we had a blueprint for a shed and
+
+if we build that shed, then
+
+The blueprints, not something we're using, right? We can put the blueprint away, we can throw the blueprint around we're done. In the shed still exists, the sheds what we're working with the sheds and object, the blueprint for the shed design, that is a class. And just like an actual blueprint, we could hand it off to another person and they could build the exact same shed. Or we could build three of them are of our own each one individually distinct, and they continue handling that around to everyone. Our neighborhood is built the exact same shed based on the single blueprint. But their only connection between the two is that it is defined how to build the shed. It doesn't actually have anything to do with it outside of that. Find that description, definition.
+
+And then once
+
+they're all built, now I could decide to paint my shed blue and the person my neighbor could decide to paint theirs right Another neighbor could decide to paint those yellow and it doesn't affect the others. It only affects each individual shed, and we're going to see it, it doesn't affect the original design either. So we're going to see that that's the way classes and objects work. Each individual object built from a class will be distinct. If we change make a change to it, it won't affect others, objects that have been built from that class and won't affect the class itself. So we'll so class is going to be our source code, it's going to tell us how to build an object. But it doesn't exist when running. That's what gets created from this object. A class also defines a datatype. So every thing in Java is a data type. There's nothing in the language it's not a data type because everything is an object, or it's one of those special case data types we looked at last week like atom bomb, double So that everything that languages do types, we're gonna learn this week that we can use everything. In the same manner, we can put them on anything in an array, we can pass anything to a method as an argument. So that also means that the things we've been using like string, and scanner, when we are using those data types, those are just classes written in the language. Those are Java classes. And we can actually go even look at their source code if we want.
+
+So we can mimic those we will mimic those and create our own.
+
+So the reason
+
+we want to have this distinction of
+
+is because it gives us the ability to have just Just like we would have with
+
+a blueprint, it gives us the ability to have these objects that become reusable, which means we have code that can be reused, we can write code once and it can be reused multiple times, it will see multiple ways we can expand on class and object to write code in a singular place at a singular time, and then have it used and expand on it when we need slight changes. We'll see throughout the week, and next week, how we can do that. So we're going to see benefits of having modular software design, we can build our software around objects, each one that has or build our classes that are gonna build objects, each one that has a very distinct set of functionality, and a single place for that functionality. So it will be easy to know that, you know, we need to work with a scanner, we go to the scanner class, we need a string, we go to the string class. And we use those objects to do that functionality. So maybe In modular so that our code that's doing workforce isn't limited to just what's in our application now, but something we can reuse something we can take forward into other applications. These are also going to allow us this ability to do what's called information hiding, which we'll spend a lot of time on late at the end of this week. And that just means that we'll be able to hide away how the inner working how things work internally, making it easier to use. So for instance, we see that never, you know, day life I'm most people when they use a computer and they press the power button, they have no idea how that works. They don't have to, they just have to know that there's a power button the same way. If they use their phone and they go to the touchscreen and they don't understand or care how that works. Just that when they touch it and they move certain motions. They know how to use it, but they don't have to understand how It works. When you drive a car, and you press the gas pedal, a majority of drivers won't know what's going on, they just know they press the gas pedal it moves forward, might have a high end level understanding of they press the gas pedal and does something with gas to make it move forward or in a combustion car. But that's all they need to know. They don't need to know any details about it. And we're going to mimic that. And later this week, in objects or allow us to do that, which means we'll be able to write code that we need to understand is when we write it, but six months from now, we want to use it again or when our people in our team want to use it again, or the development community want to use it. We don't have to understand it. They don't have to understand it only we do the same way the author of the string class would have detailed knowledge of how string works, but all of you used it last week, with no knowledge of how it's internally working. You don't need to and we're going to look today was we learned to use it. We're going to learn all this functionality behavior. It has been We don't need to understand how it works, just what it can do for us, and how to use it. And that's information hiding. We'll, we'll spend a lot of time on that later this week. So going back to with that, the reason we have objects the class, it gives us this modular design. So we have the blueprint. And I think I met this with the shed example. And we create individual items, each one that are distinct each one can have changes to them without modifying the original blueprint, or the other objects. So they have the state is things like which type of hat they're wearing, what
+
+color the uniform is.
+
+And then the classes the basic design that defines what state they can have.
+
+So let's
+
+so before we go, Look at
+
+we start jumping to source code.
+
+What questions do you have so far about the distinction between class and object for either one.
+
+So then let's look at what this looks like more, and encode.
+
+So objects are created using three steps.
+
+So kind of like we did with variables already. It's the same, two of the steps are the same, but we're going to add a new one. So when we talk about creating an object from a class, we call it a stand cheating to us. So it's creating an instance of an object from a class and going back to the last slide, each one of these would be an instance. So a single one if you think about the word instance, outside of prison, Grabbing meaning a single thing, it's what it is, it's a copy of that thing. So this figure, this figure in this figure, it should be an instance of DOM, not the object or the class. And we would say when we create it, that we instantiate the object from the class. So the steps that we're going to use to a stanchion an object are going to be so in three. First, we're going to declare a variable. And that's nothing different than we done last week. We done that all last week. So we're going to declare a variable and we're going to give it a name, the data type we use for the variable, it's going to be just like we did last week, it's just going to be the name of the class, we're going to say we're going to hold an object of this type in this variable. And we did that already with scanner and string with objects and it's the same as we did would use with an array an array or long or double So when use the data type, only the data types are going to expand to be any class we can work with. And we're going to give it so we're going to declare it. And then what we're going to assign to it is going to be the creation of the object that we're going to do in two steps. The first one is a standard ation. And for that, we're going to use the new keyword, just like we did with
+
+array and with scanner.
+
+And what that's doing what new is saying is to create or instantiate a new object from the class. So we're saying, a stanchion, a new object from the class Lego person. And then the third step is going to be what's called initialization. And that's where we're going to give it a starting value. So that's just like, that's going to be passing values or variables that hold values the value variables to this thing called a constructor that we'll look at in detail later this week. But for today, we just know that there's this step where we're going to pass a value and this sets up the starting state. So this is like making a determination if we're going to build the back to the shed example, if we're going to build the shed that we're going to paint it red, or with the Lego man example, that as we build each one of these, the initialisation would be saying, this one's going to be wearing a black uniform, this one's going to be wearing a blue uniform, this one's going to be wearing a red uniform. It's that starting state. So here was scanner so something we've done that we just kind of used without really talking about what it meant. When we do a scanner and we declared a variable of type scanner. And then new scanner a Stan shadid Stan sheets a new scanner. From the scanner class, so it creates creates a new object called scanner, or from scanner and initialize it by passing it system in. And system and we talked about is the stream for input from the terminal. So we're telling it, we're giving an initial state of using the input stream from Terminal system. And so when it creates the new scanner to Stan chase the new scanner, it sets it up with the current state, and then it assigns it to our variable in which allows us to then use it. So when this code runs, it creates the object and it stores that in our variable. And, again, with string we haven't seen string created like this, but we could we've done strings more like this. And we'll look at what that means. what's actually going on with that lady Today, but we also could just say, No, we want a new string. And in this case string doesn't require, it can start empty and start with no value. So just empty parentheses are required. Because we're telling it, we're initializing it with nothing. And we'll learn as we go through the week that some objects allow you to initialize it with nothing others are going to require like scanner requires that it gives an input stream. So we have to give a system in or another stream, fix that.
+
+So those are the steps we're going to take to
+
+initialize an object.
+
+So let's look actually look at doing that in code and then run it we can see it what it might look like in debug. I'm going to go back to eclipse. So this house class, so each of these files if you notice they start with public class in our lecture starts with public class. Everything we've seen so far has that definition at the beginning. That's because they define classes. So everything in the language is a cloud is a data type classes are data types. So each of these Java files would be creating is creating a new data type. Even the ones that were just running code inside the main, that's still what their crate it's being created inside of. So this house creates a new data type, but we're not going to look at how the codes working. We have a whole day on that coming up
+
+on Thursday, but
+
+this particular data type house requires that it's initialized by being passed a double in two strings that represent the area size of the house, the address and the color. So that gives us everything we need to know about how to instantiate this class.
+
+So here
+
+we're going to do that Here, you can create it, use the data type. So I'm declaring a variable of type house at
+
+431 Street.
+
+And that just as a variable that I'm going to use to work with the whole this house the same way we would create, you know, a variable, Idaho, the iterator and a for loop, or variable, total amount, the whole, you know, the amount of the transaction is a double. So it's the same thing. I'm going to hold my house object in this variable. So I'm going to sign it. And then I'm going to instantiate a new house with the new keyword. So I'm saying new Stan shade a new house. So the reason this has doubled on both sides is these two definitions are doing very different things. This usage here is saying, create a variable that's going to hold a house This side is saying estienne create a new object that is type house that is from a house class. And we'll also see later as early as tomorrow that these two sides aren't always the same. They have been so far, but that won't always be the same. And then we instantiate with the values that it asked for. So so they want the area, a string that represents the address
+
+and then a color.
+
+Let's save that and
+
+put a breakpoint right here.
+
+And write and debug
+
+Here, look at the variable.
+
+So as it runs this code, it's gonna instantiate a house. So this code, we say house here in the state of type. And here saying we're going to stange one we're referring back to this class, this other code. If I step over it, we're going to see that there are over here. And my variable house, there's now something in it. Or my variable house at 443 Windsor Street, there's now it says as a value of house. If I expand it, we can see the values I passed it so that it's 40 Winston Street, as area of 1800.
+
+It's cornflower blue. This here
+
+is the object.
+
+I know that's it. Still Just kidding. You know, text on a screen, right? But in memory in the computer's memory, there's actually this thing created. That is kind of a container that holds this house. And it has this current state these current values. We can even see here, some information about it, we can see that it's been given an ID that represents which object it is. But it's distinct from all other objects is this thing that's been built off of that house class.
+
+So I'm gonna stop this from running.
+
+expand the size we can see.
+
+I'm going to create a second house.
+
+Let's create a second house. It's called house to use new house, and we'll give it some different values. So let's give it
+
+Doesn't really matter what it is somewhere
+
+and read.
+
+And I'll run it again.
+
+So we stop here, it creates the first object. And then we step through the next one. And we get a second object. They're distinct. We can see this as Id 31. Id 37 says IDs are assigned by Eclipse to keep track of individual objects. And we'll see in a minute these are truly individual. So right now, this one has the address of 440 Winston Street, this one has an address of just somewhere they have different values for the area, different values for color. So they have distinct distinct states. So if I suppose again, you know, I changed one of them. So let's change House at three, type it.
+
+Let's change the color. Let's change the color to orange.
+
+And let's do the other one to this one, house two. Let's check set
+
+set the address to 123 Street.
+
+We're changing each of them
+
+and run it again.
+
+And we'll see them created the first both of them created. expand this out so we can see a memory what they're representing. And we can see now we're going to change so we're going to call behavior now. These houses have the ability to change the cassava has the ability to change the color of the house. So step over that we can see the color here on the one in the variable. So the one id 31. It's in the variable house at 43. Winston street changed the orange with the one ID 32, which is a distinct object. It didn't change it remains red. So the object we say they're distinct. They're separate things. The same way that if everyone in this class all owned an Honda Accord, which would be an object based on no blueprint at a Honda factory somewhere, I'm making them and see, Oliver went and got gas, it wouldn't fill up all of your cars would it would only affect all of his car. That's the same idea. By changing the house, in the variable house it this house. It doesn't affect the other house.
+
+And that's the way objects work.
+
+Each one is distinct. So if I now has to change its address to 123, some third 123 Street, we can see the address of the other one that's remained the same. So each change, we make each call to behavior, each change of state to the data that we make to any particular object doesn't affect other instances of that object. They're all distinct.
+
+Oh, quick question. Yes. If he could go back to the screen that had diabetes. Oh, yes. Let me run to get here.
+
+So brother, oh, no, it's
+
+so I noticed that when you change it, like when you change when you did dot set color, orange, gave it a new ID value for that new color.
+
+Yes. So So I'm going to I'm sorry, ask your question.
+
+No, yeah, I was just curious, like, Is there any way? I mean, I guess Eclipse saves that. Is there any way to go back to that previous ID? Okay,
+
+there's not, there's not. And we're gonna learn why. That's the way it is right now. Before I can tell you why that changed. We have to understand let's string. So we have to understand how, how these objects are held in memory. And this concept called immutability, both of which coming up today. So hopefully, by the end of the lecture, you'll have we can least talk about why that changed. So it will also apply those ideas are not part of the Java language. That's something Eclipse uses to help us keep track. So we should we really can't. We really shouldn't rely on them, but they can be helpful in in debugging. To see if things are the same, if this happens to be the same house, but Well, we'll get to that as we go today.
+
+So before we look at, because the next thing we're gonna look at, we're gonna look at how these are represented. We have this thing these things in memory, but we're gonna have to understand how they work in memory for a lot of the way they're going to function. And we're gonna have to work with them to kind of know a lot of the rules about them. So before we move on, what questions do you have about
+
+that I'm just
+
+so when are you going to want to use classes and objects versus just taking in a user variable and assigning it that way.
+
+So classes and objects are going to become our variables. So if we got input from the user Cuz I think that's what you're asking when you would want to ask a user. Yeah, when we get input from a user, we, most of our programs won't set just a standard on it. If they you know, we asked them the number or something, we probably won't set a number, just a standalone it because it probably has a larger context. So we'll set it in that is part of an object. And we're going to we get to class definition, we'll look a little more of that later this week. But most of our, of the data we've been using last week, they'll be still some use of it will become part will become the state of an object. And then that'll be for even our objects to build will become state of other objects. Does that answer?
+
+Yeah, so we're pretty much like we're gonna replace
+
+those user variables with the objects and classes and contain them. That information in there. I just get the information that you put in here with like the houses and things like that. It seems like very individual to each object.
+
+It is yet it. But the way we're going to store that is, as instance, other strings and doubles and floats, or even even other objects we built for other classes we created.
+
+I guess my question is, when would you want to use an object versus when would you just want to use a static variable?
+
+Are they two very different solutions to different?
+
+No, they're the same, the same solution. It's really just if you want to hold the number 10 by itself, with the little context new behavior around it, then you would use the static variable. If there's more context around it, which usually there will be then we'll end up using our own data types are more complex data types. Thank you.
+
+So in the house, that Java it has this number of floors. So if you're Inside a class and you put this does that mean it's just referencing that class?
+
+It's referencing that object. That object?
+
+Yeah. Okay. Okay, gotcha.
+
+We're gonna get to this in detail towards the end of the week. So, but yes, but yeah, at a high level, that's what we're not high level. That's what it is. It's referencing that object, that instance. Okay.
+
+So anything else before we move on?
+
+So let's look at how.
+
+Let's look at how this exists in memory. So
+
+in Java, there's two,
+
+two distinct data types.
+
+The ones we looked at so far are called value types, or they're also called primitives. They reference Single static space in memory to hold the value in this memory that they they reference is allocated in this thing called the stack. And we're going to come we're gonna look at that this is a lot more detail. But this is the higher level definition. There's only eight of these in the entire language. We've used all we've already looked at all wait, these are, they're all the ones that are lowercase, so byte, car, short, int, long float, double. So one, they hold single values, they hold no 10 they hold true. They hold 2.5 they have no behaviors, they just hold values. So the special case, then other data types are called reference types, or their objects. So reference types, they don't hold their value in this static memory. They don't hold the value on this thing called the stock but instead On the stack, the static memory they hold a reference. So an address a memory address. So we're going to go with this in a lot more detail to where the actual object is located on this free floating dynamic range of memory, called the heap. And everything else in the Java language, everything except for those eight. primitives are reference types. So we've used scanner string array already. So raise an int is a value type, but an array of integers is array events is a reference type, because arrays are objects. So let's look more at this idea of stack and heap. So let's look at first of the primitives are the value types. So there's this memory space in the memory space where you're Find that what we're talking about is what's actually running on the computer when it when the programs running. This is where it's actually putting the essentially one zeros that are making it do something. So for every application we have running, they have a space in memory. And it's taking action inside that memory. There's stuff running, it's telling the computer what to do. Now we're using zoom right now. And there's, you can probably see my shared screen. You can see video, you know, other students. There's a memory. That's all is where it lives right now in your computer. So then, that's a temporary space for clinical workspace for what's actually happening. Java uses two types of memory. This is not Java's memory usage is not universal. It's the way Java handles it. Every programming language is handled slightly different. So Java uses this one type of very organized memory called a stack. The stack is that it's heavily organized, it layers kind of like a browser's history, where each thing just stacks on top of each other or a stack of books. So we just has a layer of just one thing on top of each other. It's very organized there is this concept. Because of that, it's very fast. And when something's put in it, it goes to a certain size and then the bottom stuff just kind of drops off the bottom when it's done. And we don't need to know too much. You don't need to do too much detail about that just there's this organized space in memory called the stack. The stack holds simple values only. But integer double the primitives are special because they hold their value on the stack. So if we have an integer 10, the actual value on the stack is 10. We have a double 2.5, the value being home the stock is 2.54 has had false, the actual value is false. The there's nothing more to it, it's just the value is there.
+
+This is compared to
+
+the other common data type, the reference type, which utilizes stock, but it also uses a second segment of memory that's a little less organized or a lot less organized actually
+
+called the heap.
+
+So in a reference type, the value of the object is not stored on a stack. Instead, what gets stored on the stack is an address that points to where the actual object is on the heap and then the object On the heap has the value.
+
+So we have a string.
+
+It has a variable name message, and the value of Hello, the variable name message points to the stack. And in the stack, there's an address that points to the string on the heat the string object on the heap. And inside that string object in the heap is the letters ag ello.
+
+Same way if we have int,
+
+integer array scores with a new integer array of three, and we've said had some values, then the thurible scores points to this value on the stack which happens to be an address
+
+that points to
+
+the integer array that's on the heap.
+
+And then the values that are the values are in that array. 1012, five clutter are inside that By object on the heap
+
+for scanner.
+
+And other example use the variable n is what it's pointing to, since variables just hold value it's pointing to, again, the stack that has an address that points to the scanner object on the heap scanner object from heap is what has the context that it's working with system in. So the reason is divided like this is that is just for efficiency. The stock is that is very organized, it's very much a put things on to it, it takes things off, they work in the same order. It cleans itself up just by as it fills up and just pushes things off the bottom. Though it is possible to actually fill it up and crashing application because of that, which is what a Stack Overflow error is. But we'll look at that later in this course. But it's because it's organized. It's very quick, fast. But
+
+it that organization means that it has to have
+
+all the memory it needs, the values are stored together.
+
+So, finding memory that's all together in memory spaces can be challenging. So it's kinda like a puzzle of all these little squares. And it's saying, Okay, if I want to hold this big thing, I have to find 10 squares, 10 squares in size, and I have to find a space to 10 squares in size. I'm trying to maximize this, I don't want to move things around too much. And I'm going to be putting values in here and taking them out all the time. So I need to keep finding these little spaces. So having the stack just hold simple values, it means that we just have to look for one square at a time. Which makes it much faster than having to find these bigger spaces. So the heap in comparison is not organized at all. It's organized it for efficiency, but it instead gives addresses to where things are at. And those things may be together, or they actually could be even split apart, but they're usually together. But it's kinda like a big cloud of these things existing there, and it cleans itself up constantly. So if there's no address in the stack, pointing to something in the heap, there's this process that goes through constantly and says, Okay, this address exists here and there's not over here in the stack, then I'll just get rid of it, I'll throw it out. So it allows for storage of larger structures, like objects
+
+in a
+
+way that benefits not speed of access, but speed But
+
+maximizes the efficiency of the storage space.
+
+But because the stock is what we're referencing through the
+
+variables, we don't lose performance. So it allows for more performance memory usage just recently split like this. And for the last like two minutes of what I've been talking about, about the performance of why these are broken up, that's not really that important right now, that's important in five years for you. Not, not for today. But I want to give some context of why this why it would be like this. For today, what you need to understand is that the stack is going to be for reference types. For value types, it's going to be the actual value. And for reference types, it's going to be an address that points to the object. And we're gonna have to understand that because we work with these objects and we work with variables going forward. How, where the data exists, whether it's on the stack Or it's in the heap, the object is going to become really important to us, because it's going to change how we deal with things like equality, and how we deal with this data.
+
+But let's go back over here.
+
+I'm gonna
+
+put a breakpoint here on line, but I'm 14 since C,
+
+run this in debug again.
+
+And we can see we already saw these, these are existing. So right now, my variable house two has an address that points to this object here on the heap. An object that has an ID, that not 20 but it's this longer address. They look pretty similar to what's on the slides in memory. But it's an ID that uniquely identifies where house two is Memory in the heap. So let's go here. And now we'll create int x, which is a primitive value type.
+
+And compare it to how it looks
+
+in the debugger.
+
+So this value column is showing us the
+
+not necessarily the value in the stack, but it can show us quite easily whether this is something that has a direct value, or value someplace else in the heap. We can see here with a direct value, it's just the number just the 10 that we put in nothing more. When it's go step one more across the numbers array. And now numbers arrays an array of integers, but if we look at it, we look at the value. It's has this ID, it's telling us this is this thing exists on the heap. Here's an object with this Id just like the house is saying there's a house there. It has this ID. We can expand that Get out and actually see what the values are compared to the primitive, which are the value type, which is we just see the value. And the difference being that this value is just alone on the stack. In this case, there is a reference on the stack to this object that is represented by what I see when I expand this reference, or this display. And the object contains on the heap contains these values just like this house two on the stack is a reference to a house object, that Eclipse has the idea of 22. If I expand it, then I can see the object from the heap. So that's what we're seeing when we are looking in debug debugger. We can see the memory usage there. Normally, we're not going to care much right? When we're debugging, we just care that this is an integer and it's a 10. Or this is an array of integers and the index one is 20. But we can see it.
+
+still
+
+do the stack and the heap have anything to do with
+
+scope? They do not. Okay. scope is completely inside of source code. Okay, gotcha. So.
+
+So before we go to the next thing, what questions do you have
+
+about what we just talked about?
+
+It's okay, if your brain is hurting right now.
+
+It's gonna hurt a lot over the next couple of weeks. So that's pretty normal.
+
+Okay. All right. So with that, then let's take a break. And we'll come back and talk a little more about this and why it's important. So come back at 1032
+
+Oh, sorry I was I didn't realize I was unmuted.
+
+Alright, so let's continue looking at
+
+what what this is going to cause for us.
+
+So what this means is that if we have these values on the stack that are pointing to these addresses on the heap where these objects are added
+
+that we can have a case or actually will,
+
+where multiple
+
+variables can hold the same reference, the same address. So what will happen? In that case, we have two variables. So if we had an integer array of scores, and we had a second integer array results, and we assigned it scores, we would end up with both variables in their stack having the address to the same object on the heap.
+
+So if they're both pointing to the same object,
+
+and we change one of them, what do you think happens to the other?
+
+Guess
+
+what the other ones stay the same because it's they're distinct from each other.
+
+But the objects are distinct, but in this case, both stock references are pointing to the same object
+
+overwriting data,
+
+so there it's Yeah, they're gonna appear it's gonna appear that but the reality is they're both since they're both pointed to the same thing. Changing one means we can see the change in the other
+
+Kinda like if you owned.
+
+So you own a house with somebody else. So there's two of you and one of you paints your house, it painted the house both you own right? Both you could say the house got painted. It's the same idea. So let's look at that happening. Let's actually write something like this and code and watch it happen. So actually, we already have this it array of numbers. Let's create another an array. Let's call it something like numbers two, and we'll make it equal to numbers. What's happening, he was looking what's happening, man. And now let's change numbers. Actually exchanged numbers too. And we'll set its index to Let's set that equal to
+
+500.
+
+And then we'll change numbers and we'll change index zero We'll change it to
+
+about
+
+128.
+
+And I'm going to put a breakpoint here and remove this one.
+
+And then run it in debug again. So we can watch what's happening in memory.
+
+And so now, in line 21, we're going to create the reference or create the numbers array. You can see it exists numbers. So now numbers to when we assign it what we're going to assign. Since this assigns the value, it's going to take the stack reference of numbers, so where it's pointing to this array in the heap, and it's going to assign that to another variable, the second variable numbers two. And if we look here, at the clips IDs, they're the same object. So it's two things pointing at one. One thing So now if we change number two, so I'm going to change index two. So this index to 500 will see it change here, but it also changed up here, because it's pointing to the same thing. Then we change numbers zero. So when I change this, it changed in both. So it's not actually changing in two places. It's only changing in one. They're just two things pointing to the same looking at the same thing. So it's like to
+
+both numbers in numbers two are
+
+looking or giving us a view into this one singular object.
+
+Are you able to do that example again? I was writing the notes from the last slide. I just want to make sure I see how you do it.
+
+We run again.
+
+Yeah, like
+
+so. We have numbers.
+
+And then we assign numbers to and we can see they're both the same object from the IDs. And then we're going to change index to or numbers to square to change this index to 500. And when we make that change, it changes in both because it's not two separate things even though they're separated like this. Instead, they are they're just two views of the same thing. And we change 128 which is going to change here. When that happens, we can see it reflected in both variables. Because Okay, so, um, so we can have multiple stack. multiple variables pointing to stack will have references to the same objects inside of them which gives us an effective We can have multiple variables pointing to one object. And that's actually going to become useful to us as we go through the cohort. There's a lot of
+
+behaviors, we can take advantage of that.
+
+So let's look at
+
+so now it's kind of an aside just now we have that knowledge of a common interview question that many of you will probably be asked. So pass by reference or pass by value. So every programming language has this concept of passing variables. So we've seen variables passed into the methods even using them all the last week, whether they're passed by value, meaning that if I pass a variable, an integer array, do I pass the actual integer array or pass by reference, do I pass the just a reference to the integer array? In the question is is Java pass by value or pass by reference? And the answer is the Java's passed by value because it passes the value in the stack. Sometimes that value happens to be a reference to an array, but that's different than
+
+pass by,
+
+pass by reference. And I'm only bringing that up because it's a really common interview question. And you may run into submit of yours or get it wrong. So it's one of the biggest misconceptions about the language. But if you get asked that it's always passed by value, and now you'll that's what it means it passes the stock value. And again, if that's not making much sense to you, the takeaway is remember someplace in this slide deck is a common interview question that you could look at later in the court, not for you to memorize what that means right now. Right. So let's talk about some other things that can happen because of this. We need to start looking at some stuff we're gonna have to understand if we're going to work with something like string, and that's this
+
+concept called immutability.
+
+So immutability means as a reference type that has a value that we cannot change.
+
+So it's
+
+when we have an object that the state cannot be modified once it's been created, we create it, we just give it an initial state. So initial value, it once it has that value, we can never change. And string is like that. string is immutable. So that means once we create a string and we give it a value, so we give it the value Hello, we give it to whether it's a tlo to hold. That particular string will always be the letters H e, l, l o It'll never be something different.
+
+so here
+
+if we had a string greeting.
+
+And our greeting variable points to the stack, which points to reference on the heap with a string has the value of Hello, comma, that we set it to. And we can catenate greeting with the string or show that our greeting points to the stack, which points to an address now is a different string on the heap that has the term Hello Rochelle. Where the original Hello string is still there. It didn't change it. Instead, it created a new string. And that's, that's because this value in this string can never change. Once it's been set to Hello, it can only ever be Hello. And that's what a mutability is. It means we can't change the internal value in our object. So what this is going to mean is that we're going to end up when we work with string, we have to understand that our string will never change. It doesn't mean notice this gets assigned back to greeting, that the variable can't change. Here, the variables pointing to this reference, and here it's pointing to this one. immutability is about the objects on the heap in what what their values can change, not about the variable. So if you look at some other examples, there's some methods we're going to look at on string one is to uppercase and we'll look in more detail these methods later, but to uppercase is pretty self explanatory. I think, even to a non programmer. If you look at to uppercase, you can probably guess what it does. It changes the string to uppercase. So this is going to mean is we're working with strings. We have a string bootcamp The value of tech elevator ends up being this the variable boot camp pointing to this value in the stack, which is an address to the string in the heap that has the string, the characters that spell tech elevator in it. And then we call to uppercase on the string. This doesn't change the original one. Instead, it creates a new one. So the original one still exists, it creates a new one that's all in uppercase, and in different addresses a whole new string. But at this point, it didn't change anything on the stack, because the variable hasn't changed. So when working with an immutable object, every time we change it, whether it be concatenation, like we saw on the last slide, or in this case, by calling a method that makes a change to it, we have to assign the output of that concatenation or the output of that method to a variable it can go back to the same one like it did here with greeting Just replace the stock value and for the greeting method with the new address, or we can assign it to a new one here string up case name, which will leave us with boot camp name pointing to the original stock value which points to the original string. uppercase name would point to the new stock value, it has the address to the new uppercase string. So once we're working with immutability, the reason we care if an object is immutable, is it means that when we're making changes to it, and we call the bootcamp name to uppercase, we have to understand we didn't change the original. It's going to give us a new one that we have to work with. The original was going to stay as is. So
+
+we can look at this here.
+
+Where we're gonna change this one add another first name uppercase equals First name.to uppercase. Let's put the debug breakpoint to 27. Now remove the old one and then debug it again. So we can watch this happen in, in memory
+
+starts. And
+
+we have first name, we can see.
+
+They don't need to expand. See Joe. You see, it's the object that Eclipse is calling 23. We call to uppercase, my call to uppercase and this didn't change.
+
+Nothing's changed about it.
+
+But if I do the same thing, but now I assign the output back to another string.
+
+another variable
+
+we can see got another
+
+has a value the old value still there with the id 23. Now this is a different object. It has the uppercase values assigned. In the first case, if I hadn't put this last line in this would have uppercase, it would have created this new object. But since I didn't assign anywhere, this would have been lost. It wouldn't after if I don't assign it immediately, there's no way to find it. Again, the heaps not searchable. We have to know where things are, we have to keep track of thing where things aren't in the created or they're lost. So when we use immutable objects, and we use their values, we change them we have to immediately assign it to a variable or we lose the output. It disappears not to work like the first caught up to uppercase, appeared just not to do anything. It really did. It just we didn't. We didn't do anything. We didn't save that location. So
+
+this seems
+
+kind of hard to work with probably, why would you make? Why would you make something like this? Why would you want to value in the over here for this text that you can't change? It seems like kind of a waste. Well, the there's some reasons why we use immutability, and specifically why strings immutable.
+
+One of the so we talked about
+
+right before we talked about immutability, we have multiple variables pointing to the same thing, right? So we could have two variables pointing to one string. So when we have two variables pointing the same thing, like we did with the integer, the integer right, we change one and the other one has an effect. It's called a side effect because the other one has a change here to his view. But it didn't make it. So it doesn't know there's a change. It just knows that it's pointing to this heap object, the object change, but it doesn't recognize that. So if string was immutable, if we could change string, that would mean we couldn't trust it, we would always have to be checking constantly has the string changed. Not just us, but the Java code itself, the internal code, the stuff we're using. So by making it immutable, it means that we can always trust that if we have a string in our string variable is pointing to a string on the heap that has the word tech elevator on it, it will always have the word tech elevator, something else can't change it. So it makes it makes it safe makes us safe tight. So that makes it easier to keep track of it makes life simpler, and we use strings all over the place. Strings is one of the most commonly used data types because we have texts everywhere, right? We that's just part of everything we do not just in programming but having letters and texts, we use a lot of string. So it makes them easier to work with and it's easier to keep track of what's going on with them. It means we can trust them. It also means that since we can trust them, we can take advantage of the fact that they can't change to keep track of values that we don't want to have to check if they've changed we just want to use as is which makes it must have much higher performance. So the reason they're immutables is for safety, safety in our code not. So they in they also it gives us a higher performance or the language higher performance console house.
+
+So the
+
+The downside is the reason that everything Not immutable in the language because we have to choose, we can choose we make an object, if we want to make it immutable, we actually had to write quite a bit of code usually to make that happen. It's not something we just say, Oh, this one's immutable. And it works. And now it is, we actually have to write code to make it immutable. So the reason they're not all immutable, by default, is because it creates extra copies of the object. Every time we do something like, you know, make this string uppercase, or do anything out any other thing to it, we take part of it out, or we don't any change at all, or we decide to fix the spelling or we end up creating a whole new object. So immutable objects and of creating a bunch of objects. It also means that because they're immutable, there's some things that we'll look at later. Or won't look at your counter later, like binary trees and some, some patterns, search patterns that we want to be able to use that we can't use without side effects. We can't use When they're immutable,
+
+it also makes
+
+the side effects often can lead to a lot cleaner code too. So immutability often means better write a lot more code, that will will with string about we pay, it pays for itself without us being able to trust it at all times. So the important takeaway from all that is know that when we have a string, the objects value can never change, which means that when we do things with string, we always have to assign it back to another verb.
+
+So
+
+before we move on, what questions do you have?
+
+There is a question posted regarding not having constant Java. And I was just about to type out the answer if you want to.
+
+Okay. There's not
+
+it's not it's like JavaScript cons, but there isn't there. is the same type of concept that we're going to get to static that does something very similar and actually static final together can make something that's very cons like in a Java world in Java is kind of
+
+in the way it has to handle scope.
+
+So the answer is there's not an idea of a const. Like there's in JavaScript, but the same concept of being able to have an unchangeable value is coming.
+
+But, but even in JavaScript,
+
+that's not immutability.
+
+Constant JavaScript are not immutable.
+
+const is about the variable. So const is about this side of the equation. It's not that the object can't change. So JavaScript doesn't handle its memory quite the same constant saying bootcamp name. If it was in Java, it would be saying that this stack, this value can never change. That's assigned to the variable where immutability is about the object and that that concept does exist in JavaScript, JavaScript doesn't have the concept of immutability. At least out of, maybe you can mimic it, but it's not built into the language. Because when you assign an object to a constant and change the object later. So does that answer your question? With a lot of there's things coming that are going to mimic it, or do the same thing for what Java needs.
+
+Thank you.
+
+So other questions before we move on?
+
+To kind of making sense
+
+if you're at this point, you're thinking this isn't making any sense? That's okay. If if you're even thinking It
+
+kind of makes sense. That's a good place.
+
+And it's okay if you're still trying to grapple with the idea of how, how am I going to use this? How am I going to do this? It's okay. It's going to be built in pieces. So you'll get there.
+
+Alright, so let's look at
+
+so back to that initializing an object.
+
+We kind of talked about what that was. We're not going to be able to go too far into detail about it because
+
+see a cup screen.
+
+Yeah, just wanted to see the string case. I got it. Thank you.
+
+So let's talk about Maybe it should be initializing. instantiating a string. That's kind of a poorly named slide. But so let's talk about what this this here because we've been doing this. So string is special in 111 way. It's not really special, but it has behavior that no other nothing else in the language has. It's the only thing that can be a stanchion and the only object that can be instantiated initialized using a literal. So literal is you know, that double quotes Steve. That's a literal. No other object can do that the primitives can, like that's how they all work is we only can initialize them with literals because they only hold a value. But a string is the only one that can can do it. It's just a performance enhancement, not only performance as far as it meets the language, fashion makes language faster to work with, easier to work with and faster to write. So it's a perfect grammar performance enhancement built into the language.
+
+So it's just there for convenience. So this, this
+
+goes new string.
+
+And we saw initialisation
+
+are equivalent. When we write this, what's going on in the background is this. The Java language is allowing us to skip this portion and just give it the initialisation. And say, you tell me what you want to initialize the string with. And I'll do the rest for you. So we don't have to keep writing out the word new string everywhere. And there's some actual performance enhancements in the heap around strings that work with this, but we're not going to go there. But eventually, you'll encounter them in your career at some point, this other thing, but these are equivalent. And this is just a shortcut for the longer version. We're as we move through underline other objects in the language, a lot of them we're going to start going through the next few days. Just want to know that there's nothing else really like this mean array has a similar thing where we can, but it's not exactly the same that we looked at for the static initialization of arrays. That's a special case to make it easier. Alright. So,
+
+big string object we really already looked at up here.
+
+So let's look at something else.
+
+Let's make string.
+
+I don't know. I'll just call this T. There's probably a bunch of those in here. Strike another strike.
+
+See my breakpoint there, run it.
+
+And the only means is going to be here. So we can look at the value when it starts by default.
+
+So as we come through here,
+
+well, it's going to show it to us in debugger. All right, we can't see it in debugger. So
+
+this also got the slide, which is how I originally planned it before I at the last minute thought, hey, let's look at it. They're not realizing it wasn't going to show it to us. Because we're going to talk about you generally don't care the look at those things, because we can we know what it is. And that's the next concept. This concept of na. Some of you probably have already seen null pointer exceptions. As you're doing research. I'm probably picking Java as a language. I saw a lot of jokes about nonpoint exception. Let's talk about what no means because and also a huge concept in Java. So when I wrote that line of code, the string, another string with string name, and I didn't assign anything to it. It started out as null. So, when a variable for reference type are created, that's their default. We saw that last week, we looked at the default of each of the data types. And we said that all the primitives, they all default to zero. But Boolean looks like false, but that's because that's zero. But all Reference Types default to No. And what no means is that in the stack, there's no reference. So it's empty value in the stack. That's no, no is not the same as when we refer to things as being empty, non empty are very distinct differences. No is there's no reference assigned. To a variable. And that's going to cause us a lot of problems. Often, there's no object, there's just a variable that's ready to hold an object. But it's not there. It doesn't there's no nothing has been assigned to it. Compared to empty, which is the string name equals empty. There's the variables pointing to the stock which has the value has an address of an object in the heap. And that objects exist in the heap, but there's happens to be no value in that object that's empty. So empty has a different meaning for pretty much every type of earth for most, most objects, they have a concept of what it means about object to be empty. That's a very different thing than no no means a variable that has no reference to the heap has no value in the stack.
+
+So that's going to be important because one of the most common problems in Java comes from this concept of null. It's an important concept because it means that we can define variables that are ready to hold an object but don't actually have one created and assigned to them. It also means that we can remove this value from a variable just by setting it back to null. So we can create this state by setting a variable to null. And we can do that.
+
+If I took
+
+first name
+
+uppercase, I'm gonna use that because I know it's not used later in this class. And I set it equal to No, that would empty out this I think this will work. The debugger novels are a little Because it already had a value, it'll show it to me or show to us. So first name uppercase, and then we can see, yeah, there, it just shows that has an all by you notice there's no more object reference. It's just showing the stack values empty or not or not, there's nothing there.
+
+So questions on, or say the important takeaway from na is that it doesn't have any reference to an object. There's no object, there's just a variable in that, when you hear about empty, non empty are not the same thing. They're very different concepts. And that's going to affect the way we have to treat them. So, questions on that before we just explain what empty is again, empty means that the object it's going to mean something different to every particular type of object. For strength, which is usually where we're going to see it, it means that it has no characters that nothing's being stored. So there's a string object that exists on the heap, but there's nothing in it. So if we created one, encode it would be just two quotation marks side by side with no, not even space. There's just so you can think of it as empty is no value in the object on the heap. were no is no no reference to no value in the stack. And it's actually no reference in the stack because the primitive says eight primitive types, value types, they cannot be no. They can, they always have to have value because they default to zero. if nothing's there, they'll become zero. And they can never be set to null because they can't hold a reference And that's mostly true car actually defaults, something slightly different, but it's effectively zero. So we can
+
+generalize it to say zero.
+
+So other questions for we
+
+is a null string immutable?
+
+There is nothing to mutate with an all string. So when there's so mutate mutability is about this thing in the heap. And when it's na, there's nothing in the heap.
+
+I gotcha. Okay.
+
+It's just the
+
+is the class saved in the IE?
+
+The classes, not just the object. So in this case, the class string exists, but classes are just source code. They're the definition of how we're going to build the object. So when it gets instantiated into an object, that's what gets pushed into the heap. So it means on this variable, it's going to think it's a string object. So we're going to be able to have methods that we're going to use and be able to call like to uppercase. But when it goes to call them if there's no actual object on the heap to do that behavior, that's going to cause an error when it's No. Which is one of the more common errors in Java, that we'll look at in just a second. Is that other questions, but to answer your question I should ask.
+
+Yeah, that's good.
+
+All right. All right. So let's
+
+see, I'm gonna skip down. I'm gonna skip the next slide. We'll come back to it. Because I think that leads really well into probably should add these to the next one, one after a null pointer exception.
+
+Which is more Not something you need to take too much away from today. But I just wanted to
+
+point it out, because you're going to see it a lot with you. When you research looking at Java, their joke is that there's, with the Java programmers deal with nothing and no pointer exceptions. There's all kinds of jokes about the number of them in Java, because it's the most common error. You'll see a lot of them. During this court, you'll see in your career, you'll see a lot of null pointer exceptions, though, later versions of the language are actually working to eliminate a lot of them. But let's look at what that means because it only has one meaning, which means that if you know what it means it can be fairly easy to troubleshoot in your code. Not always to find out exactly what but understand at least what you're looking for. When a null pointer exception happens, it only happens when we're calling a method on a variable that has no value in the stock, that's no that's the only thing that can mean. means that someplace there is something it looks like this or dot length. Or some use, I should say some use because there are a few other cases that can cause it. But it's always trying to use a variable that has a value in the stock. That's no. I wanted to create one here. If next line of code, I put first name upper case,
+
+doesn't matter where she is to her case, no matter which one
+
+and I save that and my breakpoint here so it's quicker. expand this because we're going to see an error down here. And then stop there now on this line, first name to uppercase is no. So this will cause a null pointer exception. And I'm not going to resume because it's gonna crash we see here exception thread, Java null pointer exception, like 32 When we're publishing that we can look and say, Okay, what? what variables are being used that may not have? They may be? No, that's because that's the only cause of it. So I'm gonna put a comment here, we can continue running this
+
+slide.
+
+And the takeaway from this particular, that is, if you see no pointer exception, it tells you if you can, it's talking about this address is commonly called a pointer, because it points to the memory location in the heap. So it's saying there's a null pointer. The pointer in the stack is no, it's that's what the exception setting and so that's can guide you to what to look for. All right. So now that we have this concept of how the objects is working with the stock in the heap, how the variables working on all works, let's revisit those three steps, the declaration instantiation, in this realization walkthrough, what they're actually doing, because each one does something very particular with the stack in the heap. So, when we declare a variable, we instantiate the new object with a new keyword, then we initialize the object. And finally we're going to assign it to that variable. So we have something like we used from last week scanner and equals new scanner system. And let's break those down into those four things that are happening. So scanner in is defining a variable that's declaration. So in the stack, it's creating a place to hold a value and it's taking the variable in and it's pointing to that place in the stock Nothing's there yet. The second step is a standard ation. So new scanner is telling it Java to look at the scanner class and build a scanner object based on that class from the definition in that class. And that blueprint is going to create it in the heap. So it's going to build a new scanner and put it in the heap. And what it does is going to find a place for it to put it in the heap and actually know its habits memory address. The next piece, so that's instantiation. So creates one that is initialization, which is where system is passed in parentheses. Sometimes that can be empty parentheses. It might be the text of a string, it could be multiple things each different object can have different things initialize it, but scanner takes a input stream like we saw last week. So we pass it system in. So initialization then populates the initial data the initial state of that object in the heap.
+
+So it gives scanner scanner in.
+
+And the final step is assignment, which is the equal sign. That's the operator that does assignment. So we take that address, then an assignment. And it puts it into the stack. So that now our variable in is pointing to the address and stack that points to the object in the heap that's been initialized with system. And so that's this. When we do a line of code like that, that's what's going on in the background.
+
+So questions
+
+before we move to the next
+
+Would anyone like to take a stab at walking around? Through that slide just for your own sake of saying hey this is what I think this is saying whenever I like to take a chance doing that no one okay if you don't hit it out of the park because that's where it'll help you find the gaps you know of what you think you know or reading.
+
+It's not just you but anytime you have gaps I'm sure that many other people that say god
+
+that's
+
+so now I know I really liked this idea. So we have to.
+
+So Mac
+
+started to raise his hand I think he was he was thinking about it,
+
+right? So on it, so you take a stab at it.
+
+Okay, so, on the left side, we're going to finish lies the
+
+object
+
+and on the right side, we're going to start building it. So we're going to either declare a new variable, No, that doesn't make sense of it. So, I guess we're going to initialize it on the right side, and then we're going to pass in the parentheses in this case, system, but I'm just reading the slide at that point.
+
+Okay. So that's pretty good. It's pretty good.
+
+description of it, cuz you're right, we're gonna.
+
+We're gonna create it and initialize it on the right side and the left side. That's just a variable to hold it like we've used all last week. And then equal signs, assignments. Good.
+
+So any other questions? Did I bring up any questions for anybody
+
+kind of pausing here because this is a, an important concept.
+
+Um,
+
+do you think you can go over that slide one more time, just definitely over as many times as you.
+
+So let's get the
+
+right. So this line of code. So we've written this line of code last week, right? So what it's doing, it's doing basically four steps. We have what's the first step is here.
+
+This is declaration.
+
+So declaration is what we did last week. We wrote a lot of declaration we started on day two, right writing variables. declaration is just nothing more than naming a variable and telling it what data type is going to be. There's no difference here than writing int x, or an eye, or, you know, double amount. It's just saying this variable is going to hold data type of scanner. because everything's a data type in Java. So what declaration is doing in memory is down here. It's creating a space in the stack. And it's pointing this variable here to that space in the stack, but that space of the stack is empty. So that's the first step declaration that's happening in this line of code. The second thing is going to do is a standard deviation. substantiation is just another way of saying we're going to create one. We're going to create an instance or single one.
+
+And that's happening here in two pieces new
+
+tells us to we're going to tells Java we want to instantiate we want to create a new object and scanner says we want to create this new object from this of this class scanner. We want to use this blueprint and create a new one. So
+
+the
+
+This then is creating a new object here in the heap.
+
+So this is creating a new this has created this in the heap.
+
+This next portion
+
+in the parentheses is initialization.
+
+initialization means to set the default. This would be like if you're creating an integer, recreate it, I equals 10. You're initializing it with 10. But if you say string name equals john, you're initializing name with john, you're giving it its starting value. In this case, it's starting value with system n, because it doesn't need characters, it needs to know what kind of stream it's working with, like we looked at last week. So what that does is it takes the System Object over here. And it's just passing it into inserting it into the scanner that's been created on the heap. So that's the third step. The last piece of it is here, assignment. Assignment takes this address, and it puts it into the stack, so that it's no longer blank like it was when it's been as it started. So it creates the object. It gives it a starting value that we tell it in the parentheses and then it takes the address when the assignments taken In this address from the heap and putting it in the stack, so they can know that variable can
+
+point to that object. Does that help?
+
+Yeah, I guess like in
+
+the you can call your scanner anything or is it? Is it like common practice to use in?
+
+No that we can call it anything?
+
+Okay? Cuz that screws me up sometimes because in does something in Java like
+
+yeah, so get this this name. So in declaration the two parts of declaration of all variables not just this one is the two parts we looked at all last or last week with this is always going to be a data type and this has to be whatever the datatype is right but the second piece here This is just a name.
+
+Okay. Yeah, cuz I just started calling it input in my,
+
+in my code so that I wasn't getting confused. That's fine. Um,
+
+yeah. Yeah, I just always call it in there reason I do is because we're, the reminds me working with system and gotcha. But inputs fine, you can call it anything. I mean, you should follow the rules, variable names, you know, user input would be fine. anything of this identifies that it's what it's doing. But yeah, that's just the name. That's our that's arbitrary.
+
+Other questions?
+
+So quick question. So the first box, I mean, the stack is where the scanner and it would just point to it on the stack basically, right?
+
+Yep. The stack will have an ad eventually, after assignment will have an address that points to where its location on the heap.
+
+Okay.
+
+So the stock almost becomes like
+
+another term that I found that is becoming less and less people that remember that this kind of having a phone book stock, it's like that. You could look up where the things are overheating or a director contract list or directory, it's another kind of what the staff becomes.
+
+Like. Okay, thank you.
+
+Right, I had a question.
+
+Yes. So with the, just looking at my notes from our previous work that we did, we will use new and at that time, when we said new, we just kind of kept the general was there, which is assigning memory for that particular thing. I know a lot of times when code is written, at least with a primitive types new is emitted.
+
+Yes. So the primitive types don't use new because new is telling Java we want to create an object. We want to take memory, take a class and build an object. from it. So new is all about the heap.
+
+So with a primitive type, if we had int
+
+x equals 10. And let's make this x, then we don't need new because we can go to me just gonna put the 10 right there. So for those eight types, we don't need to infer string. We don't need new because of an exception, but in the background, it doesn't new for us. So it applies it. But
+
+it does my question. Yeah, the string.
+
+imply when we type out string equals a literal, like, then
+
+there, sorry, it's going slow. So we type up this in the background. What Java is doing is this. It's just this is a shortcut that's built into the language to make strings easier to work with. There's no other reasons For that, then just to make it easier on us.
+
+Does that answer your question? It does. So outside of strings and primitives, we would always use new one where?
+
+Yes. Okay.
+
+At some point there has to be a new, that's going to create the object. So,
+
+I have a little question.
+
+Okay, so is this being read by the computer from right to left?
+
+From No, technically it'd be red. The way it would work would be.
+
+So most, a lot, a lot. A lot of lines of code are like this. They don't necessarily go in the order rewrite them. It would first do this, so this would be one and then it would do this. This would be two.
+
+This would be three and then this would be four.
+
+Now three and four may actually be reversed, they may assign it before may assign the address to the variable before it puts it in. I'm not actually sure. And it doesn't really
+
+I'd have no reason to ever look that up.
+
+But it's not necessarily doing them in the order that we write it. We're giving it a command to do these, this certain set of things. And it's going to go do them for us. And we're going to run into that a lot where the order that we put things in are not necessarily the order the computer once a man does that answer your question.
+
+I was curious if it put the scanner into the heat before you even created a new skin.
+
+No, until we come to this line happens. This is where the scanner gets put into the. So when you do this, all it does is just allocated space in the stack. Nothing gets He does that.
+
+Yeah, I just thought that it went from right to left usually like when you're working with equations and assigning them to a variable.
+
+Yeah variable, then it would go from right to left, right.
+
+No actually builds this first.
+
+First thing at first in Java does, I do know that the first thing it does is allocates memory on the stack. And then it builds the object. That's the reason because it actually does it in two steps. It does declaration in a first and then it does, it creates the object in the heap, and then it attaches it. And that's because there's in for a while, for a brief few milliseconds, there'll be a no a no reference on the stack before whites during the scanner. Really high performance applications that actually can cause problems.
+
+Okay, that makes sense. So this is different because it's declaring the variable.
+
+Yes. So, declaration happens and then
+
+sanitation happens but there is no implied order in any Java code of how the language is going to interpret it. There is no like read left right to left like you would think in a math. But it is true it's going to has to complete this before does this but but the order is going to do it is to build this Nall crate this and then assignment.
+
+Gotcha.
+
+And that's really because if you remember back way back from day two, now we almost always see it like this. This is actually a convenience. And these are two distinct steps
+
+that we could do in two lines of code.
+
+So it breaks it up just like we're doing Two lines of code.
+
+So let's,
+
+let's is, are there other questions? Not Oh. All right.
+
+So all of this is going to bring us to another problem that we're gonna, we're gonna have to use all this to understand and that's equality. So I made the claim last week, you can't use double equals with optimal strength. We didn't talk about how to use a quality of a string. And on Friday, when we done Rock Paper, Scissors ran into the problem that we couldn't figure out. We didn't know how to do that. So let's look at why. And it has to do with this stack and heap thing that we're looking at.
+
+So Java has two types of equality.
+
+There is
+
+what's called reference equality.
+
+And there's what's called value equality.
+
+So with objects, if I have a string hello, and I create a new string, and it's equal to the word hello, Okay, hello to it's equal to the word hello. And I use double equals between them, that's going to return false. For value types for the value of reference types for objects, we can't use double equals to compare the value of objects. Instead, we have to use dot equals, which is a method on the object. So it'd be this to make this work would be Hello dot equals hello to, which will return true and that's because of this two types of equality. And it's not that this is wrong, this is actually correct. It's just not testing what we probably think it is.
+
+What is kind of seems like it's testing
+
+So let's look at these two types of equality.
+
+So reference equality
+
+is the double equal sign. And
+
+the easiest way to think about it is that
+
+w equals compares the value on the stack. So that that's why it works with primitives because they just keep a value on the stack. But for objects, when we say hello equals hello to what we're asking is, these both have the same address of an object from the heat. So are they the exact same object? So what double equals compares is
+
+right here, it compares this to this.
+
+So it's seeing these two equal here.
+
+So that comes out false because this number this address
+
+and this address are different. Those are not equal. That's what it's comparing. It's actually comparing I shouldn't. Let me undo that. This because that's should write it like this, this address and this address are unequal. That's what's being compared. Which works for it works for double works for borjan. Because that's where their values are, but not for objects. But that means double equals actually is useful for objects because it can tell us if we have two variables and we want to check to see if these are the pointing to the exact same object like we looked at could happen. This allows us to check that allows us to say are this Are these the exact same object in the heap are they two distinct ones it was happening they look the same.
+
+So this is compared to
+
+value equality, value equality.
+
+is using the dot equals method.
+
+So for that it'd be Hello dot equals hello to, that's going to return true because what it's comparing is the value of the object on the heap. So it's comparing this, and this
+
+is great. So
+
+when we working with objects, we have to call dot equals to determine if they have equal value, the double equals only toes if they're exactly the same object. And that's usually not what we care about what we usually care about us they have the same value. If I say I want to find out if two strings are equal to each other, I want to know if they have the same letters in them, right? I don't really usually care about if they happen to be the exact same object.
+
+So we have these two types of value to work with.
+
+And let's go over to some code. And let's see.
+
+I'll just write it up here.
+
+So we have
+
+we already have our string first name Joe. Let's create another string.
+
+Other equals new string has the value Joe in it.
+
+And if I say, if first name equals other
+
+will still a quick system out.
+
+System dot out, print line
+
+compared to if first name equals It doesn't matter which object to call equals on because they're equal. It's the same as the double equal and equal sign doesn't matter what side they're on the say should not be not. So we won't see any output if there. Let's put the breakpoint here so we can walk through it
+
+and then debug it.
+
+So here, we have our two values.
+
+And
+
+we step we can see that this return false we do not go into the equal sign because others 27 go into 22. The IDs that Eclipse are using the two different objects, but they both do have the same letters Jo e m. So that is true.
+
+If I went farther, and I said, string,
+
+one more equals first name. Now I could say if
+
+first name equals
+
+more
+
+system dot out.
+
+I'm only putting the system output lines in here. So we have a line to debug on. So for this, now we're signing it. dot equals is going to be the same because they're the same value. Let's resume to the next breakpoint. And then you can see here, this value is the object with id 22. The original one a first name is the object with id 22. So now they're equal with the dot equals.
+
+So we have the two types of equality. So any questions about that before we?
+
+Just a quick question. If you do dot equals, and capitalization has changed at that point, it would still return false, right?
+
+Yes, because capital H e ellos, not the not equivalent to lowercase.
+
+So, I was thinking because like in my exercises, I had my user input B, F for Fahrenheit, or C for Celsius, and I just an if statement checking if it was lowercase, or uppercase off. But now I realized that you could just change that to uppercase, and then you wouldn't have to do the separate checks.
+
+You could.
+
+Yeah. And is that like a thing that happens? Or they're like, Okay, cool.
+
+Yeah, that's actually how most like text searching works. case insensitive texture. Text searching usually happens by putting one to everything to uppercase or to lowercase and then on both sides and then comparing them. Gotcha. And because strings are immutable, we don't have to worry about mutating or changing the original string and doing any harm to it. So we can do that with things without having a negative effect.
+
+Or risking
+
+just for being up Quinn. I spend a lot of time on figuring out the last portion of the homework and I was trying to use equal equal. And I was getting the opposite thing, you know, so I realized that I have to use that equals and it kind of solve the problem.
+
+That's actually what we were hoping would happen. Yeah, but notice, there's like last week, at the end of last week, there was some problems around strings that we hadn't talked about, the hope was that you would kind of encounter some of this stuff and kind of self learn a little bit of it before we start talking about today and then have that Oh, that's why it worked like that. That's great. Do that.
+
+Alright, so
+
+the other. So the next thing we're gonna do is look at string methods. So there's things in the strings that can help us but for before we do that, what questions do you have about anything we've talked about so far today?
+
+And it's been a lot of information. Okay,
+
+So let's
+
+Yeah, let's take another break.
+
+We don't have that much longer left but we have long enough too long that everyone probably wants to sit here for without a break. So
+
+we'll come back at
+
+1149 is that 10 minutes? Come back in 10 minutes
+
+before you know it goes
+
+What the those methods are?
+
+Thank you for.
+
+So what those methods are doing.
+
+They are sorry, they're giving behavior to objects.
+
+So
+
+to allow us to operate on the data they work with the state they have or to do other things that that type of object may do. So we can access these using what's called the dot operator, which, in code we saw here, the dot operator is just a period, then there'll be a name of a method, in methods are always going to be then use parentheses to identify them as a method.
+
+Sometimes the arguments we pass in these parentheses
+
+like we do with here with we're creating a new object. And sometimes there'll be empty, but they'll always be parentheses at the end. So there's going to be a period or the dot operator, the method name followed by parentheses to use a method on an object. And these objects are going to be give us behaviors that they can do. The string class itself contains a bunch of methods that can be used to manipulate strings, or the values they have. But since that string is immutable, it means it's never going to change the string, we're actually calling the method on instead, what it's going to do is going to change the value, it's going to output a new string that gives us that has that value the new value. So for instance, got a string name that Maddie in it, and we called name to uppercase, it will output a new string that had the uppercase version of that string in it. The Africa spot you
+
+So, another thing we're going to need to know about strings to use some of these methods or understand how they work is
+
+how does a string
+
+hold characters. So internally, strings hold characters, they hold the letters as a car, right? So they internally have
+
+this
+
+is internally being held as,
+
+you know, car, something with those with the letters, each of these letters on it. So because of that we can access elements in the string particular letters or positions in the string using an index, just like we can an array, but we can't use the square brackets with it because it's not an array. It's internally contains an array the toting The data. So that means that there's a few couple methods that are, we're familiar to the way that we're already used to. Arrays working. So one is strings have a dot length method. So length, notice that in an array, we just use length, but in a string, we have to use the parentheses because it's a method. So length is going to return the length of the string, which is the same as the length of the car representing it. So here, no, it's zero through 12. So it's gonna return 13 or 13 characters in the string. Car at, if we give it an index, it'll return the letter that's at that index in that internal array. So we have this array that has tech elevator in it, index of three is going to give us the letter H. So the fourth letter, because zero index so if we want the fourth position, we tell it And it'll return the letter from the string that's in that position, which means we can just look at a string and say we want the car at 0123. Just count through it starting at zero to know what index we want to work with. We can use these two together. And a for live just like we do with an array. Now, instead of using the square brackets, we have to use the string methods. So we could say for an eye zero, less than name, the length with the parentheses. And then we wanted we could do something with each character then using car at that index, and it would start no 0123 and go through the entire car race in terms of the string. So that's the first few methods lengthen car at now allow us to treat it.
+
+Like pretty much like an array.
+
+So the next
+
+so let's look at those
+
+caran code.
+
+Here's
+
+our current
+
+example. I'm gonna put the breakpoint here in line 72 what debugs we can step through certain here. So given the string name, tech elevator, so the string we just looked at, resumed, go the next breakpoint. And let's remove these actually, and then resumed to go the next breakpoint. So we have the string that's going to create tech elevator. And if we look at this, we can see the internal there's this thing called a value that has a different ID. So it's actually a different object. That's the car right? expand that we can actually see the car right inside the string. So here, we get car at zero, we expect to get a capital T.
+
+And we can see first is the capital T.
+
+Card three will be indexed three, so H
+
+and fourth. And see down here contains the H. I'm actually just going to print them now. We looked at them debug.
+
+Here length.
+
+The length of name. Well, we need to we need to write some code there, I think could do that. We would say alright, name.
+
+dot length began with parentheses.
+
+Put a breakpoint here and anyone
+
+can see by the time it gets there, like this 13
+
+Alright, so
+
+those are the first two methods that are available to us. But string can do a lot more. Let's look at some of the other ones. So the next one is one called substring. So what substring does, it takes out part of a string, it allows us to select. If we have a string of text like this allows us to say I want this part of the string.
+
+So I want to start
+
+here. And I want to get this subsection of a string. And we do that by specifying the INT starting index, we want to start out so where we want to start. And then in that it becomes inclusive meaning that includes that character. And then we specify a second index with Is our ending index, which is exclusive, meaning it excludes that character, it gets the goes up to, but not including that character.
+
+So if we had the same string tech elevator
+
+and we got name, dot substring, two comma six, it's going to return to C. And that's going to include that because it's inclusive, then it's going to include everything up to, but not including six.
+
+If
+
+so, it's going to include this that range, so that what it's going to return is the ch space because space is just a character and then the E.
+
+If we only provide
+
+a starting location, then it returns from that starting location to the end of the string.
+
+So in this case, if we had five,
+
+it's going to start here. And because there's no ending location, it's going to go to the end of the string and include that.
+
+For the other again, since the two is inclusive, it's going to
+
+start there in the six exclusive. So it's going to end there. That's what substring does. So let's write a couple substrings
+
+is anyone else super excited in the Awesome,
+
+cool stuff with that? Let's celebrate what
+
+work has been done for us somewhere we get to take advantage of it.
+
+That is actually sorry.
+
+It's not that cool.
+
+If you ever had to do a substring manually You'd think this was really cool.
+
+The days before this things like that existed. Yeah, it's
+
+alright, so let's, uh
+
+let's get a substring. Here. Let's do this an example of,
+
+we could do s substring and give it a beginning index. Let's get letters, whatever this is, this is 01234567. So we'll get seven
+
+through, let's get nine, seven through nine.
+
+And
+
+we can see it's going to start and we'll get from the ninth character,
+
+our substring
+
+Is
+
+Evie. But the important note here is we called substring. One this variable s, the value of s is still is unchanged because it's immutable. It created a new string. Evie, which we had to assign to this variable. If we didn't if we didn't do the assignment, if we just called this without this portion, we would just lose it, we do the substring. And then just just regard it, it'd be like making a change and throwing in the trash should be gone. There's no way to reclaim it, we have to assign it right then. So let's do this next one, that substring to the ends was picking letter. So substring and we'll pick we can pick, let's pick five. So that's going to be 012345. So I should get this
+
+breakpoint down there.
+
+Then fast enough. All right, let's Okay. So now we have our substring, we can see it there without printing out that it got started with the fifth index and went to the end of the string without a second index. I'm kind of pointing out substring a lot because it can be kind of confusing, but you're going to use it a lot. So substring is one that you will not just today, but overall you will use a lot.
+
+So questions on on that.
+
+Could you give a couple of real world examples? I'm sure I wrap my head around when this would be applied some ideas about kind of when programmers use substring
+
+Yeah, so one example is, let's add text A block of text and I wanted to get emails out of it, I may want to, if I know the location of it, then I can substring out some of the other things but look for I can look for that location of where maybe the outside is and then back up until there's a space and then substring from there until after I see sub three letters after I see her two letters, I see the.or for the next space. So to remove information out of a string, so a really common you have something that your went into that most people don't even know exist, which I know is not the best examples because you have to carry them but computers speak through sending strings of text, everything on the internet is text everything. That means when we send files we sent text, because the protocol it uses is text only. And so that means we get everything as these giant strings and we have all If we have all these tools and stuff like JavaScript tools that do all this work for you, but if you had to do it manually, which you will sometimes, then you have to know that you know it this position at index five, it's going to start giving some particular information like what type of request is, so you go and use substring, five through C five to eight, that gives you the request type. And you know that another position has other information about the request, and that information. So that's actually how the whole internet works is these giant strings of text being moved around and pulling out pieces of it. So those are one of them is probably a little more easy to think about right now. The other one would be clear by them in module four. So we use it a lot for just getting data out of text. Because humans, they interact we interact with a computer, really two ways to the keyboard. Which is all text or through the mouse, which, usually, for the stuff we're doing right now, we don't care about that we will later when we talk about some other stuff, which means that we have all this text coming in. And we have to break it apart into pieces. So substring is used for that. Does that help? Does that? You don't think you, okay.
+
+All right. So let's look at some other.
+
+Actually. Now, let me ask you some questions first.
+
+So given this string, that's one,
+
+we got car at C or s one cart five, but the value of CB
+
+B just these truths to be self evident,
+
+didn t
+
+i think it's l The speed
+
+though, okay, let's
+
+try. So it's gonna
+
+be D these truths to be self evident.
+
+Okay, there's some it's gonna be 012345 so out
+
+because this car is getting just like giving the index how it is getting the index out of the way using the index to get the value. So be the sixth character.
+
+Does that make sense?
+
+So quick question. And these clearly spaces are counted, says that does that mean like a dashes commas? question marks are those are counted in the count of the era.
+
+They are. So as far as the computer is concerned, there's no difference between those Letter A and A Tilda or space, there's just characters or a delete geek button or newline. They're just characters on a keyboard. It makes no distinction that the cylinder This is a number, we have to artificially kind of enforce that. When it comes inside of a string, obviously the number in it like it's different, but inside of a string, it's just a character. Okay, so next one, what's the what would be the substring of 16? Through 19? of the same string?
+
+You th
+
+so I think I heard someone say you th that would be yes, that's what it would be.
+
+So we started the 16th position,
+
+which
+
+is all about counting correctly.
+
+It is Yes, it is.
+
+So we're going to start here, because u is in the 16th position with regard to the 19th position so that's gonna be 16th 17th 18th this is the 19th position. But this is exclusive, so don't get included. So we get you th.
+
+So,
+
+what would be the value of s two here if we got substring with the length of s one minus two, T,
+
+T, close you
+
+so I was the
+
+we're going to be
+
+it no age.
+
+No close new
+
+T's will be almost there
+
+and
+
+we are
+
+empty is empty, it's gonna be empty. So let's look at why this is more close to a real word use substring. That should be ahead for today. So, so before we get to like, right, so we know the length is some number. And then we take minus two. So let's say our length, I don't know what the length of the string actually is. But let's just make up a number. That's easy. Let's say like this 30. So the last index, I said length is 31. So the last index is 30 i minus two, that's going to put me back here. We say that like the study one minus two, which means my starting index is going to be here. And since there's only one index involved, it's going to go to the end of the string getting empty. So we can use things like length to do things like get the last character, if I want to just the T which it seems like it might have been in some languages actually would be I would do length minus one, because the length is one greater than last index. And because indexing first index is inclusive, if I just want the last character, I just need to tell it the last index.
+
+So this is going to be anti. And
+
+so this last one, I guess I'm putting them wrong.
+
+So I should put them with the question not there.
+
+So the last one, what's the value of this last variable here that there's a substring? 01. We that's Yeah, capital W. starts at the beginning zero goes one character goes to the next one, but exclusive so it just ends up being the zero index.
+
+Right? are like I'm clarity sake. Would you? Could you just do the s one dot length minus one and then put the amount of characters that you want outside of parentheses? Like, taken off, I guess?
+
+I guess I'm not just
+
+like
+
+because s one dot length minus one would be the length, or would be the index.
+
+I guess, as you're saying, like store that in a variable. And then
+
+yeah, yeah. When actually subtract the amount of characters that you want taken off the end,
+
+you could do that. Yeah. There'd be no problem with doing that.
+
+So yes, sorting out a variable so you just subtract the number of characters would be fine. If you're talking about storing it separately, right then using like having, like in the last are length of array or something like that, or index i mean in them yeah,
+
+that's That's Yeah. Okay.
+
+Yeah. So other questions.
+
+So let's look at some other methods then and we'll go through the other ones a little faster. Because a lot of them are fairly easy to use and more self explanatory than substring. But some other stuff available. So this contains, contains returns true. If you send it a string, and if the other string, the start the string contains it. Then it returns true if it doesn't returns false. So like if we have hello world, you could ask if it contains the letters ello. And it would return true that it does. Starts with n ends with do exactly the same thing but they're what they sound like. Does the string start with this so hello world would be true if we sent it ag because it starts with ag the same way for innsworth, it would be true if we send an LD because it ends without D. So it checks the beginning and ending of the string to see if that's what it ends with. Index hub allows us to get the index of West Australia starts in a car, the car, right? So we can say, if I add a string that's right. I guess there's examples of that right here. We'll watch that. We'll walk through those and we'll walk through this one with it. So if I add a string, and I say and
+
+we'll use this hello world string here.
+
+index equals Hello dot index of that want to look for World
+
+dot out. Mine.
+
+Actually, we'll just look at the debugger. We don't need to print it.
+
+So sock walk through all these since there's the ones but it's talked about
+
+debugging here.
+
+So here we have the string hello world.
+
+And say hello world contains Hello.
+
+We can say it's true because it does contain the word hello.
+
+here hello contains bogus
+
+that's false because it does not contain those characters. Here at the index of world is six, because the index of World of hello world is 0123456. So it tells us where that word starts, which can be used with substring to pull out particular pieces of information and find information on a string.
+
+So,
+
+some other ones replace replaces one string With another string, so we can give it a string. And then that it'll search for inside of our string. So some characters in a replace, kind of like every place does in a word processor. Same idea to lowercase and uppercase. And that returns a new string. It doesn't remember, it's immutable. So it doesn't change the original one, it returns a new one, to lowercase and uppercase, do exactly what they sound like. Split is one of the things that I think some of you found for your exercises on Friday, Friday, if not, would have made things pretty easy for you. In some cases, it splits up a string based on a particular character. Um, it's actually kind of useful. And I think there's an example in here. So let's look at that.
+
+So if I had a string like this,
+
+let's see string
+
+to be split. And,
+
+actually, where's that? Let me go back a couple slides to that longer string here. Grab this after typing everything out.
+
+And then I split it into a string and then split array. It's going to create a return a string array, be split, equal split, and I give it the character what I want to split on. So I'll have a split on space.
+
+The breakpoint down here,
+
+run a debug again, a breakpoint here, so we can quickly step through that. So we have our string and we split it. If we look at the array that got created, it creates an array then with each of the words with the spaces just this first character we give it. So the character we give it here gets discarded, and each one of these becomes an element in an array of type string. We can pick any character I could split it off So if I wanted to split it on
+
+the letter E. Okay?
+
+It would work the same way I know this is gonna produce but we can see now it's split by eight things because everyone was late letter ease. Every time there's a letter E it splits it into pieces it disregards the E
+
+so that's what split does.
+
+So if you think about your input you had for like the binary problem on Friday you know, if you called split on space would break apart the numbers into an array you could easily loop through them of each of the numbers you're going to convert
+
+equals we already looked at there's also equals ignore case. So there's a question Kareena brought up about do you call to uppercase or to lowercase and then called on equals And you can, but you can also equals ignore case will do that for you. But it was ignore the case of the text. When In comparison, trim removes whitespace at the beginning and ending. So if there's extra spaces, that becomes really important we get user input because user sometimes put extra spaces in, it just removes it off the beginning or end.
+
+Again, it returns a new string, it doesn't change the original.
+
+So those are some of the methods available. There's many more. But those are some of the really useful ones I want to use a lot that are available on this string object. So those are available on if we have a variable. Like to be split, they're available on that object. But there's another type of methods available to too many classes called static methods and for those that are available on the string class, There's two of them that might be interesting to the first one is value of. So given value of you can send it any, just about any data type, and it will convert it to a string representation. So if you send it a 10, it'll be a 10 as a string, call that you call it on the string class itself. And we'll talk about why in a few days, why those exists and what they do. But there's also another one called join, that's kind of the opposite of split.
+
+So for join, if we have a
+
+bunch of strings, we could say string, new string. Let's call it countdown, equals string dot join, and we can give it a delimiter.
+
+And then we can give it a list of strings.
+
+That are just common delimited one
+
+actually think I'm doing it backwards, but that's okay.
+
+We get a list of strings you want for
+
+and then the resulting string.
+
+Errors could be backwards, but
+
+we look at it, we'll see that it takes that string.
+
+And it takes those strings and puts them together with that first string in between each one that can be kind of useful. And those are available said by calling it on the string class, not the objects and there's others of those as well. there's not as many. They're all available. So one thing you want to start getting used to as we encounter new objects is this thing called Java Doc, which is documentation of the language. There's a link to it here. I'm going to go too quickly, but we're not going to go through it in detail today, we'll look at a little more for some other objects. But for every object in the last, and that's part of the language, it has details on how to build it, some information, how to use it, and the list of every method that's available. So what it returns, what you send it, what it's called, and what it does. You can see string has quite a few different methods. We just looked at a few of the more useful ones. A lot of them you'll never use but there are others available.
+
+So questions on
+
+those
+
+Okay, so let's look at
+
+one more thing. And this is this idea of the car, right? And this goes back to the equality. Coming back to the equality for strings. So we can build a string from a car right? Because it is one right we can just pass it our car, everyone. So if I add a car Ray like this awesome Ray that was a new car Ray that had these characters in it, this they're single quotes because their characters, the one place that Java uses single quotes is densify, a character versus a string. And then I could create a new string and pass it that array and it will create a string based on that. So this string here will have the value from all the characters put together as a string.
+
+Think
+
+Similar code here. Let's walk through the next one first. So given that, given this code, so we have a car Ray, the one we just saw, that has the word awesome in it. And we create a new string from it, string one, then create another new string from it string two, and then set string three equal to string one. Given that what would be the answer, string one, awesome string, one equals awesome string two. Would that be true or false?
+
+Yeah, be false.
+
+So how about the next one? One in three.
+
+That'd be true or false.
+
+Would it? Why would it be false?
+
+Awesome. 330 mean
+
+we're using the equal sign.
+
+It's because of this line right here, we're setting the reference of three to be the same as once they're both pointing toward to the same string, the same actual object. So that's what the double equals compares. So that would be true.
+
+And Does everybody understand why
+
+does that make sense?
+
+Okay, so last one, awesome string two equals string three. Would that be true or false?
+
+Yeah, that'd be false.
+
+Because while
+
+one in three contained the same reference to has its own reference, so it's not equal to one or three. But what if we done dot equals Would that be true or false? True? Yeah, they all are going to be true. Because they all can contain the letters A, w e. So me, they all contain the same value in this heap. So they're all true.
+
+So the fact that there are different strings, or even the same reference doesn't matter do not equals the only thing that matters is these letters that they contain. The double equals it matters which actual string they are on the heat.
+
+So questions on
+
+questions on anything from today?
+
+Do you would call this the value of the reference? Is that the right way to say that
+
+yet? Yes, you could say the value of the reference Yeah.
+
+Are you using just heard referred to as the reference so The reference have to is equal to what is equal to the reference and three, but the value of is accurate as well, because it has value of the reference in the stack.
+
+What was the name of that
+
+site that you had pulled up that showed us the different methods?
+
+Oh, that's, um, it's on those. The slide there's a link at the bottom. That's actually Oracle site. So documentation. Awesome, thank you. They go. That particular link goes to the Java EE documentation. And so everything in the language has document or Quach has pretty decent documentation once you learn to read it. It's a skill learning to read Java doc itself, because it's generated and we'll talk more about that later in the cohort. suffer some portions is generated this top is not but it actually has a bunch of information on everything in the language. There's more better descriptions down here. at just about everything in Java most libraries and frameworks separate work with or you'll work with will have this kind of documentation available on this Java Doc, because the language can build it. For the for them. So I would encourage you, every time you run into a new class, you're going to use our new object type you're going to use to come look to look it up. And we'll talk about when we talk about packages in a couple days how to do that in more detail. But they even have it down to this is from Java eight, which is what we're working with. If you look at Java seven, some of the methods we look at don't exist, like split. Now join is new in Java eight, Java 14, there's probably some other methods differences, you have to pay attention to the version as well. But I'm encourage you to always start here on what to think what each object can do for you. Because there's a good chance if you want to do something with it. And it seems like it's probably a fairly common thing to want to do with it, that it exists there. Somebody already have the codes already written.
+
+And we don't want to solve problems that already have been solved.
+
+That's not as interesting.
+
+So other questions about today?
+
+So making sense. The most common thing, guys are working with strings.
+
+Go edit some of my code from the homework. Okay?
+
+That's Sure. I said a lot of the homework on Friday, at least a couple of the problems had things that were meant to kind of guide you into strengths.
+
+All right. So let's look at your homework for your exercises for
+
+today. So I'm going to pull them up
+
+partum
+
+think today's exercises their individual only.
+
+And they have test cases again. So Friday's didn't because of the interfaces but these are more like the ones you would on on Wednesday and Thursday problems but they're going to be dealing with strings. So I'm gonna look at, you know, when I get a student exercise I'm going to go to instructor so
+
+cause any problems when I check my code and
+
+so for each of these, you're working source main Java combitech. elevator. Wait, right, that's the wrong one. Again, here it is. So for each of these source, main Java combitech, elevator exercises, dot java, and they have a bunch of methods, just like said you worked with before. There are test cases for these so you can run the test cases. Source Java.
+
+Run as well, that's fine. Keep doing this. And
+
+so you can set breakpoints like we've been doing today. And if you right click, instead of choosing run, if you choose debug, it'll stop your breakpoints for your test cases and allow you to debug from test cases, which is really useful. In fact, when we write test cases, we'll talk about that. Actually, probably more towards the end of the car, when I start telling you all the bad practices, we'll talk about writing tests. We'll talk about write test cases, actually, just so you can debug. So you can debug with these test cases. And for each of them, you're just gonna solve the problem. They're all based on strings now, I think. And you're going to be similar to what you did with arrays, and last week, but now it's going to be with these string problems.
+
+So for instance,
+
+on the second one,
+
+I saw the game and two strings AB returned the result of putting them together. And that's not too exciting. Let's find something a little more exciting.
+
+There, this is a little more exciting. String extra end, given a string returned a new string made of three copies of the last two characters of the original string. length will be at least two by telling you length is going to be at least two that tells you don't have to do any extra checking. If they don't say something like length be at least two and you're going to get an index that may not be up to two. What problems could happen?
+
+the area's array out of bounds
+
+again, it could be out of bounds. So you're gonna have to check the length. And if they don't tell you otherwise, what could string be? No, it could be no, there's no guarantee on this case it says the length will be at least two. So it's telling you this isn't going to be no, this is going to be, we're always going to give you something you have to check. Some of the later problems they'll send, you know, we'll talk about as we build methods later, that we have to be aware of that we don't know where our data is coming from. So it's possible this can be these various could be no, it's possible, they could be too short to do the work that's needed. And we'll have to check for that and deal with it. And know how to respond to it. They'll give you a response. If that's the case, they'll say, like return the same string or return this other value. But if we had this one.
+
+So how can we get the last two characters
+
+of string str
+
+dot length parentheses.
+
+So dot length parentheses would give us the length of the string If we want to get the two characters into a new string, how can we do that?
+
+You just use substring.
+
+Okay, so we're gonna need substring.
+
+And we're probably going to use this length in some way.
+
+So if I wanted to care at the last two characters, what would I do with the life to
+
+minus two?
+
+Right? So what's going to happen when this line of code runs? What am I missing?
+
+Still stored in a variable?
+
+Exactly because the string is not going to be updated because it's immutable. So string, like last two. Now, if I want to put this together three times, how could I do that?
+
+Just Just come Can
+
+I just ask them with the plus sign three.
+
+Yeah. Yeah, they told me it's always going to be three times. So what if they told me to put it together in number of times? And how can I do that?
+
+Yeah, we could do a for loop. But we don't need to because they told us so it's going to be three.
+
+So I think I'll pass the test case.
+
+So we pass the test case. So that's the type of thing you're going to be doing with each one of these. Two, these are very similar to the array problems, but they're with strings.
+
+They'll take advantage of the string methods we looked at and
+
+or two string methods. So I will guarantee that we looked at all I think we did but I won't guarantee it. Take advantage of string methods to solve these problems.
+
+So questions are what you'll be doing.
+
+Sure, you are
+
+Make sure all the tests you know, the test cases passing is
+
+solving the problem is the most important thing. So valid code that passed the test case is more important than it was formatting supporting to. But then some other then having that always having the most efficient or shortest code. So, solve the problems, get the test cases passing. That's what your goal should be. Remember, don't struggle for too long. You know, we talked about last week, put some kind of time box on it so that you know, you're spending 20 minutes on a problem or so you probably want to take a break or ask for help.
+
+So I have a question.
+
+I was that I was clarifying that this actually it's pretty cool. It is.
+
+Yeah. That's right.
+
+Okay, so
+
+see, I got some stuff I supposed to tell you today.
+
+All right. So a few things, announcement type things. Unless there's any other questions. I'll give you one more chance for anything from today.
+
+All right, so
+
+So a few announcements. First one is I'm sure everyone's most of you have heard but if not, Caleb has left the program. So no longer be in the class. That was his decision just because he wasn't enjoying it. So we wish him the best. And just let you know that that's, that's the case. The second thing is that by now, all of this Coco rooms Should have a link to this j IIT video conferencing software, not software but links for rooms that you can just go in and click on to bring up a video chat with whoever else is in the room with you. So it should make a little easier than the zoom or the we're hoping it's going to make it easier than the zoom or Google Hangouts integration and Louisa to collaborate and includes should be every every room except I think the classrooms don't have them because our tables are full of all the other links. And we have zoom links in here. But all the other rooms should have them so all the stuff in the all those one on one rooms and stuff should all have a link now you can just click on it open up a video chat. They should they said they were gonna have it done by the time class was over. So you should have that now to start using this afternoon. And then, the final thing is they know that today it's 330 you're gonna see all the staff kind of disappear for an hour. We have a weekly staff meeting. So, so just let you know. We'll be back. The last for about an hour about 330. And then we'll come we'll show back up. So if you see everyone disappeared, that's what's going on. We're
+
+we're not all ducking out early or something. All right.
+
+So
+
+just a note. Oh, sorry. I don't
+
+know. We're still recording and okay with your assignments. Guys
+
+Yeah, we do.
+
+Transcribed by https://otter.ai

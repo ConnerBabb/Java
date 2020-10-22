@@ -1,0 +1,108 @@
+Book
+https://book.techelevator.com/content/component-communication.html#vuex-mutations
+
+Vuex mutations
+You know how to access data from the store; now, you need the ability to change it. This could be in the form of adding a new post, updating an existing one, or deleting one. Your first inclination might be to update it on the store itself, but that won't work.
+
+The only way to change state in a Vuex store is by committing a mutation. If you look at the store, you have a mutations object, and this is where you define each of your mutations:
+
+export default new Vuex.Store({
+  state: {
+    posts: [
+      {
+        id: 1,
+        title: 'My First Post',
+        content: '<p>This is my first post</p>'
+      },
+      {
+        id: 2,
+        title: 'My Second Post',
+        content: '<p>This is my second post</p>'
+      }
+    ]
+  },
+  mutations: {}, // MUTATIONS GO HERE
+  actions: {},
+  modules: {}
+});
+If you want to define a mutation that adds a new post to your list of posts, you'd start by creating a function called ADD_POST(). The function is where you perform state modifications, and it receives the state as the first argument:
+
+mutations: {
+  ADD_POST(state) {
+    state.posts.push({
+      id: 3,
+      title: 'My Third Post',
+      content: '<p>This is my third post</p>'
+    });
+  }
+},
+Mutations should be simple, fast, and contain little business logic. In the previous example, you're adding a new post to the list of posts defined in your state.
+
+Why is the mutation name in uppercase?
+
+This is a convention in Vuex but not a requirement.
+
+With your mutation defined, you need the ability to call it within your component. You can't directly call a mutation handler. Think of it more like event registration: "When a mutation with type ADD_POST is triggered, call this handler." To invoke a mutation handler, you'd call store.commit with its type:
+
+this.$store.commit('ADD_POST")
+To see this action, you can create a button in the BlogPosts list component. When you click on the button, a method is called that then commits the mutation to the store:
+
+<template>
+  <div class="posts">
+    <h1>Blog Posts</h1>
+    <div class="post" v-for="post in allPosts" v-bind:key="post.id">
+      <h2>{{ post.title }}</h2>
+      <div v-html="post.content"></div>
+    </div>
+    <p>There are a total of {{ allPosts.length }} posts.</p>
+    <button @click="addPost">Add Post</button>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'blog-posts',
+    methods: {
+      addPost() {
+        this.$store.commit('ADD_POST');
+      }
+    },
+    computed: {
+      allPosts() {
+        return this.$store.state.posts;
+      },
+      publishedPosts() {
+        return this.allPosts.filter(post => post.published == true);
+      }
+    }
+  };
+</script>
+What if you want to pass some additional data to your mutation? In the example above, you might want to pass a new blog post to the mutation. You can pass an additional argument to store.commit, which is called the payload for the mutation:
+
+methods: {
+  addPost() {
+    const post = {
+      id: 3,
+      title: "My 3rd post",
+      content: "<p>bbbbb FTW!</p>"
+    };
+    this.$store.commit("ADD_POST", post);
+  }
+},
+Back in your mutation, you can accept the payload as an argument and then add it to the array of posts:
+
+mutations: {
+  ADD_POST(state, payload) {
+    state.posts.push(payload);
+  }
+},
+Now, you can create and retrieve state stored in Vuex. These are the fundamental building blocks to building applications.
+
+#Vuex strict mode
+In all of the examples going forward, you'll see strict mode enabled in Vuex. To enable strict mode, set strict to true when you create a new Vuex Store:
+
+const store = new Vuex.Store({
+  // ...
+  strict: true
+});
+In strict mode, whenever Vuex state is mutated outside of mutation handlers, an error is thrown. This ensures that you're only making changes to state in a mutation

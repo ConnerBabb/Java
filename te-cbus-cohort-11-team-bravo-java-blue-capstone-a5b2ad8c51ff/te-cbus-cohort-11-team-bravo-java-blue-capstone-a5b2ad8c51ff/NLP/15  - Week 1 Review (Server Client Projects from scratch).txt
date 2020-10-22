@@ -1,0 +1,1293 @@
+Zoom
+https://techelevator.zoom.us/rec/share/58tVJbuz3TtOHZXT1Vv2QL4TQ5X1aaa8h3NP_KEMzUrlcOXqbuI_xZdwcmakqTpp?startTime=1594387179000
+https://drive.google.com/file/d/1XkOtO-tulcP-8al9ae6PaC1NidSN680L/view?usp=sharing
+https://docs.google.com/presentation/d/15g0ikA0UHyCi_vswFG0p6Eb_VzK38UedB7pzG7yxrvo/edit?usp=sharing
+So, today what we're going to do it's kind of review date, but a lot of it's actually going to be new, but related to things that we've done in the past.
+
+So the first part will, though, will be it's three questions that
+
+were submitted before I wrote this. And then one of them came in later from two different people on the pulse survey today. So I'm going to
+
+talk through it.
+
+So we're going to talk about start with, we'll start with this weak stuff. So we'll look at the display properties. There's the question about what the display properties are, and how they work. So which each of the five we now have five display properties. We started with three, but we're now the five so we'll walk through those. And then there was some two questions on the pulse survey about align content and justify content. NASA saw the There was some confusion over it as well. So we're gonna walk through that. And specifically, I think a lot of the confusion comes with flex direction. So how that works, and how, in trying to describe that again. And then we started talking about yesterday at the end of the review about the principle object. So I promised that we go through that in more detail a little more detail today. And try to make a diagram on how that works. And then once we weed through those, we're going to walk through it's mostly more module three material, which was the highest highest request, but it's not just the material, we're going to build the project from scratch. So we'll get rid of after we go through this first few things, we'll get rid of these projects and Eclipse and start with just a fresh workspace meaning nothing at all. And just start with how, when you just open Eclipse, and there's nothing there. How do you get to an API project fully out and then how do you About a client project, because they're very different, putting out a Spring Boot project compared to a just Java project. So we'll walk through, we'll go through both of those, and reviewing some of those topics as we go. Since we'll have to. And then, as part of that, before, we can do that, we're gonna have to talk a little bit how to go through a high level review of this tool called Maven. Because in order to understand the projects and how they're going to be built, we have to understand what Maven is doing for us. So let's go through a high level overview of what that is and what problem it's solving. And then if we get through all that, and there's time, which I think there will be, then we'll go through, we'll have just any open questions that remain or you have. So So with that, let's talk through these three, kind of three questions that came up. So the first was
+
+around the 3d display properties.
+
+So we're actually there were three at the time in line. And in line, obviously there. We started out with block,
+
+inline,
+
+inline block.
+
+And we now have two more grid and flex. And I'm guessing that most of the question was more around these three, since those are the three that we have to set, because grid in flex we set and all they do is set a flex or grid container to start working with and then we're working with grid or flex. But these three actually change the flow of the page. But they all change the flow the page, but they change it more directly. So the difference is that four is the way they they flow on the things fall on the page and what kind of width they take up. And then the third thing is how they're sizeable how it can be changed. So block lines up on the page by if we had a well, if we took this document is our page
+
+and we put three block elements on it.
+
+So we define something like
+
+three divs.
+
+And like this, and we set these three divs to block and let's put some content on them as well. So what is put a, a, b, and ABC.
+
+So if we had this, and these were to find this block, which is
+
+Then they're going to take up
+
+each div is going to be placed on the, in the container, it's going to take a 100% width of the container. So in this case, if they're just right if the parent element of the page, the whole container, so there are 100% width.
+
+And
+
+they're going to start at one a new line. So they're going to stack on each other like this. And then inside of each, they're going to have no there.
+
+The content we gave them
+
+and these are going to be sizable.
+
+So if we want to set the width of one of these to a particular size we can. So we can say that we want this first one To be a with a smaller width and height. And if we want to set that, we can do that. So they're sizable, they always start on a new line, they take up 100% with their container, if they're not sized. So that's what blocked us if we applied inline to the same three things.
+
+So now we change these to inline.
+
+What am I going to do? Is the first one's going to line up. Actually, let me start with a text user.
+
+Hey, Brian. Yep.
+
+So if you set your A to the smaller width, would your A B then go up to the next line to fill that space? Or would it stay on the second
+
+it would our block with block it'll always stay on the next line. Okay, cool. Thank you. So
+
+With in
+
+Yeah, that's that's a that's a good, good point. So with block, if we set sizes, we would end up with three different sizes. we'd end up with the first one might be like this, the second one, maybe like this and the third one like that. We set them smaller than the page. This wouldn't be ended up
+
+with inline block with inline.
+
+The first one
+
+ended up with
+
+aid would set side by side.
+
+Each one would take up
+
+just the amount of space needed for the could what it's taxed. They're all going to be in the same line. And even though I drew them different sizes, we can't change that. The size. So they're going to flow together, and they're on sizable. If we run out of room, then they'll wrap, they may or may not wrap down depending on our container set. But they, they just flow in a single line, we can't say the size themselves to the content. So if you think about a example of an inline coming to us, we use an anchor tag to make a link. It sizes itself to the text, right, there's the size of the anchor is the text when we wanted to make it look like a button yesterday, we had to change it to the next one inline block, so that we could put size to it and make its background larger. Because inline blocks going to work exactly like inline, they're going to flow side by side. But with inline block, we can set the size. So if we want the first one to be larger, and the next one to be size and the last one to take up more we can end with these. If the page would be too small, they will float down to the next line. So block will always be stacked in line always. So inline works like text. It can rap were blocked or not. an inline block is just a version of inline allows us to set size
+
+and then quit and flex do the same thing but they control the flow by their own their own thing.
+
+So I hope that answered the question that was
+
+asked for that. Alright, so the next one came from the pulse survey that's about a lot from yesterday from Flexbox. Align comm items and justify content and I think the confusing thing Think this to themselves are actually fairly straightforward, but then when we get flex direction involved, it gets difficult. So, um
+
+so when we have in Flexbox
+
+This is why was using this simple to see.
+
+We have the items inside the container.
+
+And we have two axes that exist on the container. The first one is the horizontal axis. Well, I'd say the horizontal axis but it's not really it starts is the horizontal axis. But it's the main axis.
+
+The second one is
+
+The cross axis
+
+I guess, change the text to both, but, so, this one here
+
+is our main axis
+
+and this is the cross axis.
+
+So justify content changes
+
+the main axis.
+
+So justify content
+
+is changes the flow on the main axis.
+
+So that means that if we
+
+as we change things
+
+which you change justify content, we're moving things and telling them how to
+
+Change around this axis.
+
+And now
+
+a line items
+
+and just the flow
+
+on the cross axis.
+
+So align items changes it on this axis. But now we have flex direction. So flex direction seems like it's taking
+
+these boxes. And
+
+you know we have them on the main axis and we change them to change flex direction to column, and it changes from this when it's in the default row And when we put it in column now we end up with
+
+this.
+
+But what's really happening is something a little more complicated. And it affects justify comm it doesn't affect justify content in line items, but it affects what they they appear to do does the what flex direction does is not change the flow really from column to row, it changes the main axis. So the main axis we say flex direction row because the main axis right now, when it's like this is defining what we traditionally think of as a row. Because normally we think of columns and rows or columns or vertical, and rows or horizontal. So by starting by the default row layout, they mean axis is defining how items are working on the row. When we change The column flex direction column.
+
+What it's doing
+
+is it's swapping.
+
+It's turning the accesses.
+
+So, now the main axis
+
+is
+
+the cross axis
+
+sorry, let me let me try that again.
+
+It's changing the main axis. So now,
+
+the main axis moves
+
+from here and becomes the column.
+
+So now the main axis is here.
+
+And
+
+since this is the main axis, because it now the main axis is representing a column and flex direction column, the cross axis becomes The horizontal row axis. So now when we justify content, we're still changing the flow in the main axis that hasn't changed. But what we're doing now is changing the flow here. On one more justified content, more aligning items is still changing things on the cross axis. But now we're changing it here. Because the axes are swapped. So when we think flex direction, that we think of the items going from a row two column layout, what we're really doing is swapping the axis we're changing, we're deciding the flow within the main axis is going to represent the rows or the columns in the layout. Which is even more confusing since flux. It really doesn't have rows and columns. But it just has these two accesses. So it's really going from it Probably a lot less confusing, they would have caught a horizontal one vertical. But that's really what it is. They're saying it starts out the main axis is vertical or horizontal. And when we change the flex direction we change to be vertical. The cross axis is always the opposite of what the main axis is. So justify content and align items don't change things horizontally or vertically, they change things on the axis, whichever way it's pointing, or justify content, always the main axis, whether it's representing a row or a column at the time, line items is always on the cross axis, which is why yesterday when we took the item, we had those buttons, and we wanted them to lay out along the bottom. We switch them to a column layout and ended up with basically what looks like a row. So
+
+does that help with Okay,
+
+Brian, I just got a quick question. And I guess I don't like it seems like there's like a starting axis for when you would use like row or verse versus column reverse. And I guess I don't really understand what like I'm trying to think of a situation where that would actually be used.
+
+So the Yep, so we're reversing column reverse are the same you either you're picking the main axis and then you're picking the order. You want items, your flex items to appear. And so if you have
+
+three flex items, see this
+
+and we had three items in our flex container. Let's say we have a div three Jessica. I just used to write them over there. Now they can't
+
+So we have three dogs. And
+
+let's say they're there, one, two, and three. So when we have a regular, let's say row, the start with, we're going to end up with them displaying as one, two, and three. If we row reverse, then we're going to end up with them displaying as Three, two, and one. So that's all it does is say we want to reverse the flow to the opposite if, when we're displaying. When we have our main axis as the column, then column reverse does the same thing on the column. It stacks one on top, normally But, and then goes, so it's really the row and column reverse are pretty much row and column row and row reverse and column controverse are pretty much picking whether we want to go, essentially ascending or descending order for the items, just since they don't have that sort of like content, like know, ABC or 123. It's can't really call it ascending or descending, but that's really what it is. It's ascending or descending for the way that items are in the document.
+
+Okay, I was overthinking it the way you explained it makes a lot more sense. Thank you.
+
+So
+
+Other questions? Okay.
+
+So the next
+
+thing is, there was a question yesterday, we started talking about my set, I would describe it a little better today, around the principal object
+
+API's
+
+so on the server.
+
+I don't know if there's any code in the server and not
+
+count controller.
+
+I think this is somebody's Capstone. That's okay. I'll just change it to do what I wanted to do. I wasn't sure what this was I just said, Oh, it's, it's the capstone project. That's what I needed.
+
+So better request mapping actually.
+
+Can you talk about that? Because it sets it clear to request mapping
+
+and request mapping.
+
+And I was gonna have the path,
+
+something in a method
+
+and in this With a funny request mapping, we're defining a method. We're telling Spring Boot, or actually, we were correct. We're telling spring web MVC, which spring boots using, that this method is something it can call. We're making it available. We're kind of cataloguing it for spring web MVC to use. And we're saying it's going to return some kind of string, and it does something. And when this path, whatever this is, so our path is in the URL, then spring web MVC calls this method and understand the principle object. That's actually an important idea that what's happening is that when the request is coming in
+
+to
+
+our server
+
+There is these kind of two portions.
+
+Here. So that was the server we have
+
+spring.
+
+And then we have
+
+our application.
+
+So we'll just call these our controllers.
+
+And when we have a request coming in,
+
+it
+
+comes in to the server, the server passes it to spring. And this part of spring, the doing it here in our session called the dispatcher servlet. And it looks up the controller to US based on this path, and then it calls this method. So it's been told by this thing called the mapping handler that If that there's this thing called the account controller that has the rest controller annotation. So it's a controller. And inside of it, it has a request mapping that if it sees this path in the URL, so if somebody's asking for that resource to call this method in that class, so the dispatcher servlet, in spring looks at it and says, Okay, I'm going to call this method in that path, but we have some options that we can give it. And this is where the principal object comes in. So the principal object only exists when we're using security. It the prince, a principal in security is the thing being secured. So
+
+if we have our principal
+
+if we want to get
+
+see it's coming from Java security
+
+so with this video, Qwest. If there's a JW t token on the request, or some other type of authorization, it doesn't have to just be a JW t token. But in our case, it's JW token. So it sends the JW t token. And here in spring, it takes it.
+
+And it builds this object.
+
+And this object is the principal object, and it contains inside of it, the username. And so all the information about the user that's needed. How does it get that? It gets it from the token? So if we remember let's go back to we find a
+
+cheat sheet every t
+
+token. T.
+
+All right. Sure, I can find a quick web decoder that thick swimmer used in classic So when we have a token, this might not be the one. Yes. So we have the token. This is what we're passing around, right. So the token, decoded, decodes into three parts. One information about the token. So it tells us who what how it was created, and what type of token it is. And then the last part is what's called the signature, which allows the server to verify that it's when it created the token. But what's important to us it was important to the principal object is this middle part, which is called the payload itself, the data and they contain three pieces of information and every token, the subject, the name, and the so the subject for us is the username. And then it is the sorry, the time stamp of when it's going to expire. So what's really important does is the sub, that's the user ID, essentially. And the token can contain other information, if we want it to, we can put it in there. But they're all going to contain the sub, this one contains these three pieces of information. So these three pieces of information are what's going to become the principle object. So in this tokens received by the server by spring, it uses the signature to verify that it's the one that created this token. And once it knows that, once you verified that, and that's basically through a hashing algorithm. Some similar the way passwords work. It has a secret that only it knows that it can hash the same information that's here, using this algorithm and get this exact token. And without that, essentially, code piece, that missing key. You can't generate this exact token with this information. Only the server, the server regenerates it based on this information. And then it says Was it the one that actually generated this, if they match it, it knows it was. So then it takes this information and unpacks it into the principal object. Because this information represents the user. And so now has that principal object in spring, and spring securities is being passed around.
+
+So when that tokens created is when they pass in their username and password, that's when it's being created. Yes. And so the username gets pulled from that. And that's how it knows that okay, because I didn't know if it was going to the database or something,
+
+it would be going to the database, the username necessarily may not be passed from the login when you do a login, it goes to the database and retrieves your user information. So for instance, in the server here, if we look at see if I can find it
+
+Could be a legitimate meaty stuff it's gonna be
+
+probably an entry point.
+
+No. I just think if I don't know how it's working, then I would definitely find a way to use it wrong. And it seems like a pretty important thing. I don't know.
+
+Yeah, I'm definitely confused on where the JW t token is getting the payload information from.
+
+Okay, so what's me run this server?
+
+comment this out.
+
+And I'm assuming this project is gonna run.
+
+So I don't know why I had it in Eclipse. So
+
+I don't know if I was troubleshooting something or if it was.
+
+If it doesn't run, we'll run. Finding that one. I'll find one that does
+
+Let's see why it's doing that.
+
+During this hard way, I can start from the controller. So
+
+stop
+
+and rerun this in debug
+
+So when we do a login
+
+and we're not gonna see all be able to see all of it being built because most of it's being done actually by string string security. One of the big things about security and doing anything with security, including JBC tokens is we don't want to rebuild it. That's one of the big roles of security is never build your own security. But we have to build pieces that tell it how we want our our pieces to work like where our usernames and passwords are stored and that we can see that stuff part working. So a framework called spring security's doing another piece called M. Jackson, J WT. Those two pieces are doing A lot of the work.
+
+And those are pretty much the standards of
+
+for using that. So now we have the server running debug come on here and we should be able to go to 8080 and do a login.
+
+And we don't want to token yet.
+
+We need to do a post.
+
+Funny. Sound.
+
+I think it was user name. I think
+
+user I think was one
+
+password. So
+
+I think that's valid information.
+
+So it sends to the server, the login request. And this it gets accepted by the server as in the authentication controller This is part of part of the portion you do have to build because you've got your server has to be able to handle the request. The security can't give you that. So it starts out by it's going to create this token object.
+
+So let's see if we can step into that.
+
+Maybe empty.
+
+Okay, there's nothing there. So now it's going to go to this authentication manager builder, which is going to, so it's passing it this token object that has the username and password. If we look at this authentication token object, it has the authenticated it's been false. So this is what spring is using. So spring security's library. It has the authorities the credentials is say it's going to be a password and that would be in there. And then you can see here it's starting to build the principal, the user. It's user, not because it's the user, its user because of this right here. We look at the principal object. Right now it contains the just the word user name. So as we continue through this, it's going to build this authentication. And actually may not be able to debug some of this because some security code has stuff. There's these things called hooks in the debuggers. And you can actually make it so it'll never return. And some security in hashing code has that built in so you can't step through it.
+
+Okay, that's been done. Now we have this authentication object,
+
+which doesn't have much but it has the principle as well.
+
+And this is going to set up the context for the token which is basically going to be
+
+got information. And I think,
+
+at this point,
+
+so one of these two points, I think it was at this one, we didn't see it. But what it did is it went to the 10 mo database to the user table, retrieve the password, and the hash and the salt, so it could get the password and also got the user information, the rules and things like that, that may be happening. The next step is simply step into this one.
+
+So it's the context
+
+gets just setting things step out of that. Okay, so it's just set that up. Now it's going to create token. So this is calling the token provider, which again, is part of spring security. There's a wrapper around it so we can probably see some of it being some of it working. So let's step into it.
+
+So it takes These authorities, which is basically
+
+let's actually get the authorities and we can see him.
+
+So that gives the role. So it got this role from
+
+the database.
+
+And then it's continues. So this is checking the date. So it's not been set to. So it's going to create a new one. So now it's creating the token date. That's the expiration date. So part of what your code responsible for if you're building it as response for how long what you're taking it took us to exist. And now it's going to call this builder, which is part of Jackson JW t, which is going to set the subject, which is the name the claim, which is something that we had in ours, the O RL and we'll look at that when we're done.
+
+And that is the role.
+
+It's going to assign it, and it tells it how to sign it. The secret key so we can see if we can see it, we can see that actually, we're getting a key from Java x, security, security, security. And then setting expiration, which was this data is created. And this right here is going to build and return the token. Again, that's coming from a security library. So
+
+and we step through
+
+each piece.
+
+And that should be turned back to
+
+Yeah, there could maybe, maybe not. But what's happened there, it's created the token and, or it's creating the token. From the information the user sent, and then we retrieved from the database So our code decides gathers the information together about the user. And then we pass it to the token generator. And there's a good chance this, we may not be able to continue without hitting past this line. But then it gets, it generates the token. And it creates, we saw it already started creating that principal object.
+
+The time it just contained the user.
+
+So I'm going to stop this where we started because I don't think it's going to return
+
+from that and what we started in.
+
+So I'm going to get a token so we can
+
+decrypt it
+
+and so was the one There was only that rest controller, right? That was set up. Yes. And then everything else was just a part of the Java security,
+
+or the rest controller setup. And then some of these classes have, we looked down through them by them or just interfaces, but they have overrides in them, where it has small pieces of information like this is so if you're using this is for JDBC, access denied, it's basically saying, you tell us how you want to handle this if something if the tokens invalid. So in this case, it's a component because it's going to inject it into something and it's an override is his handle it? Here's what they're going to give you. So you can handle it. This one says send the error SC forbidden. So if you decide you want to send a different error, like something more custom you can you create it.
+
+Entry Point is something similar.
+
+So this actually creates the 401 error, so the author so entry point, the authorization can paired to the authentication versus authorization error.
+
+Security utilities is
+
+some extra. So here, it doesn't know how to get. It doesn't know what username is for us. That's something that we we define. So this is gives it a way to get the user in each of these pieces as we go down through these. You can see the main thing is an override from something that was provided from spring security, where you provide your own way of, well, here's how you load the username. Because spring security doesn't know what our username is. They don't we don't know we, we call it internally that we don't know. They don't know what's where it's at, in our database. They don't know about informations which provide these pieces that they're going to call, just like our controllers, we just provide pieces that spring web MVC calls, it's the same idea. So all of this code is around providing those pieces to to libraries want to frame It's one to spring security in a second one to a token base one that's being used here called Jackson JW t that makes tokens a lot easier to work with. So it started. So when we pass it that it's going to these pieces of code, these overrides are going to go and do things like go to the database and get the information, get the salt and do our hashing because they don't know about that. We're going to tell them, hey, this was valid, the password was okay. And then send it to those like we saw, send it to those pieces that start building out that principal object and then start then send it to them, create the token, and then they'll give us returned to us. And our controller which we have to provide because they don't know how we use this. You don't have to have a controller you can do this and you know I see a lie if you wanted to. So our controllers Once it calls it gets from the token, right? Here's where the token actually is at this point. And then we put it in the header, and respond it and respond back with that. And the login response of the token and the user object, our internal user object.
+
+And the response to the login,
+
+which is
+
+so all this here
+
+is not standard. This response is not standard that's created by the controller. That's what the designer of this application decides they want to return and how they want to return it. Many applications, just return this token in the header of the response header. That's common. A lot of them will return it just as one line, just this with nothing else. But this application decided to return more.
+
+But let's look at This token though.
+
+So with the token, we go back here. And
+
+so this decodes our token
+
+to the token we're using has three pieces, there's multiple pieces that can be here, to them are the same the sub, that's always going to be the user ID. So in our cases, the username, the same. And then this one has auth, which is the role. And that can be. So this token, can this part of the token contains these three pieces of information. And this goes back to the server, it's going to look at this token the same way verify it's the one that created the token with a signature. And then it's going to build the principal object from this information.
+
+Make sense so far.
+
+So now back to the principal object itself. Now we have spring has the Principle object. And it has its information from the token. So if we want this principle object in our controller, which we often do, Spring has a bunch of different objects around the request and the response and details that are going on the parameters and all the details about what's happening. But most of the time, we don't care about those things except for the parameters. And that's what we're telling it the different parameters we want in our arguments. But if we want one of those pieces of details that spring has like the principal object. Then we tell it in our controller, and get back to
+
+we tell it, it's an argument. Here's the principal object. And when spring sees this, when the framework season says goes to call, do something does something. It says Oh, does something needs a principal object why Have a principal object. And there's actually a set list of objects we can request. So Spring Boot knows, or spring web MVC knows that if we ask for the principal object, it knows what that means. So it looks at the signature of the method and says, okay, you want the principal object I, that's one of the ones I know I have that. And then when it calls this method,
+
+it passes
+
+this object into our controller, in our controller has that principal object we saw being built. And that principal object has the username in it, when sometimes some other information but usually just just the username, it doesn't have the password. It only has the username. It generally doesn't have the role or anything like that, or the user ID because that's not that's our stuff. It has the username, which is generic to all logins. And now in our code here, we can use the principal object to get the username, which allows us to know which user was identified in this token. And because they were identifying this token, we know that they went through this process. So that means they're the current logged in user, the users that are working on behalf of in the, because of the token signature, the server's confirmed that they're valid, that they are who they say they are. So we know we can trust the principal objects definition.
+
+So does that
+
+we kind of went through two different things related things does that answer?
+
+So when you're sending it from the service to the controller? How does it know it's valid? I'm sorry. So we did it, we did pass the token through the header, right. So it can like compare those things. We pass
+
+this every time now when we want to do a separate new request.
+
+We have to put it into the bearer as a bearer token.
+
+And when we do that, If we look, where's my headers?
+
+Why is it show me the hidden headers.
+
+But when we do that, even though some reason it's not showing me the hidden headers
+
+there is a header
+
+that looks like this
+
+authorize
+
+occation and
+
+bear and then our token
+
+there's a header that looks like that, that this created for us. And then when so that entire tokens in the header. And then when it gets to the server, the server pulls this out. The token out. embarrassed. How's it it's a token Because there's only two types of authentication, things we could use, but that it takes this and essentially, and decodes it like this. It takes this information along with this algorithm. And then it takes the information here, this hashed information, and it has a secret key. So this is basically encryption. And basically it is encryption that we talked about a few weeks ago. So it takes the secret key and encrypts it hashes this information again with the secret key and sees if it matches this token again, if they match, then it knows it's the only one it could have only something with that secret key could have created this token. And since we assume only our server has the secret key konica password Another type of key, then we know the server knows that it's the one that created the token. And if it's the one that created the token, then it knows that this information is valid. Because if you remember from hashing, even a small change, even with single character, even that extra space, drastically changed the hash and encryption. So when it sees that it's different, if any, there's been any change at all to this payload, then it won't generate the same, the drink very different, so it knows that somebody tampered with it or generated it someplace else. So each server because of that secret key knows which tokens it's generated, or any other server, you want to give that secret key to can verify that they're part of our company or part of our process. And then once we know that, it's the same as we're saying, okay, the users already proved there. They are saying the art so work on their behalf.
+
+So Basically every time we just want to send that principle and check it somehow,
+
+we don't. Again, that's one of the things we don't really worry about spring security does that for us, after we have that initial setup, when so we send this every time
+
+I maybe I'm answering the wrong question.
+
+Yeah, I'm mostly asking about like in your service, because like, we didn't send the principal at all. So you have to send this principal. So it has something to compare it to, so that we know
+
+what you have to send the token. So that it has something to compare it to when it does, the way it represents. The user is this principal object. So now there's this principal object out there in spring that has the user in it that are identifying the user is currently and then we can request it and then use use that to get the user to find out who was in the token. And then we know at that point, that's who was logged on. So, so yeah, we have to send the token with every request. But we don't have to do that when we put this pre authorize on it. annotation on it. Spring security will intercept, what's called intercept the request. And it will look for the token and verify the token. That's what it's doing. It's saying, before you let anything come to this controller before you call a method in here, have spring security, basically verify the token. So we have to, we can only use the principle if we're in this process of authorization. If we're unauthorized, then the prince logic actually will still be there, but it's not gonna have the user's name if it's a metal. So
+
+Alright, so does that answer the questions on
+
+sinks I that makes a lot more sense to me.
+
+The
+
+essence If we open the run the server and then we if we had multiple clients running the app, that would work, right? Yes, what we do is just give them all the same secret key
+
+or have a shared security plates, they all go check, which is probably the more common so we can have multiple servers getting the same token. And as long as they either have that key or have someplace, they can basically ask and say, Is this okay? Then they can use it. In fact, it's common to have a security server that just generates tokens and then model on their servers that actually generate the content. But they can validate them. And they can even get more complicated with with two way encryption and stuff like that, but we won't get into for that exact purpose. Yes, you can use it across multiple servers. In fact, that's one of the problems AWT was solving. How do you authentic ad across multiple servers?
+
+The questions
+
+could you use you could use, you could run multiple multiple clients can be using the same server though, right? Yes. Yeah. And that we each have their own token. Okay. Okay. Because that just means that there's a lot more going on in the background. Yes. So one of the things we, we kind of miss with or don't see, with these applications with these API applications is we're using them one user at a time. And that's not what really happens. You know, you think about sites like Amazon, which I always use because it's so has such a massive them and Google are so massive that you don't get much larger. You know, they they have hundreds of thousands of users probably on at any given moment. And Each one of those so but they only have probably one set of API's that support that. And, but what they do is they, each one of those one set of code spawn multiple instances, so multiple copies of itself, that's actually a whole nother topic called threading that
+
+is for a few years down the road.
+
+Okay. And so these, these aren't meant to be running in isolation. And some of the rules and stuff around the way we do things is because when you get multiple of them running, they start conflicting. So if you follow the rules, they won't, if you break some of these, some of the rules around the controllers, they end up ending up in complex, meaning the users can see each other and things like that. Again, that's much more. That's a topic for a few years from now. Gotcha. So
+
+threading is not
+
+We could spend a week on that.
+
+Or more
+
+so
+
+so that answer all the questions are on principle and okay.
+
+So well, I guess we got made it to 1013. So let's uh, so the next thing I want to do is actually do the projects and there, though much quicker than the old projects, which took two to three hours, these are much quicker. So I did it all together. So let's take a break, we'll come back at 1025 or 1025. And
+
+start on those.
+
+There was a comment of the question of, why would you use like, reverse flux reverse and When things are static, it yeah, it seems kind of silly, right? Just change the page. But next week, we're going to make all of this dynamic, we're going to make it so we can apply CSS anytime by the user clicks a button, and we can change the CSS, which means we can use things like flex reverse to do things like change the order of a list being displayed very easily. Or so that's one way to print out a lot of this stuff with CSS this, say, or especially with Flexbox. That doesn't make a lot of sense, is because once we apply JavaScript to it, it becomes dynamic. It makes things really easy, like moving things around the page. So there's a whole nother all this becomes an average next week, CSS HTML. Alright, so the next piece I wanted to do was take a look at building out some projects from scratch. And before we do that, we have to have a quick look at this tool called Maven, because it's what's going to allow us to do it. And mainly what problem is solving. And we can kind of look at how it works as we go. Not in detail, but as far as the projects. So what Maven is, there's a problem in Java. And there still is Maven to solves is one of the solutions to it. If you look at these pieces that are easier your every project now has all these things called JAR files. These JAR files are libraries or frameworks, other Java code that this project needs to run. And Java loads these JAR files from this thing's called the classpath. Which means that we put them to someplace in the system and we tell Java where these files may live. Which seems really easy and is really easy until You end up with this problem of that, when you want to use something like Spring Boot, you also have to make sure you have the correct version of spring core, which means you have to have the correct version of log for j, which means you have to have the correct version of c'est la vie uses Apache Commons. And then you decide you want to come back in you want to add j WT, these JDBC libraries, and they probably use log for J. And they may or may not use the same version. So there's this problem with Virgin management in Java. Since you're just putting things in the folders, you have to when you add libraries, you have to figure out essentially
+
+what we
+
+all the pieces we need and what versions there you'll see there's a version by each one of these 1.23 1.73 in each one of these requires another piece that is the right versions. So for years in Java, there was this, you spent almost as much time sometimes as much time managing these libraries. In fact, it was a whole career path, that as you did writing code, in fact, one of the startups that Steve and I worked together I set by him, right, we sat right beside each other. And I watched him for two weeks trying to figure out the right versions of create the right class packages for us the right set of library so we can run our project with what with all the tools we wanted to run. And it was really it was two full weeks, eight hours, probably more like 12 hours a day. And I'm sure he was doing on the weekends as well. It just pure that's not because it's hard to pick these it's hard to get the right combination. It's It's frustrating and every project worked on pretty much had the same type of thing going on. So Maven came, Maven fixed all that. So Maven allows you to build this thing called the palm x or gives you this file called the palm XML. That's what's in all these folders. And instead of going and finding all these and putting them all over the place, and then pointing the class putting putting in the classpath and checking the versions, you go to the palm XML, and you say, you tell me even, I want to org spring framework boot, and I want this and I want Jackson web, JSON Web tokens. And I want Postgres and then it goes out and it downloads all the pieces you need. Because each of these authors, they basically list out what they need and it has this giant catalog of all these pieces, and how they fit together. And it pulls everything you need and it creates them for you. here. So this was a JRE system libraries, those are the ones that every job, that's Java itself, the ones called Maven dependencies are all the stuff. So this POM file generated Maven, getting all of these files. So they come from the web, there's these things called repositories on the internet. And when you slow the project, the reason it takes a while sometimes is it goes out and it has to download all these JAR files. But Maven also adds an extra piece. It says, Well, if we have if you have 10 projects using spring, boot starter JDBC 2.3, point one release. Why do we need to download it 10 times? Well download it once and everyone can share it. So it has this library, the shared library of all Java applications on the system. That's why it gets faster. After the first week or so the court then started getting faster and faster because it is we hit each module. The first projects take a little while under them the later ones because it has to get the new stuff. But once you have it, you don't have to get it again. So maybe it got rid of that problem completely. So its core, it's a dependency, it's what's called a build system. It and the building is controlling the way Java sees building the bytecode. And it's also dependency management, allowing us to manage dependencies here. The build system portion is more peer, we're going to define things like the version of our project. The name of the project, this artifact ID is what shows up in several places, but one of the places is here. And then the group ideas its default package is going to be in. So it made all of that really easy. And there's some competitors in Maven now like Gradle, some other ones out there that they all do the same thing and they work amazing. Well, so when you build a project from scratch, you have two choices. You can either do it the old way where you manage a bunch of files. Or you can use a tool like Maven or Gradle. Or there's said one of the other ones. Maven is by far the most popular one right now. And it has been in things like Gradle. And I can't remember the name of the other big one. Merkel Merkin, something very similar to that. Or something.
+
+those tools are based on
+
+Maven. So they work very similar their palm, they don't have palms, their files, the files that configure it look slightly different, but that's the big difference. But the idea is the same. In fact, a lot of I think all them still use the same repositories. So that's what Maven does. So all the projects we have here are Maven projects. Most projects you run into will be Maven projects or maybe a great or Merkin that's the name of it. Merkin projects.
+
+Maybe not, but
+
+but they're all gonna have the same idea, this idea of a configuration file like the palm that configures the dependencies, and then they go grab, get the dependencies for you, and set it up for you. So that's what if you only need a few things like just the Java core language like module one stuff, then you can just go choose New File, New Java project, like we did a few times in module one. Everything works because we don't need extra stuff. But if you need anything more, even something like j unit, J, you need to download one JAR file and I know there was with the testing problems
+
+when
+
+somebody went in
+
+I think somebody solved the problem by getting a jar file and putting it in the build path. That's that's the Old South project of managing these fences. sees. So we're going to use this and it's good, it does a little bit more as well. So there is no project structure in Java, source, main Java, source test Java, all of these libraries we use, they're not required by Java. Instead, these are enforced by Maven. And you'll find that the other systems do the same, the same thing.
+
+They enforce the same
+
+structure. Because if everyone enforces the same structure, that means as we go to project to project it used to be to go to the project project trying to figure out where the code was. Now you get a project project went for source main job and there's your source code source test job and there's your Java code or your test code. So it made it made it consistent across projects. So before we use it, that's kind of Crash Course in what it is, it can do a lot more than what I just said it's been expanded to do a bunch of other stuff. But that's the core what it does. But I want to look up two copies of Finder.
+
+Because sometimes you'll run into problems with it. So Maven keeps its files inside of a hidden folder inside your user directory. So in Finder, if we go to actually there's a shortcut, the second
+
+command. Nope.
+
+I forgotten. All right. Somebody last cohort showed me a shortcut, like a back power user to show hidden directories in Finder and I forgotten it already. It's too bad. It was really useful. But you can also go to go
+
+Google it and figure it out.
+
+I googled it.
+
+Before multiple times, they couldn't figure it out. And they like were like a Mac like super user. And they're like, Oh,
+
+no, don't Google it, Google.
+
+My phone was googling it for me.
+
+So I'm
+
+going to go to folder. And then we can then your user directory dot m. And you see it appears now. And there's this repository folder. And this is all the libraries that my copy of Maven is collected over.
+
+Hold on. Why did you go we go to our username, and then
+
+if you go to go, go to folder,
+
+and then tota slash dot, dot m two, oh, you should never have to come here. I just wanted to, unless you run into problems, every so often, you have to come to eat something. It's pretty rare. But I just wanted to show you where it's at. So Maven builds these library.
+
+Let's, for instance, org,
+
+Postgres SQL.
+
+There's all the versions of Postgres I've had. I
+
+think that's the latest one. So there's the actual No, not that there's the actual Postgres vendor driver. So every project I have on this machine, it can use any of these versions of Postgres driver, and it has a jar file, all the rest is around, supporting that and around those different versions telling it what needs to go together.
+
+So we see springs here, Spring Boot, and all of its pieces so that it's stored in this directory. Instead you
+
+should be Command Shift dot Thank you.
+
+Yes, thank you.
+
+Fine, I'm glad to once again have that I need to write that down. So
+
+so um
+
+that's Maven but
+
+it said it kind of at a high level,
+
+but we're going to need it to build a project. So to build a project, the first thing I'm gonna do, I'm going to create a new workspace. My go to file in Eclipse files, which workspace and go to other and let's name it something like M for review. If you're following along and you create a new workspace, it's going to remove your dark theme and change all your properties. Just Just a warning, your old stuff will still be there you have to switch back to it. That same place but
+
+and I'm sorry, you said you want to file in Eclipse you went to file and then switch workspace. Yes.
+
+Other,
+
+other and then name it.
+
+Okay.
+
+And it's bugging out. So to build a Spring Boot project,
+
+we're going to not start here, because that's part of what Spring Boot does.
+
+So
+
+is that Yeah, you can set up a clip so you can change it, you can move your properties through different workspaces. There's a way to do that. So you can have like, new workspace defaults. But what Spring Boot did instead of having to build that palm file, manually, which we're gonna have to do for the second project, if we get there
+
+is you
+
+it has tolls that created for you. And that's one of the one of the things Spring Boot provides. And so I'm going to go to the spring initializer which is provided on spring.
+
+And this is a palm building tool
+
+for Spring Boot.
+
+And so you can do it either Maven project or Gradle, which is Maven, Java.
+
+When to keep
+
+this keep it at 2.31. That seems to be the latest release. snapshot means that it's still in development. So it's time to preview release.
+
+So
+
+group is in the palm is going to be the default price. The default package name. So I'm going to change to this comm dot tech elevator artifact is going to be the project name. So that's going to be the name that shows up here. It's also going to be the name of the jar file. So let's call this something like
+
+M for review server.
+
+Description and name a description really aren't that important to us or internal for displaying a documentation. package name, though, it's what is going to set as my default package. I don't want it to be this, it's common for it to be the group plus the artifact. And I want my just to be contactable later. And then I can choose to be a jar or war. So a jar file is one is a file that runs standalone. A WAR file requires a server to run with Spring Boot is going to have an internal server if we choose jar and that's what we've been working with already. So we're going to keep a jar. We can choose our target Java version. I want Java And then this is where we can add dependencies. So we're gonna add dependencies
+
+and would add the Spring Boot tools
+
+that just make some things a little easier to use.
+
+And spring web, that spring web MVC, that's what allows us to API's.
+
+I'm going to use, we went database so I'm going to define JDBC
+
+so what spring data JDBC spring data JDBC is the spring JDBC framework that we used?
+
+Was he really Postgres?
+
+So,
+
+someplace in here, I think there's a list of
+
+database drivers.
+
+The Postgres driver, and if it doesn't have something we need, we can add it later. These are just kind of what's called starter kits. So it makes it easy to Set up the beginning structure. But then if we need extra things, we we add them manually. Let's see if we want that. We also have validation or regular projects. So let's find validation. And there's a plugin for Eclipse that allows you to do all this inside of Eclipse as well called the spring tools.
+
+Right, I think they get, right. If you type in a search bar, I mean, it's could be easier to you know, find what I'm looking for. But then I can scroll through and you can see all the things that are available.
+
+That actually no, just
+
+Yeah, yeah, there's um
+
+so part of the reason for scoring was so you can see that there's a huge amount of stuff available.
+
+There's validation.
+
+And that should give us everything we need. There's security too. I'm not going to add security because a second we add security. We have to have the JW t system. I've set up and that's, that'll take more than the rest of today.
+
+So we're not going to add JW T.
+
+But this will give us enough everything we need to build an API and connect to a database. So everything about the security portion of the whole cord and that is click Generate.
+
+I can actually explore it too and see the palm file is going to build
+
+and when it generates it downloaded the zip file, so I'm gonna have to go didn't ask me where to put it. So I have to go get it and put it where I want it. I'm going to move it to the lecture final back end.
+
+And then I'm going to unpack it.
+
+Mac, I'm supposed to stall. It's doing it okay. Because this click on it, so that we have our project. If we open it up, there's our project. So I'm going to eclipse
+
+and
+
+imported Maven project.
+
+Anything after mutation Brian, no validation was the last thing we added. Just making sure
+
+Java materials module for you.
+
+back end.
+
+And when you're importing, you import it from the palm XML.
+
+Can you see right here where it's importing Maven project, it's going out and seeing if I have what's needed. Proper versions in
+
+my empty repositories and if not it's downloading
+
+and then it's also building out all those hidden folders you see being created
+
+figuration problem. Okay know what that is.
+
+I think
+
+where did you get to the Maven project? i? I didn't see that. What do you um, because it shows this like a clip screen. Oh, it's the welcome screen I probably shouldn't start there.
+
+Oh yeah, we want to import just like you. Yeah
+
+it's the same import we've used all cowork so we have the palm we got to fix something in it because of our version of Eclipse. We had to do this With several projects, actually, I did it with every project before I gave them to you except for a couple where I've forgotten how to do it. So I'll send this
+
+actually, we're doing it manually we can, we can type it.
+
+So let's walk through what it built first.
+
+So that toll, and that is the spring, we can do this manually. We can do all this manually, but unlike what we're going to see for the second project, Spring Boot expects you to be using those tools. So finding some of their definitions can be a little more challenging, because they expect you to go use the tool to set up tell it what you need. And really, after you see the second way of doing the manual way of doing it, you'll want to use the tool.
+
+Brian,
+
+yes, sorry. That was asking what was the last thing that we added? Is the validation libraries
+
+That's a quite what the question was referring to. Yeah. So Brian, you already answered Thank you.
+
+Alright, so I'm
+
+in this palm. It's set up.
+
+It's own group ID. But here's what we care about. Except the group ID based on what we typed in the artifact ID based on what we typed in. It gave us a starting version number. So every project starts at 00. We can change that if we want to like version one or two, or whatever we want to call it. And then this will be used for documentation. It's at a properties in it that says use Java 1.8 when you're doing things, when it's when things are building for Java C. It created the dependencies entries for everything that we need. And then it set up this plugin for us. We're gonna have to make one change to this fourth, one of the plugins we can't see here and the properties. And this is because of our version of Eclipse. If we had a newer version of Eclipse, then we wouldn't have to make this change. So we're going to say Maven, jar,
+
+plugin version
+
+and set it to 3.1 point one.
+
+And what we're doing is since this version of Eclipse has an older version of the Maven jar plugin, we're forcing it to use that version. And you can see it a minute will go the air should go away. Doesn't the palm and get rid on the project we should build refresh the project.
+
+Is there a reason to use the old version of eclipse? Like if we're making our own projects or?
+
+Nope, use the latest version of Eclipse. Okay.
+
+So get this set it up with the older version of Eclipse because have, we have images that dissolve away the entire machines and
+
+the version we had
+
+was prior to
+
+teaching API's in this manner. prior to using Spring Boot we see web MVC directly. And we updated to spring boots. That's what the industry stone and Spring Boot uses the later version. But it can use the old one. So if you stop there, you can right click, go to Maven
+
+update project.
+
+Update project tells it to rebuild the project.
+
+If you force updated snapshots and releases, it will Tell it to rebuild everything fresh. And doing that actually fixes a huge amount of problems when there's errors that won't go away. Not code errors, but ones like that one where there's nothing that tells you what it is. There's a lot of mental fix, you see, just got rid of that. So right. So now we have a project, we have a full Spring Boot project. So we are the point that last quarter when I done the same demonstration with spring web MVC took us about an hour and a half, maybe two hours to get to this point. So spring, that's part of what Spring Boot does. It makes things really fast. Make setup projects, setting up projects really quick. The second thing it does and actually it's more important role is it has it doesn't make us have to have a separate server. So there's this thing we haven't talked about what we need to talk about servers, but there's a full bones web server running inside Spring Boot. Without Spring Boot, we have to have our own and we have to run it and we have to constantly move our code from the Java project on to the web server. And it can be kind of troublesome. eclipse will do it for you automatically, but it can be kind of troublesome. So Spring Boot gets rid of that problem as well. And it makes it really easy then to put on publicly on the internet, because you have this server embedded in it or work, which is why everybody's using it. These are the reasons everybody's using spring break now is, right, so we're actually partially done, we have a project setup. But
+
+we need to do a little bit more configuration to make it do something useful.
+
+So let's try to get a sample, just like get the list of transfers from like that 10 mode database type thing set up, or if you don't want to work with that we can do The city did world database do something that sets up
+
+something that's quick, just so we can have all the pieces configured.
+
+Which means we're gonna have to configure
+
+the database, which is one or the other steps.
+
+So, let's start by creating
+
+a simple
+
+we'll create it here. And let's create it in something like model.
+
+And let's create
+
+maybe a transfer object
+
+since that database is fresh in everybody's mind still
+
+and it's not fresh in my mind, though, so let me open up dbvisualizer
+
+I think it's a bunch of Long's and ends, right.
+
+like three or four ideas. It'll be up in a second. So I can start wide open cuz I know there's a transfer it. That's it. I know that exists.
+
+And I know there's a What is it?
+
+What just happened there?
+
+Okay, so can you visualize your claims it's open somewhere
+
+else
+
+tiny okay.
+
+route of select, actually
+
+scripted
+
+if I have any data in here I think could be a problem. Okay good.
+
+Script the Select
+
+or give us two things.
+
+So transfer Id
+
+give this outline task list at
+
+transfer type ID, private event transfer status ID
+
+count from
+
+She just got the balance
+
+to
+
+double
+
+and that will generate those.
+
+So it might be better. Let's just get the balance that we would have to populate all this stuff. The Cisco from
+
+account ID maybe
+
+private
+
+its account ID
+
+and the amount and we'll change this refactor this to
+
+a better balance
+
+To make the D o take really short time to write. Alright, so now we need our, the rest of our Diego pattern. So when the interface
+
+let's call it balance, do
+
+you know that's all we're going to do so we'll call it that.
+
+And we'll just grab it get one of those balance objects and get balance and ID
+
+and then we need a JDBC class. Yeah.
+
+and implement our balance do
+
+And now we'll come back to that now the part that is For module three, so we need the JDBC template, right.
+
+And
+
+let's import it. So Spring Boot, just like Spring Boot can give us that principal object Spring Boot also has a JDBC template is already has in place. So we can ask it for its JDBC template that set up with its connection. And we do that by putting it in our constructor, or we can use the auto wire keyword. But I want to put it in the constructor because if it's in the constructor, that means I can construct this class with my own JDBC template and not rely on spring boots or I can have I can rely on it. So I can make a choice whether we use dependency injection or not, which will help in testing. Which means I can do this process called mocking and testing where I can make a fake database and pass it in and everything of this work. If I have it in the constructor, if I have it auto wired, it's a little More complicated. So,
+
+ABC
+
+template, this template
+
+equals JDBC template Alright,
+
+so we have balanced from this it's accounts right
+
+here account ID okay?
+
+So select account ID and balance
+
+so I'm trying to make this this
+
+select
+
+yeah string SQL, it's gonna select account I d
+
+balance
+
+from
+
+accounts
+
+Where user ID equals an ID.
+
+Sequel rows, rows.
+
+See,
+
+I call it a template.
+
+Pass for SQL and our ID.
+
+Miss can have one object to return. So let's just create
+
+balance object I once
+
+was new balance,
+
+actually now,
+
+getters and setters.
+
+So let's generate this source, getters and setters.
+
+And I'm also going to generate a constructor, because I'll make this much easier.
+
+Generate.
+
+Alright. And in order to make that work, so in order for this to work with the API to be able to be serialized the serialized, it has to apply to what's called the Java bean standard, which means there has to be a no argument constructor. So when I created the first constructor, it has arguments, I have to add a new argument constructor, if I want this to deserialize and serialize automatically, or at all, well, I could do it manually, but for one Spring Boot to do it for me, then I have to add that,
+
+um, so I was looking up. I was looking this up because I was like, What is the job of the like, you've talked about Java beans. And the thing that's said that made it a Java bean was that it was serializable. Yes, they said that it should implement serialize
+
+It should Yes. But it doesn't have to in Java. Okay,
+
+cuz I was trying to I was like, it doesn't need to anymore but it should and I was like, but we've never done that.
+
+Technically, it should
+
+should implement this interface, which is a marker interface, which is why it's went away, meaning it has no methods, all it does is identified serializable.
+
+Once we have that, we now have to implement the serial ID.
+
+So typically the be a true is generated one Java bean
+
+you would have to have this all that.
+
+But modern Java has gotten rid of the idea and said, why don't we just if it has a no argument constructor, it has getters and setters it follows all the rules. Anyway, we can use essentially that generate this was needed They'll often you still see this added, why do we need all this? So modern Java is kind of got rid of the idea of the serialization of the serializable interface, but you still see it quite a bit. And technically, that is the fourth rule. But since it you don't really need it in Java eight or beyond
+
+tears, yeah, it brings up a whole lot of other questions.
+
+things that aren't are necessary.
+
+So technically be a Java bean. That's what it should look like. I'll leave it like this. So but
+
+yeah, that's a great question.
+
+The great thing to point out, but the important stuff that spring will not work. And there are some frameworks that won't work unless you have everything. But spring all the spring frameworks will work. As long as you have these pieces that these match together. These are all private. This exists These exist, work. So that gives us everything we need to finish this. I don't this line anymore because we can now do if
+
+rose next.
+
+We can just return new. I forgot that braces return New Balance object. And let's see, I already forgot the order I put them in a count ID.
+
+So rows can't
+
+count ID
+
+and the second will be rows dot get double
+
+balance.
+
+And hopefully that'll work. I was trying to get through that quickly because that's module two. And really, you've seen that so many times. So many times that I know that wasn't too exciting to watch but can't really pre set up a fresh project and have it be a sobia fresh project. So now we have that now we can get to the part that's more interesting when we have to configure the database. So it can get this JDBC template, which means we have to create the data source. The data source is created in source main resource, there's this file in here application properties.
+
+And there's some pieces we're going to have to set up.
+
+So first, we have to set up and I'm actually going to cut and paste these from
+
+all this from another project, but
+
+because there's
+
+a lot of it, I'm going to walk through them. So the first one is we need the data source URL. Remember, we create our own data source, we have to give it the URL where the database is located. We start with that. So springs data source URL is that URL, then we have to give it the name of the database, or the name for the data source I'm sorry, what is name it. This is an arbitrary name where we can refer to it later, we're not going to have to, but we still need a name, second variable name. So it's going to create a data source object, it's going to put essentially in a variable name this that we can refer to it later as. And then we need the username and password which are here. So this is pretty close to what we were doing before. Only before we were creating a data source object, assigning it to a variable and passing it you know set URL and setting this value set username and setting this Value Set password and setting this value. Now we're setting properties they're going to be used to do that.
+
+So I want to set one more non database property we're in here.
+
+So well before that spring is going to take when it creates this JDBC tunnel. But it's going to have when it creates, it's going to create needed data source, it's going to come to this application property and look for these properties. Create a data source, stanchion, a JDBC template with it and just kind of hold on to it. And then every time we need it every time we use one of our da O's, if it's a statute it for dependency injection, Which reminds me, we need app component. Then it will passes that JDBC template that it's holding on to konka does with the principle
+
+or not kind of exact like it does with the principle.
+
+So this application property tells it how to build that template. The second one, we can, we can set up other configuration elements in here. So we can set other properties that tell spring or the server how to act and one of them I want to set server error
+
+included stack trace, never.
+
+So what that's doing is telling spring, if there's an error, don't send this tax track, trace back out of the API. Keep it internally, because that's a huge security problem. If you remember module two, we looked at security. And one of the things we looked at was using a sequel stacktrace to figure out table names. And to figure out that we needed to cascade the Delete on the database. So we're going to keep those internal to the server, the social and the server console. But this is why you're here, you got a 500 error in your client, your Capstone, we got to go back to the server to see what the row error was. Because the server keeps the error internal. And that's, we pretty much always want to project an API project that do that we very rarely want to ever send the stack trace back out on the air. Alright, so now we have the database setup. The right thing to do now would be to go To set up an integration test, we're not going to do that. But that would be the right step at this point to make sure it works.
+
+Well, let's get to the controller.
+
+Actually, let's make sure the project starts before we do the controller. So we start spring built this server application.
+
+And let's look at it. This is the main method.
+
+It tells it has an annotation telling it this is the Spring Boot application. So we can write more code in here, this is the main methods gonna run if we have something we wanted to do, we can write code. But generally, we just want it to run its own main method. If we're its own main method, it's going to call spring application, which is a part of the framework run and tell it that this is the class we want to run. And then any arguments got passed into it will get passed through and that Basically starting this what's called the spring container, which is what's going to be what's calling our controller, it's going to start the server, it's going to set the dispatcher template, this sir, dispatcher server we're talking about, that calls our controllers. And it's going to set up what's called the routing, which is going to allow us to use those request mappings. So it's going to set up all that but that this happens, this is the line of code we need to run in Spring Boot generated for us. This is where it's all starting, which is why you have to run it from this class.
+
+Let me run as
+
+and I will say if you install the Spring Boot tolls in Eclipse, you don't have to run it from that class, you can just click on the project and it'll say run a Spring Boot project. But I want to make sure it starts so if there's a problem that dinos we can fix it without having to why there's still not very much going on.
+
+Okay, started.
+
+So now let's add our controller.
+
+So this also does one more thing. This is what's called the surface what's called a search path. So a component search path more specifically. So rest controller, annotation is like the component annotation we're going to do it tells you that something that can be used by Spring Boot, either by dependency injection or in the controller's cases a controller. So those have to be there search for. So when Spring Boot starts at looks through certain packages, and it looks for components or controllers, or a few other tags that we haven't looked at for things that it's going to register to know how to use. And it uses annotations to find them. And it's going to look, it would ever package. This classes then the server classes on In all of its subclasses, or sub packages, so anything comm technology later on is going to find that if you remember, we set that up on that webpage as our group. Actually sorry, the default package the last one, we took out the, the name of the project. So if it's more detailed, like it was calm tech review, we'd have to have our components and stuff inside of calm that took over review. So that package that this isn't matters, we can change that with an annotation, but by default, that's where it's going to be. So if you're ever building doing this, and you have a different package name here, you're building your controller someplace else. I think I've actually ran that, for the capstone. It won't see your controllers or won't see your JDBC classes, because they're not in the search path.
+
+So now let's build our controller class.
+
+And we'll put it in the package of controller. I do have all the controllers, you've seen her and controller and all that is a model. That's just convention. Every environment will have different standards for that. But that is the the Oracle standard, which is what we base our standards on. So we'll name it was a balance controller.
+
+And for this, we have to tell it, it's a rest controller.
+
+And we have to get back do
+
+the do we create so by the interface, of course
+
+model I could put the automatic annotation on but again, I'm going to use the constructor because that'll allow me to, it'll still work the same. It'll inject it use dependency injection to pass to me just the same. But I can change it manually. I can instantiate the class manually still, which means I in testing, I can give it a fake balance do if I want to,
+
+which is a common practice.
+
+And I misspoke.
+
+Alright, save it.
+
+And now we're ready to set up our first controller method.
+
+So our request mapping path, let's just give it
+
+just everything's about balancing this one method. Equals request dot and then we're going to return the balance object and get all its
+
+we need
+
+can just be balanced there, because we need the ID. So
+
+it'd be accounts,
+
+ID and balance.
+
+And I have a PATH variable, because the path variables gonna point to that ID. And we'll set a name equal to ID, because I want to in
+
+something that makes more sense to me for Java.
+
+And let's import some stuff here. Alright.
+
+So now we should just be able to return
+
+the balance do
+
+and get pallets and pass up the account ID.
+
+Actually, that's not an account ID is it's a user ID.
+
+Right? It's what we set it up for
+
+user ID. So I said that are on this should be users.
+
+It should be user ID.
+
+All right. So let's try it now.
+
+So first, I'm gonna look at the table and see who's.
+
+So count one, two, and three. Do I actually have
+
+no right there? So I've used I've bounced for all of them. Okay.
+
+So we're running on log a localhost 8080. And she said it was going to be users.
+
+One, and balance
+
+probably should be balances, but
+
+her details will probably be better.
+
+And I made a post I want to get.
+
+I need to go get rid of the authorization.
+
+Users ID
+
+Oh, there it is. Okay, we just had a rough time. So we have a full working API now.
+
+So that's setting up a server project.
+
+So now Too bad. Actually, that's really fast for a Java project because of Spring Boot. So let's build a quick client to before we do that there are other questions or
+
+Brian, Matt, do you make it?
+
+Sorry?
+
+No, go ahead. Math. Good. Yeah. Magic JDBC. Class one more time, Brian. Yeah, sure. I'm on the same page.
+
+Yeah, that's what I need things.
+
+And actually,
+
+before we build the second project,
+
+why don't we go and take a break, since probably won't take too long, but probably long enough that everyone's tired of sitting here watching this. So let's come back here. 1130 will continue.
+
+Looks like you're muted.
+
+All right. So I'll start that again. Thank you. Sorry.
+
+So, are there any?
+
+Do you have any questions from what we did before the break?
+
+So the application properties file that you made. That will go ahead and configure the JDBC template. That is within Spring Boot.
+
+Yes.
+
+Okay. Because I've been having that issue in my own side project passing around the data source and that that looks like exactly what I was missing.
+
+Yeah, that's, yeah, that's how it knows how to set it up. Okay.
+
+So, the other questions before we
+
+okay. Alright, so the next side would be get the client side setup. And the reason I want to do both is because setting up a client side projects a little different. It's the server side project with Spring Boot is how you set up a Spring Boot project. But the only type of projects and that you have that are spring group projects are both spring group projects. They're there The API so the server side, you don't really use Spring Boot for I mean, it that's its whole focus is services around API's. So most projects would be more like what we're gonna have to do with client side, it's actually going to be a little more manual. Now that we've seen Maven and seen the palm and those pieces, we can make it
+
+really easy.
+
+So to do that, I'm going to start here, we're going to use have to use Eclipse, we don't have to, we could actually go out and just build a palm file manually and import it, and then build all the folders ourselves. Can't do that. But we'll use the clips because it clips into all the other IDs, if we choose New. They have the option of different project types we can build. One of them is Maven project. I'm going to select that. So new Maven project, if it's I should go back one step. If you get here and it's not in your list, Because this list, I think that's the default list, but it comes from usage. So it'll change. If you go to other. You can select from all the different project types. You can see there's quite a bit. There's a lot of different project types.
+
+I think mavens one of the default ones, that's there,
+
+which is Maven project.
+
+And the first thing we have to do is choose a location for the desk. So I'm going to uncheck use default workspace location, and I'm going to browse to the front end folder and today's lecture code.
+
+Watch final one, and I want to in front end, and just open that
+
+and that's going to tell it to put it in to that location. Otherwise it's going to put it into wherever my workspace is that which is fine, but a little bit of a push later, it might be a little harder to find. So much he's next, in the next thing is going to do, it's going to ask me what's called, what type of archetype that I want to set up. So archetypes are basically project configurations that are predefined that have a, they tell it, how to set up folders, how to set up, like what some of the initial configuration setup and you can build your own. You can download them, you can build them. We have a set of them here that we use to set up Basel one and two, the old three projects, not the new ones, but one or two projects that you just select the tech elevator archetype for Basel one that builds that's why they all look the same, and they all have the placeholder in the same place and they all have the same like setting it's the city do that's an all of them. That's the reason they're all like that archetypes can set up a project. So there's a set of default ones that come with Eclipse and the one I'm going to use is the just the Quickstart. So the Quickstart is just a This is just a basic Maven app job application. So I'm going to choose next for that. And it's going to ask the same information that that told it a group ID, I'm gonna make a combat tech elevator. The artifact ID, I'm gonna make this fake review in for
+
+review client
+
+and the package off
+
+here. So the thing that's really different because I don't have something that asked me what dependencies I want like it with the Spring Boot. Instead, there is a plugin for Eclipse, at least for the newer versions of Eclipse that emulate what we've done on that on the spring initializer site, or the spring initializer that puts it into builds it into the tool that Eclipse works like this. But I'm going to click, finish them
+
+and that's going to go out and configure
+
+The project Well, the starting point of the project. If we open up see what we have here, we have the folder structure. And we have that app. The setting up the Quickstart builds us an app, we looked into it, all it has is just the system main void, it says, basically builds hello world for us. So just as a starting point, we can change the name of this or throw it out. This is just a Java project at this point, like we worked on module one or two. So but it also gives us the folder structure, and it gives us the palm file. And the palm file is really what I wanted for this. So open it up though. All it has in it is an old version of j unit. So it doesn't have much in it. So j unit is not part of we've been using it all along for testing. But j unit. It's not part of Java. It's actually an external project. It just it's used so much that a printer As included what's included with every archetype, and it gets included by everything that builds out any of these projects. We're going to change this version before we're done, though, because that's a pretty older version of it.
+
+So if we're going to set up
+
+our application, we need mostly just regular just what comes with Java. C, we are what we have here is the Java libraries, the standard ones. And then we have our Maven dependencies, the only thing is J unit. So we need a little bit more, we need to be able to get that rest template, which means that we need spring web MVC, which is, so we're going to have to figure out some dependencies. So if we were doing that, there's a step I'm going to skip because it that's going out, we would look at documentation, we would read up on what libraries that we need to get spring web MVC. And I'm going to skip reading documentation because off? No, this is exciting enough without watching the read a bunch of documents. So I pre read those. And then we have to find them. And a lot of the documentation would probably give us this next part. But I want to show you if it doesn't, how to find it. So one of the things I would we would find is that we need org dot can't do it there can't do it here. Because I do it. There's gonna think it's a website. Because of the work. I did. org spring framework. Spring web. So I know that's one of the things I need. That's what I need to get the rest template. They get documentation told me that so I'm going to search for that and then Maven. And the first thing I'm going to find is this Maven MVM nvn is the the shortcut. The name of the application on the disk for Maven So NVMe repository is one of the larger Maven repositories. So we'll use it. And it's almost always going to be the first results, we search for a package name for a library or like that. So I'm going to go to it. And it's going to have a bunch of information has all the different leases this has, other things are related.
+
+So
+
+I'm going to pick the one that I want, let's just get the latest. I think it'll work with what we have.
+
+What I often do
+
+is go through, and actually it's picked up next. So one of the key indicators is how many is usage, how new it is, and usage. This is pretty new. So this is how I did it six is actually pretty good. So we use that. So if you notice a version that had like 10 people were using the version before the 2000 are using, I would generally go with more That ties the 2000 users. But now we have a bunch of different build systems we have information from. Just click here at copy to the clipboard, that can come over to my palm
+
+and
+
+paste it. That's not the only place I can get that information from. That's just one of them. So I'm also going to find out that I need spring core, spring web require spring core. And it's not going to download on its own because I have to pick the version. In this case, it's spring core as some extra features. So when my browser went, so I'm going to come up here now I'm on the site and look for spring core. And we got the 5.27 release. So spring core, let me go here. I'm going to get the same release version
+
+and come over here and paste it So
+
+that ability to deserialize and serialize automatically, that we've been using for the template is not something that's built into the rest template. It does serialization and deserialization. For us, it calls libraries to do a bit off. But if we did it without getting something extra, we would have to write code ourselves to do it. So there's this library called Jackson data bind. That will do it for us. It'll take our Java objects and automatically serialize and deserialize them as long as they are the Java beans. So I was at the Java bean standard will do it automatically for us. So I want Jackson data bind. So I would have found that again, by documentation. And so I'm going to go look for
+
+Jackson
+
+dot data bind.
+
+And well this
+
+is a release candidates, we don't want that they get the 211 no same good Jackson data bind. And if I was I was researching DAX data byte, I would find that I also need Jackson core.
+
+So I'm going to look for
+
+Jackson core. fact, I could have just clicked on using the breadcrumbs up above, but go here, let me get the same version of Jackson core the same way. So without a tool like the spring initializer This is how we have to build out the palm. We have to figure out what my boys want from documentation. And then we go find the proper palm entry from that library. Sometimes documentation will contain it, sometimes it won't. So it's a tedious process. So we unfortunately only need four entries were that's all we're going to need for this. To set up a client, where the spring initializer, we just pick and say, hey, I want I want web MVC, and it it puts in the entries for both for us, and puts in the core entry and the spring web entry, and then any other things that and a few extras as well. So the Spring Boot initializer makes it quick and easy to do this portion. So we're done with this, we only need this for to set up the rest template. That's really all we're going to find out where to go. But just in case you do set up your own project like this. You'll save yourself a lot of headache if you change this to 4.12. That's the version we've been using all cohort. It's the last version with the syntax that you're used to. J unit five changes a lot. Every so often is a jump where a bunch of stuff changes. And j unit five change change quite a bit. Add a bunch of functionality but it also Change the way old functionality worked, which is why your integration tests weren't working initially in your Capstone.
+
+Because
+
+if we look back at the server project that Spring Boot built for us, by default, it builds Jane at five. Alright, so we're almost done. Not quite, we have a couple more things we have to configure. So one is we have to build a we have to set up what's called the build plugin, the compiler plugin, and there's one I want to use. Again, I would have found this from reading about how I want to compile mainly I want to force it to be Java 1.8. So I'm going to use what's called the Maven compiler plugin, and I'll paste or cut and paste this into
+
+wherever because it's a lot of typing
+
+Also can paste it here.
+
+So this goes outside of the dependencies.
+
+And it goes because it's going to go into build plugins, and then we can set up plugins. The Maven compiler plugin will allow us to force this built to build as Java Java 1.8 project, regardless of the version of Java on this machine, well, as long as it's 1.8 or greater. So we have up a Java 14, it will still treat treated as Java eight, which means that newer features won't break our project.
+
+feature.
+
+Alright, so last thing I want to do
+
+is set tell it.
+
+Let's go back up here and where it says properties, I'm going to add a property
+
+to Java version. And I tell the whole project this is a Java 1.8 project. And locking the version of Java is a common thing to do because new versions sometimes can break order code if it compiles with without knowing which version to target.
+
+So we have an error
+
+to figure out what that error is, because I didn't expect an error at this point. Let me actually, now to set up the first thing I'm going to do anytime you get an error like this, you see nothing. It may just be from Eclipse somebody go to that Maven update project. And force updates, snapshots and releases to force everything update and have it update the project and there's a good chance that error will go away. It did. So as we add as we as we make changes to the palm, anytime you make changes to the palm file, and Eclipse are actually told we often have to tell it to update the project. We can do that two ways. We can the easiest way is just what we just did Maven update project and select to tell it to rebuild. The other way is if you delete this Target folder. It'll do it automatically. But because that's what it's doing, it's rebuilding this target for.
+
+Alright, so we have Brian,
+
+just ask one quick question about the dependencies. So when I uploaded my side project to GitHub, it was like alerting me to Spring Boot being like severely out of date. And that there was like a large security flaw. Is that okay to just update, or
+
+Yeah, you can see after we just updated it.
+
+So, so that's what the update is update the versions in the palm. Try it. And then if it doesn't work, then just go back. So a lot of this, like having that and GitHub is no security flaw. If you deploy it to the internet, so people can use your application. That's what the security flaw exists. So just having it your code isn't hurting anything, they're just warning you that because there's like a lot of the hosts like Heroku and some of the other hosts, we can deploy Applications are linked to GitHub. So you, they're set up, so you push to GitHub and then it pushes out to those hosts, or, or those hosts, I think watching and grab it from your changes. So they're, they're basically warning you that if you're going to use this, if you're actually going to do something with us, this may be a risk. But if it's just sitting there as code, there's no risk. Okay,
+
+cool. Thank you.
+
+Alright, so we have the palm setup. So a little bit more complicated than Spring Boot project. If it's not a Spring Boot project, this is the way you have to set up any project. It's a lot of reading documentation. It's a lot of figuring out what you need, what libraries you need. So, but once you figure it out, it's very easy to add. Now the good news is, you won't set up any projects outside of your own side projects throughout your career. That's pretty rare to actually end up doing. And the other good news is once we have this set, we can actually just go out and cut into Paste the folder in Finder, or Explorer, change the artifact ID. And we have a project fully configured. For something else. You'll probably end up as you go through your career with a collection of POM files that are different project types. And I have quite a few of them. Every time that I set up a project for like you stern lecture, I go and grab a similar project from the same module cut and paste it, change the artifact ID and delete out the existing code and change to what I want it to be. It's much quicker than going through all this Spring Boot parts actually not that's pretty simple, but for non Spring Boot.
+
+Alright, let's build
+
+the rest template to call our service we have at least a client service and we won't go too far into you know, making sure there's a console service and all those pieces. I've given it it's almost noon, but I want to at least get into Even if we make it really simple, so we're just going to do everything right here in static. So we won't, we won't build classes because this is only going to do one thing. It's going to call one get and print it.
+
+So we need a few things. We need URL.
+
+And that URL is going to be
+
+our URL from here.
+
+So we need that ID. So maybe we can make it a little.
+
+So we'll make it like one of the module one applications.
+
+I guess like a week, one application
+
+And then we'll say system dot out. Print user ID
+
+and user ID equals input.
+
+Next enter
+
+an input.
+
+Next line even though we won't be using it again, but
+
+so now what is it like that here?
+
+Alright, so we have that and we need a rest template. So let's put the rest template. Make it up here.
+
+Make it private static, final rest templates.
+
+template equals
+
+new rest template.
+
+I'm only making it static because we're doing all the work in the main. We really should not be doing all the work in the main. But again, I
+
+think at this point, we've seen enough of the
+
+and then
+
+if private methods, we can isolate the call using the rest template and we will move that, no, let's not do that. Let's not confuse things. So now there's two ways with the rest template.
+
+So the way that you were writing them in
+
+I'm sorry, Your Capstone. We're going to will use exchange SWAT to create an HTTP headers object
+
+equals new HTTP headers.
+
+And a support that and now we're going to build an entity object. But we have no message body
+
+equals new
+
+HTTP entity. And it's kind of no message body, I'm going to pass it the headers. We have no headers to set either. So we're just building empty headers. So we're just going to get to the fall bones and import the entity. And we need that balance. Class here. Don't we need that model class. So let's get
+
+this
+
+copy it is put it right here.
+
+Make sure it's okay, good.
+
+You did you just right
+
+click on that and copy it. Yeah, right click and copy and paste in the project and notice it fixed the package for me and put it in the right package. Now so so it doesn't it, sometimes it messes up. So if you use that, that's why I went and checked your dress, I opened it look because sometimes it gets it wrong. Clips has some great features that work. A lot of them work 90 like 95% of the time and then that 5% of time they do cold nights are crazy things and cause your problems. Sometimes we don't come up for an hour or two later. So why not in the project the size but alright, so we have our balance. Sorry, I got. So calling exchange, we have our balance object and
+
+we're going to call it Rest template
+
+exchange, and then we have to pass it our URL, we have to pass it the entity,
+
+we have to pass it
+
+the HTTP
+
+method dot get. And we have to tell it what we want. We want to balance dot class, we have to import HTTP method. And now the exchange object doesn't automatically deserialize. It returns a request. request object that has the balance inside of it. So request entity object or response entity objects are so we have to call get body
+
+and I have something spelled wrong or I have the order wrong guy.
+
+String entity method. Oh, I haven't been Easter wrong.
+
+It's method, URL method entity class. We get the balance. And now we can call finally system dot out. print line
+
+your balances
+
+plus balance dot
+
+get them out.
+
+I server still running. So we should be able to run this.
+
+And we should have our client working. The other thing it really makes us the client is going back to this line, this little bit of code right here. So user ID one.
+
+And so we have the full connection now.
+
+We have both projects setup. So one last thing. I want to cover the question I've got multiple times Not from some of you. But I want to make sure everyone sees the same answer. And that's this exchange method that suddenly you had to start using during the capstone. They weren't using before, the capstone for many things. So
+
+right here,
+
+the exchange method, and kneading it's all about this entity.
+
+So here we have a header and we did nothing with it.
+
+And we create an entity and it's empty except for a header which is empty. And we pass it to exchange which we have to we have to have an entity with the header setup pass through exchange.
+
+When we have this case,
+
+where we have no headers, besides the default headers, then we can use this balance, balance equals rest template, get for object and just pass it the URL and the response type like We started module three with
+
+this is called a convenience method.
+
+And if you don't need these headers,
+
+and that entity
+
+and then all you need is URL that convenience method, it does three things for you. It's does these two lines of code, it sets this and it calls get body in the background, it's calling the exchange method. It's called a convenience method because it doesn't do work on its own. It calls another method more difficult method to use. So more complicated method will say difficult, more complicated, and it defaults part of it for you. And that's what get for object makes exchange easier to use by giving us the default headers. And setting this for us to get from the fact that is a get and calling get body automatically. The two pieces we start to give it as the year And the class definition. So that's the purpose of that's why we had to start calling change and the capstone is that JW T. Because now you have something you have to put in the header in the header you have to set for the JW T, you have to call headers. No set was a bear, bear off and set the token. And as soon as you have to do change something in the header, or you have to give a message body to the entity, like you do for a post, then you can't you have to use exchange. So really comes down to the second you have to touch the header in some way do something with a header outside of just the default generic header like set the token, you the convenience method no longer works, because your use case is more complicated than the convenience it's offering. But if you don't have to do that, like in this case where we have no security
+
+then we can Use get for object.
+
+And it works.
+
+So and to go one step farther that we won't go into how to use it. Exchange is a convenience method itself over a method called I think it's called execute. Pretty sure as execute. That's even more complicated to use an exchange. But so change gives you the convenience of returning this response entity that you can call get body on. And setting and allow you to use these any objects instead of setting balances. And also to define the type. With execute. You can't define the type you have to get it back and do a bunch of casting and checking. So allows you to get things that are not JSON back. So when you have JSON coming back, that you have an object ready to deserialize it into then that's the convenience exchange gives you when you don't have a header you need. That's the A convenience to get for object gives you. So that's why that that changed and why there's different ones. And when you use each one is really comes down to the header.
+
+All right, so
+
+we have both projects set up.
+
+So questions.
+
+Can you give an example of when you would use execute?
+
+So you would use execute if you didn't have JSON data coming back? In most cases, that would be the or you didn't have an object? Well, yeah, you Dom Jason. So not every rest. API has to return JSON. Most will, but they can choose to stream other types of data. Or they could like XML or even their own data format, if they wish. And if they do that, you have to use execute to retrieve it.
+
+So it's not a very common use case.
+
+The other Type you could run into is you have to set something really custom in your header outside of what the headers object can do. Again, not a very common use case.
+
+Is it possible to overload the get object method so that it takes a header that has the JW token in it?
+
+Probably Yeah, probably.
+
+Yeah. I'm sure he's sort of sick if you had like a million of them to do.
+
+So you would just be creating a convenience object with the convenience object. Yeah. So yeah, so you couldn't on the rest template you can create, you could extend the rest template and override that method. Have your own version of the rest template. Yeah, you could do that. Even if you couldn't ever write it directly. You could create your own like, I don't know what you would call it. Get object or something like that, that calls get four objects in the background. Yeah, you can do anything like that you? Well, I guess you couldn't go get projects you have to color change the background.
+
+So yeah, you can build your own convenience methods
+
+on the questions. All right. All right. So.
+
+So I hope that was useful or at least
+
+informative of how the projects are set up.
+
+Yeah, that was sick. I had used the spring initializer before, because I was like, I really like, I want to do this. But then like, I was getting that error and you changed one line in that code that fixed that error that I dealt with our so yeah, this was really cool.
+
+Actually, a new version of Eclipse would fix that as well. You never would have got better.
+
+So all right. So, today
+
+there's a few things going on. So for one to two, I'll be back in here and we'll do a it's optional. You can choose your turn not since we have the time already set aside, I do an interview review or question and answer session, and also a whiteboard. And we'll do a whiteboarding. And I'll say exercise, but demonstration might be a better word for it. So I'll be here for that for one to two, or one two, whenever we're done or two at the latest that guests have another meeting. And then at three, there's the job search and interview, follow up pathway event. It for 30. There's the alumni student happy hour. And there's also if you look in today's lecture or lecture folder materials, there is an optional exercise that if you want more practice with HTML and CSS, you can take on some I think it has everything redone from last week as HTML, CSS about HTML, CSS and mobile and responsive design and Flexbox and grid and all that stuff in it. Alright.
+
+So Other questions?
+
+All right. Thank you then I'll let you go for
+
+and have a great weekend if I don't see you at one
+
+you guys, thank you.
+
+Transcribed by https://otter.ai

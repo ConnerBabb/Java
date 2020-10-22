@@ -1,0 +1,21 @@
+Book
+https://book.techelevator.com/content/intro-to-vue-and-data-binding.html#vanilla-javascript
+
+Introduction to Vue.js
+The idea of having your HTML, CSS, and JavaScript spread across three different files is how a lot of websites still work today. Many developers learned to program JavaScript as a separate file of code that is added onto a website, sometimes using libraries like jQuery and Backbone.
+
+But the fundamental uses and methods of JavaScript on the web have changed drastically in the last few years. Websites and web applications have gotten more complex. Very rarely do you have web sites that have a little JavaScript on them. Most of them now run full front-end applications that are written in JavaScript using a library like React or Vue and Component-based JavaScript.
+
+Component-based JavaScript is an approach to JavaScript development that gives you a new way of thinking about your JavaScript code. Instead of thinking of your JavaScript code as being separate from your HTML and CSS, you can start to think of your webpage as a collection of components that join HTML, CSS, and JavaScript into a single, functional unit.
+
+#Vanilla JavaScript
+Traditionally, web pages are seen as three separate pieces: a file of HTML, a file of CSS, and a file of JavaScript.
+
+
+Image - The monolithic structure of HTML, CSS, and JavaScript
+Over time, as design got more and more sophisticated, each of these files got bigger and bigger. But then designers started to think of web pages as being comprised of reusable parts, like headers, footers, and navigation. They started to think of ways to break these files up into smaller, more manageable parts.
+
+Most websites have their header and footer information in separate files so they can be reused throughout a site. CSS is often split up into multiple files and compiled into a single CSS file before being deployed to production. Some people do the same thing with their JavaScript; they write it in different files and then minify it into one file for a production build.
+
+Doing this with CSS helps a lot. You can have a file that contains all the layout rules, a file that contains all the font specifications, or a file that defines how forms look. Separating these files makes working on the whole much easier for the developer. When you need to change a certain area of the CSS, it's easier to know what file to change because each file is focused only on one topic.
+

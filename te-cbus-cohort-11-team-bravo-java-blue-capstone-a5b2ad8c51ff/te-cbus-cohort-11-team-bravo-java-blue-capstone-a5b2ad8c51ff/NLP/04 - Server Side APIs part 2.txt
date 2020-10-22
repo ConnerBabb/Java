@@ -1,0 +1,933 @@
+Zoom
+https://techelevator.zoom.us/rec/share/zJJoI-_d-mFIYp3PzFriAf48P4K0aaa8gCIcrvUNmUkE7r7kSHhFeBOrdbx2VOLY?startTime=1593092066000
+https://drive.google.com/file/d/10XTZLh_yFDkZ7O3EhoZGWJD-OtwV5LMZ/view?usp=sharing
+https://docs.google.com/presentation/d/1vw0ZV7MEDgehztcZjLWYeS8IrS_yCirnOa0jcFWKqhw/edit?usp=sharing
+Alright, so today we're going to continue with talking about the server side. And we're going to continue really with where kind of where we left off yesterday, then we're going to add a couple, we have to add a couple new concepts
+
+to continue talking about it.
+
+So the first thing we're going to talk about before we get back into the code of the server side that we're going to look at how this is used right away, is this concept called dependency injection. So we're going to go through that pretty high level, more about how high descript level description of what it is, and why it's used and then how we can use it inside of Spring Boot. And dependency injection is going to make a lot of our code actually a lot easier. Not a lot, but some of our code a lot easier. And then we're going to take a look at we've been looking at these restful services. We've been kind of building one out of today, yesterday and today. So we'll look at the design ideas behind restful services, which focus around crud, which is something we've talked about quite a few times since module two. So we'll walk through some of the ideas that are kept in mind with RESTful web service design. And then we're going to talk about validation and the next to the validation, the HTTP response codes and error handling will all kind of flow together because they they're interconnected. So validation is going to be some questions some people have asked is what if we get Nope? How do we handle this if the user doesn't give us the data we want. So we'll look look at one way of doing that. And then that's going to lead us to the need of know we need to give the user better responses. We can't always just respond to the user by giving them a 200 or letting spring make decisions for us. There times we're going to want to give better answers like to a one for created. Or we might want to give a 400 error for something or for or for specific when our data is not there, instead of just not the URL. So we'll look at how we can do that. The two different ways we can get responses. And then we'll end with working through the update and don't update the put
+
+and delete.
+
+On the website put, as we talked about does update, but it's put for API. So we'll walk through the code of doing both of those, which is gonna be pretty similar to the code we've, we've looked at so far. So before we talk about dependency injection, I want to show certain codes we have kind of kind of context.
+
+So if we look at this Code
+
+these two da O's hotel da o and reservation da oh
+
+they're here in the constructor.
+
+And they are things set.
+
+But where are they being instantiated?
+
+Who who calls and uses this hotel controller class?
+
+user
+
+who calls who's using we've been writing this hotel controller class who's actually using it is instantiating it and using it? Oh spring, yes, spring is but Hotel in do and reservation do our code. So, yesterday when we looked at the same project which I meant to keep up and when I cleaned them out it looked like this
+
+new it's actually a memory
+
+memory hotel da Oh
+
+it looks more like this which is what we know for used to see, right? So
+
+if we're not creating
+
+this
+
+and spring is, but that's our code the question becomes how to spring know how in what to generate for the hotel do the do is an interface or class
+
+without looking Just knowing the pattern that we've, we've learned, what should that be?
+
+It's an interface. So we can't instantiate a hotel do. But something's instantiating and using that, in passing it here to the controller, and it's not our code. In here in the controller, we just have the interface there's nothing in here that ever says what the actual classes so as we use that, and we call hotel da list yesterday, we know it was the class called memory hotel do because was using an in memory database instead of database in memory data instead of a database. But now we have no nothing in this class that tells us that that's that memory. do so, this what we're seeing here is dependency injection. So the context is of it is that what we're going to talk about with it? Is that this class, the hotel controller, does it really care? What the or should it care that it has the memory hotel do what it's calling the hotel deal, thoughtless method.
+
+If we can put it from a developer's point of view, if you're developing this class, do you care
+
+now I'm gonna do it now.
+
+But then you can you can ask you can answer honestly like I would care and we can talk about why
+
+I want to say no, because as long as it works, I don't really care. You know,
+
+that's actually exactly what dependency injection is. This not is but relies on this concept that why does this class care about the hotel do the implementation of it.
+
+What it cares about is what methods it has.
+
+It cares that
+
+it is a hotel do but that's an interface. That's just a promise of what methods are going to be available. And we see that we have the same idea, though, not tackling dependency injection, but the same idea when somebody passes a map in like when you're working on your different exercises that you've worked on, and they've passed a map into the arguments. If you go back to Peter Paul, partnership, you were passed back right. I'm sure one that nobody everyone's will never forget. And you get this map these two, this map and you're working with it. But you don't know whether it's a hash map or tree map, or a linked hash map, or one of the other things that implement the map interface. And I'm guessing when you were working on it, none of you checked. You didn't think the track because you didn't care. You cared It was a map. It didn't affect your problem. That it was a linked hash map or versus a hash map. And if he changed it to between those, your code would work exactly the same. Because it does, it uses the feature just to map it here. The controller only needs to use the feature that makes it a hotel do the interface methods. So if we have new care new memory, hotel, do Now this class, it still doesn't care. But now it's bound to it. It's completely coupled to this idea of this is a memory hotel do. It's an in memory data storage.
+
+And why should it be?
+
+There's no reason it should be. It makes the class really a lot less usable. Because now if we want to change, we want to use a real database. Then we have to come here and change
+
+this this class,
+
+but it's back. So
+
+dependency injection is a way of solving this problem of why do our classes care about the services the objects they're using? We care about the string object. Now if we have a date, object like hotel, the hotel object. Here, we care about that, because that's containing our data. But the classes that are doing work for us like the JDBC classes, why do we care which one we have? We just care that it can do something, we don't care how it does the work. So dependency injection is this idea of what's called inverting control. So if we don't care what hotel do implementation we actually have, we can give control of that to somebody else to somebody outside of our class. In this so dependency injection is a pattern that is an implementation of a design principle called inversion of control or IOC. So often, I see And it's an object or an in principle, it's one of the other. It's one of the non pillar principles of object oriented programming. And objects are designed specifically in this case that inverts the flow of the normal of a normal application to a higher layer. So we're using IOC a lot. We don't know it in these frameworks. They often rely heavily on IOC, Spring Boot, or spring itself, even spring boots, one of the spring projects. We've also looked at Spring JDBC. These spring itself, the core framework, what it is and what it started is an IOC what's hot comm an IOC container under version control container to make inversion of control easier. J units inversion of control. The stuff we're doing with the controllers in Spring Boot is inversion of control. We write code, and we give it some hint of how that code should be used. We put a test annotation on it before annotation. on it, we put, you know, rest controller annotation on a request mapping annotation. Annotations are hints to the framework or the JVM on how things are going to be used. And the control is in the hands of the framework. Not in our hands. We never call
+
+this list method.
+
+Spring does spring calls when it needs it, and we tell it when you somebody comes to this path, this method will handle it for you. But we never call it we never stand shade it. We instead, give control to spring to call it as needed. inversion of control is often you'll see it referred to in in documentation as the Hollywood principle, which is don't call us we'll call you. So it's you often see it referred to as that and that's really what it is. It's with a lot We're in control. We call that code but with something when we're working with IOC says that if our code doesn't need to be in control, then why should it? So, dependency injection is a way of using that as a design pattern that uses IOC with the idea of if we have classes we need to be using to do work like a do class. Our class shouldn't be instantiating it as new, our class should be converting control to something that will instantiate and injected to our class. So our class should be in control of where the data comes from, because it's not about where the data comes from. Our hotel controller shouldn't care where the data comes from. Just know it can ask somebody for it, and it should, so it shouldn't be instantiating what it's asking for it because that makes it care that makes it make a choice of I want it from memory, I want it from no Postgres, I want it from some other source, where if it gives that control up, if it inverts that control to a higher level, so who's using it, then that level can make the choice. And that higher level is often called a dependency injection container, which is what Spring Boot provides, or actually spring itself provides. And pendency injection container is something that will instantiate our classes and inject them. And inject just means to essentially pass it like an argument. In dependency injection, we saved the or injecting a class, but it's really just passing, just like we pass arguments to methods, the same idea. So it's going to assign a variable to something of our variable that we're going to prepare for it. And then
+
+we can use the variable
+
+so this concept It's not like many things. It's not a programming only concept. We have dependency injection, kind of all around us, but we use it quite a bit. One of the a couple examples are is a non streaming music player, like a CD player, or a record player if anyone's use those. So I say that because I went through a whole example talking about a CD player a couple few cards ago and afterwards, somebody mentioned they'd never seen one and didn't understand the example. So I'm going to use it again. But hopefully everyone seen the CD player are used in some form. If so, am I have a CD player. The CD player itself inverts control to what it plays to the CD. The CD player knows how to use the interface of the CD. The CD itself has to be built to A specific interface that sets how the sound is going to be stored, or how the waves for the sound that are stored in how the CD player can transform the waves. But the control of what actually is on with the CD player is going to play, the music that's going to come out of it or something else is going to come out of it is up to the CD, the controls inverted, and it can be changed. So given the same CD player, if you put in a CD that you know plays Mozart, you get a very different experience than if you put in a CD that plays Slayer. And those two things are very different, but the CD player has done exactly the same job in exactly the same way and it doesn't care. It has no difference the controls inverted to the user of the CD player. So if we didn't invert control, then the CD player would be limited to only one of those choices. If you wanted to you By what boys wouldn't listen to Mozart, you have to go buy the CD player that had that embedded in it and listen to it. If you wouldn't listen to something else, you'd have to go buy the CD player that had that played just the slayer CD and listen to it. So now you have not a bunch of CDs with your players, one player around now you have a bunch of full players, each one that does one thing.
+
+It's like this kid toys. They just play the same frickin song over and over again until you take the batteries out when they're asleep. You don't
+
+have to hear it anymore. Exactly, yes. Or they take accidental falls down the stairs.
+
+The toy, not the kids. So
+
+that's what we want to avoid. Why should our code be limited? Like the CD player? Why should we have to have a CD? Why should we be building code that's like a CD any player that has one CD stuck in it or limited to it are bound to it. So we want to emulate that idea that will invert control to the user and the user being other code in this case. So we invert control just like that, so that it can give us the dependency we need. The object we need to work with, without us having to be truly care what it is we'll do the same job. And that's what is going on here. The hotel reservation do or being injected in into this. Just like a user would put a different CD into the CD player. If we're using it based on the interface. We don't care what where it gets information about a hotel reservation, we only care that it can. Just like the CD player doesn't care what musics on the CD. It only cares it can play music or sound. So, that's what dependency injection is. That's why we use it. So,
+
+um, so before we continue, what questions do you have?
+
+So I don't know if I,
+
+if I'm understanding correctly. So you probably do, how does, like, I get the injection portion, but like
+
+a DA, Mo
+
+is an interface that
+
+I remember correctly supposed to be able to use in multiple areas, right? Like that's how you make an interface so that you can plug in different things to it and use it differently. So if you have to do like a hotel do that's being used in two separate places. How does the when the injection portion happens, how does it know where to go? I guess
+
+why is that a question? No, it is a very valid Question because that can happen. If we have the hotel da used in three different places, there's no requirement that it's the same actual implementation. One of them can going to the database, one of them could be going to another web service, when I'm just be a file, or just in memory like these ones are. The way it knows where to go is when it injects it, what it's going to inject it, the injection itself here, it's going to pass an instantiated object to us. So something still has to do the new memory. Hotel da or new JDBC hotel do if we had a JDBC version of it. Somebody wants to do that. It's just not going to be us. But when they do that, there's going to be an object form that is a JDBC. Do that is a memory do and that object is going to be the past or the reference To where it's located gonna be passed into this variable. So when this class calls it, whatever it has, if it has one that goes to the database, it's going to use that one, if another class calls it. So we don't only have one controller blessing, we had a reservation controller, it also had the hotel do, but we decided we wanted it to be used from the memory one, then the object that we pass to it would be the one that attaches to the memory. But something still has to stand shaded, it's just going to be this dependency injection container that's going to do that, instead of us. In our classes won't care which one we have, and but they'll know where to go because the object that gets injected will know what it is. We just won't. I mean, we can debug it and look in memory when it's running. So at runtime, there will be an object there
+
+does that mean Your question?
+
+Yeah. So essentially, it's, it's doing the same thing we would do manually issues, encompassing everything and doing it. It's so for us.
+
+Yeah, that's a good, yeah, it's doing nothing we wouldn't do manually. It's just now. And sometimes we will do it manually. There was dependency injection in your first. The first Capstone gave you the menu class, right? It had nothing in it, but it gave you an empty menu class, and it passed it into the constructor of the catering system. And I don't think anybody probably thought about that point why it would be doing that. That was actually a form of manual dependency injection. So it's some of you actually emulated it with your own own classes and that Capstone and what you were doing was inverting control to the main method. Instead of You're up each of the, the catering system CLR class. So that's that's what's going on. That's a manual version of it. That's not quite as useful. It can be useful but it's not quite as useful. It's much more useful when they injection container that's more automated, like spring does it for us. But it's the same idea something still is a stanching this something is still creating the object that is now giving it to us already instantiated rather than us having to do that. We won't care which one they stand trade. But we will slightly but not in this code. So other questions, and I want to say don't, if this isn't making a lot of sense or if it's kind of making sense for you, you're not sure why you would do it, or it's, you understand why you would do it but you're not really clear on how it works. That's okay. dependency injection in IRC a hard concepts. Even when most developers encounter them, they take a while to kind of process. I think the first time I encountered it took a few weeks or I'm probably being too generous, it probably more like was more like months before it finally clicked of, hey, this
+
+just makes sense. There's a purpose to this.
+
+So the hotel do is the interface, right? Yes. And are there two types of like, classes that stem off of those, like right now? There's, there's not right now. There's not right now but for dependency injection sake. We don't care if there's one or if there's 100. Okay, all we care about is we have a hotel do that's part of it. Also, this starts limiting to as I say we I mean, this class, this class doesn't care. Something has to care. We as developers, we care. But our code, except for where we're actually writing those implementation classes, we don't have to care. How does it choose? That's the next piece. So because it has to make a choice, and that's where we as developers do have to care. So there's a few ways we can tell it the Choose, we're going to look at the easiest one, and that's the only one we're gonna look at, for this cohort. So when it chooses, and in for that, so what we've been talking about so far has been this concept of the spring dependency injection and inversion of control. But it's not nothing that we said the feds are specific to spread its concepts. And we talked about, you know, the first Capstone had a manual version of it in it. So there's lots of ways of implementing it. There's lots of other frameworks that use it. J unit uses the same idea for it didn't use dependency injection, but it uses inversion of control. So there's other frameworks besides spring that provide this. But spring or Spring Boot provide this in a very specific way. And so what we'll do to make it work for spring boots, well, the kind of the steps we need to make it work for us is we'll create it, we need an interface. So for this to work, we have to have an interface and an implementation class. I shouldn't say have to because we can actually inject something without an interface. But there's not much point to that that's not averting control. But it can make life easier sometimes. But that's a whole nother thing. So we have an interface and implementation class, one or more, it doesn't matter. Because the interface is what we're going to define that we want. And then implementation classes, what's going to be injected. And that's it. The separation. So this whole point of using these interfaces, we saw him with polymorph. When we looked at polymorphism, and we looked at the principles, like we've had to use them to do pattern, we've discussed kind of why you would use them, but we've never really had a good reason to use them. The reason we want the whole purpose of interfaces, the separate the code, the implementation from what it can do, so a description of what it can do compared to how it does it, because when we have that separation, now we can use dependency injection to separate it even further. So we need, we create an interface and with an implementation class, so RC city do and our JDBC city do, please creating that. And then for the implementation, the easiest way in spring, and the way we're going to do it now we're going to pick the implementation class we want currently So we're gonna have one at a time. Kevin asked the question of what if no three classes, I'll get three different ones. And that's actually possible, but we're going to do it. In most cases, we won't run into that. Most cases will say every time we have a hotel helps hotel Do we want this hotel Do we want the memory one, we want the JDBC. One, we want it to always be the same. And that sounds limiting. But what it's going to do is when we get to testing, we can have our test system have a different choice than our main system. So our production system uses the hotel da that goes to the database, our test system uses the memory one that's in memory.
+
+So we're going to make that choice
+
+in the implementation class. So that memory hotel do or the jail We see the hotel do whichever one we're building, we're going to add the component component annotation. A component in spring is something that can be in jeopardy by dependency injection, something that can fulfill the injection.
+
+And that's, that's it. That's what we're referring to add.
+
+Sorry. So I component
+
+and then where we want to use it.
+
+We will we have two choices. The one we're seeing here is in spring do we can just add it to the constructor. Or I could choose not to add it to the constructor. Let's take a reservation out and I can add it private member variable pier and I could add this
+
+annotation auto wired
+
+Right above the variable. And if I have two of them, I have to have one for each variable. So it's not one with a list of things, it's one. So I can choose to use this either way.
+
+And that's all I have to do.
+
+So if it's in the constructor of something that spring is already using, I would have put this back. Because most of the time, that's going to be the easier way Spring Boot is just to have it in the constructor of our can things like our controllers, but sometimes we'll need something more. If we put it there, and it's something that can be injected, it'll look for now it'll say, okay, you have a hotel do that's an interface. It's going to look through everything that implements hotel do, whether that's one thing or 100 things. And for this easy, the simple use case is going to find the one that has the Add Component annotation. So only one One of them will have it. And that's the one that's greater than the screen to a standard eight class and populate this variable with the reference to that object that is stated. And then we can use it. So there are more complicated ways where we can make the choices like you asked about Kevin and have multiple things, but we're not going to look at in this cohort. Most of your things you will find, in most projects, this is the way you'll find it. Because then when we get down here to test, we can have a different choice. And that's what's going to really help us here. And also now if we have different code, we can if we just say, you know, we want to, we don't want to be in memory database, we want to use a real database. Then we can just switch the one word component from the memory D. Hotel, do to the JDBC hotel. Do it All of our other code just works with that one word switch.
+
+So to kind of look at that again
+
+in our class going to get away from hotels. So city something we do is we built if we had a city controller
+
+we would define
+
+a variable in our constructor for the city do that data type the interface. And then when this class gets built because nothing we don't build this state, the city controller either controllers are themselves injected, spring, builds them and Jackson into its own stuff to be used. So when that happens, they'll say, okay, there's something there's a city do interface here. It's going to go to the city do interface. And then it's going to look at everything that implements it. Whether said no matter how many things that is, how many classes that are there are, it's going to find the one with this app component annotation. It's going to instantiate this class, and then pass it into this variable. And then we can use it. So that's how it's gonna work. So for our code, it's really a matter of
+
+just saying, you know what we want this.
+
+Putting it here, putting that auto wired annotation on either one, and then picking the right class in the class, we want to use it that time and putting a component on it. So from our point of view, it's actually less code than typing out new and
+
+but now
+
+this, in this, these two classes are completely separated just by this interface. That does nothing but his promise what this class can do. There's a complete division between these two. They don't know each other exists. They don't care each other exist. It's the same idea in this hotel controller, that if you called a plumbing service, and not just a service, and you called them and you said, Oh, I need my pipes leaking out of the sink, can you send somebody to fix it? You don't care who shows up to fix it, right? You don't. I mean, you might I mean, I mean, if you just call service. So you said they send somebody, they do the work, and as long as they can know, do the proper plumbing and fix the leak. You're happy.
+
+You don't care if you know
+
+if it's solid that shows up or Susie shows up or Jim that shows up. It doesn't matter to you. All it matters is that they can fix the pipe. That's the same idea with our hotel class. We could even say that that when we call the plumbing service and they send a unknown to us plumber to fix the pipe with no choice in our part, that's the pendency injection of a plumber into our home to do the repair.
+
+So that's the same.
+
+So What other questions do you have?
+
+You go over one more time, what component is bringing over is it bringing over the public hotel controller? So
+
+so let's walk through this and see if we can get these three together.
+
+So the three pieces involved in this are the controller
+
+Do I just made it worse? Okay.
+
+Alright, let's try it over here. Sorry, I'm trying to get it so their
+
+exact opposite of what it keeps doing.
+
+We need to switch this one okay.
+
+So these are the three pieces involved.
+
+So here
+
+and
+
+this class we tell it we will What's the hotel deal? Right?
+
+That is this interface.
+
+And that's, that's it. We're done in that class. It has to be in the constructor. Or it has to have that Ottawa invitation if it's not in the constructor, so it has to, there's some slight rules around how we indicate we want it to be populated by spring and not by us. But it's in the constructor
+
+with the interface. So then spring says
+
+when it is stanching the controller because it's, we don't do that it does it for us. Because it's, since we're already controlled a spring springs, the one using the hotel controller not as
+
+it takes and says okay, I have an interface here.
+
+And I'm going to look through every
+
+class that implements this interface.
+
+I'm going to look through each one.
+
+And I specifically going to look for the one
+
+that has
+
+a component.
+
+Okay? So when it finds a component that implements the interface that we provided here, it knows it has the right class. So then it's going to take,
+
+and it's going to take this class and do new.
+
+You know, the class which is going to build an object, right? to Trump, that's an object.
+
+So it's going to build an object. And then
+
+we're going to have this object here.
+
+And it's going to take that object, the new object, and it's going to put it into this variable. So we're going to it. That's the workflow it's going to go through. And then here when we call it, we're calling the list on this object.
+
+All right? Yeah. Make sense? Yeah. That's what, that's what that is. That's your question, or
+
+Yeah, that's what I said. Yeah.
+
+Brian, the flow of the operations and everything makes sense to me. But I guess I just don't really understand what we're gaining by doing that. So
+
+and yeah, that's, that's To be fair, that's one of the harder pieces of us.
+
+So, here in this class, this is where we're doing our work about our controller. The Division now is That
+
+this class knows about this, right?
+
+This class knows about this. So there's a connection here, kind of a wall between these two classes that this interface with the interface doesn't do anything.
+
+So if I add another class
+
+here,
+
+down here
+
+that is,
+
+you know, JDBC hotel,
+
+do element to toe do
+
+and it's not just a bunch of lists like this one is it's actually goes to Postgres. Then I want to To change the behavior of this class, all I have to do is
+
+take this
+
+and Move it.
+
+Move it down here.
+
+And now this class is being injected instead of that one, which, right now, learn this code yet why? So now imagine that here
+
+I want this one
+
+to be for my users.
+
+And I want this one
+
+to be for my testing because I don't want to use a real database for my testing.
+
+So when I'm testing, I can put the component it
+
+back up here. And when I'm not testing, I can keep it here. But now let's say there's let's make it one more level complicated to hopefully make it a little even easier to understand this. I have I go up a level here. So let's say that I right now I built this and I have one user, we'll call them
+
+user a.
+
+But I have a second user that comes along. And they don't use a JDBC. They actually have their own API that can provide hotel information, but they want to use my interface for it. So
+
+their class here
+
+is We'll call it web hotel.
+
+Do it implements hotel do.
+
+And so I write that code. And this is for
+
+user B.
+
+And now I'm,
+
+I need to deliver this project, I need to test this project, I need to deliver to user a and then deliver to user B. Doing that becomes as easy as moving this annotation. I move it here during testing, and we can actually, in test, there's this thing called we haven't looked at. That's a little more advanced than what we'll look at. But there's this idea called test context. And part of the context is these component tags. So in test contacts, we can say We want the component tag moved from here where we're using it for our user to here where we want it for test. And that'll happen display run test cases j unit could actually do or Spring Boot test stuff can actually do that for us. But we won't get into how this possible. So now we have three uses of this class. And the only thing that's changing is this component moved around. If we have a third or fourth one that gets added on. Its for user See, and they wanted to come from a file, they want to come from their Excel spreadsheet, we build an Excel spreadsheet hotel do and then we just move the component tag for them. Okay. That's the purpose is this code, the only thing that now changes as we change the behavior of where the DEA how the DA works is just We have to get ready to do because something has to know how to go to the database, something has not to go to the Excel file, whatever we're working with. And then we just move that component tag around. So a one word change changes the complete behavior, verb, or function.
+
+Okay, well, that's pretty nice.
+
+Yeah, it really is. Once you kind of get the grasp the idea and said, I don't expect anyone to walk out of today, or even this cohort with a full grasp of dependency injection. Some of you might never, that's great, but it usually takes a while to kind of sync and it changes the way you develop. It really does. And the way you kind of think about code, because it's really useful. And there's more advanced ways than we're looking at, I won't go into it much but there's ways you can even do this. It runtime you can change what is being injected at runtime. So that means you can have the user check, choose when they come to your system. Oh, I'm user a so you inject the JDBC word or I'm user B and you eject the weapon and not only things changing as that injection, but that's way beyond the scope of this card.
+
+The difference between hard coding and
+
+tomorrow we're doing No,
+
+no, in the end, something still just doing new and passing variables around in Java or not, has no real performance
+
+difference.
+
+I mean, I will say you can with that, cuz I should stop there, but I'm going to go one farther. You actually can use dependency injection to performance In a system quite a bit, because since it's creating the hotel, do so you have 20 classes that use it. And rather than each of them creating their own, you can create one and just inject that same one to multiple classes as they need it. And that will greatly, greatly increase crease performance. So it actually is used to performance but the way we're using it now, there's no difference.
+
+If if they say you had a website it took
+
+that you were able to upload
+
+like multiple ways, say, like HTTP or through a spreadsheet, then what would actually be going on in the back end? If they were using something like this will they have like a program switches that component tag?
+
+They won't. If you're doing that thing I'm talking about with switching You wouldn't use the component tag. There's you can do this through configuration files too. Oh, and those can be those are, those are much more difficult to write. Much more difficult to use, but much more powerful than just the prototype by itself.
+
+I mean, really, they're there. Yeah. Yeah.
+
+I've seen Yeah. figuration files are giant sometimes for this. confusing, but there, it can be really powerful. So Brian, so for the sake of what were we where we are, and what we need to do, right now, if we have an application that we're doing, and we're like, Hey, this is being weird. It's not doing what I expected it to we need to trace where that component is or isn't, and see if it's where we needed to be in our application, right?
+
+Yes, the majority of problems will be deleted. Question or lack of existence of this component annotation, if you save so if you in if you get an error saying that it can't find your class to inject it, that's almost always what it is the components missing. Because it's hard to remember would say, probably 90% of the time I write code that does this. The first time I run it, I have to get reminded by an error to go put that component again. So
+
+So other questions or
+
+All right. So let's
+
+take a break then. And we'll come back and look at the rest of the things for today. Right
+
+Could you go back to eclipse real quick?
+
+Yes, me.
+
+So earlier I thought the point of all this was to get the method online 43 or as 4343. Does that still work? Sorry, in memory hotel? Yeah.
+
+That's the only case.
+
+It's to get access to
+
+these methods, these public methods over here.
+
+So it's the purpose is to the whole point is to we want to be able to go on hotel like list and have it go to this method. But we don't care if it's this class providing it or another class providing it. Yes, I get it now scrolling down
+
+on the memory. Hotel do make sense.
+
+So Other questions?
+
+And so don't panic if this isn't making sense or you think it is now, but later it doesn't. That's okay. This can take a while. One of the instructors it used to be here used to tell the story that he would his entire he went for years as a development manager developer lead telling people how dependency injection was really stupid. And they didn't need they were wasting their time doing it. And then one day out of nowhere, it clicked for him and changed everything and made him regret years of fighting with people about it. And there's lots of stories like that I've worked with lots of senior developers who didn't understand it, didn't see a point in it. And then if you could convince them, they would very quickly change their view. So if it's not making sense to you right now, it's okay. What you will Want to know right now is put the interface here, put the component tag on. And you don't need to do anything else to get your DS to work. If you take that much out of what we've talked about, that's okay. The rest of Can this be a seed for later understanding. All right. So there's no question. Other questions. We'll move on to the next topic.
+
+So we have these services now. And we've been writing them but we haven't really talked a lot about why things are laid out the way they are, why the things are designed the way they are. So we're going to spend a little bit of time talking about just restful service design. So we can kind of understand the rationale behind know why is it auctions Why is our hotels and why is it hotels with the hotel the after that Then why did we put the state filter on a query? string. And that's because there's actually a set of rules around. And it's actually a pretty small set of rules around creating these API's. So when we create API's, when we design Java, we talked about one of the most important things is, you know, class design, setting up your classes, we're still designing Java and the Java portion. That's still important. But when you're working with an API, probably the most important design decision you make, I'm actually going to go one further and say the most important design decision you'll make is the endpoints, the URLs, because that's how the users use your API. And it's how you communicate to the user what your API is doing. So one thing you probably noticed with API's with Java, when you were calling them but writing them is different, but when you're calling them on Monday and Tuesday and you're doing your exercises. If you Didn't have documentation telling you how they worked, you would have no real idea of what was going on which
+
+they don't give much information.
+
+So the documentation of API's is critical. But we want to be able to at least have a user guess what's going on. If I told you to go, if you knew the roles of API's, and I told you to go to API called hotels, you could at least hopefully, guess that it's for hotels, maybe not the details of what hotels do, but it's about hotels. And if we have some simple rules we follow then we can guess when we encounter an API, or our users can for ours, what different end points are going to lead to
+
+so those rules are
+
+so those rules for divide the finding the endpoints are going to be that the endpoint should be plural noun names that describe what we're going to allow access to. So hotels, reservations, cities, cars, they should be nouns, they should be plural, because it's going to access to many. And that's going to go into the first part.
+
+And if you go to that
+
+name, so if you go to, you know, cities, you should get back a list of cities, it should be a get request, a get request to it should return a list of cities. In ID added to that same request, and the path should return a single city. And that should be the same for all API's. Will it be? No, it's up to the API author how they designed these, but a properly designed API should end up with endpoints that look like Actually, we're going to go through them in a minute, a set of endpoints that are really consistent. So IDs for these entities. So if we're representing cities, then the city ID, which is this ID that represents the main entity should be passed on as a PATH variable. And that's what's going to set them apart. They're part of the path, because they're important to the request itself. Other things like filtering, filtering, sorting, sorting, things that are not about selecting the entity, but are just about changing the results. Are should be passed in query parameters. Hence, in when we done the hotel method yesterday, and we passed, if we wouldn't get a single hotel, we could pass the ID. But if we are filtering all the list of hotels on city and state, then those are queer parameters. We're not Changing the entities returned, which were filtering or changing the results of those entities. So those are really the three roles of endpoint design. We'll look at a little how those get applied here as we go, but they're going to be plural, they should always be plural, they should always be nouns. And there generally is going to be one per each endpoint. Now, endpoints can have a hierarchy like hotels and reservations. So we can have a hierarchy within in that structure. And then IDs should always be path variables. You won't always encounter that. But they should be. And then filtering and sorting or anything that changes the results, but doesn't identify an entity should be. So anything, it doesn't have to define an entity that we want for the search for other parameters should be query parameters. And that's going to the purpose of that is not because one needs to be on the path, what needs to be the queer parameter, boy, following that standard allows us look at the URL in a different If I quickly what is going to be, what form we're going to use, and also allows us when we're using an unknown API, that if we know, you know, we're selecting car manufacturers from and we want the one with ID three. We know, if we put it in the URL after, you know, the manufacturers, car manufacturers, part of the URL, that it should give us just the single manufacturer, if we leave it off as you give us all of them. If we know that it's conformed to the standards of how API's are supposed to work, or there's the design standards, then we can guess that and play with it and something like postman to see what kind of data we get back. Without having to we start to rely on documentation. So we're going to hear since after next week, we're going to go into JavaScript, we're going to really, really rely on documentation. You hear a lot about a lot of we have to look in the documentation for the rest of the cohort, Java kind of self documents But it's not the same when we get to API now record API's and won't be the same. And web technologies, they, they do the opposite of self document, they almost self document sometimes. So
+
+what we want to design these endpoints around is the crowd.
+
+So we've talked about crud, since module two, it you know, create, read, update, and delete, and we have posts get put in delete. Just like in SQL, we add, insert, select, update, and delete. They do the same thing. They fulfill the same purpose. So our next choice is going to be what credit we want to include. If we're representing hotels, do we want to be able to get all the hotels? Do we want to be able to get one hotel? Do we want to be able to filter those hotels in some way as part of a read? Do we want to be able to add a hotel we want to be able to update one or delete one or maybe reviews like we See in the extra code this week, maybe that's what were the updates and deletes are and the hotels only have, you know, read operations. So we don't have to represent our API's doesn't have to fulfill having no one method for each thing. We pick we pick what we want to give access to. A lot of API's are read only, like the one we looked at. Earlier this week, that chart showed the that was external that got the city names, got city information tied to chuck norris jokes. Those are read only we can't update them. There's they're only crud is to get those cities back or to read to get the cities back or get the jokes back. Now they have a few different methods that can be used in different ways that can be accessed with different parameters. But those are all just read. So we'll make that choice and what designer URLs around those choices. So our second thing after we have an endpoint idea in head, we have our plural noun chosen. We wanted to find what we want to be able to do with that plural noun, those things. So for defining one for like reviews, then we decide what do we want our users to be able to do with the reviews. And that goes into the actual endpoints finally building them. So for those, we're going to wanted to find the endpoint, what it looks like, what parameters it takes, what NET web methods GET, POST, put and delete that it accepts. So those that's the credit methods, and there can be no duplicates for each one, or none. So zero to one, zero to many for each one of those operations. And we also want to define what it returns. So one of the things we're going to start looking at today is that there's sponsored statuses matter. They mean something, getting a two a one back from an crate versus a 200. If your API returns the 200, it's not going to break anything. But if it returns a two a one, it's there's lots of systems that can take advantage of that it should because it should be sure returning the created status. So and then what about errors? We should define start defining what operation errors could occur. So if we didn't find any one for reviews, and this isn't an exhaustive list of all the endpoints, we can end up with reviews this just some we might want. So we might just have simple reviews and forget if we had reviews as our endpoint and you can actually leave the ignore the API part. The part we're really designing Is this the reviews We'd want, if you just went to reviews as a get, we would get back all list of all reviews. If this was for hotels, if we go to just hotels, what to get, we should get back to us hotels. And as long as it's okay for us to return a list of everything, which usually that's going to be the case, then that's how we should get it. That's how it usually should know to get a list. And then if it, we don't want that we should return the error that that methods not supported. So essentially a four four, that it's not there, or methanol, there is a method not supported to stop. So they know that reviews by itself doesn't work. But if it does, it should return a list. To get a single entity. We should use the same URL with the ID as a path. And that would get in this case a single review by the ID so it gives you three like we get hotels three are you getting auctions and your exercises yesterday or early this week.
+
+It should return. So the list is always going to return something right. By default, we're probably always going to have something and if you ask for a list of things, and there are none, you would expect to get an empty list back. But if you ask for something by ID, you want to say I want the one with ID three, you would probably expect a four or four if it doesn't exist, or some other status. So we'll return maybe a four or four. But to find it, that's going to return the return 200 if they're successful, unless otherwise specified, but in this case, if the review doesn't exist, we'll return to four four. And then for post, we generally will want to use the same ID the same or we will want to use the same endpoint as the get and that should create a new review, and it should return to a one when successful created. It's your turn to a one instead of a standard 200 because There's there's one specifically for post when they're successful, so we should take advantage of that. Put should use the same sense of put is for an individual item, it should be the reviews with the ID in it, not picking the individual item we're updating. And then returning a 200 is successful, which we know that's going to be the case. And for for if it's not delete is for a single item. So it should choose the idea in this URL as well. And should actually we should return 201 successful or let's add one more. It could also return a
+
+four to a four
+
+no content
+
+because we may want to return something besides just assessment donno if we're not returning message body or any type of data, we should return. Anytime we're not returning something, we should return a two a four. And that tells the user the system that it's empty because we meant it to be empty. Things were fine. Everything was successful, but we didn't have a response for you outside of the status code. And that the difference is that 200 if a user looks at it, they might think, Okay, I got a success. But why didn't I get a response? Why is there no data? In a two four says this was successful, and we didn't send you any data.
+
+So it's reassures the user.
+
+So for each of these notices really two endpoints, there's one without the ID and there's one with the ID. Anytime we're talking about a specific one, the is the one with the ID. Anytime we're talking general, we think about what add we're not adding a specific one yet. We're adding it to the general list because it hasn't been added yet. Then we just use it without the ID. So our and then what controls what's happening is the combination of that endpoint with the web method, get post, put or delete. And if we write our API's to follow these standards, they become standardized and fairly easy to use. That means if you you know, you encounter the next one, and you go to, you find a new API, and it can, it works with books. You don't have to take a lot of guessing on what methods are, review a lot of documentation, you can go to books, and it returns a list. And then you can see the IDS if you want to individual one, you know, you can put it in the path after that, that follows the standards. You can just replace this word, this plural world word with whatever API you're working with. And they'll all work the same. Now, that means the developer of these API's have to follow the standards. But I encourage you when you're writing API, As you should follow the standards, you'll see lots of them that'll have things like set of reviews, they'll say get reviews, they sound like Java buffets, then you have to know all the method names and do a lot of research and try to figure them out. And hope that the author meant the same when it said, Get as you think of it.
+
+Alright, so questions on any of that
+
+question about getting the codes. I think that I imagine that's what we're going to be touching on next. Yes,
+
+we're gonna look at how to generate all these codes and return them today. That's one of the topics
+
+like Tuesday, like it was like return true or false or something in the exercises. And it was just like return false with like the catch or something, which I thought was silly, but I'm nice. We're going to be getting the message today, which
+
+Yeah, Today we're going to get add in. How do we return a 400? How do we add it return a two a one or two a four, when we need it to. So that's what? Yeah.
+
+Okay, so the questions.
+
+So
+
+what is part of what duck was asking me about the status codes. Before we get there, I want to generate some problems, not generate some problems, but talk about a problem we can solve that will lead us to needing to have status codes, and then we'll talk about all the other ones as we apply those.
+
+So I'm going to go back to the lecture code, and I'm going to just run it
+
+so I run it from reservations here.
+
+as Java application
+
+generates some problems sounds like a blend between like a nerd and a punk band.
+
+Yeah, I guess something I'm good at generating problems. So lots of lots and lots of experience.
+
+Let's go to the URL. And we have hotels. Now that's there. We also know we can add reviews right? That's really where we want to go to because the guests don't have a lot of problems. But we have reservations. Should we go for resor
+
+spell read properly.
+
+Make sure it works. With reservations, we can do a pull up post.
+
+So we can grab one of these.
+
+And we can change this to post.
+
+And we can put a new reservation in don't need the ID. And let's just change this to something else. And we get our new value. But
+
+if I take this out
+
+now it's total zero, there is no tell zero. Or I just remove this all together. Actually, this might be a bad request. Nope. So they put it a hotel zebra for me
+
+or if I decide to do this
+
+Now I've made a reservation with in nobody's name for hotel zero that has negative 20 guests. That's probably no right here. It's all in memory. It's going to go away when I restart my computer, but restarted clips, so even the server, but if this was a database, like most applications real applications would be. That's a problem, right? That's bad data. And, yes, sure the database may stop it. But we don't really want it to get that far. So the way we can protect against an invalid request, because this is what this is invalid data, is what's called validation. And validation is this idea of just to check the data and make sure it's good data. it's valid data and will only allow it to continue if it It's something we want. And there's actually validations done in two places. We talked about the front end and back end yesterday, there's front end validation. And there's server side or back end validation. And they serve different purposes. Front End validation, client side validation, which we'll look at next module is about making, it's about protecting the system somewhat, but it's more about a good user experience. It's, you know, we want the phone number in this format, we want the data in the right format. And here's how you do that. Here's some help them make that work. Or you or a nice quick message, oh, you forgot to put in your name, please give us your name. server side validation is about protecting the server and the data about the database. And this wherever it's storing, that might be the database wherever it's storing it.
+
+So it's more
+
+It's less, less user friendly and more
+
+basic. So it's more this fields required. You know, this number has to be in this range type of type of validation. Because its purpose is to make sure that when the request gets through, it gets to the database that not what the values are not that the phone numbers in the right format necessarily, but that there is a phone number there to be stored. Now, I can't get more robust than that. But in most cases, the server side validation will be a little less robust, a little more general. And a lot less forgiving because certified file validation can't be is we'll talk about next module, why we need to always do both, but do it both everything in both places. But then we usually do more client side. But the reason we'll duplicate validation in both places as server side validation is absolute. There's no way about it. If our API will not take the request, invalid state, there's nothing anyone can do about that.
+
+Including malicious users. That just won't accept it.
+
+But on the client side validation will learn that it's as easy as clicking a box in the developer tools and JavaScript turned off, and now it's all completely disabled. So anyone can turn it off. And we'll talk about why that happens to even not malicious users when we get there. So let's look at it way of doing one way of doing server side validation. There's lots of ways of doing it. We're going to look at one called the Java Servlet. Java X Server framework, which is a really common it's really easy to work with. way of using annotations to have Spring Boot do simple validation on our Java class data classes. So that I said, it's only one way of doing it, you cannot you can write a bunch of if statements if you want to. In fact, I've worked in many places where that's pretty much what we did. But
+
+the point the idea is not to let data
+
+when we receive
+
+that's fine, but does it this reservation object here serialized, not to let it get past this point. To stop and send an error back with this job X Server validation we're going to look at, it'll stop, it'll stop it actually from deserializing. It never, it will never even call this method will never get to this line of code, because it'll throw it'll throw an error and return an error while it's while it's trying to do the deserialization. Which means that it's impossible to even get to our code with an invalid object. Which is why it's is commonly used. So that to add validation, we're going to do it in two steps.
+
+So the first step is we're going to add
+
+these kids what's called constraint annotations to
+
+the data class of the Java bean.
+
+So that's, you know, the class. Like if we look at the one that needs validated here, so we're only using a class just forgets, we don't need really need it for validation, right? So hotel, we can't change hotel. So nobody's going to ever be sending a hotel reservation that's for the get in the post. We need to verify that that other data is there. So in the model, and the reservation, data object, data object or business object are sometimes called is just one that or domain object there. Sometimes called, is just one that just has member variables with getters and setters and has this no argument constructor. These are also called Java beans. So those are all this, all four of those words mean pretty much the same thing. You hear different people
+
+call them different things.
+
+So I try to use data object because it's what's in all the curriculum stuff. I personally call them Java beans. So if you hear me saying that by accident, that's what I'm talking about. But there's actually a little more to javabean than just this, but we won't get into that. So it's just these objects, these one that represent data, we've been building them since the do pattern, actually, we were building them back in module one. You know, the items and most your vending machines, that's what these were, they just represent data, nothing else. So for those classes, we're going to add annotations to these member variables. Not to the getters and setters, but to the member variables themselves. The annotations are going to tell them if someone's setting this value. And they've told it to validate what is allowed to be here.
+
+So,
+
+for instance, if we wanted to
+
+make it so full name,
+
+this field could only have this type of house just have to have a value. There is a annotation, not blank. And then in each of these annotations, they're going to take arguments, one of the key key value pairs just like we looked at for request body, not request by request params earlier today. So for this one it's going to take or all of them will take message and the message is what's going to go back to the user This is the era that they're going to see.
+
+Somebody will say something like
+
+full name
+
+is required.
+
+And I'll save that. And
+
+that's one of them.
+
+And then there's some other ones. So let's say here on hotel, I'd also want to make it required. Well, string can be empty. So it can be no characters, there can be no right. Not blank will check for either of those conditions. There's also not no and there's not empty, actually non piece for lists, but there's quite a few different ones and I'll show you a list of them and send it the URL to you. Actually, it's already in the slides. But
+
+so for this for an end,
+
+it's going to be zero if there's no data, because that's its default, because it's a, it's a primitive int. If it was an uppercase integer, that would be different, but it's not. It's lowercase n. So what we do instead, maybe check it's a minimum value. And there's an annotation men that text a minimum value. And is that each of these takes various arguments depending on what they're validating. This one takes a value argument, say one and then a message. They all take the message and see hotel.
+
+Toe
+
+ID is required.
+
+Maybe what to do. The strings there are string validation. validators though, not ones that tell you if they're validate, but there's things that tell you things like the past or the present. But maybe for this all we want is just since they're strings, they make sure there is a value.
+
+Notice these go right above the
+
+whatever I'm, it's working with. So if I want one for checkout date, I write it above it, which is the way the all the other annotations we've been working with mostly work above or right before you also think of it as before.
+
+Because of the way Java works with whitespace.
+
+Brian, on the on the Minhwan for the ID, why are you setting the value to one? I'm saying that the value must be at least one, the minimum value of this is one, because it's the default is going to be zero. So if it wasn't, if it's zero, that means it's not an ID. It's a default, meaning it was not set. If it's below zero It's invalid. So that means someone said it, but it's not the right data. So if it's a, if it's one or above the minimum values one, then I know it. Somebody said it with a value. And that's all I really care about right now. Nothing, it's a valid value. The next thing we'll look at, we'll handle that.
+
+Okay, cool.
+
+So then for guests, it's a little different, right? Because it's probably I want at least one guest, but maybe, no, I put negative 20 in there before. It's probably unrealistic for my hotel reservation to have 100 guests for one room as well.
+
+So I can set the minimum like we did
+
+for
+
+set the minimum value to one so it's required.
+
+message, minimum, but if I had multiple roles, I want to apply. Guest one We can just stack them on top of the member variable. So both of these will apply to the same to the guests member variable.
+
+So this this variable will be valid for both of these, both of these
+
+and we put them up. So
+
+here in the slides, there's a list there's a link here.
+
+of
+
+actually I'll just I'll put it in reverse as well.
+
+There has all the different annotations that exist in this set of constraints.
+
+So you can see there's quite a few they do different things.
+
+There's things like email that will make sure it's a well formed email. Well make sure it's a valid email, just make sure it has the commercial at symbol in the right place and things like that. Things like future future present future present, I'll make sure a date a local date or a Java date is in today's date or in the future.
+
+minimax
+
+only negative numbers.
+
+So there's
+
+no past to make sure the date is in the past.
+
+patterns, you can actually create any pattern you want using a regular expression to do pattern matching against a string or data coming in. So there's quite a few of them.
+
+And then I'll leave that there, we're just going to look at these basic ones. But what you're going to want to do with server validation is, or server side validation is this type of thing. The hotels has to be there, we don't care if the ID we will later. We want a minute care if the ID is a real hotel, but right now we just want to make sure it's the data is there, that's what these are for. But
+
+this is saved and restarted.
+
+And I can still
+
+send my invalid
+
+validation or invalid object. So there's a second step. So we put the annotation here, and then in the controller where we're using it. So where it's going to be where we're telling it to deserialize where the request body is in the object reservation, we're going to add another annotation before at the beginning at valid and that says When you serialize this object from the request body, validate it, run those validation annotations and make sure that they match. And what this allows us to do is decide to use the reservation objects with or without validation. When we need to validate like we do in the ad reservation, we can put the valid in, and it'll validate. But when we want to use the object with our own data, where we're setting data, and maybe, for instance, we don't have a hotel ID, or we are missing data, because that's something our system is doing is that, you know, builds data, then we don't have to worry about the validation occurring unless we use the sanitation. So wherever it happens on set on D serialization from JSON to the object, so we're going to add the valid annotation once I do that and save it and it restarts the server.
+
+Now I go out and run the same request.
+
+I get 400 bad request.
+
+I look at the request down here. It says there's the first message that I typed that's the one I put in right full name is required. That's coming from that message equals
+
+right here.
+
+That's where that's coming from.
+
+The other one checkout date is required again from the message equals for that hotel ID is required. Checkout date is required. minimum number of guests is one, it only has the first error. Because if there's well the both these can't be true at once anyways, but if we have more stacked. The first one that fails is the error that occurs until it's solved than the next one. So on through the list. So for each one, but that won't really won't, isn't the case that happens that much. Then we get a message, the bottom validation fail for object and a bunch of other stuff, basically a stack trace. But this is, so remember, this request is coming back to a system not to the user. Another client application would receive this, see it's a 400, and then go through the JSON to get the errors out to show to a user. So there's all the errors as we change things, let's put the guest to
+
+split at eight.
+
+And we send the request.
+
+And we'll see now let me look at the guest and they're not always in the same order. The maximum number gets five now is there let's put it to three And now we'll see that it's not in the list at all. Now it says there are four errors instead of five.
+
+Correct the hotel ID.
+
+And now the hotel it is not in the list. Now there's three hours.
+
+And it doesn't really matter
+
+for this and now it's just the check in and checkout date. And as we, it since these are the strings, we put something in for everything. And now it's worked Coco pass to validate validation.
+
+So questions on
+
+validation.
+
+I imagine this isn't a problem, but I imagine we can make this dynamic like forum like the hotel ID, for example.
+
+Let's say they built another hotel or whatever, we just add that to a different type of JSON, or whatever.
+
+We could say it's like counts, or whatever for the max or something like that.
+
+So if we had something that wasn't, that was specific to the data,
+
+that's would be more up to we would put probably put this to the maximum have something else that was checking to make sure that if this is hotel three, there's nothing in these annotations that can check the other pieces of data. No. That's not their purpose, their purpose, their purpose is to validate that the data going into these fields is valid for this field types. Not that it's valid and not it has integrity with the other data.
+
+So you can pass in like a variable. That's what you're saying.
+
+Yep, no, that's, we can validate for that, but that's what we're going to look at. That's when we would write an if statement interesting code
+
+and return to status manually.
+
+Interesting, thank you.
+
+So server side in that probably wouldn't be done server side anyways, I'd probably be client side validation, because that's about data integrity or database, something in the database. server side validation is about making sure this object when it deserializes has valid value values has not about is invalid for the data. For instance, this doesn't care that that's the date and check in date and checkout date when it's a string. It only cares there is a string.
+
+Other questions?
+
+So you get an error message back, but like if you wanted to re prompt the user, you would still go ahead and
+
+do that in Java.
+
+Yeah, that would be in the client. The client this, this API would send this error message back then Remember, it's stateless. So once it sends a response, it's done. The client then would re prompt the user do whatever they want and then send a whole new message to
+
+continue
+
+Yeah, that's the one thing in API there is no concept of try again. It's you try once you get a response and if you try again it's it's a whole new whole new thing.
+
+So that gets us the validation it's in there always going to return 400 errors. That's the returns from
+
+Brian is recording
+
+good we are Yeah. Says recording
+
+says pause or stop.
+
+on my end, oh, yeah, I was covering it up. Never mind.
+
+But thanks for watching for
+
+So
+
+the other thing we want to do is a lot of things where we want to check statuses and then return them. So this returns a 400. The 200 returns just by the messages returning. But what if we want to get those on their statuses? Like two, one or two, four, or four, four, for our data, not for the endpoint. So, for those status codes, there's two ways we can do it. Actually, it's one way but two ways using that one way. And that's there's this annotation response status that will allow us to tell it what status to return to return a successful status like to hundreds, we're going to use it right with the method. So if I come back to the created method,
+
+in the hotel controller,
+
+we can see it's already has the response status annotated. And then there's an HTTP status. And if we look at this, we can see it has all the statuses listed. There's quite a few of them.
+
+So
+
+we'll return created.
+
+We look
+
+make sure I'll try to take this off for a second.
+
+I'm gonna take this off
+
+and I'm going to resend this request
+
+and we'll see the status right here.
+
+So, the status here is 200.
+
+I'll put it back on response status, HTTP status created. To ploy and sending this same request again. The status is 201. So when we put response status on to the controller method, that that is the status that will be returned when it's successful. So that that's going to be for 200 heirs or not 200 heirs 200 status. Remember, they see if it's not errors, their statuses. So the two hundreds will be returned by adding this right to the methods and when it's successful, it'll return that particular status. If we don't have that, like the other ones, and it just returns 200 by default.
+
+So the second
+
+way we might want to use this
+
+is what if the hotel is not found?
+
+So if we come back here, and in this ID let's change this to Hotel 20. I know there's not a hotel 20 and we'll change our request here to use the same ID so Looks valid.
+
+And it worked.
+
+There can't be a hotel 20 I think I'm getting ahead of myself on something.
+
+So let's try 50
+
+appear for 50
+
+right I don't think you edit my maximum application you just edited minimal. Can you check a reservation class real quick.
+
+This is what I'm, this is for the hotel ID and the PATH variable.
+
+Let's see here.
+
+Let's try one of the other ones.
+
+If something broken that da Oh, that's okay.
+
+Try reservation 50
+
+Okay, there so that one works. So something's broken in that do well, we're gonna walk through that. I just picked the one we're gonna have the URL on but I should have tested which one worked and which ones didn't.
+
+So
+
+it gets four, four. The reason it's got a four four is this URL exists, right? We have reservation one
+
+reservations.
+
+Eventually I'll get to the right
+
+So this URL exists, but if I give it a wrong ID
+
+it's going on.
+
+So I suppose,
+
+since reservation not found.
+
+Again I can reservation do
+
+find by hotel
+
+uses find by hotel
+
+No, one.
+
+vacations.
+
+Hotels, sorry.
+
+Okay, so this is working. And it's given an invalid hotel ID and we get a four four. I apologize, I thought of the to methods had that code in them. Not I didn't realize that just picked one to put the example in.
+
+Alright, so
+
+we got a four four. But it's the error is hotel not found. Not the URL is not found. Now, if we take off the word reservations here, we get a 442. But it's just not found the general web message. So, in this case, we're, we want the same response. Our data is not there. It's true. not found that the resource not found is that you got to the right place, you just didn't have the right data. We control that. And that's coming from this method I using exceptions. So if we throw an exception out of the method, if you look at that exception,
+
+term not found exception,
+
+it can have a status as well. And here it has HTTP status. In each response status can take multiple things we can change the message by changing reason. So in this case, if we just use HTTP status not found and returned four four not found, but we add a reason to it hotel not found because it makes it more explicit says what it is. So if we throw this exception out of our object out of our controller method we can have that exception represent error status like four, four, or 400 or 500, or whatever we choose to make it represent.
+
+And then the response that will,
+
+the client will get will be the fat status with our message.
+
+And then here the controller method that has to be identify that it could throw this hotel not found exception, which allow the client to know that they could receive a four four or some other error that has, that's not what it expects. Not Not that to be expected, that it's not one of the standard ones. But we're still using this the status code. So we can use either exceptions with response with response status, or we can use the response status right on the method, depending on whether we want to return a 200 level or 400 level air
+
+status code.
+
+And using that we can return any choose and return any status code we want from one of our controller methods.
+
+So questions on
+
+I just realized I had a note note in my notes telling me to use the method that works and forgot about it.
+
+So the next part is actually to write the updates and deletes.
+
+See, it's 10.
+
+So I know it was five minutes early, but since that's better to do that all together, so let's take our second break now. We'll come back at 1141 and continue
+
+So what questions do you have before we continue?
+
+I'll try to back then.
+
+You can't see anybody. Nobody.
+
+Saturday. I did.
+
+I can't bend over like I used to do from standing back.
+
+But now, you know, I've had three kids, let's be honest.
+
+Yeah, pretty sure if I tried that I wouldn't be back. I'd be broken on the floor right now. But right. So if there's the other questions before we continue
+
+So the next thing we're going to do is build the update and delete. And we actually know everything we really need to know about building the update, delete at this point from yesterday, and today. It's just changing the web method and putting the code in place for it.
+
+So here in the hotel controller,
+
+it's gonna find a place maybe at the bottom, and we'll add
+
+a new request mapping class build the update first. So the put
+
+so add the request mapping.
+
+And we're going to add the path and it's going to be for reservations. So what should our path be for if it's a put
+
+hotel hotels? That or is it just reservations, sir
+
+Just reservations because we don't need the hotel involved. Right. Um
+
+so reservations. What else would we want
+
+for put forward slash and
+
+curly brackets with ID years?
+
+Yeah, we want the ID as a path farewell for the reservation being updated. So then we have our look, we'll return our reservation. It's common for a put to return the object that was just updated, even though it should match what was sent.
+
+Update.
+
+Now we'll use our
+
+request body,
+
+Sir vation
+
+vation and then money in our PATH variable. So there's nothing we haven't done Previously here
+
+then there is an update method in our do
+
+reservation do
+
+update so we'll call that passing it the reservation and the ID
+
+I have something
+
+so there's a couple things left. So if I want this reservation object when it is serializes to use those validation annotations and inside of it, because update everything's required.
+
+What What can I change here?
+
+Yeah, the AD AD valid annotation that's gonna add validation. If I don't want validation, then I can just leave it, leave that off. That's my choice, but I'm gonna have it validate because I want the entire object. So this needs to return that and now, this object throws a reservation not found exception.
+
+So the reservation not found exception we look at it
+
+is being used as the regular Java exception, but it has the annotation for response status so that if it is thrown out of the controller, then it'll become a four four with the message reservation not found.
+
+So here
+
+we need just this is just remember just a Java method. So just like we would, in the other one, we could either choose to do a try, catch and do something else like change. The error if we wanted to, or we can decide throws in it will add throws to the method.
+
+And error. Put is done.
+
+Oh no, I'm missing something. What am I missing?
+
+request method. Yeah, missing the request method.
+
+So method equals request method dot put.
+
+Now, once we have that,
+
+let's go back to postman. And let's change this to
+
+reservations. And one, I think exists with a get and it does. So let's grab this value here and change this to a put or choose to buy Here, and we'll just change the name to
+
+someone else again.
+
+And we'll send it
+
+and we get back the value that we had. That's what we expect. Well, let's do a get to make sure it's been updated.
+
+Okay, yes,
+
+sir, are put is working.
+
+So really nothing new in the put, right? It's just changing the request method to put.
+
+So any questions about that before we look at delete.
+
+Delete is
+
+almost the same. We know everything. Again, we need for delete.
+
+So we're going to need
+
+a request mapping
+
+and if you remember back earlier, when we're talking about The design of the endpoints, I put in deletes endpoint should be pretty much the same. It's going to be the ID. And we need to have that method. We missed on this last time, this request method,
+
+leat
+
+and then a method so,
+
+so I don't want to return anything from a delete. So I'm going to make it void, complete, and it needs that PATH variable. So something we've
+
+and ID
+
+and then our reservation do
+
+has a delete method. So we'll call it ID and it can throw a new exception of
+
+was reservation, not found rows.
+
+And let's go look at that. So in reservation do, there is a delete method. Let's see what it's doing. So we can kind of understand that pros.
+
+So when it's.
+
+So what it's doing, it's going through and it's finding the object. And it's making sure it found and it's throwing it if it's not in the list. This really isn't as useful as I thought it was, I was hoping it was going to be. So in a database, we might do something like, do a select first to make sure it exists. And if it doesn't exist, throw the exception. That's a common thing in the database. Here, I guess I'll update. It's the same. The same thing it goes through and it looks for through the list. The in memory list looking for the reservation, then updates it and if it doesn't find it, it throws the exception So this exception can be thrown here and something like the do, it also could be thrown here, we could have something like a, you know, if
+
+reservation
+
+do get by the ID
+
+is equal to null,
+
+then throw new reservation not found exception, we could have something like that as well in any of these methods. So that exception can be thrown from anywhere as long as eventually it throws out of this controller method. It'll work
+
+and I'll get rid of
+
+I'll leave that in commented out. So there's an example but that's, we don't need that with the do the way it works.
+
+So what should
+
+I be returning void? Does anybody remember what We should be doing it for returning void.
+
+Send a status message I can't remember.
+
+So we want to get you, you're on the right track. We want to change the status code. So what the idea is of what status code we should we should use don't have to know the number just the idea behind it.
+
+Know
+
+exactly. We want to know content status. We want to tell it that Yeah, we were returning nothing. It's not you didn't just lose the data or something didn't go wrong. We meant to return nothing.
+
+So
+
+what can I add here?
+
+To return us differences of status code.
+
+Get ready. response status.
+
+Yes, response status.
+
+spawn status will obviously set the success status code of this method. If I add it to the method if I add it to an exception the error status code
+
+so
+
+that is
+
+not and somebody has already said what no content
+
+and we'll save that.
+
+We're not to deploy.
+
+Okay, come back over here. We have our reservations, let's do the get.
+
+And I would just change it to delete.
+
+And we get back no content and the status code
+
+of no content.
+
+So we got back to four like we wanted from our delete
+
+So,
+
+so what questions you have about
+
+update and delete, or anything we've talked about today, actually.
+
+All right. So let's,
+
+we're gonna go and open up
+
+the exercises for today. Let's take a look at those
+
+a little more detail than we have the last couple days.
+
+Oh, and before you open the exercises, if you pulled from upstream anytime before about 11:45pm last night, pull again before you open the exercises, because I pushed some changes to some fixes for them that around that time. So I'm going to open up. Instructor you'll want student exercises of course.
+
+So, and also I need the readme.
+
+See your code Guess what, to the bucket? Probably better.
+
+Right? So there's two sections to today's exercises that are kind of interrelated there is they give you this option not found exception you can use I believe it's already created. It is
+
+and they already have In the controller
+
+some of the methods already using it. So they have it gets here.
+
+And then there is
+
+two distinct things we'll be doing one adding validation. When we look at the test, there's two sets of test cases for the model and for the controller, and then the second one, after you add the validation, you'll be creating updating the controller method to use the validation, then creating update and delete method.
+
+So let's walk through
+
+at least one of them for each of the two test cases.
+
+Actually, I'm gonna go ahead and
+
+stop this so it can process why we're doing this since this doesn't need to be on that recording.
+
+Transcribed by https://otter.ai

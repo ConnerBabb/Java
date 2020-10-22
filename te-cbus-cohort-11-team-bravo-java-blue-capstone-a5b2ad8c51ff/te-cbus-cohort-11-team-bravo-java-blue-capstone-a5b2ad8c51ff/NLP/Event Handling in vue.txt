@@ -1,0 +1,222 @@
+Book
+https://book.techelevator.com/content/vue-event-handling.html#event-handling-in-vue
+
+Vue Event Handling
+#Event Handling in Vue
+As you saw in Vanilla JavaScript, listening for and handling events that come from the user is how you build interactivity into your applications. With Vanilla JavaScript, you had to search for the DOM element you wanted to listen to and add an event listener to that DOM element for a certain event. Then you had to attach a function to that event so it ran when the event fired off.
+
+Vue provides simpler ways to work with the DOM and to work with events. Vue attaches event listeners for you through the v-on syntax, and all event handlers are methods on the component. This chapter shows you how to set up event listeners and event handlers.
+
+#Using v-on for event handling
+A JavaScript UI wouldn't be useful if it wasn't able to handle events from the user. Front-end frameworks are designed to handle DOM manipulation—as you saw with the v-bind and {{ ... }} syntax—and make event handling easier. Vue does the latter with the v-on attribute.
+
+#Adding behavior to your components using methods
+Before you learn about event handling, you need to learn about how to add behavior to your components.
+
+You saw that you can add a function to the computed section, but they filter or calculate information from existing data. What about using complex logic to transform or change data?
+
+For more complex operations, you use the methods section of the component. methods are JavaScript objects that you can add to your component to give it behavior and logic. The JavaScript functions defined in the methods section of your component might handle events, modify data, process network calls, or perform a limitless number of other tasks. methods are defined like this in the component:
+
+export default {
+    name: 'order-form',
+    methods: {
+        displayFormData() {
+            // Method logic goes here
+        },
+        anotherMethod() {
+            // Method logic goes here
+        }
+    }
+};
+Once defined, you can then add these methods to elements in your UI using the v-on attribute.
+
+#Using the v-on syntax
+v-on is a Vue attribute that is added directly to the HTML in the view part of the component, just like v-bind. The part after the colon is the event that you want to listen to. To listen for a click on an anchor tag, you could use:
+
+<a v-on:click="alertUser">DELETE</a>
+To listen to change events on a text box, you could use:
+
+<input type="text" name="firstName" v-on:change="updateName" />
+To listen for form submit events, you'd use:
+
+<form v-on:submit="submitForm">
+#Getting special data on certain events
+Some events have extra data attached to them. For example, keyboard events have data about what key was pressed, and mouse events have data about what mouse button was clicked. When you add event listeners, you can listen for specific pieces of data, like a keyboard key, instead of the event.
+
+#Keyboard events
+If you want to listen for an enter key in a textarea, you can add the following v-on listener:
+
+<textarea v-on:keyup.enter="processEnterKey"></textarea>
+Special keys that you can listen for are:
+
+.enter
+.tab
+.delete (captures both "Delete" and "Backspace" keys)
+.esc
+.space
+.up
+.down
+.left
+.right
+You can also listen for a specific key by using its ASCII code. For instance, if you want to listen for a lower case j (ASCII code 74), you'd add the following v-on:
+
+<input type="text" v-on:keyup.74="handleJ" />
+You can look up keycodes on JavaScript Event Keycodes.
+
+#Mouse events
+With v-on, you can also listen for which mouse button was clicked. For example, you can listen for different mouse buttons that triggered a click or dblclick event with the following flags:
+
+.left
+.right
+.middle
+For example, you can attach these to a UI element with:
+
+<li v-on:click.left="updateTotal" v-on:click.right="activateContextMenu">Add to Cart</li>
+#Event handlers
+In the previous section, you learned how to create an event listener using the v-on syntax. You also learned how to define the method handler for that event. The one thing you haven't seen yet is that those methods can accept arguments.
+
+#Inline event handlers
+Now that you know how to declare an event listener, you'll write code that executes when that event is triggered. You can write this code inside of the quotation marks (inline). For basic operations, writing inline code works fine. Here's an example of links that increment or decrement a counter when they are clicked:
+
+<div id="app">
+  <a href="#" id="increase" class="btn" v-on:click="counter += 1">
+    Increase
+  </a>
+  <a href="#" id="decrease" class="btn" v-on:click="counter -= 1">
+    Decrease
+  </a>
+  <p>The button was clicked {{'{\{ counter }\}'}} times</p>
+</div>
+For simple changes to data attributes that are short, one-line pieces of code, inline handlers work well. But sometimes the logic for your event handlers is more complex than one line. For these cases, you can call a method.
+
+#Method event handlers
+The v-on directive takes the name of a method that is called when the event is fired. In the following code, the logic moves from inline to a method:
+
+<template>
+  <div id="app">
+    <a href="#" id="increase" class="btn" v-on:click="increase">Increase</a>
+    <a href="#" id="decrease" class="btn" v-on:click="decrease">Decrease</a>
+    <p>The button was clicked {{'{\{ counter }\}'}} times</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "app",
+  data() {
+    return {
+      counter: 0
+    };
+  },
+  methods: {
+    increase() {
+      this.counter += 1;
+    },
+    decrease() {
+      this.counter -= 1;
+    }
+  }
+};
+</script>
+The program functions the same way as the inline version, but now you've extracted the logic and put it into a method that contains more complex operations.
+
+#Event handler arguments
+While this program works as is, it could be simplified. All the increase and decrease methods do is change the variable counter. You could write a single method to handle the logic for this method. Just like any other function in JavaScript, you can pass arguments to event handler methods. Below is the same component that now uses an updateCounter() method for both buttons, passing the value of 1 for increase and -1 for decrease:
+
+<template>
+  <div id="app">
+    <a href="#" id="increase" class="btn" v-on:click="updateCounter(1)">Increase</a>
+    <a href="#" id="decrease" class="btn" v-on:click="updateCounter(-1)">Decrease</a>
+    <p>The button was clicked {{'{\{ counter }\}'}} times</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "app",
+  data() {
+    return {
+      counter: 0
+    };
+  },
+  methods: {
+    updateCounter(operand) {
+      this.counter += operand;
+    }
+  }
+};
+</script>
+#Event argument
+In Vanilla JavaScript, you have access to the original DOM event. From there, you can determine where the event originated from. In Vue, the original DOM event is passed to the method by telling the listener to pass it using $event. This means that in the updateCounter() method, you can declare an argument called $event—or whatever you want for that matter—and the event is passed in through the listener with updateCounter($event). With the original event, you can get the ID of the button using event.target.id and determine if you are increasing or decreasing the value of counter:
+
+<template>
+  <div id="app">
+    <a href="#" id="increase" class="btn" v-on:click="updateCounter($event)">Increase</a>
+    <a href="#" id="decrease" class="btn" v-on:click="updateCounter($event)">Decrease</a>
+    <p>The button was clicked {{'{\{ counter }\}'}} times</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "app",
+  data() {
+    return {
+      counter: 0
+    };
+  },
+  methods: {
+    updateCounter(event) {
+      if(event.target.id === "increase") {
+        this.counter += 1;
+      } else {
+        this.counter -= 1;
+      }
+    }
+  }
+};
+</script>
+#Using v-on:submit to listen for submit events
+If you want a method to be called when a form is submitted, use v-on:submit. In Vanilla JavaScript, this would entail getting the form from the DOM and calling an addEventListener to it for a submit event. But you can use the v-on syntax instead to attach the methods to that element:
+
+<form class="order-form" v-on:submit="saveOrder">
+However, using this as-is causes a problem. The event handler is called, but then the browser still attempts to send a GET request and refresh itself, which is not what you want. You need to use preventDefault() as you did in Vanilla JavaScript.
+
+This could be done in the event handler method, but Vue provides a shortcut for this. You can attach the event handler with a special .prevent modifier.
+
+<form class="order-form" v-on:submit.prevent="saveOrder">
+There are other modifiers you can use on event handlers using v-on:
+
+.stop - Calls stopPropagation() on the event
+.once - The handler is only called once and then it removes itself
+#Using v-if and v-show for conditional display
+In many JavaScript applications, you may want to show or hide a section of the screen based on data the user has or hasn't entered, or other conditions. Many times in Vanilla JavaScript, this is accomplished with the display: CSS class.
+
+Note
+
+This is being introduced now because elements are typically shown or not shown due to clicks on different elements on the page. So while this is DOM manipulation, it is mainly used with event handling.
+
+#Conditionally including elements with v-if
+v-if can be added as an attribute to any element in the template to get this effect. The value of v-if is tied to a data attribute or a JavaScript expression and tells the component whether to show the HTML element or not.
+
+For example, you might have a component that takes a billing address and a shipping address. You might only want to show the billing address fields if the two addresses are different. If a checkbox labeled "Also use for billing address" is checked, you'd want to hide the billing address fields. If it's not checked, you'd want to show the billing address fields.
+
+If that checkbox is data-bound to the sameAddress data attribute, you can look there to see whether or not you want to show the fieldset for the billing address:
+
+<fieldset v-if="! sameAddress">
+    <legend>Billing Address</legend>
+v-if takes a JavaScript expression stating that if the sameAddress data attribute is not checked, then show the Billing Address fieldset.
+
+If you inspect the DOM using the developer tools in your browser after checking this box, you'd see that the fieldset isn't hidden or set invisible—it's completely removed from the DOM.
+
+#Hiding elements using v-show
+If you don't want the elements to be removed—that is, you want them to be hidden, but still on the page—use v-show. It works the same way, but it toggles the CSS display of the element rather than remove it from the page.
+
+<fieldset v-show="! sameAddress">
+    <legend>Billing Address</legend>
+#What's the difference?
+So why would you use v-if versus v-show? Since v-if removes things from the DOM, it is useful when you want things off of the page.
+
+For example, a form field hidden by CSS or v-show is still sent when a form is submitted. If you don't want the form field to be submitted when it's hidden, use v-if to show and hide it. Then the form field is removed from the DOM when hidden and re-added to the DOM when shown.
+
+Most of the time, v-show is used because there are fewer CPU costs to hiding and showing an element via CSS than completely adding and removing the element and all its children from the DOM. But when you need the element gone, v-if takes care of that for you

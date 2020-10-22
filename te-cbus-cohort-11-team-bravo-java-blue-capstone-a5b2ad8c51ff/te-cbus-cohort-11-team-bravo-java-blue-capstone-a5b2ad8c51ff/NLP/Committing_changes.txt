@@ -1,0 +1,58 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#committing-changes
+
+Committing changes
+When the staged files are ready to be recorded, you use the command git commit. This command records all staged files into the local repository. It creates a snapshot of what changed in each of the staged files from the previous version. This is like creating a save point in a video game so someone can go back to a previous version of the code as it existed at a point in time.
+
+The git commit command is used in conjunction with an argument -m that allows the committer to specify a commit message. The commit message is extremely important. To someone not present at the time the code changed, it is a clear statement indicating what changed with this commit. It's also a permanent record in the repository, so make sure your commit message stays clean.
+
+git commit -m "Added iOS 12 support."
+The git commit command adds an entry like the one below to the log. Commits can be viewed with the git log command.
+
+commit 1787389986db4df29c916f14f297f51dda86208f
+Author: Tim Cook <tim@apple.com>
+Date:   Thu Nov 16 22:31:51 2017 -0500
+
+    Added iOS 12 support.
+
+Pushing and pulling code
+Changes that you make on your local repository can be copied to the remote repository with the git push command.
+
+The git push command takes two arguments:
+
+A remote name, for example origin. origin is the alias automatically given to the original remote repository.
+A branch name, for example master.
+The entire command may look like:
+
+git push <remote-name> <branch-name>
+Pulling changes
+
+Whether you are working on separate computers (one at home, one at work) or with different team members, you'll need a way to incorporate the changes they push into your local repository. The git pull command instructs git to fetch commits from a remote repository.
+
+The git pull command looks like:
+
+git pull <remote-name> <branch-name>
+Pull Before You Push
+
+Git won't let you push your changes to a remote repository if the remote repository has changes that you haven't incorporated into yours yet.
+
+Forks and upstream repositories
+In a standard open-source project, and some company configurations, you generally have two remote repositories: origin and upstream. upstream refers to the original repository that you have forked from. A fork is a copy of a repository that you own so that you can freely experiment with changes without affecting the original project. The forked repository (your copy) called origin by default.
+
+Forks are most commonly used for the following reasons:
+
+Propose changes to someone else's project
+
+A great example of using a fork is for bug fixes. Rather than logging an issue, you can:
+
+Fork the repository.
+Make the fix.
+Submit a pull request to the project owner.
+If the work is approved, it might be pulled into the original repository.
+
+Use someone else's project as a starting point
+
+By sharing code, developers can create better, more reliable software. When a repository is marked public, it can be forked and used in the source code for other projects.
+
+Next steps
+For additional opportunities to learn Git, install the Git-It desktop application.

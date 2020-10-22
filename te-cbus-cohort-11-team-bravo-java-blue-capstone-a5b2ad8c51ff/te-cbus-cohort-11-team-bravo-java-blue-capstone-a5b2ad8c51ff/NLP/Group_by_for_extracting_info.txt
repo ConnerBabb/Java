@@ -1,0 +1,155 @@
+Book
+https://book.techelevator.com/content/groups-and-aggregates-in-sql.html#group-by-for-extracting-information
+
+GROUP BY for Extracting Information
+What if you wanted to know how many users have the last name of Smith? After reading the previous chapter, you know how to create a statement for this:
+
+SELECT * FROM users;
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Beatrice	Gold	8
+Zachary	Claus	9
+SELECT COUNT(*) FROM users WHERE last_name = 'Smith';
+count
+2
+But what if you want to know how many students have each last name? Currently, you'd have to run a new statement per last name in the database, which you don't want to do.
+
+If you want to aggregate data by a column in the table, group rows together based on the column, as shown below:
+
+SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
+last_name	count
+Smith	2
+Gold	1
+Claus	1
+So what does GROUP BY do? It groups rows of data together that contain the same value so that you can aggregate them together.
+
+So the statement:
+
+SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
+Tells the database to group the rows from users (since there is no WHERE clause, it uses all the rows). So first, the database takes all the rows:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Beatrice	Gold	8
+Zachary	Claus	9
+Groups them by last_name:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+first_name	last_name	age
+Beatrice	Gold	8
+first_name	last_name	age
+Zachary	Claus	9
+And then collapses the rows down to just the last_name and the COUNT(*) from the SELECT clause, as you saw above in the result.
+
+last_name	count
+Smith	2
+Gold	1
+Claus	1
+Can you see who all has that last_name?
+
+SELECT first_name, last_name, COUNT(*) FROM users GROUP BY last_name;
+Result:
+
+ERROR: selected columns must be in GROUP BY clause
+You actually can't select the first names because all the first names in the groups are different.
+
+When the Smiths are grouped, then you'll have the following rows in that group:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Selecting the last_name from that group as one data point is easy because they all have the same last_name, but selecting the first_name is harder. Which first_name do you choose? Nick or Adam?
+
+You can only take one value, and the database doesn't know which one you want, so it doesn't even try. However, COUNT(*) takes those two rows and turns them into one value, so that works just as expected and gives back a 2.
+
+last_name	count
+Smith	2
+GROUP BY is all about taking multiple rows and collapsing them down into one row. How you want them collapsed depends on what information you're trying to see.
+
+#Grouping by Multiple Columns
+So how can you get meaningful information from the pieces of data in your tables? Take the following students table as an example:
+
+first_name	last_name	state	class
+Monica	Carlo	PA	Java
+Doug	Marshal	PA	C#
+Greg	Bishop	OH	C#
+Betty	Raines	OH	Java
+Ted	Dorsey	PA	Java
+Susan	Granger	PA	C#
+If you wanted to know how many students came from each state, you could write that as:
+
+SELECT state, COUNT(*) FROM students GROUP BY state ORDER BY state;
+state	count
+OH	2
+PA	4
+If you wanted to know how many students are in each class, you could write:
+
+SELECT class, COUNT(*) FROM students GROUP BY class ORDER BY class;
+class	count
+C#	3
+Java	3
+What if you wanted to see how many students from each state are in each class? For this, you can group by on two different columns:
+
+SELECT state, class, COUNT(*) FROM students GROUP BY state, class ORDER BY class, state;
+This first takes the rows and groups them by state:
+
+first_name	last_name	state	class
+Monica	Carlo	PA	Java
+Doug	Marshal	PA	C#
+Susan	Granger	PA	C#
+Ted	Dorsey	PA	Java
+first_name	last_name	state	class
+Greg	Bishop	OH	C#
+Betty	Raines	OH	Java
+It then group those groups into classes:
+
+first_name	last_name	state	class
+Monica	Carlo	PA	Java
+Ted	Dorsey	PA	Java
+first_name	last_name	state	class
+Doug	Marshal	PA	C#
+Susan	Granger	PA	C#
+first_name	last_name	state	class
+Greg	Bishop	OH	C#
+first_name	last_name	state	class
+Betty	Raines	OH	Java
+And then runs the select to collapse these groups into one row each:
+
+state	class	count
+PA	Java	2
+PA	C#	2
+OH	C#	1
+OH	Java	1
+Finally you sort, first by class:
+
+state	class	count
+PA	C#	2
+OH	C#	1
+PA	Java	2
+OH	Java	1
+Then by state:
+
+state	class	count
+OH	C#	1
+PA	C#	2
+OH	Java	1
+PA	Java	2
+And there are the results.
+
+#Clause Order
+Now that you've seen many of the clauses you'll use, it's time to learn about what order these clauses run in.
+
+In imperative programming, like Java and C#, your statements always run from top to bottom and left to right. But as mentioned earlier in this chapter, SQL is a declarative language and does not run from top to bottom and left to right. So what order does it run in?
+
+SELECT statement clauses are always executed--and can be thought through--in the following order:
+
+FROM clause - The database needs to know which table you're selecting from first of all
+WHERE clause - The database then needs to know which rows you'll work with
+GROUP BY clause - The database then groups those rows according to your GROUP BY clause
+SELECT clause - The database then collapses those rows down and selects the columns that you want data from
+ORDER BY clause - The database orders the rows in the order that you ask for
+LIMIT / TOP clause - The database only returns the number of resulting rows that you want

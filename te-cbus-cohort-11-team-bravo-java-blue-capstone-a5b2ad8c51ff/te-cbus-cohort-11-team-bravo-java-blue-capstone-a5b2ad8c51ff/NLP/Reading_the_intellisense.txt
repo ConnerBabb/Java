@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/command-line-programs.html#reading-the-intellisense
+
+Reading the Intellisense
+Before you keep reading, you should take a moment to understand what happened with that ReadLine method:
+
+Scanner input = new Scanner(System.in);
+System.out.print("Enter a kilometer value to start at: "); //prints out a message
+String userInput = input.nextLine();                   //saves what the user types in userInput
+Invoke a method that reads keyboard input up until but not including when they press ENTER.
+Save the output that method returned into a string variable named userInput.
+While it does take some getting to know the Java language, how do you know to use a string and not an int? Intellisense. Learning to read Intellisense, and realizing it is impossible for all developers to remember everything, is the key to becoming great at writing code.
+
+
+Image - Java Intellisense
+When hovering over a method, the Intellisense window pops up. By reading it, you can see these important things:
+
+Return type - The return type indicates what the method expression evaluates to. If you want to save the value in a variable, you must match the return type. If you tried using another type, such as int, there would be a data type mismatch.
+Method name - The method name here indicates exactly what must be typed so the program invokes this method.
+Arguments - Some methods require arguments that are provided, similar to required fields on a web page. If they're not provided, or the data types don't match, then the code won't compile.
+Additionally, the Intellisense often provides a short description that indicates what the method does. Any description or possible exceptions that it can trigger are helpful since you didn't write these methods yourself.
+
+Think of these methods as black boxes. You don't want to know how it works internally, but you do need to know what outputs it provides, and what, if anything, may go wrong.
+
+
+Image - Black Box

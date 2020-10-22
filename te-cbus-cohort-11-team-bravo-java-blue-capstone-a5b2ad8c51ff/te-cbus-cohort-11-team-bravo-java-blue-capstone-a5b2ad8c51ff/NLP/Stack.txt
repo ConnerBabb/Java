@@ -1,0 +1,72 @@
+Book
+https://book.techelevator.com/content/linear-data-structures-ool.html#stack
+
+Stack
+For some collections, throwing things into a list isn't enough. Programmers may need to structure a collection to support a feature or another part of the program that they're writing.
+
+Another common type of collection is the stack. Stacks are last-in, first-out data structures (LIFO). The idea with stacks is that you can push items onto a stack and pop them off from the top first. It might be easy to visualize a stack of pancakes. You can pile them as high as you want, but you always eat the last pancake added to the stack on the top.
+
+
+Image - Mmmmm, Pancakes
+For those familiar with the Tower of Hanoi, it is a mathematical puzzle game in which the player needs to move all of the disks from the first rod to the last rod by moving one disk at a time. The game is solvable by working with three different stacks that you use to hold the disks. At no point in time do you interact with a disk on the stack if there are others on top of it.
+
+Real World Usage
+
+Stacks are most often used when applications need to implement an undo feature. All of the actions the user performs are added to a stack. When the user decides to undo an operation, the most recent action is popped off the top of the stack.
+
+Like lists, the stack is internally backed with an array. A stack class manages this array so that items are only added and removed from a particular position.
+
+#Creating a stack
+Declaring a new stack consists of the same three expressions to create any other object.
+
+Stack<String> names = new Stack<String>();
+Again, the element type can be anything you want. Here, you create a stack that holds DateTime objects, and another one that holds integers.
+
+Stack<DateTime> calendar = new Stack<DateTime>();
+Stack<Integer> sequence = new Stack<Integer>();
+#Adding items to the stack
+Stacks use a .push() method instead of the usual .add() method. This adds an item to the last available position in the underlying array.
+
+Stack<String> names = new Stack<String>();
+
+names.push("C3PO");  // names now contains C3PO
+names.push("R2-D2"); // names now contains R2-D2, C3PO
+names.push("BB-8");  // names now contains BB-8, R2-D2, C3PO
+#Removing items from the stack
+The method for removing items is pop(). This always removes the last item that was added to the stack.
+
+Stack<String> names = new Stack<String>();
+
+// ... BB-8, R2-D2, and C3PO are pushed onto the stack
+
+String name = names.pop();  // name contains BB-8 since that was the last name placed on the stack
+                            // and names contains R2-D2, C3PO
+If you try to pop() an empty stack, an EmptyStackException occurs. It's best to check the .size() to make sure at least one item exists before calling .pop().
+
+Most languages that support a stack have a way to check the next item. To do this, call the .peek() method.
+
+#Looping through a stack
+Stacks don't support a way of accessing specific elements by index. Doing so would let you go to the nth item directly. If you want to look at each item, you need to use a foreach iterator to go through the stack.
+
+Stack<String> names = new Stack<String>();
+
+//... push names on to the stack
+
+for(String name : names) {
+    // The name is not removed from the stack.
+    System.out.println(name);
+}
+When you enumerate using a foreach loop, you can read items, but you can't modify the overall collection. If you want to look at each item and remove it with pop, you'll need a different way.
+
+Stack<String> names = new Stack<String>();
+
+//... push names on to the stack
+
+while (names.size() > 0)
+{
+    String name = names.pop(); // the next item is removed from the stack
+    System.out.println(name);
+}
+How is this useful?
+
+Junior developers rarely need to create a stack while on the job. Developers spend most of their time working with something called the call stack. The call stack stores information about the active methods a program executes. You'll see it more when you learn about exception handling.

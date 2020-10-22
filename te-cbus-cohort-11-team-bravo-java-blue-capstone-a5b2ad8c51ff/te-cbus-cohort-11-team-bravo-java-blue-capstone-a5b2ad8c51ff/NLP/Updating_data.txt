@@ -1,0 +1,24 @@
+Book
+https://book.techelevator.com/content/inserts-updates-deletes.html#updateing-your-data
+
+UPDATEing Your Data
+Data is often changed in a system - for example, changing your user profile or updating a blog post - so having a way to update data is important. For SQL databases, you can do that with an update statement:
+
+UPDATE countries SET name = 'Amazia', region = 'New Amazland'
+WHERE code = 'JOE';
+You'll see the familiar WHERE clause here, which now selects which rows you want to update.
+
+Use your WHERE clause on every UPDATE
+
+What happens if you forget the WHERE clause? The update happens on every row in the table, changing all of your data. This, typically, is a very, very bad thing.
+
+To make sure that you'll update the correct rows, write a SELECT statement first:
+
+SELECT * FROM countries
+WHERE code = 'JOE';
+Once you've verified that it brings back the rows you want, change it to an UPDATE like above.
+
+So the structure of an UPDATE statement would be:
+
+UPDATE table_name SET column1 = value1, column2 = value2, ...
+WHERE condition;

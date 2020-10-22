@@ -1,0 +1,2614 @@
+Zoom
+https://techelevator.zoom.us/rec/share/_tFZD73x_VNIb4X_4hzOB44fAo7Xaaa823BN-PZemkrgAVK8vmGVM9ktIF12AgTs?startTime=1589462531000
+https://drive.google.com/file/d/1g4CTj4lSqSOU3w9UrMzArpVoahQUyF_J/view?usp=sharing
+https://docs.google.com/presentation/d/1weL5fNAXmJ2WTuAhm9rDTCj8EyanqHEaAZRrw6-JPgQ/edit?usp=sharing
+
+Supposed to remind you something else to Brian. And we swear we both would forget.
+
+I'm sure we I think we both have. Okay.
+
+Well, anyway, I'm reminding you the thing I suppose remind you of, thank you.
+
+About a week I'll wake up at three in the morning and remember.
+
+So
+
+okay, so
+
+today we're going to start taking a look at
+
+another type of data structure.
+
+Another
+
+another type of data structure and the first
+
+actual structured data that we've seen. We've had variables with single data types, we're going to expand that a little bit more, but structuring it somewhat, and then another statement. So we're going to take a look at loops and arrays.
+
+We're going to start by taking a look at arrays and talk about what those are, how they work, and how
+
+We'll use them. And then we're going to, before we can talk about loops, we're going to need to talk a little bit about variable scope. So we're going to define what that is and look at what it means to have variable scope and what scope how scope works. And then we're going to walk through loops. Only one type of loop, we're gonna walk through what a loop is, and then walk through a for loop, and how that how we can use that
+
+with our arrays. And then at the end, we'll take a few moments to talk about debugging. And
+
+some of the techniques you could use for problem solving or when you're when you're stuck.
+
+So let's talk about arrays.
+
+So there's, we have variables so far. So they work great when we want to hold a single thing. So if we want to hold, like, signal name, you want to put john in a name. That works great, but what if we
+
+What a whole bunch of the same thing is set of the same thing that I like. But they
+
+did like in some way. So in this case, maybe we want to hold all the name all the instructors names,
+
+we could create a variable for each one.
+
+But this is gonna cause a problem, we want to use it. If we want to write code that does something with it, we're going to have to write code that goes through each one of these variables, which means we're gonna have to duplicate code five times. And then what if we want to expand this into holding a list of a company's clients, you know, that which could be, you know, hundreds of thousands. So then we'd have to create hundreds of thousands of variables and right duplicate our code each time, so that's not really a great solution. The other thing we could do is we could reuse the same variable.
+
+So we can create the structure variable once but Jonathan
+
+And then when we want to switch it out because Richard Rochelle and Steve and Matt and Maddie, and that would work, we could write our code once then. And we could just have it switched switch the names. But we still have a problem of, we have to switch these names around because we have one at a time. So we need some way of holding a group together, we need something way of saying we want to have all of these light things as treated as one. But we still want to be able to use and access the individuals. And that's the problem that arrays solve.
+
+So arrays allow us to take a series of values of the same data type
+
+and
+
+hold them together, wrapped them together and treat them like a single thing but still be able to access
+
+the individual things on it. So we talked about variables being like a box
+
+and so we take something
+
+We take it, we put it in a box.
+
+And then if we wanted to move those boxes together, say we we, we talked about variables, we talked about putting plates in a box. So we have a box and you put a plate on it, and you have 10 of those. Now you have 10 boxes, each with one plate in it. And you want to keep them together, you can
+
+we could give it a larger box and put all those smaller boxes inside of it. And then we can move them as one right we can move the barge box with the 10 small boxes inside of it. We could treat it as one but if we wanted to get, you know, our blue played out, we could get into the box and still get an individual item out. So we would still have access to the individual parts.
+
+That's what an array is.
+
+Another kind of reward example.
+
+Every time you go. Anytime you go to the grocery store and buy eggs, you're essentially buying a real world array.
+
+Know your what you want to purchase is 12 eggs and they could be set out and you could pick out 12 individual eggs.
+
+But that would be difficult, right you have to treat them each separately.
+
+So instead you get a carton that has a slot for each of the 12 eggs. And then you can move it as one thing and use it as one thing the carton, but then when you want to actually use the eggs, you could open it and get out individual egg to use.
+
+That is
+
+the same thing in arrays only. It's for data.
+
+So
+
+we're gonna have some rules around how the arrays work, and how we declare them and use them but that's what we're going to be able to do is we're going to be able to build basically an egg carton or a box for other boxes that we can put variables on and we're going to see some great benefit from this. It's very rare in
+
+most programming that you're going to end up with
+
+only working with one thing at a time, it's often a list of things we have, you know, a list of clients and a list of accounts that we have to work with.
+
+So this is the beginning of a structures that we can start using to keep those things together.
+
+So
+
+for arrays, we declare that there are datatype. So they're just like int or club more closely with a string. But there's the data type. So we declare a variable of our array.
+
+But we have to tell it something, we have to tell it a few pieces different than more than just our what we're used to with declaring a variable, we usually declare a variable and we come in
+
+and
+
+have a scratchpad to
+
+work from here.
+
+So we would come in and declare a variable, something like int x equals 10.
+
+And we're going to do the same thing but we're gonna have a couple more parts.
+
+Because with an array since we're building a box is going to hold other boxes, we have to tell it some more information. First of all, we have to tell it what data type we want.
+
+So let's say we wanted to hold an array of integers. We can hold it Ray Ray's can hold any data type any other data type, including themselves.
+
+So
+
+the first thing we have to do is tell it what is this Ray Ray gonna hold.
+
+So if I want to build something, it was going to hold a grouping of set of integers together, I would start by telling it the data type.
+
+And then to signify This isn't a actual box to hold an integer, a variable, an integer, this is a box that's going to hold boxes of integers, or that it's the array. It's a larger set we use square brackets behind it, and that signifies that it's an array. So every data type can be this can be done with string
+
+or double
+
+byte
+
+any of the data types that we've known that we know about now, or that we'll learn over the next couple of weeks
+
+can be turned into an array just by putting the square brackets behind the data type name.
+
+So then we continue we then we name it. So just call this numbers.
+
+And that's the same as any other variable. We're just giving it a name.
+
+So so far, the only thing different we've done is we've put these two squares here, signifying that what we're building now is an array, not just a single integer.
+
+So
+
+then, it's when things get
+
+slightly different. We're going to do equal, we're going to assign something to it. We could stop now with this. That's declaration just like a variable. We could do the
+
+assignment later, but
+
+We can do it in place as well.
+
+And since we're
+
+creating this array,
+
+when we build a number, there's literal numbers here, right? We can just say, you know, x equals 10, or x equals
+
+15. With a string, we have words. So string
+
+name
+
+equals john,
+
+that we have literal values we can put in. But we don't have a little array we can create, right?
+
+We don't erase the concept that's not a number. It's not a string. It's not something reward data. It's a container.
+
+So instead, we have to tell the Java the language to create a new one.
+
+And we do that with the new keyword.
+
+So we say new.
+
+It's what we're doing on this other side. Here. We've declared it we say we have a variable that we want
+
+To beat array, we went that array to be of type integer.
+
+And as we're assigning it, we're assigning it a new array. And we have to tell Java one new array of so we tell it now what type it once we want to type new int. And we mark it as an array. So we're telling them this side, we want to do integer array. So it looks like we're duplicating data, right? It looks like we're typing out what we are typing out twice, but looks like we're actually doing something duplicate. And a lot of the questions comes up is why do we have to type this here in here?
+
+And it's because they're doing very different things. Remember, there's two steps to a variable, there's declaration and there's assignment.
+
+This side for declaration. This is telling Java what we want this variable to be. Here, we're telling Java what we want to build with a new keyword.
+
+So we need one more thing.
+
+Arrays are fixed size. That means once we build our box, it can, it will always be the size we build it. So kind like a row, row or box.
+
+If we build a, an egg carton that holds 12 eggs, then that a that particular eight cartons always going to hold 12 eggs. Well, we could build a second egg carton that holds six eggs or four eggs, or one that builds 18 or 100 eggs but the one we built that holds 12 will always hold 12.
+
+So
+
+we have to tell it how big we want it to be.
+
+So we'll give it a size. So let's make this one a size four.
+
+And then we're done.
+
+So here we said. We created a variable that's going to hold an array of integers.
+
+And we said we want to create a new array
+
+that holds
+
+For integers, so we're holding a box holds for integers.
+
+So that's the syntax we use to, to build an array.
+
+We haven't done anything with it right now.
+
+Right now what we have is an empty box that can hold for four other boxes.
+
+So we have to do more two quick things in it and get it for your question.
+
+That process be for every array.
+
+Do you mean the the declaration process or which portion of it are you referred to out like, well, will we always have to type out every time we make a new array? When we always have to type out to like, I empty as in this example, as the data type, the name of it equals new whatever data type and then array there is another type of way of building your way. There's a shortcut that we're going to look at a little bit later today. But
+
+Yeah, normally Yes.
+
+This is yes. Oh, I'm sorry.
+
+No, um, I was gonna ask if we ever care if the box is too big.
+
+We, yeah, well, yes and no.
+
+That depends.
+
+Generally No. But at the same time, when we build an erase, we haven't really talked about
+
+memory yet. But when we build it away, it's expanding. It's like building a box and putting it in your room, right? It's taking up space in your room.
+
+As soon as you build the array, it's takes up space, and it exists as long as you have it. So it'd be like if you're going to box up something in your room, and you want to put 10 things on it, or four things and you build a box to hold them and you build the box big enough to hold 10 things. That's probably okay. Right. It's not taking up too much space in your room. It's taking up more space than it would if you bought it to the size store.
+
+For, but if you build the hold, you know, thousand things that now maybe it's thinking of your entire room. Yeah. So we do care. But we're also going to learn next week.
+
+Other other types of data structures that will fix some of those problems are more easy, easily manipulated, yes. For instance, data structures that we don't have to tell the size up front, they resize. Oh, gotcha. Okay, they're using arrays in the background still, but they just make this easier for us. Okay, thank you.
+
+So now we have in our array, and I do want to point out that in Java, and you might see, on places like Stack Overflow, there's actually two ways to declare an array. There's this with like we're doing here. It's also possible to do it with the square brackets on the variable name. The square brackets on the variable name, though, you'll see it from C developers who are learning Java
+
+Because it's leftover from See, it's considered very bad form. In fact, I've only time I've seen anyone try to use that into professional workplace that was a big code review of you have to go back and fix that immediately. Because it's hard to read. And if you have this
+
+when I look at this,
+
+it looks like threats.
+
+Compared to this, it stands out that it's an array. So because of that the even though the syntax is syntactically valid to put up the variable name,
+
+it's considered it goes against both the Oracle and the Google standard guides, and every place I've ever worked standards guides as well. But if you run into it, it's I see it a lot with
+
+older developers or C developers.
+
+Talking about Java. So you just see it in Stack Overflow and other side sometimes. So it's like, you know, it's possible to do both just don't exactly Yes. Yeah, it's a, it's a, it's a remnant leftover from an older time that is, yeah.
+
+should be removed someday, but probably won't.
+
+Alright, so that we build an array. But now we have to talk about actually use an array because the point of an array is we want to have values in them, we want to do something with them.
+
+So let's talk about
+
+first, the default values. Arrays get default values. So when we build this, we build a box, and we've essentially put spaces so the, each of those gets a default, and all data types have a default. There's only two defaults and data type really can be.
+
+Most of the tests we talked about so far byte, short, long and car
+
+Double float
+
+are all defaults to zero. boyan also defaults to zero. But that's false because invoicing. 01 is how it's stored. But it's but this trade is true and false string defaults to this other thing called null. And we'll look into all Monday. So for today, we'll leave it as string defaults to know.
+
+So when we build an array, what we get,
+
+we build an array like this and array of numbers equals new int three, we get this array, and we get three integers inside of it, each one set to zero.
+
+If we build an array of Boolean, then a five, we're going to get each one set to false.
+
+If we bought them to strings, we would get each one set to null. So we get a placeholder essentially for that.
+
+That variable it creates
+
+The integers that creates the strings and it sets them to these defaults.
+
+So our data stopped there.
+
+So we have to be able to access it in some way.
+
+So the way the information gets stored in the array, is it gets put
+
+kind of like a comic in a card and just in line, and then they get a numeric value called an index that identifies the individual slots. So it'd be like if you
+
+had the egg carton and you wrote 101234. Um, so you could talk about and say, put it in the third position.
+
+And these this index starts at zero, not at one and that's an important difference between
+
+the way we normally think about
+
+seining sequential numbers to things. So arrays start at zero, they start counting at zero, and they go from there. So 0123 because they're not counting, I say counting from there, but they're not counting when they're labeling. So the first number is zero.
+
+So they give it an index. And this is given automatically. It's not something we create. It's not something we can control either we say, an array of integer for, we're going to end up building it so that it has index 012, and three, those are our four positions we can use.
+
+If we have
+
+an array, like the back a couple slides ago, this declared string, instructors new string five, so we have an array of type structures all populated with no way to access those or to set those, we access them by index.
+
+And what we would end up when we used index
+
+Zero,
+
+the first position
+
+we'd end up such that it puts it into this position,
+
+it's access that index. So then this value goes into that position for the index, the same way we get the second position is index one. So it's one less than the name of the number of the position of the hour. And the way we did they get the position because of starting at zero. So one, this is the index one. So this text will go into that position. So we set the array then
+
+our values in the array.
+
+By using the variable name, we used some numbers.
+
+The index we want to set we know now we have four people
+
+positions. So we use the index to identify which of those positions we want to put something in. And we have four of them. So we know that our positions are 012, and three. So if I want to put something in the first position,
+
+zero, and now I can treat this just like an integer, any other integer variable.
+
+So I can set it
+
+with the assignment. And I can set any integer. So I'll put 122 there.
+
+And if I want to set the next one,
+
+I
+
+set one which is going to set the second position and I'll put
+
+42
+
+numbers two, which is going to set the third position at my four and I'll put 15,000 and numbers
+
+Three, which is going to set my fourth position. And let's see, we'll put
+
+27.
+
+So now we set data into the array. Now we have an array that has four integers.
+
+And these are the numbers, the four numbers on it, just like for the array here, we have an array of five strings. And by putting each of the instructors names into the array using that variable, we end up with a box that looks like this with the five strings, and an index that we can use to, to talk about them or to use them.
+
+So now we can use this by either referring to this entire box and moving the entire box of data around
+
+or
+
+a single element in that box. So we can choose how we want to interact with it.
+
+So that allows us to get elements from the array or set elements in the array.
+
+The other thing we would want to often do is get elements. So once I have something in the array, I would want to retrieve it.
+
+So for instance, in this array
+
+if
+
+I use this line of code
+
+so the instructors array, which is represented here, with index to
+
+the value
+
+that's just the variable that we defined.
+
+This index is going to go to this
+
+because it's that index.
+
+This whole thing here.
+
+The instructors with the re in the brackets is going to be treated
+
+Like this string here,
+
+we can treat it the same.
+
+So we're it's is a variable name. This whole thing is a variable name is pointing to this string inside the array. So then this field, this string name, since it's just a doing assignment will be set to Steve, when we use that.
+
+So here
+
+using this, we set greeting to Hello comma instructors at three.
+
+So we know that Hello, comma
+
+what is instructors are three going to return
+
+from that array that's
+
+Yeah, so it's going to return
+
+that for the same reason that
+
+Three
+
+is going to point here
+
+such that this whole thing is this string.
+
+So we can just use it like any other string allowing us to do things like concatenate it into another larger string.
+
+So we can also do the same use of the same since we can set and get, we can change the array the same way. So if we set the value to something new, for instance, we change the instructor rate zero to the john Fulton, then this array would then that value at index zero would have our our new value set to it.
+
+This also allows us to
+
+Set things or use our array in such ways that we could say it was x or at y equals numbers at one
+
+plus three.
+
+So given this set of data,
+
+what would y be?
+
+Quite? It'd be 27.
+
+Numbers, that one would be 27.
+
+But
+
+45
+
+Oh, yeah. 45 Yes, it would be 40. So numbers that one
+
+would go to the one position and that's going to be 42 and then plus three, but the important thing,
+
+okay, okay, okay. Okay.
+
+So the important thing here is that we're using
+
+integer here that numbers with the index just as an integer.
+
+We're using it the same way that
+
+we
+
+would use it if we have instead and z equals 42 and y equals z plus three
+
+doing this with this integer, this are equivalent.
+
+So,
+
+so we can continue
+
+given this array and say I have
+
+find it here.
+
+I have an editable version of this array. So we can
+
+So given this array, this is the rates in the slides.
+
+So, if we ran this line of code
+
+would it change this array?
+
+Maddie changed to duck? Yes,
+
+that's correct. So
+
+we can talk. So if we read this line of code
+
+How would this array change?
+
+Rachel sh.
+
+So Michelle would change to Michelle ish.
+
+Given this line of code, how would the array change? It doesn't change. It doesn't change.
+
+Why? Cuz it's not there's not one. Yes, there is no index five, it's too large.
+
+So what this is going to do
+
+is make this
+
+compile error. Yep. It's not going to give us a compiler. Because the compile time
+
+The, the, not completely intuitive maybe, but at compile time, it doesn't know what this array is. So when Java c compiles, its says, I know this needs to be an array. So you can only do a ray like things with it, but I don't know
+
+What size it may be because you could change what's in this variable. So it's gonna let you do it. And you're going to get what instead what's called a runtime error, which is an area that happens with the programs running. So your program will start up, you won't get anything in Eclipse, and then it'll crash and you'll get a bunch of output. And what this is going to cause is particularly a runtime error,
+
+or an array
+
+out of bounds exception.
+
+So that's the error that we'll get will give
+
+us and we're going to take a look at one it's not, it's not going to pop up, it's going to come into a bunch of text
+
+where you go to the next slide, okay, just hold on a second note taking.
+
+Let me make sure I have that exactly right. Because I'm going from memory on the name and there's other areas you might get as well, but
+
+I think it might be a REIT index, out of bounds exception.
+
+It is
+
+I forgot the word index.
+
+Index out of bounds exception.
+
+So
+
+an array index out of bounds exception is what's going to happen. Instead, we'll take a look what that means when we have
+
+when we try to access an element in an item in the array, that
+
+are an element in the array that doesn't have an index. So we try to go to index five and there's only four,
+
+then that's going to give it if we try to go to negative one, it would be the same thing.
+
+And I will say that, that is the only thing that can cause that error. That's the single case that um,
+
+so that can cause that
+
+the error of index out of bounds
+
+So let's look at
+
+Let's change arrays now.
+
+To make one for this, that's alright.
+
+So given this
+
+what would the variable double contain?
+
+If
+
+we had this this code
+
+20 to
+
+22 times right? I couldn't I didn't look close enough. It's pretty small on my screen. It is a so 40 morning. Oh, yeah. So it's good because it's going to take this value.
+
+The index is going to get 20. So this is just kids being treated as just an integer holding 20 the value times two, so yes,
+
+I'll put that there. So it's
+
+maybe put it in
+
+the color too. So if you come back to it, you can see what it was.
+
+So what were the so this one?
+
+Well, third contains
+
+I'm sorry,
+
+heard an answer by mistake.
+
+Three.
+
+So, three
+
+people. Yeah, it's gonna contain three.
+
+So I didn't trip you up on the integer divisions, which is great. So, once again, I'm kind of confused though.
+
+The variable, so the number y y in the brackets you have number zero
+
+Way three, so are you saying
+
+I'm kind of confused? Okay, so we define an array with a variable, we have an array here that's defined with the variable nums.
+
+And arrays have the index move define which value in the array we want to work with.
+
+And when we do that, when we give it the array with the index is the same as just having a variable of that type.
+
+So this is just like having a variable though, instead of just being a single one, it's this value, because it gets from the array at that at this C row position.
+
+position, okay. So
+
+the division by three is just
+
+what we would do with any other variable.
+
+Gotcha.
+
+So
+
+The next one.
+
+How would the array change from from this?
+
+One? Yeah. Yeah. So this index here
+
+would change to a one.
+
+Okay, and then finally for this,
+
+how would it change?
+
+Yeah. So this index is going to change to a value of 200.
+
+And the point from these is that it's actually the same, the same point, but that we're just using them just like variables. So just like we can say
+
+x
+
+equal equals x.
+
+multiplied by y, we can do the same thing with the array elements.
+
+Before we continue to the next thing, and then we'll take a look at some code.
+
+Next thing, the next slide, are there any questions? or What questions do you have?
+
+Right? So what kind of error will you get if you try to add a different data type two
+
+to the array, so you'll get a compile time error. So Eclipse wouldn't let you do it.
+
+Okay, you would get a compile time error saying it's an invalid data type. You get where those red lines on it saying this is the wrong data type. And so if you're going ahead and using an integer array here, and then you're counting
+
+Multiply it by a double or a float.
+
+Are you gonna have to do a typecast or anything like that? It'll work just like if you were doing it with a regular integer to truncate. Okay, if you put a value too big into an integer, so each element in the array will work just like the variable that type already works.
+
+So overthinking, I don't know actually, you know, that's that concept that the elements in the array when we refer to it like this, we're using it a second variable is actually in my experience, one of the things that is
+
+one of the biggest challenges with arrays. So so if you're not x, that's a great question.
+
+So other questions before we can we combine different data types in a night, you cannot erase hold a single data type.
+
+So it's the weakness of the language. I think we can do this in other languages. So you can I would actually argue it's the strength of the language
+
+and it's
+
+Part of the reason the structure of low level low level languages because you can't do it any other low level languages, you can in higher level languages like JavaScript and Python.
+
+But they give that up by having those in this is not that it's bad, it's a decision.
+
+But they what they give up for that is performance. Because now, they can't do things like continuous memory. They can't do things like they have to do constant type checking of what it is. So the language has to essentially keep track of what each little pieces and they have to constantly check it. Where with Java, it gets one giant chunk of memory and this is going into something
+
+for later the court but it gets one giant chunk in memory. It doesn't have to check check it It knows what the entire chunk is, which means it can access it very fast. And if we want to get more detailed, then it can access by moving pointers instead of positions but so it's actually the
+
+Strong typing
+
+is the reason that but Java is a great back end language, I wouldn't use it for to build a web page. And I've used JavaScript for that. They're different tools for different sets.
+
+So and then I see a float and double the same data type and No, they're not. They're the same, they both hold floating point numbers. So decimals, but double is twice the size of float, it can hold a number twice as large
+
+kind of getting long.
+
+Right?
+
+It they cannot.
+
+Array cannot hold both loaded double. So you have to choose which one you want the data to be.
+
+But on your previous slides, you said
+
+floor and double in the same data type. If you go back to the previous and go back, one more
+
+One more. One more
+
+thing here data type double and floating thing. They have the same default.
+
+Default Value default value. Yes. Yes. The same thing. They're not the same data type the data types, the default is 0.0.
+
+If we don't give it
+
+all right, so, all right.
+
+So the other two so far everything we've looked about arrays has been about the things inside the array. And that's really what's important to us almost all the time. But sometimes we need to do something with the array itself. And yesterday, when you were doing your exercises, and you had,
+
+say, they passed you a string, or an integer, I guess they will mostly on the their primitive types. So they passed you a string
+
+And it was an X or an X, and they passed a second integer y. And you had to work with them. So you were working in a method
+
+like
+
+public, probably and some numbers. And they had this int, x and y.
+
+expand this out a little bit so we can see this.
+
+And then here in the block of code, you are working with x and y. But
+
+you when you were working with it,
+
+one of the you didn't know what X and Y were right? You don't know what the actual data is. You're writing rules around x and y. Without knowing if x contains number 10 or number 10,000. It doesn't matter to you. What matters is you're writing rules to say if x happens to be less than 10 do this
+
+so you don't know really anything about x&y but now we have a race where we have to know indexes
+
+So this
+
+is something that's going to happen, we're going to get a raise in our methods, and we're going to know nothing about them. I know there's an array of integers, and it's called mountains. That's all I know about that array.
+
+And I'm going to need to work with I'm gonna need to get the values from inside the array. Because that's what's interesting. That's the data that's the part that has some use to be the array is just a box on being used to pass this data around.
+
+So we need to talk about what we do when arrays are coming from elsewhere. When something else set up the array, and we just have, we just know there's a variable that's going to be populated with an array at some point before our codes called. And that's
+
+it
+
+and how we can still get to
+
+data.
+
+So given this array, we know it's been created and filled with something. It may have 1000 things in it may have two things in it. We don't know.
+
+So how can we always access the first element in the array?
+
+We know it's nums something.
+
+Set a
+
+variable equal to zero.
+
+Set a variable equal zero. Could we just use 000? Yeah, we can use zero. Because no matter what about the raid nums, no matter who's created, we know that there's only if it has values, the first value is always an index zero. That's never going to be different. You can't create an array with the first value someplace else because that's the way raid arrays work. You put the data in, or you build the array and it builds the indexes in the spots and then you put the data in and the first value is always a zero
+
+but
+
+How would we get the last element in the array?
+
+And you don't know the answer to that yet? I know so.
+
+So if you wanted to get the last element of the array,
+
+what do you think you would need? What would you need from it? Like? Yeah, you would need the length of the array, you need to find out how many elements are here. So we can find out how many elements that are raising property, right? And so for the array, and notice, I'm not using brackets at this time, just the variable because everything we've done so far, we've been talking about the value in the array.
+
+But this time,
+
+we're talking about the array itself. We're asking the array itself for question. And the question we're asking is length, so its dot length, will return to us the number of items in the array.
+
+So length though, is the number of items in the array.
+
+number of items in the array.
+
+So given that,
+
+if we go back to
+
+the way that we declared
+
+back on the first slide,
+
+the array of instructors the string,
+
+size five, that number that we give there, the size of it, that's the length.
+
+But if we go to someplace we can see the array,
+
+the index,
+
+its size phi, there's 12345 items in the array, but the index is not the length.
+
+So, and that's because the index is the sequential
+
+starting at zero
+
+Row going forward, we'd like to is a row count when we actually count things? We count from one, right? Because otherwise, we'd have to remember things. If I said,
+
+Tell me how many books are in a pile, and I counted 01234 and told you four. I'm going to tell you the wrong number. So I have to start counting at one, when I'm finding out how many of something exists whenever determining the size of something. But when I'm indexing, if I'm just putting a label on them, then it can start at zero. And it does.
+
+So given that, now that we know how to get the length, how could I always get the last element of an array?
+
+Where would it what index? Would it be at?
+
+Minus one, yes. So the index is always minus the last index of the array is always one minus the length. Because if one starting at one and one starting at zero, then it's always one behind. So that means if I can get the length to the right I can get always do
+
+Do something with the last element in the array by saying nums dot length minus one.
+
+And that will give me
+
+the last element every time. So now knowing this information, I can find out how many elements in the array, I can always access the first one, I can always access the last one, regardless of the size of the array.
+
+Then
+
+I can use those to work with any array. Even when I don't really know what's on it right now. In right rolls around it the same way we did with integers like x and y are a and b, and c, you did yesterday or last night for your exercises.
+
+So
+
+let's look at some code now.
+
+We're actually will maybe take a break and then look at some code but other questions on
+
+so far.
+
+All right. So I guess
+
+It's been an hour. So let's, uh, take a 10 minute break, we'll come back at 1020. And then we'll actually walk through some code for this. Um, are we going to be doing the same thing that we've done the past two days where we go into Eclipse and open the lecture things? We are Yes, that's what we're going to start with. We get back. All right. Cool.
+
+This is completely valid. Oh
+
+Thank you Michelle.
+
+I had positive break. I totally forgot. I'm sorry. Dang it.
+
+It's okay. He only missed the easy part on the scopes. Not that that uh that was it. So that is
+
+screen real quick like, see, look, this, this matters. This scope will screw you over sometimes. And sometimes it'll help you. There you go. That's, that's, that's pretty much the message. So yes, so you can be back into the video then if you go read these two slides, it'll give you everything you need to know about scope.
+
+So implied blocks. So there's also this idea of what's called implied blocks. In Java. A lot of languages have this, it means that if you write a statement, like an if statement that has an a block with it normally would have brackets. If you leave the brackets off, the next line of code becomes the block.
+
+Some languages like Python, that's how they do all their block code blocking. Java allows it
+
+Java allows it but I don't allow it. So
+
+and I have reasons for that. I'll tell you so and that's more important people. All right, the rest of your career.
+
+I should say for the next 14 weeks.
+
+Yes, it I don't want to see you using it.
+
+After that, it's up to your player. I've actually never worked at a player that would allow it. They've all, every team I've been on has decided not to allow implied blocks. And the reason is, every time I've worked on a project that where people have used it, it's bug filled. It's hard to use, especially in a language that is White's whitespace independent, like Java does suddenly use one particular exception that involves whitespace.
+
+Causes errors and causes problems and readability problems. Unlike Python, which uses the same thing, but it's completely whitespace driven. So it makes complete sense to use it. So
+
+in your personal projects is fine, but I wouldn't you know, that's valid, you're going to see it until you understand scope, and blocking methods and all the other pieces around it. It's a shortcut that should be avoided, at least while you're here to talk elevator.
+
+So it mainly because I want you to understand that there's a block there. So I want you to practice
+
+All right.
+
+So for that we'll go into loops after my don't do that right now that I can calculate the talk about it.
+
+Let's look at loops. So loops solve a problem that we're going to have.
+
+So with
+
+we have now that we have these arrays.
+
+So loops allow code to repeat a set number of times.
+
+They use a Boolean condition and execute the code when that condition is true, then they stop and it's false. So allows us to set the condition and say we want to repeat this code, we want to do it over and over again. And here's a condition that as long as this remains true, you keep going. And we'll say false. So it's like having an on off switch. That we're going to have this keep changing things will say you know, 10 times and
+
+Once they do it 10 times, then they're done.
+
+So the Boolean condition must start true. So it's the same idea that if you took set somebody,
+
+let's use a toddler because he works well with them, and you set it down at a table, and you give them your teaching him your numbers, and you say, write the number one through 10, or write the same sentence 10 times the practice, write the letter A 10 times as they go, they're going to start needing to write it 10 times, and they're going to write the letter A, and then they're going to change the number I was at zero. Now I'm at one, and that's less than 10. So I'm going to do it again. I'm going to write the letter A. And then now I'm at two A's that's less than 10. They're gonna go to they hit 10, hopefully, and when they get to 10,
+
+they're going to stop because now the condition is false. Now, it's not true that they have less than 10 letter A's. That's what a loop is, is the same thing. We're giving the computer directions say
+
+Write a letter A until this number is equal to 10. And then stop
+
+or write a letter A why there are keep going while there's something in something like an array.
+
+So it's going to work by,
+
+we're going to have some condition that we're going to initialize. So some variable, this condition is going to check and it's going to check the condition. If the condition is true, it's going to run some code, it's going to change something. And that's going to be important because otherwise the loop will never stop. It's going to go back to the condition check if it's true runs code, change
+
+the condition and continue going and to the condition is false. And we were done.
+
+So
+
+that's what a loop is going to do for us. And now that we have sets of data now we have this data structure that has a bunch of stuff in it
+
+That's going to be really important. If we're going to have a list of you know, 100 numbers or a list of all the instructors are probably going to want to take action on each one of those items in the list in an array, sorry, not a list array.
+
+So, loops are gonna allow us to do that. But first we have to learn how to write one.
+
+So
+
+the for loop, is what we're going to start with, we're gonna do, we're gonna learn a few different loops throughout the cohort, but today, we're just gonna look at four loops.
+
+In a for loop, what we're going to do is we're going to declare an integer
+
+or not, some kind of number got to be an integer, some kind of number. And this is called an increment or variable. And what this does is it's just something to change. This is where we're saying
+
+in the example with a toddler sitting at the table, this is how many times they've written the letter. This is going to keep track of this is that thing in their head.
+
+It's keeping track of you know, I've written it once every two twice.
+
+So we're gonna have that. And then we're gonna have a semicolon
+
+and then
+
+a condition.
+
+And this, this is going to be a boiling condition, it's going to start true and become false by the end of the loop. In this case, what we're going to do if we wanted this loop to loop 10 times we're going to say, while i is less than 10. So right now I zero we create a variable i is zero.
+
+And
+
+so it starts true and we start, but if we changed I 10 times that would become false, right?
+
+So the next part is iterator expression. That just changes I.
+
+So it changes the variable, the incrementer. And all that means is we're going to add one to it. So this is really that process of I've written one a now I have one but I need 10
+
+I need one, I don't have 10 yet. Now I've written two letter A's. Oh, that's still not 10. So I need one more, and I write another one. Now I've written three, this is just a tally of how many times we've done this action.
+
+And this, so this is going to define the counter. This is going to change the counter.
+
+And this is going to check to see if our condition when we want to stop is still true. If we've hit our endpoint
+
+and this whole this together is going to determine how many times the loops going to repeat.
+
+Now notice, it's for an AI, that violates all the rules we talked about on Monday, right or Tuesday about variable names. That's a horrible variable name. So
+
+this is I mentioned then there are a couple exceptions, where we can shorten our variable names and for particular reasons.
+
+One in four loops, it's pretty normal to use a single
+
+letter, usually I, it also can be it can be any letter, you can write out a full variable name if you wanted to. But I short for increments is really caused by the most common one. And the reason is about scope.
+
+The variable names before we said had to pass the independence independent tests because we need to be able to read them and understand them independently where they're in the code because our code pieces are going to get very large. This variable exists for only the block in the fork code, that's probably going to be there should be only just a few lines of code, which means it has a really limited scope.
+
+And
+
+so we
+
+so it is acceptable to use something like an AI or an X for the incrementer in a in a for loop. And actually the standard
+
+because of that, so
+
+and the other thing is that we talked about
+
+The block just a second ago was scope.
+
+So this AI that we have here is available inside of this block, but not outside of it. Because this, this code here that's establishing the block is considered to be part of the block.
+
+So our block when we have a for loop is this whole thing, not just what's inside the brackets includes the four.
+
+And so we have this, where we started at zero, we go to or less than 10. And we go i plus plus our output would be the number 01. printing out each one. Nobody printing out I would get 0123 through nine, they would print them out.
+
+And the so the
+
+just to reiterate to make sure I'm getting the right the, the i equals zero, tells it to start at zero. And then the i plus plus tells it to keep going and increments of one yes
+
+Then the eye, his eye is greater than 10 basically tells it to keep going as long as i is less than 10. Yes. Okay, exactly.
+
+So the way this is gonna work,
+
+the same loop here,
+
+as the it runs, the code is good. The first thing it's going to do is it's going to
+
+create this variable. Here, it's x,
+
+it is going to set it to zero. So the first thing that happens, first time only coming through the loop.
+
+It's going to create this incremental variable.
+
+It's gotten once for the entire loop. And also doesn't have to happen here counting up someplace else before as long as it's in scope at the time we're there.
+
+It's going to assign it zero. And then it's going to check if the condition is true. This is why the condition has to start true. So it says is x which is now zero.
+
+Less than 10.
+
+And that's true. So then it's going to run the code, the block of code. So in this case is going to print. And then it's going to go to the incrementer, which is going to change, make a change. So its whole job is to change
+
+this counter in some way. So increase it, usually by one. So it goes here, it makes a change. And then after makes the change, it checks and says, Is this condition true? Well, now x is equal to one that's still less than 10. So it's true. So it goes here, it prints
+
+it runs the code in the block. When it completes the block, it goes back up to the incrementer chain makes a change. Now x is equal to three, that condition is still true. So it continues it goes runs it again and it continues that cycle the loop through those three steps, until finally, x becomes 10.
+
+Now x less than 10 is false, and loops completed and
+
+It's out and continues the code.
+
+So that's the workflow that it goes through the code runs.
+
+And
+
+so before
+
+that, so so far, what questions do do you have?
+
+Okay.
+
+All right. So let's look at,
+
+take a brief look at this x plus plus. So that's, that's called shorthand. It's called increment shorthand.
+
+Let's look at how that works. So there's what's called increment and decrement shorthand, which is just really an easy way to increase the number by one or take subtract one from a number. So we have any number any integer long, we can put plus plus on it, and it'll go up by one, we've got minus minus one, it goes down by one.
+
+There's four complete short ends. I plus plus means we'll use the current value
+
+By the code will use it and then it'll increase it by one
+
+plus plus i means it will increase it by one, and then the code will use it.
+
+That's not going to matter for loops. Doesn't matter which way you use it for loops because we have an independent standalone change.
+
+Later in the court will run into some cases where this might matter.
+
+Then this same exist if we do minus minus its attracts one. And the same way you i minus minus, then it uses the current value of i and then subtracts one from it. We use minus minus side then it uses my subtract one from I then uses the value.
+
+So this shorthand, the general standard, including the Oracle in the Google standards for it, is that it should be used in for loops in on standalone lines of code, meaning by itself, just one line of code, you'll see that a lot needs to change a number and a counter. There's a single line of code, but using it like something like this, where it's in the middle of something
+
+In this should be a plus sign or minus sign. That's right, I want it to be hard to read
+
+is discouraged. And the reason is discouraged is it's easy to miss that by there was a change to y occurring here.
+
+But that's the Oracle and Google standards for it
+
+is that it's download. There's some other shorthand assignments we've already seen and kind of talked about today's put them here as well. plus equals minus equals, multiply equals division, divide equals, is always the same as this number.
+
+plus minus, or the operation with this number and this number. So it's
+
+x plus equals y is the same as x equals x plus y. So it's adding it's changing the number by the other number, in that case
+
+and for all of these
+
+You don't have like many of the shorthands we look at in Java, like the apply block we just looked at and the ternary operator we looked at yesterday. You can
+
+they make things easier, but you don't really have to use them. You'll probably find you'll use these because it's easier to type. And writing a loop without this is kind of tedious. But
+
+that's the one you'll probably use a lot. The rest just know they exist.
+
+Alright, so
+
+since we're going to switch back to loops, I just wanted to point out what that was is something new we were seeing for the first time. Questions on on that.
+
+Hey, Brian. Yes. I have a question. Yeah. Back on slide 19.
+
+Yes.
+
+The system out print line of I guess
+
+Is that from another slider? Am I that's a typo. That should be x. Just making sure. Okay, sorry. No, that's fine.
+
+That's a great question.
+
+I just was hoping nobody would notice. But so thank you for pointing that out to everybody. You're welcome. Anytime.
+
+I have a question for slide 20.
+
+You said that,
+
+you know, for readability, the general standard is to use these increments as decrement shorthand in the four of a loop are lines by themselves. So how would it look if it was on a line by themselves if we were doing the x equals, you know, 120 plus, minus minus y? Oh, yeah, it would look
+
+like something like this.
+
+Let's have a look. Okay, so the document would be online by itself. Would these? Would you always want to put it first? Well, you if when this case you want
+
+the this because it's
+
+before? Yeah, why should it be first? Okay, if it was instead this had been written like this, then this would cause a problem and you would want to do it are sorry, badging is minus signs. You'd want to do it down here. Okay, so
+
+to do this line down here, because you want it to have an after.
+
+But the reason that
+
+we do that is because notice this is kind of hard to notice. Yeah, this is really easy. It pays close attention to it. Oh, yeah, for sure.
+
+Again, it's a discouraged idea. But we are times when it makes sense. Yeah, it can be done. It's just it. It's hard to pick it up sometimes like it, it can bury itself. Yes. So the rule I personally use for it is when I'm writing something, and I'm getting to something like this, the second I'm using an increment or decrement shorthand, I look at the code to see is it obvious What's going on? Sometimes it is, sometimes it's really clear what's going on. And if it's not like this, I would consider it not to be obvious what's going on. There's minus signs doing two different things. Then I would split it into two lines. Okay.
+
+All right. So let's go back to loops. I'm gonna look at one more thing. Then we'll write some loops. And that's these two extra commands inside of loops.
+
+So inside of loops, there is
+
+two statements we can use. Breaking continue.
+
+You that change the loop. And what they are is they're kind of shortcut there. One of them is kind of an escape hatch. And the other one is a short circuit. So anytime in a loop, if we put a break statement
+
+no matter where it's at in the loop, when that break statement executes, the loop ends, it's done no matter what it's where it's at. So in this case, it's running
+
+until is 10 or, and it's going to break when i is equal to five, then the output is going to be 01234 is equal to five breaks. final line never prints. The Loop doesn't continue. It's done. So it's kind of it's an escape hatch out of the loop. It allows us to end the loop early because often we want to often we have something we're looking for, and we want to check and when we find that we don't want to keep looping over a bunch of other things. So we're done. So it's just like adding an additional stopping condition. Basically, it is yes, that's exactly what it is. It's so it allows us this can
+
+Additionally stopped the loop based on another condition. So an example where we might want to be doing this will be more apparent with a raise. But let's say we had just but conceptually, it's,
+
+I think, pretty easy. So, so if we had a grouping of 100 names, or think about if you had a list of bigger 1000 names, and the list had all of their phone numbers beside them, and you somebody called you and you wanted to figure out who it was, you're going down the list, and you're looking for
+
+the phone number, and you find it on line 102. You don't want to continue down to the last thousands, right? But you're still going to come up with the idea that you may have to check all 1000 in the list because when you know it
+
+might be the last one.
+
+So that's what break allows us to do allows us to say, okay, where we found what we're looking for. We didn't know where it was going to be, but we found it. Now we're done. So allows us to short circuit.
+
+So when in case that you have here, it breaks out because for as long as you know, we're looking for five, and we have it that to zero, or less than 10. But there's only five numbers there. So once it finds five, it breaks. Yes. Okay. Yeah, it goes under if statement and stuff.
+
+So the other one is continue continue is short circuit, it says, as we're going through this loop, stop what you're doing and go to the next one, ignore the rest of it. So in this case, if we continued on five, what would happen it would go through the loop and when it's not five, it's going to go and print and when it is five is going to continue, it's going to immediately just go back up to the incrementer and not run this later on.
+
+to code
+
+and then
+
+it's going to
+
+go to the next one and then finish the loop. So in this case, notice the prints 01234. It's not going to print the five because this line gets skipped. And then it's going to go 6789 and complete the loop.
+
+So,
+
+visually, even though these have some syntax that we haven't seen yet, we won't see them next week. Let's pull up these we can see.
+
+So for this, we haven't seen the syntax yet. We haven't seen any of this syntax yet. So all we really care about for today is just when the break happens, and then we'll come back once we have more syntax. But if we're going through this loop, as it continues looping,
+
+is looking for when a city does this explain quickly looking for wins.
+
+city name is going to find is not starts with C, that's going to be a couple iterations when it gets to Pittsburgh. So
+
+it continues. But now it's true and nosies time it's printing it. Now that is true, and it breaks and it's done. It doesn't continue for the rest of the list doesn't continue going and went through 012 and then stop. That's what break does.
+
+For continue,
+
+again, with some facts that we haven't seen, but what's important is, well, we have seen some of it, it's going to be the same type of thing. We can see which ones it's accessing, and what it prints. So as it goes through the list, it's looking for, again, cities that starts with C. And when it finds a city with starts with C, it continues, which goes back up here, it never runs that line of code. The next one is going to be a city that does not start with C. So it runs the line of code because it doesn't go into the
+
+If statement,
+
+then C continue. So it goes back up here. It doesn't print. So that's what continue does allows us to skip something. So what it's usually used when we have something like this, we have some code that we want to skip in particular circumstances. So maybe we want to print all the, all the odd numbers in the list. So we, one way we could do is we could continue on the even numbers so they don't print. There's a better way to print all the odd numbers in the list. But that's for what we have right now. That's one thing we could do.
+
+All right.
+
+So, questions on on basic loops.
+
+Alright, let's go code a few of these.
+
+So, let's look at the,
+
+you know,
+
+let's come back to this lecture code. Let's write some new lecture.
+
+So I'm going to create a new class and kind of a scratchpad class so we can write some loops
+
+rather than writing them and then we'll come back and fill out the these because here we're writing them in these kind of predefined things. I just want to write some loops.
+
+So I'm going to go on comm dot tech elevator. I'm going to right click, and choose New and go to class.
+
+And then,
+
+and that's right clicking on combat tech elevator.
+
+Choose it. And when it comes up, we want to make sure that package if this comes up empty, you can just type combat tech elevator in it.
+
+Are you sure did you ask the question? Um, nope, nope, I got it.
+
+And then where it says name? Let's call this something like loops.
+
+Examples or that'd be good.
+
+Doesn't really matter if your name doesn't match exactly that's fine
+
+and then where it says public static void Main I'm going to check that so I don't have to type it out manually. And then I'm going to click Finish after that but I'll pause here for anyone still catching up to go to see it.
+
+My finish is not highlighted for some reason. If you're finished is not highlighted, you're missing either the name or the package.
+
+I
+
+have the name I have the package comm dot tech elevator. I don't have anything in closing time.
+
+What about it's a source folder doesn't say anything. source folder Java dot Lang dot object. source folder says Java dot Lang dot object. Oh wait source folder. I'm sorry. I'm sorry. It says loops and arrays. Yeah lecture source.
+
+Main Java
+
+c
+
+should come up without
+
+that piece all back out of it and do it again right click new class
+
+name.
+
+Okay, it's called guarantees.
+
+Thank you Now it's coming for me.
+
+So I'm gonna go ahead and click Finish.
+
+Okay, so that's just gives us a class we can just work in and just print things and work. So let's build like this comment. You don't have to, I'm going to
+
+let's create a just crazy loop kind of like we were looking at this make a loop this prints one through 1015
+
+actually see it run.
+
+So to do that, I'm just gonna write the code here. And
+
+let's create first.
+
+So we're going to say four. And then we're going to create our incrementer. And I equals zero.
+
+And you don't have to have the whitespace. And you can not have a space there, I'm putting that there just for readability. In my actual, if I was writing code for a project, I wouldn't, I wouldn't have the extra whitespace.
+
+But it's fine if it makes it easier for you, as well. And then we'll say I this is my condition is going to be less than 10. It's going to say do it 10 times. We could also say, if we wanted to print from one,
+
+we could make this one and make it equal to 10. That would work as well. This number can be any starting point.
+
+So that now we have to have a change. So I plus plus.
+
+And we'll just print out the numbers system out
+
+dot print line I
+
+and that's printed.
+
+And when I run it, to run it, you can. If you're here, you can click the Run button if you don't have other stuff open. If you do can also right click on the loops example, and choose run as Java application.
+
+And you see in the console, it prints out zero through nine.
+
+Let's do
+
+another common problem. Instead of
+
+printing the numbers, let's sum the numbers.
+
+Let's sum
+
+all numbers from one to 100.
+
+So we're going to need something. Let's Let's write the loop first. So we're going to go one from 100. So say and
+
+I you
+
+equals zero.
+
+Let's see i is less than 100.
+
+But is that really going to some numbers one from 100, that's going to go zero 99, right.
+
+So maybe even change this to one and make this equal to 100 i plus plus.
+
+And now I want to sum the numbers I'm gonna get the whole so I need something that I can add the numbers to. That's going to be available here for me to print it. I want to print system out print line
+
+some variables some.
+
+So
+
+what mine What I have to create that variable one for that to work.
+
+So I can access it in the for loop and I can I can access it out of the for loop.
+
+What my number
+
+We initialize it on 13. Yeah. 13 has to be initialized outside of the for loop because this if I initialize it on line 15, it's going to be in this scope. It's not going to be available.
+
+So create at some zero. And the sum is available here, because it's inside of
+
+this block.
+
+So to say plus equals i. So add the value of i to the sum
+
+we printed then we'd find out that all the numbers one 200 sum together is equal to 5050.
+
+Brian, yes. Would you shown that if you click on one of the
+
+brackets, you can, it'll show you the scope. Yes, in Eclipse, that's a great point. So if I click beside a bracket, you can see where it highlighted the boxes.
+
+The other side, I can do it for either side.
+
+Okay, that's okay, that's cool. And that shows you two things one that has a proper ending bracket, but that is that that is the scope that variables are going to be available in for that bracket.
+
+So let's do
+
+a couple more. Let's do the same thing with the Psalm. But let's this time let's sum all the even numbers are the odd numbers, even numbers, odd numbers are a little
+
+slightly more challenging. So we're gonna need the same thing. Let's sum
+
+all the odd numbers and let's do it not from one to 200. Somebody pick a number.
+
+Any number?
+
+typing in chat if you don't want to chat along number, that's fine. Any number doesn't have to be long.
+
+It could be
+
+2020 2020. Okay, so odd numbers from 2020. And where should we stop?
+
+No, no opinions are where we stop. How about
+
+8576? So we'll sum all the odd numbers between these two values are so predictable. I always pick that.
+
+I wouldn't be surprised that like every cohort, I pick the same number.
+
+All right, so know that song 867530 it is, oh, did you pick the same number every time?
+
+Alright, so let's create a new variable. We can't use our old song because we've changed it and we could set it back to zero. Let's do that.
+
+Let's not waste a variable, sum equals zero.
+
+And now we write our for loop in our for loops going to be int
+
+i equals 2020.
+
+i is less than or equal to
+
+8576.
+
+And then I
+
+plus plus.
+
+And now our sum is going to be plus equal to i.
+
+And then what is printed out like we did before,
+
+although we have all the odd numbers
+
+so how can we do figure out all the odd numbers
+
+making only print even the modulus? Yeah, he's modules. So we could say if I
+
+modulus to what's going to be equal to if it's odd.
+
+01 Yeah, one. So if that's the case,
+
+then
+
+we'll add it. If not, we'll just ignore it
+
+and run it again. And now we have this number that
+
+I'm, I'm sure it is
+
+all the even numbers or odd numbers between those two numbers.
+
+So a few things here. One inside our loop, we can do any, any code we want. We can use I in the loop. I doesn't have to start with zero and start with anything.
+
+And this condition can be anything.
+
+So let's, I'm going to copy this code here.
+
+Is there another way I could have done the same thing without modules? Or we could have done the same thing about modules.
+
+You
+
+can then continue to finish said,
+
+if it's zero,
+
+we got to move the psalm outside of this right?
+
+You could say if it's zero continue,
+
+and we print that
+
+we get the same value.
+
+Let's copy it one more time.
+
+So another way we could have done it, what if we didn't have an if statement?
+
+We just have started the for loop at 2021. And then just did i plus to the iteration Exactly. So ti
+
+Equals i plus two.
+
+Now here, actually, it'd be better to be it plus equals two. So here we can't use the plus plus we have to use plus equals when it's a number besides one, but we can change it by anything.
+
+So if we start that,
+
+run it, we get the same number. So three ways we could have done the even numbers.
+
+All right.
+
+So one more loop
+
+for we.
+
+Let's write
+
+and we'll mark x mark. Three ways, three methods.
+
+Try one more. Let's
+
+we'll just print
+
+all the numbers from
+
+The sum
+
+the sum above
+
+this idea
+
+how to get to
+
+look at that for the next second segment. So let's put all the numbers from this to make it simple 100 to one backwards, I guess if I write it like that, then it will be for frontward. So 100 to one in reverse.
+
+So, if we're going to do that, I want to start 100 and I want to go to one
+
+and let's make it x this time.
+
+Let's make it in for number.
+
+So what
+
+what I start at
+
+00 Okay, how am I gonna go
+
+So, we want to wear first and for we're printing reverse, we want to put 199 98. so on, so why can't we just start at 100?
+
+Yeah. So sorry. 100. And then what's our condition? When do we want to stop?
+
+So a greater than zero? Yeah. So as long as it's greater than zero keep looping. And then how do we want to change that needs to be in not I.
+
+How do we want to change and what do we do? Minus minus? Exactly minus minus so we decrement of increment and that was to assist about
+
+print line.
+
+Then
+
+I should put the bracket on the right side of the
+
+and run it and we get the countdown of 103
+
+Once we can go any direction, we can skip numbers, we can these numbers we have this first incrementer
+
+doesn't have to always be zero, it often will be, but it can be any number. That's just our starting point. The change can be any change, it just has to change.
+
+And finally, I'm going to copy and paste this again and write it
+
+one more way, exactly the same code. But just by moving to things to show what's possible.
+
+So this line of code here doesn't have to be here either.
+
+And
+
+it's called number
+
+in this line of code
+
+doesn't have to be there.
+
+It can be anywhere it could be in the block.
+
+That should be number there now.
+
+This will have to print number
+
+and this will work.
+
+So, what's actually required for a for loop to work is we have to have a bullying condition that become false. Now there is a better loop than a for loop for what I just wrote. You would never really write a for loop like this. There's another loop structure that does exactly this. But I wanted to demonstrate that you can choose the only thing you have to have right here is a Boolean condition that starts true and eventually becomes false. those other two pieces are optional. They're there because it's convenient, we often need to do this we'll have to have a position. So I want to start at number go to another number. So we control the times through it. But we don't have to, but we have to have is a Boolean condition that changes. So something has to be changing something every time through the loop that eventually will make this condition false.
+
+Again, you'll probably never write a loop that looks like that. We'll look at another structure next week that is better for that. But as you're writing loops, you can think about though, it is common to end up doing things like
+
+that.
+
+Or combinations where
+
+instead of here, you end up having
+
+that there and the change down here because you have some condition where you say, you know, if this is an even number, change it by one, if it's an odd number, change it by two.
+
+We can also have multiple changes to this. So the point of that is just now that we've talked about the basically just that there's more you can do with it.
+
+And if this last part, isn't making sense to you, that's okay. Don't focus on that. That's one of the extra things we can do.
+
+So focus on the other things so far today.
+
+Alright, so it's been about an hour again. So the next thing we want to talk about is we have arrays. Now, there are a list of things, a lot of lists are set of things, a grouping of things. And now we have this structure that can repeat.
+
+So they sound like a perfect, they go together perfectly.
+
+But before we do that,
+
+are there questions or what questions do you have about
+
+loops so far?
+
+All right. So let's take another break. It's been over a little over an hour. So we'll come back at 1135 in 10 minutes and
+
+you know, get up and go run around your house or something or screaming down the street and back before anyone and we'll be back in two minutes.
+
+Right Gordon
+
+started again.
+
+So what questions come up here during the break?
+
+Can you use continue and break outside of for loops?
+
+Well,
+
+not outside of loops.
+
+There specifically for loops or I threes that I have as positives. There's other types of loops inside for loops. One other one we'll look at. Wow, the while loop. But you know, yeah, they're specific to loops. Yes. All right. Perfect. Thank you.
+
+Alright, so
+
+now that we have these things, we have this thing that repeats, and it does this repetition and it's counting from zero. We can start at zero
+
+and make it count up by one.
+
+We've looked at something else today that does that.
+
+What an array arrays start at zero and count by one and count up by one.
+
+But part of access indexes do.
+
+So if we were to loop the start to zero,
+
+and we can know the size, I'm going to read an array by its length.
+
+And we made its condition so that it stopped when it got to the last index. So length minus one,
+
+then we can effectively loop through
+
+every element in the array.
+
+So if you run a loop like this, for our re instructor way we've been looking at today and we start at zero.
+
+We say is less than instructors like because less than instructors all mics are saying the same thing less than or equal to life dot one minus one, right? So going to one less than the life
+
+And then we just go up by one, that is this loops, the first time through, it's going to be zero, which is going to print john. The second time through in this prints, I is going to be one. So it's going to show the third time through I is going to be
+
+two. So it's going to print Steve, the fourth time through I is going to be three, it's going to put Matt, last time through, it's going to be four, so it's going to print Matty. And then the final time, it's going to be five, which now this is false, it exits the loop.
+
+So we can use a loop to go through everything in an array, or we could start now if we only wanted to print
+
+the last few we could set i equals one, and print just the last portion or make our condition go to someplace else in the array.
+
+So we can take advantage of AI because AI is an integer and so is the index to figure out what the index
+
+is an array that we want to manipulate.
+
+Let's
+
+walk through that.
+
+So here we have an array. And it's a list of cities Columbus, Cleveland, Cincinnati, Pittsburgh, Detroit has the index 012343. And fourth, since five, like the five, we have a for loop, and I equals zero, I is going to go less than the length of cities. So it's going to go if the length of cities is five is going to be true, y is less than five.
+
+And it's going to increase by one i plus plus.
+
+So when we start, the first thing that's going to happen is that this is going to be created. that's gonna happen once just when the for loop starts.
+
+And now it's going to say eyes. It's true, zero is less than five.
+
+So now cities, the array at
+
+Is index zero, so to go to Columbus
+
+and now it's going to increment it by one. So I is going to now become one to zero, which is still true, it's less than five. Now I is equal to one. So cities that I is Cleveland, so when it prints is going to print Cleveland
+
+and then we step I gets changed by one again and increments by one.
+
+It's still true. Two is less than five. That's true. So now cities if I now eyes, two, so that's Cincinnati.
+
+It increments by one again, it's true that three is less than the length. So now cities at i is equal to three. So we get this value Pittsburgh.
+
+Now we go to four. that's still true. It's less than five. So cities at I which is four is Detroit.
+
+And then it increments again. But now I is five. So it's out would be out of bounds. So the loop completes. And since I never gets used with cities, it doesn't cause an error. Because we've stopped the loop before we got to that final beyond the edge of the loop.
+
+So we can use a loop to manipulate arrays.
+
+So there's nothing new about the loop here. It's all about board bringing together so before we go do that, because we were writing some code that does that. What questions do you have?
+
+Or is this making sense?
+
+I find there's two big things here that become kind of
+
+struggling points for for this concept.
+
+The two points are one that this is we're changing it that we can we use it as the index
+
+The second is that as we're working, we're going to have to keep in mind
+
+when we're referring to AI, as not the index, but as the number the counter when we're referring to it as the index. And we also have to keep in mind when we're referring to the array itself.
+
+And when we're referring to the element in the array by the index.
+
+So we have to keep all four of those things in mind constantly as we write code with a loop in an array. Because they're, it's easy to get, it's easy to confuse when you're trying to use is the increment or if it's the counter. And when you're using eyes the index
+
+Excuse me. So
+
+let's write some code. First. We haven't really built many arrays. So let's build some arrays, and write some code that uses them.
+
+So for that, let's
+
+let's build in code over here, not kind of scratchpad code. Let's build the instructor way we've been looking at all day. So we actually have real code examples of what we've been looking at.
+
+So we're going to go string
+
+and we'll call it constructors.
+
+equals new string, and this could have a value of five.
+
+And just like we did in the original
+
+will
+
+now set the elements so we'll set it by element zero.
+
+The way we're buildings here, so
+
+make it match. So by accessing
+
+zero, it's setting
+
+the array the first element to john, instructors at one we'll set it
+
+Rachele
+
+instructors
+
+to
+
+we'll set it to Steve
+
+instructors, three.
+
+We'll set it to
+
+Matt
+
+instructors for
+
+we'll set it to Mati.
+
+Alright, so now we have our array.
+
+So let's try to loop the printed out. And then we're going to take a look at something else. With it away, we can look at what's going on. Because as we get more and more complicated with these loops, and then if statements that are be inside of them.
+
+As our code gets more and more complicated, the harder it is to visualize what's actually happening. So we'll look at a way we can do that. But so let's start with four.
+
+And what we're going to do is we're going to create a number
+
+This is going to represent
+
+each of these numbers in the index.
+
+So we can just call it AI.
+
+And we'll set it to zero, the starting point.
+
+And then we're going to set I when less than instructors array and here we're referring to the box itself, we care about now is the array itself the box. So that's dot
+
+length.
+
+And then
+
+we're going to increment it by one.
+
+So in this case, every time we're referring to I will refer to it as a counter.
+
+And when we're referring to instructors here, we're referring to the array itself.
+
+So now we just want to just print them out.
+
+So now, for the instructors array, we're going to use AI but now we're using
+
+There's an index
+
+run it
+
+and I'll pause because I know I know I type often faster than I should.
+
+And if I do that, please don't hesitate to tell me to slow down and ask
+
+without prints out all the names, so it prints out in order that we put them in. JOHN Rochelle Steve Madden Maddy.
+
+Is it okay to continue? Is there anybody that?
+
+Okay. All right. So let's, it'd be nice if we could look at right now we can see we're seeing this. And we have
+
+this instructor array.
+
+And we know what's in it would be nice if we could actually see what's happening. We actually have a tool built into it like Eclipse that does that called the debugger.
+
+So we're going to look at the debugger, more and more details as we go. But I want to introduce it to you today because you should start using it and playing with it. And just getting familiar with it. Yes, sorry. Can you remind me why you put five in the brackets afternoon string, that that sets the size, how many elements can be in the array, so this will always be an array of five strings
+
+is because we we might see the number four with the machine sees five as in counting counting starting at zero
+
+There's there's five z 112345 machine counts most five, indexes them. And that's the difference as zero. There's still five things. There's five names. It's holding those five names, and it's labeling them, but it starts counting at zero. When it's when it does, it's not counting factual things. Does that make sense? Yeah, it's a label. Are you able to just leave it blank and then have unlimited new or not? It has to it is there fixed size you have to set the size when it's created.
+
+So
+
+to use the user debugger, we have to set something called a breakpoint. a breakpoint is as our codes running and executing. When it's running in Eclipse, it's going to stop and give a let us look at everything. What is looking at the variables in the state they're in.
+
+And then this can lead us to something called stepping that
+
+is going to allow us to slowly move through the code and see how things change.
+
+To set a breakpoint.
+
+Here, or whenever line, we're gonna pick a line.
+
+And I'm going to pick this line. So I'm gonna step through all the code. Actually, let's pick one up here first.
+
+Now that will appear. Let's pick line 56, or wherever your thing is, I'm going to double click right beside it to the left of it. And there's a little dots that appear there. Those of you who have changed the dark theme, you'll get a different symbol, but a new symbol will appear there. You can also right click on the line and choose. Where's that?
+
+someplace in here?
+
+Oh, no, you have to right click over here and also right click over here and choose toggle breakpoint.
+
+So once we have a breakpoint set, if we just run the code,
+
+nothing happens. We have to run the code in what's called debug mode in debug mode.
+
+To be specified when we want to run it this way, because it runs slower.
+
+So because of that, and also is more likely to have some other issues. So because of that it only runs when we ask it to.
+
+So it's not something we use all the time. It's something when we want to look at a problem or look at how something is working, we can stop and run it differently to look at. To run in debug mode. It's the same only instead of choosing run as we choose debug as, so we can right click here
+
+and choose debug as Java application. There's also this icon here that looks like a bug. That's what run as debug where you can right click on a file that has a system main in it and choose debug as Java application.
+
+So again, the only difference is it's debug instead of run.
+
+Everything else the same. But then when you choose this and run it,
+
+it's going to start you'll notice it's already starting slower. And I believe I'll be asked to change perspective.
+
+There's so from our perspectives, from day to be briefly talked about, there are different ways of the toll looking at codes, we get a different set of tolls for the same code a different view into it. So the debug perspective
+
+and I switched to it is going to change my windows, it's going to give me tools that are interesting to debugging.
+
+So here, but notice, some of my other tools have went away.
+
+So I can switch perspectives at any time up here. me
+
+draw attention to that because it's kind of hard to see. So these little buttons up here
+
+they are the perspectives. So these first two, you may have both or you may have
+
+one, these are the Java perspectives.
+
+So clicking on one of these will take it take you back to the view. You've been used to
+
+This other one looks like a bug. That's debug. That's what we're looking at now.
+
+So we're gonna have to switch back manually at the end, it's not going to automatically switch back, we can come here anytime we'd like.
+
+So now, the next thing we see this line here,
+
+is highlighted in for me green. In those of you using the dark theme, it can be really hard to see it's a really light gray.
+
+But it's highlighted.
+
+That means we're stopped on this line of code. And this line of code is about to execute. This line of code is not executed yet. It's about to execute.
+
+So everything above it here has. And if you look over here, on this tab here, we can see.
+
+Remember, we created the sum up here, number. That's these variables we created up here
+
+because they're still in scope, so this variable shows
+
+all the variables in scope and the current value.
+
+So right now at this line of code before this line of code sums equal to this number numbers equal to zero.
+
+To change things,
+
+we
+
+have to make the code run. So but if we keep running will full speed, we'll miss it. So we need to do what's called stepping over the code. So there's a new set of tools that appear and yours may be in a slightly different position. I can't remember where the defaults are. But they're going to look like this.
+
+And these today, we're going to look at two of them, three of them. So this first one here,
+
+does what's called resume and that is means it starts again.
+
+So if I press that button, it'll start running and can just go to the end it'll just go back to running.
+
+This button
+
+is stopped.
+
+up.
+
+So it
+
+in my program from running right now right in the middle of it wherever I'm at the breakpoint in different running
+
+these buttons are what's called
+
+steps. They allow us to move the code. So this first one right here for today, pretend like it doesn't exist. That step into when we when we get the methods and objects, we're going to need that if you use it right now you're going to end up in the Java core code, which means you're going to see things like the code that makes up the stringer takes up a string or an integer. Everything in Java is written in Java. So it's all most of it is open source. So you can actually end up stepping into that code and seeing the languages code, which can get really confusing and
+
+challenging. So the one you want to use is this one.
+
+This other one, I just messed up circling is step over.
+
+And that is going to change the line of code executing, it's going to execute this line of code that we're on.
+
+And then it's going to move to the next line of code. Each time we push it, press that button. And that's what we want. It's going to stay in this file.
+
+So let's do that.
+
+So I'm going to press step over. And if I forget which one you can highlight, and it'll tell you what it is.
+
+And we'll see the body couldn't move. But over here, see it shows the instructors array that was created.
+
+If I expand that,
+
+I can see right now, they're all at their default values. No, you said string has the default of null. So I'm going to step again which is going to run this line of code.
+
+We can see that the arrays changed. And now at index zero, it has the value of john
+
+I'm going to step again
+
+Run the next line of code out index one has the value of Rochelle.
+
+I'm going to set up again, the next line of code. And now at index two as Steve, is we continue stepping see it continues populating. So now we're here. And in scope, we have instructors that we can see the array. So imagine yesterday when you were working, and you were getting
+
+those method calls and you had values like a, b, and c and trying to figure out the largest one. With debug, you could stop and actually say, okay, right now, what is the actual value of A, B and C,
+
+it would show them here in the variable list. You can also hover over anything that's in scope, it'll show you what it is. So I hover over here, a pop up occurs, and I can see that it contains
+
+I can see the very first line says string five, so I saved me the length and that the values that actually has in order are john Rochelle Steve Madden, Matty.
+
+Now as we start through the loop, this line hasn't run yet. So this variables don't exist. But when I step,
+
+I see I zero.
+
+So now I can say I zero, I expected the prep, john.
+
+And it does. Now that bind now notice it went back up, because it's a loop, it's running again.
+
+So now this time I is one, I can see that I is now equal to one. So I can look at this and say, okay, is equal to one. So what I expect the premise Rochelle
+
+and push out prints, and then it goes back up. This line is not run when it stopped on the line, it's not run. And that's an important distinction. I keep repeating it because that's confusing sometimes that that's the line about to run not the line that just ran, which means that any changes it makes Has that happened to after we press the button.
+
+Sorry, press the button. Now, I is equal to two. So I can look at my
+
+Right and say, okay, phi is equal to two. I can't if I move my mouse, it'll
+
+go away. But you can see down to where it says 20122 going to be Steve. Or I can just look at the list on the bottom and count across 012 does it? Does it not allow you to
+
+when when you hover over instructors, I'm able to actually move my cursor over that gray box and scroll through the list? Oh, yeah, it does. Okay, that's the wrong gray box. Thank you. If you move your cursor goes away. I was like, Oh, my frog a box.
+
+So yeah, so I can't be around so you can see that it's too. And
+
+I can click on ease. And we'll look at later we get to objects where this is a little more important, but
+
+so we can see what the data actually is. So imagine if we had choices like
+
+I can't change
+
+whites running, so I have to stop it to make changes.
+
+Oh, and the question.
+
+So the ID discussion.
+
+So
+
+I'm not going to tell you what it is today. But I will in about a week.
+
+I'll tell you this. It has we talked about objects object oriented. It has to do with management of this objects.
+
+And how Eclipse manages them and keeps track of them.
+
+You can, like Rochelle said, you probably won't find much use for it.
+
+But except in one case, there's one case where it can be really useful. We get there. I'll try to remember to show you since you asked about it specifically.
+
+And that's from the chat for anyone who's not
+
+I think the first class that's ever asked
+
+about it. So
+
+I'll try to remember to explain it to you then. Yes. Well, it'll be information or like, I don't know why he told us this.
+
+how's this gonna help me.
+
+So, so let's write a couple more loops around this array now and then we'll debug them as we go.
+
+So, let's write.
+
+Let's write a loop that just prints out, maybe all the same thing we did numbers that will just print out all the odd instructors.
+
+So we could have four
+
+and i
+
+equals zero we can start there.
+
+I
+
+structures dot length. So it's the same loop, i plus plus.
+
+And we use system dot out,
+
+print line and well we need an if statement.
+
+So but we'll come back to that structures I that's going to print them all out.
+
+And I'm referring to eyes index here. But if I want to get the odd instructors the one in odd indexes,
+
+I need to do the same thing before, so I must use modules
+
+two
+
+equals one.
+
+And Islamic code needs to move up here.
+
+So we're saying if I modulus two, but now we're referring to I, as an index, so now we're looking I mean, not index as the incrementer. Now we're worrying about which incremental e on the odd increments we're going to print.
+
+Here, we're using it as an index into the array.
+
+So let's, I'm going to set a breakpoint on line 67.
+
+And remove the one on line 56.
+
+I'm going to debug it now. We'll click the debug to start it.
+
+That is like the Run button. That's a history button. So the first time you run it, you'll either right click and choose run as or debug eyes.
+
+And then you can use it after that from that button.
+
+So we are here we have our structures array. We are starting about to start into our loop, we're paused on this line. I'm going to click the step over button. We go here is zero.
+
+So I modulars two
+
+should not it was not equal 100. Yeah. So now the next one is equal to one. So we're going to get an output a one cuz that's an odd number. And now the one goes into the for loop. And it's the is equal to one so we would expect your shell to print
+
+and it does
+
+Now we go to the next one, again, we're going to check to see if it's odd or even, is right now equal to two, so it's even so it won't print. Now we go to the next one. And it's three. Again, we can look here and see that, no, it's going to be odd to expect it to go to this next line. And it does. So you see, we can watch the execution of code to make sure it's going where we want. And we can look at our values, we start to do small on our head, we start to look at it and say, given eyes this, I expect this to do this. So what debugging it doesn't give us a clear or false sense of this is what your codes doing instead of lets us to stop and look at it and say given the current state of things, given the eyes for four modules to it's going to be zero. So I expect it to skip this and go to back to the next four.
+
+And it does and then it completes. So we had it helps us be able to
+
+Think through our code and how it's working and see the values. And it can be really invaluable.
+
+I would encourage you to spend time just playing with debugging. It's one of the most important tools that you can, you can learn,
+
+especially early on. In one of the things I hear at the end of every cohort, every time for all 10 of them I've been here is students saying, I really wished I would have figured out the debugging early, because we figured out I finally figured it out on week 13 and 14 during my
+
+final Capstone, and it was amazing, but I ignored it the rest of the cohort.
+
+So you can't break things with it. You can't hurt anything. You can do a lot more than what we looked at. That's the basics, but we'll look at more as we go. They can do.
+
+So I would encourage you to play with it. As you're going through your exercises, especially today. I see somebody talking about yesterday.
+
+Go back, look at him. Just play with the debugging, get used to the values and where you can hover and what it means to step it up, it'll be well worth the time spent. In fact, the first question that you'll be asked, pretty much starting today, when you come to an instructor will be what happened when you debugged it? And we hope your answer will be Oh, this happened or that I saw this.
+
+So, Alright, so let's continue that. I click that button to resume.
+
+And then let's write.
+
+Let's see, what else can we write? All right, at least one or two more of these with the array.
+
+I want to be interesting.
+
+Something that changes the array.
+
+So
+
+let's change. Let's change the middle of the array. So we have
+
+let's put a new array now. Let's not do that.
+
+Now let's put an arrow right? So let's put an integer, right.
+
+So we can make better changes because we could do the strings. But the integers a little more interesting because we can do math on them.
+
+So let's do an integer array was called nums. equals, and let's use the shorthand syntax for this. We can just put it in curly braces, and let's put some numbers. Let's put 10 2030 4050 6070 8090 and 100.
+
+So again, that's the shorthand use the static initialization array, we could have written it out like this with the integer array, and that would be fine. But since this is just a lot less code, no, no Is this the one that you said not to do? No, this is fine to do. I said not to do this. So for
+
+block of code
+
+or this if
+
+code without the blocks, okay? This is completely, totally fine.
+
+The other one's fine, too, once you leave tech elevator, I'm not saying it's bad or wrong. I'm just saying, don't do it here or you'll beat us.
+
+I think he was asking more about when you said you can make an array by putting the square brackets next to like numbers instead of and I think that was like so yeah, I said also said not to do this.
+
+Because we could do this, that would work. But that's this is much more readable.
+
+In this case, any development team you're on Well, look, you'd like you're insane for doing this because half of it, don't you can do it. I know I didn't really until
+
+I started researching it to teach it. And
+
+then they'll tell you to stop doing it because it's really unreadable. I remember doing this
+
+See, but yeah, that that was what I was thinking. Thank you. Thank you.
+
+So
+
+so we're having to re it's going to create an array, one to 10 items. And this is going to be the zero index one through the ninth index.
+
+So let's do a loop. And let's just do something simple like we'll loop through everyone. Notice not loop through every month let's let's loop through the third item through
+
+these the eighth item.
+
+So if I want to loop through the third item, the item in the third slot.
+
+What index Do I need to start up? Where do I need to start my I?
+
+Yeah, I saw someone put their hands up to exactly that's the third item. And if I want to stop at the eighth item,
+
+what index Do I need to stop at
+
+Exactly something
+
+good. Yeah, so the index we want to stop at is always the item position we're interested in minus one.
+
+So we're going to go to is less than or equal to seven, and then we'll just do i plus plus.
+
+And
+
+then we'll say nums.
+
+At I,
+
+let's do something like nums at I, so that value, and we'll just double it, just so we have something to show. And then at the end, I'm gonna do a quick second loop.
+
+Let's use a different number here we use J. And we'll just loop over the entire nums array. So j is less than nums dot length,
+
+and then j plus plus.
+
+And then we'll print System dot out dot print line
+
+nums
+
+Just so we can see the loop.
+
+Actually, we don't need to we can debug it, but
+
+we'll get both, we'll get the best of both worlds. So let's uh, I'm gonna put my breakpoint here on line 75.
+
+And then I'm going to run it in debug.
+
+So we're here
+
+at a numbers array.
+
+As I start going through it,
+
+my eyes too. So I'm talking about this point appear again I'm talking about is the incrementer. So where I want to start, and how I want to change it.
+
+Now, when I'm using it with nums, I'm talking about the using it as the index.
+
+So I two is going to be this fact
+
+So it should double right after I run this line. And it does. And then it continues, we can see it changing up here went to 80, the next the 50, it's going to go to 101 20, then we'll see 140.
+
+And then we should be done after this. And we are.
+
+Now if we print it, we see the same stuff we printed right here.
+
+So we see the same loop printed here that we just saw the debugger. debugger is a little easier to work with. But once you get used to it, then printing out things over and over again.
+
+Alright, so
+
+what's
+
+the best way to show the
+
+Alright, so let's do one more. I know we're getting late. But there's one more thing I want to make sure you have an example of and that's that in the loop.
+
+We can manipulate
+
+This incrementing incrementing in any point,
+
+so with this loop,
+
+this is gonna be a problem. These are all even numbers.
+
+That's okay. We can do.
+
+Yeah, okay. All right, so let's do another loop over the use, will you I four.
+
+And
+
+I, let's just start at zero,
+
+I will be less than nums dot length, we'll go through the whole array.
+
+I'm going to change i plus plus, so normal.
+
+And now, here's what we're going to do, we're going to look at the number. If the numbers divisible by three, we're going to skip the next number.
+
+And we're going to print all the rest. So we're going to print numbers that are anything is not divisible by three numbers that are divisible by three will print, but we won't print the number immediately to the right of them in the air.
+
+Right. So for instance, we'll print 10 to 30 is a divisible by three. So we'll skip 40, we'll print 50, we'll print 60, then that's the visible a three, so we'll skip 70, then we'll print at 90, which is divisible by three. So we'll skip 100. Does that make sense?
+
+So that's what we're going to do.
+
+So
+
+to do that, we need to find out is I divisible by three?
+
+No, we need to find out the numbers to those three, not i. So we're gonna say if nums ad I because what we care about the difference between this in what we were doing before, before, we said we wanted to do every other one. So what we cared about was,
+
+is the iterator the incrementer isn't even or odd.
+
+But now what we care about is this number, the value in the array. So we use nums, the array name, add, I can get the value and we'll say is it modulus three
+
+equals zero. If that's the case,
+
+then
+
+we're going to what are we going to do? How do we skip the next one?
+
+How could we make it skip? Continue? We'll continue. We'll make it. skip this one. NumPy plus one.
+
+So NumPy plus one. Yeah, so what? That's what we want to do, right? We want to go one up for i.
+
+So we really need to.
+
+So how do we how do we make that happen?
+
+And we have to keep track of where we're at. Right? We have this number going up. So if we just say nums i plus one that's going to print the next one. That's true, but it won't keep track of it. I will still be the original one.
+
+Number. So can we do i plus plus again? Exactly, that's what we'll do, say i plus plus.
+
+And we need to print it. So we'll just put it at the top before we check that because we want to print anything that is not the next one. So let's print line nums die.
+
+know it's going to come through it's going to print a number. It's going to then look at the number and say, Are you divisible by three? If it is it's going to change the incrementer. And we'll look at this debugs we can watch happen, but let's run it first.
+
+See what happens.
+
+We get 10 2030.
+
+Oh, we've changed norms.
+
+Because we changed thumbs up here. That's okay.
+
+Slightly different response, but we
+
+Get the same.
+
+The correct thing so happens.
+
+All right.
+
+So fat loss. Okay.
+
+So let's, uh
+
+let's change it one more time. What if we wanted to skip two?
+
+So would it be i plus two? Yeah, we could say i plus two.
+
+And
+
+so let's see what happens now.
+
+Alright, let's go back to i plus one that I'll make what I want to happen. What I was trying to make
+
+happened happen manually.
+
+Alright, so they're printing out. It's skipping like we expect. Let's debug it. So we can see that happening. I was trying to get an error. So we could talk about the out of index error, but I'm making this up as I go. Um, I evidently didn't think about it more. So but I can make it happen right after this. So let's debug it and watch how what's happening with the I
+
+wasn't supposed to know it did that did do what was said to do, but it didn't do it didn't do the error that I wanted to happen. Okay, so the fix worked. It just didn't work with the error that yes, yeah, it worked. I wanted to break that's
+
+so
+
+as we go, let's look at
+
+noms and what prints out so here is zero.
+
+That is not divisible by three. So it prints
+
+10 in the first position, the next one is still just one that is going to be 20 not divisible by three, so 10 years, and now it's going to get 60 from the next position for here, that is divisible by three. So I now get committed by one more. So I was two. Now it's three. And now when we come into the loop again, it's four because it incremented here, and then here again, we also could make it go up by 210. Anything we want, we can make it go down. So we can manipulate I
+
+we also could do i plus five here to get five ahead or behind without changing i.
+
+So we can manipulate the number as we go. And that's really what I wanted to show with this.
+
+And that's something we often have to do as we work with arrays is we often have situations where we find something
+
+Maybe we want to skip several head before we keep going.
+
+Or maybe we need to go back one to redo something when we find a certain Kate
+
+situation.
+
+So
+
+So okay, so anyways
+
+let's continue this
+
+and
+
+before we look at the last very last thing, which is just the air we already talked about
+
+what questions do you have
+
+all right. So let's last thing I'm going to do is just show you an hour again slap happy bride
+
+Just saw that I was trying to positive over and I don't know if you're like laughing at what we're saying, or
+
+there can be many things right look this way, you're all distraction for me. But so my kids when they're kind of trying to come in the room, and I'm going, where you can't see my hand, waving them out and showing me things. So yeah, lots of lots of possibilities for that direction.
+
+All right, so let's create an error just so we can see it. It's going to create a loop loop over our same
+
+code.
+
+So let's say this time, let's say i is less than or equal to nums dot length, because that's going to cause an error.
+
+And let's put a comma here causes an error and out of bounds exception
+
+We don't need to do anything, although we need to access it. So we'll say nums.
+
+And I can see that we're going to go one beyond the acceptable index.
+
+And I guess I have to do something with it. So we'll just say numbers at i equals zero, what is set all the everything to zero.
+
+So I run it.
+
+So this right here,
+
+down here is an exception. We're going to talk a lot more about them later in this module.
+
+But what you'll want to pay attention to so when you get this red text down here, that means something went wrong, that's an error.
+
+In particular type of error exception or runtime error. It's something that occurs when the program is running. So unexpected situation.
+
+card.
+
+So the two parts that are interesting to us, it will look a lot more detail these, but
+
+here
+
+shouldn't use red sorry,
+
+we get a color that's not the same as what's on the exception. So here
+
+tells us the name of the exception.
+
+So if I take this exception and put it into a search engine, it'll tell me exactly what it means to be array index out of bounds exception.
+
+You're probably gonna see a re index out of bounds exception a lot today, I'll tell you about that the only thing it means the only thing that can cause it is that this index isn't actually in the array. Nothing else can cause it. If you're getting that error. It means you're using an incorrect index in the array no matter what, right? When you're looking at your code. You're thinking No, I know. It's right.
+
+If that's occurring, it's not there. That's what's wrong.
+
+So that's the first thing to look at. But then it tells us a little more this particular every exception is going to have different information about it.
+
+This one has
+
+its it tells us what index we tried to use. We tried to use a 10. The highest index is a nine.
+
+It also tells us
+
+right here,
+
+that it's in my loops example file.
+
+And that the error is occurring. I can't scroll down with this.
+
+Guess go down with the drawing tool. Okay. That makes sense. And the error is occurring
+
+on line 93.
+
+So it tells us a lot of information. And we're going to go back to that a lot more detail, said later.
+
+For today know that when you see this red message
+
+has this word exception on it. If you look here, and you say re index out of bounds exception, that means that you're using an index that's invalid for your array. And the number beside it is what index it tried to use. If it's there, sometimes that number won't show up. It depends on where the where the error occurred at.
+
+So that's an except that's what the error will occur if you use the wrong index. All right.
+
+So any questions
+
+on anything we've looked at today?
+
+So I do have one more quick topic that I want to go through. There's no code in it, though.
+
+And that's, we've already looked at debugging but I want to talk give you some debugging tools and techniques to work with.
+
+So let's take a few minutes. Let's talk about some debugging techniques.
+
+So basically what to do when you're stuck.
+
+Because as
+
+you saw yesterday, the problems got harder, right? They're going to get harder today.
+
+By middle of next week, the problems are going to be working on I'm going to make these look really simple.
+
+They're going to get much harder.
+
+So
+
+having techniques to deal with that, and break in solve, be able to work through problems becomes more and more important. And some techniques that are used in programming are heavily used by a lot of developers are not always intuitive. So first, and I put in red text, because it's important, figure out the debugger, start playing with it, learn to use it, that should be your first stop.
+
+That will solve. So a large majority of your problems, just be able to look at the data and seeing what's going on. And that's going to be your entire career.
+
+That's when I'm working. That's the first thing I I do is hit the debugger. The second there's a problem.
+
+It often just an act of having to step through your code line by line and think about it solves the problem without even the data.
+
+Second, read the error messages. So that red text actually told us a lot of information told us exactly what happened, the array index out of bounds, which gives you very specific things to look at in your code, even told you what line of code it happened on. So you can look and say what happened here. So someplace in this line, where I was using an index, it was wrong.
+
+There's also the test case assertion errors that we if we go back to eclipse, and the test cases,
+
+let me get out of debug mode. To get out of debug mode, you click the other perspective. Click that and go back to this view.
+
+So we're running test cases. There's Arizona
+
+on here, which we looked at yesterday, they tell you a lot of information, like this one says not correct yet, that's not a lot of information. That's actually horrible amount of information. But a lot of will say things like, and the exercises from last night, they actually would tell you that A, B and C which is largest, and it's add value of A is for the value of B is for the value of c is one.
+
+So, a lot of those actually tell you information, sometimes that red text will show up here as well. If there's a runtime errors in the code, it gets a lot better if you like, whatever one you're trying to run. If you actually selected in the J unit, it right click and run because then it's focusing on that one and it'll give you specific errors for that. That one, yeah.
+
+And if this gets big, you can wait you can click here as well. And it will take the whole air from here into the console and give you
+
+the full the full air
+
+So use those airs, they, they look like a lot of text. So and then when you're first approaching them,
+
+you're looking at this year thing, I have no idea what the in this means. And you're right. Right now, that's true. And it's going to be
+
+your we're going to end the court and there's still going to be a lot of this, you have no idea what it means. When we get down to about this part.
+
+I have some remote idea what it means I know how to figure it out if I need to, but just looking at I don't know what that means.
+
+Actually, I'll go farther from about here.
+
+But you do know what this means. So look for things that stand out to you. So the trick to reading these errors.
+
+And when we get to JavaScript, you're going to really think these errors are wonderful. Because it has no errors. It just goes along with it. And just
+
+So
+
+there's something in the air that you can read usually, so look for it.
+
+So read the airs, pay attention to eclipses errors when it has errors as well.
+
+It often gives you details of what they are. Be careful about these quick fixes.
+
+Sometimes they do things you don't want them to do. Fact often they do things you don't want him to do. So don't click on these unless you know exactly what it's doing and why it's doing it.
+
+One of the things he does commonly in the exercises is change the method signatures which means the exercises don't work any longer.
+
+at all, like the whole file breaks.
+
+Alright, so read theirs
+
+is your working. make small changes don't. It's really easy when you have a problem to start changing everything. Make one small change, run it make one small change run
+
+You'll find that if you change everything, sometimes you'll make the right change. And then you break it with a second another change farther change.
+
+And you miss the fact that you actually corrected it.
+
+Also don't fall into the trap of, if I make 10 changes, and it didn't work that somewhere along the way, you weren't on the right path and just diverged from that point. That's another easy thing to think well, if I didn't work, but you actually did solve it, you just done something else wrong.
+
+So don't assume because you tried something that part of what you tried didn't work.
+
+Also, start practicing testing in your head when you're looking at your code.
+
+And you're solving like, get last night's homework.
+
+So if you're somebody who are selling off last night's homework if you're thinking through okay for a if a Coby what's a equals four, what's going
+
+happen if this line
+
+is what's my condition going to be true or false even write it down. I know I've plenty of time written out code on a piece of paper and sat beside it and thought, wrote a number beside it or value beside this variable and said this variables going to be this. And this is what I want it to be it does my code make that happen?
+
+So, get used to doing that in your head. Practice on paper practice on whiteboard.
+
+Yo, so another thing, don't be afraid to look five other programmers look at your code. So the little errors, those little errors that like spelling, and commas, and things like that.
+
+brackets, those are the hardest errors to find. spelling is the hardest error to find in your own code. It's really easy in the person beside your code.
+
+So I know that on the break, I sat for
+
+Almost a day and a half, working through a problem where I misspelled something.
+
+And I rewrote the code probably 10 times and I kept misspelling it because I was rewriting this section occurred. And the correct spelling was up here. And it was in JavaScript that didn't tell me any errors. So
+
+but that's not a slam on JavaScript. But about maybe but.
+
+So
+
+it's so don't be afraid to ask the person beside you.
+
+Know, can you look at this? I know in the office when we're working, if I would have been in the office when that was happening, instead of at home, I would have asked for a show or Steve or somebody to look at it. And they would have just said, Oh, yeah, you're an idiot. It's spelled wrong. And then we would have went on and I would have been a 10 minute problem. So have other people look at it.
+
+That goes to the next one. So
+
+explain if you're stuck, explain your code to somebody else.
+
+Something else that has two things. One who will listen, and two won't give you any opinions. So other programmers are not good for this. Usually, sometimes, if they know, though they can, but these are they can't help trying to help you.
+
+Non programmers can work if they're if they're willing to listen to you talk about code for a long time, but inanimate objects work the best. This is a concept that came about in a book called the pragmatic programmer.
+
+And sometime in the mid 90s, it's called rubber ducky, or rubber ducky duck debugging, or there's some other names, but they involve rubber ducks. And in the book, the author's suggested that programmers have a rubber duck like a bathtub duck, and that they should keep it at their desk. And when they have a problem, they should explain the problem to the duck.
+
+And that I remember at the time when the book came out, suddenly every development environment you'd walk into had Rubber Ducks everywhere. We were in the classroom.
+
+Rubber Ducks all over the classroom.
+
+If
+
+when a couple quarts ago, I went to our tour with a large bank here in town that hires a bunch of our students in with some students. And the first thing someone said is like, there really are Rubber Ducks everywhere.
+
+They're not always dog sometimes or other animals, but inanimate objects work amazingly well. Personally, I spent years
+
+explaining code to a cat, because it very rarely gave me any opinions on it.
+
+That worked great for both of us. Always happy very rarely, you're
+
+gonna get mouthy sometimes.
+
+So
+
+but that works great. So pick something like my current i this is actually my favorite technique. I explain things to anything I can add usually myself anymore. I walk good.
+
+goes along with the golden pick away walk away for a while. I solve more problems by walking around the block talking loudly to myself, then probably any other time. And if I'm sitting in working, I'm always mumbling. What's going on to myself? Michelle can tell you that she sets. We sat beside each other in the office and I know I drive her crazy because I'm always talking out loud.
+
+You're saying is your neighbors think you're probably nuts? Oh, yes. I say Don't talk to me. And I'm sure that's a huge part of a why.
+
+In fact, they've called the police on me a couple times for walking around the neighborhood.
+
+We're just here to make sure you're okay.
+
+So, yeah, so rubber ducking try it. It sounds insane. It sounds crazy. It sounds like you're talking to an inanimate object. It's not gonna work. why it works. It has to be out loud. You can't do it in your head. It has to be verbal
+
+is because
+
+When you're explaining it, you're being forced to think about the steps. And it's amazing how many times you're walking through it. Something just goes, Oh, yeah, I missed that.
+
+So another thing, use time boxing, we've already talked about this, set yourself a time limit on how long you get stuck. Don't be stuck for hours, don't be the person who stuck for three days when the person beside him could have solved it in two, two minutes.
+
+So we've talked about working on something else and walk away for a while, but keep those in mind.
+
+And then finally, don't get attached to your code. That's this is really hard. That's hard for everybody. Your code is not you.
+
+doesn't have to be perfect. Your code. You can throw it out at any time. In fact, you should.
+
+So it's not. Sometimes the quickest route is to throw out your code and try again. It's like if you get lost driving someplace, sometimes it's quicker to go back to where you were you
+
+knew where you're at rather than keep going, though it's more fun to keep going. But encode is often not more fun to keep going.
+
+So don't get attached to the your solutions. Don't get attached to your code. Try to remember that it's okay to say, I'm going to try again, just throw it all out.
+
+I would suggest don't comment it out. Don't keep it because that makes you still kind of attached to it and want to try to make it work. So So some things that'll hopefully help some tips on debugging.
+
+I know some of them sound a little strange, but they they work a combination of them using get you through a problem and the one it's not in here. It's here. You know, it's definitely talk to your peers.
+
+Here, talk elevator, definitely, you know, if you're trying through things, please talk to us. We're glad to help you walk through some of that.
+
+Alright, so questions on anything at all from today.
+
+I would also throw in to celebrate when you get it it's okay to be a dork.
+
+Have some fun with it.
+
+Know why you've got the basketball hoop on the background you celebrate Duncan. What? What? What? That doesn't work. I can't There you go.
+
+Alright, so
+
+then for today your exercises look a lot like yesterday's only now they're with loops and arrays. Let's Let's open them up
+
+and it's a lot like what we just done
+
+coming up in the exercises
+
+development
+
+job apply materials for your troubled curious folder
+
+loops and arrays. You're going to go to student exercises I'm going to go to instructor
+
+Then we won't work through any of them.
+
+Well, we'll walk through maybe one really short one real quick.
+
+Just because there's one in here, I want to point out and it'll take like 30 seconds to do. Maybe maybe a minute.
+
+So that's developer time, right? Yes. Yes. I should point out that if I say, a weekend, I mean, two years or a year, six months. I say, a met it means Yeah. considerably longer. So
+
+So, so loops in a way instructor.
+
+And that's not just me, actually, that's every developer. every developer I've ever been around will tell you. Oh, yeah, that'll take a few hours. And what they really mean is that'll take a few weeks.
+
+Or
+
+I worked with one developer who no matter what you asked him to do, he always said it would take two weeks everything. You ask him to make a change a typo. Two weeks. You ask him to build
+
+A whole new giant banking system two weeks.
+
+Right? So yeah, yeah, there's also here's the code. And you also have the test cases, source test Java, going to run those.
+
+And you're going to solve them. The same way, you're gonna need to look at the method signatures, pay attention to what they return, what they take in, sometimes what they return, or what they accept, his input is now going to be arrays. So you have to be aware of that.
+
+Remember, you can return arrays, just like you can any other data type.
+
+So, and there's a test case for each problem.
+
+The one I wanted to point out is this one, make pi
+
+returns an array of integers, and you're saying big pi 314.
+
+So how would you solve this?
+
+So,
+
+so the point I want to make with this one is that there's a lot of there's some of them here that are pretty simple sounding. There's easy as a sound
+
+314.
+
+You don't have to go above and beyond solving the problem.
+
+That's the solution. And that's, if I was writing, somebody told me to do this in real code, that's how I would write it. Not real code. This is real code. But like, for a product, because if they didn't tell me to dynamically build the first three numbers of pie, which I'll, then I would, why would I, and you should take the same approach. If you're thinking this is too easy. But it's always the problem. But this is too easy. It can't be right. You're probably right. It's probably the right solution. I don't mean you're probably right. It's too easy. I mean, you're probably right that it's, you probably made the right choice the first time
+
+So,
+
+in there's going to be something here like that if you if it says the railways has three values, how do you get the last one? The last index is returned to. Now if it says the array could have three values, but you don't know for sure, then you have to do something different.
+
+So there's a mix of these.
+
+So questions on what you'll be working on or how you'll be working on it.
+
+And this, this one is due Monday, right? If this was Thursday, then that's due Monday.
+
+Sorry, I got that. Right. Because I I know you said you like with don't count the weekend, but you'll work the weekend. Pretty much anyways. But it's not it's not count. You're not gonna turn stuff in on the weekend. Yes, we don't count it just in case somehow you get out of working on the weekend. That's we're happy for you.
+
+doesn't happen often. But
+
+yeah, and I keep track of days now not by Thursday, Friday, but it's leaps day.
+
+Tomorrow was user input day. And then there's
+
+void until string down what they believe day.
+
+So
+
+so
+
+so in this question, so it's basically possible to create an array with no name. So what is the name of this array? Well, yeah, it is possible to.
+
+It doesn't have a name, it just returns the value directly. It'd be the same. If we hit we're turning like right here. We're creating a volume with no name. Or if we're returning a string like you did yesterday, you could return string.
+
+Your name like we looked at, that's creating a string with no name.
+
+And that clarifies that thing. It's only when it's on the return statement.
+
+That's what allows us to do it. Okay, that makes sense. Yeah.
+
+That's a good question there because we haven't seen the new keyword. So it's a little different than the others, where's your heart, which are literal values?
+
+So anything else? Okay, so two things.
+
+announcement wise, you have the Strength Finders one on one starting this afternoon. So whatever scheduling is they are just reminding you, does that remind you that they're happening? And then the dashboard is now available.
+
+So I'm going to send you
+
+actually, now Michelle's gonna save information. She's gonna post it in river a few minutes.
+
+And your username is going to be your email address you signed up for pre work with right is that right for show?
+
+Or is it whatever we have right now on record.
+
+It should be what what we have on record, whatever's in our
+
+Yeah, okay, it shouldn't be what they want, it should be all the same account that they signed up a tech elevator is what we have on record. And I'm assuming that it was if anybody has made any changes that that's what's up to date in our record keeping. So it should be your email address, you have to be the one who have a record. If
+
+you change your email and it doesn't work, try the other one. It's just a login, nothing gets sent to it. So
+
+in the password, I'm going to put here in the
+
+wrong wrong screen sorry. I need this group chat.
+
+Open the group chat.
+
+It's changed me now with the capitalization like that 123 when you login, you should change your password.
+
+The address
+
+I'll give you the address to I don't know why I said very shallow, just post it when I can just put it here. The address is here. So you go there, you log in with your email and your password, and then you see a button that change the password.
+
+So if you were
+
+if you run into any problems, let us know, please don't lose your passwords. So this is a tool built internally. And there is no password reset built into it yet, which means that
+
+resetting the password is a tedious hard prod process that involves somebody actually going into database and changing data manually and running. So it takes a couple days we have to send it off to someone in Cleveland to do it. And so if you lose your password, you lose access for a few days. We can reset it but please don't.
+
+You don't want to there's no easy preset process.
+
+Then, as you're looking through it, you're gonna see your scores. The your first exercise scores are all in there.
+
+I don't want to spoil it, but but I was really pleased by how well everyone did. So awesome job.
+
+And then
+
+there'll be an icon that shows up right beside the exercise scores that work shows up or show
+
+up.
+
+I haven't seen the student view in a long time. I think it's like a little circle beside their score that has an eye or a question mark. I can't remember. If you click on that guy, it'll pop up comments.
+
+Thank you.
+
+So watch those comments, as we shall grade she puts comments at about your code, and
+
+things that sometimes need to be changed or not changed for scores but just that you should be paying attention to. So
+
+pay attention to those comments. A lot of people missed over there.
+
+Cuz they're kind of in that little pop up.
+
+My view is different than you are. So I'm not sure what but yours would look like. That's why I was a little unsure.
+
+So you have questions that let us know.
+
+So any other Did anybody try to access dashboard yet? Were you guys able to get in? Because I'm getting a message she says object progress event
+
+like it's not it's not let me log into it
+
+so if you
+
+when you when you log in if it fails, look at the URL at the top in the browser and make sure it doesn't have login after dashboard. Make sure it goes back to the same address. Oh, okay. Because that might might be causing it. Sometimes it ends up in the wrong address. Okay.
+
+So then other questions for today.
+
+I do have a question.
+
+So Ma'am, my one on one is scheduled for Monday at 1pm. I know typically we don't
+
+we don't go over lecture for that long. But in the case that we do what I leave lecture and go to my one on one, or would I just push a one on one back? You would, I would just leave lecture. If we're going over that. Wait, we're probably
+
+hopefully at that point, it's that portion. At the end where things get less
+
+queasy, is we're just answering foregoing answering questions and going through Extra examples.
+
+So I would go to the one on one.
+
+Okay. And I kind of just a follow on the, I mean, if ever want to go to like a meetup that's a little bit earlier.
+
+With that, is that not recommended? Or like, would that count against us as far as attendance go, or should we just avoid that or so
+
+If you're going to miss a lecture, or you're going to miss a pathway event, it will count again, can't you pretend attendance, if there's a lot of meetups that are like in the middle of the afternoon,
+
+where like, you know, if it's a lunch meet up, and you're, you're going and you go between lunch from 1230 to 130. And that's fine. You can leave as long as you don't miss the events or lecture. lectures will not continue to go this late for hopefully not more than a few more days. Usually after by the end of the second week, they're starting to taper off and become more consistent around noon. Not always,
+
+we've never done this module virtually to so that could change things but it doesn't mean every day after that, but they usually get a little shorter. There's just a lot of Carol this week, a lot of material. Yeah.
+
+Well, with that kind of just following up as far as like virtual goes
+
+assuming there's no update if
+
+this first module runs, know that not you'll be honest, you'll hear the same I'll hear at the same time you do.
+
+We generally find out that stuff ever so far we've every time
+
+we found out, we get a message just like we're, this is the message router to send out. And usually by the time I see it, you've already seen it.
+
+So
+
+recording
+
+Transcribed by https://otter.ai

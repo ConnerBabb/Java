@@ -1,0 +1,35 @@
+Book
+https://book.techelevator.com/content/data-security.html#encryption
+
+Encryption
+The other way data can be safeguarded in a database is by using encryption. In cryptography, encryption is the process of encoding a message or information in such a way that only authorized parties can access it, and those who are not authorized cannot. This is done by using an encryption algorithm that takes a value - maybe a string or binary data - and scrambles it using some sort of key. There are two types of encryption used in applications: symmetric key encryption and asymmetric key encryption.
+
+#Symmetric Key Encryption
+Symmetric cryptography involves the parties sharing a common secret passphrase or key. Data is encrypted and decrypted using the same key.
+
+This is commonly what people think of when they think of encryption. If you've ever encrypted a Zip file or PDF with a password, this is the kind of encryption being used.
+
+
+Image - Symmetric Encryption
+Bob can write a message that he only wants Alice to see, so he encrypts it using symmetric encryption using a secret key that he created, typically a password. He then needs to get the now encrypted message to Alice and the password. Once Alice has the encrypted message and the password, she can decrypt the message and read the plaintext again.
+
+There are many different symmetric encryption algorithms in use today. Three of them are:
+
+Algorithm	Description	Notes
+DES	The Data Encryption Standard (DES) is a symmetric-key block cipher developed by IBM in the 1970's and published by the National Institute of Standards and Technology (NIST).	The 56-bit keys used in DES are short enough to be easily brute-forced by modern hardware and DES should no longer be used.
+3DES	Triple DES (or 3DES) uses the same algorithm, applied three times with different keys giving it an effective key length of 128 bits.	For most applications, 3DES is acceptably secure at the current time, but for most new applications, it is advisable to use AES.
+AES	Due to the problems using the DES algorithm, the United States National Institute of Standards and Technology (NIST) hosted a selection process for a new algorithm. The winning algorithm was Rijndael, and the associated cryptosystem is now known as the Advanced Encryption Standard or AES.	Algorithm of choice for new applications.
+Symmetric encryption is great, but only if you can keep the secret key out of the hands of attackers. If Bob wants to send Alice a message, he needs to get her the encrypted message and the password. That makes it very hard to send along messages if the two users have no other way of communicating or have never really met each other. That means for Internet communication, like passing encrypted information between an e-commerce site and a customer, symmetric encryption isn't very useful. For that, you use an encryption scheme first invented in 1976.
+
+#Asymmetric Encryption
+The type of encryption used in most Internet communication is called asymmetric encryption. Asymmetric cryptography, is a cryptographic system that uses pairs of keys: public keys which may be disseminated widely, and private keys which are known only to the owner.
+
+
+Image - Asymmetric encryption
+If a Bob wants to send a message to Alice now, he needs to get Alice's public key. This is something that Alice can freely give to anyone and happily sends it to Bob over email. Bob can then take the message and encrypt it using Alice's public key.
+
+The trick is, no one can decrypt the message using the public key. The encryption only happens in one direction. If a message is encrypted using a public key, only a related private key can decrypt it. Alice keeps the private key to herself and never gives that to anyone. When she gets a message encrypted with her public key, she can decrypt it and read what the message is.
+
+This is how encryption works on the Internet. Amazon.com creates a pair of public and private keys. It sends the public key to anyone visiting the site. A user's browser will then encrypt requests to Amazon with their public key and send that over the Internet. Amazon, however, is the only one that can read it because they're the only ones that have their private key.
+
+For further reading, a good overview of how asymmetric encryption works.

@@ -1,0 +1,13 @@
+Book
+https://book.techelevator.com/content/dom-api-javascript.html#videos-dom-manipulation-examples
+
+These videos show you how to manipulate the DOM in ways described in the last chapter.
+
+#Changing text
+
+#Changing text input elements
+
+#Changing check and radio boxes
+
+#Video: Debugging JavaScript
+In this tutorial, you'll learn how to debug JavaScript applications using the Chrome Devtools.

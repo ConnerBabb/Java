@@ -1,0 +1,110 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-java.html#controllers-2
+
+Controllers
+As mentioned earlier, you can think of controllers as mediators between models and views. As a go-between, controllers know what model to call to retrieve the data that's needed by the view.
+
+This is what a basic controller class looks like using Spring MVC:
+
+package com.techelevator.todo.controllers;
+
+@RestController
+public class TodoController {
+
+    private List<String> todos;
+
+    public TodoController() {
+        todos = new ArrayList<>(Arrays.asList("Wake up", "Shower", "Drive to work"));
+    }
+
+    @RequestMapping(path = "/todo", method = RequestMethod.GET)
+    public List<String> getTodos() {
+        return todos;
+    }
+
+    @RequestMapping(path = "/todo", method = RequestMethod.POST)
+    public void addTodo(String task) {
+        if (task != null) {
+            todos.add(task);
+        }
+    }
+
+}
+Hopefully, most of this looks familiar to you as there are classes, instance variables, constructors, and methods. What might not be familiar is the peculiar @-words above the class and method declarations. These are called annotations.
+
+What is an annotation?
+
+An annotation is a tag that's used to associate metadata with code blocks such as classes, methods, and variables. The compiler and runtime use this metadata to apply certain properties and features to the code block the annotation is used on. When an annotation is applied to a code block, the code is said to be "decorated" with the annotation.
+
+You can apply one or more annotations to nearly any block of code, but some annotations can only be applied to certain blocks—for example, you can only use the @RestController annotation on a class. Annotations can accept arguments, or attributes, like the method argument of the @RequestMapping annotation in the example code above.
+
+The following sections describe the different parts that make up the controller code above.
+
+#Naming conventions
+By convention, all of your controllers are contained in the same package, in this case, com.techelevator.todo.controllers. Although you can create the controller anywhere, convention says it's a good idea to organize them together in the same package, or namespace, so that other developers can immediately understand what this code does.
+
+Now that you know where your controllers live, what should you name them?
+
+The name of the class represents what resource it manages, such as User, Project, or Todo. It should also contain the word "Controller" at the end. Here are a few good names for controllers:
+
+UserController.java
+ProjectController.java
+TodoController.java
+#Rest controller
+However, the name of the controller isn't enough to tell Spring that this is special type of class. To let Spring know that this class is a controller class, you must decorate the class with the @RestController annotation:
+
+@RestController
+public class TodoController {
+
+}
+With the @RestController annotation in place, this class can receive incoming web requests.
+
+#Handler methods
+Controller methods annotated with @RequestMapping are called handler methods. There are two handler methods in this controller: one that returns a list of todos, and one that adds a new todo:
+
+@RestController
+public class TodoController {
+
+    @RequestMapping(path = "/todo", method = RequestMethod.GET)
+    public List<String> getTodos() {
+        return todos;
+    }
+
+    @RequestMapping(path = "/todo", method = RequestMethod.POST)
+    public void addTodo(String task) {
+        if (task != null) {
+            todos.add(task);
+        }
+    }
+
+}
+#@RequestMapping arguments
+The @RequestMapping annotation has several arguments that define which handler method responds to a given web request.
+
+#@RequestMapping(path=)
+The @RequestMapping(path=) argument corresponds to the request path. In the example above, both getTodos() and addTodo() are "mapped" to the /todo request path.
+
+#@RequestMapping(method=)
+You can further define the handler method you want to run when responding to a specific HTTP request verb like GET, POST, or PUT.
+
+Request Method
+
+There is no default request method for the @RequestMapping annotation. If you don't define one, it maps to any request verb. So, it's best to be specific with your intentions.
+
+#@RequestMapping (GET)
+The method=HttpRequest.GET argument defines the handler method that runs when a GET request is received. The following code maps the getTodos() handler method to a GET request for /todo:
+
+  @RequestMapping(path = "/todo", method = RequestMethod.GET)
+  public List<String> getTodos() {
+      return todos;
+  }
+Visiting the path /todo calls the getTodos() method and returns the list of todos in JSON format.
+
+['Wake up', 'Shower', 'Drive to work'];
+#@RequestMapping (POST)
+As with method=HttpRequest.GET, the method=HttpRequest.POST argument defines the handler method that runs when a POST request is received. In this example, the addTodo() method is mapped to a POST request for /todo:
+
+@RequestMapping(path = "/todo", method = RequestMethod.POST)
+public void addTodo(String task) {
+    //
+}

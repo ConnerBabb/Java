@@ -1,0 +1,18 @@
+Book
+https://book.techelevator.com/content/unit-testing-ool.html#what-is-unit-testing
+
+What is unit testing?
+Unit testing is a level of software testing where individual units/components of a software are tested. The purpose is to validate that each unit of the software performs as designed. A unit is the smallest testable part of any software. It usually has one or a few inputs and usually a single output.
+
+#Source: http://www.softwaretestingfundamentals.com/unit-testing
+Unit tests are actual pieces of code that run and execute your code to make sure that it's doing what it's supposed to do. Think of unit tests as babysitters for your code.
+
+Unit tests divide your code into the smallest pieces of functionality possible and look at every detail separately.
+
+Unit tests:
+
+Are always automated
+Are required for Test Driven Development, but can be effectively used outside of it
+Isolate each part of the program to show that individual parts are correct
+Find problems early
+Force developers to think through inputs, outputs, and error conditions

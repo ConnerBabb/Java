@@ -1,0 +1,1411 @@
+Zoom
+https://techelevator.zoom.us/rec/share/4td_coji6iRLRNLw0E7ZVpQBE4D1eaa8hHBIqfcKxR6Z0XdvHP9hV1O5tA2fZXwT?startTime=1596115648000
+https://drive.google.com/file/d/1uE-YUfET0xVRYSl67GeQEjiLmO7ZSMSX/view?usp=sharing
+
+Okay, so today, what we're going to start is a review. And we're going to focus, the review, round kind of everything. We're going to be building out a full stack application ever today and tomorrow. It's not well planned out, which is on purpose, which means we're going to be doing a lot of live coding together, trying to figure things out. So we're gonna run into a lot of problems run into a lot of things that we run into during real development. So a lot of unexpected things.
+
+So this one definitely you know that because normally, a lot of the problems have been pre solved. There's, there's not been this time
+
+in Russia to do it in the capstan and started, so the same thing you'll be working on using for your Capstone. We're gonna start today by just walking through that in detail what that starter project looks like, and all of its pieces and how what what already exists? There's actually quite a bit there. Now to start off with, so
+
+I'm gonna go ahead and
+
+if I pulled pull,
+
+I didn't, I did okay. And let's take a look at the, what do we given and what
+
+we're starting with today is the same thing. We'll start with the capstone with one exception, one change I did make. And I'll tell you what that is and why. It's only just because it's putting a bunch of state codes on and copying and pasting that many state codes are typing out 50 state codes live in classes would be pretty tedious. So
+
+we get to
+
+so the capstans starter starts with two folders, the Java folder and a V folder, which is a front end and the back end. So all of your applications will include both the Java API. So everything we've done up through modules, one, two, and three, and then a view folder. So a view front end. So your captions will all be Java back end with the front end. There may be other pieces involved. And we'll include some of that today, too, and talk about what those might be, for instance, the third party API's, maybe there's a lot of the captions evolve requirements to use those. So let's look at these projects and see what's there. Start with the Java one to the back end.
+
+So I'm gonna open it up in Eclipse to
+
+a little easier to
+
+import the Java project.
+
+Actually why that's loading, I'm going to go ahead and open a walkthrough it later I'm going to go and open the view project folder and just start the npm install since that takes a while, that won't be done by the time we're ready to talk about it.
+
+Otherwise, we'll just have to stare at it as its
+
+view folder. Maybe I'll be
+
+in the right place. I was gonna run npm install
+
+and then just let it sit in the background and complete that maybe look at the Java project.
+
+Make sure it starts, okay.
+
+I'm going to minimize that then.
+
+So the project comes with
+
+it starting Spring Boot application that's already been configured. It has an authentication controller set up already. So that it'll do logged in that the vacation controller has
+
+As the login and the register methods already set up, and those are working. So it comes with a working JDBC login system so similar to your third Capstone, and it has the DEA O's and the models for that, and all the
+
+security stuff setup
+
+has that.
+
+Other than that it has no code that's specific to any particular capstones or functionality outside of just the login and registration.
+
+It has been set up if we look at the resources
+
+with
+
+the database connection. So there's a database that we created called final Capstone. When you get to your actual final Capstone, you can choose to change that if you like or change any of this. If you like. But that's what's set up by default with a this user final Capstone app user. So the Java projects pretty much what you very similar to what you start out with with module three cow Capstone.
+
+It has a database
+
+folder included that has similar scripts to what you used then I'm gonna open up
+
+this whole folder
+
+as to manually some reason decided not to let me open the folder and
+
+so it has the four scripts, a crate script that will run the creme de sa script which will run all the other, the other three SQL schema files. And there's three of them. Similar to what kind of you had for module three capstones, slightly different. The drop dB, you won't need to touch it sets up, drops the database and the to starting users, the users are final Capstone owner, and final Capstone app user. But again, those have been set up for you. And those are already pre configured in the project. So the schema is where you'll you'll do most of your work. Currently, it's creates the users table. It sets up two users by default a user and one named user with a password that are wanting an admin, which is a regular user and an admin user. And their password for both is just password. So pre configures those for you. Again, you can change those you can remove those registered users and delete those is just the starting point. And then the part I added was here at the states. Because when we talked about what we're going to be building out, we're going to need a list of states. And again, putting all that in would be pretty tedious. So it was actually it wasn't I, I googled states for SQL, and it just caught copy and pasted it. But that's still a little tedious.
+
+So that's there. So you won't have that in your final Capstone.
+
+And,
+
+but all your work will be here in the schema SQL. And you're going to want to put the your work here. So when you test it in dB visualisers, you create tables. And as we create tables in the next couple days, we'll do the same and then copy it into here and run it because this file will be checked into
+
+file will be checked in
+
+to Bitbucket so that your team members can all have the same database. It also does something else important it sets up in the user SQL, when they all run. It does the grants on the tables to the correct users. So if you just create it in dB visualizer, your applications not going to be able to see it. So until you run it in the script, unless you do the grant yourself. So those are the scripts. Again, you'll be doing all your work in schema dot SQL, so I'm actually gonna leave schema dot SQL than the other ones for now. We'll come back we need it. There's no reason having it. So to run that, I'm gonna go and run that now. This is the database. I'm going to
+
+go into the
+
+Via project
+
+and into the Java folder, I think it's database. Nope.
+
+And we're going to run that create
+
+sh
+
+and I got permissions died. So I'm going to have to give myself permission. Awesome. Cool. Let's do it. La so the crate sh The reason I just got that Permission denied. Remember, this gives us the permissions of my user. And so I have read access write access, but I don't have execute access to it. So I have to get myself an execute access. So and you may or may not have to do this, that step. So let's say chmod dash x on Create.
+
+Now I do mostly
+
+I still don't have access to keep access to it
+
+plus x
+
+plus x.
+
+Yeah, I do, okay, yeah, minus x, I guess removed execute x x plus x adds execute access. So now I have the X for execute, which allowed me to run the script. So we didn't really talk about the SH mon command that does the modification of these configurations. And it's just plus or minus r w x changes your user. You can change the other other ones as well, but it's a little more, more complex a command and you won't need to do that for anything you're working on here, or unless you become a system admin, probably not anything at all. So now we should be able to run the script. And we run up a thought create scores slash create sh. And it's a bash script. So it's going to run all those pieces. And we can ignore those errors. Because if we look at what they say, it's saying that Capstone does not exist. So those are just where there's drops. We know that if the drops if it's dropping something that doesn't exist, we get errors, but that's okay, because we're creating it. And those are drops so we could rerun the script multiple times. Alright, so now we have our database setup. And the database name is final underscore Capstone, and we can see that
+
+here in
+
+the Create sh script. I think it's great sh script. Yeah, right here.
+
+Again, this will be the same for your Capstone. This is the copy of the project that you'll be given. It's been about dbvisualizer
+
+create a new connection.
+
+Half of what's showing up on each.
+
+This the final,
+
+Capstone decided remember which one it is.
+
+And the PostgreSQL
+
+database name will be the same as that. So final underscore Capstone, and then I'm going to login with the Postgres user. And instead of the user setup for the app, the application
+
+and the reason is if we look at the user script,
+
+it does grants to all the tables
+
+and all the sequences to both these users. But it doesn't grant them the ability to create tables or to create sequences. So they can't add them to a database. They can't do. They can, they can do all of the selects. And they can all do all the manipulation commands, but they can't do the DDL commands, or the dcl commands needed for to create a database. I do build the structure. So because of that, I'm going to work in the Postgres user when actually modifying the database so creating tables and setting up relationships and such things. That means that when I build tables, these users are not going to be able to see those tables until the scripts run giving them a grant on them, or grant it manually. So it's going to be a lot of making changes here dbvisualizer copy and pasting the changes after they work into the seek the schema script, and then running the Create sh kind of repetition as you work on the database.
+
+So
+
+the password was Postgres. What am I right?
+
+Yes, Postgres one,
+
+okay. And I'm going to go ahead and connect now.
+
+So the starting database you have now the other option, I will tell you, you can, you can run stuff in dbvisualizer kind of a quick test, you can run these commands in there as well to make things work. But you should have everything in the end in your schema scripts so that your team members can have the same database.
+
+So
+
+here
+
+are tables.
+
+The final capstone project will come with this user stable.
+
+So let's take a look at it.
+
+Again, when I have the state's table, right, that's the one. And it has just a user ID for the user username, a password, and a role. And you can change this and many of you will have to change this table and even the columns or add columns to it. You should not delete any columns from it, but adding columns to it, or changing the way these roles look for requirements in your capstones. But you'll want to leave the ID username and password hashing row columns in place and Just add as you need if you need things. First, a lot of them have requirements that extra things about the user, it may make sense to have it here, it may make sense to have a table that has the user ID as a key, which is probably what I would weigh, I would probably model it. That way, this table stays as as, and the key connects the user to the other information for your application. But that'll be up to you and your team.
+
+So that's the database we'll start with.
+
+So, questions so far in any of
+
+so before we look at view, I'm going to get back to the job application. I'm going to start it so remember to start a Spring Boot application on the application class has where it has this Spring Boot, where it has the static void Main with the spring run annotation. we right click on it, we can choose run ads or debug as Java application, I'm going to select that and start it. And we'll always want to you always want to start your Java server first. And the reason is, is that spring is very particular about what port it gets. And Spring Boot wants to run on port 8080. And we know view wants to run on port 8080 are not specifically view but the node NPM or the node server that we run view on.
+
+So
+
+Java though, is being Java in its normal way. It says if it doesn't get Port 8080 it throws a bunch of exceptions and just quits. Because that's, that's why Java is it wants things very specific. So if you started first port 80 is free and everything goes fine. View being JavaScript when you started server in node B to JavaScript when it came Get Port 8080, it just tries to get on port 8081. And if you can't get that it tries to get in Port 82. And it just keeps trying to find one because being JavaScript, it's okay with things just kind of working or working the best they can. So if you start Java first so we can get more data at the view side, the front end side will compensate. If you start the view side first and it takes port add, the Java side will not compensate it will throw exceptions and crash and to you free up Port 8480. Before that, so you always want to start the Java server first. So we have that started and running. And we'll just leave that running in the background. Because once we have it running, we unless we run into problems, we don't really need to restart it. So let's run it as we develop. And now let's take a look at the front end side. So the front end side actually has quite a bit in it as well. It has a lot of stuff set up around the authentication the same way. So it starts with
+
+source.
+
+I think it has any components but it does have four views. It has a login logout and a register view, or it also home already set up. There, these don't have much in them yet. They have forms that do the login the log out in the register, and we'll look at them we'll see that they're completely unstyled. So yes, I've worked with to do with them. That is the starting point. But they're working starting point which AWT and we'll talk about how that works here. So we have these four
+
+starting views There's also
+
+a router setup
+
+and there is a view x or service setup for the authorization. So, to do the authorization calls to the back end is set up. And it has access set up already. And it has it exports two methods login and register where you pass it a user object, and it calls it as a post either to the login or register service or web service provided on the Java side. So you can import this actually into any any component and have access to the login and register but you won't, you shouldn't need to because of the next thing we'll look at. So that's set up.
+
+It also has
+
+the store setup for view x and has some stuff already. So again, stuff you probably won't need, you'll add to this B, you'll use it but probably shouldn't, you should not really need to change it. So it has a mutation to set the token, the user and also to do a logout. It has two things already in the state, the token and the user. And these are only if a login has been successful. So there's a syntax here we have a scene and it says, For the token, return the current token or return an empty string. And for the user either return the current user which is an object or return an empty object. So this is just taking advantage of JavaScript truthy nature saying if these exists, return them, otherwise return the empty versions. We can see these lines up here could explain what they do and again, you won't need shouldn't need the challenge. them. But here
+
+there is this
+
+axios default headers common.
+
+This takes the token. And it sets a what's called a common header and axios. So axios has the ability to set headers that are going to be set with every request. So what it does is once it has a token, it sets axios up so that for every request it sends it will send the authorization with the bear and the token. So you won't have to do it manually, like you did in your module three Capstone with the rest template for axio sytel, we can handle the default now that's actually going to cause us some problems. For I know, it's going to cause us some problems, because we're going to eventually, or hopefully include over the next two days, hopefully, today, a third party API, and it's probably not gonna like this authorization token. But we'll we'll solve that problem. We get to it. But when you're working with the Java back end, it means you're not gonna have to worry about really the token, it's going to handle it for you. But it's, but it's important to know it's here.
+
+The other pieces
+
+is the user and the token are not stored here in the state. The state return retrieves them. But they're actually stored in the browser's what's called local storage. And accessing the browser's local storage is as easy as just local storage, static get items. And we'll take a look at what that looks like. here in a moment, once we run it, because until we run it, we can't see it. So it's basically putting it in. It's not a cookie. It's something a little more advanced than a cookie. But it's similar idea. It's storing it locally in the browser, which means that if you close the browser and restart it until the token expires, it will continue working so long. won't disappear just because you close the browser, which sometimes may cause you issues. And we'll talk about how to resolve those. Until you're have everything set up and working the way you want to may cause you issues after the site's working, you won't but during development. So that's the storage that's set up. And you can see during due to mutations, this is where the token and the user are being set to local storage, local storage set item. And log out. It's just a matter of removing them from local storage and setting everything back to empty. So before we move on to the next, pieces, there are questions.
+
+It's not specifically on this, but what should we expect for the capstone? To be given? Are we going to be given things like this
+
+You're going to be given this exact project. Well, the only difference was you won't have the state's database port portion. But this is the capstone starter project. I didn't make it the only change I made to it is that adding the database, adding those states to the database? I mean, no other changes.
+
+Cool. So yeah, you said that and I didn't retain it.
+
+So yeah, he'll be given. That's part of the idea of this. Doing this review is there's a lot of gotchas on a project like this. And we can kind of pre work through. One of the big struggles for the capstone. Every cohort is this idea of how do we work with this project. So I'm hoping to get a few days kind of momentum forward, because usually it's about Wednesday of the first week before teams start figuring out how to work in the projects.
+
+Yeah, there'll be these exact projects
+
+with the exception of the states
+
+Unless I forget, copy the wrong ones, but do I.
+
+So that's the view x stores and set up. There's also routes set up. So take a look at the router. So the router has something new also you haven't seen on it that you'll have to use but it's fairly straightforward. So the routes have this extra field meta, and there's a route to each of those four views home login, logout registration, already set up. And there's also a navigation guard set up before each. So before each routes entered. This navigation guard runs and it uses this meta tag. So what meta does is allow custom elements to be put on the custom configuration to be set on a route. So it's metadata data about the route
+
+there are some
+
+It's custom. But I may say it's custom. I don't know if it's fully custom, I think there's a set of tags you can have. I don't know what all those are because I've never used anything but requires authorization for that this, but I know there's others. But what this does is this sets for each of these routes. So for every page in the system, every view, or every route, is really what it's down to. There's two, there's different types of users who may be able to see it, depending on your requirements, but for most requirements is going to be at least two, often three, but usually too rough. But uh, and that's a guest. That means somebody is coming to your system is not logged in. They're just coming to look at the system. So when you go to any webpage and you don't log in and you don't have a username and password, you're a guest to that web page. That means they don't they know details about your browser and information but they don't have any information on you, you don't have any connection to them, you're just viewing the page. So websites are set up into pages that guests can view and pages that only users can view. So people who do have login, so offer so people over the authenticated versus people not being authentic ated. If you go to like a bank, your bank's website, you know, the front page that has all the details information about how to set up an account and the marketing stuff, and has the login box and that's the important part for this, the login box. That's all set up. for guests that mean that's Guest Access because everyone needs to see that if you can't see the login field until you've authenticated or the registration filled into you if indicated, then you can't ever nobody can log in. So requires authorization. Sorry, actually, probably better to say requires authentication is exactly that does the person coming to this route to the They need to be logged in. If it's set to true, then they need to be logged in. If it's set to false, then they can view it as a guest.
+
+In force enforces that down here with router in the navigation guard. So what it does is it says for the routing
+
+it if
+
+it requires authentication. So all this is doing is just saying tu tu is the route they're going to so it's going to be one of these for the route. It's saying if if inside of its keys, it has the key. Mehta requires a thumb off, that's all about saying set this value equal to whether it's the values are true or false. And then if this is true, so that means that this is true, requires authentication is true. And the store the token in the stores and is an empty string, meaning there is no token, then redirect the user to the login page.
+
+Otherwise, if
+
+this is false, or they have a token, then
+
+send them on to the destination.
+
+So that means just let them go. So calling next without any arguments, this sends them to whoever they were trying to go anyways. Calling next with an argument redirects them to a different location. So what it does is saying for any of these that have requires authorization true if they try to go to that route, without being authenticated. Without a token, then redirect him to the login.
+
+Otherwise, allow them through.
+
+And you can use this method, you probably won't end up changing what's here but adding to it to do things like if you're required your Capstone if something every requirements like only an admin can see this page type of requirements, then that could be used in a similar way for roles as well. But right now, it's only set up for authentication, not authorization.
+
+Right, so questions on
+
+the route or anything we've.
+
+Okay. So the next thing we'll look at is this Nv file. So there's this file here we haven't seen before called ENB. And you're going to have to come into this pretty much right away with your capstone project. All the stuff we're talking about is there's a readme file.
+
+Not all of this stuff a lot, most of the stuff we're talking about is in this README file for each project. There's one for the Java project. And there's one for the view project that goes through a lot of this detail. Like the authentication with the routes, maybe not down to the lines of how each line works, but just the overall idea of how like a navigation word works. Have UX has been set up how the login service works, is all here in these README files. So really, the first thing you're going to, you're going to want to do when you start your Capstone will be to read these README files.
+
+And because they have a lot of important information,
+
+a lot of questions you'll have a lot of problems you run into or actually solved by saying you need to make this change. make this change before you start because the same Do you project especially for the view project because the same view projects use for the dotnet side. So there's some, if you're Java do this, if you're dotnet, do this type of configuration. And this is one of the biggest ones. So this dot E and V file, it's actually the first part of that README. The open it up. And what the DMV file, the environment file is in view, again, another file we really haven't looked at. But it's pretty easy. concept is a file of global variables for a view application. There's a bunch of rules around them. For instance, they have to be an all uppercase, they have to start with the word view app to underscore app underscore. They can't they have to be single lines written like this. But they allow you then to access these properties from any place in the view application. So this has been set up to use either the API address the base API, I address that Eclipse is going to build, the Spring Boot is going to create a should say, or the base API address that
+
+Visual Studio is going to create.
+
+And they have the same name. So for dotnet students, when they run this, everything is going to go great. for Java, for those of you who are using Java or those using Java, what's going to happen is, this is the second one to find. So this is the one that's going to get, that's not the right address. So need to just delete the dotnet portion. And resave the file. And, Wolf, I hope we'll find some cases to put some other things in here. Because you can add other keys. They do have to be named few underscore app underscore, and then your custom name for them to work. It'd be configured in this way on one line with four but we'll look at hopefully get a chance to Look at those. And the other thing about them is they don't update automatically. So if you make a change in this file, you have to run you haven't run it in, you're already running the server, you have to stop it and restart with NPM. Run serve, they don't automatically see that not there's not either we see changes here.
+
+I'm going to save that.
+
+So that now will give us a way to automatically get this address. So for your API, if you want your base address not to be this, for instance, you're building one for you decide you want to put all your API's and Capstone. You can make changes here to whatever you want your your base API to be. But we're gonna leave it at 8080 because we don't know what it's going to be saved. All right. Now at this point, I'm going to run
+
+NPM. Run, serve
+
+and start to view application
+
+Again, before doing this, make sure the drop application started. And we'll see that once it started, it's going to start on port 8081
+
+instead of 8080.
+
+Going back because I know
+
+for those for quite a few people during interviews that this is not the purpose, whole purpose of the port. So here we have two servers, which have three servers running on our machines right now. So my machine has in your machine to when you run this has a Spring Boot server.
+
+It has a
+
+node web server, and
+
+it has a Postgres server running because Postgres is a server itself. And the way that when we come to the all are localhost. Now this one is local state, local host. This one is local host And when we set up the Postgres connection, it was connected
+
+on localhost.
+
+The port is what identifies which actual server we're going to localhost says go to this machine or a machine, but in this case, local storage, this machine. The port then says go to Port 5432. And that's where Postgres is running. So when I go here with Postgres, it'll work if I change this to 8080, I would get an error wouldn't work, but it actually would connect to something, it would connect to my Spring Boot application, which wouldn't know how to identify with Postgres and with our bus fares. So when I go to a web browser, I see let me open up, start this, and I go to Port 8081. It's connecting to my server. Here, my node server, the one that's running view, if I change this to Port 8080 now it's doing the same thing we can see it's you can see change over here. Now it connected to the Spring Boot server. And I bring that up because I there's been, and I know through the interviews, there was a lot of confusion around port. So that's, I think, the real world example of where ports being used. So that's how we identify which server we're going to. So put 81. And this is what's running in view on the node server right now. So this is what this is our view app running. And it starts with the login. It's not styled in any way. So all the stuff you're giving it has no CSS. Yeah, that's, that'll be up to you. And also, they're just components they've set in views, but you can move that out into components because you may want to know that in another View. So you can move this stuff around and change it. It's given as a starting point. But it's not. It's none of it's meant to be that needs to be. Keep this exactly as is, I would recommend keeping the JW t stuff the way as but these forums and stuff, you can move them around. And you may need other fields. Your login may have other choices.
+
+So we can
+
+go to a count.
+
+And let's create a new user.
+
+Let's create a test user.
+
+make their password test and test account and registered Chrome's worried that the site's been hacked already. But so now we can use that user test and test to login. Also, you can use the username user with the password password or admin with the password password
+
+Sign in.
+
+And we get to the homepage
+
+and it gives you a header again on that you can just move around as you need that already has the homepage and the logout setup.
+
+I can tell that to
+
+stop worrying me.
+
+This homepage you can't get here without being logged in. So this is the address
+
+for logout, and we try to get to that address.
+
+That navigation guard redirects us to the login. So the only pages we can get to right now with from the default setup is this login page and this registration page.
+
+The other page, the homepage
+
+is
+
+behind the login navigation card keeps going there.
+
+Right? Let's log in. Again.
+
+That's gonna drive me crazy.
+
+Alright. So
+
+in, we see we have the logout functionality as well.
+
+So that's the view application. I think I've.
+
+So any other questions about the
+
+view application before
+
+we
+
+continue. Alright.
+
+So the first thing I want to do is look and take a look at that user object that's in here and how to act The token in the user, I'm going to open the home view.
+
+And
+
+just on the screen,
+
+let's
+
+just print out from the store, state. And here in the store, it's called current token and current user.
+
+So let's do the current user.
+
+Let's do the same thing for the current token.
+
+So this is how we can access it.
+
+Or if we need the token, or if we need the
+
+user maybe
+
+I done wrong
+
+You're missing a forward slash for the paragraph tags.
+
+Now Thank you.
+
+So let's be authenticated. So let's get back to
+
+password
+
+selection.
+
+Let's put up in the console.
+
+Let's take a look at
+
+did you put the
+
+I shouldn't need to in the
+
+template.
+
+Now what I think I did.
+
+It's token and user. current user token is the internal variable name.
+
+So should this be user? Okay.
+
+So this is the object you're gonna have. So it has the key ID. So it's basically that table only without the password. So we have the username available to us, and we want to do something display. Some some projects have requirements to do things that greet the user or display the user's name. Or there's multiple users sometimes evolve in some cases. So if you need the user's name, it'll be there. The authorities Have the role that's involved. Some of the projects will have multiple roles required per account. So you can have multiple authorities here. That's why it's a array of objects instead of just a one single one. So we can access this by if we need, you know the user's name. We could say, on the store, get the state user dot user name. And we can see there's printing out the user's name is actually the word user. The same way we could
+
+get its authorities
+
+name
+
+And we have to list them.
+
+I think I misspelled that to
+
+name
+
+for these zero.
+
+So we can get the access to it that way.
+
+So that gives you the user and we can see the tokens just the token. But again, we won't have to work. We have to you have to be, you have to realize the tokens going on in the background because it can cause some problems if something goes wrong with it if it's not there. But it's not you won't be as focused on it as you were with Mars three Capstone because view, view and axios working together have built in functionality that being taken advantage of which showed us the way a project would really work. that handles that token for you.
+
+So let's take a look at.
+
+So we're logged in, I'm going to go into the dev tools to application. And there is we can look at storage. And we can see things like our cookies for the site. And more important in our local storage, we have a local storage, open that we can see the token and the user here, we can see the entire user objects in here
+
+and the tokens here,
+
+grab this so if I close
+
+this project,
+
+reopen the window.
+
+Go back to the same address. So close the browser reopen it, I'm still logged in because of that local storage. So
+
+However, if I take this same address
+
+And I'm going to right click on my Chrome if you like,
+
+wipe, you're not familiar how to do this, if you right click on your Chrome icon, there's a new choices new window, a new incognito window. You want incognito mode, its purposes in development is that it has a different session, which we haven't really talked about what session means. But that means that it has its own local storage, it has its own cookies. And
+
+if I go there,
+
+he won't see me as the same user. And this can be really valuable during web development, which is why I'm pointing it out. Because as you need to log in at different users, you need to check different things and cognito can be used to check different users at the same time. Because it's seen as completely different. It registers itself with the server as a completely different user and And even from a different machine that doesn't see them as connected. But local storage is connected to this account, it's going to be stored here. See somebody else's put something in here until
+
+I until it expires, which is
+
+whatever the expiration date, I don't know if it hasn't even in here wanted to come expire. I don't think it says. But if you want to force logout,
+
+we can
+
+delete these.
+
+Now if I refresh the page,
+
+because I'm not logged in any longer, so I've emulated a log out by deleting those out of my local storage, and it is possible and likely to get into problems where you have to delete those tokens from the local storage to solve problems when you're developing and especially with logs. are using logins. So again, that's under application, local storage. And then you'll have multiple sites depending on what who has local storage right now I'm actually really surprised I only have one. These are connected by by address and port. So the only thing that connect locals can use local storage or see the local storage for localhost 8081. Is the server running on localhost 8081. Nothing else can see it. So other sites can't view this. And maybe we can't be their local storage. So if I go ahead and sign in again, we'll use our test user this time. We see it gets recreated with the token in the information. All right. All right. So I think we've gotten through everything about the view project. Probably in more detail than you, you want to. But there's also again for this one, I, Remi, we're looking at Ruby but so when you start the project, you want to go through the readme and familiarize yourself with all those parts we just talked about. Because you're going to need to use all of them as you work with the, the project. Alright, so any questions over any of the setup? So our next step will be to actually start building something. Okay, so it's 1020. So why don't we take a break, and we'll come back at 1030 and actually start working on something.
+
+Before we start looking at what I thought we could build
+
+there any questions on what we looked at or the Project Setup. All right. So the important part of the last 45 minutes or so was Not for what we're doing today and tomorrow was more for your capstones. So what you're what we're gonna be using it. So I said I don't have a really solid plan on what we're going to be building I was being Yeah, don't so I was thinking we could build a
+
+application based around
+
+travel to national parks
+
+so
+
+there's so two pieces a second a the main application or portion of the application could be a temporary type application. So we can create a temporary where we can add parks to it that can be visited, allowing us to edit it and delete the from the itinerary. That also gives us the opportunity to take advantage of a third party API. Because a lot of your capstones will require using a third party API. And there's gonna be some gotchas there. Especially with axios. And the way it uses the headers. So one thing I'm definitely anticipating is some problems around that authentication header, calling a third party API. And I have an idea of how I think I can solve it, we can solve it, but we'll find out.
+
+So,
+
+and I found this, the National Park Service has a really nice API. It's completely free. It's completely open. That I thought we could use for as a third party API to call. It's also really easy to use. It's one of the more user friendly and very well documented. And it has some really nice features. So I thought we could use that along with an API we build to build a system that actually put together some really some kind of requirements. So when I say no planning, I did put some, some thought into it just not, I didn't code it in advance, just an idea of what we could build. And if I can get to where I'm trying to get to.
+
+So in the
+
+there is this user stories document, and it's called bat very loosely because they're not very well written user stories.
+
+There are a list of stories that it looks like I have lots of spelling errors, and
+
+that's okay. I'll fix those later today. So
+
+the basic requirements, so your Capstone requirements, you've already looked at them, though. They're user stories, and will be that as a guest system builder register an account So I can log in. As a guest the system I need the ability to log in to the system. So as a user of the system, I need the ability to list a parks by state so I can select them from my itinerary. As user the system I need to be able to get more information about an individual Park. As user the system I need to create an itinerary as user the system and give the view my itinerary need to be able to add parks to my itinerary, delete parks my itinerary, be able to add comments to the parks in my itinerary. It'd be able to up update comments about the parks and to be elite, the tenors. And then as an admin of the system, I need to build a view of the user of the system and reset their password. Now there's no way we're going to get through all of that in two days. That's That's a lot of requirements. If we get through a couple of them will be if we can get just a basic portion of it working. That'd be a pretty good big, big accomplishment for two days. That would be a full Capstone site sites project but I want to give us enough to work with. So this is what I think we thought we could build and we can be open to changing it as we go. So we don't have to be restricted on this your Capstone is you won't have that option will be your whoever is ends up being your product owner, this time will be very demanding about you sticking to their requirements, but for this project for the next few days, you know, if someone has a great idea that we want to implement, we can try it.
+
+Alright, so
+
+let's
+
+pick probably want to get started.
+
+We don't have to pick login. We don't have to pick registration. So one thing that we'll talk about with your capstones is order doesn't matter. We can fake the other pieces while we were working on a requirement.
+
+So
+
+I think a good starting point might be, if somebody disagrees and wants to do a different one, that's fine, might be this one.
+
+That's going to require us to
+
+get a list of states to display them to select them, and they get a list of parks, we're going to get a list of parks from the we're going to get to the states from our own API. And we're going to get a list of parks from the National Park Service API by state. So that gives us kind of all the pieces in one requirement. So I think it's a good one to start. So we get through that one, we'll, we'll I think, touch on everything we wanted. everything you'll need for the capstone. And we can do it without worrying about authentication to begin with. That way, we don't have to log in over and over again, or we can do it with either way we can we can make that choice.
+
+So if we're going to do this, we need
+
+at least a view and a component probably to list the states, probably to be able to select the state's another component probably to list the parks.
+
+And probably a view that puts them together. So
+
+start with a new view, what, what should we call it?
+
+Brian, so do you normally start on the front end? And then work towards the back end? Or is there much to do on the back end? Since we're using third party API? No, there's going to be our API to there's gonna be both the our API for this one to be rather simple until we get to the itinerary. But
+
+now we can start either way. If it may make sense to have
+
+the API working before we forget the states before We
+
+build the view portion. In fact, that makes a lot of sense. Let's do that.
+
+So let's build an API
+
+to get that list of states, because what we're going to want is a drop down box that shows that list of states, right? So we have it's in the database, but there's nothing else for it. There's no da O's or other pieces for it right now. So we're going to build everything.
+
+So let's start.
+
+So we want to get this list of states to our view application. So what's the first thing we need
+
+a SQL query.
+
+Do you need a SQL query so we can write that
+
+CRS MySQL commander,
+
+what that's probably going to be select
+
+code name, I think it was from
+
+states.
+
+And that actually is a good place to start. Because often it's gonna be more complicated than us so that we have our SQL query. It's not there's nothing more to it. There's only two columns on the field. And we're all we need is a list of them. And we need both.
+
+So we have a SQL query, what's the next thing we need?
+
+Is it a model and then a DA? Oh, I don't do okay. So we need a model for the state. So let's build in here. Let's start with model because we need a state object right to match so we can move the state around us single thing, anytime we have group data, remember, so we have multiple fields that go together, they make up a state, then that represent that's what we should represent with an object. So something else that we seen, you know, it's it's come up quite a bit, is this idea that if you have three or four things that grouped together that are part of the same thing you're trying to keep together. That anytime you have that, that your first thought should be I need a data object for this. So let's build our object. We'll put that in model because that's what the model is. I'm not going to put it right in model because I don't want it mixed in with these authentication models. So I'm going to put it in model but I'm going to put it in dot. Let's see we'll call it like parks. We'll use that as our unless somebody has another suggestion. Parks's for our package name. So we'll put everything in combat tech elevators, whatever parks or you know, might be better as parks model. That way we get parks and then everything grouped together, I think it'd be a better package. I would encourage you when you get to your Capstone is to pick a package name. That's not just, it has to be in combat tech elevator for the component scan to find it. Though, if you don't want to use that we can actually I can help you change the component scan, but the default setup for the component scans go look in combitech elevator, but all the sub packages So I really encourage you not to use the ones that are just here to use something different so that you're not, don't end up with everything mixed together. Because if you have no these seconds For five classes and your classes mixed in here, it's gonna be harder to work with. So let's start with our state.
+
+And this is just going to be a data class. So
+
+let's see, that gives us a way to. So we just need the code in the name. They're both strings, right? So to see private string, code, private string name.
+
+And let's generate some
+
+getters
+
+and setters.
+
+All right. So I would really like this to have a constructor like this. Because it's only two fields to be easy to construct, if I can just use it in the constructor and it's going to be that didn't
+
+And code,
+
+this code
+
+the stock name equals name. But if I do that, if I just leave it like this, what problems Am I going to run into?
+
+Well, we have an empty constructor.
+
+Exactly. I need an empty constructor. It's going to be fine until I try to serialize or deserialize. It. Specifically, I try to deserialize into this, it's going to cause a problem because in order to be meet the Java bean standard, which is required for serialization, I have an empty constructor with getters and setters for everything. I can have all the other constructors. I want. After having at least one empty one, because it's going to construct it empty then call the getters and setters to serialize and deserialize the values. So we have our data object. So what's the next piece? We need?
+
+JDBC Yes, we need a JDBC class. But what do we need to? Before we,
+
+for the JDBC class
+
+is exactly what we need. But,
+
+yeah,
+
+yeah, we need an interface, right? That way we can. That's gonna allow us two things. One, it's gonna allow us to not deal with the JDBC class in our regular classes. But since we're working in Spring Boot, it's gonna allow us to use dependency injection to inject it, which is what we we want to do. So I'm going to build it the same way. as before. I was created here And combat tech elevator parks.da Oh.
+
+And we'll make state do
+
+and this is I made a class but should be an interface. We know changing just not one word is all we need to do to change between them. And then we just have to have a list of what methods we need. So we probably need one to get a list of states.
+
+So list not state of our data type state.
+
+And
+
+probably all we need
+
+to import it. You tell on state make sure we get to one from combat tech elevator not where the other state classes and then already said we need a JDBC so That's gonna be the next thing, some other class in the same. Put it here in the same package. Though if you split it up differently if you decide to split it up into JDBC classes or invitation package or something like that, that's fine.
+
+So JDBC state do
+
+that needs to implement.
+
+State do
+
+I get the unimplemented method? After I save it, I'll get the method
+
+and add some of the methods.
+
+So for a JDBC class, what do we need here? For parts to read
+
+data source.
+
+We do need a data source. That's correct. So that brings us something we didn't look at the project the data source, so it's a Spring Boot project right? So Spring Boot has created data source. If you're looking application properties. We did I think we did look this the data sources already set up. So we need to get this. That's true. But what is Spring Boot provide for us that we need?
+
+So remember, Springwood gives us
+
+the dependency injection, dependency injection, but what can it inject for us? We need an ID token. Well, to do that, that's what I do for the controllers but for a DA for JDBC class to access the database. What is Spring Boot have available for us.
+
+And we use the spring component annotation. I think, I can't remember.
+
+Eventually, yes. So we will need the component annotation. And we could put that away because you're right. We do need that. component
+
+JDBC template,
+
+yes, the JDBC template. So we need to get the JDBC template Spring Boot creates one out of that data source that's been defined in the application properties. So we need to have Spring Boot injected for us. So we can use it. As we are going to import the component since we have that already, that component is going to allow our JDBC state do to be injected into our controller. But we need so we need private JDBC template
+
+and I'm just gonna call it DB
+
+and I support it.
+
+And
+
+now how do we ask spring to inject this for us?
+
+passes. Just tap it This was an argument
+
+specifically into the constructor. So JDBC state do.
+
+And then JDBC template
+
+response, right? We see template.
+
+And then this DB will equal to JDBC. template.
+
+Do we need to do anything else?
+
+for Spring Boot to provide that? Are we done
+
+with the injection?
+
+To read through it, instantiate it.
+
+So no, that's what that's what we're going to have spring do. That's why we're, we're setting it up for dependency injection. It's going to instantiate a JDBC template, it's going to instantiate a data source, then instantiate a JDBC template using that data source based on what's an application properties that we're going to have Spring, use data dependency injection to inject that fully a standard a JDBC template with our datas with the data source here. We're going to start here. I was asked, do we need anything else to make that happen, though? Or is that all we need?
+
+All you need. That's it. That's all we need. We just need that put it in the constructor. And when spring sees that it needs it. Since it's going to be you inject instantiating this class, then it will instantiate the JDBC template with the data source and pass it into the constructor. So when this class gets injected itself into the controller, it will have a fully functional JDBC template set up already.
+
+Which means now we can we have our query.
+
+So let's take that
+
+and make that string
+
+And we're going to have to return a list of states. So the first thing we should build is a list of states or an empty list.
+
+So now we need to query the database.
+
+So what what type of
+
+what objects are we going to get back from when we query the database with the JDBC template
+
+is going to be a state so we need to do a loop to get all of them.
+
+We want to do a loop to get all of them but before that, what type of object do we need? So we can do that loop.
+
+Scott
+
+To charge SQL the name and crease what we owe? I said SQL rowset. That's exactly it. Yeah. So
+
+rose and then we're going to our template.
+
+You have the query for
+
+rosette.
+
+And we're going to pass it our query.
+
+import that.
+
+Okay, so now we have a rose and I already said we have to loop over it. So we're going to do a while loop rows dot next. If you remember when we call next, when we get this back, we have to call next on it. Even if there's only one entry. We always have to call next, because it starts above the data next puts onto the first row, that first call and then each time we call it it moves down. one row, returns true if there is another row and false if it's not, which is while while next will return true as long as there's data and stop and return false when there's no more data. So now we can add to our state's list. And we need a new state. And the reason I wanted to build that constructor that had the code in the name is because now we can just do this. Get the string
+
+code.
+
+And let's make this more readable.
+
+Rows get string name.
+
+So we could build a mapping method here. They know map row to state but it's too filled. So two fields not to so there's really no this is easier than a mapping math If it was more than if it was even three or four fields, I would have built a private method to map it. But just having it through the constructor for two fields is much easier, especially when they're both strings. There's nothing to check, then after what we're about to be no and things like that, like we might have to for a date. Alright, so we have a JDBC class. So now we have a JDBC class, what's the next thing we need? What's the next thing you should build? If you build
+
+in your Capstone, when you build your JDBC class?
+
+You need a controller. You need a controller. But I'd say that's not the next thing we should build. That's the next thing after the next thing.
+
+Before that, I think you need to return your list.
+
+Oh, that's a great idea. That's great. That's that's just a bug.
+
+So
+
+thank you. So when you're building your capstones You build your JDBC class, and you want to, you want to use it. What's the next thing you're going to build after you build your JDBC class
+
+controller. Eventually, we're gonna need a controller. But again, that's the next thing after the next thing.
+
+Feeling everybody knows what it is, but nobody wants to say it.
+
+Because you don't want to have to do it.
+
+integration test. If you build a JDBC class, you need to test it if we're going to test it, so it's good how to test and we're going to build a state do integration test. So down here, and it will be in the same package parks do. somebody bought a new class in here and it should be See JDBC parks do integration test. If you don't put the word integration in there that's actually fine. So could actually that's that right that Stephen right there is evidence that it doesn't work if it works. So so we have this and I put it I didn't put in the right package I wanted that in the parks do package I put it in do, but that's easy to fix. So on the class, I'm going to choose refactor and move which allow me to move its package
+
+and then I want a new package.
+
+Parks do
+
+the next make sure it's selected and click OK. And it will move it no update all the dependencies
+
+So
+
+So now we have integration tests. Now we have this abstract class here, do integration tests that has sets up that has the before class, the after class, and the after already set up in it.
+
+Some of the extend off of that,
+
+do integration test
+
+and import it.
+
+And now I don't have to worry about any of that stuff. It's just that's given to me. So now I just had to worry about before and my test. So we need two things. We have to have the class for testing
+
+JDBC
+
+Actually, I don't want that I want the state do.
+
+And now also, I'm going to get a JDBC template.
+
+Actually, let me check it, make sure there's already one over here.
+
+Is there?
+
+No, there's not okay.
+
+I'll make sure I wasn't repeating something that already existed. So get a JDBC template. So here in the test, I can't get the template spring gives me it's not going to inject it, we can actually set up test to do that. But this projects not set up to do that. And it's actually requires quite a bit of stuff we haven't talked about. So we're going to build our own template, and we're after it's going to build our own connection, but that's what that abstract classes already doing for us. So We need it before that creates that astan shades both of these things because in this case, we have to instantiate them ourselves.
+
+So we're gonna say before
+
+and
+
+probably void.
+
+O'Brien, I do have a question about testing not to, like, knock it or anything, because it was extremely useful in the database one. But like, for the third Capstone, besides the fact that they were testing problems, and we can't run tests. Why do we have to run tests if we can just like use like a tool like postman and see that the information is transparent, like what's so good stability in a test in that case? So that
+
+works great. When you have to controllers into JDBC classes. But let's expand that. So the last project I worked on had a little over 1000 API interfaces, each one of those use between probably close to 500 classes for database interactions. So to do that, every time you change code, you don't know what you broke. That means that every time I went in and changed a piece of code, I would have to go through with postman and run approximately 1000 tests just for the basic testing. Or I could press the button have a bunch of unit tests or integration tests kick off and do it for me, and one's going to take me three or four days, the other one's going to take me three or four minutes. And I don't have to do that because I can set up my project that when I push it to get get does it for me. So I don't have to run the test every time I commit the source control, using what's called continuous integration, runs all the tests every for every commit to make sure nothing's been broken. So The importance of unit testing. While it's important here to make sure it's working, I would argue that before the purpose of doing it like this
+
+is
+
+so I don't build di even when I have my own projects, I always go to integration tests of ideas. Because I want to know when I get to my controller, where if there's a problem, do I need to focus on the controller? Do or do you focus on the controller? And then the controllers are pretty small. So if I don't, generally often won't, they'll test for those. test those with postman, but the DA O's, since there's a lot of pieces involved. It just allows you to figure out one step at a time where the problem is, because I come with five integration test fails, I can fix my deal and often it will. And I fix find some little problem to do I fix it. And now when I move on to the next layer, the controller I don't have to worry about whether the DA works. But the more important piece of testing, I would argue, and others would disagree, but I argue that it's not the test itself. It's the ability it gives the freedom it gives you in the future, to experiment. And to write code without fearing what you broken. It gives you this ability to get instant feedback on the whole system. And instant state of the entire system. Which means that you're less likely to introduce bugs in a complex system when you're changing it. So, you know, I've worked on systems that does not have proper unit testing setup. And when it gets down to the point it gets to is that the company is actually afraid to add features because every time they add a feature, they introduced a bunch of bugs that they don't know is coming because it's too large to test now. And unit testing gets rid of that. You're having integration tests. So like many things on Small Scale, it's a little harder to see its full use for potential. There's a lot of things like this. So I'd argue here you're doing it to learn how to do it. So you get to those large scales, because really the programs we work on here really small compared to most applications. And then you'll have the knowledge how to apply it. So if that's why I get why it's important here. Does that answer your question? Probably a lot more detail than you wanted. But
+
+no, it's great. It's lady said, it's kind of hard to see like the point on such a small scale. Yeah, not that I'm talking like testing because I'm all for it. Again, the second capstan is great because we had those all those tests, but it's just sometimes it's like, what's the point? Yeah, that's expected.
+
+You'll run into a lot of developers, professional developers have been working for years that asked, What's the point of testing and my experience is this you need two jobs to figure out the point of testing one job where they don't do unit testing and a second one, where are two teams that have big jobs and it's like Continue where they do a lot of unit testing. And every time everybody I've know this worked in both environments is completely sold on your testing. The people that say, Oh, you don't either testing if you're talking to them, they've never worked on teams that really did it. Or did it right. Because once you have it, the, the stuff you can do with the code and the way you can improve the code and refactor, without fears, really ends up with a much better code base and a lot more fun to work on. It's more fun than work when you're not terrified console, you're going to break everything and not know what you broke and not find out for six months you broke it. And also the teams I worked on that one of you testing. I'm like last place I work. We got a lot of unit testing. And we were on call most companies most companies end up putting their developers on call and rotation. So I think there were six weeks we spent a week on call which means you want to get called in the middle of the night. If there's a problem. In the six years, I worked on that particular team of the years I was there. I think I was called once a job a couple before that, which forced I wasn't there very long for we didn't do a lot of your testing. And in the three months I was there. I was called two or three times a day because everything was breaking constantly. So there's another argument for it, it keeps you alive allows you to get lots of sleep, or more sleep. The the job posting that Ben posted for automated automation testing, is this. It or that's something completely different that's that uses this but that goes beyond beyond this. So that Tinder integration piece I was talking about where it constantly runs the test. That's programming that so he goes into a whole nother step. And that's programming using tools like Selenium and cucumber and there's a bunch of other tools that loadrunner and a bunch of them that were your programming test, your programming tests, all the test portion, but in a much more detailed and more advanced level than what we've looked at. So actually doing things like bring, like this test that you run like the Cypress tests, you run that bring up the browser and move around. Did that would be automation testing are part of it. So
+
+that would be all of it. That'd be part of it.
+
+So that answer.
+
+Alright, so let's finish our, our tests are actually we're still in our before. So what is called setup doesn't matter what we call it, that describes what it's going to do. And we're going to instantiate first our JDBC template because we have to have that new JDBC template. Now that abstract class that we extended, if we look at it has a getter that will give us the data source. And it created the data source here in the before class. So we can call this get or get data source to get the data source
+
+and swing to say get data source.
+
+And actually, say, super get data source.
+
+data source data source.
+
+We shouldn't need the super, we could use super good data source this get data source, we're just call Get Data Source because we're top of the class. So we've inherited that functionality. So it's, and then, and this is the reason we because we remember we looked at dependency injection, we could use the constructor to use dependency injection or bad Here in the data, we could have used the auto wired annotation like this
+
+without the constructor.
+
+And that would have worked for until we got to testing. But now if we're injecting it through the constructor means that we can skip the dependency injection for our testing in state do equals new JDBC. state. Yeah. And we can manually pass it, any JDBC template,
+
+which we get if we do manage to get to larger classes, the next couple days. I don't know if we'll get to this point. But one of the things we can start doing is not just for our JDBC template, imagine if we now inject we're injecting a class like a list of like this whole state class into another class. And we done the same thing we make we've made a fake way. So we can test without having to have the database even involved,
+
+which is prob mocking. But
+
+I'm hoping we get a chance to do it during the today or tomorrow, but we'll see.
+
+Now we can write a test.
+
+And I'm just going to write a simple test. All I want to do is make sure that my, I'm getting back a list of states. So void, select states.
+
+import this.
+
+Actually, I'm just going to go up here and change this to start.
+
+Since it's a test class, and now we'll say first thing I'll do is get the list of states. And let's call these states equals and we'll use our do to get it list
+
+important pieces we need for this
+
+And there's a lot of states here. So we'll make sure we get the one from comptech elevator model Park parks model.
+
+I don't think I got it.
+
+And now I'm going to get original
+
+count states dot
+
+size.
+
+Now let's insert a couple states. We don't have a method for that. So we'll just have to do it manually. I'm going to get a private method to do that.
+
+Insert states. Let's do a count of to
+
+our count.
+
+And we'll just say, let me use some SQL.
+
+And I shouldn't I breaking your row here. I should be doing this dbvisualizer but I can see it right here and there's two columns. So
+
+Insert into states
+
+values, the code and the name.
+
+And now
+
+let's do a for loop. And I just want to count from zero is less than the count, I post. So simple for loop. And we'll just insert a number of states. This will only work up to 99. Because this code table is kartu. But this is our test class, we can have more of, well, we just have to remember that works like that in a test class. In a real in real code class, we want to have a bunch of protections around that.
+
+But here, we'll just call our JDBC template.
+
+template got update? So why are we using update
+
+We use query for us up before
+
+because
+
+we're not getting anything back. Exactly. So if in what case with an insert what I need to use query for reset, you're getting the new ID back. Exactly, exactly that. So if I'm going to get data back, like I'm returning an ID, on Insert, have to use queer for reset. I'm going to get any data back at all it has to be clear for us. If I'm not going to get data back, like an insert, in this case where there's it's not returning anything or a delete or update then it has to be updated. And that that's the distinction is no data comes back for update. If data comes back, it's if you query for the row set. So we'll put our sequin in We have two parameters we have to supply. The first one is for the state code. So we'll just use the count, actually not the count, I.
+
+And then the second one is the state name.
+
+So we'll just have something like test date and concatenate on i. So it's a unique name. They're a quick method that can build is between one and 99 states. And less code than writing out. The same amount of code is writing out this two or three times to get two or three states. Because what we'll do up here now, let's create account
+
+added
+
+and let's add three and then we'll insert states added so we're gonna insert three states. He's got private method, and I'm putting out here in original count here because they're going to be part of The assert. So that's going to. So what we've done is we've got the counter number states that are in the table. We've added three states using that private method. Now, we're going to select the state again. So say, new count will be state do dot list, dot size. So what this is doing these two lines of code, and this one is equivalent, is we're just chaining the methods we're getting the state do, it's gonna return a list, which is going to be a list of states and we're just gonna immediately get size on it. That's all we care about.
+
+And
+
+then we'll do a certain
+
+cert equals
+
+our expected is the original count
+
+plus the added
+
+and the actual is the new count the number it's actually there. They should be equivalent.
+
+That's passing.
+
+So this is tell me for sure that I'm getting exactly what I need from the States. No. But in integration testing, that's often what we do. What this does tell me is that I'm getting everything I'm probably getting everything in the table. It's pretty unrealistic to think that if I've got no 50 The first time I added three and I got 53, the second time that I didn't get everything, I'll just because of the way SQL works. Now I could have, but I'm not testing SQL. I'm testing just I want a I want to be fairly confident and ought to be 100% sure, but fairly confident that this is working. And that gives me that confidence. If I really want to see if I was getting The right thing, here's what I would do. Since I don't want to write a test that checks to see if all the states are there, what I often do is I'll put a breakpoint in here. Now we have the test, run at debug. And you don't really need to do this, but I do it often for my peace of mind.
+
+So we're running debug, we're gonna stop
+
+then at
+
+this line,
+
+and we'll come out and take a look at states, not yet.
+
+Hover states, and I just look at one or two of them.
+
+Yeah, see their states
+
+have 50
+
+Yeah, so now I'm fairly confident that I have all the states. Again, you don't have to do that stuff. The test itself is enough to verify but without verification Now I'm going to I can run this test and know if I break my state code right away. Alright, so now we have that. And we already said the next step is the controller said the next step after the testing step would be do using the controller. So let's build that.
+
+So I'm going to go to the controller
+
+and add a new class. Again, I'm going to put it in parks
+
+dot controller.
+
+And what is called this the parks controller.
+
+I could have a State Controller but I'm only going to get a list of states. What is put it in the there's going to be no there's going to be the itinerary stuff for the parks. So maybe better was called parks. Maybe better to call it a 10 or something like that. But as you saw out of the document, I actually not sure question how to spell that so called parks. So,
+
+um, so let's build.
+
+So if we're going to build an API. Now, what do we need here? What's the first thing we need?
+
+The rest template
+
+or the rest template?
+
+That's, that's, that's part of it. Well, we're not actually going to use the rest template, but that's what the client side. But you're on the right, the right track. What do we need for the controller side?
+
+That the rest controller annotation? Yeah. So
+
+the rest templates. The tool like the JDBC template allows us to call an API.
+
+This will allow We'll make an API. So we have rest controller. And if I want to inject that my JDBC class my steaks. So I'm going to need How do I do that?
+
+Or how do I get my JDBC class to do it here?
+
+Is the JDBC. template.
+
+Well, I buy JDBC template in the JDBC. State do I don't need it here. I need this state do here.
+
+constructor, kind of similar to what we did with the dependency injection in
+
+the state view, I think, exactly. So we need a variable to hold it. And we're going to use the interface and that's important. And then we need a constructor for our parks controller. We just say we want Something that something that matches that interface can be passed to us for it,
+
+and then we'll just set that.
+
+So
+
+yeah, Spring Boot is going to give us the state D, this JDBC. Stadio implementation, it's going to use dependency injection, when it builds the parse controller, because remember, it's in charge of the parts controller. And with if database, the data source in the JDBC template already populated in the JDBC class, it's going to give us that do class here, we just start up. So that's all gonna happen through dependency injection, as long as and it's going to work because when we were back in the JDBC class, it was suggested we put the Add Component annotation in that class. If we didn't have the component annotation, this would not work. in there, it says I can't find the proper thing to inject. So we have that and now I want to make
+
+a what? What's your URL look like?
+
+Should there shouldn't be called a route What's our route should our route look like?
+
+Just be
+
+localhost 8080. That's gonna be that's gonna be the start of it. But what what should the route portion of the URL look like for those states? So you want me to state? Okay. So how do I
+
+make a controller that does that?
+
+What do I need?
+
+HTTP request mapping?
+
+Yeah. So need to request mapping
+
+and its path is going to be equal to the route I want to build. So we've been doing routes and view.
+
+And we look at
+
+this here, this portion the path
+
+that's identical to what you're doing in the request mapping. That's the same thing. You're building the URL. So this portion of view, which is also called path, and the portion of the request mapping path is identical. They do exactly the same thing and they use typically exactly the same input. Now we know we get very parameters then that changes slightly, but just syntax but without parameters are the same. And now but we have to go one step further. And so in view, everything is going to be good because all requests just for a webpage or Get, but here we have to say what type of request we accept. So request method. Sorry, go ahead of myself. Method equals request method, which is what's called an enumeration and enumeration. This means it allows us to do if I import it maybe
+
+it's a method.
+
+Yeah, let me do that. And then
+
+it allows us to do that to get basically a variable that is organized in a way that allows us to say dot and then get the name from it. So public, and we're going to return a list of states because that's what we're trying to get. And it was called something like get get States did we need any arguments in our
+
+controller method
+
+not pictured right now. And that's exactly it. We don't need any arguments.
+
+Oh, if we wanted to this is an authenticated user, can we just pass the principal?
+
+We could do we want to set? We want to allow only authenticated users to get a list of states. do we care? I would argue that's probably public information. I mean, the one reason we might want to limit it is that we don't want users who are not our users getting our list of states to use in their own applications and slowing down our API. But I don't think we're going to run into that localhost. So I think we're safe. But even then, I might not limit a list of states. But we always can come back and do that. So I would, I would actually suggest as you work and something we're doing Now we'll continue doing is keep in mind what authorizations you're going to put in place. But it's much easier to get things working without authorizations and then apply them than it is to apply them and keep adding the login and worrying about that as you're trying to troubleshoot other problems. So I'm a big fan of doing login towards the end. But when I build a project, that's usually one of the last things I apply is login. That way you don't have to keep logging in. Because once that's implied, you have to manage users not towards the end, but towards the middle, I should say. I would don't do the last thing, but I don't do it the first year I get the hard stuff out of the way, then wrap it and login authentication. Because it doesn't matter what order you're going in. That's the great thing about code. So we just have to return now, our state
+
+do list.
+
+All right. So we should have a full working controller now. So what's the next step? We should take?
+
+postman?
+
+Exactly, postman
+
+when for any for anyone thinking the next step is should we set it up and view the next step should be you should go to postman and to you know it works you should not be trying to use it in JavaScript. For one thing JavaScript As you've seen, hopefully seems at this point is not really the best at telling you what's going wrong.
+
+postman is very good at that. So
+
+we know it's running on localhost, we know what's an AD AD. And we know it's a
+
+get its dates. And it's a get.
+
+So let's send the request, we should see our list of states. So now we know it's working.
+
+So
+
+Now that we know, all the states are working, we can move on. So these steps of testing each piece as we go each layer, they seem tedious. The amount of time they will save you is worth the few minutes of writing a quick test or opening up postman and trying it. It's a lot of mean, a few minutes here can save you sometimes hours of trying to troubleshoot. And this isn't frustrating. It's tedious. It's not frustrating, trying to troubleshoot, frustrating as everyone knows. So it can save you quite a bit because now if we have a problem in view, we know our API works.
+
+We don't have to worry about it.
+
+So now we can move on to the view side.
+
+So let's go back to
+
+If I'm going to get a list of states in view
+
+what does that imply? I probably need
+
+a list of states in your store
+
+so I want to store the states because I might that might be a good point that's a good point.
+
+I was thinking something even simpler than that. So
+
+yeah, we that's the thing we do have to think of do we want to store this permanently? Do we want to keep getting it? How are we gonna use it in exactly what we were gonna
+
+um, I'm kind of on the camp where I just want to get it every time because we've already written it right.
+
+And privacy should do a view you
+
+so if you use a view, is our whole page going to be a little estate's probably even simpler now replacing any component or more basic than that, just a component, and then we'll throw it on the home view to test it. And then we can build out a parks view. So we can move things around, we can put things on like that home view, make sure they work as we build a component, and then we just move a tag and it moves to another page.
+
+That's kind of the nice things about components.
+
+Because we don't know what page we're building yet. But we do know we need a list of states. And I think we are going to need the store for it. I don't know if we need to store the entire list of states there. But we might. And that's a decision you'd have to make because that's called caching. We may want to write we could write code that says if the list of states doesn't exist in the store, go get it. And if it does exist in the store, return it. Meaning that we only update the list of states when the store is empty. So when the application restarts, and that can work really well for a list of states because they're unlikely to change right? The chances are if the number of states changes, it's gonna happen so infrequently we can restart the application. But so that's decisions that are made around data. And that's part of what the view store can do. But we're probably not going to see this list that much. So
+
+let's build a component.
+
+And I don't know state selector that sounds good to. Anyone have any other suggestions for names. Alright, so state selector view. And let's do view. And we need a div and let's give it a class name so we can eventually style it.
+
+what's called state selector class
+
+and we need to select
+
+Probably with ID something like state.
+
+And we're going to need
+
+name,
+
+eight
+
+selector.
+
+And what else are we going to need?
+
+Well, we need a state
+
+machine state that we that we selected a prime Make sense? So need some data. And that data has to return an object. And that's where our data we're going to return us. So we said we're going to return a state. And if I want to connect this to the Select field, how do I do it?
+
+Shouldn't be V bind or V four v model,
+
+model state
+
+stock connect these two. Now how do I get my list of states?
+
+You need to use a method, the get method that we need to create. Okay, so we need a method
+
+and get methods something like get states
+
+and what's gonna happen this method
+
+we need to create a service. Okay, that's true, we will need a service. So you file and we'll call it State service because that's actually that's called states plural. So it's more easily identifiable was not state as in the view x stuff. So State service. And in here, let's take a look at the auth service, we need to basically mimic this, we need to import axios. We don't have to instantiate axios, like we did when we looked at it yesterday. And the reason is that there's already an instantiated copy of axios. In this project, so when we import axios, we're going to get that copy. And then export default is where we're going to put our methods. Those are the methods or like the public methods.
+
+And we probably want something like get states.
+
+So now we need to, we want to get the states right.
+
+So
+
+we'll call return.
+
+axios dot get
+
+and what URL Do we need here?
+
+forward slash states, four states. So why don't
+
+I have to put the HTTP localhost portion here?
+
+We're gonna make that our base URL, right? Yeah, that's already been set up. If we look in the store where the instance of axios is actually created, wait somewhere.
+
+This is axios somewhere, maybe it's in the main.
+
+Yeah, right here. So it's already been set up for you to use that environment property. So right here in the main is where axios has been created. And it's sets up the base URL, the default for the URL. So we just use it it already has the authentication header set up to be used and it already has the base URL setup. So when we use it, when using your Capstone, you must use it like this. You don't have to put the creation portion.
+
+So that's should be all we need.
+
+So we can use that in our selector right we have to import it. So import our state's service from
+
+services,
+
+state states service.
+
+Now, so we want to get it here. So this is going to get states service dot
+
+get states
+
+and what do we do with this
+
+We need to store it in a state array. We are going to store nested array. But
+
+what do we do? What's this actually returning? A promise? Yeah, yeah. So how do we handle a promise?
+
+Yeah, so we need them
+
+listed here. So then, and that's going to give us our state list. And we'll pass that into a method and we said we need to store it in a state array, which means we need data states. And so this dot states, equal state, and what else do we need both of them
+
+and
+
+state list
+
+as we have them, what else do we need?
+
+catch, catch.
+
+So catch. And let's, so we can catch the error. And we can do all the different checks with it, right? So anything we could do is this. For now, this is not a good permanent solution, console dot error, which will make the text read and stand out. While we're doing development. Until we have the page fully working, we can just catch it and so we can see it in the console, but you want to catch it and do something with it. Otherwise, you end up bearing the error and won't maybe won't see an error that's important. So we need to come back for that. But I want to just get it working. Alright, so now we have states. So what else do we need? Because this method is not going to just work right? Something has to call it how do we call that method?
+
+Maybe a for each
+
+And I just saw your comment and thank you for
+
+for each but
+
+I'm sorry IV for and create
+
+before what is work for view but is that what we really need for this?
+
+Because a v4 is used with reactive properties, right?
+
+So how do we get the method the call?
+
+Oh created, right? Yeah, need it we need a hook we need to tell at what point in the lifecycle to call this method the first time. So created.
+
+And this gets status all we really need to do.
+
+So now you said we need a v4 which we do, and it's going to be bound to this because that's what's reactive. So in creating It's gonna update this, which is going to reactively update RV four, we need options, right? So for each option, we'll do V for each state, and states, which is going to get confusing with this.
+
+Let's change this to actually, let's just change this to
+
+s.
+
+And it will bind the key equal to s dot code. write code, okay, that's not going to be the same as the database, but we named the property in the object the same as the database. So that's why we just kept the name the same there. So that is a V bind. If you remember, the colon is the same as a shortcut for V bind. So for each state, we bind it to code and then we need I want to set the value equal to the code as well.
+
+So what's that going to actually set the value to right now?
+
+Each individual state code, that's what I wanted to do. But right now what's going to set the value to the way I haven't written the literal line stock code. So how do I make it so it can use? It'll get, it'll use the variable
+
+v bind?
+
+Yeah. So if I want to use the variable, I have to be bind it.
+
+And now it'll use get the variable replaced this with variable codes, we should individual state code instead of the literal string. And then I want to use the value. So how can I print out the name here?
+
+Because it's an option I need the name between the options
+
+to create curly braces and
+
+Stop name. Yeah. So one way binding them inside the scope of that v4. So s dot name.
+
+Right. So we should have a
+
+date selector now, that has a list of states in it. And we probably want a label. Let's put a label for state. So that's the ID. And something like select state, we can always come back and change that if we don't like it.
+
+Alright, so how do we try it now?
+
+Stick it in one of the views.
+
+Yeah, weakness, stick it into view and give it a try. We could build a view for it, but we don't really know where it's going to go live yet. Let's go to the home view.
+
+And let's see Just do a quick import
+
+state selector
+
+from
+
+10 components
+
+eight selector. This actually should be follow the standard should for that should be uppercase. Now we have to add it to the component list
+
+components
+
+and state selector
+
+and that would just add it to the tag, state
+
+selector.
+
+And so it should be on our homepage.
+
+It is right here and it's not just refresh.
+
+something's not working
+
+as a console, some console errors to see what they are.
+
+So HTTP requests blocked by cores policy. So we haven't talked about cores law yet. So cores is cross origin, resource security. I think cross cross origin. Resource security, they make sure they have the asset, right?
+
+Pretty sure it's resource. I know it's, it's security protocol. So mature, oh, sorry, cross origin, resource sharing. Similar, similar difference, but it's cross origin. That's actually the important part. So what cross origin means is that the origin is the server. It's coming from So the server that this page is being loaded from is localhost 8081. The server that the API lives on is localhost 8080. Those are different servers. So those are considered to be different origins. So browsers have this feature built in called cores. CRS cross cross origin resource sharing that protects users from accidentally or helps protect it's not foolproof helps protect users from calling JavaScript on other domains. So came about from ideas used to be in they still around, but especially things like ads that would be served that JavaScript in them that would run and download JavaScript, other JavaScript from other domains, and run them in your browser. So it restricts the browser to say you can't that's one thing it does. You can't load JavaScript from another origin. But of course, you have to be able to. Because it's common, we want to use JavaScript like an API is another origin. So we can't call an API from this other origin because course is blocking it. So for API's, they're also limited. But they're limited for a different reason. They're limited more to protect the API authors. So the JavaScript is about the protection of the user. But the API is they block cross origin calls to API. So our this API was running on port 8080. It would work for no problem when it's on port, or sorry, Port 8081. But it's on port 8080, not 8081. So courses saying these aren't from the same server on two different ports. So I'm not gonna allow you to call that API. Because that API has said it only wants to be same origin, meaning that it only wants JavaScript to call If it's coming from the same server, this is a problem you don't run into when you're dealing with like a Java client, because Java clients because this is built into the browser, remember JavaScript running in the browser. So the browser is blocking this request.
+
+So what we have to do when we get a courser
+
+The first thing we should check is, is our API.
+
+What origin does it allow by default, API's only in Java only allow same origin. I shouldn't say in Java, every
+
+language I've ever built API in
+
+is the same way. So JavaScript API's and node, Java, C sharp. php, they all start same origin. I'm sure Python and Ruby are the same as well, because that's really often what you want. So the author of the API has to say I want this controller to be cross origin, I want to be allowed to be calling for another server. To do that, we have to add another annotation We add the annotation cross origin.
+
+And we'll save that and we don't have to
+
+start.
+
+Then we'll come back and refresh our page.
+
+And we still get a list of states. But something else is going on now because
+
+I know what's going on now.
+
+We didn't finish the component.
+
+Is this working? Right?
+
+What's missing here?
+
+What, what is this promise actually being sent sent the stateless
+
+Something else.
+
+That's a promise. And then you need to get the data from it.
+
+Exactly. So when I actually sent a stateless were sent a response object. And the response object, we need to get data.
+
+Now we can see we have states
+
+I cannot get used to that. That's an axios thing, the way the data works with the response object, and no matter how many times I use axios, like always make that same mistake.
+
+So that we have a list of states.
+
+We've all been there, Brian. Is it okay if we take a break for a second?
+
+Um, are you trying to push through? Well, I was gonna stop here about I was gonna stop probably a little early today. So I was I was actually trying to stop her Then they give lots of vanilla, somebody wants to stop in there, then we can take a break and go longer. I'm fine with that. But since we don't have a set agenda was going to,
+
+well, you just need to communicate your what you're thinking to us because we're thinking, Oh my gosh,
+
+but you can just read my mind and think
+
+this is what he's thinking. Yeah.
+
+That will stop early today. So let's just keep going. And sorry, I should have communicated that you're right. Thank you for actually bringing it up because I didn't realize it was almost noon. So I probably just would have kept going anyways.
+
+Alright, so let's so the goal for the rest of the day since I will communicate that now. Now, we're at this point is let's get this. So when we select a state, it does something because right now we select the state, it's not doing anything useful. So I want this to be a component. I want the state selected to be available. In the parent component,
+
+so how could I do that?
+
+So let me maybe rephrase that. What do I use to communicate across components?
+
+props. What was
+
+props is how I can use to communicate from the parent to the child. I need to communicate from the child of the parent. So what exists for cross communicate it cross component communication. it prompts good props for battulga from a parent to the child ready to go the other way?
+
+state,
+
+state, that's the entire job of UX. The only reason we have view access to To have data that we can use multiple components. That's its only job. Now it does that job in a very non intuitive, kind of complicated way. But that's its job. So we need, our selected state should be a view x. That way we can see it in our simple one to create context, because I would imagine this I'm starting to imagine this now as an app that we go in you collect like maybe the state, you get a list of parks, you have this context you're working in a state.
+
+If not, it doesn't go there. We can.
+
+Still we need it in the parent. So let's go to the store
+
+and add something like I don't know selected state.
+
+The guy communicates what it is making an empty string.
+
+So I'm gonna have to set that what do I need to set
+
+our state
+
+tuition Exactly I need to mutation. Let's put up a new mutation for it.
+
+So set
+
+selected state.
+
+And what arguments Do I need for my mutation?
+
+state and then whatever you're passing to it.
+
+Yeah, state in selected state. And I'm calling it selected state because the word state is all through the UX. Otherwise, we could just call it state, but that would get confusing. So the state here is this object is going to be passed automatically, so we don't have to worry about that. And now our mutation itself is going to be the state selected state equals the selected state that we pass to it. Sorry, mutation will be slick. Good state. Do you sets the that selected state? So now we can go back to our state selector. And when I, when somebody
+
+selects a state, how can I change that mutation?
+
+How can I call that? What do I need
+
+a commit? So I need to commit. So we probably need probably a method, right?
+
+So maybe update
+
+selected state. Actually, maybe.
+
+Can we just do it in the good states or no?
+
+Well, that's getting a list of all the states. So how do we know what the user selected at that point?
+
+commit
+
+commit selected state, actually
+
+Maybe save selected state.
+
+And we'll take, and
+
+we're gonna call this the store.
+
+And somebody already said we need to call commit.
+
+And we need to call that mutation name.
+
+So selected state.
+
+And what data do we need to pass it?
+
+Where's our selected state value out right now?
+
+stats state.
+
+It's in the state. Yeah. So this dot state,
+
+right? So that's what I was calling our mutation. But that's a method. How do we what's going to call that method
+
+Can't you do?
+
+Okay on, like, handlers,
+
+what event should I use?
+
+change.
+
+So change. So the Add symbol is a shortcut for VR.
+
+type deal and Colin are in type
+
+equals and then we'll call save selected state.
+
+Okay, and let's see if it works.
+
+So we select the state. Let's go over to our view tools
+
+and take a look at few x.
+
+We had the set.
+
+Let's do another mutation and see if it looks white. Let's load the state. Let's see what it looks like. And it's been selected
+
+already there too.
+
+Um, you had a typo. Okay.
+
+No, I correct. I corrected it, it decided to hold on to it. Oh, no. Oh no, he created its own.
+
+Thank you see that's
+
+so those JavaScript. So I've made a typo here. And instead of airing it to said, Okay, let's just add a new key selected states, which means that it's going to be wrong and never know why. So
+
+but that also is why it's important to check each piece. So if I was doing this, just like we're doing now, alright, test it to the mutation committee, the vbox tolls, make sure it's working the way I expected to and load state to make sure it's not Right, it is now right. We can see it updating.
+
+And okay, so it's working now.
+
+So last thing, let's just display it on the home screen to make sure it's working. And then that'll be that'll give us a stopping point. We have this component where we can see it outside of the component. So we can start tomorrow by using that.
+
+So how can I
+
+I'm just going to put a place here, we'll just make a
+
+paragraph. This is something like
+
+date selected.
+
+And I would have put the state selected right here.
+
+So I'm going to bind something right here. What do I buy? How can I get
+
+the updated state here?
+
+Money signs states state selected
+
+That'll work. But what's going to happen when the money sign state state selected updates?
+
+Do we need a computed property?
+
+We do, we have to have a computed property. So the view x store. So the way that Zachary said to get the value out is exactly right. But it's not reactive if your store is not reactive, which means that we have to make it reactive using a computed property, computed property watches, anything inside of it. And even something it's not reactive. If it changes, a computed property will cause the reaction.
+
+So we're going to need
+
+computed
+
+and then we're going to create
+
+something like
+
+selected state. And now we'll just return exactly what was said. This store
+
+State
+
+selected state.
+
+And then we'll use that computed property right here.
+
+And this property again only exists because this is not reactive, which means that this will work once if we use it right here, but it won't update as the user mix changes.
+
+So now you see the select the states DC,
+
+and we have it available now outside of
+
+our application.
+
+So the next step that we'll take Not today, don't worry. You know,
+
+Kevin pointed out that
+
+I know if you're saying that we want to go for a couple more hours, but you know, that's that's definitely an option. I have nothing going on this afternoon. I probably do but all cats what
+
+but I'm assuming that Not the case.
+
+We can
+
+we'll start tomorrow by hooking up the third party API. So let's look at what that does real quick. So there's there's the someplace. I have the URL, copy the URL and paste it in here somewhere.
+
+So there's a look at the API documentation.
+
+There's quite a bit here. The one We're going to use the endpoint will use as parks because you can retrieve a list of parks and you can do that using the state code. So using this URL
+
+is there you're
+
+actually we can build it
+
+try it out item I want to get the parks will say here in Ohio execute it, we're gonna get an error because it doesn't have my key but there is
+
+the GET requests for you to make.
+
+So put
+
+that new request
+
+and I copied and pasted the wrong part.
+
+No I didn't.
+
+Okay, and then there's a portion of it. That is
+
+an API key to add on. So here's my API key. And I sent out and river a suggestion to go get your own API key, especially if you want to follow along, I just deleted part of it. B nine, it is free. It takes like, it takes less than a minute you just put in your name, and email address, they email you the key actually show it to you immediately.
+
+And then they'll do the get.
+
+And what we get back is a list of all the parks listed for each state. And we can get it more than that too. There's a lot more but I thought since we have the state selector, we can have the user select state, and then we get a list of parks for the state and then we'll have them select these parks tied to our databases and itinerary for parks they want to visit or since we're Already through day one, we might make it simpler, maybe just a listing of parks or some or maybe notes about them or something. So we have something to store internally. But, and then we can change the state code here just to the two digit code has to be put to California. And because we
+
+will get a list of
+
+to it, you see it, it's not mean, it's not that it's, it's a little slow. Depending on the size, and depending on quite actually it's a lot faster at night. So I imagine there's a lot more users during the day. But now we have the parks from California. So I thought we could check the state code, get a list of parks and have the user do something with this parks. Maybe simplifying it not to a temporary since I doubt we're gonna get that done in three hours. for four hours tomorrow, but
+
+you know unless you want to take Kevin's suggestion.
+
+So any questions on anything we looked at today?
+
+I think we touched on a little bit of everything so we'll get to more tomorrow.
+
+All right, so
+
+for the rest of today
+
+the
+
+so it four o'clock today one of these side project part two, or really, I should say in shows off a side project since you asked for this to keep her accountable to build one. And then for the rest of you anyone else who would like to show off yours as well and talk about yours or show updates to what you've done or any just anything about your projects. That Phil, you can do you know, you can do So as well and then if you just want to watch too and see what other what everyone's working on. So just be discussion about people's side projects. They'll be at four o'clock today here in the classroom.
+
+Alright, so any other questions or All right.
+
+Then have a great afternoon and good luck on those two assignments. I'll see you tomorrow or if at four o'clock
+
+Do you guys see up
+
+Transcribed by https://otter.ai

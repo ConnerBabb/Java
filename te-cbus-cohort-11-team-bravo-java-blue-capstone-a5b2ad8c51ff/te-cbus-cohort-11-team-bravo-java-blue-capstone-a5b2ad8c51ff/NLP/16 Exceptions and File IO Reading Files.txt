@@ -1,0 +1,1123 @@
+Zoom
+https://techelevator.zoom.us/rec/share/vZZ8HrOhrzlIbbfE02eGeoQtG431T6a80SFL_vZcnkjV2YBJtpQsltA7ZW71iYvd?startTime=1591104682000
+https://drive.google.com/file/d/1TsXp8B9x2lC8GVWQ50e9XIwnqzxkcoCH/view?usp=sharing
+https://docs.google.com/presentation/d/1PTbKi5KPLF6yz3WvxAovk-Id2GrxRFufnXxSf8MkZsA/edit?usp=sharing
+So today,
+
+we're going to step away from testing again. And we're going to focus, though it says file IO, reading files, we're gonna do that at the end. But we're gonna focus on two things. One that's needed for the other. And that's what we're going to first focus on this idea called exception handling. So exception handling is a way of handling errors that are thrown during runtime. So we have the compile time errors that we see now that we've can work with just inside of dealing with them. in Eclipse, we get a warning and we can solve them. But we have the of the runtime errors that are occurring that occur like null pointer exception, ones that generate red text and crash your applications. So we're going to learn about how to deal with those and learn also Little bit how they work. So we're going to start walking through that. And then we're going to fill in kind of the last piece that we have for an application, at least for the core language. And that's that so far we can interact with the user. We can do most base actions, but we can't persist anything. We can't save any values in a way that it's permanent. So everything in our application runs after it's done running. Whatever we, we had whatever we collected, whatever we've done is gone. Right? We're back to kind of the starting point. So we're going to then look at the beginning of file, io, fax, file, input and output. That's going to allow us to start keeping data after between executions or application and being able to start work with files on the on the system. So let's talk about exceptions because in order to do Mio, we have to have exceptions. We have to know how they work and how to use them because they're going to become more important to us. So
+
+our objectives are those two things today.
+
+And let's talk about errors. So we know there's two types of errors. We've seen them, we ran into them. But let's define them a little more. So errors and Java kind of fall into two categories. One are the compile time the build time errors, those are the ones that Java c creates when we have a syntax syntax error in the code, or it determines that there's a problem it can see coming. Something that we've used incorrectly that it knows it can kind of predict what's happening. It says this code is not gonna go execute and we get those we get, those are the ones we get warnings For an eclipse, our code won't build, you get the red X on them. Eclipse tries to help you out and give you suggestions or other ideas do the same. So you can't even run the program with a compile time error. So because of that they're fairly easy to deal with, that the way we handle them is just to fix the error. Don't try to figure out what's wrong. And we get kind of this immediate feedback that we did fix it because now you know, the red X is gone. And we can compile. The other type of error is a runtime error at runtime error is one that occurs while the applications running. So this is when the code syntactically right, but the values that are in the code, something that's happening in memory rights running is not correct. So these are usually caused by either being able to ask the program to access something, that it's inaccessible, so part of memory we can't get to or we're before asking to do Something that is not capable of doing. So example of an accessible would be if we ask it to, you know, get index five an array and there's only four, the last index is four, we get an array index out of bounds exception. So these happen at runtime. They're not predictable by the compiler, because there's something that's happening in the actual values of the data. Another common one is the doll pointer exception that I'm sure everybody's getting quite familiar with working with Java. So these runtime exceptions result or these runtime errors result in these things called exceptions. And an exception is an event that just means an occurrence, something that happens we'll look at events in a lot more detail in module four. But for today, what to say it's something that happens rather than something that we're asking to occur. It's happening outside of the regular workflow. And it generates this object called an exception object and It takes us action where it starts passing it through all the methods that call it. And if we don't do something about it, if we just ignore it, eventually, it will get to the JVM. So get out of our application. And the JVM will look at it and say, I don't know what this means. I don't know how to what to do with this. So it'll end our application, which causes the program to crash, and we get a red text that we see an eclipse that says, you know, exception, like null pointer exception has what's called the stack trace that we see with all the information about what just happened.
+
+So
+
+we have to, there's a way we can handle and work with those exceptions. So so we don't, our application doesn't end so we don't just crash the program for the user. So we're going to do that we need to understand some new syntax and also a little more about exceptions themselves.
+
+So, the handle exceptions,
+
+we're going to work with this thing called a try catch. And a try catch is just syntax that we can put around code. And what we'll do, we'll identify code that is exceptionally risky. So where we think there could be an exception at one of these things occurring, and we'll put it inside a block with this try statement. And if there is an exception, we can add what's called a catch statement to handle the exception. And that means if the exception occurs, it's kind of like an if statement where the If true, it goes into the block of code in this case, if the, for this block of code this try catch we're looking at here is a catch for null pointer exception if one of these lines of code has an all pointer exception, like the second one would Then the code in this block will run, allowing us to do something about the exception. And then after it runs, our code will continue as normal. So rather than stopping the execution of the program, we can do something, we can either just warn the user or make changes to the way things are working. And handle it in some way. So that it's not just a program ending with red text on the screen or a bunch of text from the stack trace on the screen for the user.
+
+So let's look at actually
+
+go to the lecture code and open this up to look at a few of these. So the code of MIT is exceptions lecture and the lecture code today.
+
+I want to start there.
+
+I just want to start before we go further. Further to the trycatch, just looking at an exception. So I'm going to actually do is what an uncommon I'm going to comment out this try catch block.
+
+I'm going to put
+
+put a breakpoint on line 19 and run this debug.
+
+Alright, so as we stepped into code, we have a city's array with 012 indexes. So three items in the last index is two.
+
+On
+
+this next line, when this line executes, it's going to try to access an index three which is going to cause an index out of bounds exception
+
+Use zoom, crash to the execution of the program ends at this point, it doesn't go any farther. And we get this exception down here. And the always called a stack trace down here in the console. If the user was running this in a command line, or even in some other type of interface, they would, they would see that at this point, because it's unhandled. That means that nothing's doing something with it. And it gives us some information about it. So this when this that error occurred on line 22, Java's created this exception object. And since we didn't do anything with it, it passes to the JVM, which ended the program. And then inside of it, there's this thing called a stack trace, and a stack traces. This right here is
+
+a stack trace is going to show us
+
+what's running currently what actually happened when the exception occurred, and then any details about it. So this one's rather small. But if we look at it, it tells us some a couple pieces of information, it tells us there is an exception. The name of the exception since it is an object, every exception is an object, and each one represents something different. So this says there is an exception in the type of his Java Lang array index out of bounds exception. So this details about that can tell us what was the cause or what may have been the cause. If the exception was used correctly, each one has a purpose that it's supposed to be used in to identify different behaviors and problems. So it tells us there's an array index out of bounds, and then this particular exception gives some details. So it's showing that we're, the value we tried to use was three, not all of them will have extra details, but this one does. And then it tells us what was running what could was running. So it says there was the first thing running was called the tech elevator exceptions exceptions lecture main. So exceptions lecture, the main method. And it even goes so far to say exceptions lecture, Java line 22. So it tells us the error came from this line. So it tells us things down to the line of code that it occurred. Now, the stack, the stack traces can get quite large, this is a really small because there's only one file running. But they always have some indication of where the exception occurred, when that's exactly what is trace of everything happening when this error occurred, and part of that is going to be our code at some point, giving us details about the method we're in and usually the line number of the code we were on. So
+
+if we wanted to handle This exception,
+
+I'm going to return the common code.
+
+So now we have a try.
+
+And there's a block with the try. And by saying try, we're saying we're going to try this code and we consider it risky. We consider it there's a possible problem here. So
+
+if
+
+there is an exception, in this block of code, then it's going to go to a series of statements. There's only one here we'll look at, there can be more called catches and catches identify the different exceptions. And we'll speak about exceptions. The terminology used that if an error happens here, that is called throwing an exception Walker. So we'll say that the language will throw an exception. We'll also look at How we can throw one ourselves. So that just means to create one of these objects and start the process of going through each of the methods that are called it. In creating that stack, we looked at that stack trace we looked at. And eventually, if we don't do something with it, crashing the program. And then so to create one is to throw an exception, and then to handle one is to catch an exception. So when we catch an exception, we're saying we don't want this to go any farther, we want to do something with it. So this slider code is saying, if there is an array, index out of bounds exception in the block this is attached to so this block of code didn't run this block of code, which is gonna allow us to do something with the exception or make some choices. And then after that, it'll continue.
+
+So running the same thing in debug Again,
+
+we'll see it starts here.
+
+Guess which one at this point is going to throw the exception, because three doesn't exist in the index. So we notice when this happens, it's going to skip this line of code and go to the catch. That's because normally it would have ended the execution of the program here. It does. So this line of code line 23 never runs because of the error on line 30 On three, so it threw an exception. The exception type is a re index out of bounds, and that's what we're watching for in our catch is array index out of bounds. So you can see now we're in this block of code
+
+that is associated with the catch. And if we look at
+
+this object, ie the array index out of bounds exception object, it is just an object It has information in it. Some of the detailed messages, the three that we see in the message, that list of what was going is in is captured in this value, stack trace. And there's a bunch of other information in here. Most of it we don't care about. At this point most of it, we just, but there is a bunch of information about what was happening on the system to help troubleshoot it, or in the
+
+code to help troubleshoot it. So if we step now,
+
+see, it runs that print line. So this says something went wrong, and then it goes to line 29. So unlike last time, without the try, catch, it didn't stop the execution of the program. things kept going. So catching an exception allows us to handle it in a more graceful way. It allows us to tell the user Hey, there was a problem or tell the user that, no, you gave us the wrong file name, let's try again, or other changes that may, we may be able to get things back into a good a good place in our code. Since exceptions are things that occur, that are incorrect in memory or incorrect or problems in the values of the objects that we're working with the variables we're working with or other things we're working with, it gives us a chance to impossibly correct it.
+
+And then keep running. So
+
+at this point is going to continue running. But before we do that, let's talk a little more about exceptions. We'll walk down through some of these other ones. So the first question that always comes up is if we need a try, block, why? Why do we have to have a targeted, why not just have everything in a try block And there's actually ways to do that. But we don't necessarily want to have everything in a try block. Because we don't want to catch all exceptions, we want to catch the ones that we can handle things we can do something with. And also, not every line of code is at risk. So this system out print this, printing the name of the cities, has no risk to it. So we wouldn't want it to try block because try blocks actually slow down execution slightly. So they're a little less performant. So we target them, we target them to where there may be problems that we're gonna look at today that there's actually two types of these exceptions, and some of them are going to force us to target them and say we what we need to do something and some of them will allow us to say if this happened, we don't know what to do. And so they'll just go and crash the program. No pointer exception usually goes into that category. Usually if there's a null pointer exceptions, there's something we probably can't fix in our, with the program running, we probably have to restart it anyways. So we'll target where we consider risky code. So code that we know could be a problem or code that we don't know if there's a greater risk, but that we know how to fix it. We know how to handle it without stopping everything. So So before we dive in a little deeper, what questions do you have, at this point?
+
+Are try blocks exclusively for exceptions. No.
+
+Until Java eight they were, but we're going to look at it. We're going to look at a second use of them today. Which is actually it's not just a try block by itself. It's called try with resource. It's slightly to do with exceptions still, but it will it looks, their ability has been expanded to do something a little more. Okay? So, um, but when they use like this just with a word, try standalone, they're always about exceptions. The other one has different syntax.
+
+So other questions before we?
+
+How often does this happen in like a,
+
+like a work scenario,
+
+you'll spend a lot of time and it works like you're on the job. You mean, working on like production code, or production code, meaning code that's going to go to a client or customer. You'll spend a lot of time working with exceptions. having to deal with the unknown situations that can come up is something that Just part of part of every application. So as we expand and get right now we have the user give example from one place, right? They give his input from the console. But as we start expanding that into input, outside input coming from multiple sources, like next module we get and start involving databases. And the one after that when we start involving API's or internet, connecting to other computers across the internet to get information, we get more and more chances for things that we can't control. The reason we're talking about today is we're going to add files, you know, just on the user's computer, but we can't control things about those files. So since there's an applications that are working with a user, they're not just running an algorithm, like most of the stuff we looked at Now, so far, I mean, there's all kinds of things that can go wrong and out of our control. And when those things do go wrong. Exceptions are how the last which handles them. So, session handling is how we handle those unknowns, and how we watch for them. So every time you get a message in our application that says something like, you put the wrong file name and try it, they ask you to try it again. Or you weren't able to connect, and the browser tells you, you can't connect to this website let you try again. Those are all the developer in the in the code has chosen to handle the exception that way. Exceptions aren't unique to Java, they're this type of behaviors, pretty much across all languages. Though, they're not always called exceptions. There aren't many languages, but otherwise just call them errors but same idea.
+
+So so others before we
+
+get so let's look at This, let's expand this syntax a little more. So, with exceptions, there's three pieces, three blocks of code we can establish if one of them we can establish more than one.
+
+So there's a try. The try is,
+
+it's almost like a question of, or identifier of this code is risky. This code has a potential problem that we can deal with if it happens.
+
+So
+
+we are going our regular code, just the code we're writing is going to end up in the try. And then there could be one too many catch blocks, the catch blocks. In one try, there could be code that could create multiple different types of exceptions. So we could have code here, that some lines of the code could create an article pointer exception. Other lines of code might be created file not found exception, like we'll see later today. And there might be other unknowns where we don't know when other errors could occur. But we don't want any exception that occurs in this portion of the code to crash the application. So we put a catch for each of the exceptions we want to handle. And we can chain them. So we can put multiple catches. So this one, in this case, if there was a code here, that caused a null pointer exception when it ran, it would be handled in this catch this first catch. If the same code caused a file not found exception. It would go to this block of code. And then exceptions are all exceptions inherit from our subclasses of a parent class called exception. So Java Lang exception and So that means that we can take advantage of polymorphism. To say, you know, what, if there's an exception that doesn't match, no pointer exception does not not found not found exception. If there's anything else, then use this final block of code that is kind of a catch all using just the exception parents superclass. So that means we have multiple statements, we can handle different scenarios, depending on what problem occurred. And they're ordered, they have to be ordered from the most specific to the least specific. So because it's like a, if else, it's the most first one that's found that matches the condition is going to be true is going to be the one it uses. So if we moved exception to the first line, it would catch all of them because they are type exception. If so, we have to organize them by their hierarchy. Now, no pointer exception file not found exception equals their siblings in the hierarchy. They're both subclasses of exception and not of each other. So those, their order doesn't matter as much doesn't really matter, because it's not possible with one exception is both. So this comes back to the stuff we looked at last week with polymorphism. Understanding that what we use here can be the actual class we're trying to identify or a superclass of it, if it matches that type. If it can be an instance of that type, then that will catch that exception, which is gonna allow us to make kind of grouped exceptions for different types of problems. And then, the last piece is, there is an optional block on finally, finally can be put onto a try. And what it does is it says, no matter what happens, there's two passed down through this code. This code could run
+
+without problem, so
+
+it could run through here and everything goes well. So then it's going to continue. But finally says that weather runs here, and then everything works fine. Run the finally and then continue.
+
+Or
+
+if there is an exception, let's say there's a file not found exception here, so goes and runs the file not found exception, then it's going to go to the finally. So code and then it's going to continue. So coding a finally is code that's going to happen with the we need to happen no matter what. So there's sometimes code. So it's optional, because we won't always have it, but there's sometimes code that we have to have occur. So whether we have an exception or not, we need to assure that that code runs. So finally allows us to do that allows us to say, either way,
+
+run this code. So if you remember,
+
+back here, this line of code was Kept, because of the exception on this line. So finally, what allowed us to say maybe we needed to say, waste print on Ohio that would allow that to print regardless of whether there was an exception here, or it was successful.
+
+So those are the parts of
+
+the try catching the exception and kind of how it works. So what questions do you have about
+
+that?
+
+Yeah, yeah. Okay.
+
+You actually remember, like the specific, specific errors, or do you just like copy and paste them until it works? No. documentation for code use will tell you what specific exceptions this code can throw
+
+for at least the core libraries, and we're gonna look at another way. So often we won't put things in trycatch. It's like we're not going to put tread catches everywhere about null pointer exceptions. Unless there's something we know is risky, like we're trying to build, instantiate the object from something the user gave us, then we might. But if it's just our regular day to day usage of the language where we're standing are objects based on our own internal data, we're not going to worry about no pointer exceptions. And same way with array index out of bounds exceptions. Instead of catching them we'll try to write our code so they never occur. But there's other exceptions that are more risky in the language actually will force us and tell us actually, through compile time errors that we have to have to try to catch, which is what we're going to run into with files. And so knowing you have to which exceptions to catch is not really is it's not a matter of memorizing a Just stuff it's a matter of often reading looking at seeing the documentation or the language itself guiding you to do something about this. Okay, thank you.
+
+Other questions?
+
+Yes, I had a question. Or maybe I heard wrong, but did you say that it's supposed to be organized in most specific to lease specific? Yes. Okay, so I think it's written wrong unless I'm understanding that it says be organized on least to most specific.
+
+Oh, it is. Thank you. All right, cool.
+
+Let's make a show as
+
+most
+
+and organized.
+
+It's not a great sense anyways, Organized from specific to General.
+
+Maybe better.
+
+Yes. So.
+
+So these exceptions
+
+there, they themselves are broken into two types of exception. there's what's called checked exceptions. So checked exceptions inherit from their, their superclass is java. lang exception. So anything that extends Java Lang exception directly. If you use a method that can throw a checked exception, then it'll be identified in the method signature and we're going to look at what that looks like. And you Also will require you to either put a try catch around the use of that method to catch that exception. Or it will require you for your method to throw the exception. And we'll look at what that means in a moment. So what that means is a checked exception is one we have to deal with in some way, we have to make a choice about we'll get into compile time error, actually, if we don't. So checked exception is something we'll see today with files found not found, when we try to open a file, it's possible that the user gave us the wrong file path. Or that either even they gave us the right one and something happened in the few milliseconds between the time they gave it to us the time we try to use it. Things happen very quickly on a computer. So it's possible there's a problem that quickly so we have to deal with it. If we were to open a file, we'll find out we have to have some handling of what happens if a file is not there. We tried to use it. So check the exception is that We have, it's an exception, it's going to force us to do something with it. Because it's very likely to occur. Or it's something that's completely outside of external for to our control. So there's a second type of exception that we've seen so far. So like array index out of bounds, null pointer exception. They're called runtime exceptions. And they're, they're super classes Java like runtime, which itself is a subclass of exception. So all exceptions are subclasses of exception. But runtime exceptions is a tree of a hierarchy that don't have to be caught. If those are thrown from in the code phase occur, then we can choose to catch them. But if we don't, it's okay, we can let the language just deal with it itself, which is what we've been doing all along with things like parse errors and the array index out of bounds exceptions and no pointer exceptions. Those are all runtime exceptions. They can occur when it runs and just
+
+the language to deal with it
+
+looks. So for this one, for this code, we saw the array index out of bounds exception.
+
+And for this one
+
+So, actually, before we do this, let's look at the walk through the workflow, which was clear back up here.
+
+And it will come back because this is gonna introduce this idea of the call stack, the look at the stack trace, and I want to make sure the workflows kind of solidified before we do that.
+
+It's going to come back up here a couple slides and there was a link to
+
+website we can look at the flow of exceptions with with multiple catches. So this particular exception, this particular, try has two lines of code, one that does string to uppercase. So anytime we have a dot operator we're using anytime we're calling a method on an object, there's a potential for a null pointer exception. Because if this object is no, that's going to cause it. In fact, that's the only cause of an all point exception. So if you every time you see a null pointer exception, and being someplace in your code, there's something being used against an object that is null. Then the second one, there's a possible number format exception from the parse. And both of these are runtime exceptions. So both these don't have to be caught. But this particular piece of code has a catch for number format exception and a catch for just general exception.
+
+So let's start with
+
+The value of that was entered in get stored in the string is ABC, then that's going to be not cause a problem. But here, it's going to cause a number format exception, because when we try to form my ABC from person to an integer, that's the exception is going to be thrown. So it's going to go to this block this catch because it through a number format exception, which means it's going to run the code in that block, which here we'll look at what that does in a moment. But that prints out that information that we see the stack trace, that red text that says exception has all the lines of code information about what happened. And then it continues, it's done. So it doesn't do anything with this catch. Because that error, that exception wasn't thrown. We start it and now change it to a no exception, which means that it's Going to occur in the first line. So here, the try indicates we want to look for an exception here. The value of string is no. So that's going to cause to uppercase to call No, no pointer exception. Here it comes to the catch block, and it skips this line of code. So the rest of the code in the try block gets skipped. That will not return for it, it's just going to be skipped. So that means that we're going to have to be careful about where we start and end our try blocks. Because we want to end our try block at the for code we don't want to occur. We don't want this line of code to occur if this line failed, because it builds on that line. But if we had 10 lines, we may want those to keep running. So we would keep them out of the try block. And it's going to skip number format exception. It's not going to go here because it through a null pointer exception. It is going to catch here because the superclass Exceptions is going to catch all exceptions, runtime and checked exceptions because it's the superclass of all of them. And then, so that code will run, and then it's going to continue. So the code continues. Now, if we look at a,
+
+the same flow if there is no exception,
+
+so the first line is going to run, because it's not at all, the second line is going to run because 10 can be converted to an address that's going to be successful. And then we're done. So the catch blocks never are never taken into effect. So it's similar to when we look at like if statements. If there is no exception, then the code after the catch blocks just continues. If there is an exception, then it goes to the appropriate catch block, and then continues. If there's not an appropriate catch block, then it treats it like we don't have to catch at all. So if we didn't have This general catch here, we had a null pointer exception instead of a number format exception that it would crash the program just like normal.
+
+So does the flow
+
+of exceptions. I know it's a different flow than we've seen, because it's always been based on our boy and conditions before. And this time, we're introducing the idea of different workflow based on problems.
+
+So what questions you have about that? Does that making sense?
+
+So Brian, in this case, rather than throwing a no pointer exception, based on the try catch block here, it will just still print, even though couldn't call to uppercase It was so just print what the rest of the input was the way the code is written. When you have no very no pointer exception, it's going to go
+
+again. So it's going to Which is going to happen here, the null pointer exception because string is null, it's not going to do anything with this line, that line will fail. It's going to skip the next line as well. And it's going to go down here to the general exception, because that's catch using polymorphism to catch all exceptions, and all pointer exceptions can get caught in that. And then this line is going to print that code we see. Okay, yeah, the stopwatch stop Meisler, the stack trace that we see. That's what that does. It's using on the exception object. There's a method that does that. And then it's going to continue. So that answer your question or Yeah, so in this case, the user would just get the stack trace. We haven't done anything to customize what they see. We're just giving the generic stack trace. Exactly. Yes. Yeah. So this time, in this case, the user the improved user experience, we they still see the stack trace, but the program keeps running after that. So they see there's a problem. They see a bunch of stuff they don't understand, but they keep going.
+
+So probably not a great
+
+solution. But
+
+right, and then I saw in the readme mentioned that stack trace can sometimes be a security concern. It can be. Sorry, I'm sorry. Yeah. So I'm assuming at some point we'll talk through when that's the case. And how will prevent that from displaying or is that? No, we won't go much in detail on that. And the security risks for stack trace, I'm outside of just it. But that's pretty much it can be.
+
+So the concern the
+
+the security concern comes from the data that could be in the stack trace about if you're working with something that
+
+Well, there's two things one, it can give
+
+information about how the applications working or the internet work is application with sometimes you can give away
+
+details that can help an attacker
+
+to sometimes it can contain actual information. For instance, the some of the places I've worked where I've been dealing with financial information, it'd be really careful that the stack trace didn't end up spitting out, you know, everyone's account numbers. Because these get logged out into a file permanently that many people could see. So they take a lot of care around that if when we catching all exceptions, and we would clean them, make sure there was nothing there. So those are the two issues. And I'm actually gonna walk back what I said before next module, we will look at a security risk the stack trace. I didn't think of it in that aspect. But we'll look at how a stack trace can cause security problems for the database. And how to hit Well, not how to clean it up, but how to handle it by not showing the stack trace and why we shouldn't and how we could use it.
+
+So So other questions
+
+Alright. So
+
+now let's look at
+
+what's going to happen here next. So
+
+So to understand a stack trace, we have to understand what's called the call stack. We see it over here, everyone's seen the debug window and it has all this information that's occurring here. It that's what that's showing you in debug with what's called a call stack. So as we call methods, they call an order. And they stack up just a stack the data type stack we've looked at. And as we they resolve as they return. So methods return whether they have a return statement or not, they always return even avoid method returns, returns control back to the old method called it So starting at the main method, if each method we call chains, and then as they return, they returned back, and then they chain back out again, and this thing called this thing called the call stack. And we don't need to know a lot of details about or not too much details about the call stack, except that it exists and kind of what it is here.
+
+And but understanding the basics of what it is can help us read exceptions. so here
+
+if we
+
+now we're going to call a second method, do something dangerous
+
+if we watch over here,
+
+oh, because it, it's going already because of the exception.
+
+But what
+
+that doesn't really let me
+
+come at this again. actually see it happening.
+
+My breakpoint I'm here.
+
+So as we see here
+
+now I'm going to step into it we can see when I stepped into and I'm actually in the method Now there's two issues over here. If you look at what the it actually says it says exception main law or exceptions lectured means the main method we started. And now it says says except unless you do something dangerous, which is the name of the method where now so the call stacks of stack the last thing it goes to the top and it's showing us that do something dangerous was called from the main method. And that's what we're actually running out right now. So as we get out here, there's going to be an exception thrown out of reach five. So I'm gonna hit resume because we don't need to skip through that. So it's going to throw an exception and What it does, though, we can see that the stack trace is that call stack that happen with the exception occurred. So it's showing us the same thing. It's showing us that we started the main method, which is where application started. And it called this method do something dangerous, and then do something dangerous. There was an array index out of bounds exception that tried to use five again, that's coming because random cut downs happens to keep the index. And that has happened on in our file exceptions lecture online 137. And actually can click here and it'll take me right to line 137. So it's telling me it's happened here, does it? So it tells me that array index out of bounds happened five on line 137. So looking at this, I can say, why would a five cause a problem? An exception here? And then this is where we could explore by just searching for array index out of bounds and see what it means if we searched through that, it, we would learn that it is what it sounds like there's an index that's outside of the scope of the array that's being used. So something below zero or greater than the highest index. So using that we can say, Okay, we have a five here, that means there must be less than five items, or less than five indexes in the array. And we can see here that it would be the case right, there's a lot the highest ones for so allowing us to see how that's being handled. So the call stack gets put into the stacking option. So it means the deeper we call them the methods the more methods we have calling methods, the larger this gets, and since we're going to start exploring Java is all about tiny classes, or say tiny but targeted classes that each do one thing with methods inside of them each do one thing all calling each other to build up kind of a greater amount of From the small pieces, they get quite large, but that's how we can read them to to be useful to us, and the important takeaway, because when we get into larger and larger things, we're going to see a bunch of code that we don't understand, cuz it's not our code, we know we cough to the string method, and we cause an exception there, we're going to see a bunch of stuff that the string class is doing that someplace in the call stack is going to be your method. And it may be at the top, but it may be in the middle, someplace in there. That's where it's gonna be, it's gonna point to you the exact line of code, hopefully, sometimes it's off, but not usually, that the exception occurred. Actually, I will rephrase, I think size of projects that we're working on all cohort, you'll never see that be off. It'll be it'll be correct. For your line of code. We have to get quite larger, a lot of other problems going on for that to occur. All right. So going back Up here. Okay. So the point is that if we notice that exception are at the point but the secondary point is now that when exception occurs, it throws through the call stack. So when this exception occurred
+
+and we go here and we step into so now we're in the call stack, where in this portion do something dangerous and the exception is going to occur here. If I will step this time through all five CCIE for three or this time it should occur. So now the exception is going to occur and when it does If I have a catch, so the exception, throw down the other method to do something dangerous method, nothing caught it. So it, threw it up the call stack. So goes to the next item, the next method call and the call stack basically says, I don't know what to do with this, you handle it. So our main method now has been told you handle it. And it does have a catch the handles array index out of bounds. So it can catch it now and do something with it. So when exceptions are thrown, as they're thrown down the call stack, they're thrown through each method, the call to an order up that stock. And any of them can catch it. It doesn't have to be the the class with a method where the error actually occurred for it to be handled, handled. It can be handled at any point along that chain. And now continue if we don't heal it, the what's happened is, it's thrown Do the call stack into it gets out to the JVM, which then finally handles it by terminating the program. Alright, so questions before we take a break?
+
+Brian, I guess, how do you tell the difference between code that you should fix and code that you should apply a try catch to. So
+
+our first
+
+first option if we can fix it, we should always fix it. Our goal would be never to have exceptions thrown. Not only possible, but that should be our goal. But the big difference is if there's going to be lots of things with those unknowns. Exceptions are generally going to come from those unknowns. So we're saying our code works fine, as long as things go well, but there's all these unknowns like the user, giving a great example that we've already ran into is When we ask the user to give input and we're trying to parse into an integer, and we say, you know, tell us another number tell us a whole number and they type their name in. That's an unknown. We can't control that. So in that case, we might want to handle with a try, catch. Okay?
+
+So one of the questions before.
+
+Alright, so then let's take a break, we'll come back at 1032 and continue.
+
+Okay, so what questions come up for you? during the break?
+
+I was wondering if you could, would you ever like purposefully throw an exception to like exit a loop that you're stuck in or something something like that?
+
+Yes, we're gonna look at throwing exceptions, we can throw around and sometimes we will sometimes we're the ones that will be determining something's wrong. In our own code, we can throw it. Well what to be careful not to use it when an if statement or return statement method could do the same work. But there are lots of legitimate cases where we'll throw exceptions.
+
+Okay, cool. Thank you.
+
+And then I see there's a message from the chat could just be like how some phones when they receive a text characters if they can't read. They just crashed the message up. And yes, this would be that would be an example unhandled exception. A handled exception via a case of the same thing saying unknown message received or unknown, can't read text or you'll see it in a lot of text editors or even some phone apps were they represented by another character like a square block, showing They can't read the character. So.
+
+So Other questions? Okay.
+
+All right. So let's go ahead and take a look continue taking a look at this.
+
+So here
+
+we've already talked about this that could take advantage of polymorphism to handle an exception, in this case, this block of code, or what exceptions handled or thrown will handle the exception. So, if we continue through this, and now it's going to ask us for next line. If we give it something like the letter A, then we get a number format exception. But it's handled here. So goes to the catch because the more general superclass exception are being handled. So that's going to catch actually any exception that occurs in this block of code. If we look at the exception object itself over here, we can see that just like when we look at classes during polymorphism, it still maintains its actual type. So we can still see as a number format exception, still has all the details of the number format exception. So we can handle them by their super classes, if it's anything that matches and is a relationship with this exception type will be caught here. That means we can create basically hierarchies of exceptions if we need to, and handle different types differently, depending on what superclass they're part of or which part of the hierarchy they're part of.
+
+Since we continue
+
+So here example throwing our own exceptions.
+
+And two things would go down to calculate room charge. So I'm going to step into this method so we can see it. And where we're at, we can see here, if we want to throw an exception, if we want to create our own, we can do it by the keyword throw. And then new because it's an object where Stan shading, all exceptions or objects. So then the exception type that we're instantiating we say throw new illegal argument exception and then pass whatever values it needs. Mostly, it needs to instantiate that exception to initialize it. Most exceptions take a message that we can pass it to
+
+provide
+
+some detail to the user. So in this case, this is going to throw a new illegal argument exception If we continue, we can see it throws back up here. And this catches an illegal argument exception. And printed out so we can throw using throw keyword. So it's throw new exception, or if we can throw an existing exception by throw in that exception. And we can also give it custom messaging, which is why things like the array index out of bounds exception has the index that was used the author of that decided to put that in the message customly.
+
+So the only thing we can do
+
+is
+
+actually stop this here. And let's look at
+
+how we could write our own exceptions. So we don't have to use just the ones built in we can also create a road because they are just something in the language the artists object. So we can create our own objects where we extend exception or extend runtime exception and give it some
+
+the information we want it to hold.
+
+So I'm going to go back to the project. And there's an overdraft exception here, which is a custom exception. And we open that up. And for a custom exception, not something we'll do
+
+something do occasionally, but not a lot.
+
+It extends exception. If we want it to be a runtime exception, rather than a checked assumption, we would extend runtime exception. And then it provides a constructor that takes a message in the overdraft amount and calls the exception, the superclass constructor which takes the message and the message is just what's going to print out it's not the stack traces the part at the top that says something like array index out of bounds or and then also, it takes A custom amount. So exceptions are just objects, we can put anything we want into them. So we can put getters and setters on them and give them member variables. So that we can pull data and pass it through to different parts of the system, or application. So in this case, it's going to hold our overdraft amount. They get to the end has a getter for it so we can get it inside through the constructor. So we can build our own exceptions.
+
+And that's an exception, we said those are
+
+checked, meaning that they have to be dealt with. So I'm going to remove the try catch here for where this withdraw method. We look down at it quickly. It throws a new overdraft exception one of the checked exception.
+
+So I get back to where it's at if I remove the trycatch temporarily
+
+Let's see I get an error, a runtime error, or sorry, a compile time error that says unhandled exception type overdraft exception. It gives me the ability to add a throws declaration, which we'll look at in a moment, or surround it with a try catch. So there's a checked exception. This is what I was referring to, with the checked exceptions, we're forced to handle them. So this is saying, you have to do something about this, there's a possibility of an overdraft exception here. You have to handle it. Or so you have to handle it explicitly. Or you can pass it on, you can use what's called a throws declaration to pass it on to whoever use your method.
+
+So I'm gonna put this back.
+
+Brian, could you go over again, how the withdrawal method knows that? It's an overdraft exception. It means
+
+we're going to right now. That's a great question. Okay. So
+
+If you get let's go back and look now that we see that we're forced to use the exception, back down to the withdrawal method. So withdrawal method throw, creates the exception by here by throw new overdraft exception. And it passes it the value, the current value, it passes at the message. But when we throw a checked exception out of our method, we have to identify that this method has a checked exception, one that has to be caught and dealt with or used in some way or dealt with in some way. So when the method signature here double withdraw, there's an new part at the end throws. So plural, this is the singular throw to throw the exception. This is identifying this nut that does throw so throws and then the name of the exception it can throw and it can be more than one it's a comma delimited list of exceptions So if I want to say this throws overdraft exception, and if it also throws null pointer exception, which is not checked, but we can turn it into one by doing less or not turned into one that make it be handled.
+
+Now it would throw both.
+
+So, the throws Declaration on the method signature, tells it tells the calling code that it must handle that particular exception that this code is possibly going to throw it. And if it does, you need to catch it. And the calling method has the choice of either catching it like our code does, or they could add the throws declaration to their method and pass it on. So they have the option of doing either of those two things, either passing on the behavior are the exception to the next thing that called it or
+
+catching Getting a couch and doing something with it dealing with it.
+
+And those are the two choices. Remember, when we saw the kind of the help from Eclipse, it gave us the option of adding a throws declaration or adding a try catch. Those are the options we have. We have to handle either choose not to handle it or choose to handle it or do something with it with a catch.
+
+So did I answer the question that? Yeah,
+
+yeah, that was exactly what I was looking at here. Thank you.
+
+Okay. All right. So um,
+
+okay, so we've looked at stock prices already so, Alright, so we're going to look at
+
+working with this and another.
+
+In another scenario where there's more than one just class involved, but we're quest What questions do you have
+
+so far?
+
+So exceptions are making sense.
+
+At least kind of. So
+
+Alright, so let's look at expanding this out a little bit, and how we might actually use it because it's this gives examples of all the things they do in this one class, but it doesn't really show what it might look like in an application.
+
+So want to look at
+
+they're in here, there's an application
+
+that is a calculator class.
+
+And it has a
+
+few pieces. So it has a interface calculator, where it takes a list of strings and it calculates something in returns. Another list of strings. It has a simple menu class that just gets values from the user to put in the list of strings to calculate. And then what we're going to look at first in this two calculators is a string calculator. And there is a tax calculator.
+
+So let's look at the tax calculator first.
+
+So with it, it gets information. It has this class inside of it. This is the main tax. Here's the one has the main method. It creates this instance of the calculator, Franklin County tax calculator, and they get values from the user. So list of values. And if you look at this, it's going to go through that list of values and just calculate the sales tax rate for items in that list.
+
+So there's a few things that can happen.
+
+There's user input involved here. So that means there's things out of our control. There's nothing in this code right now that is, you know, it's all written the way it should be. But
+
+let's run it here
+
+as Java application.
+
+And we can see if we have, we can make a list of things. So if we put a list of numbers in, and then we select Done, it calculates the tax of those numbers
+
+again, but if we give it
+
+a little array in our list,
+
+and then we select Done, we get an exception.
+
+Exceptions a number format exception for input string a, and we'll stop through this call stack a second. But it gives this is not a great user experiences. If somebody is you. Our tax calculator, this is probably not what they want to see. So we need to handle this better.
+
+And so
+
+I'm gonna put a breakpoint, I'm going to go to the
+
+Franklin County tax calculator. And the exception itself, we look at where it's coming. It says during when this was running from the call stack, from the main method called the calculate method, the calculate method called the parse double method, which it called another parse double method, which is called the read Java format, a string method. These three are internal with Java, they don't really mean much to us. This one is our code. These two are our code. But this is the main method. And this is the one we're now interested in. So if I look on line 16, says on this line, there was a number format exception. And this also tells me some other information that was for the letter A. So of course, that's going to cause a number format exception. That's not a number So I'm going to put my breakpoint. Actually, you don't even need a break point I think we can all imagine, have all seen format exceptions for parsing, or understand why a letter can't be parsed to a number. So now I have a choice. I want to handle this, I don't want this to be something that user sees. I want to give them a better experience. So
+
+I can choose to handle it here.
+
+But I can't do a lot about it here. What I want to do is I want to tell the user there was a problem. But one of the things we have kind of talked about but not probably a lot is that is we've isolate functionality into very specific classes and functions. We should only have one class and any object That has things like system out and they shouldn't be spread out through application, there should be one point that communicates with user. Well, this is not it. This, there's a menu class that did that. So I can't really do anything about it here. What I want to do, what I prefer to do is tell the user, you know, you entered an invalid character, try again. So the thing that called it was the main method of main tax calculator. So where I called it was here, and I can see from that it was called on line 18. So this is where I could actually make a choice where I can actually deal with it because now I have access to the menu class where I could
+
+call the method like,
+
+display user message.
+
+So I'm going to choose to deal with it here. So I know it's a number format exception, it's not checked, which is why I didn't have to Wasn't forced to deal with it before. But I still want to give the user a better experience. So I know this is the line of code that is problematic. So I want to start my try there. But I can't really do anything with this. Unless this line successful Can I mean, if I don't have the list of output, which is going to be skipped, when there's an exception, then I can't display it. So I'm going to include that in the try. And that's a choice. That's, you have to make it by looking at your code and saying, Okay, I know this is the line that caused the exception. Where can I continue? Or where can i Where can I stop the trial? Where do I have to have this line run what other lines have to go with it? So I'm gonna put that on the block, and then I'm going to catch
+
+and it's a number format exception.
+
+I'm going to copy that. And that's a data type declaration. So I'm creating a variable of number format exception, I'm gonna call it E. That could be any variable name.
+
+And now I have to do something with it.
+
+So maybe we'll do a, like don't want to call system out, I'm gonna use my menu. So mobile, just tell them in their user display user message. Let's make it simple for now. So something like invalid character entered.
+
+Yeah, if I run it again now. And now I put my letter A in it, and I'm done. I now get a message back. That is a lot more user friendly, right? My application still stopped, but that's because it was done. I could put it in a while loop or something and make it retry but but the point of this is that now the user has some information to work with. So they know they entered invalid character. So when we catch exceptions, we also want to catch explicit or specific exceptions as possible. We generally want to avoid catching all exceptions. So we generally want to avoid catching exception here, we want to catch number format exception, because that's the one that could occur. And that's because if we catch an exception, we don't mean to. And all we do is say invalid character. And it was a null pointer exception. It's going to be really hard to troubleshoot. We're going to make this difficult to know what was going on. So imagine if this was connecting to something across the internet, like we'll do in Module Three. And the actual exception was that it couldn't connect something it happens all the time. When you can't connect to a website in the background. There's exceptions being thrown in. your browser's hailing it by telling you can't connect. And instead of saying you can't connect, it says It's catching all the exceptions, it says invalid character entered, the user is going to be taking the wrong action, that's going to be frustrating. If they know they can't connect, they'll try again later. But if they think it's invalid character, they're gonna be trying to figure out how to, you know, enter the right character. So, we want to catch specific exceptions like number format exception. And now, if I run this again, there's also the option of two things, we can put enol on the list, or no value in the list. So let's create put a null value in the list.
+
+And done and now we get a
+
+null pointer exception
+
+in our same location, so line 16. So we get a null pointer exception here. So
+
+there's other ways we could handle this
+
+So we could have handled, we handled the other one by going back and saying, you know, it was an invalid character, right. And we could handle it by saying its value equal to No, that would fix the problem. But let's come up with an exception handling instead. So we know this line of code can cause also causing a pointer exception. But I don't want to stop the whole process. If somebody just presses enter. If they explicitly enter the letter A, I want them to tell invalid character, but if they enter, press enter, I want the other things to process. So it's just a different choice. So to do that, to handle that, we could also handle the exception here, if I know what I want to do about it. And this might be the only
+
+route to the rate. Just do the whole route that I don't want any of these things to happen.
+
+And we can catch here and it's gonna be a null pointer exception.
+
+And
+
+maybe I don't want anything to happen here. So, because what I want to happen is for just to continue the loop.
+
+So this is a bit problematic, I probably might be a good idea this to continue
+
+if I don't have to because it's going to continue the loop anyways, right? But we want to be very careful in catching exceptions that we do do something that we don't do this.
+
+This is called bearing exception.
+
+It will not make you popular on a team. Because what happens when you bury exception is that if you catch the exception, and you don't do anything with it, there's no output. Let's look at this running with the exception. Actually, with this back. Let's go back and use the other one.
+
+So let's not have anything display here.
+
+And let's run it with the exception buried. And we put it in the letter A, and we're done. And nothing happened. I didn't get output back. I didn't get told there's invalid character. That's even worse user experience than the exception coming out. So now imagine that if you're trying to troubleshoot another developers work, and things just aren't working, you're just not getting behaviors expect. And it's because they caught an exception someplace down in one of their methods and buried them all. So all along, you'd be getting a simple null pointer exception you could have fixed in 30 seconds. But you spent hours trying to figure it out because they've caught and buried the exception, so bearing exceptions is very dangerous. There are a few times when there's legitimate time, place times when you may need to catch an exception to do nothing. This is actually one. This is a case where we can catch this exception legitimately do nothing about it, because what I want to do is just skip the code. So when we do that, I'm gonna put you leave continue there. So we're explicit. But you want to if you have to catch an exception or do something with it, you want to be very specific, never catch this general exception and bury it. So catch no pointer exception here in this one segment of code. And we continue, then there needs to be a copy. This is a place where code comments are needed. So we'd want to put a comment in something like exception
+
+is caught and continued.
+
+So blank lines are skipped.
+
+why you've chosen to do that. What What benefit is giving that one when someone sees it they can say okay, there's there was a reason they chose to bear this exception if there's another problem that comes out of it.
+
+So now running this
+
+We get, we can put our name on the list, we can put some other values. And now the blank lines just get skipped. So a different behavior depending on the exception, we had one, the null pointer exception we don't want to deal with by just skipping it, the letter A we want to deal with by telling us or they give us a different value.
+
+So um,
+
+so before we look at the next exception in this code that we can generate,
+
+what questions do you have?
+
+Okay, all right. So another thing that could go wrong, this code can generate, I'm going to change it to capital in which this is going to make the whole list no no matter what. So this is just these are hard coded values. They're kind of forced exceptions, but this is stuff that you could be generated from user input anyways. So here, I get a null pointer exception. It's coming from someplace different
+
+So it's coming from line 15.
+
+And not.
+
+So it's coming from the fact that this values array being passed in is no.
+
+So I probably don't want to deal with that here.
+
+So out here, I have another null pointer exception. It's, it's coming from the fact that this list values is no. So again, I could fix this with an if statement. I could say if values is not equal to No, do something, but let's fix it with an exception. or catch. So here, there's really nothing I can do about it. I don't really want to handle it here. Because there's no resolution that I can do in this class. So where are we headed? The exception in the call stack. All about the question for each I place in the stack of where the exceptions gonna flow through. What can I do about it here? How can I handle it? And often the answer is going to be I can't. There's nothing I can do here because I can't communicate with the user, which is what I need to do. So the next item in the stack, how can I handle it here? Well, the same way I had the number format exception, I could handle it here. I could tell the user there's a problem. So let's add a second catch.
+
+To no pointer exception.
+
+So these two no pointer exception number format exception are actually equal. So they're their siblings in the hierarchy. That means they both have the same superclass. So the order here doesn't matter.
+
+And maybe we'll do menu, display user message.
+
+list was empty.
+
+List did not exist,
+
+or something like that.
+
+Now when we run it,
+
+if we make the whole list empty, that would have happened, the user gets a specific message based on that exception. They get both these exceptions are being actually thrown down here in this calculate method that's being called here. But they're being handled farther up the call stack,
+
+based on where it makes sense to deal with them at
+
+all right, so before we move on, if any questions
+
+so still making sense, kind of,
+
+sometimes a hard so I'm,
+
+that's alright.
+
+So let's, let's keep going. Then take a look at something more.
+
+So there's another calculator. There's a site Calculate here we got the tax calculator fixed.
+
+But there's also a string calculator.
+
+The string calculator by us main string calculator. It uses the calculator that also implements calculator some influence or calculator interface. Also, they have a shared interface between the two calculators.
+
+And it
+
+See that's.
+
+That's right. it reverses strengths.
+
+So we put some strings in here. Oh, done. It just reverses the texting string. That's all it does. We can take a whole list of them and then reverse each one in the list.
+
+So
+
+we can enter the same as we did before. are similar before we can enter no idea In the list. So if I put a bow in and I put an empty space in, that's actually going to be no. And I put something else in what I want to happen, I get an exception. Now. Notice it's three levels deep now, and we'll look at how that is working. But what I want to happen is similar to what we had before, I want this to be handled in a way that it
+
+can continue the list.
+
+So let's look at this stack traces, see what it means. So we started the main method in mainstream calculator.
+
+So let's say on line 17. So here,
+
+it called calculate in the string calculator. So I'm going to click here to go there. So then on line 19, it called reverse string and string reversal. Another class. And on line eight in that class, the exception was thrown. So that's the call stack that was going on when the exception was thrown. So our exception is here, line eight. So the exception was a null pointer exception. If I look through this the only thing in there, so Can anyone tell me what might be
+
+the string length? Yeah, yes, the only thing in that line that could cause an all pointer exception is if str was not. Because no pointer exceptions come from when we try to use a property or a method or a null, no reference to an object. So that means I know that somehow my string was no. So I need to deal with it.
+
+So the way I would like to deal with it is just by skipping it.
+
+So I could choose to deal with it here. Now I have three classes, I'm dealing with the method, the exceptions actually being thrown here at the bottom one, the last one being called. But there's not a lot I can do about it here. I mean, I could have it return an empty string or something like that, at that point. I could also handle this with an if statement, and probably would be a better solution. But since we're talking about exceptions today, let's handle with an exception. So there's not much I can do here. So I'll go to the next level.
+
+In this case, is there anything I could do here?
+
+If I wanted to skip
+
+to skip the string?
+
+There's multiple ways to sorry,
+
+Kevin, I don't think you can with an exception, at least how we can trying to do. Okay.
+
+So where should I handle it?
+
+one class below so the mentioned calc. So mainstream calc. Yeah. So if I want to skip that entry,
+
+how I handle it hear
+
+me? Is it possible?
+
+So this is kind of a trick question because I can handle it in multiple places. I could do what I want to do. It'd be difficult to do here but I could I could do it in a string reverser I said that maybe I couldn't, but I could. I could have string reverser return the empty string. And that would do what I asked him to do. Or I can handle it in the string calculator. So there's never there's often not just a single place we can handle it often becomes a choice of where do we want to handle it? Where does it make the most sense to our functionality? So there's often not a perfect right answer. So in this case, I'm actually going to choose a handle up here, I think it'd be easiest. And because then I can just put all of this
+
+and a try and skip
+
+what I want. But let's not even do that. Let's do something even better than that. Let's tell the user it was enough. So we can just put this line and the trycatch which we could just as easily do down the string reverser class. So both of those would work.
+
+But I'm going to do it here.
+
+Because I try, if I was doing in the string reverser class, I do it with an if statement, not an exception necessarily. I could use But I'm going to try and we'll catch, you specifically want to catch the null pointer exception. I don't want to catch the other one. So I'm going to use the explicit exception.
+
+And then we'll say reversed. Equals No.
+
+So if I had this
+
+notice I get a runtime exception because this creates the try creates a block of code. So just like with our if statements or for statements, variables, if we want to use them after that block, or in the catch, we have to have them defined outside of the block. So scope is enforced in the blocks to try and catch the same way as it is in other blocks.
+
+So
+
+now we have that now if we run it,
+
+enter manof
+
+and something else
+
+On, and now I get the word no. All right.
+
+So there's other novels I could get from the list. Like the whole lisping? No, but that's the same thing we looked at before. So let's look at something a little more. Maybe interesting. So let's say in my, my senior versus calculate string calculator here is a reverser.
+
+I
+
+don't want to deal with maybe specific strengths. So I'd want to have have the ability to say, if you give me a specific string, I won't reverse it. And I'm going to do that with an exception. So that means that down here, if I detect that the string is something specific, that I'm going to throw exception, I'm not gonna lie, I'm not going to reverse it, I'm going to instead report as an error. So it's kind of silly to do that with, you know, reversing a string. But the idea is that we can make choices in our code and say, this is something I don't want my code to handle or my code can handle. So sometimes the right choice for that is to throw an exception. So when we throw exceptions, we have our own exceptions, we need to be careful to make sure they fit the exception they're identified as. So if I throw a null pointer exception here, that would be that has a fit not being able to revert one wanting to reverse a string. If I throw no invalid argument exception, that may work, but it's really not an invalid argument. They gave me a valid argument. It's just one my code doesn't want to deal with. So I really need my own exception. I need one that's specific, like the overdraft exception we looked at. So maybe something like an invalid string exception.
+
+So I'm going to create one
+
+created here.
+
+And
+
+exceptions are just classes, they're just objects. I'm going to create a new class. And I'm going to put it in its own package. So instead of putting a cap dot string, I'm gonna put an end cap got exception. It's common to put all the exceptions to group together in their own package, but they don't have to be they're just classes. It can be anywhere. I'm going to call it invalid string exception.
+
+So if I want to make my own exception, I need to extend
+
+either exception or runtime exception depending on the type of one I'm going to make it checked exceptions so we can work with that. So I'm going to extends exception. And that means I'm going to have to. So I'm going to get a warning already about the serializable. The serial ID. So if you're extending exceptions for right now, you can just ignore that warning comic you ignore the warnings on scanner that you got.
+
+So
+
+I want though, I want to be able to put the string in here, I want to be able to display what string I didn't reverse kind of like we saw with, you know, the three in the index for the
+
+array out of bounds exception.
+
+So, I'm going to make a private string, we'll just call it something like original value. And now I need a constructor. So we have accepted They're going to have data, we almost always pass it through the constructors, we can build it in one line as we throw it. So I'm going to call it my constructor, this is going to be the invalid string exception. And I want the string message, which is something that the super constructor requires. So I want that. And then my string, original value. So then I'm going to call the super constructor with original value, or sorry, message. That's what it requires, and then set this original value equals to one nice pass through. So nothing new here. We're just building a class. In fact, there's nothing new at all. This is just what we've done for last week. Just building a class only the difference is since it extends exception, we're going to be able to use it with throw keyword, to throw it and have it go through that process of moving up the call stack.
+
+So then I need to get it for this.
+
+Now, that being said, exceptions shouldn't do work, they should have getters and setters in them. But that should be pretty much all they have outside of just exception handling. So you wouldn't want to don't build a bunch of functionality into an exception.
+
+So once we have this class that extends exception, we can use it. That's all we need to do. Build a class jelly with some getters and setters. Sometimes we don't even do that. We don't even have a constructor. It's just an empty class with nothing in it, so we can throw it and identify what the problem was. But once we have that now, we can use this in our code to create this particular exception. So back over to the string reverser. Right should before we do that, I should stop and ask if they're questions.
+
+And I will say for what we're doing right now, you won't build a lot of exceptions. That's it's something that when you need it, it's important to know that it exists. But it's not something you'll do on a daily basis or even, maybe even a yearly basis, something you'll do on occasion. But when you need it, it's really useful. So, go back over here, and maybe here in the string reverser might be where I want. Again, I could choose where my exception is going to be thrown, but I'm gonna throw it from here. So, here, I might say right at the beginning, I'll just say if string, and I have to do something with it. Say what string I don't want to reverse. So let's equals ignore case and we won't reverse the string Bob. Does it make sense to reverse Bob? It's already reversed. So
+
+we'll throw an exception If somebody sends us that string.
+
+So if that's the case, to throw our exception, we use the throw keyword. And now we have to instantiate our object. So new invalid string exception.
+
+And that we have to pass it as arguments the message is going to be
+
+we don't,
+
+can't be reversed. So it's whatever we want to put. That's what I'm asking is that the handler exception, whoever catches the can choose to use to find out what happened.
+
+And then
+
+we'll put
+
+the original value. So
+
+just value a string. And now I have to import it because it is just a class. So as soon as I import it, I'm going to get another error. So the says unhandled exception type invalid string exception, we can either add a throws declaration, or we can surround it with a try catch. So we're throwing the exception. So we don't want to we can't turn off the try catch that would really make no sense because that means we'd throw it immediately catch it, it's going to do nothing. So we need to add the throws declaration. And what that means is that our method has to identify that it throws this exception. So I'm going to do it manually. So on our method signature, at the end, we're going to add the word throws, plural now, because we're identifying this does throw throws this exception compared to throw one and invalid string exception. So the type of exception and that's all I have to do, there's going to now identified that this method is going to throw this type of exception. As soon as I save it, we're going to see an error in string calculator now. You'll see as an error, because now it says okay, You're, you're calling something that throws an exception. It's a checked exception. So you either have to add a try catch, or you have to handle it, or you have to add a throws exception to your own. So we could add a catch here for it. So we could do this catch invalid string exception. I'm not going to do that, because I wanted to continue. So my choices are, I can either choose to handle the exception here with a try it with a catch, or
+
+he
+
+or we can choose to pass it on.
+
+So I'm going to choose to pass it on. So that means I'm this method Add throws invalid string exception.
+
+And after import it
+
+now I have an error exception invalid string section is not compatible with the throws clause. I'm implementing an interface and this is an override.
+
+So
+
+if I'm implementing interface, if the method signatures in the interface, the throws declaration has to be in the interface to So to fix this error, I have to go to the interface, which remember we looked at the beginning calculator. This is the calculate method
+
+and add
+
+throws invalid string exception So we can add, we need to add the exception throws declaration part of a method signature to an interface if you can throw an exception. So now I have a bunch of errors. Now if it's spiraled into my one error, not to a bunch, but that's okay. That's the way things happen sometimes. So I have an error.
+
+This calculator should go away when I save it.
+
+But now I have one in mainstream calculator, and I have one back in Maine tax calculator.
+
+Somebody complete other code. Any guesses on why?
+
+Because you added it through an interface that was implemented in that class.
+
+Exactly. So this interface is implemented in two places. So now when I ask throws to this. Now they both have to throw invalid string exception. So I have a couple choices, I could backtrack and get rid of the throws except get rid of my throws exception here and handle the exception differently with a try catch. Or I can fix the errors by handling them in those other classes. So what I probably would do at this point would be to handle it since invalid string exception doesn't doesn't really make sense in both places, I probably would remove it from the interface and then No, not throw the exception out of the calculator and handle it there or changed my whole Exception Handling or the the method or the exception handling to a server runtime exception, but I'm not going to do that. I'm going to be stubborn and continue on with what we're doing. So we can handle this in each of the places. So seeds this way The computer shut and walk away. Well, that's that's the real option. But that's that's my go to but that.
+
+So
+
+let's go fix it in both places. So let's fix it first where we're trying to use it. So the mainstream tax calculator now with the main method.
+
+So now we have the choice again,
+
+we can either handle it, add the third declaration or have a try catch. I'm going to temporarily put the throws declaration and we can't run the code because yeah, we can run this and I'm going to run it
+
+I think it'll run.
+
+No, it won't run the same project. So I'm going to come back over here then and
+
+temporarily do this
+
+And then we'll come back to we'll come back to that.
+
+So here, I'm going to run it
+
+and put my value in Bob. And put done. And now I have this. So
+
+I have this because when I threw it out of the main, it goes to the JVM, and that's crashed from the program. That's what happens with the runtime exception. So I basically just duplicated a runtime exceptions functionality the hard way. So that's really not what I want. So when I'm in this method, I don't want to throws when it's other options, so I'm gonna look at it and my other option is surround with a try catch. That is what I want. Notice it is a builded it split the variable up for me, and I don't want to stacktrace here. This has to be equal to know to get rid of Sara, I'm here, but you run into that quite a bit. So here, maybe I want to do
+
+menu
+
+dot display user message.
+
+And I don't want to message what to say he and I can get my message, wrong method I want just get message
+
+so I can get message. And
+
+I can also get if I wanted to carry it on maybe my original value
+
+I put bobbin and
+
+I get a null pointer exception. Why do I have a null pointer exception
+
+So what mine Where's an all pointer exception coming from? From your results? Yeah, results is no so right now when it tries to call it in the for loop the for each loop, it's no so it's can't access it. So how can I fix this?
+
+There's a few different options. So anything you're thinking
+
+Could you just add it to the try block?
+
+That would be probably the best solution.
+
+So we can just take this and say, you know what results has to exist for this to work. So let's put results there.
+
+Now finally,
+
+I go put my value on is Bob, and I get can't be reversed Bob.
+
+Which is what I want So
+
+to be fair, that was kind of complicated way to not reverse the certain Bob, there's much easier ways with if statements, we could have done it. But that's how the exception when handle. So when we do have something we can handle so our code can handle it. That is how we would inform the user or inform our other codes really not about informing the user that's up to the other code. That's how we inform the other code calling our code that there's a problem. So we saw one more problem, and that's that main tax calculator. Let's go fix it. So remember, I got rid of this. Since implements the interface.
+
+I could.
+
+There's a few things that are happening.
+
+So the best thing here would probably be I can just surround with a try, catch. Oh, that's all I want to say. I don't want to try and set a catch. Instead, I would want to add catch clause to the surrounding try. So I add another one here. And this should never can't happen. It actually can never occur because the calculate method here on the Franklin County tax calculator doesn't throw that exception. But I stopped to do something with it. So maybe we'll just do something display. And some of you will probably actually seen messages like this from this exact behavior type of thing occurring in actual applications. This will never happen, this should never happen. Because, you know, in six months, I'll come back and maybe use that exception in my factory county tax calculator, and now some user will see this should never happen. That happens actually quite a bit in real code.
+
+It shouldn't but it does.
+
+So now we have both of them working again. But the point of that wasn't the calculators it was the way we used exceptions to carry the error up through kind of the call stack and to handle the different cases.
+
+All right, so questions about exceptions.
+
+Alright, so
+
+so the next thing we'll need to take a look at is file is file IO.
+
+So we're fine to a point where you can look at, I guess the title for the day.
+
+So let's take a break. We'll come back at
+
+I guess 1040 wouldn't be nice and I continue. I'm getting a me look from a show. So see, that's why I gave you long breaks yesterday, not today.
+
+1040
+
+Alright, so
+
+So talking about file I O. So let's define what files files are. so files are what contains content in the computer. Those are the things we actually care about directories and folders are just organizational. The files are, you know, what we use. So this is a main tax calculator. Job is a file lives out on the file system. We can change it, we can manipulate it. If I
+
+bring up
+
+something like finder, each of these things is a file is a text file, meaning it is contains text that's going to be important that contains the contents of lusco. Allison bitches a wonderland. I can rename it, I can move it. I can drag and drop it into another folder. So those files are what we care about are the things that are interesting to us because of the content. So file input output is being able to get information from file and output information to a file just like we do with scanner only now with these files, but the difference is scanner disappears or not scanner sorry, console, the terminal. So the differences terminal disappears, we ask the user, ask them a question and we get some output. And then it's gone. Once the program restarts, files don't. files are there permanently, semi permanent permanently until someone takes action to delete them or remove them in some way. But unless the user takes action against them, or program, they're there. So what we're going to talk about today is how we can open and read from those files. tomorrow. We'll expand that to how we can put information into those files. And we're going to do it in a way we're already familiar with we're going to treat it actually very similar to We treat terminal Lee now we're going to do it with something that is going to have the changes persisted or saved more in a more permanent level. So this is also the first time that we're going to affect something outside of our own program. So, so far we've affected Well, we've kind of affected terminal, but we kind of think of that is, you know, running inside of our program, right? This is going to we're going to leave behind a mark on the computer with file IO. This is the first time that we've definitely brought something in from outside of that's outside of our control, which is why we have to talk about exceptions first, because those are going to be important. So with file, input and output, there's really three things we can do with any file at a minimum.
+
+So
+
+we can read a file, we can write to a file, so we can get file information out. So what we're looking at today, we can write to a file, which is put information. And we can do what's called seeking in a file, which is searching. We're going to look at reading today and writing tomorrow. And as part of today, we'll look at kind of a manual version of searching. We're going to leave, we're not going to be talking about seeking. So that's more of an advanced topic that really for the way we're gonna look at files we won't need and the way you use files, as we get to larger projects, you probably won't run into either, but just know that there's a third operation that exists. So the way we're going to deal with files, there's also two ways of dealing with them. One is we can take the entire file, and we can put it in memory and then we have access to the whole thing at once. That
+
+is
+
+not typically what we want to do. That can work great with a small file, but what if our file you know is giant? What if our file was large enough that it fills up all of our Ram on our memory on our computer files can get any size, they can take up much more space than we have available memory. So we don't want to do that plus it's slow. It's fast once it gets there, but getting it from the file system to memory is very slow. So in most cases, we won't do that. And we won't even look at doing that because it's so rare to do it. Instead, what we want to do is we want to stream the file, like we do from Terminal we already talked about streams, and we'll talk about them in a lot more detail tomorrow. But we wanted the equivalent of when you sat down and you watch a streaming service like Netflix or Hulu or Amazon. You don't wait on the whole movie show to download before you watch it. It starts immediately because it starts streaming in pieces and you have a piece and you consume the piece and then that piece goes away and you get the next piece. And then eventually the whole thing's been delivered to you but in But you've been using it as it goes. And that's how we want to work with files, which is how we worked with the terminal. And if Remember, we talked about input and output streams with terminal, and kind of a high level, but still what they were. And we talked about that scanner was something that reads input streams. So today, when we look at files, we're going to use scanner again, because we can create an input stream on a file or an output stream. And we can access it the same way, which means it's going to be very familiar to us, it's going to look like what we're already used to. So the difference is one major difference in the web we use it was terminal, we never end the connection. We have the stream. It's there the entire time our program runs, we want to be able to get user input anytime we want. We want to be able to give output anytime we want. So the connection just remains The streams always open. But with a file, there's an end of a file. If we look at this file of text, because that's all code is just text, if I scroll down, there's a mind 36 to file server, there's nothing more. So we're going to have to have this idea of the file is going to be over welcome files on their input stream, have what's called an end of stream or into file marker, we won't have to look at it, we won't have to really know much about it. But what we do have to know is those exist. So there's a marker and a file that says, when we stream, it's going to get this line, then this line, then this line, one line at a time. And when we finally get to line 36, there's going to be no next line. So after that, it's going to be set to end of stream the stream is going to be over. So if you think about like a stream of water, it'd be like the stream of water drying up. It's going to dry up at a sub point in a file. It's not going to have a huge issue. impactos except forgot to pay attention to one thing to make it work with scanner. And that means that we did that step, we can't always guarantee there is a next line. But we're going to come back and actually look through that. So that's kind of a preview of what we're going to do.
+
+All right. So
+
+before we can use scanner, we have to talk about how we're actually going to connect the file to the stream, how we're going to create this file stream. And we're going to do it using an object called file. And it's in Java. io. io is input output, and its file. So we're going to use this class job IO file. And it's going to give us access to some functionality around working with files, and a file stream. Some of the things it's going to do is aka Sorry, it's going to give us methods like exists so we can check if a file exists before We try to use it, or is it a file because file, the file object can handle directories as well. We'll look at that more tomorrow. It will use it in a way that will say we'll create a variable for data type file. So the class will stanchion and new one. And as it's in its constructor, it will take the path to the file. Remember the path, something we're used to or what I'm
+
+used to already in working with terminal
+
+if I can find my terminal.
+
+So if I'm here,
+
+and I want to know the path to Module One, no, this is the path on the system. So we're going to give it the path to where the files located. And then we're going to, it's going to create a connection to that file.
+
+Then for reading the file,
+
+we're going to be able to
+
+use this new
+
+or this new syntax we haven't seen with try, we just learned. And I said there is a second syntax for try that was added in Java eight and this is it, it's going to try with resource and that is try with resource
+
+that allows us to
+
+use a resource and have it in scope just for the duration of the try. So the scanner will exist for a single block of code for the try and then it's going to clean up scanner at the end. So something we didn't run into before with terminal when we had scanner attached to system in the system out Specifically system in is that we didn't want to close that connection and needed to exist the entire time for applications running. But when we're existing working with a file, we do need to close the connection. So it can work while we're connected to the file other programs should not be. And if they can, we can cause problems for each other. so files do what's called block. So if I'm working with a file, another program like Eclipse, or Visual Studio Code may not be able to work with that same file. And the same way when they're working with it. I can't. So when we're done with a file, we have to close it. We have to the same way if we're done with a file in Eclipse, we know I'm done with the main tax calculator, I close it. It's the same idea. We have to do that from our code to
+
+get that I'll close all these since we don't need them anymore.
+
+So scanner, try with resource allows us to deal with a file without having to worry about cleaning it up. Otherwise, it's not what I wanted.
+
+When we were done, we would have to manually
+
+Close the scanner. So we would have to have something like and this was until Java. So the same code would have scanner. And that's called file scanner equals new
+
+scanner and our file
+
+and then we would do something.
+
+And then at the end, we would have to
+
+call this method close. And if we didn't, we could leave a resource open. And that's a problem. That's something we haven't had to deal with before. And it's something we don't have to deal with a lot in Java. So one of the we talked about, on day two that with Java, one of its whole purposes was to make to give a lot of The same strength of language, the C language, but remove some of the difficult parts. And one of the difficult parts they got removed was this idea of having to constantly close and clean up resources. So we create an object in Java. And we instantiate a new object, we don't really worry about it, we stop using it when we're done, and Java handles it for us. Which is, but when we create a file, connection to a file, Java has no idea when we're done with the file, it doesn't know how to clean it up. So it gets unless we close it, it gets left open, which means that if we've had if it's locked, that other programs can't use it. It also can mean if things go really wrong that when our program ends, it still doesn't get cleaned up, which means that we leave elite resource behind. So this is one of the things that causes a couple problems that you probably ran into.
+
+Some of you may not even know what's happening, but now you might
+
+be We'll see more about but one is, if you've ever run into the problem where you get a warning that says, somebody is using this file, you can't use it. And you can't, no matter what you do, there's no other programs running on your computer, you can't get out of it. And you usually have to restart the computer to get get past there. Doesn't happen as much as it used to. But it used to happen a lot on older Windows and Mac systems. That error, but still occasionally occurs. That's because somebody didn't close the file that was using it. The other thing you run into, it's probably more common is your computer is running and it just gets slower and slower. And eventually, you just have to restart your computer, your ideas, you probably have to restart one application. But if you not know what don't know what to look for, you don't know which one and that's called a memory leak. So it's constantly taking resources using them and getting slower and slower as it doesn't clean them up. So if you want to see one in action, over a weekend or so Because it's getting better, it used to be hard to tell you to do it overnight. And then what happened, but now it takes a couple days, open up chrome and open up a Resource Monitor that can watch memory. And over just sitting there doing nothing, don't go to any websites, you can, but you don't have to just watch it, it will slowly just eat memory. Because it has unknown memory is getting a lot better. They've been fixing them. But it's not the only application that does that. River does it. So a lot of I've watched over do it over and over again. For you, slacker Spotify, they both do it. And I'm not calling those companies out. Most applications have problems like this. And that's caused by these type of resources. So we have to close them. And the reason it keeps happening is because it's really hard to remember to do that. It's hard for developers to to know when we're done. When we're done with a file. It's easier to say why might need to scan so I'll keep it and then forget. So try with resource fixes this problem in Java. It says instead of writing this, if you write this so try with parentheses around the resource we want. We instantiate a resource and side of it like file scanner. Then when you're done with it when this block of code ends, I'll do this for you. And I'll also clean up any other things that need to be cleaned up. So all make sure if the language says I'll make sure if use it in this Reese try block like this. I'll make sure that I handle all of the things that need to get cleaned up for you. You can go about your business and not have to worry about it.
+
+So
+
+try with resources is going to give us the ability to not have to worry about closing these resources. It's going to make it so for us We don't have to worry about things like memory leaks from the source. So for all that I just talked about, since there was a lot there, the important takeaway is that we want to use the try with resource syntax with file scanner. If the rest of it doesn't make sense or didn't, or you forget it, that's fine. It was more of the importance of why we need to use it to emphasize that is important. And also, I think it's important to understand what the purposes so the final caveat is when we're using system in, we don't want to ever put it in a try with resource. So like we've been using scanner so far with system n. We don't want to put it in try with resource we want to use it the way we've been using it is we're going to get a warning and that's okay. That's because we don't want it to close the connection to the console. If it does, it can't be reestablished to the program runs again.
+
+So now we have
+
+I think all the pieces we need because there's really not much more to file access than these pieces. Let's look at file, waiting a file.
+
+So before we do that, that what questions do you have at this point?
+
+So, because after the try with resources is going to clean up the file does any manipulation or anything you're going to do with the file actually have to happen within the try as well?
+
+Exactly. It has to be in that that block of code. So everything all uses we have of this scanner has to occur here in this book.
+
+So are there other questions before
+
+So let's go back out here
+
+and put in the lecture code again, to go.
+
+And there's a second part of the lecture code scanner
+
+that there's a file reader main.
+
+That's next, the RTN validator.
+
+And we're not going to to look through this too much. All this does is read a file routing, transfer numbers. If you're not familiar with Azhar, it's mimicking what a banking application might do routing traces numbers or numbers to identify individual banks. There's a follow here RTN list dot CSV, and if we open it up, it's just a list of them. So when we're talking about reading files, we're talking about these text files. Their files just contain text, they contain Unicode characters. So you don't numbers of letters and other symbols, not files, like image files, or music files, or those kind of documents are called binary files. And they require something more. They require libraries that know how to read that individual file. But files just contain text or text files are independent of any particular library into something that all languages can directly use. So they're kind of the default file type. The other ones are specialists that do particular things. They know how to, you know, in the end, they are just, they have data like the same type of data. It's just structured differently. So this class, what it's going to do, it's going to put some breakpoints on it, it's going to read that file, and it's just going to print them out. It has a validator, but none of them are invalid. And the point of this isn't RTM routing transit number Some validation of them anyways. So we're just going to watch it read the file, and then we'll come back.
+
+Sorry, connection issue.
+
+And then we'll come back and write our own with another file. So I'm gonna put a breakpoint here where it starts. I'm also going to come down here because there's this method, get input file from user I'm going to look at as well. And then I'm going to start running it debug.
+
+So the first method is going to be that get input file from user.
+
+And this part we already know. So it's using scanner with system and so what is really interesting is down here in line 43.
+
+So I have to give it a file. path.
+
+So the file path I want us to this RTN underscore list CSV. So there's this idea called working directory working directory means that it's its relative directory from we looked at, or what you've been doing in Terminal. So relative directory, or is the working directory sorry, is the relative directory to where the application is running. So that means that it's like we're working in Terminal in that directory. So the relative working directory for a Java application is just here at its base. So if our file like our 10, underscore list dot CSV, or the dragged with dot txt or palm XML, these are in our working directory, so I don't need to put anything else with them. I can use a relative path from this directory. So I can say something like our tn low stuff, CSV. I can also given an absolute path to them from the whole file system. And since this just means here, I can get rid of that and just use the file name. So the first thing is going to do is create this file object, it's going to pass it that path, that path is just what we typed in. So the path is the same thing you would type if you were in the bad directory in Terminal to get to the file. And then it's going to use the file object, it's going to call the exists method. And what that's going to do is find out if the file exists, it's just going to check and see if this doesn't really exist out on the hard drive, because the user may have mistyped the file, right? If I typed in, you know, hello, Cox that's not in that directory. So it's going to be false. So this should be true. And it is, and then it's gonna ask is it a file? So the file object is we'll see the mark and represent either file or a directory doesn't have to be necessarily a file. So this is saying, Is this a file, or is this a directory. And this should be true because it's a file it is. So then that returns the file object. And the file object input file now has been set up to point to our file path. So right now it hasn't done anything, but it's about to in the next line. So it represents what can become an input stream as the file object. So now we have the try with resource. So try scanner file scanner, and that's just the variable name. So we set the variable equals new, we're gonna instantiate a scanner just like we did with system n, and pass it this file object. And that's the input stream we're gonna pass to it. So instead of system and we're going to pass it the File Stream, which is the final episode, which is the final object. And now this is where I said we have to watch for the end of it. So we can call next line. But we don't know if there is a next line. So what we have to do is scanner has a method has next line, and some of you've already found next line and used it. In some of the other has next functions and scanner in your finger was the decimal to binary problem. I saw some people use it in that problem with some of the other exercises that day as a back end command line interface day, but if you didn't, what next line does it returns true or false and says is there a next value in the stream? so far has next line we're saying is there another line? If we're not at the end of file, if there is another line? it'll return true. If we are in the file, it's going to return false. So if you remember our file was this RTM. So here's going to say is there an Line true it exists is our next line true, it's going to continue saying true. When it's finally got to this line, they'll say is there a next line, and there's not. So it's going to return false. And we know we're done. So we know we're at the end of the file stream. So we have to put it, we'll put it in a while loop because we want to say While it's true that there isn't a next line, then get the next line from the file.
+
+As soon as that becomes false, we're done.
+
+So
+
+now it's everything. Just when we use terminal we get next line with a file, we're almost always going to get next line because files are going to be usually broken down by their character turns. So we're going to say, get next line and we look at the line here. That's the
+
+fog closely on
+
+it to keep it open
+
+on it. So if we look here, if I That it currently is in line is
+
+the first line from the file. And as we keep going, it's going to print it out to the screen. So it prints out on the screen, then it's going to say is there the next line? Well, that's true, there is a next line. So it's going to go and now it's going to call next line. And when it does, we can see the line is equal to the second value. And then it's going to do something with it. So similar to how we asked the user for their next line, now we're asking the file, but first we have to say Do you have one? Do you have one available. So here it says, again, file has next line, we're here. So that's going to be true. And it continues and now the next line, when it calls next line, it's going to get this value. It's going to continue through the loop. You see it printed out there again and now getting Has next lines true, so it's the next line. So now we're at this value. And that's going to continue. And let's continue.
+
+I put change my breakpoint to here.
+
+And
+
+I can't see the value at that point. Let's put on 19.
+
+Let's get on to it, we can see it stepping down through each line of the file. If we watch the line number here, it's going to match up to here. So we're here
+
+and I'm going to get to the end of that file. So when we get to
+
+seven, so we'll keep going. Some of the three
+
+a few more. don't want to go too fast because if I go too far, we have to do this again. I don't want to do that.
+
+Okay, are there so
+
+Got a few more? Three? Getting close. So as we're going through, now we're at from 075. Okay, that's good place to go. So now we're there, that line is going to say, again, it's going to use it by printing them out, then it's going to say, Do you have the next line, which is going to be this line? That's going to be true. It does. It gets the line, we can see it, there is a 307 number. And it's back to the while loops can say do you have next line. And that's going to be true.
+
+And now it has that final number.
+
+And now it's going to say do you have a next line and it's false, because there is no next line. So within the file, so that's how we're going to use a file. There's really nothing more to it. This is really all there is to reading a text file is we're going to put in scanner something we've already been using for two weeks now. And the only really changes we're going to have is we're going to use the try with resource, we are three changes, we're going to create the file object, we can use try with resource to build the scanner and pass it the File Stream instead of the the system in stream. And then we're going to do Wow, that file has next line and then next line to get the next line of the file. And we're just going to continue until we're done to work through everything in the file. Of course we can before we find out halfway through we're done we can break use the break command in the hallway to get out of it. And then when this exits So at this point, the scanner still exists. So the scanner existing See here, when I go to the next line, the scanners go on because the try with resource cleaned everything up, it closed the connection to the file, it cleaned up scanner and got rid of it.
+
+So all stuff we would have had to do manually.
+
+Alright, so before we begin, we're going to go right alright.
+
+Small app for this? What questions do you have?
+
+Brian, do you have to use the substring to pull the text out of the file? Or could you have just passed the line there,
+
+you could just pass the line there. So the only part of this that really is so this portion right here is stuff they're doing with a lot of code. It's not about the file access. The right eighteens the only portion that's about the file. After that, we're just going to start with strings. That make sense.
+
+Yeah, I just didn't know if you needed to call the exact characters or if you could utilize the string version of line as well. But that makes sense. Yeah.
+
+Yeah, you could use ISIS. Yeah.
+
+And that's what we're gonna do. Next, is we're gonna do something a little simpler, because there's a lot going on in this example, but I think kind of come not complex but yeah, it makes it hard to follow.
+
+I mean, it is the RT and validate your
+
+9000. So, yes,
+
+it is something everyone has on a daily basis. Everyone works with things like this daily, right? All right. So let's stop this. And let's go write our own version of this. So what I want to do is work with a file, that's probably a little more something we're used to. So in this project, I have a spa draft of about text. It's the complete text from Project Gutenberg says open source
+
+library of, of text
+
+that is no longer in copyright. It's just of the entire novel of Dracula.
+
+So
+
+I want to write basically just a simple application. We'll open up this file, and we'll read each line up to the screen.
+
+So let's do that.
+
+So here
+
+and scanner, let's put it in a different package, so it's separate. How about we call it
+
+file reader.
+
+Let's just click on one of these choose new class. And let's just call this something like file feeder. Instead of scanner here, I'm going to change this to a file, so called the tickler file.
+
+And that's just so it's separated.
+
+And I forgot to put
+
+public
+
+check the box for public static void Main
+
+So let's create it. So a main method.
+
+So I want to do
+
+set A, just read this file one line at a time and display it. So let's do something like first I have to get information from the user, I could hard code the file, but I'd be nice to have this so I can get it the user to give me the input of where the file was that way they could use different files if they wanted to. So to do that, something we've already done multiple times I'm workers scanner for user input, equals new scanner and just pass it system in. So there's nothing new there. That's we're just passing it system in. So we have a scanner that has system and we can have multiple scanners in our method, which is what we're going to end up with for the make this work. So then I'm going to have to system out, I'm going to call the output stream with print line. And something like
+
+file path.
+
+So the end of the file path, actually, I'm gonna go print.
+
+And then we'll do a string filename equals, maybe file path might be better equals
+
+user input dot. Next line.
+
+All right, so at this point, all we've done is we've done nothing new. We've asked what the user where the file is from the user. That's all we've done.
+
+So
+
+the next thing I need to do is create this file object. So I could write the if statements right now to say, if file exists. Or, or, actually, before we do that, let's create the file object. So say create file. This is call it our file equals new file and in the constructor to initialize it, we're going to pass it the file path. Now I have to import this in Java IO. So important copy file. So I could build if statements. Now this is where I was at and say things like, exists, or is file like we did before. But I'm not going to, instead I'm going to use exceptions. That's the other thing we could do. Whether we have to use the if statements or not, we're going to have to deal with exceptions. So might as well let it deal with them. Now, it's not wrong to use the if statements. In fact, that's if I was writing a real application that I was going to use or give to a client, that's what I would do, I would write the if statements to validate it with that make sure it exists to make sure it's a file and anything else I needed. not rely on the exceptions, but we're going to rely on exceptions because that's what we've been talking about today. That's one of the other topics so
+
+now we have a file
+
+It doesn't do anything yet. It's just this object out there that has a path. Which is why we can now call methods on it to ask questions about the file. But the next thing I need to do is
+
+have it read the file.
+
+So let's
+
+read the file, we need another scanner that points to the file. And for this one I needed to automatically close when it's done. So I'm gonna use try, and in parentheses beside it, I'm going to create another scanner. And let's call this our file scanner. That's just a variable name. All we're doing is the same thing we've done up here we've done other places the stanchion object we're just doing it inside the try inside this parentheses of the tribe, which is going to auto clean up for us.
+
+Equal new scanner, only instead of now passing system in I'm going to pass it file
+
+Thinking I have a block of code.
+
+So this is where the exception comes in.
+
+I have an unhandled exception file not found exception. So when I open scanner, it's going to throw a file not found exception. If the file is not found, it doesn't care if I've already checked because I can say, does this file exists and it says true. And somehow, in a millisecond or So between the time it does that, and the next line of code runs, and actually tries to use it, it's something could happen on the system. So we have to choose whether we want to add a throws, add a catch clause. So with our try with resource, we can still have a catch with that try. So we can act as both a resource try and a traditional try. It doesn't have to be one or the other. can do both. Or we can add the throws declaration to the main method. So I don't want to do that. I want to add the catch. So what's the catch? Actually, I'm gonna added here so I don't misspell
+
+there. So add catch clause to the surrounding try.
+
+And then maybe here we'll say, system out. print line.
+
+file,
+
+file not found.
+
+Or actually, let's use its message. So we'll get message.
+
+And let's see what how that works. See if it does. I'm going to start it. And here we'll give it a file path skewed a file path that doesn't exist. Let's put some characters in. And we get there. So it's messages that no such file or directory, that's actually a pretty good message. So let's use this message. So the message is provided by the author of the exception the file not found exception chose this is their message. So that's what we can show the user And now we can easily take this and say, Okay,
+
+let's put this in a while loop.
+
+And I'm kind of getting outside of I guess the file, but to show how we can use Exception Handling here
+
+and a useful way.
+
+It's probably not a good.
+
+Now what we'll do with that, so now we give it a file pass and I'll be given a file not found. No directory, we give it something it is found. And we don't, but now it goes back to the file path. We'll deal with that do we'll deal with that. Alright, so now we're an infinite loop. We'll fix that by the end. So now we have a connection to the file. We have an exception that handles that
+
+Now here
+
+we want to
+
+do something with the file.
+
+So what we need to do here with the file is we need to find out if it has an X line. And while it has an X line, get that line and we'll just put it to the screen. So we use another we're gonna use a while loop. And our question is going to be our Boolean condition is B while file scanner has next line. There's other next, but we're gonna use next line because we're using a text file.
+
+So while that's true,
+
+we're going to get the text to the line to the file line from file. C, call it let's call it next line. From file. It's going to be the file scanner. dot next line Now we just have a string, we can deal with it, we can do whatever we want with it. So
+
+I'm just gonna print it out.
+
+Now we run it, we give an invalid file path.
+
+And it prints out
+
+the entire book. It's gonna do overflow my buffer, so we'll be able to see the top of it. And because it's too big for the console, but it's, I think not.
+
+Yeah, so but it's there. So we print out the entire contents of the book.
+
+We could do something with it here if we wanted. Like for instance, we could say
+
+do uppercase.
+
+Give it a path.
+
+And now it's all up. And you know, we've changed the string in some way. So we can manipulate Now, each line from the files it's coming in, it's going to be in that string. So we could do something like search for particular text. Or we could change our while loop to, you know, get the next the first 500 lines and things like that, or give it a line number to it to display by using a variable. So we have that, and I'm actually going to take rid of this other while loop. I don't like it. That was it's the same instantaneous and not a good choice. Because it because it takes away from what's actually important here, which is this code, the code that's about the file.
+
+So this
+
+code here is all the code you need for the file access. You get the file off object from the path. The path can be hard coded. I can make it work like this. Or I could just easily say you know string
+
+path equals
+
+Dracula dot txt or actually, let's use the other one since
+
+gn list dot CSV
+
+and change our path to this.
+
+And
+
+it doesn't matter what I put it in because it's going to print the other file out. So I just have to get the path from somewhere
+
+in that path is
+
+can either be relative so the files that are here my directly just using their name, or if I started again, remember I had the other file.
+
+Let's see actually, let me get
+
+time out here.
+
+Let's find a file. So let's go into
+
+CD module one
+
+and we'll just find
+
+today's show you how good a CD
+
+two volume of shots and files in there maybe
+
+did I have another one in there?
+
+Bottom left
+
+oh thank you yeah Dallas, whichever one land file, so that's here
+
+so
+
+now take this and when I enter
+
+my file path I entered as that path and I'm just cutting and pasting so I don't miss type it because I will think I see that works with if you look up through you would find this as Alice in Wonderland instead of Dracula. So We can, the path is a path on the file system. When it's relative, it's relative to
+
+this location.
+
+And then we use that file object with scanner, we are going to handle the exception of file not found, how to use it with scanner, we do it a try with resource so that it auto closes it for us and cleans up for us. Otherwise it won't and will end up with resources left behind. It's not going to matter in a program like this because it closes every time. But a larger program it would then we're going to go through the while loop is a while loop with file has next line to check the house next line. So while it's true, there is another line. We're going to get the next line into the string and then we can do anything we want with that string. We just have the next string in the file, and that's gonna continue as long as there's another line and then when it's done, it'll exit cleaning everything up. So that's how we're gonna read a file.
+
+So questions
+
+okay, super excited to read some files now.
+
+You should be this opens up a whole nother a whole nother avenue to your applications right to another level. We went from writing simple applications to involving the user. Now we're involving the file system. That's a huge step. Going from this step, you can start writing programs that are more than just calculators, especially with tomorrow, we get writing files, which makes them a little more exciting.
+
+All right, so no questions. Make sense? All right,
+
+guys, so
+
+Alright, so then for today, your exercises, there are only pair exercises today.
+
+So let's look at what you'll be doing.
+
+Brian, why did you guys have individual guys like Brian, need to pull back?
+
+It is true. There were individual exercises.
+
+And it is true. I'm always a fan of giving out all the exercises we can so
+
+but don't let her show tricky. She's when to pull back because you know, plus or degrade right?
+
+So what are we doing is there's a file in here. Also riches in Wonderland from Project Gutenberg You want to go through it and count, do a word count in a sentence count.
+
+So
+
+the word count and sentence count
+
+is
+
+not a solved problem. Seems like a really easy problem. word count is what
+
+is going on.
+
+Sorry, I don't know what's going on with my messaging thing. It's going crazy. So
+
+word count is
+
+fairly simple. It's fairly straightforward. Most people can think of how to do word count pretty easily. Sentence count, though, is not quite as straightforward. It's not that it's not. It's super complicated. It's that it's not solved, meaning that there is no consistent like, oh, here's how you do it. So that's why it gives you a range says your sentence count should be between around 116 and 1000. are at 1839. around there. If you're even a little under that bottom number, it'd be fine. As long as you're close around those numbers. Your word count should be, should be pretty much exact. The problem is systems count is that how do you determine what a sentences? How do you there's all these different variations and natural language in the way people use punctuate punctuation that change the meaning mean, we use punctuation for phrases when, instead of sentences often when we type, and we there's also punctuation used and other things like web addresses. So the sentence count can vary quite a bit. And if you look at like, go to Google's word processor, Google Docs compared to Microsoft Word, compared to other Visual Studio code, you do the sentence count in each one, you'll get a different answer and each one because each person solves that they solve it slightly differently. So The focus there is not as much on getting the perfect sentence count, just getting in that range. It's more in using the line using the reader the file reader reading the file. So that's what you'll be doing. I will go into much more detail since this pair and I expect you to the two of you together to be able to figure a little more out. There also is an encourage you strongly to do them extra exercises. So if you look in today's folder,
+
+there is extra exercises that are the old individual exercises
+
+or the individual exercises you would have been given.
+
+So I'd still encourage you to do them.
+
+We chose not to give them to you because this is a lot
+
+And brother spend you not have to individual exercises kind of hanging over you as you go to the capstone the day after tomorrow so it'll give you time to catch up and
+
+prepare for the end of the module
+
+well that's
+
+not going well.
+
+Devon individually this time tomorrow
+
+you will not tomorrow be pair omega
+
+so you're actually had the last individual exercise for module one was yesterday.
+
+Okay, so whatever is going on here let's let me try this again. Okay, so now it's gonna work. Maybe
+
+so let me try and Bitbucket
+
+Why are you trying to quit question? Yes. word count has to be exact.
+
+It should be close. All right,
+
+there is a little bit if it's not right on, because there is some variation on words, but it would be a lot closer than the range. it the most intuitive way that most people go for four word count is that's the amount you'll get. The easiest way, without going to a bunch of special circumstances, that's the amount you'll get. But if you choose to become to be more, you're more likely to get a smaller word count if you start paying more attention to how words actually break up and symbols and stuff rather than just the easy method. So if you're slightly off that's, that's fine as long as you're close. Sorry, so the extra exercises and again, don't take these
+
+I'm in the wrong cohort.
+
+sure how that happened. All right.
+
+So don't take them as not something you shouldn't do or optional. instead take them as not scored. So you just to do them, there's just no
+
+consequence. Yeah.
+
+So there's two of them, word search.
+
+Two parts to it. One that which I think this one actually is a fairly good exercise to do. I strongly encourage you to do it. In actually if you do with your parents That's fine too. These extra exercises they're not, they're not scored, you can do them a pair or mob them if you haven't tried mobbing yet, that's when a bunch of people work together for six people or so work together on one assignment.
+
+So that would be actually another good thing to try. And for these,
+
+you search for a particular word, and then you make the search insensitive, which is the part that makes a little more interesting. And then there's a quizmaker challenge, which is can be quite challenging, but interesting as well. So nicely, certainly see Justin saying do these in your study session today. That is a fantastic idea. I would highly encourage going through these, because you're going to be doing file IO in your Capstone, so getting extra practice with it. It's an important it's integral to the capstone. So getting extra practice that now would be useful. Alright, so questions about what you'll be doing for exercises. Hopefully I encouraged you enough to actually try the and the old individual ones.
+
+So that any other
+
+questions about today Okay.
+
+I'm Brian beer
+
+Transcribed by https://otter.ai

@@ -1,0 +1,132 @@
+Book
+https://book.techelevator.com/content/web-services-post.html#handling-errors-with-axios
+
+Handling errors with Axios
+There will inevitably be a time when you'll encounter an error when interacting with an API. Luckily, Axios also provides a Promise-based method to catch errors. You can chain a .catch() method after your .then():
+
+axios.get('/users')
+  .then((response) => { //handles any 2xx response
+    console.log(response)
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+The Axios .catch() method runs if:
+
+The server responds with a non-2xx response code—remember that 2xx codes are "success" messages.
+The server fails to respond due to an incorrect domain/port/protocol or network error.
+Something happened while setting up the request that triggered an error.
+You can distinguish between these situations with an if-else block that tests for the .response and .request properties of the error object:
+
+.catch((error) => {
+
+  if (error.response) { //does error.response exist?
+
+    // request was made, response is non-2xx
+
+  } else if (error.request) { //error.response doesn't exist, does error.request exist?
+
+    // request was made, no response was received
+
+  } else { //error.response & error.request don't exist
+
+    //request was *not* made
+
+  }
+});
+With this process, you can handle all three situations that the .catch() method fires on. The .response object contains some more properties that can help you determine what happened:
+
+error.response.status is the response status code, like 401 or 503. The description of the status code can be found in error.response.statusText.
+error.response.data contains information sent back from the server that might help you diagnose the error. This isn't a guarantee, but it's worth looking at if you do run into an issue.
+error.response.config and config.request can help you make sure that the request and data were correct.
+You'll want to use this information to provide feedback to the user if the request succeeded or not. Below is an example of a form submitted with a POST request and a status message indicating success or failure. Pay extra attention to the .then() and .catch() methods in submitForm() and how formAddedSuccess and formAddedFailure toggle the display of status messages:
+
+<template>
+  <form v-on:submit.prevent="submitForm">
+    <div class="status-message success" v-show="formAddedSuccess">Form Successfully Submitted</div>
+    <div class="status-message error" v-show="formAddedFailure">{{errorMsg}}</div>
+
+    <input type="text" v-model="formData.title" />
+    <input type="text" v-model="formData.text" />
+
+    <button v-on:click="submitForm">Submit</button>
+  </form>
+</template>
+
+<script>
+import ApiService from '../services/ApiService';
+export default {
+  name: 'add-form',
+  data() {
+    return {
+      formData: {
+        title: '',
+        text: ''
+      },
+      formAddedSuccess: false, //controls display of success status message
+      formAddedFailure: false, //controls display of error status message
+      errorMsg: ''
+    }
+  },
+  methods: {
+    submitForm() {
+      ApiService.postForm(this.formData).then(response => {
+        if (response.status === 201) { //201 = "Created"
+          this.formData = { title: '', text: '' };
+          this.formAddedSuccess = true; //display success message
+        }
+      })
+      .catch((error) => {
+        this.errorMsg = "";
+
+        if (error.response) {
+          if (error.response.status === 500) { // you can test for specific status codes if you want different actions to happen or messages to be displayed
+            this.errorMsg = "Error submitting form. An internal server error occurred.";
+          } else if (error.response.status === 404) {
+             this.errorMsg = "Error submitting form. URL could not be found.";
+          } else {
+             this.errorMsg = "Error submitting form. Response received was code " + error.response.status + " '" + error.response.statusText + "'.";
+          }
+
+        } else if (error.request) {
+          this.errorMsg = "Error submitting form. Server could not be reached.";
+
+        } else {
+          this.errorMsg = "Error submitting form. Request could not be created.";
+        }
+
+        this.formAddedFailure = true; //display error message
+      });
+    }
+  }
+}
+</script>
+
+<style>
+.status-message {
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  width: 350px;
+  margin: 0 auto 10px;
+}
+.status-message.success {
+  background-color: #90EE90;
+}
+.status-message.error {
+  background-color: #F08080;
+}
+form input {
+  display: block;
+  margin: 0 auto 10px;
+}
+</style>
+A success condition looks like this:
+
+
+Image -
+A failure condition looks like this:
+
+
+Image

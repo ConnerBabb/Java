@@ -1,0 +1,56 @@
+Book
+https://book.techelevator.com/content/web-services-post.html#accessing-resources-on-different-origins
+
+Accessing resources on different origins
+In addition to getting a non-2xx response from a server, there's another issue that you may encounter when writing web applications. Many web applications often use resources, such as JavaScript or CSS libraries, from other websites. However, it's not always as easy as putting the URL to the resource in your application.
+
+Web browsers implement a security concept called the same-origin policy that prevents JavaScript code from making requests against a different origin than the one it originated from. The purpose of this policy is to prevent malicious scripts from accessing data or requesting other scripts, but unfortunately, it also prevents legitimate requests between trusted origins. Origin is defined as the protocol, port, and the full domain including sub-domain.
+
+Thankfully, there's a mechanism that allows for these legitimate requests called Cross-Origin Resource Sharing (CORS). According to the MDN documentation, CORS "is a mechanism that uses additional HTTP headers to tell browsers to give a web application running at one origin access to selected resources from a different origin. A web application executes a cross-origin HTTP request when it requests a resource that has a different origin from its own."
+
+Using the URL https://www.example.com/path/resource as an example, this table shows which URLs are and aren't considered as "same origin":
+
+URL	Same Origin?
+https://www.example.com/path/other_resource	Yes, same protocol, domain, and port
+https://www.example.com/other_path/other_resource	Yes, same protocol, domain, and port
+http://www.example.com/other_path/other_resource	No, different protocol—HTTP instead of HTTPS
+https://www.example.com:8000/other_path/resource	No, different port—8000 instead of default 443
+https://sub.example.com/path/other_resource	No, different sub-domain—sub instead of www
+https://example.com/path/other_resource	No, different sub-domain—www is missing, exact match required
+https://v2.www.example.com/path/other_resource	No, different sub-domain—v2 is additional, exact match required
+#Basic cross-origin requests
+A cross-origin request starts with a client making a GET, POST or HEAD request for a resource on another server.
+
+In this example, suppose a user visits https://www.example.com and the page attempts to make a cross-origin request to fetch data from https://service.example.com/users/.
+
+The browser attempts to make a cross-origin request to service.example.com by sending it an OPTIONS request. OPTIONS is another HTTP method like GET and POST. This request contains an Origin header:
+
+OPTIONS /users/ HTTP/1.1
+Host: service.example.com
+Origin: https://www.example.com
+The service.example.com server checks the Origin header and determines if it should or shouldn't allow the request. If the server allows the request, it responds with an Access-Control-Allow-Origin header. The server can either:
+
+Respond with Access-Control-Allow-Origin: https://www.example.com, indicating that https://www.example.com is the only domain that can access the resource:
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: https://www.example.com
+Respond with Access-Control-Allow-Origin: *, indicating that the resource can be accessed by any domain:
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Note
+
+The Access-Control-Allow-Origin: * is appropriate when an API or resource is considered to be completely public and intended to be accessible to everyone. Examples of this include freely available web fonts on public hosting service like Google Fonts, and public APIs intended to be integrated into other web applications.
+
+#Localhost
+At the beginning of this section, you read that a web application makes a cross-origin HTTP request when it requests a resource that has a different origin—meaning protocol, port, and domain—than its own.
+
+The "protocol, port, and domain" portion of that statement is very important. Say you're developing a Single Page Application in Vue. In your development environment, that application might run on http://localhost:8080/.
+
+Now say you're also developing the API and that runs on http://localhost:3000 in the same development environment. These are considered different origins because the port is different. As a result, the Vue application would have issues accessing resources from the API server.
+
+This tends to stump developers because they don't think CORS applies when both applications are running on localhost. Remember that it's the server—not that client—that decides what cross-origin requests are allowed. In this example, it would be the API server running on http://localhost:3000.
+
+Fortunately, you'll use the JSON Server for your exercises. The JSON Server has CORS enabled by default, so you don't need to do anything special. CORS is handled right out of the box.
+
+For information on how to enable CORS requests on Java or ASP.NET servers, see the Enabling CORS on other platforms section in Further exploration below

@@ -1,0 +1,8 @@
+Book
+https://book.techelevator.com/content/command-line-programs.html
+
+In this chapter, you'll learn:
+
+How to read input from the user using Standard I/O (Java) or the Console (C#)
+What method signatures are and how they're used
+How to parse strings into numeric data types

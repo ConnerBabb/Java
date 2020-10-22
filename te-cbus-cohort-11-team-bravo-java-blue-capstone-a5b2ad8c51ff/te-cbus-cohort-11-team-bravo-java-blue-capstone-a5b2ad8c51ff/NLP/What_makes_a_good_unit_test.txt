@@ -1,0 +1,22 @@
+Book
+https://book.techelevator.com/content/unit-testing-ool.html#what-makes-a-good-unit-test
+
+What makes a good unit test?
+#What to test
+Test what makes sense. You don't need to write unit tests to make sure that your getters and setters work.
+
+Instead, test your logic. here are a lot of tools out there to test your code coverage to make sure that your code is getting tested. However, you want to make sure that all of your logic is tested as well. For example, you'd certainly want to test a method that returns a letter grade for a given score.
+
+Unit tests should check happy paths, error conditions, and edge conditions. In the example above, you might be tempted to say, "test every single score." Instead, you should test both edge cases for each grade, negatives, and nulls.
+
+#What does a unit test look like?
+You’ll probably hear a lot of people talk about the three A’s when it comes to creating a good unit test:
+
+Arrange - begin by arranging the conditions of the test, such as setting up test data.
+Act - perform the action of interest—meaning, the thing you're testing.
+Assert - validate that the expected outcome occurred by means of an assertion—that is, a certain value was returned, or a file exists.
+#What makes it good?
+Fast - elapsed time of running a unit test should be measured in milliseconds.
+Reliable / Repeatable - if a test passed/failed once, it should pass/fail again, assuming no code changes.
+Independent - a test should be able to be run independently of other tests, and tests should not have interactions with one another.
+Obvious - easy to determine why it failed.

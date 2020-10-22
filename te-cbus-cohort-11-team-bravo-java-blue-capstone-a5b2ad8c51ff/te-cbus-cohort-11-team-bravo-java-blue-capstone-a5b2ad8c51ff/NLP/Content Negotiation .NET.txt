@@ -1,0 +1,44 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-dotnet.html#content-negotiation
+
+Content negotiation
+When the List() method went from returning IList<string> to IList<Todo>, how did ASP.NET Core MVC know to switch from sending strings to sending JSON data in the HTTP response?
+
+Content negotiation is an HTTP mechanism that's used for serving different formats of a resource at the same URL. The client specifies which formats it can understand in the Accept header of the HTTP request. JSON is the default format for ASP.NET Core.
+
+The switch from a list of strings to JSON is handled automatically by ASP.NET based on the return type of the controller action.
+
+For example, here's the return type of IList<string>:
+
+[HttpGet]
+public IList<string> List()
+It returns data as an array of strings:
+
+['Wake up', 'Shower', 'Drive to work'];
+Here's the return type of IList<Todo>:
+
+[HttpGet]
+public IList<Todo> List()
+It returns data as an array of JSON objects:
+
+[
+    {
+        "id": 1,
+        "task": "Wake up",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "task": "Shower",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "task": "Drive to work",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    }
+]
+The great thing about ASP.NET is that it provides these capabilities out of the box

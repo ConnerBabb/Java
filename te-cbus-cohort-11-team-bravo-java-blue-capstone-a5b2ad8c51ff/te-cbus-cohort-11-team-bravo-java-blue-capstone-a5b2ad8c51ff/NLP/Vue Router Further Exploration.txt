@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/vue-router.html#further-exploration
+
+Further exploration
+This section is considered optional reading, but they're solutions to problems that might come up when you start building out larger applications.
+
+#Redirect and Alias
+Redirecting can also be done in the routes configuration:
+
+const routes = [
+  { path: '/a', redirect: '/b' } //if the user goes to or clicks a link to http://your-site/a, they will be redirected to http://your-site/b
+]
+For more information, see Redirect and Alias in the Vue Router documentation.
+
+#Route Not Found (404)
+There are times when a user might type in an address or you link to a route that doesn't exist. In those cases, you'll need to provide some sort of catch-all to let the user know that the route doesn't exist instead of throwing an error:
+
+const routes = [
+  { path: '*', component: NotFoundComponent }
+]
+#Adding Vue Router to an existing project
+What happens if you have an existing project that you want to add the router to? This could be a project you recently created or a project that's been in development for a while now.
+
+The Vue CLI provides a way to add plugins/presets using the vue add command. If you run the command vue add router, the Vue CLI installs the dependency for you, and runs a generator that adds or changes the following files:
+
+src/router/index.js
+src/views/About.vue
+src/views/Home.vue
+package-lock.json
+package.json
+src/App.vue
+src/main.js
+
+Image - Vue Add Router
+Be careful when running vue add
+
+Anytime you run the Vue CLI on an existing project, you must make sure that you don't have any files that have been added or modified that haven't been checked in. Because adding plugins modifies existing files and adds new ones, if you have changed files but haven't committed them yet, your changes could be overwritten. Always make sure your code has been added and committed before running vue add.
+
+#Using router link as another tag
+Sometimes you might want <router-link> to render as another tag, like <li> or <button>. In that scenario, you can use the tag prop to specify which tag to render to, and it still listens to click events for navigation:
+
+<router-link to="/" tag="li">Home</router-link>
+<!-- renders as -->
+<li>Home</li>
+
+<router-link to="/" tag="button">Home</router-link>
+<!-- renders as -->
+<button>Home</button>

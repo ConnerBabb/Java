@@ -1,0 +1,1589 @@
+Zoom
+https://techelevator.zoom.us/rec/share/7_dudpzt7npJR8-VxWTtYLRiXa_XT6a81ndP-vVYzDoFatJcSzyOqpdLDvtix8M?startTime=1594301171000
+https://drive.google.com/file/d/1tK29A8tNDdOtvYTY_wt9mLPr_TjZigHW/view?usp=sharing
+https://docs.google.com/presentation/d/1yf9w0yX-Wm-WZduJdZ2Op055LLAsydQlsTyW7BTeJTU/edit?usp=sharing
+So today we're going to be starting with another type of layout CSS layout. Yesterday we looked at one of the major ways of doing layout grid. Today we're going to look at something similar. But I'm called Flexbox. Where grid was a 3d or 2d layout that's about columns and rows. Flexbox is a 1d layout. It's about laying out items inside of a single container. And with the grid we set if we want everything in this exact position with Flexbox is going to be more about giving the browser hints of how we want it, want it to be displayed, and letting it make decisions around the sizing and the positioning.
+
+So
+
+fluxbox His goal is to
+
+assist We often don't know the number of items that are going to be in a container. We don't know if there's going to be 10 items 10 items we want to display. Now, if there's gonna be five articles or 20 articles, or three, that if we need to define the positioning of something that dynamic, then we have to do a lot of essentially if if type statements in Why should we have to do that when if the browser could do it for us. So Flexbox is about giving sizing and spacing to an unknown number of items, which is a common thing that occurs and it has the added benefit of even when we do know the number of items, it allows a very easy way to do layout of items and container. So and then, once we've Given that, we're going to tell the container basically hints of things like we want this to the top one at the bottom or in the center, and we're going to let it worry about, really the actual size and positioning of them inside of the inside of its container as the things shrink and grow. So it's going to give us a lot of responsiveness as well. Because if we don't, it's going to put everything to proportional size, relational size to each other, rather than to fixed size. And we'll be able to tell things like we want this to be, you know, twice the size of the thing beside it or to grow at twice the rate and let it decide what that means. So we're going to define Flexbox is defined very similar to grid, it has this idea of a container, and we'll say, give it create a flex container much like we created a grid container by changing this display type to flex and then all the items inside of the flex container will be called flex items just like the items inside of the grid container were called grid items. So in that way, they're very similar.
+
+But in a flex container,
+
+there's going to be instead of now laying out where each item fits in a container, we're going to tell the Flexbox where we want the items to be based on two accesses. So, every flex box, every flex container will have what's called the main axis and the cross axis and a start and stop to those two axes. And then we'll talk about we'll tell it where we want things positioned based on those accesses and
+
+that stopping START STOP starting end.
+
+So in any flex container,
+
+We have the main axis which is going to go horizontal across the container and the cross axis which is going to go vertical across the container
+
+and then the top of the constraint painter
+
+in the left, so this corner will be the start for the main axis, this corner will be the start for or the top will be the start for the cross axis. So it's not the corners really, this side is the start for the main axis and this side will become the start for the cross axis. And then the opposite side will be the end, the right side will be the bottom and the bottom are the end for the main axis and the bottom will be the end for the cross axis. So really, that that is usually fairly intuitive because we generally it the For Muslim, and English Christians we read right to left, it's laid out the same way. So that's intuitive and then pop the bottom is fairly intuitive as well. So it's more of remembering that there's these two axes that exist. But, and then we're going to give Flexbox essentially, a little bit more than hence, their direct direct isn't where we want these items to visit, start positioning on these two axes. And it'll position them for us based on the available space inside of the container.
+
+So let's look at
+
+example, some examples. So this is an electric car. There's three pieces done in the one that just says Flexbox. I'm open the Flexbox, HTML and
+
+live server.
+
+And this is just kind of a Flexbox playground type thing. It just has a box where we can move some things around inside of it. So right now, it's not a Flexbox. It's just a. What we're seeing here is this it's a section that has three divs inside of it.
+
+So what we'll do is we'll turn the section
+
+into a Flexbox container so that we can, these divs become flex items that we can then manipulate.
+
+So I'm going to go to the CSS.
+
+And there's already a row for the container items. Let me so inspect this.
+
+Size it so it looks
+
+maybe I can't do that.
+
+So we can see four here. This flex examples this box So let's change it to. And that's what's being selected here.
+
+So let's change it to Flexbox.
+
+And to do that, we're going to change the display.
+
+And we're going to change it to flex.
+
+We'll save it. And we'll see as soon as that happens, it changes.
+
+It changes them already, it pushed them off into a row and it stretched them, which is the default state. So they're stretching to the size of the container. So if I resize this, we can see that well, they they're shrinking and growing with the container from their starting size. So now to position them in the container. We'll start by positioning on the first axis to the main axis and To use that we use Command justify content. So justify content allows us to set where we want the position where we want the items to be positioned on the main axis. So remember, that's the horizontal axis. So we have, here's some of the main or fracture, I think this is all over this. But it flex start, which is going to put them to the start flex in center space between space around in space evenly. Let's walk through those actually watching them work rather than just kind of in a static image here. So by default, they're at flex start, which means that they're on the left side, they're starting there to change that, where the display ad justify content. And you can see there's quite a few
+
+unless you want, but let's change the flex end.
+
+So I changed in the flex end, and now they move their positioning moves to start at the other side. It doesn't reorder them, it just pushes everything to start. So everything in the flex box to be aligned with the end with the flex end, the flex end for justify content would be the right side the same way, let's change it to center and it puts them in the center of the flex box and they'll maintain its resize the same. They'll maintain the center position without us having to do any, anything extra.
+
+So the next, the next three are around spacing that it's not just the beginning or the end or the middle there around how negative spaces used around them.
+
+So the space between
+
+space between pushes the outer things out to the outer edges, and then anything that's in the middle, it spaces them. So there's even space between them, so puts the outer two to the endurance starting end. And then the middle items get spaced evenly among, among the remaining space.
+
+There's also space around,
+
+space around it's gonna work similar but it's going to put space around each of the items. So we notice on space around there is
+
+between the
+
+edge of the box of the container in the first items, there's a space of proxy that size. If we measured this we would find that that length is
+
+Half that this
+
+in this half,
+
+that these three are all almost equal, or technically equal
+
+maybe off by pixel but
+
+so and then that's the same
+
+with these all these spaces of space around puts an even number of space around each item by splitting up the negative space that's in the box and moving it around the items. So if we go and let's remove number two from the box, we can see it's done the same thing with two of them. It's this space here is half of the space between them. So it takes a name, memory number space and it splits it up into space around them. Put the door back So then space, the last one, we'll look at Space evenly. Does similar thing, but we would find that if we made sure that the space here and here are equal. So it takes inputs an even amount of space between each of the items, including the sides,
+
+rather than.
+
+So again, if we take out this middle div,
+
+we see that this space, the space in the space will all be even, will all be the same. So those are the ways we can position it on the main axis at the moment, so when I say at the moment because Flexbox is what's called a working standard, it's actually what's called its last call for draft last draft Call it what that means is that there's they've released it, they've sent it out but they They have it, it's still in a non finished state. That means they're still adding features. And we're gonna look at one today where there's an obviously glaring, missing feature and talk about how it's when it's coming, and some pieces around it. So that means that Flexbox while there's these ones now there could be more, or if these could change in some way, they probably won't. I think the main ones are pretty set. Flexbox has been around in the state for a few years, which is pretty common for these type of libraries. But just know that, you know, you come back to Flexbox in a year. It could have more features than it does now. It probably will.
+
+But that's what we can currently do with the main axis.
+
+And so so before we continue on to the web, we'll look at direction and then we'll look at the cross axis. If you have any questions so far
+
+So this is kind of going backwards, but I'm kind of circling this. If you go to the CSS, if you've called that just hashtag flex example, would it work? Just as you would
+
+guess, okay. Yeah. In technically if there's an ID on the page, having and you can see down here, it's actually selecting flex example without the section. The idea of doing this is to make it more specific. But since IDs are supposed to be unique to the page, that actually doesn't add any specificity to it. Because this is already supposed to be unique. With the class it does, and it's much more important. But it also is not removing any so it's not slowing things down or making things less efficient anyway. So it's, you'll see that quite a bit. Because it's just kind of becomes second nature to say the type of container with the class with the ID that you're using it with.
+
+Does that answer your question?
+
+Yeah, I was I started the homework this morning. And I saw that right away as a
+
+quiet hashtag main grid, but you have, I guess I could make it mean hashtag main grid.
+
+Yes.
+
+But again, with ID with class, you would always want to do that with ID. It's not actually you're not getting, you're not losing anything by doing it except for typing a few extra characters. But you're not getting anything either. There's some what some people would argue I read the argument that doing this way increases readability. It doesn't increase the specific pneus of the selection, but it increases readability in the code because you immediately know to look for a section with that would be the only real advantage to it. And you can see here that I, I'm not consistent. So
+
+probably not at all. No, not at all.
+
+So just whatever the time was I was typing at that particular line, whatever. Yeah, mood hit me as it changes minute to minute.
+
+So other questions before we
+
+go. So the next thing we'll look at is with these axes, there's also the ability to order them on the axis and the ordering mainly happens on the main axis, the main, so let's look at it before we look at the cross axis. And that's from there's a directive flex direction, which establishes the main axis order.
+
+And we can change things in really
+
+three ways that were there. Four, but one of them is how is the default.
+
+So we can set since it's a single direction layout, everything is going to lay out either from the main axis just horizontally across it, starting from one end to the other, or from the start to the minute we tell it where we want to position the items at the end of the start in another place, but we can switch how those items are actually displayed from and we can also switch the main axis to take on a column display instead of a row or row display instead of a column display. And we do that using these four directives or these four things. So let's put back this and look at what these look like.
+
+So let's change
+
+so it's flex,
+
+flex
+
+direction
+
+and
+
+Change them first to third row row in a row right now, which is the default column before that, but it's the rows actually the default. So let's change were reverse. So for reverse the row see that the last item now appears first. So it just reverses the order of the items on the main axis. The other thing we could do is we can change from a row display
+
+to a column display.
+
+And now the items display
+
+on a column and let's change this to
+
+flex and
+
+you see what I changed the flex end. They didn't move to decide like we would expect when Then a column display is essentially a swap swapping the X in the way that they were, they're behaving. So it changes the display but it also changes the way justify content is going to work and we have to start thinking it's flex n is the bottom and flex start as the top.
+
+Let's go back to space evenly for the
+
+next few. Ryan, is there a reason you might want to change the direction?
+
+Yeah, yes to because there's nothing on the so the when we get to the cross axis, the crocks, x is going to move things up and down. But it's not going to allow us to position one above two and above three there. So the switching this axis is what allows us to go to a horizontal display versus a vertical. We can't use the other axis to do that.
+
+And we also use column reverse, which is going to do like reverse, but it's going to reverse the order of the items in the column. So I'm going to go back to row which the default, the standard one.
+
+So the
+
+next thing we'd want to do is work with the cross axis. So on the vertical
+
+and we use that to align items.
+
+And it has really four or five. So flex starting in number starts going to be the top, the end is going to be the bottom and it has center and stretch, which is the default
+
+the odd padding on one
+
+So see if you want a bigger
+
+Like that.
+
+So we're
+
+in the backgrounds kind of messed up. So
+
+I think I might eat what's you're seeing? No, no, it's not this one that was yesterday's. I must have fixed it when I redid it for the Flexbox. So, and then it has a fourth one where we can center it on what's called the baseline which centers it on the line under the first line of text. So the line with the text opens text in line. So let's look at what that
+
+looks like.
+
+So for this one,
+
+we'll set go to
+
+align
+
+items
+
+and start at flex start.
+
+You see when I said line items to flex start, they they stopped stretching, because the stretch AIG is the default state, but now flex start pushes them to the top of the box. And the same with flex end is going to push them to the bottom.
+
+There is also Center, which is going to
+
+do what we expect, but to right in the center, which means that keeping items synonym Flexbox is really simple. For anyone who's tried to center content with non Flexbox like just for CSS, it's really difficult to do there you have to actually do a trick often to do it where you set the margin to auto and then zero Because of a old bug in CSS that caused that the senator things that nobody ever fixed and now it's just become a feature. So, but Flexbox makes it really easy to center anything, we can turn its container to Flexbox at the center, and it does it for us.
+
+So the other two, I'm going to go back to
+
+see if it's in here.
+
+These two I'm going to uncomment.
+
+sizing and these comments just put an absolute sizing on some of these boxes for the next. So they make them different sizes so we can see how that they behave. So with the ones we looked at so far, they don't change anything really around the starting size. But with that, if we align items to stretch, you can see when they stretch they stretch proportions. To fill up the space, when we started, we didn't have the set size on them, they stretch to fill up the entire container. But once we did have a size, they stretch out to their height to their set size around one place. That's it. So what is 75 150 and the other one doesn't have a sizing so it takes up the whole container. So we can still set a kind of a maximum stretch size by setting the height explicitly. And then also, now that they're different sizes, the text went up. So if I set this to baseline baseline aligns the text up and it does it by
+
+essentially creating a line
+
+right under the text and that's where the boxes are lined up on
+
+So basically there's losses lineup content in the box. So we text content without regard to the container but to the text itself.
+
+So I'm gonna put this back to split us back to center.
+
+I'm also going to go back and comment out
+
+these two lines.
+
+Alright, so the next thing we'll look at is what's called wrapping but before we do that, is there any question on so far for both the
+
+dis axis or
+
+via line items? It's pretty crazy. I've only ever used it for center but I didn't realize you could do it based off of like content. Everything was pretty cool. Yep.
+
+Makes
+
+a lot of very difficult task very easy.
+
+All right. So the next thing we need to worry about with Flexbox is wrapping the content as it shrinks and grows. So by default, it doesn't do that. If we shrink, it just keeps pushing, you see that it pushed it outside of the container, which is something that you've probably seen in other CSS, whether you wanted to or not. That's a pretty common problem. But it keeps them in order. It keeps them positioned the way we've told it to be even if they've the containers shrunk beneath them. But we can control that because we often don't want we often do want it to wrap the content. So to do that, flex wrap will tell it how we want it to wrap content The default is no wrap, which is going to keep everything together in the lines we start with. Or there's just wrap which is going to allow them to form multiple lines top to bottom and reverse of that which is going to go bottom to top. So let's look at flex wrap with these. So let's change the flex wrap,
+
+wrap.
+
+Now when we resize
+
+they move as well. He still he still can outgrow their container a better boat container could fix that. But they now though we'll reposition from their starting position into what makes sense for the screen.
+
+The reverse of that
+
+and actually put this put these back to a row so we can see how that looks with a row. No column
+
+sizes I wouldn't want to center
+
+column.
+
+So the column, now it's going to be based on height, I get a lot of margin of height, then they wrap in this way. So as I resize, we can see now they shrink into a lie into a horizontal from the vertical positioning
+
+back into direction.
+
+I could get the row
+
+we could also reverse the rapping.
+
+So with rap, reverse,
+
+and they'll still do have a similar behavior, but let's actually maybe put the regular rap back quickly. And let's watch it when it happens and pay attention to what happens in number three. And one, two, and three, how they how they move let's reverse that. So three went down, then two went down in that order. So if we reverse it
+
+starts the same.
+
+But you can see that now,
+
+instead of three moving down, it moved to the top. So instead of things wrapping to the bottom, they wrapped up towards the top, and the beginning item starts to bottom with reverse. And the same if we switch this to column,
+
+if you remember before,
+
+it went to the left, and now it's going to the right to build the column. So you end up with the opposite. If you had started with a column, and now it's wrapping into a row, you end up with three reverse rap puts it into what would be a row, reverse or column reverse Depending on the starting
+
+state, let's just wrap
+
+since that's
+
+the position this other mind up again, and let's put this back to row.
+
+So, so far, all the ones we've talked about, we've applied
+
+it to the container.
+
+So we've applied all these rules to the container about how to move all of the items. They wants, how to position the items. But there's also a set of directives we can give about to individual flex items, and how we want them to position. So before we move on to those 30 questions about these container
+
+based items,
+
+So
+
+I got a question. So if you don't care about, like removing items, when you go from desktop to tablet to mobile, do you need to do the responsive web design?
+
+If you
+
+so if you don't care about removing items, if you don't care about how your layout changes at all, then no. That's the whole point of it is to change your layout. So you could actually get away with building a mini pages using grid and Flexbox. and not have to do anything with media query. It let it do the repositioning for you. And that will work for a lot of pages. It's when you need to change like from like the thing that probably looked at yesterday with grid where the large grid was too large really to fit on a small screen nicely. And you can see when I change like a single column that's the time that you would need a media query. Or if you wanted them for you, like you said, remove an image or something like that to make a position better. But But these, these are responsive already. They just don't always do everything we want it to do. Does that answer which we're asking?
+
+Yeah, exactly.
+
+So these three divs. Remember our div One, two and three, just same as their text. And there's a selector for each of them. So we can work with them and their flex items because they're inside the flex container. And there's a set of directives that we can give to the flex items individually.
+
+The first is Order.
+
+Order allows us to adjust the ordering of the items in the container. So by default, they are in the order that they appear in the document. So we'll just What we expect that's what HTML does by default anyways, not just Flexbox. But everything this way,
+
+should not work. So if I reposition this
+
+Oh, because I reposition the CSS that doesn't matter. Sorry.
+
+So if I reposition one of these
+
+now the quarter changes, because the load order is what defines the order and they're being rendered in
+
+that back.
+
+So, with Flexbox, we can change that order, we can tell it we want this one to be in a different position. And they're positioned, the positioning is just a count 123. In this case, there's three of them. There was 10 items, it'd be one through 10. And we can do that by positioning. Let's change order.
+
+to number one to two.
+
+And
+
+you can see it moved
+
+its order by to
+
+describing us.
+
+Unless we had that one didn't have any effect either. So if we really want to adjust the order, we need to apply it to more than one of them. So I don't want this in the one position, I want this in the three position, or two position. Let's put this in the three position. And now we get what we're looking for. So we adjust a few of them. We often end up with things that we don't we don't expect because it doesn't know what to do with the other items, which is why one push clear to the right. And when I both when I David order one and two. But when I gave it a no, I told him what to do with all three of them. Then it repositioned them, as I would expect,
+
+it was all default again like, well, what did they start at?
+
+They start at just the order, they start at 123. So these are the order that they are in the HTML.
+
+So if you did one, do they just swap places?
+
+So if I do one, they don't.
+
+Let's, let's go back to the start.
+
+us put order one, and one pushed clear to the right.
+
+With order one. Yeah, it's a little.
+
+So originally, I think there's some history here that maybe causing this because I'm not really sure why it does that. But originally, if you go back and look at old Flexbox documentation, it said that order, you put positions, so order one One would say, exact kind of what you were saying, If you said, One, it would move one to the rights and negative one to the left other axis. And I think there might be some leftover, but it doesn't have to do with the other one code that's causing that, but I'm not not positive. But if you position them all, so Julie, if you use order, you're gonna have a set number of items. So it's so one common use of Flexbox. And one we'll look at today is when you have something like, if you think about the menu we built a few days ago, there was there's four or 554 items to move those into positioning. So in that in a menu, something like that, there's probably not going to be, it's probably not going to change, right? Well, it's going to change, but when it does, you're going to change more than just having new code on the page. Or another example might be you always display three ads. You don't know what those ads are, but there's three boxes, we're going to display ads, and settings. So you always know there's three boxes. So setting the order of those is a common use of this As we'll see, with JavaScript, we can change anything in CSS or JavaScript. So we can make it more dynamic than that even
+
+Are you able to like use any like keywords instead of numbers like last or something like that? Because that would be pretty cool.
+
+But not that I know of, but I don't
+
+I don't think so. Yeah.
+
+does nothing but
+
+not Yeah, I don't know of anything like that. And I when the documentation, I've haven't seen anything, but just the numbers. So other questions on order before we
+
+so the next
+
+thing we might want to do is change
+
+what's called the initial starting size the item we can set a fixed size we saw once we set the fixed size, like here, we kind of stuck to that size and set it to it was always that size, or no larger than that size. So we can also set a size using flex basis, which will set the starting size.
+
+So with flex basis, we've set it to
+
+the starting on the main axis size.
+
+And what it really does
+
+it keeps it at size but notice when it shrinks as it pushes down, it'll shrink down to a smaller size. But it's when it can take up that space it will allow it to so let's change it to let's add flex basis to
+
+So the way to think of flex basis is not really
+
+shames us once you flex
+
+the basis of like 90
+
+it's not really think of it as an absolute size, it's
+
+describe more of a, the seed now that with the basis of 90, this one, they don't become the same size, they're actually shrinking to the smaller sizes can be because of their content, where this woman is pushing to 90% of that essentially. So flex basis is actually described as being a value that
+
+gives them a starting basis
+
+that of how much space they should take up in the available space rather than the size mean size in the end, but but that thought is, I think their thinking the difference between that is that the thought is that it changes still as they grow or shrink, it just gives them a starting point A if you they can take up the space, this is the amount of space they should take up kind of reference. And it's used with the next couple of things we're to look at,
+
+which is that we often want to control how things shrink and grow. Comment out the flex basis so you can see it with the same sized items.
+
+So the flex basis which
+
+auto sizes, the
+
+elements.
+
+And if you notice, there's a comma in there if you put it too often Auto, it will auto size around their contents, which means they'll work kind of like in line items where they size themselves around, which they are.
+
+And
+
+there's also then there's flex shrink. So flex shrink is how, since the items shrink and grow, flex shrink tells it when they're shrinking, how to treat them proportionally to the others.
+
+So
+
+it's default everything set to one by default. So if we don't give it a value, it'll be one. But if we set it to something like two, it's telling it to shrink that relative to one shrink it. It's not really twice as much. So it's not, you know, said the two and ones one one shrink twice as much, but it's it gives it a higher factor of shrinking so There's not enough space and what that means.
+
+So it's kind of, it's a little easier to see than it is to, I think,
+
+think about or describe. Let's do a flex,
+
+shrink. And let's change div one.
+
+Let's start at one, and that's the default. So when we shrink, we're going to see no difference in the behavior. Now let's change it to actually let's put the basis back for this
+
+example.
+
+So once again,
+
+no change the behavior. Let's change this down to two.
+
+If you watched the one box as it starts shrinking it's kind of hard to see since it's strange Starts but it shrinks, I should have a slightly different rate than the others, though it's pretty choppy, because let's move to something more drastic like four.
+
+And if we watch one again,
+
+see it's it even though it was bigger, it more quickly jumped to the smaller size than the other. So we're telling it before to shrink that this item more than a higher rate than the others, we're giving basically a shrink rate. And what allows us to do is we have a larger item, it allows us to say we want it to start shrinking and give up space before the others do that way.
+
+If
+
+you have
+
+upset it's hard to get, get it to a position on the screen where this one's starting to shrink and this one is as well. This one's not pushing the other ones to shrink at the same rate switched. So it allows you do set kind of a not an order but a relative shrink between different items
+
+that you can you keep the screen right there and just remove the lines so we can see where the two will be if you didn't have it. Yeah, I don't know if at all.
+
+So, but let's
+
+see if we get a place where it's different. I think it's a break where it's really different.
+
+This might be too small to
+
+try
+
+making
+
+all the same Okay
+
+let's try something more drastic drastic
+
+example made peace objects may just not be
+
+dramatic enough difference to really
+
+keep a difference. So this is something like eight
+
+This is something like to
+
+sell especially going at the same rate yep
+
+So, I don't think this is really, these are quite large enough to really have any real effect that we're gonna see if I get it higher. I think at that point, it's not gonna matter if we do this
+
+or if you made to shrink more than one.
+
+Let's try that. Let's get the four, set that explicitly the one
+
+that snapping right there, see that?
+
+So I looked up flex shrink, and you can set it to like a decimal amount to make it shrink slower. So maybe you could set it up to like point six or something. Let's try
+
+There, that's what works better, is more visible. It's great. So you can see that number two shrinking at a slower rate than number one, that's the smallest it's going to get. So which I think is where but the problem is this.
+
+That's much more dramatic. Thank you.
+
+But it sets the basically value of shrinking. It's actually much more anytime I've ever needed it. So enlarge like article size, things are large images. Think I really used it maybe once and it's been large images were one to one to shrink at a different rate than the other. It's it's more dramatic on larger pieces. But yeah, that the smaller Frank is great.
+
+I'm gonna write that down.
+
+Alright, so the next one I'm going to remove the shrink actually keep that is the opposite it's grow.
+
+So grow does the same type of thing only fun growing. Grow starts at zero, or shrink starts by default. One
+
+a Stewart for a rate of Row,
+
+put these
+
+they're not going to grow any larger than that. So
+
+let's get rid of the shrink.
+
+And let's change so the growth rate is zeros there because it'd be growing the same.
+
+change it back to growth rate of one on one.
+
+And that's, you can see there once not growing at a much more dramatic rate taking up space. Then wanting to and is it so it's, as you can see, it's taking up a larger amount of space based on the available space of his position in the rap. So as it gets higher, it eventually will take up its correct amount of space and then take up proportionally more. So grow is proportional to the others were compared to shrink. If we can get it even more, though it doesn't get much more dramatic. But it's already taking up almost all the space. It just happens. You see it too.
+
+It didn't take up but there
+
+it looks about the same. So the proportional growth tells us which one proportionately how you want them to grow
+
+together. So let's try and there
+
+is that one and two, we're actually going to grow
+
+pretty close to same you see twos growing and larger rate now And three hits maximum size pretty quickly didn't grow beyond it. So it also means that they can go beyond their starting size. So the flex basis is the starting size. But since we've told them the rate they're allowed to grow, they're going to grow to take up space. At the rate we tell it to, in proportional to the amount we told to sorry not to rate the proportion that we told it to.
+
+And flex grow works very nice. It works well. When you have something that you always want to take up a large portion of the available space and you have
+
+other things you want to take a smaller portion.
+
+For instance, if you had just two of these and you wanted these to be, you know, a menu or something, an article and maybe ads that are small always kept smaller.
+
+actually get rid of all the
+
+bias in the grow because the next one
+
+piece of silly girl, but then back to the starting out just because the next one goes back to positioning on the axis again. So, the
+
+we looked at grow,
+
+looked at grow and self so next one is align self. So align self allows us to take tell the item on the cross axis how to align. So, we can set the flex start flex in center baseline or stretch and what that means for particular item these right now are all centered.
+
+So,
+
+say align self
+
+and
+
+start And that item will now align just that item will align to the start
+
+maybe for three,
+
+say, align
+
+self
+
+to flex end
+
+and it will line three to the the end. So line items allow us to override the setting of the container for the cross axis for that particular
+
+it takes all the same,
+
+same values as align items does. So, so flex start flex and center baseline and stretch. So it's used usable or useful when you have all of the items in a particular position and you weren't one of one or two of them out of position. If you want to do something like this A diagnose effect.
+
+So, the questions on
+
+me that's so far, we're actually that's pretty much all the Flexbox will apply it next. Okay. So the finally the first question that I had is, well, how do we justify self? If this is the cross axis? How do we change position of a single item on the main axis? And right now, what depends on the browser, some browsers you can in? Let's just try it cuz I was playing with it last night and my version of my browser, at least on Windows cannot do it. Now I'm curious if this one can cuz I didn't try it on the back. So we're currently at justify content space evenly. So let's try flex And now it doesn't work here either. So it works in a few browsers, mainly some of the Mozilla's developer browsers. So I said that Flexbox is in flux in their needs, there's features still being developed, justify content is a coming feature. If you're really interested, there's a link to an article or not the article, the MDM documentation of how it's going to work. And which exact browsers it'll work in right now. So it's, it's coming, but it doesn't. It's not in the main release yet.
+
+All right. So that's much most of Flexbox there are some few other smaller things, but I'll leave those to you to explore connected with grid.
+
+Actually, there's not much more for Flexbox
+
+grid has a lot more than we looked at
+
+Alright, so
+
+before we move on to applying it to an example,
+
+what questions do you have?
+
+Right? So is this to be like used in combination with the grid template that we were learning yesterday?
+
+Yes, it's really so it can be used for homepage layout, but the most common use would be to layout the page with a grid and then when you get to particular items, use flex or particular areas in the grid use Flexbox to layout that area. So just like where any element could become a grid, including a grid item, any element can become a Flexbox including grid items.
+
+Okay, that makes sense. Thank you.
+
+So the next thing would be to apply to a project Let's take a break first and we'll come back at 1033 and then we'll use it.
+
+Alright, so before we get started applying this, do you have any questions that come up?
+
+All right, so the next thing I'm going to apply this to actual web web page, scoring clothes Close, close this and in the lecture code. Today there's also a project called Flexbox project. Open that
+
+and
+
+find out.
+
+Find a better image of this image from the slide. Don't think it's quite large enough.
+
+So this project, I'm gonna run it live server when you stop by justing live server
+
+is a page that starting out in this this manner. So it's all laid out just one just content on the page.
+
+And we have a wireframe for it.
+
+Of what this page should look like. The wireframe is what a wireframe is, since we haven't encountered them before is a rough, kind of rough outline of what a project or UI should look like. It's not meant to be really detailed. It's meant to be almost like if you were sitting down and you just were trying to finish How to lay out your room and you don't rush to get to the room, I just kind of boxes for chairs would go type of type of outline. It's usually done by designers and handed out to developers to say this is the content. And this is how we want to position but it does show a little more detail than it might appear to.
+
+So it shows some things like
+
+where the menu items should lay out.
+
+Where the title should be, the head headings should be how the main items should lay out. And then some even more detail these items down here, they should lay out like this, but that their icon should be swapped. If I was looking at this, I would take this to mean that this should that every
+
+even an odd column should swap the icons back and forth.
+
+So they give us that type of rough layout. So the idea will take this page and we'll move it into this layout. And then we'll make it responsive. And we'll do this with we could do this with grid. But we'll do it all with Flexbox.
+
+Just so since we just learned Flexbox.
+
+So that's what we're going to do. So I'm going to put this
+
+up here to this. And let's start with looking at someone's first thing I do is I'll inspect this, let's
+
+and let's look at the HTML that we're working with.
+
+So the HTML itself is laid out into
+
+a body with
+
+three sections. So these three sections it looks like here. And the featured items in this bottom section are all in sections. We'll use the inspect tool to go look at that in more detail. And then there's two saw style sheets. Again, the styles when we won't be working with it. It's the one that's doing all the decoration on the page right now. And there's a Flexbox. One Flexbox doesn't need to be in its own style sheet, though we talked about yesterday having layout in a separate style sheets often desirable, especially a larger project we have in a Flexbox. Yes, that's just so that when you come back and look at it'd be easy to find the Flexbox specific code. So we're going to write our Flexbox code here. Close this because we really don't need much for that. So the first thing I want to do is figure out what really which sections are going to be flex boxes, there's probably gonna be a few of them to do the whole page. So if we look at the
+
+wireframe, again, we want a single column type layout.
+
+So if we applied flex to the entire body of the page, we can achieve this fairly easily. Because if we look, I guess I did the HTML again. If we look at the HTML, it's in these three sections. So if these three sections, remember, only the direct children become the flex items, just like with grid. The director of them can be grid items. So these three sections of complex items we can control and quite easily get into this positioning. So there's at least one.
+
+There's also
+
+these items here. And let's look at what that those are in. So those are inside, this whole section is a footer. And it has it's inside that span and that section, and it has a span and some text inside of it. So we could control that fairly easily. If
+
+we change that into a Flexbox.
+
+So probably one Flexbox little page For this footer. And then as we look at the wireframe, we also need these to layout.
+
+So if we also changed,
+
+see what these are?
+
+These sections, they're articles.
+
+So if we actually change this featured section into a Flexbox, we can control those articles. So let's start there, I think gives us three places to start. Actually, there's a menu items, too. So what's that look like? That's all items. So if we start with those sections, so the items section, the featured section, and the body, in this hero section, or the hero footer, I think we'll be good places to start with Flexbox and then we'll see where we go. So let's define those. I'm going to change them all just to flex first. So let's change we want it was that footer was again,
+
+inspected here. We wanted section hero footer.
+
+I'm just going to select by D since it has an ID on it, and we want the footer inside of that.
+
+And we want that to become
+
+display.
+
+Flex.
+
+Not much has happened here. I also want the body so let's add that.
+
+So let's do it.
+
+That's already beta kind of dramatic change. We'll have to come back to that and fix that.
+
+Actually, maybe must do that right now.
+
+So let's take the body
+
+and change its flex direction. So if I want this layout, what kind of flex direction would that be?
+
+column? I think a column would do it. So let's change the flex direction to column.
+
+Right. So we got
+
+back into that position.
+
+So let's take a look complete. We'll see we also decided we were going to do the sections here.
+
+The featured section
+
+that's going to be featured
+
+featured section.
+
+So already it's laid out almost into what we want And then we wanted the menu section down here, which was I think all items if I remember well check
+
+all items.
+
+Oh, dice Okay, items section.
+
+Okay, so now we have them positioned like that.
+
+So I could put it make one for each one of these, that'd be fine. But we could also do it like this and just put individual styles for each of the ones as we go. So we have those boxes now let's revisit it. So we have these two sections features, you know items, but I also need to lay out these these items.
+
+Let's take a look at those icons.
+
+So they're inside of a div. And the wireframe says that these needs to be centered, right.
+
+So if we turn this div
+
+into a Flexbox, we can just apply center and be done. Or make it really easy. So to select that, how could we put CSS selector could we use for that div?
+
+Or are we I specifically want to get all three Dibs but there are going to be the same selector
+
+um, divs that are inside of an article. Okay.
+
+I think
+
+they're more articles. That's going to select these divs to they need to lay out differently. So how can we get more specific? Like, section? And then pound sign? feature? Yeah, I think that would be good. Article on on the div. Yeah. So when was carts pound sign featured? Actually, let's put it up here with
+
+this, we can group it,
+
+featured, and then section article. So we're just like here, select the section, select the articles inside of it and Dev.
+
+turn that into a Flexbox
+
+and
+
+prokop here.
+
+We'll be able to come back then and change that. And that'll make sure we only select this. And now we have these two in the wireframe states. They need to be like this.
+
+So let's look at those. Oh,
+
+they're here.
+
+So but we really don't want this, we really probably want the whole article, right? Because Yeah, we need to make them stack on top of each other. So we can do something similar to what we did before to stop one bubble up an article. So I'm going through and I'm setting up all the flex boxes first. You don't have to do it this way. You could do it one at a time. Depending on the page, and the type of layout being looked for. Sometimes it's easier to kind of go by by section sometimes it's easier to kind of figure out where your boxes are upfront.
+
+So both approaches are fine, which is why
+
+I'm going to take this approach on this this particular page
+
+Alright, so now we have things in flux, we have the body displayed. Now we can start working through some of the other pieces.
+
+So the first thing, the
+
+sections down here,
+
+down here
+
+in the wireframe, all items, these sections.
+
+They are also in a column layout.
+
+So we already have a column layout here. So let's add that to it. And we know that that's the items section. This from what we just hovered on. Subscribe it's selector
+
+down here. Now it gives us
+
+this portion of the wireframe.
+
+So next
+
+We'd have
+
+this that needs to be centered,
+
+probably went the whole body centered, center the whole page. And then these articles look like they're centered as well. So let's deal with the horizontals. The three pieces of horizontal centering we know we need, let's start with the whole body. So
+
+that one should be pretty easy.
+
+Let's center it. So the bodies in the column layout if I want to center on the vertical or the horizontal, when it's in a column layout, what do I need
+
+justify content our line items
+
+justify content.
+
+justify content will be we'll center it on the horizontal in a row layout, wherever we switch accesses when we switch to column layout so If we're going to center when we're in a column layout, we're going to use
+
+align items. So the opposite axis
+
+and we can see now so that center on the page look that is like one of the huge things everybody, always once body align items. It centers perfectly. So
+
+it'll adjust
+
+automatically for us. So we're already getting kind of close. Now we're just down to kind of small details.
+
+So we also said we wanted the
+
+the senate
+
+so we have this that was selecting them. So let's grab that and pull that down here. So here, I want to set up On the vertical, or the horizontal, but these are in row display. So do I need a line items again or justify content?
+
+justify content?
+
+Yeah. So when there's a row display, which is their default, since we didn't change it to column like we did for body, we center on that. And the same way I want these more centered. So let's do those. And we'll see those were
+
+quick question.
+
+Why don't we use the child div? Why can we just say
+
+like, hashtag featured section article did and so same child.
+
+Where do we say, child?
+
+No, we don't reach out I'm saying
+
+why. Why does that work? Because it's like all different That are descendants of an article. That's a descendant of a section. So that works because there's no
+
+farther does inside of here.
+
+So the space says descendant, so this is a descendant of article, it's also a child of article. So we would use child if we had more divs inside of these divs. And we only want to select the outer div. But if we just want all the divs, inside of article, and we don't care about ones that might be inside of those divs, that children those divs, then we can use the sentence accommodated, which is what that that is. So it'll actually work with child two in this case. Okay, cool. All right. So we have that set. And then the third thing we said we needed to center and that was these articles.
+
+So when those centered more think
+
+More of a vertical center for that.
+
+So in their in column layout right now, No, they're not.
+
+Yeah, they're No, No, they're not. Yeah, they're right here. Sorry.
+
+So let's do
+
+justify
+
+content center
+
+and now they pushed off and centered.
+
+A little better. Well fix to fix some pieces there but alright.
+
+So now, let's
+
+look at the other pieces. So we want these centered on the vertical And we also let's apply the same to the swap center in both for those, which is what the wireframe is showing.
+
+So we want that footer centered
+
+on the vertical.
+
+And actually this section article let's just do a line items here.
+
+Senator Nelson on both.
+
+That's looking a little better, but to play with that, I think, but and then we also would want to do that with the footer. So hero footer, and we want to center on the cross axis and this is in normal row display. So that's line
+
+items. Center.
+
+Now they And more like we want them. Brian.
+
+Yeah. So the all items section article that you just made on line 24. Yes. That is that a column because of our definition of 12? line 12?
+
+Or is that a row? That is a row. I said it was a column incorrectly. Okay. Yeah. The. So there's actually two flex boxes here. A Flexbox. Within a Flexbox. Section is the article is a Flexbox. But so is the section. The section is column, which is by I said we incorrectly said it was a column, but the article was not there. So rows.
+
+And we were centering on the
+
+article in the article level, which is still relevant.
+
+I guess I hadn't thought about using both centers at the same time. So I was getting confused right there,
+
+but I didn't start there.
+
+So now
+
+Yeah, and direction rows fault.
+
+Sorry, direction rows. Flex direction row that's default. It is yes,
+
+we don't define it it will be row.
+
+So now
+
+let's take a look at the footer. Let's put some spacing there. So let's justify the content because we're going to do it on the main axis and I'm going to space these out. And let's try like space between which I think it was pretty close to what we want. It does, because there's two items to space between if you remember pushes the Outer items to the side, and then it centers the or gives anything in the middle individual space. So in here, there are two links. So it's going to push this one to the left, and this one to the right, which is what we wanted. Sorry, this went to the left, there's not two legs, I'm sorry, this is an item. And this is the second item. This is gonna get pushed left and this was the right, these links are not flex items. So they're just going to be put in line like they normally would.
+
+So that pushes it to the left and right.
+
+Right. So now
+
+let's take a look at these bottom box.
+
+So there's some kind of spacing going on here. Right?
+
+So let's try to make that look a little nicer.
+
+And I specifically want to on this second on this bottom div
+
+is this div here.
+
+So we already know we can select
+
+all items.
+
+Article, and then the div, right?
+
+So, our items, I'm just going to grab this
+
+article, and then the div info at the bottom one. What can I use to make sure I only get the last of
+
+last child? Yeah, so we'll get last child.
+
+And I want it to tell hard. I was gonna say I was gonna say I want that one.
+
+So let's I want to take up
+
+rate Know how little more space than the other one, so let's set it to 80% basis. And now it's looks a little more likely like it's taking up pushing out the space and getting getting preference. So it's been able to shove itself in. But they actually still end up looking pretty much the same.
+
+Right? So we're getting
+
+pretty close to this, but here, we want these icons to be
+
+on the left and the right.
+
+And we probably want it for every odd or even. So
+
+how can we select
+
+this the article
+
+For
+
+the honor of the evening
+
+so we know it's gonna be article
+
+and what I want is the
+
+articles inside have the Dibs so I want every other one
+
+it's got something to do with siblings but I don't remember using that yet.
+
+Okay any other so what if we used angry What if we said it's child they did win a cabinet yet well we could use here. Actually I think I showed it to you but
+
+yeah, there's odd and even.
+
+So even
+
+and we could change if we want to do now we have the selected we're going to select the article in child so the even children so no matter what, when we sleep Select. And inside of that there is a header and a paragraph. And we know these divs are flex containers already. So if I wanted to swap the order of these, and the for the even ones, what could I do?
+
+reverse?
+
+Yeah. So flux direction, reverse.
+
+And it did nothing. Why didn't you do nothing?
+
+I have a typo here. I'm thinking about article. Its child even flushed.
+
+And these are flex boxes, right? Yeah.
+
+Should we start it from the end instead? So what
+
+are we selecting the article, and then there is only one child in each article, and so it's not doing anything to it. So we need to Select the next thing hire.
+
+Let's check.
+
+So
+
+wait, I see. I see I want to refresh first.
+
+Okay, it's still it's still broke. So I refresh because the first step anytime CSS is not doing what you expect it to do should be to refresh, actually should be to refresh like this, right click, empty cache and hard reload. And because browser caching can cause issues, occasionally with things displaying, so now I know that that's not a cache issue. So let's take a look at why.
+
+That's not what I thought.
+
+Okay, so this is the container we want the article.
+
+We want the sections or the section that's containing those articles.
+
+Article sections, child I think it right. And then we'd switch the article.
+
+You're right. I think so.
+
+So we want this to be second child. Nope.
+
+Because we want the divs to switch. So we want the article
+
+article
+
+will be done
+
+in chapter 11 section section, Article section
+
+section, picking the right thing
+
+is it a section within a section
+
+all items section article
+
+is charged with the even child
+
+and the flex session reverse hits which these two items Oh, those two items
+
+what these two items
+
+second inception.
+
+Let's try this.
+
+Let's switching f
+
+all items.
+
+If we took that and selected the div itself
+
+and got the first child div
+
+and tried to set the order
+
+that works.
+
+Not sure why the other one didn't work have to look into that. But that works. So well. The difference is that
+
+So in this case, we got the
+
+article, we got the even one, which will be the second one. Then we got the div the first child, which is the icon. And then we swap the order to two and since there's only two items, it swapped it to the second position
+
+which is what we saw.
+
+But why? I saw understand why the Fed obviously was selection was right.
+
+I typed something wrong.
+
+Now it works. I had a typo somewhere. I don't know where but
+
+you didn't have row before. I didn't have reverse. Yeah,
+
+so that was it was that's it. Yeah, sorry. Okay, so that was a typo. So it did work so now you can see there's two ways we could could have done it we could have used order or we could have used
+
+reverse so the rover's reversed I'll leave it there because that's the one that I think was more intuitive
+
+in fact that take took that not working to think of the other one so
+
+so now we have
+
+it almost laid out I think the way we we need it.
+
+In fact, let's take a look to the wireframe. Put it side by side. Yeah, that mean usually not right. There's a laid out the way we want them. Okay, that looks pretty much like the wireframe. So So now we have that working but we started the problem of
+
+Doesn't look real great.
+
+responsively
+
+it's not.
+
+Yeah, it's pretty bad. So let's fix that. Let's at least put a couple breakpoint in and maybe just to, maybe we'll make it for if you're on a computer. So 1024 and if you're anything smaller, so anything smaller, it looks pretty good until you get down to like mobile size but I think to a lab computer versus everything else would probably be a good break point for this one.
+
+So with that, let's set up create a media
+
+query media screen
+
+and
+
+max width 1024.
+
+And what we really want to change is probably this feature section right here.
+
+That's the part that's looks
+
+really bad.
+
+I mean, I think if that fixed into a single column layout,
+
+it would be in line with that and that
+
+we're not gonna get this much better. We could get rid of the icon maybe at a smaller size.
+
+But just make those fall in line with each other. So the pictures
+
+Yeah, I don't know where the pictures would go.
+
+We could.
+
+That's actually way too small. We're not gonna go mobile. But even on mobile, they don't look that bad. It's not horrible. It's This looks bad. This middle parts the problem. So how can we change this if we wanted them now to be
+
+just in line or in a row column
+
+just use trapping. We could
+
+let's, so that's the featured asleep with that is
+
+the section I think in feature
+
+that's the section inside a feature that's that so let's select the featured section and apply flex wrap. Wrap
+
+that actually made this look better too because when this pushed out to The size into wrapping. These were allowed to fill the space more. And now they look a lot better than they did. So really with Flexbox, you see, we didn't have to do much really to change the page to make it responsive. We said turn wrapping on. There's these lines here, we probably want to fix, we might want to fix those as well.
+
+I think those wouldn't look so bad if you just put a background on the whole featured section.
+
+That's true. Those will look better. But could we also just
+
+try changing the flex direction instead? column
+
+and that is that still does a look. It's not that bad. Huh?
+
+Actually, we just changed the whole container.
+
+And it's 710 24. But the point is we can play with this more, we can make it look a little nicer. But the
+
+the point of it is that
+
+Oh, you know what might be even easier. Weakness get rid of that's probably a border. I'm like, let's see what that is.
+
+Says bother me.
+
+articles, this articles those are being created by these borders. Those are actually pretty easy to remove.
+
+It's only on every other child.
+
+So we could just do
+
+let's see its featured section
+
+and it's an article. We want the even ones so that's pretty much the problem we saw before.
+
+Section article
+
+And child even, let's just get rid of the borders. So border, none.
+
+There, that looks better.
+
+Now the page looks actually pretty good at
+
+that size.
+
+Mobile
+
+still looks decent,
+
+larger than a laptop and it looks a laptop size it looks original design. So the point is with media with Flexbox, it makes media query a lot easier to because now we can just tell it a different way of using the flex containers rather than having to absolutely resize and position things.
+
+So any questions on
+
+on everything we looked at so far? Alright,
+
+so we still haven't seen Flexbox working inside of a grid though.
+
+So let's do one more kind of project thing.
+
+And do it a little slightly different style.
+
+And we won't worry about responsive in the spot swatch, we'll see that we're going to gain a huge amount of responses to this blog, even media queries doing this using grid and Flexbox together. So there's another project in here, candy corn and CSS.
+
+We'll open it and bring it up.
+
+And it's this really wonderful looking nice nice looking page. But we can but to lay it out the way that we that is designed for it though kind of the frame for it is we're going to need both Flexbox and grid and so it has done that Have a wireframe, but the designer of it did actually suggest a grid for it. And it's pretty close to what I would use as well. So that's good.
+
+That's if we took this content.
+
+And we want to end up looking like this.
+
+And to create the margins on the side, the gutters on the side, we could use the grid. And then we could break it into either two or four pieces.
+
+So that
+
+this advertisement, and the store could both take a space, the title image and the navigation could use take a space and then the main can go across everything would either use two for this or breaking into four actually would be a really good idea because this is probably going to change in future Especially with things like advertisements and stuff that are down here for their festival and other things. So if they're doing that, then this will give us a little more granularity to control and it won't cause us any more difficulty with the grid, since we're just going to define grid areas. So if I was doing this, like this, I would probably break this down the same way or I might even break this into three pieces on each slide. But we'll follow the designers wishes that for. So that because having more granularity your grid doesn't, isn't really difficult to work with, right? Since we just we'd work with the area's not the individual blocks. Let's define this grid first. And in here, it's there's a main CSS and we're in it doesn't have anything in it. So we're gonna have to do some more than probably just the grid and the Flexbox. We're actually gonna do some styling on some of this to get this into that display. It does have the background setup, and it has some variables for us to use.
+
+Let's define this grid.
+
+So if I was doing this page if I was asked to do this, so a really common thing for front end developers, your back end developer, you end up building stuff that looks like this. And you hand it off to a front end developer, when a designer is probably taken and said, I want this. And the back end developer says, Okay, I'm going to give you all the pieces of this, but I'm not going to order them anyway, I'm just gonna throw them into a bunch of divs and sections. And that's it. The back end is building the different sections, which is it's getting less common with JavaScript front ends, but it's still fairly common. And then the front end developer takes it and applies CSS to make this the mess the back end developer gives to look like the way it should. Which is why I said if properly A page that has layout and has things not laid out but are laid out semantically correctly. We can use CSS to put it any way we want. We can reorder things as we need to.
+
+So
+
+let's see if I was assigned to take this and turn it into this, I would do it through a model just kind of passes through through it, I wouldn't do it all at once. First thing I do would be first pass, I would lay through, lay off the grid, and we get into a grid and then start working on each area. We're going to have 1234 or five areas and focus on each section at a time and then do some kind of cleanup at the end.
+
+So
+
+let's build the grid.
+
+And we don't need this.
+
+So we're gonna have to select on this page. First, we need to figure out what the Select Open up the inspection tool.
+
+Let's get out of responsive because well that's even.
+
+So really, let's just select the whole body. Let's apply the grid to the whole page.
+
+They'll probably be the easiest for this. So we'll select body
+
+and print that image go. If I wanted to build this grid, and then we know it's six columns, so I'm going to set splay to grid
+
+and grid.
+
+template columns.
+
+What sizing would you make each of these
+
+just Yeah, a one to two. to one,
+
+yeah, I think I would work at least twice the size of the gutter. So one, Fr 24242, Fr, three, four. And then one more. All right, and then now we know, we already have these areas defined for us by the design. So let's define those. So we're going to have a gutter on each one. So each one is going to start with starting in with a dot. And then we have a header, that's gonna take up the first two, right, and then a navigation area, it's going to pick up next to on this line, and then the gutter. The next line will be the gutter. And then the whole thing is just going to be main content. So we'll just call it main, main, main, main, and then the gutter. And then the same for this one. And we have this advertising We have and here so the Fall Festival information in the store information. So maybe
+
+Fall Festival, Fall Festival for to store store.
+
+So let's take a look at what that looks and it looks
+
+okay, it's all pushed off to the side so we haven't assigned anything yet. That's okay. So we have header main nav main in the two sections that she lays out pretty easily. I put this here so we can see it we're going to assign so let's
+
+select the header
+
+and assign it to grid. area header.
+
+And now, let's do the same with nav, select the nav area.
+
+And we'll assign it to the grid area
+
+nav.
+
+And we'll do the same with main. Because there's a main here. We're gonna assign it to the grid area main.
+
+And then there's ID order now in store. So order now is, I think the, see if we can see what it is, is the Fall Festival except from the image. So we'll assign that to the Fall Festival area.
+
+away. It's gonna be order
+
+now
+
+Good area will be Fall Festival.
+
+And then the store is store store.
+
+Credit area store.
+
+Let's see what we have now.
+
+So now we have
+
+well this image here is really shoving It's really big. So it's pushing everything out. But that's an image problem. But yeah, everything's in the store in this image is pushing across everything because images when they're too large, expand they escape their container.
+
+So if I wanted to maybe contain those images into the container, what could I do?
+
+Do something with the images.
+
+How can I tell them to take up only container
+
+Flexbox
+
+is something even simpler
+
+with 100%
+
+Exactly. So with 100% will say, Stop overflowing your container and take up the container size.
+
+So now we have the images kind of cleaned up out of the way.
+
+So now we can start working on the pieces.
+
+We could have done the images at the end, but when we don't clean up, but they were really in the way
+
+so we can see our grid.
+
+So let's look at look at this navigation section now. So the second pass will go through the navigation.
+
+So let's put
+
+nav layout
+
+so I want to look like this. And it looks like this. So if I wanted these layout side by side
+
+for these three items, I can find them
+
+What can I do? What can I use to push this Li side by side? Could you make it a grid can make it a grid. I think I've seen the easier way. Box. Yeah. So inside it, this is probably a great job for Flexbox. That's exactly what it does. It allows us to arrange things in different ordering right. So I would have to apply the Flexbox to the UL not the nav because that would make the UL the flex item and I want the allies to be the flex item.
+
+So nav, ul
+
+display flex
+
+There now I'm not aware.
+
+Before we go any farther, let's clean up enough.
+
+And let's space them out. So let's do justify content. And let's try space.
+
+Fix space between we'll get pretty close, they're spaced out now.
+
+And now
+
+let's get rid of their
+
+padding
+
+in the margin on the URL, and what that'll allow us to do is control it completely from the items. So we don't see really changed but what that means is that when we started adjusting the items, the container the UL container is not going to affect them. Because our next thing then will be to actually style these allies, the list items. So now of ul Li I'm selecting it like this because there's only one knob in the page. So we can really need to be as specific as the patient requires us to be. So the first thing I want to get rid of these dots here.
+
+So does anybody remember what we do to do that?
+
+list style?
+
+Yeah. So list style. None.
+
+Those are gone. And now
+
+separation. What does
+
+text decoration?
+
+The text decoration.
+
+Isn't on the allies, though, isn't it? That's on the anchors.
+
+So to your right, we will need that eventually.
+
+But we also have some other links on the page so we can do them all at once. fact we can go and do that. We can put up here maybe in the more general, let's say for the actual tags.
+
+Let's do text.
+
+decoration none
+
+in there, so they're all that we've both taken care of the other link as well.
+
+So they have the color black as well
+
+for
+
+these particular ones
+
+just for the ones that are inside the
+
+list, I guess.
+
+So these ones are orange. And this one's the their shade of black, which I guess is on the way they give it that dark gray. So these ones are orange, is that what you're referring to?
+
+Now I was actually talking about the text color. Oh, the text color.
+
+Well that this is a font color, isn't it? Or
+
+they had, I guess what they wanted for blacks. Yeah, we can define it to that. Good. Maybe it is that.
+
+So color dice more variable.
+
+Oh wait, that's the
+
+Oh, I need to assign that to. So why didn't that work when I just did that?
+
+That doesn't change anything.
+
+Because you weren't selecting the actual text.
+
+Yeah, I'm selecting the items this needs to be here. Oh, it's because they're visited. We'll come back to that. So and I also have this in here. They're not visited. So we also wanted the background color. And there was that var, since we're doing this orange
+
+And now we probably want some sizing, we wanted to look
+
+more like this.
+
+So we can set the width.
+
+I wanted to take up approximately a third each, but I want some spacing in between. So maybe like 30% 33% would take him, you know, almost to the edge. That'll give him a little space in between each side. Let's try that and see what it looks like.
+
+That's getting kind of close. So
+
+I want to do height, my
+
+height to them. So let's give them a height and try it of
+
+40.
+
+So that's not exactly what I would want, right? So how can I make it so? When a box like this, the text aligns Any suggestions?
+
+Can we make each one of those a Flexbox and have them just center to the middle?
+
+We could, there's a much easier way to do it than that was to
+
+text align center and then align items center.
+
+So let's try. line item center will only work if we turn into a Flexbox. So text align center
+
+will put them in the center,
+
+horizontally.
+
+So we haven't really talked about this, so it's a good time to talk about it. I don't know if anyone who encountered it yet. So we have these boxes like this and you want to get the text centered. There's two, two properties. There's height which is the box of the height. There's also what's called the line. So a box has every element or these elements has basically a line through it. And the line height sets in the text is actually centered on that line. So the original box line is like this. And we just told it to change the height of the whole thing to this. That's not really showing up. But so we can change that line height to.
+
+And now the line is 40. And so the text centers on the line. So we get center text, the Flexbox solution would have worked, but it's a little more difficult, because we actually don't even need height. Because the height of the box will always be it can be a minimum, the line length of the line, or the text line, or the content line. So
+
+we can change the line height instead of the height.
+
+And now because the final thing is they want these rounded corners, because everything on even a nice looking page. So once rounded corners
+
+and they look kind of close, they're pretty close to what they asked for. And it close enough to align them to the ends of the Flexbox. We do have you? Yeah, we do. Great, great observation. They look okay, but they're not lined right yet.
+
+So let's
+
+align them. So now
+
+we'd want to select the nav, and we could turn into a Flexbox and we can underline the whole ul at one time.
+
+So let's get the nav
+
+And let's display it as flex.
+
+And
+
+so if I want them at the bottom, what can I do?
+
+They look like this now,
+
+um, is that a line items flex and
+
+line items.
+
+Flex end
+
+didn't work the way I expected because they're stretching.
+
+So this is kind of a weird situation it's but it's a comment when it comes up. So they're stretching because the default is stretch. And if I turn it off stretch for line items, I also can't force him to the end because I can only pick one so What I'll do, what we can do is we can change the flex, we can change the axis. So we'll use flex direction and turn them into a column, which is going to change the axis.
+
+And then
+
+we can use justify content and justify content not gonna be on the cross axis, the flex end, which would give the effect of getting rid of the stretch, and pushing them to the end. So it's kind of a. So Flexbox has a few unusual little quirks like that, where since we can't get rid of the stretch and align the items in the cross axis, we have to switch the axis which is going to get rid of the stretch for us from this new on the other axis because it doesn't stretch by default on the cross axis. And then we can align them using justify content since it's on the other axis
+
+makes sense? Kind of
+
+All right, so let's
+
+continue. So
+
+I'm sorry. No, sorry. I kept like muting myself but doing the opposite thing that I wanted it to do.
+
+Did we add grid gap?
+
+We didn't and we probably should, that would, I think help a lot, wouldn't it? So let's go do that. So what kind of grid gap do you think? We suggest it's
+
+20 pixels. Okay.
+
+Looks like it looks good. It's pretty.
+
+Okay, so we have a good gap.
+
+So now, the next pass that we go through would be this main area. So we think the navigation looks close enough. It looks good. So let's look at Main.
+
+So if you want to fix this main layout,
+
+what would you do with
+
+if you want this main, which is all of this here
+
+to end up looking like this. And now we know it needs to look like that. Let's look at what's actually in Maine. Maine is an image in a div. What can we do to get that layout?
+
+And the flex Yeah, display flex, does that automatically, right? That's the row row display. typed us instead of Command S. So now it's it's in that the way we want it. It's just we need to fix this image because you see as we stretch It stretches the image gross. So let's fix that image. So we know a main, we don't want all the images, because we don't want to affect the other ones. We just want this one to mean.
+
+Maybe let's set a width to it.
+
+And let's just try it like 35%. Maybe see what that looks like. That looks probably pretty. It looks okay.
+
+And we can play around with maybe
+
+35. That's about the same but and then, as we resize the browser
+
+it stays pretty close.
+
+Let's give it
+
+a height, a set height.
+
+That's pretty small. Sorry, 350.
+
+looks about the same but now it always be 350 We also could set something like max height. But I also don't want it to get smaller than these three articles, right. But these articles growth get trucking to a point where they stretch down. I don't want really the image to keep stretching down either. So the candy corn in there looks pretty bad. So let's fix that with something we haven't just an image thing. So with an image if we have what's called object fit, object fit, determines how it's going to display behind so these so we can kind of think of everything in HTML displaying like layers. So the image is behind if you think of a it has like a box and there's something behind it. I'm pointing it at you or not the camera. And so if I had a box behind it, like an image, then object fit would say, take the object and put it full size behind image. So as the viewport moves, you get the other part of the image. By default, it stretch which presses the image into the size, which I can't do with the physical
+
+thing. So
+
+let's change it to cover, which is what makes it that full size image behind the kind of viewpoint. So now it looks, it'll always look like that. And when it image size it is because it can grow
+
+or shrink, so it'll still have
+
+is a practice so there's main I'm sorry.
+
+What was your question, sir?
+
+out there for a solid minute.
+
+So you didn't hear any of The whole object fit stuff we did.
+
+Yeah, you're okay. So good. If you heard about the pitcher, then cover makes it do what I was describing the, the pitcher. So and then I was moving around to show how it doesn't change. So it was all about that. The next is we need space for here. So we get apply in either place, I'm gonna apply it to this side. That way the text is controlling how far it is away from the image rather than image controlling where the text is located. There's i, this feels more right to me, but it's not necessarily right.
+
+So if we look at
+
+this
+
+image, there's this div with a class content. So let's just select that div. Actually, we just do
+
+inside the main we want the div
+
+with the class content
+
+Just give it a margin on the left side
+
+of 20 pixels or so. That looks pretty good. So we're almost there, we almost have everything we need. So we need to set up. This is pretty much set up already. We don't really need anything else grid took care of that for us. And just the dev sling out, need to change this a little bit. We just need to center some things and fix this button. And then maybe a little cleanup on probably not much. So we have that for the main internet. This is the main area.
+
+So the next pass will do the store.
+
+So the store area
+
+and let's
+
+align this text. So let's see what the text is kept in. Its To the h3 in the section store. So when the selected as store, h3, and basically text align center for that, because it's just text in it.
+
+An h3 is already going to always take up the full space.
+
+So the next thing I want is this.
+
+I'm going to take the turn this into a button. We've already done a lot of that. So let's just select
+
+inside of the store with the anchor tag.
+
+And let's start by
+
+first I want to resize it. So let's change this display to block. Because before we were resizing the list items, right, there was a list item there already blocked. So we could resize it. But with an anchor tag, since this is the we don't have an outside container on it, it's just the anchor tag. We'll change it to block so we can actually change the sizing and then let's give it Hey, I think it was I remember right this button had the black background color. So say the background color for
+
+the black
+
+saved in the wrong place. So now we have it stretched out. And now we need to change the for one from color. And I think there was a color up there for gray.
+
+But it's funny that dark
+
+so gray
+
+so we use the var that's provided.
+
+And now we just need to align that text.
+
+So we'll set
+
+text, align center.
+
+And now I want to maybe give this some better make it smaller. So it's a block item. So it's taking up the full width right now. So I'm going to set the
+
+Yeah, with sorry.
+
+Looks like around 25% or so.
+
+Let's try that and see what that looks like maybe 20% 25% that looks like it's gonna be close. And now let's do the same thing with line height. This one was a little thinner, I think. So 30 of course, the border radius
+
+fix.
+
+Now we just need to center the button. So this can be actually kind of challenging. Not really. But if you're trying to do it without knowing how to do it, this can be challenging. Because I can't just make this a Flexbox because that's going to turn h3 and P the paragraph tag into a flex items as well. And I don't want that I want them laid out the way they are. Sent me I have to send her this anchor tag within this section. In that trick that I told mentioned, that was leftover from a old bug. We can use what's up margin, zero auto
+
+and it centers.
+
+So what it does, when does the auto margin what ends up happening is it ends up pushing basically all the margin out to the maximum which ends up pushing it to the left and the right and centering the content
+
+I think we're
+
+pretty much there. The only thing I might want to have is these buttons. While they look fine, you can't tell they're buttons. So what can we do to make them tell that their buttons
+
+at hover?
+
+Yeah, we can add a hover effect.
+
+And we could see something simple like when the all the anchor tags on the page. Let's just change the text decoration back. Because remember, we took it off, just made it put it back to underline.
+
+And then we get at least a hover effect over them when they're
+
+pregnant, so I think we
+
+probably, yeah, I think we have laid out pretty close. And just for Matt, just from the grid and the Flexbox.
+
+It's not perfect, but it's fairly responsive.
+
+Get the mobile when the buttons get a little weird.
+
+We're not going to fix the responsiveness but everything else. Now if we got rid of this image, and maybe change the grid to a single column grid and move the buttons down here, we can fairly easily just with a couple changes just with a different grid, make this look a lot nicer for mobile, but it's still at least kind of usable. Tablet, it looks fine. So it's just at the very small size that we have any issues left. Nobody ever said we're not going to go through that. No fixing that. Unless you have some strong desire to do that. Not today won't do it. I just didn't plan on either.
+
+So if you have images that you want to see the whole thing all the time, is it not a good idea to use it in Flexbox
+
+if you want to see the whole thing at a particular size all the time or though the whole image Yeah, you could just you just have to set the containers. Because you remember, in Flexbox, we can still set a width, and it won't go beneath that width. Like are those boxes that we're working with data with 100 applied to them? Are they the content, so we can set a width and we can force it not to go below a certain width. So it'll stretch them and we also set a max so because that a min and max width or height and force it not to be able to stretch the items but still reorder. So we actually can still use it for the order.
+
+Okay, gotcha.
+
+So the questions for today.
+
+Then, for what we'll be doing today.
+
+exercises, they're similar to what you've been working on.
+
+There are two of them.
+
+do different things kinda like the
+
+one I'll point out before I was loading, that on the slides, there's like there was for grid. There is some extra information on Flexbox, the CSS tips, Complete Guide to Flexbox. And like with grid, if you read it, it's just complete coincidence that all these slides are almost identical. So, and there's two games two that are really Flexbox froggie is actually pretty good. If you haven't played it yet, it teaches you Flexbox by making good through a game and there's another one called Flexbox zombie that's I haven't played, but people rave about. They're both free though. Zombies requires my free account on some learning game site. But then everyone that I found how many people said if you're learning Flexbox, that's what you should be using. I haven't tried it myself.
+
+But there's a link to it because of those rave reviews.
+
+So let's um
+
+so the to two projects, there's one but just as a practicing Flexbox. And it's inside of the one that says many exercises. And it gives you a starting point. A bunch of different folders. Each folder
+
+has
+
+index and CSS in it. So it takes you through in kind of small steps.
+
+And let's get back to its directions.
+
+And it's things like there's a header here, and it has you adjust in different ways to the different steps using Flexbox. And then there's some boxes and you adjust them in different ways through Flexbox and some columns. So you get the idea. It's a bunch of different to small, make these items, look in these different ways. Using Flexbox the second
+
+exercise is portfolio page.
+
+And I think you've been given all the images and stuff to start out with and the beginning point.
+
+And
+
+it'll look like this when it starts.
+
+And you're going to use flex box to make it look like this. So from
+
+this to this
+
+and they walk you through some steps of doing that.
+
+So questions on what are we doing?
+
+Okay, and then for today
+
+see?
+
+So the code reviews Don't forget at 123 Today, I'm sure everyone's incredibly excited for those Then those will be here in the Java blue classroom. The teams will be picked in order with one exception. I think the only person that only lucky person I think as an interview during that timeframe is you Zack. So your team will go first so you can get to your interview. But then after that it will be randomly picked by a script. I was gonna have you go off to your interview, but we'll be done by the time your interviews done so. So and then tomorrow, the one to two session. If we need it for the code reviews, we'll use it for that. If not, then it'll be what interview coding practice. So and if it didn't have the coding practice, that'll be optional for whether you want to attend or not, but we'll see how it goes with the
+
+other code reviews.
+
+Later today. Hey, Brian. Yes.
+
+I think their employer showcase was canceled for today. Oh, there was, I think, right. Okay. So I don't know if that would be an option for folks or I know we have a meeting at three usually. So I don't.
+
+Okay. Thank you. Yeah. So we'll see I have two solid years today. I know after two hours, even if there's, if there's one or two teams left, the preference might be not to continue. Because there is a there's a limit on how much you can
+
+how long you can continue with with that.
+
+But we'll see how it goes. It's going.
+
+That's gonna give us some options. So then, tomorrow, either way, we'll meet at one. If there's Kirby's left it'd be required for the code review portion. If not, it'd be optional for coding interview practice. We'll do basically a whiteboarding exercise. I don't worry. I won't ask you to whiteboard anyone to whiteboard in front of the whole class, instead of you work on it, and then I'll demonstrate how I would whiteboard it. Including the techniques of talking and those two kind of pieces that and then any questions you have around that. And then I'm going to let everyone know since the mock interviews are pretty much done, except for a couple people today, I think are tomorrow. If you if you weren't told in your interviews, and you want more interview practice, just let us know. We'll be happy to do more interviews. I usually recommend to the people that end up talking to me that they make the rounds of through the instructional stuff so you know, pick up since the reality getting six more interviews in the next four weeks is pretty difficult. But pick a few people and try out some different styles of interviews because you go to john and get an interview compared to getting interview from Rochelle compared to get an interview from Steve giving me they're all going to be very different. So everyone has different styles. So I recommend even if you don't great, you thought it was one fantastic try different style. But just reach out to wherever you want to do it with and we'll set up time.
+
+So, other
+
+questions,
+
+pushing the candy corn?
+
+I'm sorry, the candy corn stock if you're pushing that. Yeah, I'll push that off right now. I can't do that right now, since I keep forgetting every day. Thank you for reminding me.
+
+No candy corns, very divisive topics I appreciate together coming down deciding candy corn.
+
+I appreciate. That's
+
+okay. So all the code is pushed. And if there's nothing else then thank you and I'll see you in an hour or so.
+
+Transcribed by https://otter.ai

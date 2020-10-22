@@ -1,0 +1,8 @@
+Book
+https://book.techelevator.com/content/introduction-to-programming-ool.html#variables
+
+By the end of this chapter, you should understand:
+
+How variables are declared and used in code
+How arithmetic expressions are evaluated in code
+How data types can be converted

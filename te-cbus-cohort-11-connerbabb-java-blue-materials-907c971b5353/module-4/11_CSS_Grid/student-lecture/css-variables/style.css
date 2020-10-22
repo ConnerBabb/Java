@@ -1,0 +1,36 @@
+
+h1 {
+    color: blue;
+}
+
+section h2 {
+    background-color: yellow;
+    color: orangered;
+    width: 75w;
+}
+
+section > p {
+    color: green;
+    font-size: 1.5rem;
+}
+
+section > div {
+    color: purple;
+    font-size: 1.75rem;
+    border: 1px solid black;
+    padding: 10px;
+    width: 75w;
+}
+
+section > div > p {
+    color: teal;
+    background-image: linear-gradient(lightblue, pink);
+    padding: 5px;
+}
+
+img {
+    width: var(--content-size);
+}
+
+
+

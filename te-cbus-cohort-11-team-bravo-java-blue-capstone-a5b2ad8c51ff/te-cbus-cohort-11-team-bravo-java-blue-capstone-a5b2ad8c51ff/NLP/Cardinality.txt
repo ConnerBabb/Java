@@ -1,0 +1,72 @@
+Book
+https://book.techelevator.com/content/sql-joins.html#cardinality
+
+Primary and Foreign Keys
+Before moving on to the next part of the SELECT statement, you'll learn about the relations in your database.
+
+Relational Databases are about the links that you form between your tables and not just the data in them. The power of your databases comes from the fact that you can treat your data as discrete objects of data and then combine them to figure out information about the data.
+
+For a concrete example, imagine that you had two tables in your database - a table of cities and a table of countries:
+
+#countries
+id	name
+1	Canada
+2	Mexico
+3	Cuba
+4	France
+5	Spain
+6	Italy
+7	China
+#cities
+id	country_id	name
+1	6	Milan
+2	6	Rome
+3	7	Beijing
+4	4	Nice
+5	4	Paris
+6	1	Toronto
+7	5	Seville
+In the above examples, the id columns are called Primary Keys. Primary key columns are columns that hold a value that is unique for every row in that table. Those are identifiers that you can use to get a specific row of data. If you want to get the row from the countries table that has id of 4, you know that you'll get back France. Since the id column is set up as the primary key - something that you add as a constraint on that table when you create it - you also know that each row's id is unique in that table.
+
+The cities table also has an id column, which is the primary key for that table. You'll also see that there is a column called country_id. That column is a Foreign Key. It references the country table and links a city to a certain country. By creating these primary and foreign keys, you can make your data truly relational and model how these two pieces of data link to each other in the real world.
+
+#Cardinality
+You know that cities and countries are related in real life. You also know that countries contain many cities, and a city is inside one country. There are a few different kinds of relationships that you'll want to model in your database. Here, you'll look at the most common two.
+
+#One-to-Many
+In the above example, the relationship between a city and a country is a one-to-many relationship. It can be expressed as:
+
+A city is in only one country, and a country has many cities.
+
+To model this in your SQL tables, you'd have a primary key on both tables and a foreign key on the table that has the many part of the relationship - the city in this example.
+
+
+Image - Cities and Countries
+This makes sense if you think about these columns. Primary keys must be unique, but foreign keys don't have to be. Having a country_id on city means that many cities can have the same country. If you put a city_id on the countries table, then a country could only have one city per row, which is not what you want. So, because it is one country having many cities, you put the foreign key to countries on the cities table.
+
+#Many-to-Many
+But sometimes you want both sides of the relationship to be many. For example, if you want to model films and actors, you'd have a many-to-many relationship. You'd say:
+
+An actor can be in films, and a film can have many actors.
+
+So where does the foreign key go? If you put it on the films table, then a film could only have one actor. If you put it on the actors table, then an actor could only be in one film. Neither of those scenarios is what you want.
+
+So if you don't want the foreign key on the films table and you don't want it on the actors table, maybe you should put it in its own table.
+
+
+Image - Actors and Films
+That actors_films table is called a join table or an associative table. It is a required technique to join two tables together in a many-to-many relationship. Here, you still have primary keys on the actors and films tables, but then you put the foreign keys onto a new table called actors_films. So the actors_films table can have many rows with the same actor and many rows with the same film, satisfying the need to link the actors and films tables together in a many-to-many relationship.
+
+Database Table Naming
+
+You might be wondering how to come up with these names for your tables and their rows. It's not random, but it's also not something set in stone either. Wherever you end up, the company most likely has a naming convention that they already follow. The convention used in this book is commonly known as the Active Record convention.
+
+In the Active Record convention, tables relate to some object that you have in your application, like a City and a Country. Table names are that object pluralized - for example, cities and countries.
+
+Primary keys are almost always id and an integer. Foreign keys are the singular form of the table name with _id tacked onto the end, like city_id or country_id.
+
+Join tables are the two table names concatenated together with a _ in the middle. The names are arranged alphabetically, like actors_films and not films_actors.
+
+Again, these aren't requirements, and you could see databases that are set up much differently than this. It's better to understand the concepts than to memorize the naming.
+
+So, how do you use these relationships in your SQL statements?

@@ -1,0 +1,17 @@
+Book
+https://book.techelevator.com/content/authentication.html#what-is-authentication-what-is-authorization
+
+What is authentication? What is authorization?
+Authentication is the process of validating that users are who they claim to be. Passwords are the most common authentication factor. If a user enters the correct username and password, the system assumes the identity is valid and grants access.
+
+Authorization is the process of giving a user permission to access a specific resource or function. For example, Alice is allowed to see and update salaries, but Bob is only allowed to see them.
+
+#Forms of authentication
+There are three distinct categories of authentication factors:
+
+Knowledge factors are something the user knows. Examples: passwords, personal identification numbers (PINs), and security questions such as "What is your mother's maiden name?"
+Ownership factors are something the user has. Examples: physical USB security keys, and cell phones receiving one-time codes through text messages (SMS) or authentication apps like Google Authenticator.
+Inherence factors are something the user is or does. Examples: fingerprints, face scan, voice, signature, retinal pattern.
+Software applications can use any factor to identify a user. You're already familiar with entering a password to access your computer, or nearly any website. Some applications may require you to enter a code you received on your phone, which is called two-factor authentication (2FA) or multi-factor authentication (MFA).
+
+Once a user authenticates themselves with your application, how do you continue to verify their identity? If you recall from a previous chapter, HTTP is a stateless protocol. This means the server can't tell if any two requests are from the same client. Because of that, each request must contain information about the user's identity

@@ -1,0 +1,30 @@
+Book
+https://book.techelevator.com/content/server-side-api-2.html#creating-rest-apis
+
+Creating REST APIs
+You've already learned how to create GET and POST handler methods. Creating PUT and DELETE are very similar and require adding the respective HTTP method to the RequestMapping declaration:
+
+/**
+ * Updates a product based on the ID and the request body
+ *
+ * @param product the updated product
+ * @param id the id of the product that is getting updated
+ */
+@RequestMapping( path = "/products/{id}", method = RequestMethod.PUT )
+public void update(@RequestBody Product product, @PathVariable int id) {
+    product.setId(id);
+
+    // Update product in underlying datastore
+}
+
+/**
+ * Removes a product based on the ID
+ *
+ * @param id the ID of the product to remove
+ */
+@RequestMapping( path = "/products/{id}", method = RequestMethod.DELETE )
+public void delete(@PathVariable int id) {
+
+    // Removes the product in underlying datastore
+
+}

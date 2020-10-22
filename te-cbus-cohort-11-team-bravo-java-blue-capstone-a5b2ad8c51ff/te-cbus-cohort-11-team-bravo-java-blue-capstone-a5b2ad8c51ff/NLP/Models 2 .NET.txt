@@ -1,0 +1,102 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-dotnet.html#models-2
+
+Models
+In the example for the List() method, the code returns an IList<string>. This works well, but what happens when you want to represent data that's more than a simple string? For example, a Todo object could have the following properties:
+
+Id: int
+Task: string
+DueDate: DateTime
+Completed: bool
+#What is a model?
+In C#, a model is a class that represents the data of your application. Models often contain properties. They may also contain validation logic that enforces rules about the type of data the model holds.
+
+Here's an example model:
+
+public class Todo
+{
+    public int Id { get; set; }
+    public string Task { get; set; }
+    public DateTime DueDate { get; set; }
+    public bool Completed { get; set; }
+
+    public Todo(int id, string todo)
+    {
+        Id = id;
+        Task = todo;
+    }
+}
+#Using a model
+Models are instantiated and populated from within a controller. In most cases, when the application uses a database, the controller uses a data access object (DAO) to populate the model. Going back to the TodoController, you could replace the IList<string> with IList<Todo>:
+
+namespace Todos.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class TodosController : ControllerBase
+    {
+        private readonly IList<Todo> todos;
+
+        public TodosController()
+        {
+            todos = new List<Todo>
+            {
+                new Todo(1, "Wake up"),
+                new Todo(2, "Shower"),
+                new Todo(3, "Drive to work")
+            };
+        }
+
+        [HttpGet]
+        public IList<Todo> List()
+        {
+            return todos;
+        }
+
+        [HttpPost]
+        public void Create(Todo todo)
+        {
+            if (todos != null)
+            {
+                todos.Add(todo);
+            }
+        }
+    }
+}
+A GET request to /todos now returns a list of todos instead of the list of strings you saw before:
+
+[
+    {
+        "id": 1,
+        "task": "Wake up",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "task": "Shower",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "task": "Drive to work",
+        "dueDate": "0001-01-01T00:00:00",
+        "completed": false
+    }
+]
+The benefit here is that you can use the same model when you're dealing with a list of Todos or when you want to get a specific todo:
+
+[HttpGet("first")]
+public Todo Get()
+{
+    return todos.First();
+}
+A GET request to /todos/first returns the first todo in the list:
+
+{
+    "id": 1,
+    "task": "Wake up",
+    "dueDate": "0001-01-01T00:00:00",
+    "completed": false
+}

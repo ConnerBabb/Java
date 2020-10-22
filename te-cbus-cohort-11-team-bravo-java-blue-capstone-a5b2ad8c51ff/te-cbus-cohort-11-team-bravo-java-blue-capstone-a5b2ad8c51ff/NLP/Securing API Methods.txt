@@ -1,0 +1,121 @@
+Book
+https://book.techelevator.com/content/authentication.html#securing-api-methods
+
+Securing API methods
+By default, all of the endpoints in your API are open to anyone who wants to call them. Inevitably, you'll want to secure your API endpoints. Spring Security provides the @PreAuthorize annotation which decides whether a method can actually be invoked or not. The @PreAuthorize annotation takes in a Spring Expression as an argument.
+
+The Spring Expression Language ("SpEL" for short) is a powerful expression language that supports querying and manipulating classes at runtime. This isn't something you need to fully understand, but if you want to learn more, you can read the docs.
+
+If you want to check out a list of common expressions that you can use when it comes to security, you can view them here, but you'll mainly use the following:
+
+@PreAuthorize("isAuthenticated()"): The user must be authenticated.
+@PreAuthorize("permitAll"): The user doesn't have to be authenticated.
+@PreAuthorize("hasRole('ADMIN')"): The user must be authenticated and have the role ADMIN.
+@PreAuthorize("hasAnyRole('ADMIN', 'USER')"): The user must be authenticated and have either the ADMIN or USER role.
+Here's an example of class-based authentication where each of the methods inherit from the class rule of isAuthenticated():
+
+@RestController
+@RequestMapping("/locations")
+@PreAuthorize("isAuthenticated()")
+public class LocationController {
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Location> list() {
+        // inherits authentication from controller
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public Location add(@Valid @RequestBody Location location) {
+        // inherits authentication from controller
+    }
+
+}
+Here's an example of method authorization:
+
+@RestController
+@RequestMapping("/locations")
+public class LocationController {
+
+    @PreAuthorize("isAuthenticated()")
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Location> list() {
+        // you must be authenticated to invoke this method
+    }
+
+    @RequestMapping(path = "/public", method = RequestMethod.GET)
+    public void notsecure() {
+        // this method doesn't require authentication
+    }
+
+}
+#Allow anonymous access
+If you need to make one action method open to anonymous access—meaning no authorization—while the rest of the controller requires authorization, you can use the permitAll expression in the @PreAuthorize annotation. A good use case for this is when you have an action method for users to log in along the same route for methods that do require authorization:
+
+@RestController
+@RequestMapping("/users")
+@PreAuthorize("isAuthenticated()")
+public class UserController {
+
+    @PreAuthorize("permitAll")
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    public String login() {
+
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<User> list() {
+
+    }
+}
+#Require role
+But what if you need to make sure only some logged in users can access a resource and others can't? For this situation, you can pass the expression hasRole('ROLE_NAME') to the @PreAuthorize annotation. In the following example, you must be authenticated to access any of the methods, but you must be authenticated and have the role of admin to access the add() method:
+
+@RestController
+@RequestMapping("/locations")
+@PreAuthorize("isAuthenticated()")
+public class LocationController {
+
+    private LocationDAO dao;
+
+    public LocationController() {
+        dao = new MemoryLocationDAO();
+    }
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public List<Location> list() {
+        return dao.list();
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Location get(@PathVariable int id) throws LocationNotFoundException {
+        return dao.get(id);
+    }
+
+    @Secured("ADMIN")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public Location add(@Valid @RequestBody Location location) {
+        return dao.create(location);
+    }
+
+
+}
+If you need to allow for multiple roles, you can specify them in a comma-separated list using the expression hasAnyRole:
+
+@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+#User identity
+There will be situations where you not only want to know that the user is authenticated and that they have a certain role, but more specifically, the identify of the user. For example, while adding a new location, you also want to log which user created it. You can do so by declaring a new argument on your method of type Principal, and it'll be resolved by the Spring Framework. Once you have a Principal object, you can get the current user by calling getName():
+
+@PreAuthorize("hasRole('ADMIN')")
+@ResponseStatus(HttpStatus.CREATED)
+@RequestMapping(value = "", method = RequestMethod.POST)
+public Location add(@Valid @RequestBody Location location, Principal principal) {
+    System.out.println(principal.getName());
+    return dao.create(location);
+}
+Principal
+
+In Spring Security, the current logged in user is referred to as the Principal. A principal in computer security is an entity that can be authenticated by a computer system or network.
+
+At this point, you're probably thinking "How can I declare a type of Principal and magically get the current logged in user?" and that's a valid question. There is a bit of "Framework Magic" going on here, but for now, understand that if you declare one of these types in a method that is annotated with @RequestMapping, the Spring Framework tries to resolve them for you

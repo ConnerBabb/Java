@@ -1,0 +1,104 @@
+Book
+https://book.techelevator.com/content/linear-data-structures-ool.html#list
+
+List
+The list is by far the most popular collection type used in the Java language. Like an array, a list serves as a general purpose type-safe collection, which allows it to manage any data type. Also, like an array, the values are accessed by index. What differentiates lists from arrays is the methods provided to manipulate the state of the collection.
+
+#Creating new lists
+Remember, creating objects in your code goes through three expressions that are usually, but not always, contained in the same statement of code.
+
+Declaration - A declaration associates a new variable name with a defined data type. You've seen this before when working with variables.
+Instantiation - Using new creates a new object in-memory and returns the address to it. You've seen new with arrays previously, and here it's doing the same thing - making a new object for you to use.
+Initialization - Using a constructor sets some initial values on the created object's instance variables. Essentially, it starts an object off with a certain state.
+The code below shows how to declare and create a new empty list.
+
+List<String> names = new ArrayList<String>();
+This code creates a new instance of a list of strings.
+
+The new keyword sets aside memory to hold this object. ArrayList<String> is what is created in memory. You invoke its constructor to make sure it initializes a new list with some default values. The address for this object is saved to the names variable.
+
+Note that the data type for the names variable looks different. This isn't a typo.
+
+The names variable is of type List<String>. This is called programming to an interface. It lets you write polymorphic, or interchangeable, code. As you learn more about the language, you'll see that there are other types of lists that could be used. This is allowed because they all share something in common: they implement the List<T> interface. This is covered in later chapters.
+
+If you want, you can create a list of integers:
+
+List<Integer> ages = new ArrayList<Integer>();
+Did you notice Integer instead of int in the above code? There's a reason for this:
+
+There are class versions of primitives
+
+In Java, you can't put a primitive in any of the collection classes. It's a limitation of the language.
+
+But the language's creators didn't want to leave out ints completely, so they made an object version of ints called Integer. In fact, they did that with all the primitive data types, including Double, Character, and Boolean.
+
+So, you can now make a List<Integer> and put ints into it whenever you want:
+
+List<Integer> myNumbers = new ArrayList<Integer>();
+myNumbers.put(5);
+You can also make a list of DateTime objects:
+
+List<DateTime> appointments = new ArrayList<DateTime>();
+You can also use any other data type, including your own. What if you had a data type that represents a house?
+
+List<House> neighborhood = new ArrayList<House>();
+You have created your own list that holds House objects. Don't try typing it in right now—it won't work until you learn how to create your own classes. With code, anything is possible.
+
+Take a look back at your list of names. You can also create lists and initialize them with values if you know them ahead of time.
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+#Accessing list values
+Now that you're working with objects and not arrays, you have to get values out of the List differently. You do that with the get() method.
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+
+// The secret children of Darth Vader: Luke and Leia
+System.out.println("The secret children of Darth Vader: " + names.get(0) + " and " + names.get(1));
+Notice that lists are also a 0-based index system, like arrays.
+
+#Adding new values
+You can use the add() method to add new values:
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+names.add("Chewbacca"); // names now contains Luke, Leia, Han, Chewbacca
+The add() method only accepts arguments of the same type declared between the angle brackets.
+
+List<Integer> ages = new ArrayList<Integer>();
+ages.add("Hello");  //Will not compile
+Lists also have an overloaded add() method that lets you set a value at a specific index in the array.
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+names.add(0, "Chewbacca");   // names now contains Chewbacca, Luke, Leia, Han
+#Removing values
+There are two approaches to removing items from a list. The first uses the remove() method, which accepts the value you want to remove.
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+names.remove("Luke");   // names now contains Leia, Han
+Alternatively, you could use the remove() method if you know the specific index.
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+names.remove(1);   // names now contains Luke, Han
+#Iterating through a list
+Collections also support a model of iteration called enumerators. Enumerators are a simple type that allow you to move forward through a set, one item at a time. You can use a new loop called a foreach loop to do this. The definition for the foreach loop looks like:
+
+for(<type> <identifier> : <expression>) {
+    <body>
+}
+To do this for your list of strings, you would write the following:
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+for(String name : names) {
+    System.out.println("Character: " + name);
+}
+You can also use the for loop to move through the list:
+
+List<String> names = new ArrayList<String>(Arrays.asList("Luke", "Leia", "Han"));
+for(int i = 0; i < names.size(); i++) {
+    System.out.println("Character: " + names.get(i));
+}
+You might have noticed a new method up above on the List. That method is called size(). It returns the number of elements in the List.
+
+#Other methods
+This chapter covered some of the more common methods that lists contain, but it's important to know that there are many other methods that exist to make your job easier. Explore and experiment with the intellisense to see what other methods you can discover.
+
+#Stack

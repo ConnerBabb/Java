@@ -1,0 +1,54 @@
+Book
+https://book.techelevator.com/content/logical-branching-ool.html#methods
+
+Methods
+In programming, methods break programs up into small, repeatable units of code. They allow programmers to create blocks of code that perform a single action or calculation where the answer only changes based on the inputs provided to it. Later lessons explore this further.
+
+For now, it's important that you begin to read and understand the two parts of a method: the method signature and the method body.
+
+The components of a method signature are:
+
+The return type
+The method name
+The parameter list
+
+Image - Method Signature
+#Return type
+Methods return to the code that invoked it when it completes all the statements in the method, reaches a return statement, or runs into an error, also called an exception, whichever occurs first.
+
+You declare a method's return type in the method signature. Within the body of the method, the return statement returns a value of that type.
+
+You'll see this later, but any method declared void doesn't return a value. It doesn't need to contain a return statement, but it can have one so the method ends early, as shown below:
+
+return;
+If you try to return a value from a method that's declared void, you get a compiler error.
+
+Any method that isn't declared void must contain a return statement with a corresponding return value, like this:
+
+return returnValue;
+The data type of returnValue must match the data type declared in the method signature.
+
+#Method name
+The method name is a clear name indicating what type of action or calculation the method performs when invoked. It's important that you write method names that clearly indicate to other programmers what the method does.
+
+In Java, method names are camel case, whereas C# methods are pascal case.
+
+#Parameter list
+Parameters act like variables. They have a data type, a name, and their value can be obtained by using it in a code statement or expression. When you create a method, parameter lists indicate what inputs are required for the method to run.
+
+When writing method bodies, you don't necessarily know the values of the parameters like you do with variables. This is challenging because you have to think of the parameters as their data type without knowing their specific value. Consider the following method:
+
+public int MultiplyBy(int multiplicand, int multiplier) {
+    int result = multiplicand * multiplier;
+
+    return result;
+}
+This method indicates that it accepts two parameters and returns an integer. The first parameter acts as the multiplicand and the second, the multiplier.
+
+As you'll see in later parts of the cohort, you invoke these methods by calling their name and passing in parameters.
+
+int output = MultiplyBy(3, 4);  //invokes MultiplyBy method. 3 is the multiplicand, 4 is multiplier
+// ...
+// ...
+output = MultiplyBy(9, 2);      //invokes MultiplyBy method. 9 is the multiplicand, 2 is multiplier
+Each time a program calls the MultiplyBy method, it passes values for the multiplicand and the multiplier. The MultiplyBy method uses those values to calculate a new result.

@@ -1,0 +1,78 @@
+Book
+https://book.techelevator.com/content/polymorphism-ool.html#polymorphism-and-inheritance
+
+Polymorphism and inheritance
+Recall that in the last chapter, you added subclasses that inherit from the Clock class:
+
+public class Clock {
+    public int hour;
+    public int minute;
+    public int second;
+
+    public void setTime(int hour, int minute) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = 0;
+    }
+
+    /* ... */
+}
+
+public class GrandfatherClock extends Clock {
+    /* ... Grandfather Clock implementation */
+}
+
+public class CuckooClock extends Clock {
+    /* ... Cuckoo Clock implementation */
+}
+
+public class AlarmClock extends Clock {
+    /* ... Alarm Clock implementation */
+}
+
+
+Suppose you needed to create a Shopkeeper class whose responsibility is to reset all of the different clocks to 7 AM.
+
+public class Shopkeeper {
+
+    public void setTime(GrandfatherClock clock) {
+        clock.setTime(07, 00); // Set a grandfather clock to 7 o'clock
+    }
+
+    public void setTime(CuckooClock clock) {
+        clock.setTime(07, 00); // Set a cuckoo clock to 7 o'clock
+    }
+
+    public void setTime(AlarmClock clock) {
+        clock.setTime(07, 00); // Set an alarm clock to 7 o'clock
+    }
+}
+Do you notice a code smell here? You're adding a method for every type of Clock. Your code is tightly coupled. When you want to add a new Clock type, you'll add a new SetTime method for it as well.
+
+Code Smells
+
+A code smell is any symptom in the code of a program that possibly indicates there is a deeper problem, violation of fundamental design principles, or an impact to design quality. Here are some common code smells:
+
+Duplicate code
+Conditional complexity
+Long methods
+Polymorphic code allows you to take advantage of the fact that your different clock classes—AlarmClock, GrandfatherClock, and CuckooClock—have an is-a relationship with a Clock.
+
+Given that AlarmClock, GrandfatherClock, and CuckooClock are subclasses of Clock, you can write a single function that accepts a reference to a Clock while allowing any class that inherits from it too.
+
+public class Shopkeeper {
+
+    public void setTime(Clock clock) {
+        clock.setTime(07, 00);    // Set any clock to 7 o'clock
+    }
+}
+Now you've written loosely-coupled code. The ShopKeeper doesn't differentiate between the different clocks when it comes to setting time. Think about it—how many times have you said "go reset that cuckoo clock to 7 o'clock?" Realistically, you're likely to point at the cuckoo clock and say "go reset that clock to 7 o'clock."
+
+The ShopKeeper class is now only dependent on Clock. If you add a new class that inherits from Clock, like a Watch, the code in your ShopKeeper class has no reason to change.
+
+public class Watch extends Clock {
+    /* ... Watch implementation */
+}
+Polymorphism and Inheritance
+
+With respect to inheritance, polymorphism simply means if B is a subclass of A and a function can accept A as a parameter, then it can also accept B.

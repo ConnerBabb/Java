@@ -1,0 +1,91 @@
+Book
+https://book.techelevator.com/content/vue-router.html#getting-started-with-vue-router
+
+Vue Router Introduction
+Up until now, you've built Vue applications that have all the components on the same page. You've also learned how to add behavior to a component using events. If you want to react to a user clicking on a button, you can listen for the click event and perform some logic each time it's clicked. If you need to tell other components about that event, you emit an event so any parent components interested in it can react to it as well.
+
+This has worked well so far, but what happens when you build larger applications? If you create a simple application that has three pages like home, about, and contact, how would you load and unload the component the user is interested in?
+
+You could put something together by looking at the URL and using v-if or v-show to show and hide the components, but this would quickly become cumbersome, complex, and error-prone.
+
+In applications that run on both the front and backend, there are ways to handle this problem. It usually involves looking at what path the user requests and associating that with some code. In Vue, you have Vue Router, which is the official and recommended routing provider. Vue Router allows you to define a route—for example, '/', '/about', or '/contact'—and define the component that you want to load when that route is requested.
+
+#Getting started with Vue Router
+To get started with Vue Router, you'll need to add it as a feature when you're creating a new project. You can also add it to an existing project, which is explained in the Further Exploration section.
+
+#Adding Vue Router to a new project
+If you create a new project using the Vue CLI command vue create hello-router and choose "Manually select features", you'll see an option called Router in the list of features:
+
+
+Image - Vue CLI Select Features
+Notice that by default, Router is not selected. To add Router, arrow down to that option and press the spacebar to select it. From there, accept the defaults and create a new project. Once your project is created, your project structure looks like this:
+
+
+Image - Vue Router Project Structure
+You may notice there are some new files and folders you haven't seen before. The rest of the chapter explains what they are.
+
+#Router configuration
+In your project, you'll see a new file called src/router/index.js. In this file, a new router instance is created and passed in some configuration options to its constructor.
+
+When you add new views/pages to your Single Page Application, you need to add a new route in the route configuration. There are many options for customizing the router but for now, you'll focus on routes:
+
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  }
+];
+Note
+
+You might see slightly different code when you create a new Vue Router application depending on the version. This guide doesn't cover all of the different ways to define routes, but you should be aware that they exist.
+
+In the array of routes, each route object contains a number of properties, but at the very least, it needs a path and a component. It's a good idea to include the name because whenever you want to link to a route, you can use the name instead of the path. If you decide to change the path later, you don't have to update that path across your project.
+
+#The Vue instance
+You've created your router, but you need to tell your main Vue instance about it. If you open main.js, you'll see that one of the options passed to new Vue() is the router:
+
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+
+Vue.config.productionTip = false;
+
+new Vue({
+  router,
+  render: h => h(App)
+}).$mount("#app");
+#Views
+With everything set up, you can work on your application. You could add new components the same way as before, but there's a better approach.
+
+The first thing to understand is that both the src/components and src/views folders contain Vue Components. The main difference is that anything under src/views are views—like pages—in your application and have a route defined in src/router/index.js. A component that might be reused or dropped into a view is defined in src/components.
+
+Another difference you'll notice is that all of the components in your views folder have one-word names:
+
+Home.vue
+About.vue
+Services.vue
+Products.vue
+#App.vue
+The last part of the router setup to understand is how to display and link to your different views. If you look in App.vue, you'll see the following markup:
+
+<template>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+  </div>
+</template>
+The reason your different views are displayed is because of the reference to the <router-view> component. The <router-view> component is a functional component that renders the matched component for the given path.
+
+The <router-link> component allows you to link to different routes in your application. While an anchor tag like <a href=""/>The Link</a> is sufficient, <router-link>The Link</router-link> offers additional features when paired with Vue Router.

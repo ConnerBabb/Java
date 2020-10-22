@@ -1,0 +1,41 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#raising-exceptions
+
+Raising exceptions
+In addition to handling exceptions, you can raise your own exceptions using the throw keyword.
+
+The most common scenario where you want to throw your own exception is when your code can't complete its functionality. This may be due to a null parameter, a valid not in a valid range, or any other possible reason.
+
+As an example, the Clock constructor allows you to pass any integer as the hour, minute, and second. You need to indicate when a value isn't within the acceptable value range. If you find one, you can throw an exception.
+
+public class Clock {
+    public Clock(int hour, int minute, int second) {
+        if (hour > 24 || hour < 0)
+            throw new IllegalArgumentException("Parameter must be between 0 and 24", "hour");
+        if (minute > 60 || minute < 0)
+            throw new IllegalArgumentException("Parameter must be between 0 and 60", "minute");
+        if (second > 60 || second < 0)
+            throw new IllegalArgumentException("Parameter must be between 0 and 60", "second");
+
+        this.Hour = hour;
+        this.Minute = minute;
+        this.Second = second;
+    }
+}
+#Custom exceptions
+You're not limited to working with the system exception classes built into Java. If your application needs additional detail, you can create a custom exception. This is often the case when you're releasing code for other developers to incorporate.
+
+Consider a hypothetical vending machine. When the customer decides to purchase an item, many things could go wrong:
+
+The item is out of stock.
+The customer has insufficient funds.
+The customer selects an invalid slot.
+The vending machine experienced a mechanical dispensing error.
+Rather than returning null or nothing at all, it's possible to throw an exception. The user interface part of your program can determine the best way to display a message to the user, letting them know something went wrong.
+
+#Creating a custom exception
+public class InsufficientFundsException extends Exception {
+    public InsufficientFundsException() { super(); }
+    public InsufficientFundsException(String message) { super(message); }
+    public InsufficientFundsException(String message, Exception inner) { super(message, inner); }
+}

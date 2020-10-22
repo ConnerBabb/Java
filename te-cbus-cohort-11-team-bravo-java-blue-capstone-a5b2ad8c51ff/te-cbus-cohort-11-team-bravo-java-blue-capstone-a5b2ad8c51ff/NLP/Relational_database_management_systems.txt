@@ -1,0 +1,32 @@
+Book
+https://book.techelevator.com/content/introduction-to-SQL.html#relational-database-management-systems
+
+Introduction to Databases
+So far, all of the data you've generated and used in your programs disappears once the program closes. But in most web applications, data sticks around, or persists, even if you leave the site, log out of the site, or close your browser. That data persistence isn't a feature of Java or C#; rather, it comes from another application and another language.
+
+This chapter talks about these databases. You'll learn:
+
+The main components of a relational database management system (RDBMS)
+How to read data from a database using Structured Query Language (SQL)
+How to add, modify and remove data from a database using SQL
+Principles of database design
+How to create database objects using data definition language (DDL)
+How to enforce data integrity with constraints and transactions
+#Relational Database Management Systems
+To persist data in an application, that data must be stored in some type of database. A database is an organized collection of data that can be accessed, managed, and updated. Good databases are fast, persistent and consistent. The kind of database you'll look at here are relational databases.
+
+A relational database is a certain type of database that acts a lot like an Excel spreadsheet. A relational database is made up of tables that contain columns where each column has a name and a data type. You can then insert rows into those tables where each row specifies the data for a certain element.
+
+
+Image - A table for Patient data
+Most databases contain many tables that all relate to each other. Data can then be stored in those tables and retrieved again at a later time.
+
+These databases are managed in Relational Database Management Systems, or RDMBS. An RDBMS is a computer application that manages the definition, storage, retrieval and administration of these databases.
+
+These database systems are used for a number of reasons:
+
+They easily support storing large number of records, often in the millions of records, quickly and efficiently.
+They enable central storage of all of a company's data.
+They support a structured query syntax to retrieve, insert, and update data.
+They enforce consistency and integrity of data so data won't get lost or corrupted.
+You'll use relational databases for your applications, and the Structured Query Language, or SQL, to work with them.

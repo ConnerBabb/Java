@@ -1,0 +1,321 @@
+Book
+https://book.techelevator.com/content/intro-to-vue-and-data-binding.html#component-features
+
+Component features
+#Computed properties
+You've seen how you can have data properties in your component, but what about more complex pieces of information? How can you bind derived or calculated information to the view?
+
+For example, if you have a component that keeps track of student scores, you might set up a data property like this:
+
+export default {
+    name: "student-scores",
+    data() {
+        return {
+            firstName: 'John',
+            lastName: 'Mueller',
+            scores: [ 90, 80, 70 ]
+        }
+    }
+}
+There might be a feature that asks you to show the average of the scores. You could calculate that and save it in the data:
+
+export default {
+    name: "student-scores",
+    data() {
+        return {
+            firstName: 'John',
+            lastName: 'Mueller',
+            scores: [ 90, 80, 70 ],
+            scoreAverage: 80
+        }
+    }
+}
+But then you'll run into a couple of problems:
+
+What happens when you add another score? How do you remember to keep updating the scoreAverage?
+You're duplicating data in scoreAverage. You already have all the scores; why store that information again as an average?
+You could pull this out as a calculation of the raw data instead of a piece of data itself. This is a common issue to run into, so Vue has a way to do this built into the framework. It's called a computed property.
+
+#Adding a computed property
+Computed properties are properties that can be used like data properties, but they're calculations instead of a static value.
+
+You can add a computed property to your component in another section parallel to the data section like so:
+
+export default {
+    name: "student-scores",
+    data() {
+        return {
+            firstName: 'John',
+            lastName: 'Mueller',
+            scores: [ 90, 80, 70 ]
+        }
+    },
+    computed: {
+
+    }
+}
+Computed properties are added as methods in the component code and then used just like data properties. To add a new scoreAverage property, add a scoreAverage() function to computed:
+
+export default {
+    name: "student-scores",
+    data() {
+        return {
+            firstName: 'John',
+            lastName: 'Mueller',
+            scores: [ 90, 80, 70 ]
+        }
+    },
+    computed: {
+        scoreAverage() {
+            if (this.scores.length === 0) {
+                return 0;
+            } else {
+                return this.scores.reduce((sum, score) => {
+                    return sum + score;
+                }) / this.scores.length;
+            }
+        }
+    }
+}
+You can now use the computed property just like a data property:
+
+<span>Your average is: {{ scoreAverage }}</span>
+Not only that, but Vue also keeps this value updated for you. Whenever scores changes in any way—for example, if you add an element, remove an element, or change an element—Vue updates scoreAverage as well.
+
+Another common way to use computed properties is to filter an array of existing properties to a subset of it without destroying the original array. You can do that by keeping the original data in a data property and then filtering it in a computed property.
+
+Here's an example of a data property containing products and then a computed property that only contains discounted products:
+
+data() {
+    products: [
+        { name: 'Golden Ring', price: 1299, discounted: false },
+        { name: 'Silver Ring', price: 899, discounted: true },
+        { name: 'Bronze Ring', price: 499, discounted: false },
+        { name: 'Copper Ring', price: 129, discounted: true }
+    ]
+},
+computed: {
+    discountedProducts() {
+        return this.products.filter((product) => {
+            return product.discounted;
+        });
+    }
+}
+If you want to show all the products, you'd loop over the products property. But if you only want to show the discounted products, you'd loop over the discountedProducts property. Whenever products updates with new data, discountedProducts automatically updates with the new information as well.
+
+#One-way data binding
+Earlier in this chapter, you saw an example where you set the value of the message data property, which automatically shows up in the <h1>. If you change the value, the view automatically updates with the new value. The data property message and the {{message}} are bound together and stay synced.
+
+Using the {{ dataAttribute }} syntax is called one-way data binding. Data from the data property is bound to the view.
+
+Why do the data properties need to be returned from a function and not defined as an object?
+
+You have to have a function that returns an object containing the data properties. If there are two of a component mounted onto the same page, you want each component to have its own set of data properties. If you have an object defined here, those data properties are considered shared between both components. By having it be a function that creates the data properties, each component calls that function and gets separate data properties.
+
+#Two-way data binding
+#v-model on input fields
+You can also bind a data property to an input element using an attribute on the HTML elements called v-model. This style of data binding is two-way data binding. You can do that with text input elements with the v-model syntax:
+
+<input type="text" v-model="name"/>
+This ties the data property name to the value from this text field. If the value of name changes, the value in the input field changes. If the user types a new value in the text field, the value of the data property name updates to match that value. The data is bound in both directions.
+
+In fact, you have a chain of bindings now that all work together to keep the UI updated and dynamic. Whenever the value in the input element changes, the value in the data property automatically updates. When that value updates, any one-way binding in the HTML automatically updates too.
+
+It's important to also note that if the data property value ever changes through some other method, like a function call or API call, then the text in the input box automatically updates to the new value, too. This is because the input box is two-way bound to the data property when you use v-model.
+
+#v-model on radio buttons
+You can also bind the radio buttons to a data property with v-model. Bind all the radio buttons to the same data property:
+
+<input type="radio" name="gender" value="m" v-model="gender">
+...
+<input type="radio" name="gender" value="f" v-model="gender">
+...
+<input type="radio" name="gender" value="o" v-model="gender">
+Now when a radio button is selected, the data property gender updates to the value of that button.
+
+#v-model on selects
+To add a data binding to a select element, add v-model on the select tag with the data property you want to bind to:
+
+<select name="role" v-model="role">
+    <option value=""> --- </option>
+    <option value="admin">Administrator</option>
+    <option value="user">Regular User</option>
+</select>
+This updates the data property with the value from the option tag when a new option is selected.
+
+Note
+
+The documentation for Vue states that it's good practice to make the first option disabled with a value of the empty string. If you don't, some mobile browsers won't allow the user to make a selection.
+
+#v-model on single checkbox
+You can add a model on a single checkbox to track if it's checked or not with a true/false value, as shown below. Don't give the checkbox a value and bind it to a data property with v-model:
+
+<input type="checkbox" name="disabled" id="disabled" v-model="disabled">
+If the box is checked, the data property disabled is true. If it's unchecked, disabled is false.
+
+#v-model on multiple checkboxes
+You can also use multiple checkboxes with values to bind to an array of values. To do so, give each checkbox the same name but unique values. Then add v-model, which binds them to the same data property array.
+
+You need to set up the data property—in the below example, permissions—to default to an empty array. Then you can bind that to the checkboxes:
+
+<input type="checkbox" name="permissions" value="w" v-model="permissions">
+...
+<input type="checkbox" name="permissions" value="x" v-model="permissions">
+...
+<input type="checkbox" name="permissions" value="d" v-model="permissions">
+As the boxes are checked and unchecked, they automatically update the permissions data property to be an array filled with the checked values. That means that checking the "w" and "d" checkboxes sets the permissions data property to ["w", "d"].
+
+You must initialize this data property as an empty array. If you don't, Vue treats the value as a boolean, and checking one box will cause all the boxes in the list to be checked. Initializing the value as an array informs Vue that you want to treat the checkboxes as individual values that are part of a like group.
+
+#v-model on textareas
+Textareas work like input text boxes. Now, link the notes data property to the Other Notes textarea:
+
+<textarea name="notes" cols="60" rows="10" v-model="notes"></textarea>
+Just like with a text box, edits to the textarea can be seen immediately in the table cell.
+
+#v-model modifiers
+There are some modifiers that you can add to v-model too.
+
+#.lazy
+If you add .lazy to a field, the data property won't update as the user types; instead, it waits until the user leaves the text field before updating. You can add this to a textarea or text input field:
+
+<textarea name="notes" cols="60" rows="10" v-model.lazy="notes"></textarea>
+Now the data property won't update until you click out of the textarea.
+
+#.number
+You can add .number to v-model so it saves the value as a JavaScript number instead of as a string. This is useful for number input elements or anything that you know you'll want as a number and don't want to convert yourself. Below is an example:
+
+<input type="number" name="age" id="age" v-model.number="age">
+#.trim
+You can remove any beginning or ending whitespace that a user typed in by putting .trim on v-model. You can add that to text boxes and textareas:
+
+<input type="text" name="firstName" id="firstName"
+    v-model.trim="firstName">
+...
+<input type="text" name="lastName" id="lastName"
+    v-model.trim="lastName">
+#Using v-for to render multiple elements
+There are often times when you have a list of values—in a data property like an array—and you want to render elements based on that list. A table of products, a list of available options for a select, or a list of radio buttons are some examples.
+
+Vue offers an easy way to take an array or a JavaScript object and create a series of DOM elements from it using v-for. You can use the v-for with a normal array. If you have the following array saved in the cardTypes data property:
+
+data() {
+    return {
+        cardTypes: [
+            'Visa',
+            'MasterCard',
+            'Discover Card'
+        ]
+    }
+}
+Then you could loop through those elements with:
+
+<ul>
+    <li v-for="name in cardTypes" v-bind:key="name">
+        {{ name }}
+    </li>
+</ul>
+If you also needed the index for the elements in the array, you can get them with:
+
+<ul>
+    <li v-for="(name, index) in cardTypes" v-bind:key="name">
+        {{ index }} - {{ name }}
+    </li>
+</ul>
+You can also loop through a JavaScript object's key-value pairs. If you had this data below:
+
+data() {
+    return {
+        cardTypes: {
+            visa: 'Visa',
+            mc: 'MasterCard',
+            discover: 'Discover Card'
+        }
+    }
+}
+You could print out the keys and values like this:
+
+<ul>
+    <li v-for="(value, key) in cardTypes" v-bind:key="key">
+        {{ key }} - {{ value }}
+    </li>
+</ul>
+#Binding a unique key for each object
+Did you notice the use of v-bind:key above in the loops? v-bind:key is how Vue keeps track of which object goes with which DOM element. This way, if the data property changes, Vue knows which DOM element to update and won't need to re-render every DOM element over again. v-bind:key lets Vue handle the DOM more efficiently than it otherwise would. You'll want to make sure that whatever value you put in the key for Vue to use is unique for each item in the list.
+
+#Using v-bind to bind HTML attributes
+You can also bind HTML attribute values—and not just text—to data property changes. One of the main ways you use this is in setting classes on elements.
+
+#Using v-bind to toggle CSS classes
+Using the Vue v-bind syntax, you can set up CSS classes to toggle on and off for an element depending on what information is in a data property.
+
+For example, imagine that you want some fields to be required in an order form. You'd like to visually show that to a user so they know which fields they need to fill in. If nothing is entered into a required field, set that field's background color to yellow. Once it has content, remove that color.
+
+The first part of this is to create a CSS class that sets the color:
+
+.needs-content {
+    background-color: yellow;
+}
+Next, set up a binding that watches for data coming into a data property for the field and removes the needs-content class once the field has content:
+
+<input type="text" name="firstName" id="firstName" v-model="firstName"
+    v-bind:class="{ 'needs-content': firstName === '' }">
+Notice that you pass v-bind:class a JavaScript object. The keys of that object are the classes that you want to toggle on this element, and the values are a boolean property or expression that says whether the class is applied or not. If the value evaluates to true, the class is added. If it evaluates to false, the class is removed.
+
+In this v-bind:class:
+
+v-bind:class="{ 'needs-content': firstName === '' }"
+This says that you want Vue to check the firstName field. If it's empty—that is, firstName === '' is true—then Vue adds the needs-content class. Otherwise, Vue removes it. It watches the firstName property and evaluates this condition whenever the firstName data property changes.
+
+You can use this same concept for v-bind:style to apply inline style rules to an element. Here the property isn't seen as a boolean, but as a value to set on the styles:
+
+data() {
+    return {
+        activeColor: '#2384DF',
+        fontSize: 20
+    }
+}
+<div v-bind:style="{ 'color': activeColor, 'font-size': fontSize + 'px' }"></div>
+#Using v-bind:src to change images
+You can also use the v-bind syntax to change images on the page by binding the img tag's src attribute to a data property on the component.
+
+Imagine that you want credit card images to change depending on what credit card is used. If you had a text input field that bound to a creditCardNumber data property, you can check the first digit of the card number as it's typed in. This tells you whether the card is a Visa, MasterCard, or Discover card. You can then have images for each credit card in the assets folder.
+
+Then, create a computed property that looks at creditCardNumber and returns a link to the logo of the company whose credit card is used. If you don't know the card, return a generic credit.png:
+
+computed: {
+    ...
+    creditCardLogoSrc() {
+        if(creditCardNumber.startsWith('4')) {
+            return require('../assets/visa.png');
+        } else if (creditCardNumber.startsWith('5')) {
+            return require('../assets/mastercard.png');
+        } else if (creditCardNumber.startsWith('6')) {
+            return require('../assets/discover.png');
+        } else {
+            return require('../assets/credit.png');
+        }
+    }
+},
+Why use `require` here?
+
+Your toolchain does a lot with your images. Any image that you put into the assets folder is handled in a special way to make your application more robust and efficient. Namely, it optimizes the images and embeds them into your JavaScript.
+
+This is handled automatically for you if you put the images in an src attribute in the HTML section, but it won't be automatically handled when you use image paths in the JavaScript section of a component.
+
+To get that assistance in JavaScript, you have to load the images using the require command. This is only needed for assets you've placed in the assets folder, so if you have images from a CDN or another location, you won't need to use require.
+
+Now, you can change the image for that logo to:
+
+<img class="creditLogo" v-bind:src="creditCardLogoSrc">
+You can use this same technique for other attributes, like v-bind:href.
+
+#Using v-bind to disable elements
+You can conditionally disable elements by using v-bind:disabled on it. The value of that is a boolean statement—either a data property or a boolean expression—that says whether the element should be disabled or not.
+
+For a form, you might want to disable the submit button until a credit card number is entered. You can do that on the button element:
+
+<button type="submit" v-bind:disabled="creditCardNumber === ''">Send Order</button>
+When the creditCardNumber is empty—meaning the expression is true—then the element is disabled and cannot be clicked. Once something is put into the creditCardNumber field, the button is enabled again.
+
+This could be more robust by checking all the required fields. The best way to do this is in a computed property that returns true until all the fields are filled in

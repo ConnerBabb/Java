@@ -1,0 +1,108 @@
+Book
+https://book.techelevator.com/content/introduction-to-objects-ool.html#objects-in-memory
+
+Objects in memory
+One important thing to understand about objects is how they're stored in memory. Usually, you wouldn't need to dive down into the hardware and see how things are working, but for objects, especially in Java, this can be important.
+
+First, you'll learn about the Stack.
+
+#The Stack
+When an application runs, there is a memory space set up for it called the Stack. The Stack is a set amount of memory that stores some of the basic values. When you create a new int, the system knows to reserve exactly 4 bytes, or 32 bits, of space for it. So if you say:
+
+int a = 0;
+Then the system creates a 4 byte spot in the Stack, calls it a, and puts the value of 0 in it.
+
+If you call:
+
+double price = 5.23;
+Then the system creates an 8 byte spot in the Stack, calls it price, and puts 5.23 in it. This happens on the Stack because you know the exact size of the variables.
+
+For all primitive values, this works well. You know exactly what size primitive values are, or can be, so these can be stored on the Stack all day long. But what about this:
+
+int[] numbers;
+How big can numbers be? You know ints are 4 bytes each, but how many ints are there in numbers? You don't know. So, arrays can't be stored on the Stack. You have to put them in a different, more dynamic memory structure. That structure is called the Heap.
+
+#The Heap
+The Heap is the memory space where arrays and objects go.
+
+In the above example, you declared a variable to hold an int[]. This variable is still created in the Stack, but the array itself is created in the Heap.
+
+int[] numbers = new int[10];
+How do you know it's in the Heap? Because of the new operator. That's the operator that reserves a new hunk of memory on the Heap.
+
+So, the array is created on the Heap and then the memory address of it is stored in the variable numbers on the Stack. When you use the variable numbers in your code, it holds a memory address only. Then, you have to tell it to go over to the array in the Heap using either the dot operator (.) or brackets ([]).
+
+So all variables live on the Stack, but their values might not.
+
+#So what?
+Data types that keep their values on the Stack, like int and double, are called primitives or value types.
+
+Data types that keep their values on the Heap, like arrays and objects, are called reference types.
+
+So what does this mean for you? Take a look at the following lines of code:
+
+int a = 10;
+int b = a;
+b = 4;
+What value is stored in a after you run that last line of code? If you understand that these variables hold values, you should be able to figure out that a is still 10. You set a to 10. You then set b to the same value that's in a. So now, b is 10. Then you set b to 4. The value of a doesn't change and is still 10.
+
+Take a look at the code below:
+
+int[] a = new int[] {10, 20, 30};
+int[] b = a;
+b[0] = 100;
+Now, what's the value stored in a?
+
+Would you believe [100, 20, 30]?
+
+To understand this, you need to understand how = works.
+
+The `=` works on the value
+
+The = takes the value from one variable and puts it into another variable.
+
+For reference variables, the value stored in the variable is a memory address and that memory address transfers to the new variable.
+
+In the block of code above, you declare a new variable called a that contains the address to an int[]. You then create a new int[] on the Heap and put its address into a.
+
+Next, you put that same address from a into the declared variable b. These two variables now point to the exact same int[] in the Heap. The = didn't copy the array; it just took the address from a and put it into b.
+
+That last line does something interesting. When your language sees a dot (.) or a bracket ([)—also called dereference operators—it checks the address in the variable. Then, it jumps over that location in the Heap and goes to the array or object that's stored over there.
+
+So, b[0] jumps the code over to the Heap and checks the first element in the array over there. You then say b[0] = 100, which sets that element's value to 100.
+
+So, did the array that a points to change? Yes, it did. Because a and b are now pointing to the same array in the Heap. A change using one variable shows up in the other variable too.
+
+It's important to remember if you're using a type that's pass by value (primitives) or a type that is pass by reference (arrays and objects) in your code.
+
+#Object equality
+Typically, when you wanted to see if two variables are equal, you used the == operator. However, == works on the value of the variable. It behaves differently depending upon whether the variable is a value type or a reference type.
+
+For value types, == checks to see if the two values stored in the variables are the same.
+
+For reference types, == checks to see if the two variables hold the same address. This may not be what you want. In fact, it's often not what you want at all.
+
+Below are some examples using Strings, which are objects, and therefore, reference types in Java.
+
+String lowerCaseName = new String("java");
+String anotherName = lowerCaseName;
+lowerCaseName == anotherName;
+Does lowerCaseName == anotherName return true? Yes, it does. Both of those variables hold the same address, so == returns true here. What about the example below?
+
+String lowerCaseName = new String("java");
+String anotherName = new String("java");
+lowerCaseName == anotherName;
+Now does lowerCaseName == anotherName return true? You can see that the two objects contain the same word but they aren't the same object. So == returns false here. Remember, when working with objects, == compares the addresses of the objects, and these two variables point to two different objects in memory.
+
+If you don't want to compare addresses but want to compare the contents of two objects, you need to use something other than ==. Thankfully, Java has a standard method that lets you do that. If you want to compare two objects to see if they're equivalent, you use the .equals() method of the object.
+
+String lowerCaseName = new String("java");
+String anotherName = new String("java");
+lowerCaseName.equals(anotherName);
+.equals() checks if these two possibly different objects are equivalent. For objects, this is a kind of equivalence you want to check.
+
+Ask the Right Equivalence
+
+For value types (primitives), use the == operator to check if two things are equal.
+
+For objects, use the .equals() operator to check if two things are equal.

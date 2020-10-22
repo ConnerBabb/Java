@@ -1,0 +1,17 @@
+Book
+https://book.techelevator.com/content/sql-transactions.html#transactions
+
+Transactions
+You can group SQL statements together into a transaction. Instead of calling the two statements separately, like you did above, you can instead group them together in an ACID compliant transaction:
+
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance - 25 WHERE account_number = 383953;
+UPDATE accounts SET balance = balance + 25 WHERE account_number = 485920;
+COMMIT;
+Now, the first line in your SQL call starts a new transaction. A transaction is like a temporary sandbox that you can use to manipulate the data without actually affecting the data for others. You're in your own world now and can change and update all you want.
+
+If either of these statements fail or a server dies in the middle, nothing from that transaction gets saved to the database, keeping the transaction atomic and consistent. Since you're in your own world, the statements are also fully isolated from anyone else on the system.
+
+After running statements in a transaction, you then have two options. Like above, you can COMMIT the transaction, which applies the changes to the database in one fell swoop, or you can ROLLBACK, which ditches all the changes and keeps the database as if nothing had ever changed.
+
+Transactions aren't used all the time and are never used at all for SELECT statements - since nothing is changing anyway - but are very powerful and useful if you have multiple statements that really should happen as one large change or not at all.

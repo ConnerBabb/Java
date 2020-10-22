@@ -1,0 +1,167 @@
+Book
+https://book.techelevator.com/content/sql-joins.html#joins
+
+JOINs
+So far, you've learned how to select data from a table in the database. Now, you'll learn how to select data from more than one table at a time. This is called joining. It's one of the most powerful ways that you can pull information from your databases.
+
+Look again at the city and country tables below:
+
+#countries
+id	name
+1	Canada
+2	Mexico
+3	Cuba
+4	France
+5	Spain
+6	Italy
+7	China
+#cities
+id	country_id	name
+1	6	Milan
+2	6	Rome
+3	7	Beijing
+4	4	Nice
+5	4	Paris
+6	1	Toronto
+7	5	Seville
+If you want to select all the cities in France, you'd write this:
+
+SELECT name FROM cities WHERE country_id=4;
+That works, but only if you know that the id of France is 4. What if you don't know that? What if you want to select all the cities by only knowing the name of the country?
+
+You could write a statement that looks like this:
+
+SELECT name FROM cities WHERE country_id = (SELECT id from countries WHERE name='France');
+This query uses a subselect. A subselect is a way to run a select statement inside another statement. The subselect runs first and pulls back the id of the country whose name is France. You can then use that in your other select statement to pull back all the cities in that country. Now you don't have to hard code ids and have to memorize every id in your database.
+
+But subselects only work for so many things - and they're slow. What you really want to use for this type of query is a JOIN clause.
+
+#JOINing Tables
+You can write the above query using a JOIN clause as well:
+
+SELECT cities.name FROM cities
+JOIN countries ON countries.id = cities.country_id
+WHERE countries.name='France';
+JOINs allow you to join up the rows of one table to the rows of another table, essentially giving you a super row of information that you can then select from. So the above join:
+
+FROM cities JOIN countries ON countries.id = cities.country_id
+Gives you rows that look like this:
+
+cities.id	cities.country_id	cities.name	countries.id	countries.name
+1	6	Milan	6	Italy
+2	6	Rome	6	Italy
+3	7	Beijing	7	China
+4	4	Nice	4	France
+5	4	Paris	4	France
+6	1	Toronto	1	Canada
+7	5	Seville	5	Spain
+You have joined the two tables together where the cities.country_id = countries.id. You can see that the country can be duplicated, like for Milan and Rome, because more than one city has the same country.
+
+Then you can select your columns from this new joined table. Since both cities and countries have a name column, you have to specify which name column you want in the SELECT clause:
+
+SELECT cities.name FROM cities
+JOIN countries ON countries.id = cities.country_id
+And then you only want the rows that have 'France' in the country:
+
+SELECT cities.name FROM cities
+JOIN countries ON countries.id = cities.country_id
+WHERE countries.name = 'France';
+Which gives you:
+
+cities.name
+Nice
+Paris
+You could also change that statement to:
+
+SELECT CONCAT(cities.name, ', ', countries.name) AS display_name FROM cities
+JOIN countries ON countries.id = cities.country_id
+WHERE countries.name = 'France';
+With the result being:
+
+display_name
+Nice, France
+Paris, France
+#Joining Multiple Tables
+Think back to the actors and films example. From that example, imagine that you have an actors table that looks like this:
+
+#actors
+id	name
+1	Brad Pitt
+2	Bruce Willis
+3	Chris Evans
+4	Alan Rickman
+5	Ed Norton
+6	Tom Cruise
+And films:
+
+#films
+id	name
+1	Die Hard
+2	Fight Club
+3	Moonrise Kingdom
+4	12 Monkeys
+And, finally, the join table:
+
+#actors_films
+actor_id	film_id
+2	1
+4	1
+5	2
+1	2
+5	3
+2	3
+1	4
+2	4
+Using this table, you can pull information about both actors and films by joining the tables together. If you wanted to get the name and all of the films from actors whose names start with 'B', you'd do the following:
+
+SELECT actors.name, films.name FROM actors
+JOIN actors_films ON actors_films.actor_id = actors.id
+JOIN films ON films.id = actors_films.film_id
+WHERE actors.name LIKE 'B%';
+actors.name	films.name
+Brad Pitt	Fight Club
+Brad Pitt	12 Monkeys
+Bruce Willis	Die Hard
+Bruce Willis	Moonrise Kingdom
+Bruce Willis	12 Monkeys
+You'll see that a lot of the values were duplicated, but each combination is unique. As the database joins the rows of different tables to each other, it creates as many rows as need to join all of the information.
+
+When you select from actors, you really only get two rows: Brad Pitt and Bruce Willis. But then you join the actors_films table on and the films table. Since Brad Pitt has been in two of the films, his name is attached to both of those rows and it is duplicated.
+
+But that's okay. Each row has all the information you need from that call.
+
+What if you want to know how many movies each actor has been in? How would you write that query?
+
+Well, you want to pull data from the actors table and join that to the films table:
+
+FROM actors
+JOIN actors_films ON actors_films.actor_id = actors.id
+JOIN films ON films.id = actors_films.film_id
+You want to count the films, so if you group the rows by the actor, you can COUNT the number of films for each actor:
+
+FROM actors
+JOIN actors_films ON actors_films.actor_id = actors.id
+JOIN films ON films.id = actors_films.film_id
+GROUP BY actors.id
+And then you can select the actor's name and how many rows were returned for that actor:
+
+SELECT actors.name, COUNT(*) AS num_of_films FROM actors
+JOIN actors_films ON actors_films.actor_id = actors.id
+JOIN films ON films.id = actors_films.film_id
+GROUP BY actors.id
+actors.name	num_of_films
+Brad Pitt	2
+Bruce Willis	3
+Alan Rickman	1
+Ed Norton	2
+What happened to Tom Cruise?
+
+You might be wondering what happened to Tom Cruise.
+
+Aren't we all?
+
+In the results, Tom Cruise doesn't show up because he is not linked in the database to any films. Since he isn't joined to any films, when you join the actors_films table in, his name disappears from the list. Same with Chris Evans, as a matter of fact.
+
+This is because you're using an INNER JOIN. By just using the JOIN keyword, you're using an INNER JOIN by default. An INNER JOIN only pulls back rows if there is a matching row in the joined table. If there is no matching row, the SQL call drops it like it never existed.
+
+There are other types of joins that you can use to prevent that. Take a look at your study materials to see what they are. Most of the time, though, you'll be using this default INNER JOIN.

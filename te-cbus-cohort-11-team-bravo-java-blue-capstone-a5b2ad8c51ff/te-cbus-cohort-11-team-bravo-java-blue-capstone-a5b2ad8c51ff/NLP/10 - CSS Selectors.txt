@@ -1,0 +1,1483 @@
+Zoom
+https://techelevator.zoom.us/rec/share/_9VkbJ2s6nhJGavD9WWcA5AwPt_YX6a8gyQWrvYKn0ba-GIWVBWxK6-MlRIy4Y4S?startTime=1594128448000
+https://drive.google.com/file/d/1rHgP8qYIBgV8bYDsolrnMdnKQGaDXtTr/view?usp=sharing
+https://docs.google.com/presentation/d/1u7v_JvIiJj0E0TMjUarJaoPIw2Di5LQzYciqLQ5VR0c/edit?usp=sharing
+All right, today we're going to start taking a look at CSS specific or a little more detail. Specifically, we're going to talk about selectors.
+
+And, and also, some other the basics of using CSS. We're not going to go into detail on, like how to change fonts and
+
+change the color of texture backgrounds or the things that
+
+we kind of alluded to yesterday. We are going to look at how CSS look to the page, how we can position things in some of the basics of just the structure that CSS provides today, and then tomorrow and Thursday, we'll look at a couple newer ways of structuring and CSS with grid and Flexbox.
+
+So
+
+Today we'll be looking, we're gonna start by taking another look at the HTML hierarchy. I know we already talked about it yesterday. But we're going to look at another, say more detailed, but a little more detailed view of it. And then we're going to look at, including CSS. Again, we looked at one way yesterday. But there's actually three ways that are going to be important to us as we go. So we'll talk about those. And then we're going to look at the selectors, and what those are and which ones exist, or at least the basic ones. And then we're going to get this thing called the cascade, which is CSS Cascading Style Sheets. So the cascade is a fairly important part of how CSS works, and also probably one of the most confusing parts about it. So we'll take a look at that and how it works. And then this idea called box model, which is how CSS sees elements on the page. And then the display tag and how that works. Since it's important to layout and positioning, which is similar, then we'll take a really quick look at floats. But it'll mainly be these exist. And here's why we won't need them anymore after the next couple days. And then finally, we'll look at units of measurement talks about different units that exist in CSS rules, to add measurement to things, decide for add size to things. And then we'll put it all together with kind of working through a project at the end by decorating a page. So let's talk about the HTML hierarchy. It's going to be really important to us in working with CSS because it's how we're going to access the HTML of the page so we can decorate it. So before we start that, I'm going to actually load today's lecture code. I'm going to do it in Visual Studio code by adding the entire lecture code folder. For today and has a few differences, five different projects in there from selectors final notice add the entire folder to add
+
+five projects
+
+and I opened the first one and just gonna run open the selectors HTML live code we, so we could look at it with the hierarchy. As we we talked to the hierarchy as well.
+
+So here's this really wonderful looking page that will allow us to play with CSS in a way that very visible in a moment. But first of all to talk about the hierarchy of the source code of this. So what gets formed when we write so for this, this is the HTML, that page. So how does the browser see this, because that's what's going to be important to us with CSS is how the browser sees this. So the hierarchy of HTML is we talked about yesterday that all everything's inside of a root element called HTML tag, you often hear it called the root element. It's the only thing that has a single parent. So
+
+yeah.
+
+So this structure should sound kind of familiar. It's the same tree structure we see in the file system that we saw with object inheritance with a single parent that have multiple children. From that, it actually the tree structure says that HTML forms is very similar to the Java object inheritance tree, in that everything has a parent, except for the root element HTML And each element then can will have a single parent and multiple in zero to many children. So any number of children and then each of those children can have any number of children as well. And will refer to an each element also could have zero too many siblings, something siblings, something we talked about in the tree for the Java tree, inheritance tree, but it's the idea of what we'll call things with the same path. Same and the descendant or ancestral relationship will also be important just like it was in Java things will be passed down through something similar to inheritance.
+
+So we can see this
+
+given this HTML, it would form a structure tree structures similar to this or not similar like this, where HTML have children of body and head body would have children of pattern made. And then inside of Maine, there's an h1 section. So it's children of each one section inside a section. There are two divs in a paragraph. So the children of the section would be the div, two divs in the paragraph. The two divs in the paragraph are all siblings of each other. Same way that each one in section are siblings had to remain or siblings, head and body are siblings. And then the parent relationship just goes back up. parrot of div. The two divs in the paragraph section, the paragraph section is main the parent of main is body the parent of bodies HTML. And we also can say that the descendants of main is section, the two divs in the paragraph. And the descendants of body is the header the main h1 the section, the div, the dividend paragraph. So that structure is going to be in Because we're actually going to use it somewhat with HTML, we're going to use it a lot more JavaScript. But with HTML, it's going to
+
+be something that
+
+we,
+
+the way we identify what we want to change on the page in many cases. So the browser itself, we can see this in two ways for the way it's representing it. So first, I'm going to view page source, checking skip by right clicking on Chrome. And it will show me the source that it's currently viewing. It has some stuff in here that's been injected by live server, so we could work. But the everything above that is the actual HTML is displaying right now. And we can also see it. If I go to right click and inspect Dev and the developer developer tools that we started looking at some last module, but there's this segment elements or this tab elements that shows the hierarchical view
+
+in a way that that one
+
+has them embedded inside of each set of children embedded in the parent in a way that we can collapse them and kind of see more of the hierarchy. So what this is actually giving us a view of here is not the HTML even though it appears to be. And we'll come back to this idea. This actually is given us as a view of the sink of the document object model with the DOM, which will be really important to us in JavaScript, and we'll find doesn't always match the HTML Exactly. But for today, for CSS purposes, we can look at it as this is what we have access to, from the CSS. So we actually can change with the CSS as what's represented here in this element tag. A few cases where there are differences, which said we'll look at more detail when we get the JavaScript selection selectors. But that means that those differences can be selected as well. So when we work with CSS, really what we should be working with is not this document we should be working with. It's the way it's displaying in the browser. Because when CSS is applied, it's going to be applied to what the browser seeing in the way the browser's viewing it. Not just the HTML file itself. And we're going to take advantage of this hierarchy. And in several different ways in CSS, we're actually one to select things. We'll find that will not always select things by saying I want this section will often end up selecting things by saying I want the section that is inside of a main or I want the paragraphs inside of a section that's inside of a main So that we can select things very specifically without having to put identifiers all through the code. So there's three ways we can add CSS into any HTML file. And that is, we can put it in mind. So to put it in line means that
+
+you have an example of this. If this page
+
+I took this h1 here,
+
+which if we can see is
+
+this h1 right here, just get highlighted.
+
+And I can add a style attribute
+
+and let's set its background.
+
+color to see something that's not blue.
+
+And we can see it applies to the dip. So in line, one we really want to avoid in line. But we'll talk about why we talked about the cascade. But that's one way we can apply CSS. And there are times when it is needed if you end up writing CSS because for email, specifically, to go in an email, not an HTML that's been formatted to be sent with email, it has to be a mind CSS. So there are there are cases for it.
+
+So that's one way, I'm going to remove that.
+
+The second way is to put it what's called a bedded or internal and then the head, we can write
+
+a style tag
+
+and inside that tag We can write CSS rules. So here we could write h2. And save it first so that we can see that the backgrounds back to normal, back to green. And we can do the same thing. Background color, let's set it to purple.
+
+Oh wait an h1
+
+and the background color changes to purple baseness. so we can write. Second we can write embedded.
+
+We generally want to avoid this as well.
+
+For the same reason we'll talk about when we get to the cascade. But this can be useful for really useful for testing or for working through problems for a particular page. And we'll actually take advantage of it when we get to view a lot of the frameworks do this to keep things in To keep things together and kind of in modules or look into what's called components, but we'll get to that in a couple weeks. So that's the second way we can do it. And the third way is the way we did it yesterday. And that's an external file. And that's the preferred method in most cases, because then we can actually switch out external files. If it's an external file, we have two advantages. One, we can switch the CSS on the page dynamically by switching the file. But it also becomes reusable, meaning that we can have the same CSS applied to multiple HTML files, which is often desirable, especially in a larger site where you might have multiple HTML files, you want to have the same structure. So
+
+those are the three ways we can apply
+
+CSS to a document. And we've already talked about the pieces of the selector looked at yesterday that CSS rules are broken down into The selector, which we're going to look at in more detail today, which is basically pointing, telling it, what element on the page that it we want to interact with. So we want to interact with this h1, or this paragraph and then decorate what's called the declaration block, which is just a block of code separated by the curly braces. And then the CSS declarations and there can be one or many, which are just the rules with the colon and then the value we want to apply to the roles. semi colon terminated.
+
+So before we look at the selectors, are there any questions over
+
+knee that so far?
+
+Kind of
+
+so this here in the homework
+
+that was doing like, I was doing stuff and see as for the table I googled a lot of stuff like w three and or whatever. And there's one portion where like had like table th and TD, and you could apply a rule.
+
+And then
+
+I don't know if there's a better way, but then I just went and did another one where it's just like for TD, I want it to be center aligned. Is there a better way to do that? Or is that the appropriate way, just like creating a new selector for just T.
+
+That makes sense.
+
+So if you have one that's being applied to the table, the header and the TD and you want something just for the TD, then yes, you would create a new Okay, you select you just put that
+
+said enough, there's a more efficient
+
+so then that brings us to how do we use this portion? How do we create this portion the selector
+
+and the selector is one of the
+
+important parts of CSS because it says CSS because it's what's going to allow us to determine what we're going to change in the page, how we're going to decorate. So there's multiple selectors, there's actually, we're going to look through this set of them. And there's actually more than just the set. There's some other more advanced ones, though, as well. But we're going to focus on these ones. So the first is called the universal selector, which is star and I'm going to go back to the lecture code here and open up the selectors, CSS, and its star. The asterisk represents everything on the page. So everything that doesn't have some other we'll talk about what the cascade some other style already applied to it. So notice there's a slight asterisk of background color green and that Just about everything on the page with the exception of a couple, this one h2 and the divs have a background color green. So if we would change that with the universal selector to there's already some blue on the page. Let's try it. And it changes everything. So the universal selector changes everything on the page. Every element gets, its applied to the back.
+
+The second selector
+
+is the element selector. That's when we work with yesterday. That's flex by the element or tag name. So l elements are the tags. So in this case, we have a legitimate selector that sets The div on the page background color to read. And it affects there's three divs on the page. And it affects all of them that we'll talk about why this one's not read in a moment. But we change that. And all in applies to all the dubs.
+
+So the third is the id selector. So the id selector is something we have to build into the page or into the HTML. So in HTML, every any element or any tag can have an attribute ID. And we looked at IDs on form element yesterday. But what Id is is a, it should be unique to the page. So each, there's only be one ID per element. If you have multiple tags that need the same ID, then there's other things for that. Instead of ID, so Id should be unique to the page. And then it's applied just by ID equals and then it's like a variable name, it's a value give it and that allows us them to directly access the element with this ID. So in this case, div has ID example, which is the center div on the page. So this div you can see it highlighted there. And we can access that by using
+
+a pound sign with the ID.
+
+And then we can set
+
+we can select a directly that individual element. The next one is the class selector. So a class selector sets a class on the page. Again, we have to apply it here. And here we have class being applied. It's set by class equals, and then some variable name. And classes similar to ideas that allows us to identify an element, attach the tags on the page, but it doesn't have to be unique. It sets groupings of things on the page. So it's saying that this div in this h2 have something in common that they're both part of this descendant one grouping. to affect that in in CSS, or to select that in CSS, we use a.so, the dot with the class name. We'll select everything with that class here.
+
+You can see
+
+we change this to
+
+I don't think anything's actually I think everything is actually writing that right now. Here we can see it's selecting the h2 that had that class applied to it. And the other thing inside of was inside of that so right. So the next selectors the descendant called the descendant combinator, the descendant combinator is a space. And what that is, is it starts taking advantage of this hierarchy. So in this case, it's Lex, the element that has the class applied to it of special actually is that in here. It's not but and then the h2 that's inside of that element that's a child that element or descend to that element. So this it will select all of the descendants of element that has the class special with the h2 in the order here matters because we took the same combinator and we changed it to h2 special. What this is doing is selecting an h2 that has a child or descendant someplace inside of it that has the class special compared to this, which is an element that has the class special that someplace inside of it has a descendant that's an h2. So it selects an element and then looks through its descendants for the
+
+that have the second.
+
+The second selection
+
+and removing the space is different as well that changes things as well. In this case, it's looking for an h2. It's not that it's an accommodator. It's actually is looking for an h2 that has the class special applied to that. So in this case, with the space we're looking for
+
+something like this. You can't actually have a definite h2 but let's say you could
+
+we're selecting this.
+
+If
+
+we take out the space what we that will not select this that would select that h2 only if it was like this.
+
+So the
+
+I don't think there's any
+
+so in this case if we wanted to select
+
+this test one paragraph with the ID example, we could select it from C. Id sample. And then we want the paragraph inside of that.
+
+And
+
+let's change its black background color.
+
+And its flex the paragraph that's inside of the element, which is these, this div that has the that is a paragraph that has the ID on it, of example. Similar we could also select all the paragraphs in a div using this by div and then the paragraph and now we select all the paragraphs that are descendants of a div
+
+So the next selector is
+
+greater than, which is
+
+something so one selector, one of the other structures above, and it selects the children of this element. So it's saying for div three, the children, not the descendants, but the children that are span and the difference between to send it in a child is if you go back to this, this div is a child of section. So if we said to divs, that are a child of section we would select these divs. If we said the divs that are, that are descendant with the descendant combinator of Maine, we would select these Dibs. But if we use the greater than to say, the divs that are a child domain, we would not select these divs because their children are descendants of it, but not children of it. So the child selector selects the direct children of whatever element we're selecting.
+
+So in this case, doing the same thing.
+
+If
+
+we have a case where we
+
+have body, say body,
+
+paragraph,
+
+background color,
+
+blue, and we get all the paragraphs that are descending to the body. We change this to the child selector. Now we only get to sync the paragraphs to direct child of the body tag. The next two are sibling selectors. Remember siblings are things in the same level. And there's two of them the adjacent sibling selector in the general sibling selector. And let's actually just look at one of them working before we. So adjacent sibling selector is going to select the siblings that are directly adjacent to the,
+
+what we select. So let's select this element right here, which is look at it
+
+which is the span that has a span one.
+
+So let's select
+
+that span one
+
+and we want to select the
+
+siblings that are also spans
+
+and the screen for background color
+
+to blue
+
+and we ended up selecting two.
+
+If we change this to span two,
+
+we end up selecting nothing because adjacent siblings are siblings what's referred to as to the right or next. So it's siblings that are down the file is the easiest you can look at it is two ways either in the tree there to the right. Or in the file. They are the next line down the ones down the line. So span two has no adjacent sibling that is a spam because it's adjacent sibling is an anchor tag. span one has an j one adjacent sibling that is a span.
+
+Let's go back to span one.
+
+So the other sibling selector is the general sibling selector, which is similar, but let's change it span one and change it to the general sibling selector. Save it, and now it selects two and three. So the adjacent sibling selector from span one selected this sibling, but then there's an anchor. So it's done. It's no longer because three is not adjacent to the set. So but a general selects all the siblings of the span one that are also spans. So it's flex two and three. Let's change span two.
+
+So the one in the middle
+
+and now it's like span three. So again, it's flex things to the next or to the right or down. So when we go to spend to its general sibling, that is a span is three because it's general siblings is everything. That's next. So in this case laid out to the right or down the file, so in this case, its general siblings is the anchor tag. I mean, you actually clicked the anchor tag, the anchor tag and the span span ones general siblings are span two, the anchor tag and the span and the span three.
+
+So before we
+
+continue, are there questions on those? Those are
+
+Okay, but I guess, like I see some, some obvious use cases for like, the adjacent siblings and things like that. But when you're doing like the child of the body using the paragraph like how often is that actually used in
+
+practice? A lot. In fact, one of the things we'll start looking at especially we do the example today is that we don't want our HTML to look like this with all these classes and IDs around it. We'll use them when appropriate, there's time so use them. So it's not that we don't want them there, but everything shouldn't have them. If this has the ID, if I can select this div, or even without that, I can say with using the hierarchy, I can say I want the divs and I can even say I want the third div The body the inside of that I went the second span without having any ideas on the code using this. So what will actually take advantage a lot of this these hierarchies in CSS?
+
+I guess I was just thinking that it doesn't limit you like if you actually go to change the page.
+
+It does. And that's one of the reasons that will.
+
+So that's one of the reasons we'll
+
+we will use ID or class is when we know this elements going to move, or it's in a very difficult to locate, or very difficult to kind of space where it's ambiguous. Sometimes that happens as well. So it does mean that if you change the structure of the HTML that the it will change the way it looks.
+
+So but the CSS in the HTML while
+
+we try to keep them
+
+as least as separate as possible. The H tml is more coupled to the CSS than the CSS to HTML. So are well written or well designed or laid out HTML, CSS should be that changing the CSS only affects the HTML. In certain cases, we're changing the HTML may affect what we need from the CSS.
+
+I see. Okay, that makes total sense. Thank you.
+
+I didn't really follow the descendants explanation. So if you could go over that one more time, that'd be appreciated. Okay. The descendant
+
+combinator. Yeah,
+
+yeah. So for that.
+
+Let's see if we don't really have good summits here. Let me
+
+see we had something like this where the main instead of that we have a section
+
+concern that we have
+
+a div
+
+so that we have a paragraph
+
+in our div and then there's a paragraph in the section,
+
+section ends
+
+and then our main ends.
+
+So, if we selected with that main paragraph, with the descendant selector, we're going to select all the descendants of Maine that are paragraphs. So with main, its childhood section which has a child has div which has a paragraph in it. So we're going to select this one because to descend the domain rasika is like this paragraph because it's a child a section, which is a child means what's a descendant of Maine. So when we select with the descendant selector, we select all the descendants of that tag that are or that element that are the other the second selector. So which means that the order is important, because here, we're selecting the paragraphs we have selected here and here. But we're selecting their descendants that are main which don't exist.
+
+So is that the part you were?
+
+Yeah, I think that was more helpful. The image got me confused, I guess. But the sentences obviously, just the sentence so it's easier to understand. Thank you.
+
+Alright, so the other
+
+selectors, and there's quite a few of these. So before we go to the pseudo class
+
+there's a link here to a code pen that
+
+a previous instructor created.
+
+If that has all these selectors, including several others, many others that we didn't go over some more advanced ones. And you can play with it and
+
+you could
+
+take a copy of it and then go through and play with it. The different selectors in a very kind of organized manner and it also has demonstration of set of some more advanced stuff
+
+that's linked there.
+
+And then the last lecture type that we're gonna look at is called pseudo classes. So pseudo class selectors are a little different. They are things that CSS can do for us. We're gonna look at four of them, but there's a lot more of them. And there's a link to W three schools here that I'm not going to go through, it's going to show you that's there. That describes the CTE classes in more detail goes through some of them. And then at the bottom, the reason I actually include it was here has a list of all the current pseudo classes. So you see there's quite a few. We're going to look at four of them to kind of give you a sense of the kind of things they do rather than everything exist for them. So the first one we look at is first child. So first child selects the first child of whatever it's being applied to.
+
+So this div div three, has four children.
+
+This div has two children, and the other one has two children. So let's write a selector using the pseudo class div, and then first child. And now we're going to set its background
+
+color to blue.
+
+So the first child of every div gets selected. It doesn't matter what that child is, this one's an h1, this one's an h2, this one span, just the first child of H div.
+
+So the same There's also last child
+
+that gets
+
+the last child child of each step, regardless of what it is. So this selects the paragraph This is happens to be a paragraph, but this one's a span doesn't matter, the last child of each day each of the devs.
+
+There's also nth child.
+
+Let's say two. So, each of these has two children, this one has four children. So this is actually gonna look almost the same only now. This is slightly the second child. We changed in child three. These two don't have a third child, so they're ignored, but this one selects the third child. There's also ways there's select child of type, where you can set things like I'm sorry, you can say I want children that are just particularly spans are just particularly an h2 that exists. So there's ways to do that. And there's also with this we can select odd. So I want all the children that are an odd number. So one in three
+
+or even
+
+which are the children that are even numbers
+
+and working together in two roles.
+
+Now this will look a little strange, but let's choose on a stand out
+
+on the page,
+
+a blank, you put all the Oh thank you,
+
+which ends up creating the striped pattern like you see in tables and stuff. So you create The autumn even elements using its child without uneven. That's one type of pseudo selector one that selects elements by its relationship that's a little more
+
+more generalized by its position,
+
+like being the first of something or the last, or the first div rather than being just a div inside of it. And then the other type, and we'll just look at one of them. Look at hover.
+
+So, with hover,
+
+see when I hover over the divs, now, their background color changes. So the hover pseudo selectors a second type, which is more of an action type selector. So when I hover over while my mouse is hovering and hover means where the mouse pointer is, over inside the bounds of the element, inside what's called the box to the left But look what that means when we get the kbox model that it was hovering. When I'm outside of the box of the element, then I'm not hovering, hovering over something else. Right now I'm hovering over the body. Now I'm hovering over this div. Now I'm hovering over this h2. Now I'm hovering over this div. So hover, applies this CSS, when the mouse is over it, and removes it when the mouse leaves. So that's a second type of pseudo selector available. And there's a few different ones of those, though, a few less of those. There's not many actions like that each CSS can do natively.
+
+I'll leave hover in there. All right.
+
+So questions on any of the selectors before we
+
+add one
+
+is it possible to like put these together because I think yesterday in the homework when I was Like,
+
+looking up some of the information I saw, like the child selector specifically, it was like, kind of,
+
+yeah, like a lot of line of different ones together.
+
+That's a great question in the next slide.
+
+So perfect. That's a perfectly That's it? Yes, these so we don't usually use selectors one at a time, we generally use them. So sometimes we will, but we generally use them in combinations. So we can use them in any combination. So we can say, in this case, this will be selecting the allies that are the children of a ul that are a descendant of an h2 that has the class applied to it header, that's a descendant of the dove. And all the different selectors we just looked at can be used in this way. They can be strung together to create a more and more specific selector. So this is saying in this case, in selecting this ally, because it's these both these allies because there are children of ul, which happens to be a children at h2 class that has an h2 element that has the class header applied to it, which happens to be a descendant of a dove. We could do the same way. In this HTML, we can say things like, I want the using child of type one we haven't really looked at, but we could say I want the third child of type that's a div, which would select this div. And I want the second, I want the second child of that div, which would be the span to select it. Grouping, so grouping them together. So CSS selectors often get kind of long. Because we want to avoid said these IDs and class everywhere. Because it makes the code hard to read and makes a more bound to Particular well, makes the code harder to read makes CSS actually harder to write even though it doesn't seem like it will. Where if we can just select it by structure, then, like it was brought up that we change the structure, the CSS changes, but that's often okay.
+
+So, I think that answered what you were asking is that it? Did that answer your question? Yes.
+
+So, so the point there's a difference between this.
+
+And so you can have a paragraph in there. Let's do mean, section, div paragraph, which selects, you know, when there's a main, and there's a section, and maybe that section has a div in it and also, as we talked about article so it has an article in it.
+
+And this div has a paragraph in it.
+
+And this article also has a paragraph in it.
+
+So this selector would select this paragraph specifically because it's the one that to the Send it a div. This is a sensitive section. This is a senate domain.
+
+But this selector
+
+with commas would also work but it does something different. So with the first one creates one selector, commerce chain selectors. So in this case, there's a sucker for main selector for section. So we did end up selecting the main section, div. It was like everything with the article. And we could have compound we can have a combination of what the main section, the div and second one, that is, I only want the div that have a class header. I want to h2 inside of that, and so on with commas and then apply one class to all of those selectors. So we can. The selectors do get quite long, we can combine them into long selectors using these different
+
+combinators.
+
+The space, the child selector and the sibling selectors. Or we can also chain them together. So we can apply one class to multiple things, using commas. And again, each one of these selectors can be
+
+something that's combinated together.
+
+So, the final thing with selectors What we need to understand is what's called the cascade, which is actually one of the more important parts of CSS mean it's right in the name cascading stylesheets. And the cascade is this idea that we apply multiple rules, sometimes the same things, or they can be applied to the same things.
+
+So word my.
+
+So here back on this page,
+
+there's two descendant one. Items one jello one's Orange. Orange is what descendant one is currently being applied to. But as we get more and more complicated with those more, those combinated selectors that we just looked at, it's possible and often common, for the same items day that being selected Or maybe I want to apply something to all divs. But then Id examples also a div. So this div, the one that has ID example, which is the first one. If we look at it a second one, here in Chrome, we can see everything being applied to it, and where it's coming from. So we can see that it's getting a CSS rule for ID, it has background color gray applied to it, it also has to send that one apply to it because as the class to send that one, we can see here as orange pie to it, descending one, again with yellow pie to it, and then it has the div. So this particular second div has this CSS rule applied, this CSS are applied, this CSS rule applied, and this CSS rule applied, because it matches all four. And that's common. that's gonna happen quite a bit, especially when we're selecting by hierarchies. So, it also because often we want to say we want every div to be like this on the page, or we want all the sections to have this style. But we want the third one to be different. We want it to be unique. So we don't want to apply individual styles, each of the four or five sections, we want to apply them generally and then make something more specific. And that's what the cascade allows us to do. So the cascade means that it takes all the selectors, and it's going to put them together and determine which one to apply. And this is from all sources. So that means external files. And there can be multiple external files. One of the things that we won't look at, but I'm sure by now you encountered a pre work like bootstrap frameworks where you import their CSS, and then you want your own version of it, you simply overwrite it and that's what Really, this is like with the cascade. So it comes from multiple possible model external stylesheets, the internal inline styles, the embedded styles that are in the file and a style tag. And then the browser has its own default styles. So the default styles when we get an h2 and you get that large text, or they just want to get the even larger text, that's the browser's default style for that element. And every element has browser defaults. So the cascade is that the browser defaults are the least priority. And then, external styles, so style sheets that are not part of the page are second party. But those get overwritten by the embedded styles. So the style tag at the top of the page. So we put something there that selects the same element, it's going to take precedence. And then finally, the inline styles, the style attribute on tags overrides everything. So if we have an inline style, it overrides all other sources, which means that now it's one set style, we have to change the HTML directly to change it, which we generally don't want to do. That's why we want to avoid them. Then, on top of this, that's the first set of priorities. So it applies that by the highest priorities, and then it's creates the, these two really go together the last most specific. So there's a specificity to the selectors.
+
+And these selectors
+
+are the three we really worry about the most for this, sorry, class two, because the rest of them are combinations. Notice that these other ones are combinations of these first four. So there, this is actually the order of Now, almost may change these and it will be in the order.
+
+Okay, now I can say this is the order of specificity, from least specific to most specific. So the universal selector gets applied first, but if something is selecting it with an element selector, that'll get applied. But then if there's a class selector, that'll get applied. That'll take precedence. And then if there's an id selector, that takes precedence for these combinators, it's down to the first part, giving it that combinator preference. Actually, that's not true. These combinators sorry, because it's the span then had its own id selector as well, that would take precedence. But so there's a rule of precedence of specificity among these rules as well.
+
+So that's applied
+
+and it's applied by the last row. And that's really by just where it's positioned in the file that
+
+just send it one
+
+hear this ht which is also to say that one has an orange background just because this is in the file lost.
+
+If I move that
+
+we can see now against the yellow background because this is in the file last. So order matters, but then the most specific awesome matters. So this gray div also has the class of the senate one. Let's move it up above the rest of these so the senate ones are last in it sweep maintains this background of gray because the id selector is more specific. than the class selector. All the divs have a background color of red. And everything has a background color green, so everything has green applied to it. These divs, all the divs that have red apply to it. These two have no more specific selectors so it's applied. This particular div has now five background colors applied to it. And actually, let's look at that.
+
+You can see them all here where they're coming from. The general selector is being eliminated. Then the div one is being eliminated. descendant one and two are being eliminated even though descend it if it wasn't for this ID. This would be this would be the one that takes precedence by its order. But then there's an ID one, that is the most specifics, what's the one supplied, what's the last most specific thing being applied, or CRO that applies, given if I take the same role, the same specificity. I put it here. And let's make it purple. Now it's purple because now it has six background colors being applied. But the last most specific one is the ID. So this means that the order we're going to import and start importing multiple CSS files into one HTML document, the order we import them in is going to be really important because the last one import is going to override everything else. So the final row in the cascade is important. Important is something we can add to
+
+that a little bit. So let's right now
+
+Let's add
+
+important here.
+
+Now everything's green. So important is the developer saying it allows the developer to say I don't care how this cascades, I want this to be the one that's being used. I'm with this the so we actually need to use important very sparingly. It will usually use it with things like hover, where we want something to change for a short amount of time, or error messages. We want to no matter what it always to have read text or to stand out in some way. But important than overrides everything else by the developer saying this is the one you need to apply. If there's multiple things that match in this one gets overwritten. ignore that. So that's what's called the cascade. That's the reason it's called Cascading Style Sheets is because we wind up applying multiple things to the same multiple rules to the same thing, making it more and more specific as we go to finally get what we want for an individual element.
+
+So questions on that before?
+
+Right so we'll sibling selector override and ID. So
+
+a sibling selector.
+
+I don't think it will.
+
+Let's find out.
+
+Because I'm not completely positive.
+
+When we get past those first four, it gets a little
+
+odd in the same boat. And that's, I thought you were saying that I just wanted to clarify
+
+that. So let's see. So we had a sibling selector here.
+
+Let's put an ID on here. We'll call this one ID.
+
+sibling test
+
+I think the id selector will win.
+
+And it's gonna like that known word Okay.
+
+So now if we put a split this to the right
+
+that's what
+
+if we put the sibling selector
+
+on span one
+
+I'm almost positive it is going to win.
+
+And we change the background
+
+color to blue so that we select my sibling and even put it up here to be sure so we don't have order involved.
+
+I positive more and more positive ideas going to win
+
+but might be wrong.
+
+Your background color.
+
+Purple. Yeah, I do when I think it beats everything.
+
+I'm almost positive.
+
+Okay, awesome. Thank you so much.
+
+Oh, yeah, I would have thought about that more. This is starting with a class.
+
+Yeah. So it's less specific than it already.
+
+But I thought it would be the most specific one because this one's still, you can kind of think of it as like this is generally referring to multiple things, or camera models. So it's less specific than ID which only refers to one unique thing on the page. classes can be multiple things. It's a group of grouping of things. So it's less specific. element is all things of a type. So it's a little less specific and then universal was Everything. So the same way of sibling selectors, they are less, they would fall in that same kind of roll around clap round the same level of class class.
+
+Does that that makes that makes a ton of sense.
+
+Yeah. Thank you so much.
+
+That was a good question. That was a Rasta. So, yes. This idea was to like the inline style it does in HTML.
+
+So that's the problem with inline styles. So it is important. So, if you have an inline style, it becomes unstable, unstable outside of the HTML directly.
+
+sweather.
+
+Alright, alright, so let's take a break. Then we'll come back and talk about some of the positioning. We'll come back at 1030 I
+
+guess so
+
+what questions came up for you during the break?
+
+So let's take a look at
+
+some of the other
+
+pieces about weight that will help us understand how CSS is being applied. So the next thing we need to really understand is what's called the box model.
+
+When it closes, close this in the lecture code
+
+and go to the box model folder, and on index HTML, I'm going to right click on it and choose Open with live server and
+
+getting close this one
+
+So the box model is that everything, every element in the page, no matter what it is, matter what content is every tag is represented by a box internally. So everything is a box no matter what it looks like. And we take advantage of that box to set
+
+properties around
+
+the element. So in the box itself has four pieces. It has the content. So that is the content have the elements, so the text or the image or whatever we have, for that element. There's padding, which is inside the element. So there's a border. And we can think of the border just like we would know if you look at your zoom window, there's a green border around whoever speaking at the moment. This is the same at the border, and then there's a margin which is space outside of the element. So space between the elements between it in the next beginning the next box. So every element is is being laid out on the screen. Each for instance, each one of these on this, the Google Slides here, since it's a web application, each one of these the File, Edit the view, they're all boxes. And you can actually, I guess, the highlighting, I was going to highlight them you can see with the highlighting, they have the part of the box background highlighting as you can see them. So everything here is a box. Each of these circles
+
+that these circle icons
+
+are actually
+
+boxes that are overlapping. That has happened have circles inside quite a half the size of your course exactly right. But they would all be the same size. I'm sure like my drawing, but that's what they are. So we can take advantage of. We use that when we're positioning things in the page and CSS and when we're sizing things. So to do that, we need to understand how the boxes work. So I'm going to go to this back to this page.
+
+And I'm going to inspect it.
+
+And inside of Chrome, or actually, pretty much every browsers dev tools, there's a box representation that allows us to see which pieces of an element we have selected, how its things are being styled now they've been set up. So I'm going to select this first box. This is an image If we look here, there actually these two things are exactly the same image and what the image itself the content is this brown square. So in this first case, I'm going to click on it. And we can see the content is 100. By 100. The padding can see highlighting kind of that green color is 50. The border, which is kind of hard to see with the black outline now becomes that greenish outline is three, and there is no margin. So there's nothing outside of it.
+
+So if we select the second one
+
+is the same image, but this case, the content still haven't been 100. The pad there is no padding. The border still three, but now there's a margin of 50 instead of padding of 50, which we can see the margins highlighting and the kind of tannish color
+
+So those are the pieces of the box that will work with and will work with them by changing the border. The content, while sometimes the content not always the padding, the border or the margin. So we'll give them dimensions. Based on we want the border to be pushed out no 2020 pixels from the content. So we'll change the padding. Or we want two elements to be this element to be no, in this case, 50 pixels apart from the next element. So we'll have a margin of 50 which will push it away from the other elements. And then the second and then also in this box should put out the dis content area. When we're talking about when we get to dimensions in the most common dimensions, he is 100 is percentage at hundred percent I'm sure everyone's worked with at least in pre work, if not yesterday. The most common misconceptions, we give something a width or height of 100%. That what we're saying is, if we have an image, it should be 100% of the image. What we're saying is we want it to be 100% of the box that this box is within the content to be 100% of that. So because these layout we end up with,
+
+is we have the children elements. If we add a div
+
+inside of it, it had
+
+three more divs.
+
+wind up with boxes within boxes, each one represented by these four pieces, and then if those divs had a paragraph inside each
+
+And of course they would.
+
+So when we say something, you'd be 100, we want this to be 100%. What we're saying is 100% of its parent container here, not of its own content.
+
+And that's going to be important we get to relative measurements later. Alright.
+
+So the second thing we need to know about the box is there's two ways we can work with it. We have these four pieces. There's two types of sizing.
+
+The default sizing is that
+
+it's called content boxing. That means when we say with 100,
+
+it sets the content.
+
+So from here, to here, to be 100, which means that
+
+if we're trying to count Wait, how to fill up seven boxes on a page, it's going to be 700 pixels wide. And we're trying to set things by pixels. And we set each of these to 100. And they each have padding and border and margin on top of that. It's going to be larger than 700. If there's seven of them all set to 100. Because the we would have to calculate and actually used to be done manually. css used to involve sitting there thinking okay, Mike, I set this to the size of 100. But
+
+and there's seven of them.
+
+But I have my padding set to 10. I have a border of one and I have the margins up to 20. So for each one of these, if I wanted to take up 700 position, I have to say okay, this is equal to 31. So what I really need to set this to is not 100 I need to set it to
+
+USB 3069.
+
+So that's we have to do that.
+
+So there's a second sizing now in modern, modern CSS. That is called border box rather than content boxes called border box. So in content box, it's like we've talked about this would be where we set to 100. If we set a border box to 100, we're setting this space. So we're setting from here to here, which means that we still have this space to worry about. But now, we have this 120 and we say we have two of them and we're trying to get it to so the entire piece is going to be across the 700. We can say okay, the border box if this was 20 We've just set it to 80 to get each one each box to be exactly 100 to fill up the space, so it makes it a lot easier to work with. Now we Joey now on modern, we get to more modern design, we don't aren't trying to help 700 pixels of space anymore. That used to be a huge concern. So a lot of that goes away with that, but it allows us to control it by which is a little more intuitively by the border rather than by the just the content. So we have two choices and we can change that the box sizing
+
+element.
+
+See
+
+by adding and this is actually going to change nothing because we got box sizing. You can see border box or content box. Porter boxes, kinda boxes the default so I'll change it to a border box and I deleted So changing it, so let me try again. So box sizing.
+
+As I said, it doesn't actually change anything here because there's no row sizing. But actually Assad sizing with
+
+Actually, I don't think it's gonna matter because that's something else. But it's not.
+
+That's okay. We'll come back to why that's not gonna matter.
+
+Because it's an image. It's not gonna matter.
+
+But we apply it by to CSS style. Hey, when I was typing it out, you notice there was a few other options. There's initial unset inherit. Those allow us to set it back to this default value and how amount means it'll inherit from, in this case from its parents or in this case body. But jelly will pick between those two. If we don't, we just want to keep it as normal. We just don't use it.
+
+So any questions about the box model before we move on to positioning. So the next thing we need to talk about is actually the thing that kept me from changing that image size. And that's display. So I'm going to go back to the lecture code again, and we'll up the display HTML
+
+and inspect it so we can
+
+look at it in a moment.
+
+So display sets, how things are going to lay out The main layout on the page. And there's three display types actually, there's four but one of them we're going to spend a whole day on that's called Flexbox or flex display, but um the three other ones is block. So block starts on a new line, it always starts a new line, it takes up the full width available, so the full width of its container and you can set the width and height so you can set the size. The default for the elements that are default block display or div h1, paragraphs form header footer section, there's quite a few others. So some, so the elements that are generally the ones that are meant to kind of be a generic container kind of block out content are almost all block. So if we had three blocks, they would line up with this content content and then nothing they would line up like this in size like this, approximately. The second one is in line line doesn't start in the line, it just stays right with the text or wait with the other content. It takes up only the width required for the content. So it sizes itself around the content. And you cannot set the width or height. So it's whatever the content is. So again, and it's the default for span image, and anchor tags. And there's some other ones. Usually the things that are more content driven that you would, you would see inside the body of text are in mind. And that's why I couldn't change on the image for the box modeling demonstration, so I couldn't change it because images are in mind. And you can't sit there with our height. But of course we know you can, but we're going to talk about that. So these would lay out like this. So content would size itself to approximate size of content. The second one slides up to approximately a this would actually just be empty, there would be no size at all. Well unless they add padding or margin applied. And they were just all set side by side. The third one, nothing defaults to, but it's inline block in my block is just like inline, except it allows you to set the height the width and height. So inline block, we could change the width and the height, he would lay out like this, we could change it to whatever we want.
+
+So let's look at this on the page, we go back here.
+
+So each headers are block elements. So we can see that this header and this header are laying out in the next header are all laying out. As we hover them, you can see their size is the full size of the screen because their parent is Bobby.
+
+And they just go
+
+their margin just goes right to the next next element.
+
+So here
+
+these are anchor tags, which are in line By default, they set side by side. But we can actually change the way something displays using the display property. So on these anchor tags, we can see they've been set to display block. And now they lay out just like the last blocks. So you can see that they've been set to a block they have, that means we can now set their width here
+
+and I set the width
+
+to 300. And for that to work, I set the width and nothing happens because they're block. On these next ones, on the same images here, they've been set the display block.
+
+So
+
+the width is, can be set.
+
+If I remove the block, they go back to just in line, side, side by side So notice, we still can set the margin in the padding, we can't set the width of the content. Or if it's a border box, so we can't set the width it's going to take up it's going to still take the margin and padding though, in the border. But this will allow us to set the width of the content. So by default paragraph tags are block. So we have to these two paragraph tags. If we don't do anything else with them, they just stack on top of each other. They are either blocked we can set the width of them. If I remove that with that, let's take out the full amount of space that because I can set the width they will hear to that width and same for height. But they also the same that we can set the inline elements to display as block we can set anything to displays in line.
+
+So here, they have display inline
+
+now
+
+Let's see if this is going to change both of these. But if you notice this one right here, as I change the width, it doesn't change the, the one above does, because they're both getting their sign in the paragraph. But this one does not because as inline, it doesn't allow them to have their width changed. If I remove the inline, then they go to the block style display. Then finally the same paragraphs, we can change the inline block. Here, display inline block. And now they're displaying inline like up here but allows to set the width
+
+and other portions of them.
+
+And then, within my block, there's one more example where you could add things like vertical alignment to top,
+
+middle, you can see it changing to middle or
+
+bottom. And there's also some other ones that you can do back to top. I shouldn't have to even do that because I can just refresh. So we can change every element. All these blocks to display they have the faults of either inline or blocked. But we can change anything to be something else by using the display property. We can tell it we want it to display as a block or inline or in my block, which allows us to do things like use a div suddenly inline or create columns that can we weren't used to create columns with divs. All right now, but we do have to pay attention to the idea that if something's inline, we're limited to not being able to set its width and height, which can lead to a lot of frustration. But changing didn't mind block will allow you to simply do that. I say that because the first time you encounter they're trying to set that with a link Or the width of a span so you can put a background on it and give it some styling and you can't change it. That's that's almost always a source of frustration when starting out.
+
+You center things that are in an inline block.
+
+So vertical line that's going to align the whole block. There's also I don't know if it's gonna work from us. Also text align, which takes center. Yeah. Which takes center.
+
+I was like talking about more, because they're shifted to the right on the left right now. Oh, that's a whole other problem. Because when I was working on my pre work, I spent like an hour and a half, I was like, I can't get them centered. Oh my gosh.
+
+Yes. So it's really hard. There is no nice Hey, I want these centered. There's some tricks around margin, like margin, and I don't even know the sort of work because with the It depends on the structure of the page. Let's find out. Auto zero, it's not gonna work. No. Setting margin to auto zero, if they're in the right container will center them inside that container. But they're not the right container. I build this page. I'm not sure what they're in. And that works. Sometimes the real solution is flex, which is tomorrow, or the day after tomorrow. I can't remember which order the next few days come in. But one of the two days coming is Flexbox. Which fixes that makes that really simple.
+
+But yeah, that's centering things is
+
+is the bane of CSS development. It's really it's just spent hours trying to sign things.
+
+So other questions about display before we look at positioning
+
+So the other thing we want these boxes we can do is position them. So again, I'm going to change lecture code, display to positioning
+
+index HTML five server
+
+and inspect it so we can look at it's
+
+at all pointed out now,
+
+when you're working with CSS, you should always have this actually, this entire module. When you're working with anything web related, whether it be HTML, CSS, JavaScript, especially CSS and JavaScript, you should always have this open. Not having it open means you'll miss all the errors or listening problems that exist and you're kind of doing it the hard way. Because So, since we can see exactly what's going on in here, But then you notice I've been changing CSS in here as well, that doesn't save. So the Philbin tools allow you to play with the CSS and kind of get an idea of how you want it, you have to go back and change the file to make it permanent. So with that, let's look at positioning. So positioning is how we have this alignment, these three alignments, right? vertical or horizontal. And positioning is how does the block stay in that default flow. So given that we had three bucks, static, a lot positioning is its default. So three divs will line up like this and static positioning, and we can see them here. And we don't have to do anything for static positioning. That is just the default. If we have something we're switching back to static position, we can use static explicitly to say I want this to be positioned statically. But if we, if we're not doing something special with it like that, we just can ignore it. It will be static. So the second positioning is relative. And let's look at relative positioning here where we can play with it. So item number two is position relative. We can see here position relative. If I remove that, it goes back into its static location to its default flow. So what relative is, is it removes it from the default flow and it moves it by taking a choice of we can go bottom or top or left to right.
+
+And
+
+so this is saying Move the bottom 40
+
+sheet let me change that change this to 60 speaking 140 you see it moved up farther. So it's saying from the bottom line
+
+which was here,
+
+move it up
+
+to one that works waist
+
+up 40 pixels
+
+and then it says from the left line,
+
+take this left line here and move it to the right 60 so we can see if I can, let's let's move the left to 160 goes farther. We could also go negative and it moves the left to the left. So when you're moving it top and bottom and left and right like On a traditional grid, where,
+
+like this mathematical grid with this is positive, this is negative for the left and right, so this is the left and right side. And this is positive, and this is negative for the top and bottom, and the top and bottom left and right are these lines, right? It's really the top of just what they totally sound like. So we, when we position something relative, we're keeping it in its original position, and then we're moving it's moving it by the left or bottom or top, whichever one we pick, generally will pick to either top or bottom or left or right. So that we end up moving it around a particular point. So here we're moving the bottom left, so we're moving it relative to this point. And then we'll move those lines by those dimensions, either negative or positive to go up or down. But it keeps the flow. It's just moved the box relative to that flow.
+
+You use percentages, there are no,
+
+I don't believe you can, but let's find out. Pretty sure you can. I don't think well, maybe you can. Actually, no, I'm less. I'm less certain about that statement though. Now, which actually makes sense because what, what would the percentage be relative to because its original starting at zero. So present, any percentages zero is going to be zero.
+
+So other questions on
+
+so that's relative, the second position is called absolute. It's very similar to relative, but it changes the original flow. In this case, the flow original flow is this when we change the relative, the original flow doesn't change, it just moves the box relative to that flow. with absolute it changes the original flow by collapsing. The exist the other ones, so here to is move absolute. So if I remove the absolute positioning, it goes back into the original flow. It's moving the same way topped and left or bottom and right. So top or bottom, left or right with the negative or positive number, but when we position relative it moves the element out of the original flow. Classes the other elements to take space. So we can see when we move relative. When we move absolute, I'm sorry, this box is going to move. So the top of it is going to move by 100 pixels. And the left is going to move by 300 pixels, which is going to move it the top up 100 pixels. This left line is going to move to the right 300 pixels.
+
+And then
+
+this element here is going to go down to take up half the space in this element here is going to go up to take up half the space. And we see when we put the positioning on. That's what happens. It moved up 100 pixels and moved over 300 pixels. Why do we choose that not move the right quite
+
+Um, what happens if you just say absolute but you don't put anything in the left or top? Like, would it just be on top of the things that got smushed together?
+
+Yep, weapons. So you can see that the number three
+
+is still there.
+
+We just can't see it. And let's put the top on and you can see where it's still there. But now, since it's been moved to absolute positioning, it collapses the other one in the flow, but it doesn't change where it's located. So until we move it, it's going to be covering the other pieces, which is how we can actually cover things. One of the ways we can do with things like putting text over images, that there's better ways to do that, but or
+
+how these are overlapping
+
+would be without using absolute positioning from their in line flow.
+
+So allows us to do things like that. So we often want them to partially cover each other.
+
+So other questions on
+
+when absolute.
+
+So the next position is fixed. Fixed doesn't move from the position in the flow, it removes it from the flow and sets it to relative to the screen or the what's called the viewport. So there's this concept is going to keep coming up called viewport.
+
+So viewport is
+
+in this browser
+
+is this
+
+it's the portion of the browser that's displaying page, we call it a viewport rather just the browser window. Because the browser window is bigger, right, there's more going on here in the window of the browser. But the viewport of its what I can display the page in Viewport becomes really important because device like a phone's viewport is going to be very different than a browser's viewport compared to like,
+
+tablets viewport.
+
+So
+
+fixed gets moved relative to this viewport. So this one here
+
+is
+
+fixed. So let me select it so we can
+
+change it. And we can see
+
+it originally was actually down as a fourth div in this bottom set. But when it gets the fixed position, it moves to the top right, of the viewport. So fixed always takes from wherever it's been located. Wherever its original location was, so it was here and it's going to move it always to the start with to the top right. To this point
+
+just a moment why?
+
+sign into
+
+everything again.
+
+Alright, so fix them. We can change the positioning. Let me put back fixed so it's moved. It's 00 it's moved to the top right. We can change it the same way. Let's move top line 100.
+
+This one 100 mc goes up. So let's move it negative, I think and you can see it starting to come back down because we're moving the top line. So most the time went up a fixed, negative one is there, they get tense going up. Attendance going will bring the top line, so moves a little differently than weeks, we would expect with fixed. Since it's moving from this position, it actually moves positive down and negative up. And the same with the right or left we're moving the right line.
+
+So we move it 10 we end up
+
+We end up moving it slightly 10 away, we move to negative 10. We move it might not be drastic enough to see, as we move it farther to the negative it goes to the right. So fixed moves in the opposite dimensions we expect with negative or positive. But that's because it's starting from this top right point and everything else is usually starting from the bottom left point. Right. So the point the purpose affects the main use your see of it is if you want to build a menu that travels with your page. Yeah, so So unlike these other ones, as I scroll this page, notice fixed keeps its position. All the other ones scroll, the fixed does not scroll.
+
+So questions on positioning. Those are the fourth
+
+okay. So the last thing that will last thing, the last positioning thing I'm gonna look at quickly is float is float. So floats mostly obsolete, it's going to be almost completely replaced by grid and Flexbox in the next couple days, but it still can be sometimes useful to least know it exists.
+
+So
+
+with float, if we have things in our we have two divs that are in their standard flow. If we add float, left and right to float left and right, we have to add it to both elements. They just move side by side, left or right. So if we floated the red to the right, it's going to flow here. And
+
+this should be float left
+
+out a count again
+
+So, let's go back here. So here we have one and two. If we look at them
+
+they're floating. If I remove the float, you can see why they move their float from one of them, that float goes away. Right now number two's floated to the right, number ones floated to the left. If I switch that position, like float this to the left,
+
+go to the other one and float it to the right.
+
+Then they switch position. That's what flow does. So just move to things side to block elements side by side left or right. And you have to apply to both. We'll see that we don't really need it anymore. It's it's one of the But the one time that
+
+it could be can be useful if you wanted to do a really quick
+
+like two column layout is where you'll still sometimes still see it used. But really Flexbox or grid to be a lot easier to do that with. But if so you still see some and every so often you run into a case where it's easier to float something when there's only two of them then to apply all the rules of Flexbox or grid to it. So
+
+but it shouldn't be your go to, it should be
+
+not the first choice to make things go side by side.
+
+Alright, so then, let's talk about all these values we've been looking at have numbers, we've been doing everything with px. So we need to talk about what those are, what those different measurements are, because units of measurements in web development are actually really important which you We choose
+
+matters quite a bit.
+
+So
+
+there are two types of units of measurements. And these are not all of these units. There are many more and there's actually not many more of those others. Here's a full list of them on w three schools that you can see that there are things like inches and millimeters and centimeters and points and pickers and packers and there's some other the relative ones that do different things. We're just gonna look at the ones you'll probably use or might use. So pick PX is pixels, and that's sets an absolute unit means that if we say it's going to be 200 pixels in size, it will always be 200 pixels in size. And a pixel is approximately 196 have an edge but not exact, because pixel size is different for every device. Even different operating systems or even different displays can sometimes add a pixel size. If you get into image analysis, pixel size will drive you crazy. But that's a whole different, whole different thing. So their pixel, the pixel sizes actually belong to the device, a pixel on a phone is much smaller than a pixel on a computer screen. But what it comes down to is the smallest dot that that device can make. So you see probably, I've seen like on a flat screen displays or the older camera, which ones it was used to have the pixels that go out, they would have called those. Yeah, but you probably have seen that probably seen a laptop that has, you know, dots, where the pixels are dead. That's the smallest size that device can display. That's what a pixel is. So we say something is 200 pixels were saying 200 dots wide, or Twitter, dots high. And it will always be 200 dots wide. So this display here is I'm not sure what I have it set to, but it's at least 1900. I think it's Bart, I forget who said higher net to least 1900 pixels wide. Doesn't matter. So it's at least 1900 pixels wide. a drawbridge phone, so the size of most smartphones is about 350 pixels wide. So which means if I use px, and I built my website and I say, you know what, I have a nice big display. Now, there's no real computer displays that are under 1024 pixels anymore. So I build a box with my content. It's takes up this much space, and that's going to fit on every laptop screen I use it on. And everything works great until somebody comes along with their smartphone and views my site.
+
+And their smartphone
+
+is about that wide compared to my content.
+
+And I've set it to an absolute pixel length,
+
+it's this content is still going to be the size. The phone now is only displaying this segment of it. Which means depending on other things towards me on my page, either this part gets cut off, or they have to scroll to the right. scrolling to the right is not considered optimal. Because it's really annoying and difficult to do and not all devices do it well. In fact, a lot of devices don't do it well at all. So or the device might smash this in do what's called scaling it, and now it's unreadable. Because moving something that size, shrinking something that much is going to make the text unreadable. So pixels, while useful, they send an absolute size. And because of that, we have to be aware when to be really aware of what devices that the page may be used on, or how it's going to affect various devices. So we try to avoid them, it doesn't mean that we always will avoid them, there are time legitimate times to use them. In fact, you'll find a lot of code that will set pixels to length to absolute lengths, but not to Whis. That happens a lot, but we try to avoid that too. But that's more common because we don't care if someone has to scroll vertically. vertical scrolling works very well on every device out there because things are even, you know, on every webpage we go to we sort of scrolling vertically but horizontal scrolling Doesn't work on every device that will. So we try to keep the width constraints constraints. So the user has to scroll down, up and down and up to the side. So relative units, though, set the size of an element, relative to something else. And it can, there's a few different things that sets it relative to. So em, sets it relative in em is usually used for fonts, it can be used for other things. It sets it relative to the font size of the element. So all elements have a default font size. And it says, whatever that font sizes, or if you've applied the font size already to the element, like you've applied every h2 in your page to have font size 30. Then to em would be font size 60. So it becomes one aim would be font size, 30, whatever it's been set to, and then it just becomes, you know, point nine or point five would be font size 15. So becomes relative to the default font size of the element. REM is relative to the, the font size of the root element. So HTML allows you to apply a page wide kind of font size. And again, our items usually apply to fonts but can be applied to other things if we want. And then change No, I want this header to be slightly larger than the rest of the page by using Aria compared to what the root element setting is. There's VW and VH, which are relative to the width and height is 1% of the width and height of the viewport. So again, we've talked about the viewport being this browser display or the device display. So it's 1% of the width or height setting it each one v. So if we wanted to set to be 10% of the screen, we would set it to 10 VH that take up 10% of the width of the screen of the viewport, so the browser or the device, and then there's percent, which is relative to the size of the parent element. So 10% of 10% is going to set it to 10% of the size of the parent. If it's parents the body element, and there's nothing else applied, that's the whole viewport. But if it's not, if it's inside of another, like a section, that section has been set to be 50% itself that it's going to be 50% of that 50%. So if it's parent element, so percent often gets a different effect than you expect out of it, which is why with 100% is not 100% of the image or where we're applying it to it's 100% of the available space for it.
+
+So we try to use relative units whenever possible. We'll focus on those because we haven't talked about yet. We will know it's This week, we'll talk about this idea called responsive design. And that's this concept that when we build web pages, we can't build them just for a computer anymore. Everything built for anything on the web has to work on a computer, it has to work on a smartphone, it has to work on a tablet, because most access to webpages is not computer based. In fact, it's all over the place. I mean, you can access your web pages, any webpage you want from some refrigerators now and they have these really small viewports that we have to make choices about so the relative units allow us to work without having to worry as much about that does which viewport is going to be on how that's going to change in the future. So we're going to prioritize those and try to always use those.
+
+Alright, so questions on units of measurements before okay.
+
+So before we begin, the next thing I want to do is to Work through just applying some CSS to kind of all the concepts we use looked at today. So there any questions on anything before we do that?
+
+Brian, just real quick for the relative units. You said for REM,
+
+that they're mostly used on bots. They are.
+
+Why is that as well as
+
+well? Yeah. So um, they don't have to be the reason they end up getting us on sponsors because they're relative to other font sizes. So if you want to set your box relative to the font size of the element, that would be a legitimate time to use em REM and something else. But we generally don't. We only want our font relative to the size of our box, not our box relative to the size of our thought. So But we commonly want fonts relative to each other, we want a header to be, you know, larger than the base font. Or maybe we want h2. But you know what, we just want it just a little bit larger. So whatever that device treats an h2 as we want it to be, or 10% larger. So using em allows us to say that say whatever your default is, for an h2 make it 10%, larger, or REM, saying whatever the whole page is displaying as we want this particular font to be this particular line to be, you know, 25% larger. It's actually by this percentage just for doing an adjustable for REM. Yeah, but so that's the reason it usually gets applied to fonts is because it's relative to other fonts.
+
+That makes sense. Thank you. Other
+
+Yeah, like that the Raspberry Pi's are a great example of a really small display that can, we might have to worry about.
+
+We'll talk about when we get to
+
+relative design,
+
+when we worry about that, and why or when in what we worry about, but that's a great example of that. All right, so let's apply all this. I'm actually gonna go and close this just to get some space. I'm going to go here and go to this last example called Trello. And open its index live server. We'll open it style sheet here. And then I'm actually gonna get rid of that so we can put these side by side because I want a lot of room in here.
+
+Actually
+
+didn't do anything, I'm going to open the index in here as well excuse me the HTML code as well.
+
+So let's start there and open the
+
+dev tools by inspecting it.
+
+And municipal position that was a little smaller.
+
+So we get as much code as we can on the screen, still see what's going on. Alright, so here's some general, and I'm going to quickly get down here and uncomment this we'll put it right back. I'll be the first one.
+
+So here's some content on the screen.
+
+So what I want to do is take this general content, we can see how it's laid out here is just some content divs and ally and I don't know if anyone's familiar with Trello the agile tool. I know we use a lot of company other companies and other places outside of just for me but I'm gonna go to Trello actually let me log off screen
+
+just in case something
+
+yeah agile board for world domination you know people to see that
+
+exactly. Yeah, I don't I don't want that to be to me. No, no, no, my plan today split each night on. So all right.
+
+Good. Okay. So
+
+so this is the Trello board. That used to be until I think this is the first quarter we stopped using Trello for the syllabus and started using the calendar. This is what Trello is Looks like and really just want to bring it up. So we can kind of have an idea of what it looks like because I want to take this page and make it look similar to this not exact, but somewhere. You see this is, you know, pretty basic, right? There's not. It's pretty far from the way this looks. And when I say make this a kind of similar, not exactly, it won't have all the functionality of being able to track things around. I should have done that. Let me put that down there and come back to it. And I'm going to go back in common out. Sorry, Brian. Yes.
+
+This might be a little bit of time to do this. Could we take a break before we dive into that? I don't know. We can. Yeah, I think
+
+it's gonna take off. Yeah. css takes a long time. No matter what you do with it. It's frustrating. So let me comment this back out. And yeah, let's take a break. Thank you. Cuz Yeah, so we'll come back in love in 44 and keep going.
+
+So we're waiting on everybody to get back any questions that anybody came up with.
+
+Okay, so what we're gonna do
+
+do next is take said take this HTML and make it look terrible like
+
+and I commented out there's other pieces that were there
+
+and they start out carving it out for a reason is we can work with it like this Since these are all, kind of a duplicate of this first piece, I think it'll be easier if we focus on this first, and then we'll uncomment those when we have this first piece, the way we look, we like it. And it should just apply to the other ones if we
+
+select things properly.
+
+So I'm going to expand what this looks like, here, because that's what we'll be working with. So we can see that it's an h2, an ordered list, I list items, there's a div and then the main and the header.
+
+Let's get back to our style.
+
+So there's a few things I want to do that are probably not a couple things I want to start out with. They're probably not intuitive. Coming into HTML. The first thing is I want to set up some
+
+values for the whole page.
+
+So I want to set a universal selector. And if I want to change it, I want to change things the border boxing, because I find that a lot easier to work with the borders than the content. You don't have to really think as much in your head about it. The margins are pretty intuitive. So if I wanted to change that, what would I What would I set it to what element when I heard CSS row would I need
+
+border to pixels? Well, that'll create a border, but I want to change the border sizing. I want to change the way the box models work. margin, margin will change the size.
+
+So that this goes back to that box sizing.
+
+So we have box sizing.
+
+And if I want it to be border related, rather than content related, I'm going to change it to a border. box. And now all my sizing relative to the borders of the boxes instead of just the content
+
+said it will make things just a little easier to work with.
+
+So the next thing I want to do is I want to apply a general size and font to the entire document. So what selector should I use? If I want to select everything in the document?
+
+Use the same one or both. Why could that always that'll apply it to everything. I want to apply it to specifically the outer document and body could work. That would definitely work but I'm going to lose the ability then to have one or two things. One, the body's not 100% of the full document. It has the header and other pieces to it. And I also want to set a font size For everything, because I want to route font size I can use REM with.
+
+So I'm going to set it to HTML.
+
+So for the whole document, I'm going to set its height to 100%.
+
+And if I don't do that the height of the page is going to be
+
+just at the bottom of the content, which means I'm not going to be able to get like a nice background through the whole page, or even like a solid background color. So that's going to set to 100%. space here and then I'm going to set
+
+font size. Let's put it to something like 16 pixels.
+
+And we'll put a comment here. css comments are using this.
+
+So like Java comments. So
+
+and this will
+
+define the root font size 62 font size REM be relative to the size in this document. Alright so I'm going to save it in we're going to see nothing is really going to change
+
+but now it's said it's setting this a position where we can
+
+work with
+
+the document a little more easily. So it's first those first three things are all about setting up the document the way we want to work with it. So we don't always need any either any of them or sometimes we need more.
+
+So the second thing I want to do is I want to get
+
+the the set the page font
+
+and so the whole page looking fill So if I want to affect all the content on the page, not necessarily the document, what would be the tag that I probably should be selecting?
+
+Yes, this time it would affect all the content.
+
+So I said body.
+
+And
+
+let's change the font. So there's a general font for this page. Now in the HTML. There is a link to a style sheet for Google Font. Let's take a look at so if you go to Google API's fonts, Google API's Comm.
+
+Oh, that's because that's their API. It's right in the name. Think it's just fonts.google.com Yeah.
+
+So there are other places you can get fonts. But Google has a huge collection of all for free.
+
+So you can select a font.
+
+This one is just on top or set of them.
+
+And take like this, I'm gonna select the style.
+
+And
+
+it gives me a link right here.
+
+I can grab my phone.
+
+just paste that style sheet entry in and you can do more than one font in one like you don't have to have multiple links. You can select a bunch of them then come to embed and it'll put them all together. And then it tells me how I add it. So this is my font family.
+
+So let's set
+
+fonts. family that
+
+I had saved.
+
+It didn't do it. Okay.
+
+I shouldn't have done that.
+
+Oh, what are we missing? The ideas. We're missing something really important to the CSS. Yeah, CSS files not linked into our HTML.
+
+I said a link, the relation
+
+stylesheet and href equals and it's called style.
+
+CSS
+
+back here this fall. So thank you.
+
+There. So let's apply our font.
+
+Probably don't want to keep that font. But there's the other one that was loaded. That is railway and it's sans serif. So the second pieces so the first one is saying use the Google Font named railway that's in my stylesheet. Import or the stylesheet new railway, otherwise fall back on san serif. So it gives us that look, which is closer to what the Trello board was using. The second thing I want to do is let's put a gradient background on something we haven't looked at before.
+
+And that's what color had
+
+said, let's call it background image. And we're not going to actually use an image we're going to create a gradient. And with a gradient, we set to colors and it's going to create just basically have effect going from one color to the other. We want to go to bottom and then we have to set two different colors.
+
+So let's try something like dark.
+
+I think it'll take named colors here.
+
+Gray.
+
+That may not be quite
+
+what we want. So we can change that to anything. We wanted. Somebody wanted to get
+
+More interesting look to our page. We can
+
+definitely do that.
+
+So let's put it maybe back to something
+
+else let's try.
+
+See
+
+858 see 90 through just a flat gray
+
+are all near white stockpile looks about what we want. We can see we use linear gradient, there's all kinds of other gradients they can apply as well, you should have missed an image that's gonna create the background. So this background though,
+
+is actually going to start repeating this page again. long enough.
+
+I don't want that to happen. I don't think I'd get it long enough, but I know it's going to happen because I've had that happen on another
+
+gradient use. So let's change it to
+
+background repeat.
+
+No
+
+repeat.
+
+So this is going to
+
+stretch
+
+the background instead
+
+of repeating it and that use can be is even probably more useful with images. And then the next thing we want to do is I want to make it so the background. Do not scroll the background. I want it to be stuck to the page height. So we'll do that by background
+
+attachment fixed.
+
+So nothing's really changed with our page. But if our page got large enough, the backgrounds gonna stay fixed at 100%, wipe the viewport and not scroll, which is what we want. It's not going to repeat so. Alright. So we have that. Now let's work on these this list. So this list here.
+
+So I want to select that.
+
+I need to figure out how to select it has a class on it to div with a class fellow list. So I want my selectors to be as specific as possible. So I'm going to say I want the div that has the class Trello list. And that way this Trello list gets applied to something else. It'll only affect the div. So that's applied to
+
+so first
+
+let's create we want these to be multi column right? So let's create a create p multi column layout.
+
+So we'll change the display
+
+to inline block
+
+the second. So we changed it from block from going horizontal to going vertical by inline block. Let's change let's use fixed width columns. Because for something like this where you want, we do want a true fixed width because of the content. So fix the common with this would be a case we probably don't want it relative.
+
+That would actually just be a design decision. So since there may be 300, we haven't seen a lot change yet, but
+
+let's change the background color
+
+sublimate to maybe something like, let's just try DDD first, which will be a mid or later. So we have that.
+
+And since
+
+we're dealing with modern web, let's round the corners.
+
+Because everything on the modern web has rounded corners if you haven't noticed, so.
+
+Right, so it gives a nice rounded edge to the corners.
+
+All right, so we have our
+
+data div are aligned. But the next thing is there's an h2 here. So let's start with it. Let's get it to look the way we want. So that's going to end up to be styling the, this h2 which has the word gender on it. So to select it, I'm going to select it as the h2 that's inside a div that has the Class Trailer Last. So div dot Trello list, h2. So all the descendants that are h2 that are inside a div has the class total list applied to that div.
+
+First, let's get away from the edge.
+
+So let's add a margin.
+
+Maybe let's try eight PX pushes it away from the top and the side edge to the left edge. This guy's a right and bottom margin, but this one is gonna affect us. So let's leave it as it is. I want this font to always be consistent. I want it to be the document size, and I don't want something else to override it. So let's change the font size. Instead it's one REM
+
+and I want to be bold.
+
+So they're put to bold at the
+
+smaller size.
+
+All right. So the next thing in my thing is there is the ol. So I want it the ordered list, all I want to do is get rid of, I want to get rid of the padding and push everything together. So I can separate the line items individually. So again, I want the ordered list that's inside of the div with the Trello. class. And let's get rid of the margin
+
+and the padding.
+
+And we're going to push it off to the side. That way we can manipulate them individually as line items instead of the whole. And let's put a comment. That's what we're doing. So remove
+
+margin. padding
+
+so It can be applied to my items. And then the next thing is going to be the items. So the allies.
+
+So let's make a change to those
+
+div Trello list and I'll just get the ally, someone all the allies have descended a Trello list. I could put the URL in there but it doesn't really matter because they have to be in part of Li or ul that way if I change it from order an order to another list, it'll keep its styling. The first thing I want to do is get rid of they're off the screen right now but there's numbers over here 1234 and as you see the dots with it. I'm going to get rid of those. So let's change the list style to none. This is going to remove numbers
+
+And now let's
+
+change the background color.
+
+And let's maybe make it
+
+well, let's use an example how we can do RGB. I just I want to just to kind of an off whites we can just set red, green and blue out of 55 which is actually going to create just a white background and why did these have this background?
+
+Okay, we'll fix that later. Maybe.
+
+No, that's bothering me at something.
+
+Why are we getting?
+
+Why are they not inheriting the backer
+
+so because the body's background is being applied to it. Yeah, but it should be inheriting the more specific background from the Trello list. I'll come back to it. It's not that big a deal.
+
+So, the next thing I want to make the font size is slightly smaller. So it'd be about 90% of the page size. So let's set it to 0.9. REM
+
+separates 90%
+
+and then
+
+let's add
+
+a border radius of one
+
+to kind of round the edges of the card, make it so they don't stick out kind of hard on each one.
+
+And now let's do some spacing.
+
+So margin bottom 10 pX
+
+and now let's add some padding.
+
+So that put margin
+
+on the bottom of each one and shove them apart. The padding then is going to put internal stuff around the car or space around the content and give them that look. Alright, so the next thing I probably would want to do is to be nice if
+
+if I hover over each one,
+
+sorry, my
+
+battery's dying. So hopefully they take them out and put them back in trick. We'll keep them alive for the next half an hour. So, if I hover over each one, well, I'd like it to just have a kind of a slight color change. So kind of like we do, wherever Trello went. If we look at
+
+the Trello board itself,
+
+I don't know where it went back.
+
+Alright, so wherever it is, that's okay. Trust me, when you hover over it, they, they it's changes from kind of kind of Gray's out the item. So let's do that.
+
+So I'm going to select div
+
+to Trello list, Li, and it gets by the hover pseudo selector and maybe just make it slightly darker. So background
+
+about her, and we probably want it to be like a light
+
+like salmon. Sure, at work.
+
+See what that looks like? Probably not what I think he is going to look like.
+
+That'll be okay.
+
+Let's make the foreground color then of the text, a light gray.
+
+So, not the most readable, but we'll leave it
+
+so now we have a hover effect of each one.
+
+So then there's this
+
+anchor tag at the bottom of this each list. So let's do something about it. All right. There's a couple things. There's an anchor tag, but there's also the space down here. So these have margin each one. But this bottom one shouldn't have a margin. So any ideas how we could select that so we can get rid of the margin?
+
+Last Child.
+
+Yeah, that's exactly how we do it use last child. So we'll say div. For the div trailer list. I want to select the Li that is the last child
+
+and then set its margin,
+
+bottom margin, specifically to zero PX and I'm gonna change the rest of the margins. I don't want to change the way to interacting with the things around it, I just want to choose to the bottom. So that's going to shove that up against that, which means I can now manipulate this last portion separately.
+
+So let's do that. Let's just supply something to
+
+that link.
+
+So the first thing I want to do, I want to select the link, so Trello list. I'm gonna select the anchor tag inside of it. Let's change this layout
+
+to block
+
+doesn't really change much the way it's gonna look that's gonna allow me to work with sizing better. So, now let's get rid of the mine text decoration. None that I get rid of the liner. Let's set the font color to something like aids probably about right. It's kind of grayed out.
+
+Now let's set some spacing.
+
+So we can set padding and padding can be set individually padding dice left bottom, top or we can set it in one line with
+
+Top.
+
+Right, bottom left.
+
+Pretty sure I have that right. So I always think of it as you start at the top, then you go right, bottom left, you go around in clockwise order, starting at the top. I think that's right.
+
+Let's find out because
+
+it might be counterclockwise. So let's say eight PX and maybe zero for the right. And then maybe something like eight for the bottom. And five, right? that pushes things out. That gives a nice look to it. Let's make sure I'm right. Pretty sure that's the top.
+
+That's definitely the top. I think this is the right.
+
+Still not sure.
+
+I don't think it's affecting anything. But that's my because of the size Let's try this write that stuff at the bottom, which means that and that stuff with the left Oh, there's because the right is empty space. So, okay, so now we have spacing rabbit, and we have, it's still a link. But it's really hard to tell now, isn't it? We have it looking nice, but we probably want some way of telling it's actually a link.
+
+So let's do a hover effect on it to
+
+show a hover.
+
+And background.
+
+color and another thing we can do, we can use RGB. Let's try something like 945 66 find out what that's going to be.
+
+It's almost the same isn't it?
+
+strange to
+
+say that
+
+Oh, it's cuz it shouldn't be background color. Oh no it is.
+
+Are you missing trailer list?
+
+I am. Thank you
+
+Why that wasn't working there.
+
+That's kind of what I wanted.
+
+So I was thinking a little something more
+
+like maybe
+
+nine
+
+and try 45
+
+Yeah, so something like that, but I want that, not maybe quite so dark. So I could change it look for a different color. Or, since I do I want the shade, I just want it to be a little more see through, I can use a RGB RGBA which allows you to set the alpha channel which sets a transparency or
+
+something sets point one.
+
+Now you can see this gives kind of a nice, almost transparent view to it. If I change this to five, then it's half transparent, which isn't really what I want.
+
+But that gives them a nice
+
+display, I could have just found this color and set that directly to I just wanted to show you that there's another RGBA exists as well. All right. So I think this looks pretty close to what we want and for some reason That background on the text fixed itself. So I think it was a browser cache issue.
+
+So what is
+
+Yeah, so let's uncomment then there's other pieces so we can now work with the whole board. So I'm going to uncomment these pieces. There are also divs that have the trellis class applied because they're a grouping of them. So when I do that, you should get them all ordered and styled from our original styling. But now we need to work on the board as a whole. If I increase the size here,
+
+you can see that they're actually laying out
+
+not on top of each other right now they're actually laying out kind of a strange pattern. So we need to fix that we can we can just fix that first.
+
+So I'm going to get that so we can see
+
+So we can see.
+
+So there inside of
+
+the first loss fix them for
+
+go back to diff Trello list. Think we had that selected individually right. And let's add some spacing to the top. So margin right 10 pX
+
+Lydon, let's add some
+
+pretty cool alignment to top.
+
+Okay, so now because they're lighting to the bottom because they're different sizes, there's always just four items in the list.
+
+So now let's get and
+
+there's the sort of wrapping right now. Wrapping means that there is the page size changes, they push down. And that's not what I want to happen. So I can see that if I make the page smaller, they shove into one list is very good page larger, they pull out into a much larger one. I get a large enough that will be all the outside by side I want to always all lined up. So I'm also going to get down and take out the rest of that comics that bugs me. All right. So let's make them all line up. But first, let's get rid of the wrapping. I think when we do that, they're going to mostly push them to space. So I'm going to go up to the body again. And I'm going to set
+
+up don't rap elements force horizontal
+
+scrolling.
+
+So what's up whitespace
+
+And to wrap.
+
+Okay, and
+
+now that setting things like this card or the titles, overlaying it, I want it, I do want it to wrap. So let's get out and find the allies
+
+and change them by setting
+
+their whitespace
+
+to normal.
+
+Now the wrapping and the others are not. So I think the cards now look kind of similar to what Trello had to display. So let's fix this header up here. Next
+
+So the header
+
+already been working with main, let's close it up and look at header now as an h1 in it. And it also has a paragraph two paragraphs in it. So I want to first apply something to all these, I want them inline block, I want them to line up side by side. And I want to set some heights on heights on them in some other constraints. And then some just text color and background color. Type our text card and a media border. So I can apply this to I went to the header, I want all the children of the header, their h1 and I also what the header, all the children that are paragraphs. That way if somebody puts something in my header that contains another h1 that's embedded like in a div or something and won't affect it only affect the direct children. So let's first change them to inline block, which will put them side by side does what's next set their height to 20 something 20 pX which puts them to a more consistent height. Let's push the border away to the right a little bit. So let's add some padding.
+
+Right 20 pX
+
+oh that sorry that pushed this away these apart. So push these each apart by 20 pixels so they're not all smashed together. Now let's align them vertically in the middle. So let's put vertical align to the middle. So that's their big one to the middle, but the first one is a different size.
+
+So
+
+but that's okay, cuz that's kind of the effect. Effects fine. The menu items are different than The header.
+
+So now let's change them to
+
+let's use RGBA. And we'll start them out
+
+just white text.
+
+And then let's slightly
+
+make it transparent, the background will show through. And that'll give them a slightly greyed out look. But if we put the same, if we change the background color, they'll actually take on the background color slightly, so that's fine. So then let's put maybe a vertical line between each of these items. So we'll use border, right, so we're gonna set the border on the right side of each of the boxes. And we'll make them one pixel size, make it a solid border. And let's do the same thing we did before. So it'll take on the background color. So we'll start at White and we'll set it to maybe point 05, which is going to be a darker gray. And we have the borders between each item.
+
+They're not done yet. They don't they look a little out of place still, but we're not done either.
+
+So now let's look at just this h1. So those are the things that could apply to everything. But let's look at just the h1. So we need in the header,
+
+the h1.
+
+First, let's transform the text.
+
+So to do a text transform,
+
+and let's put it to uppercase
+
+could also do lowercase. So I can change the text no matter what it is, it'll be all uppercase.
+
+And let's change its font size.
+
+So I want it to be one REM
+
+so it's just slightly larger than The document font is 10% larger essentially than the document font.
+
+So now let's change the paragraphs these two.
+
+So let's select those directly header, the paragraph. And let's set its font size to 90% of the page size, the default size so they get a little smaller. And let's add some padding to the left side of them. Because I want these to space out from these lines here from the margin
+
+and now make it look more button like now. Alright,
+
+alright, so we're getting closer
+
+but let's
+
+There's labels and they text. If you remember in the trial, we looked at Trello. There's like little color coded labels there in here under this label individual spans. So let's apply something to give them a view as well. So we're going to select those labels and we can't see them here. But because there's nothing in them yet, they're going to end up being just color coding labels. So, we're going to select the span class that's inside,
+
+have the label.
+
+But really, I want all of these to be affected.
+
+So if I want to affect all of the ones, let's affect, let's select the div that has labels and we'll select the spans inside of it. So we can affect all of them at once and then we'll select the individual ones
+
+after that,
+
+so for all of them was like dot labels, and we're selecting span.
+
+First let's
+
+Well, we can't really see what's going on. So let's look at
+
+there's general.
+
+But there's also this card. There's that.
+
+There's also the label that have, like pathway in general.
+
+Let's
+
+Yes. So why are you doing just a period?
+
+Because I want the I could, yeah, it probably be better to have it like this.
+
+Because I got lazy and didn't type the word done.
+
+Sorry. I was just so
+
+But before we do that, I want to say so we can least see one of them. So let's select the span. Now, the div that is labels.
+
+That is No.
+
+What's the class that has a label that also has general. So lip span that has the label that has general I think at this point, we probably can just go from the class.
+
+Since that's fairly specific.
+
+And let's change this background color to I don't know, orange, just so we can see one of these. Well, we will be able to see one we can't yet. So now let's make it so we can see one by applying sizing to all the labels because we're not going to see them until without one Have them having a background. So first let's give them some width.
+
+And let's give them some height.
+
+Start. Let's give them 10 we should be seeing yet. Let's, oh, let's change the display. In my blocks they go in line with the text. There they are. They were pushing down off of beneath the text. So now they're in line with the text or in line with the sorry, the other content or don't, sorry, I'm wrong. They were span so they were there but they weren't taking the width and height. So changing in my block allowed them to set the width pipe which gave him size. So now let's do something like vertical, align them to the top.
+
+I think I misspelled that vertical
+
+which just pushes it up a little more and puts it more
+
+space where we want it. And then let's do
+
+a border radius.
+
+Try three px.
+
+Nope, that look like if we change the height a little bit. There, that looks good. So now we have these color codings that Trello has. And there's pathway we saw. There's also looked down through here, there's pathway. There is individual and there's also So one four pair. So let's basically copy this for each of those. So many pathway.
+
+And we need a color for pathway. So maybe green.
+
+For the next one, we have pair. And
+
+let's try to
+
+and then there was individual, which
+
+now we have to make the screen, this red.
+
+Yeah, that way it looks like it did for the last several cohorts. And otherwise, it'll cause me like, no, the pathway has to be read. It just has to be green smoothie always are. But now we have these lines showing up. So it's getting pretty close. We're almost there. So the last thing is let's test it for resizing. Let's put it up here so we can scroll it. And we scroll it in our header scrolls off the page, probably not what we want. So let's fix this header or make it fixed. Sorry. So I don't think we applied anything directly to the header. We just had the h1. Let's go back up here with the header stuff is and apply something. So you might have noticed there's no order and CSS. It doesn't enforce any type of order any type of structure, you should try. Really, you should really try to keep things ordered. Keep the header stuff together the diff stuff together in different sections together, just for your own. Oh, as it gets larger and larger for your own sanity, because it gets really hard to find what you're looking for. So let's I'm gonna put the up here with the header stuff. And let's set it to position to fixed And now it's under. It's on top of everything else. That's okay. Let's do this top to zero, I want it right against the top. And let's give it a height of maybe 50. So now it doesn't scroll. But now it's on top of everything.
+
+So let's fix that. So
+
+to do that I'm going to check,
+
+we look at the HTML, the whole thing is contained with a header. There's also a main so what I want is this main to push down under this header. So I'm going to put something on the main to make it do that. What I'm going to do is just push the margin down. So I know that this header is 50. So I'm going to build a margin on the main 50 to shove it under the header.
+
+So
+
+margin top
+
+50 pX
+
+Now we have that it scrolls.
+
+It does not scroll. What am I missing? What am I forgetting? margin?
+
+brown color?
+
+No, I'm
+
+done. scroll the page bits. Oh, no, I'm sorry. That's what I want. So it's still, it doesn't scroll with the page now, but it's everything starts under, stays under to scroll.
+
+So not optimal, but close enough.
+
+Which is actually what she would want because you'd want the content to go under. Yeah. Under the header. Yeah, putting a background on their private make it more stand out more. We could do that.
+
+I have no idea what background color should be blue
+
+book, I have to play with the sizing if you do that, so let's not do that. It's already 1230.
+
+So
+
+there's one more thing I'd like to change just to show you can, and this will only take a minute. I would say that but it will take long, probably so and that's that you can affect more than just the elements on the page. You can also also affect parts of the browser. So what I want to change is these scroll bars, the scroll bar to be looks a little nicer. So we can use CSS to do that as well using what's called the WebKit. And we're not going to talk really much about the WebKit. I just want to show you that exist. So let's put a comment in there. We're going to change the scroll bar. And the webcasts are basically an API in To the browser that the
+
+CSS can affect. So say body. So the body tag, I want to use its WebKit.
+
+Specifically, the scroll bar.
+
+And let's set its width to height, maybe 10 pixels.
+
+So not much has changed yet.
+
+I spell that right. Yeah. So I want the same should be one dash.
+
+Okay, that's good. So the width is 10 pixels, so it's really small right now. So let's take the same thing because I want to change what's called the track, which is what the score bar moves in.
+
+And let's change its color to
+
+something like that.
+
+So now let's change the thumb, which is what you move in the scroll bar.
+
+Give it a background of
+
+and let's get a border
+
+radius of 35. Give it a nice routing. So there now we have this is the, what's called a thumb and the track is beneath him. So we got rid of the few of the track. We made the thumb itself, which is the part you move look like it's cool moving on the page by getting rid of the track and now let's do actually just paste the same thing. So on the same scroll bar thumb.
+
+Let's do a hover effect and
+
+change its background and notice the summary The
+
+rules we're using, like background are slightly different. So let's give it a different color when we scroll over it, so maybe, I don't know, let's make it purple. So now we hover over it turns purple never often doesn't. So, but the whole point of that is that we can use these API's, these WebKit API's to affect more than just a page. There's a lot of them out there. We didn't really cover them, but you could explore them. So CSS can do a little more than it can expect the the whole look and feel of the page inside the viewport. We can't do things like the toolbar, the browser and those pieces but
+
+alright, so any questions or what questions do you have
+
+so four exercises today.
+
+I know nothing is more exciting than watching somebody do CSS. So I'm sure everyone really enjoyed that last hour.
+
+But I hope what you got from it was how we broke down the pieces and worked on one piece at a time. Because that's really the important. The reason I wanted to do a whole page. If you try to do the whole page at once, you'll just be frustrated. If you do a piece at a time, you'll be slightly less frustrated.
+
+It CSS you're going to be frustrated so
+
+you're not sure what that means you will soon. So what you're going to be given is you getting a starting page, index HTML, and you're going to create a style dot CSS for it. You'll have to
+
+make
+
+Pull up index HTML. So you'll have to add it into the index.
+
+We can see where you're starting.
+
+So you're starting with this
+
+and you want to make it look like this are very similar to it. There are some rules about how similar has to be it has to be pretty close.
+
+So
+
+it gives you some details like the sidebar should be 200 pixels, the top row 150 pixels. The colors used for the different borders and colors are here. And then it walks you through some different steps. So it's best when you're working through a page like this to work in. Kind of passes. So look and say, well, we're going to work on the sidebar first, and I'm going to work on the header first, or next. And then I'm going to work on the main content, I'm going to work on this piece, rather than trying to figure out the whole page at one time.
+
+So also this image
+
+says 2400 by 800. That is not the size the image needs to be. That's just a placeholder image. These are just kind of a downloadable placeholder image for it. So don't make the image 2400 by 800, it will not look right, size it to what's appropriate for the page. So probably relatively.
+
+So that's what you'll be doing. Any questions on what you'll
+
+need to do?
+
+And can we have your question is that referring to CSS Being favorite part of coding. Everyone loves CSS.
+
+Yeah, I can tell.
+
+Sorry. I try not to try not to be too angry towards CSS, but I've wasted many, many hours on CSS way too many hours. All right.
+
+So, today.
+
+Let's see here. So you have mock tech interviews. So don't forget about those. Sure you won't. There's a player showcase at three o'clock, and then lightning talks at four. So
+
+anybody have any other questions for today?
+
+Brian, I didn't want to come to you about some REM some more, but I didn't want to hold everyone else up. Okay.
+
+But, so, yeah, that's just
+
+my final question. Okay. What's
+
+So the font size that you set in the HTML, on the style CSS, is is the default for h2. I think the default HTML is already 16 pixels, right?
+
+Yeah, I think it is.
+
+So a way that I've used REM in the past is that I've set the font size to 62.5%. Which will, like so if you if somebody happens to be zoomed in on their browser and they're zooming out, then it will still defaulted to just 10 pixels. And then you can more easily use REM across where you're trying to define those pixel widths for margin and things like that. 30 pixels is that bad form? Should I avoid doing that?
+
+No, that's fine. I actually set it 16 pixels. And I'm pretty sure if I go back at my notes where I said 16 pixels, I said don't set it to 16 pixels.
+
+Do that I was like I thought it's gonna reset the 60 bucks. So I just wanted to ask you about, okay.
+
+That line wasn't really needed. It didn't really do anything. But if I would have had to, like 18, which I think was my 10th. God, I think about it. That it would have been it, would it school would have worked the same just would have been different. So yeah, but what you're describing would be fine.
+
+Yeah. Okay.
+
+Awesome. Thank you.
+
+So anything else?
+
+Okay. Then Thank you and good luck on your foray into CSS today.
+
+Transcribed by https://otter.ai

@@ -1,0 +1,43 @@
+Book
+https://book.techelevator.com/content/vue-router.html#the-route-object-and-router-instance
+
+The route object and router instance
+#Route object
+A route object represents the state of the currently active route. It contains information about the current URL and the route information matched by the URL.
+
+If you open the Vue DevTools and select your component, you can see the $route object. This can also be accomplished by writing console.log(this.$route) in a Vue method, but this outputs more information that may or may not be useful to you:
+
+
+Image - The Route Object
+As you can see, this object contains information about the route that you may need in different scenarios. In a previous section, you saw an example where you had a dynamic route that took in a username variable:
+
+const routes = [
+  {
+    path: "/user-profile/:username",
+    name: "user-profile",
+    component: UserProfile
+  }
+];
+Now in your UserProfile component, you can display the user information based on the dynamic segment username in the URL. This is where the route object is useful and gives you access to information like that.
+
+In the example below, there's a Vuex datastore that holds an array of users, and the find method that uses this.$route.params.username to find the matching user. The find method is similar to filter, but it only returns the first match:
+
+<template>
+  <div>
+    <div>User ID: {{ user.id }}</div>
+    <div>User email: {{ user.email }}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "user-profile",
+  computed: {
+    user() {
+      return this.$store.state.users.find((u) => {
+        u.username == this.$route.params.username
+      });
+    }
+  }
+};
+</script>

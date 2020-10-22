@@ -1,0 +1,14 @@
+Book
+https://book.techelevator.com/content/web-services-consuming-get.html#using-an-api-in-code
+
+Using an API in code
+Using RestTemplate, you can make a basic HTTP GET request using the following code:
+
+RestTemplate restTemplate = new RestTemplate(); // Create a new client
+ResponseEntity response = restTemplate.getForEntity(
+                "https://api.exchangerate-api.com/v4/latest/USD", 
+                String.class); // Make GET request using Client
+System.out.println(response.getBody()); // your return data returned from .getBody()
+TIP
+
+response.getBody() returns a string representation of the JSON, just like if you saw the API response in your browser. In the next section, you'll see how RestTemplate can automatically convert the response data into a Java object.

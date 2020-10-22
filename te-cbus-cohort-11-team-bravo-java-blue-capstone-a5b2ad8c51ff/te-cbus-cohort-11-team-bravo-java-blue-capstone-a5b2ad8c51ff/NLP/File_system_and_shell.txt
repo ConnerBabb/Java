@@ -1,0 +1,214 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#file-system-and-the-shell
+
+File system and the shell
+Files and folders are one of the great, unsung achievements in computing. For most people, they're documents, spreadsheets, pictures, and songs. You may not think of them as files, as you share a photo with the tap of a finger. Programmers, on the other hand, have a much more direct relationship with files and folders. They work with them on a daily basis, and they need to know how to locate and manipulate them.
+
+By the end of this section, you should have an understanding of:
+
+The basic File System, and its hierarchical structure of files and folders.
+What a shell is, and how to launch it.
+How to navigate through the File System from inside the shell.
+Creating, copying, moving, and removing files and folders using the command line.
+#File system
+All modern operating systems such as OS X, Windows, and Linux have file systems. They're an important component in any operating system, and while they may differ from each other in implementation and capabilities across the platforms, they all share the same basic concept of organizing the raw data recorded on a storage medium into files and folders.
+
+#Files, folders and hierarchical structure
+#Files
+Files are the basic building blocks of any file system. In general, most users understand that documents, spreadsheets, pictures, and songs are files, even if they don't always think of them as such. Files have names and various attributes such as the date and time they were created, a size, and permissions limiting who can access them. Files can be copied, moved, renamed, and even deleted.
+
+#Folders
+Folders, sometimes called directories, hold files. In fact, a file can't exist outside of a folder. All files reside in some folder. In addition to files, folders may also contain other folders, also called subfolders. The subfolders, in turn, may hold other files and folders. The nesting of folders can be virtually unlimited—within the constraints of a given file system—and means the file system has a hierarchical structure.
+
+Like files, folders have names and many of the same attributes as folders. Folders can also be copied, moved, renamed, and deleted.
+
+#Special folders
+There are many special folders present in all modern file systems. In addition to the built-in folders such as Desktop, Documents, Downloads, Movies, Music, and Pictures, there are two key folders you'll work with as a programmer.
+
+#Root
+The root folder is the absolute beginning of any file system. It is the base folder that holds all other files and folders, either directly, or indirectly.
+
+In OS X and Linux, the root is referred to as /, and contains files and folders from one to many disks, or other storage media.
+
+Under Windows, the root is associated with drive-letters such as C:\ or D:\. Unlike OS X and Linux, there isn't necessarily a single root in the Windows file system; each drive-letter may be thought of as having its own root.
+
+TIP
+
+You won't spend much time on Windows drive-letters during the cohort in preference of the / of Unix-based operating systems like OS X and Linux.
+
+#Home
+The Home folder is the folder associated with a user's login name where the special folders mentioned earlier reside. The majority of files and folders the user works with and creates are located here.
+
+#GUI tools
+Both Windows and OS X provide GUI tools to explore and manage their respective file systems. These tools allow users to easily locate, copy, move, delete, and rename files and folders. While useful, most computer professionals prefer to use Shell commands to accomplish these tasks.
+
+#File Explorer (formerly "Windows Explorer")
+You can find this icon in the taskbar:
+
+
+Image - Windows Explorer Icon
+There are several ways to launch File Explorer from anywhere in Windows 10.
+
+The second way is to hit ⊞-E.
+
+⊞ represents the Windows Key
+
+
+Image - Windows Key
+The third is to hit ⊞-S and type
+
+
+Image - Windows File Explorer
+#OS X Finder
+The most typical way of launching the Finder is to click on its icon in the Dock. Another available method is to hit ⌘-spacebar and type "finder" in the Spotlight Search. The Spotlight Search searches for the nearest match from the first character you type. The search narrows as you enter more characters. You may stop typing when the Finder icon appears. Then, press return to launch Finder.
+
+
+Image - Finding Terminal via Spotlight
+Below is a two-minute video that provides an overview of the OS X Finder.
+
+
+#What is a shell?
+A shell is a character-based interface to the operating system. The shell is also known as the "terminal" or the "command line." You tell the operating system what to do by typing commands inside the shell. These commands can be as mundane as asking the operating system for the current date, or as sophisticated as telling the operating system to search for files containing a particular word, moving those files to a new location, and then emailing you a short report of the files found and moved.
+
+Programmers and other computer professionals tend to prefer the shell because of its flexibility. While each command typically performs a single limited function, they can be joined to build complex tasks and can even be scripted to create complete applications. Describing all the possibilities is well beyond the scope of this short document, however, it does cover several frequently used commands to navigate and work with the file system.
+
+The most popular shell is named bash. It is available on the OS X, Windows, and Linux operating systems, and is the shell used at Tech Elevator.
+
+#Launching a shell
+#Windows
+There are a number of "shells" that can be launched on a Windows computer. One of the most common ones is the Windows Command Prompt.
+
+This is launched by opening the Start Menu and typing cmd. The command prompt allows you to run a number of common Windows style commands, like dir or cd. However, this is not the same as a Unix shell.
+
+The equivalent for the Unix-based shell can be opened through a program called Git Bash. This can also be launched by opening the Start Menu and typing git bash until the Git Bash application appears. You'll use Git Bash throughout most of the cohort because it is integrated with Git and supports many of the common commands you'll leverage.
+
+#OS X
+Many programmers drag a copy of the Terminal icon to the Dock so it can be easily launched by simply pulling up the Dock and clicking. If you prefer a mouse-less method which doesn't require any additional prep like dragging an icon to the Dock, you can use Spotlight Search. Hit ⌘-spacebar to bring up Spotlight Search and type "terminal" in the Spotlight Search.
+
+Spotlight Search begins searching for the nearest match from the first character you type. The search narrows as you enter more characters. You may stop typing when the Terminal icon appears. Press return to launch Terminal.
+
+
+Image - Spotlight Search: Terminal
+#Using file systems and the shell
+While GUI Tools such as OS X Finder, and Windows File Explorer let you move around your computer's files and folders in a point and click interface, there is also another way to navigate your computer.
+
+The command line interface is the original computer UI. Using it lets you walk through your computer's file structure and perform actions quickly. It's also the UI used to program actions on your computer and is very important to understand for all software developers.
+
+#Navigating the file system
+Navigating around the system requires knowledge of three commands: cd, pwd, and ls.
+
+#Changing Directories
+Changing directories is done via the cd command.
+
+cd /Users/me/Documents
+This command tells the computer to go to the root folder, /, then into the Users folder, then the me folder inside of that and finally, the Documents folder in that. This style of using cd is using an absolute path. An absolute path always starts at the beginning of the file system—at root—and then specifies each path to take from there.
+
+But you might already be in a folder. If you run the command above, you enter the /Users/me/Documents folder. What if you want to go to the /Users/me folder instead? You could type out the full path again, like:
+
+cd /Users/me
+You could also use a relative path. If you're already in /Users/me/Documents, you can go back one directory by typing:
+
+cd ..
+The special .. directory used above means "go to my parent." In this case, if you run this from inside /Users/me/Documents, the parent becomes /Users/me.
+
+What if you're in /Users/me/Documents and you type:
+
+cd ../..
+This sends you to /Users. In other words, it sends you to your parent's parent.
+
+There is another special directory to remember, and that is the ~ directory. The ~ directory always takes you to your Home folder. If your Home folder is /Users/joe, then typing:
+
+cd ~
+takes you straight to your Home folder and:
+
+cd ~/Documents
+takes you to /Users/joe/Documents.
+
+Now, you know how to get somewhere, but how do you know where you are?
+
+#Print working directory
+You can find out where you are in the file system by using the pwd command:
+
+pwd
+
+/Users/joe
+That's it. pwd tells you where you are as an absolute path.
+
+But how do you find out what's here?
+
+#List directory contents
+To find out what's in the current folder, use the command ls:
+
+ls
+
+05-introduction-to-programming introduction-to-tools
+Definitions.md                 linear-data-structures
+README.md                      logical-branching
+SUMMARY.md                     non-linear-data-structures
+arrays-and-loops               package-lock.json
+book.json                      package.json
+command-line-programs          styles
+introduction-to-objects
+ls lists out all of the folders and files, sometimes color coded, that are in the current folder. This lets you navigate easier and make sure that you have what you're looking for.
+
+If you want more details on those files and folders, you can pass some command line arguments to ls, like this:
+
+ls -al
+
+total 64
+drwxr-xr-x  19 joe  staff   608 Jan 14 10:36 .
+drwx------+ 30 joe  staff   960 Jan  2 14:13 ..
+drwxr-xr-x  15 joe  staff   480 Jan 14 10:41 .git
+-rw-r--r--   1 joe  staff   907 Dec 15 14:47 .gitignore
+drwxr-xr-x   6 joe  staff   192 Dec 15 14:47 05-introduction-to-programming
+-rw-r--r--   1 joe  staff  2755 Jan 14 10:36 Definitions.md
+-rw-r--r--   1 joe  staff   526 Jan 14 10:36 README.md
+-rw-r--r--   1 joe  staff  5618 Jan 14 10:36 SUMMARY.md
+drwxr-xr-x   5 joe  staff   160 Jan 14 10:36 arrays-and-loops
+-rw-r--r--   1 joe  staff   289 Jan 14 10:36 book.json
+drwxr-xr-x   9 joe  staff   288 Jan 14 09:05 command-line-programs
+drwxr-xr-x  10 joe  staff   320 Jan 14 09:05 introduction-to-objects
+drwxr-xr-x   5 joe  staff   160 Jan 14 09:05 introduction-to-tools
+drwxr-xr-x  10 joe  staff   320 Jan 14 10:36 linear-data-structures
+drwxr-xr-x   8 joe  staff   256 Jan 14 09:05 logical-branching
+drwxr-xr-x   8 joe  staff   256 Jan 14 10:36 non-linear-data-structures
+-rw-r--r--   1 joe  staff   291 Jan 14 09:05 package-lock.json
+-rw-r--r--   1 joe  staff   412 Jan 14 09:05 package.json
+drwxr-xr-x   3 joe  staff    96 Jan 14 10:36 styles
+Using the two flags -al, which stands for all and long, provides more details on the children of this folder. It also shows hidden files (files that start with a .).
+
+#Working with files and folders
+When you want to work with the files and folders on your computers, there are some useful commands that you'll need to know.
+
+#Moving files and folders
+To move a file or a folder to a different place, use the mv command. Its first argument is the file or folder you want to move, and the second argument is where to move it to.
+
+For example, if you wanted to move a file called readme.txt from your home folder to your Documents folder, you could do it like this:
+
+mv /Users/joe/readme.txt /Users/joe/Documents/
+An easier way might be:
+
+mv ~/readme.txt ~/Documents/
+This command is also how you rename things. If you wanted to rename readme.txt to info.txt, you could do that like this:
+
+mv readme.txt info.txt
+#Copying files and folders
+You can also copy files and folders, putting a duplicate in another location without getting rid of the original.
+
+To copy a file, use the cp command:
+
+cp readme.txt info.txt
+After this runs, you still have your original readme.txt, but you have a new file called info.txt with the same exact content.
+
+To copy a folder, you need to add a -r to the command:
+
+cp -r Documents Documents_backup
+This duplicates the Documents folder and all of its contents, so be very careful running it on a folder with a lot of content.
+
+#Making folders
+You can also make an empty folder at any time with the mkdir command:
+
+mkdir my_stuff
+#Next steps
+#Additional shell commands
+See Command Line Cheat Sheet and Bash File System Commands to learn more about additional shell commands.

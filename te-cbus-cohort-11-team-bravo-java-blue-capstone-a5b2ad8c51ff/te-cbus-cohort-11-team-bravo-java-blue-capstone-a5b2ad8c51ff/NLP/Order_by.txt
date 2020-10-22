@@ -1,0 +1,72 @@
+Book
+https://book.techelevator.com/content/groups-and-aggregates-in-sql.html#order-by
+
+ORDER BY
+By default, rows come back from the database in an unspecified order. It's up to the DBMS to decide how it returns rows from a SELECT statement. However, by adding an ORDER BY clause, you can tell the database what order to return your rows in.
+
+SELECT * FROM users ORDER BY age;
+This statement orders your results by the user's age, but in what order? Smallest to greatest or greatest to smallest?
+
+By default, all ORDER BY clauses are ASC or ascending, starting at the lowest value and going to the highest value. So if you're ordering by a number, the first rows you get back are the lowest values, and the last row you have the highest values. For strings, a is considered the lowest value, so ASC order goes from a to z, which means it is alphabetical.
+
+Since ASC is the default order if one is not specified, you could write the above SQL statement like this:
+
+SELECT * FROM users ORDER BY age ASC;
+Now, imagine that you have the following rows in your database:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Beatrice	Gold	8
+Zachary	Claus	9
+If you use this statement below:
+
+SELECT * FROM users ORDER BY age ASC;
+It gives you these results:
+
+first_name	last_name	age
+Beatrice	Gold	8
+Zachary	Claus	9
+Adam	Smith	10
+Nick	Smith	11
+If you use this one:
+
+SELECT * FROM users ORDER BY age DESC;
+It gives you these results:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Zachary	Claus	9
+Beatrice	Gold	8
+#Alphabetical Sorting
+If you use this statement:
+
+SELECT * FROM users ORDER BY last_name ASC;
+You'll get these results:
+
+first_name	last_name	age
+Zachary	Claus	9
+Beatrice	Gold	8
+Nick	Smith	11
+Adam	Smith	10
+#Why Aren't Nick and Adam Alphabetical?
+You ordered by last_name and now all the rows are sorted alphabetically by the last_name column. But shouldn't Adam be before Nick? Why would the database not sort that as well?
+
+#Adding Two Order Bys
+The answer: because you didn't tell it to. Computers, as you know, only do what you tell them to do. In the SQL statement, you never defined that you cared if the first_name was also sorted or not, so the database left it alone. However, you can fix that by telling the database, "First, sort by last_name, then sort by first_name":
+
+SELECT * FROM users ORDER BY last_name ASC, first_name ASC;
+This statement gives you these results:
+
+first_name	last_name	age
+Zachary	Claus	9
+Beatrice	Gold	8
+Adam	Smith	10
+Nick	Smith	11
+Adding two columns to the ORDER BY clause tells the server that you want it to first sort by the first column and then sort by the second column.
+
+In other word, this clause:
+
+ORDER BY last_name ASC, first_name ASC
+Says to order by the users' last names first and then, if any of the last names are duplicates, order by those users' first names

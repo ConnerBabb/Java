@@ -1,0 +1,124 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-dotnet.html#model-binding
+
+Model binding
+Controllers work with data that comes from HTTP requests. For example, route data may provide a record ID, and posted form fields may provide values for the properties of the model. Writing code to retrieve each of these values and convert them from strings to .NET types would be tedious and error-prone. Model binding automates this process.
+
+The model binding system:
+
+Retrieves data from various sources such as route data, form fields, and query strings.
+Provides the data to controllers in method parameters and public properties.
+Converts string data to .NET types.
+Updates properties of complex types.
+By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
+
+Form fields
+The request body (for controllers that have the [ApiController] attribute.)
+Route data
+Query string parameters
+Uploaded files
+For each target parameter or property, the sources are scanned in the order indicated in this list.
+
+#Request variables
+There are times when you'll want to pass some information along to your API as part of the request. Imagine that you created a method in your Todo API where someone could retrieve all todos based on the completed status. You might use a query parameter named completed with a value of true or false. It would look like this:
+
+# request parameter example
+https://localhost:5001/todos/filter?completed=true
+Suppose you have the following action method:
+
+[HttpGet("filter")]
+public List<Todo> FilterBy(bool completed)
+{
+    List<Todo> matches = new List<Todo>();
+
+    foreach (Todo todo in todos)
+    {
+        if (todo.Completed == completed)
+        {
+            matches.Add(todo);
+        }
+    }
+    return matches;
+}
+Model binding goes though the following steps after the routing system selects the action method:
+
+Finds a parameter of FilterBy(), a boolean named completed.
+Looks through the sources and finds "completed=true" in the query string. Name matching isn't case-sensitive.
+Converts the string "true" into boolean true.
+Of course, you can declare more than one request parameter:
+
+# request parameter example
+https://localhost:8080/todo?filter=completed&limit=10
+[HttpGet("filter")]
+public List<Todo> FilterBy(bool completed, int limit)
+{
+    List<Todo> matches = new List<Todo>();
+
+    foreach (Todo todo in todos)
+    {
+        if (todo.Completed == completed)
+        {
+            matches.Add(todo);
+        }
+        if (limit > 0 && matches.Count == limit)
+        {
+            break;
+        }
+    }
+
+    return matches;
+}
+If you don't pass a limit to the method above, C# assigns it the default int value of 0. If you want a parameter to have a different default value, you can set it in the parameter declaration:
+
+public List<Todo> FilterBy(bool completed, int limit = 10)
+#Path variables
+What about a scenario where you want to find a specific todo by its ID? You could use a query parameter for that—/todos/?id=1—but a popular REST convention is to use the ID as a part of the path.
+
+# request parameter example
+https://localhost:5001/todos/2
+The code below says, "Get the todo where its ID is 2."
+
+[HttpGet("{id}")]
+public Todo GetTodo(int id)
+{
+    foreach (Todo todo in todos)
+    {
+        if (todo.Id == id)
+        {
+            return todo;
+        }
+    }
+    return null;
+}
+Model binding goes though the following steps after the routing system selects the action method:
+
+Finds the first parameter of GetTodo(), an integer named id.
+Looks through the available sources in the HTTP request and finds id = "2" in route data.
+Converts the string "2" into integer 2.
+#Form data
+Earlier, you saw a Todo model that looked like this:
+
+public class Todo
+{
+    public int Id { get; set; }
+    public string Task { get; set; }
+    public DateTime DueDate { get; set; }
+    public bool Completed { get; set; }
+
+    public Todo(int id, string todo)
+    {
+        Id = id;
+        Task = todo;
+    }
+}
+You also know that model binding gets data from form fields and the request body, among other things. You could send a POST request with the request body containing the data needed to create a new Todo.
+
+
+Image - New Todo Request Body
+With a Todo argument in your created method, .NET looks at model bindings to see if it can convert any form fields to a Todo object:
+
+[HttpPost]
+public void Create(Todo todo)
+{
+    todos.Add(todo);
+}

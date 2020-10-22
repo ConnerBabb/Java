@@ -1,0 +1,1522 @@
+Zoom
+https://techelevator.zoom.us/rec/share/wuckKazBp3lLcK_M0V7QXq4AHbrgT6a80yQa8_cKyU0xr4mnGE2mHmtHz7t3ytp3?startTime=1592314462000
+https://drive.google.com/file/d/1jmMyu4nsoht28mkrITErTRMo4o2wLtH8/view?usp=sharing
+https://docs.google.com/presentation/d/1WDFH9DIHzAHe6gQi80oPRoRhMZddxLj-THiJ-Bn62MA/edit?usp=sharing
+
+Okay, so today we're going to kind of continue with what we looked at yesterday, we looked at with the DA, yo, but we're going to bring it together with testing. So we're specifically going to talk about integration testing, or more specifically about do integration testing is what we're going to spend most of our time on. So this is gonna look a lot like the unit testing, we looked at last module. Only now with unit testing, we talked about there was this separation or that we sorry, we couldn't test anything it had outside dependencies. So we got to the file. We said we couldn't test it. We got to the menu. We said we couldn't test it. Because unit tests need to be completed in isolation. And they need to be nothing outside of that method being invoked. So
+
+Now we have a database involved.
+
+That's a problem. Now we have multiple parts someone with rebuilt and some of which we didn't. So integration testing is going to be taking and testing those, those connections.
+
+So what we're going to look at today,
+
+we're going to start by just doing a quick review of integration testing. And, and then we're going to take a look at some of the common ways of testing, come up with testing a database or setting up a database for testing and kind of a workplace environment. Some ways, there's three major, major ways of doing it. So we'll talk about each and kind of their pros and cons. Briefly, and then we're gonna look at testing deals, that's where we're going to focus most of today on. So we're going to look at first workflow testing deals, we have really four DML has really four statements, select insert, delete updates, we're looking at workflow for each one of those statements. We're looking at what we need to do for handling test data. We're gonna look at this thing called transaction scope and a data source. The handle work with that. We're going to have to look at we talked about with unit testing, there's a life cycle, the unit testing, integration testing, where to expand that life cycle a little bit. So we're going to talk about that. And then we're going to talk about verifying results. And then just this idea of truncating data. And then we're going to apply this to our address book that we wrote yesterday. Or we were sorry, the details for yesterday. So integration testing, let's talk about what it is before we get too far. So integration testing is a really broad category testing. It's actually about validating. If two units of work if of code or another decode in another dependency, like the database or network, can they work together? So it's testing the connection. And integration testing is not just here in in programming. So lots of manufacturing have integration testing for instance, if you think about a pen so you have a pen and when it's manufactured the cap and the cylinder of the pen, the main body of it and the internal parts are all manufactured separately. Alright, their design together to fit together but they're designed and manufactured separately. Maybe not even in the same facility. So they're designed to particular specifications, they're designed to you know, have a certain size to, to be exact to you know, how much around this is compared to this the cap. integration testing is the first time these pieces their prototypes are brought together and Put together, the test is not to the cylinder or not to the cap. But did it fit together? Did it do what it's supposed to? That's integration testing. So right now we have a database, and we have our code.
+
+And we're not going to test the database.
+
+We're not necessarily going to be testing all of our code, we should have tested all that we can with unit testing already, that we can't talk all with unit testing. So integration testing is going to be is our code working with the database correctly? Well, all of our deals, that's all they do, right? The deals we wrote yesterday, all they do is work with the database. They don't do anything else. They don't have logic in them. They don't you know, they're not trying to solve how many monkeys or smiling or problems like that. They are just trying to write the sequel. Send the sequel, forget the parameters back and turn it back into something Java To learn integration test is going to be validating that that code that we wrote that does all that stuff around the database is specific to working with the database works. So it's like a unit test, it's going to, we're going to find it's very similar to unit testing. But now we're going to expand it. With this, now that we have this database involved, that's going to bring up some kind of special problems for us. But what we're testing is the connection, not the network connection. But the code connection. We have code on one side, that's doing something. In our case, right now it's just being represented by a demo class that can print out the results. Then we have a database on the other side, both of those should already be fully tested. And then we have this piece in the middle. That is the connection between them, and that's the DA O's. And that's what integration testing is going to be about. It doesn't have to be for a database, it can be for no file for a file reader. integration testing would be used for that.
+
+So
+
+we're going to use the same tools as unit testing, we're going to, so we're going to use j unit just the same. But we're gonna have some different roles, it's usually going to be slower than unit testing. When I say slower, I'm not talking about minutes, I mean, it's still usually going to be sub second. But with unit testing, we talked about that it needed to be in milliseconds and need to be sub second. With unit testing, if it takes a little longer, we'll be okay with that. They're going to be a little they're going to be more complex to write and debug, there's a lot more to what we have to write with unit tests. And we're going to allow you to have outside resources so we're going to break kind of this idea of just Testing the unit of code and realize we have to do things for the data source database. So that's what integrate that's kind of a high level. But integration testing is in what how we're going to use it. So when we're in a working environment, the main reason we're going to you would end up the integration testing is either with a network, like we'll look at next module, or a database, and what we're testing with the database in a team environment, but it's not just you and your computer working, kind of in isolation. There's a problem of this database. How do we test with it? How do we have one available for development that we can also use for testing that we make sure works, and there's three models. So let's talk about those because they have kinds of pros and cons to each one. There's three approaches that is commonly taken for database testing. The first one is a shared database. And that's we have one database Everyone connects to it everyone shares. So it's remote, you know, it's cross the network someplace. The pros of this is it's really easy for the developer to set up because the DBAs handle it just like they do the route regular database. So there's also one set up for all developers, I can say, Okay, here's, here's the documentation, here's the connection, you don't have to change much. In fact, often, the individual developers don't have to change anything. It's just built into the project to be able to test to this test database. The same way we built it to be able to test to the production, the one that clients use, it can look like just like, both in software and hardware, if the company chooses, it could look exactly like the one that the clients are using. One of the challenges we'll find for databases that often will be test with and what our cost our clients end up using in production are not the same. And there's lots of reasons that happens. costing huge one, big one, but also just Having somebody available to maintain it is another one. So and then this can be managed by the database administrator. So it takes the developers don't need to do extra things about the database, they can just know how to develop for it. The cons is that it's really unreliable in what's called brittle, the data breaks easily. It's reliable, and you can always connect to it. But it's unreliable as in what state is going to be when you get there. Because everyone's sharing it, everyone's testing with it. So they're breaking things. So it doesn't provide any isolation, meaning that it's shared. And that also creates this temptation of having to rely on existing data, which can change, one of the things we'll talk about is we shouldn't be using the data in the database to test it. But when you're using a shared database, it becomes really easy to do that. In fact, it's really tempting to because it's right there, and it's probably being maintained by somebody who's not as good developer he's making it look like the real a real database, or the real production database. So
+
+in this case, it has some great pros of being very production like an easy to use, but cons and the data often loses integrity quite quickly. Though I, most places I've worked actually use this model. And I would say that we spent more time almost more time test, trying to fix the database and get its data back to a good state, and having meetings about what we need to do to fix things, and talking about how we should stop breaking things and how we just stopped doing that. And then everybody ignoring it and having to repeat, then we probably did actually writing tests. So it was it was a great experience. It was easy, but it was really frustrating. However, I worked in one other environment where it was smaller and we had a shared database and we actually did a pretty good job of only, always using transactions and rolling things back. So it didn't get too bad. It was a little better experience. So this is a really common model. And that's the pros and cons of it. The second one is what we're doing a local database, that means having a database on the developers computer. So that's exactly what we have here. Everyone has a copy of Postgres on their computer, when you work with it, you're working with your own database. So the pros is you can have production like software. So you can have the same database that is being used, you know, on for the customer. It's really reliable because it's up to you. It's isolated, it's on your computer. But now the developer has to understand something about how to manage database. So it requires some skill, some DBA knowledge and database administration knowledge by the developers or they have to bother the database administrators a lot more for their individual computers and There's a problem that we're using Postgres. And that works great. But if you're using a database like Oracle, which is really popular in a lot of large companies use it. But having Oracle on everybody's computer is really expensive.
+
+So
+
+that having the full database installed locally can be prohibitive, both from cost. And also, you have to have a little beefier computer than you do if you don't do this. So the hardware course is not going to be like production, so it's getting a little farther away from that. And the data, getting production like data can be really difficult finding someone who can tell you what the data actually looks like. So you can make your data look like that can be challenging. And it can be inconsistent. So I can have a database set up one way and there was changes and I forgot to apply them. So I'm writing my code against this database that's a week out of date. Or that's slightly different than the person on the team beside me and the team. Remember beside me who's working on the same project so that it can become inconsistent. So another approach that's commonly taken both with pros and cons.
+
+The third
+
+is what's called an a bet that you might run into is called an embedded database. an embedded database is not doesn't mean we don't use Postgres. We don't use Oracle, even though that's what we use for our customer. It betta database is a piece of software. So it's a Java application. There's a few of them out there, like h2o. One, I won't go through the list of them, but there's a few of them out there that we can add to our project. And there is a library that we can tell it to run and it mimics a database for us. We put information we want in a file, and it reads that file and just we tell the select statement it you know, return data for us that we told it to return, we do an insert it acts like it inserted. So this is very reliable because it's Part of our project, it's consistent across all computers, we can have it in the project. So as we make changes, we can push it to someplace like Bitbucket and all the developers can share it. It's really lightweight, we don't have to have a database installed or extra, any extra licenses or any other problems that that brings up. And it has the best support for what's called continuous integration. Continuous Integration means when you get into a working environment, and you have these unit tests and integration tests, and you push to get they're going to run the bill, they're going to actually try to build the project and they're gonna run your tests automatically. So in continuous integration, you second you push, it spawns all the tests, it runs all the tests, and then it actually builds a copy of the application to be used to make sure everything's working. So this supports that really well. The other ones can be made to work with it, but this is a completely isolated in application. So it supports it. Its cons are now the the software nor the hardware look anything like what's in production site, even a database you're testing with. So that means that you're more likely to run into, hey, this works great in two weeks connected to the database, and now it doesn't work, it's great. It also means we can't use proprietary features of the database. So we already
+
+we've ran into
+
+we haven't ran into many of these except for sequences. Because Postgres doesn't have a lot and Postgres tries to be very strict to the anti standard, only deviating from it when anti says you have to do like with borjan, where it says you have to do this in some manner. But they do this like Oracle or Microsoft SQL Server, they have these huge extensions to the SQL language that are really useful. A lot of them do a lot of Really nice things that you probably if you paid to use those databases on your system, you want those extra features. And you can't use them with us, it limits it. And then, so you have two sub data in the files that can be tedious to set that up. So your data becomes tend to be less and less like, what you actually are going to see where your clients are going to see. So it's three separate approaches, all pros and cons, you can run into all three of them. I know I've ran into all three and I've actually in the same company, I've run all three on the same team. So you can, you will encounter them, but these are the three methods used for testing a database, we're going to be using this metal one, the local database. Alright. So before it was kind of a crash course in integration testing what it is and da O's in database testing, because what I want to really want to get To is testing our code. But before we do that, are there any questions so far?
+
+So, do testing.
+
+So we're going to want to start by walking through a workflow for workflows for each of the four types of SQL statement we can have, so each of the four CRUD operations, and there's actually a link to it here. The one we're going to look at in these slides is in a PDF cheat sheet in the cheat sheets folder, and it's linked from here. But these deal integration testings tests are going to look a lot like unit test fact they're gonna look almost exactly like them. They're gonna have the same roles. Remember unit has had four roles that it'd be repeatable, independent, obvious and isolated. Or sorry, fast We dropped the fast, because if it takes us, we hope they run sub second. But if it takes a few seconds for it to run, we have this thing outside of our control now the database, or a network or some something else, outside of our control or maybe a few things. So we might have to wait on those. So we're not going to have any requirement of speed now. But they still need to be repeatable. Which means if the test passes and fails in its first execution, it should pass and fail on the second longest, no codes changed. Which means that we should always get the same results just like we did for unit testing. They should be independent, that we're going to have a caveat now. So a test should always run its own. It should be independent of other tests. However, with integration testing, we're going to allow slight group small groupings of tests. So we'll allow to, we're going to allow to do things like use the Select method to verify and insert work in a day. So in unit testing that would be complete, that would break the rules of unit testing, but integration testing, we're going to allow that. So we're gonna allow a little more variance and what it means to be independent, but it's still gonna have to be independent to the do. And they still need to be obvious when the test fails, it needs to be obvious why it failed. So either tests that are very, very isolated and targeted or good messages from our asserts. So one of the things we're going to run into probably the hardest part about integration testing is this next statement, integration testing should never use existing data. And we're gonna have to look at what that means. That means that we have a database that has all this data in it. We shouldn't be using it the integration test because we're not testing the data. And we can't trust the data that can change. So that means that they're not repeatable anymore. If we can't trust it, so That's what it's going to mean to be a do integration test. And we have these four statements, select, no insert, update, and delete each of them have a particular workflow. So for selects, we're going to follow this workflow, we're going to have an again, unit test, we're going to have the arrange act and assert, or the setup test and verify however you'd like to think of them. So we're going to follow the same idea we're gonna have an arrangement, but in our for our select our range is going to be we're going to insert dummy data into the database. And we're going to do this either using methods in the same row. Only the same view, if not from any others. And if we don't have a method to do it, we're going to use the JDBC template to write an insert statement, manually inserted like we would dbvisualizer. So we're going to insert the data into the database and we're going to store a copy of it. So we're just kind of an object. So this is what we inserted. And then we're going to use the DA o to select from the database, that dummy data. So when we start it, we're going to keep track of what his ID was. And whatever we need to select selected, whether ID or Name field or whatever that is. And then we're going to call it a method that slex it, that's going to be our test. And then our assert is we're going to take the data that was returned from the database.
+
+During this step, we're going to take the data that was returned here, and we're going to compare it against the data that we stored and created up here. We're going to basically say to the data we got back from the database didn't match what we put in the database. And if it does, we passed and if not, it failed. So sucks, pretty straightforward. We're going to put data in, we're going to select it out using our method, the one we're testing and then we're just going to Make sure you're matched. So before we move on to the other, since it's the first one, what questions do you have?
+
+Okay.
+
+All right. So let's look at insert.
+
+So insert is going to work kind of similar. In our range we're going to create, we're going to create data, we're going to create dummy data. And we're going to store it, we're basically going to keep track of what we created. For our test, we're going to take that data that we created in the arranger, we're going to insert it, we're going to call our da method to insert it into the database. And then for our assert, we're going to get we're going to select that information back out of the database. And we're going to do that again in either two ways either if I do that we're testing has a method to select the data in a way we need can use it. If it doesn't, then we'll write a select. And we'll use JDBC template to select the data. And then once we have it selected, we're going to compare it against the data. We originally started with the dummy data that we inserted, and make sure that what we got back out of the database is what we inserted.
+
+That's how we'll test insert.
+
+So, questions or before we
+
+so for update, sorry, yeah, yeah. Is there
+
+like a specific? Do you have to do this in order? Then? Like, do you have to test select first and then test insert? Since you're using select potentially?
+
+No. Okay, so it doesn't matter.
+
+Yeah, we still wanted to be isolated. We're gonna allow the use of other methods, the methods and the do. We kind of get a free kind of test out of them. But if it fails, it means we have, we might have to look at it and say, Did our method, our select method? Is it actually working? Or is it the problem? But we're not going to worry about order. They didn't each one needs to run still in isolation.
+
+And he can't use. Like, you can't be like, Oh, you know, our select word here with this insert tests as well. Yeah, there's like do separate tests. You do?
+
+Yes. Okay. The so the Select test, and this this, there's a test this test the Select, that verifies but is needs to the test for the insert is going to use a select but it may not verify everything about the Select, all it cares about is to get back the data for the insert. So
+
+we're, we're using it at a convenience.
+
+We could so that's we could do it manually with JDBC template like we'll have to sometimes, but if it's there, if the In the same data, we don't have to extend to another do because that's something we should not do. But if it's already there, it's kind of idea, why not use it. Take advantage of the fact that it's there. But we're going to assume it's working, which is an invalid assumption. It's a dangerous assumption, but it's what we're the way we're going to treat it.
+
+Do we have to have multiple tests for each thing? Or like is our if you're getting all the data back? Like, do you assume that like, your answer just works. So you don't have to test it multiple ways?
+
+So if,
+
+if you only have one, it's gonna depend on your code, because one of the things that we have to be very careful of with testing database is that we're not testing the data. We're not testing the database we, we know that seek we know Postgres can do an insert. So if we only have one insert statement, we only wrote it one way in our code. Then testing it multiple ways doesn't like do anything with our code. If we have something like where we have a few different if conditions that does in certain different ways depending on then we would have to test for each of those if you know each of those conditions. But so, so often we will only have one test. Alright, cool for insert for. Now, one thing we might want to test is where we end up with multiple. So not I said that is that we have, you know, input data coming in. So we may need to test to make sure that, you know, if we're doing something with a date that no date in our object doesn't break it that type of thing. The same stuff we'd have to test for unit testing still applies. But the insert itself there's probably only going to be one does that.
+
+Perfect thanks.
+
+So others before we move on, okay?
+
+So for update, it's going to be similar to the So probably the most complicated of them. So for update, what we're going to do is we're going to start like we did for select, we're going to create some data, we're going to insert that data using either the data or the JDBC template. If the data doesn't have an insert method, then our test is going to be we're going to change the original data and call the update method to do to update the database. And then, in our cert, we're going to select that data from the database using either the data or the JDBC template. And we're going to compare it against the change that we made. So we're going to make sure that the net the change the update made is what we got back from the database.
+
+And if it does, then it passes it if it doesn't match it fails.
+
+And then the final workflow delete.
+
+We're going to insert dummy data into the database. So we're going to insert a new Record, then we're going to call the method to delete it. And then we're going to select that data, again using either do method or JDBC template from the database. And we're just going to see if data got returned. If data gets returned, then it tests test fail, I didn't delete, right? If no data is returned, we know it's it's passed, we're going to make sure that when we call, we get a record back and we call the next on the sequel rossette that it returns false on the first call. So those are the four workflows. So every unit integration test we write is pretty much the following one of those four workflows around data. So
+
+let's
+
+look at a couple more things. And then we're going to jump in and start writing one and then we'll look at the rest of things as we write Test.
+
+And that's that integration testing data.
+
+So this data, we're inserting
+
+what it what is it actually doing? So integration, so we don't want to ever use existing data. We can't trust that there's five rows in a table. We can't trust that value exist. If we're testing the world database, we can't trust that a particular country could exist. Because just because it exists now, doesn't mean it's going to exist, you know, tomorrow, or 10 minutes from now. Other things are changing data all the time. So we can't rely on it. Even if we think you know what, this is a table of fifths, the state codes, the state codes aren't going to change. No one's going to change this table. We should not be relying on that for testing. Because someone could change the table. It's just data sending out in a database a simple you know, delete statement. Select date but or mistake by somebody and the data is changed. Now our tests are failing, their test should be working in isolation, or they decide to change something about the what states they're going to support or something like that. So we can't trust data. Anyway, which means that we're always going to be using dummy data. And we're going to do this.
+
+We're going to range the test.
+
+using either the do so we're going to be allowed to use any methods in our dia we're testing so for testing do that works with the city table. We can test any method you can use any method in the city do. But if we have the method as we need in a country do for the country table, we can't use it, not from the city tests for those and for things that don't exist, we're not going to write extra things that are deos for testing. So if we didn't already exist, then We're going to just write, SELECT statements and run them with JDBC template, just like we do in RDS already. So we have full access to the database for integration test, because we'll have a copy of JDBC template connected to the database. And this is actually the hardest part of integration testing is this data. So if our test needs 10 items to be in the database, then we will insert 10 items in the database. We won't if we say well, there's already 10 there, let's use those one circle we need if, and this is the more challenging one. If our dummy data has a foreign key relationship with something else, then we're gonna have to insert dummy data on that something else. So if we go to insert a city to test that has a foreign key relationship, the country and this in the world database. We're going to have to create a country dummy country to put in to test with our dummy city. And if that dummy, if we take it farther, it's not in the database. But if we can imagine that maybe there's a foreign key relationship onto something like region from the country table. If that existed, then to insert our dummy country, we'd have to insert a dummy region for our dummy country to insert our dummy test city, so we can test. So we're going to insert with the full chain of data we need, which is going to be more time consuming than the test themselves. So most of the time, we're going to spend most of our time in integration, testing, arranging, setting up the data. It's not about testing the data. It's just about getting it in the place that we know it's going to work in isolation and be reliable. It's going to be repeatable. And if somebody changes the database, then it won't matter. So if everybody actually followed integration testing like this in the working environment, there's problems I said, At the beginning where you had a shared environment, we spent all our time trying to figure out the data that goes away. Because now nobody's interfering with each other. And that's the way it's supposed to work. So that's what we're gonna do it.
+
+And you roll back every time. So you can re insert that data every time. Right, exactly.
+
+Well, that's perfect, because that goes into the next thing, we're going to build this thing called transaction scope.
+
+So we're going to,
+
+after every test on the database, we need the database to be back in the same state. So that means that we're going to start to everything we do in a transaction, everything. So we're going to set up a connection so that everything when it starts every test, it starts a transaction. And then we're going to use the lifecycle the after hook that we didn't we talked about during integration or unit testing, but didn't use and we're going to use it to rollback every transaction after every test. So, we're going to repeat this, often, this insert of multiple data rows. Sometimes for every if there's 20 tests in a file, we might repeat it 20 times just like we instantiate the object 20 times, and we're going to roll it back every time. That way, they're isolated and repeatable. So, since we're going to be in this transaction scope, it means we're going to be making no actual changes to the database, our database should end in the same state again. And again, if everyone follows that, then having a shared database actually is the easiest method of those ones we talked about. But the problem is that that also gives you the temptation not to follow all this. So we're going to create transaction scope and what we're going to do with that, and part of what we're going to do with this is we have to change our data source. So yesterday we looked at using the basic data source, which came from Apaches cpcp, to database connection pool to library. We talked about what a connection pool was. So So We need this transaction scope if we have a connection pool, and we're going to have JDBC template, we're running, selects and inserts and doing things to set up our data. And then we're going to recalling our do. So it's doing things with our data. And then we're going to calling more selects to validate our data. We need the transaction to be across all those uses. If we have a connection pool, they're each going to be getting a different connection. Some of them may be getting the same connection, but they're still going to be checking out these connections. Which means that we can't reliably see changes made by our setup, when we actually go to do our test because they're in a different connection because of the connection pool. So we're going to get rid of the connection pool. We're going to go use this other data source called single connection data source, which does exactly what it sounds like. It makes a single connection to the database. It just holds it so exactly where that connection pulls trying to get around. This idea of an application holding a connection to the database permanently. That's what we're going to use, but it's going to hold it just for the duration of one test. Because now that we have this, actually, sorry, not one test, we're going to hold the connection for the duration of one test file. So if there's 20 tests in the file, we're going to make a connection holder open for all 20 tests to run. And then after it's run, we're going to close them. So now we're using this and we don't have a connection pool, we have to manually close our connection. And we're gonna look at how to do that. So So yes, we're gonna have to deal with transactions to make this work, but fortunately, we're going to make it automated, we're going to make it so we're going to set it up so it just happens for us.
+
+So I'm going to go out to look at what we have in
+
+the code today. So
+
+in today's extra code.
+
+If you look here
+
+last night I went through, and we started this in class yesterday, we got to I think one and a half of them done right, we created the person. And we started creating the address we created do is for them. So I went through and finish them last night I created. So now we have a do for address, email, person and phone. So all four tables that we created on Friday, we have full details and the full pattern. I don't know if they'll work because I haven't tested them yet. I wrote them and just hoped for the best. I tested phone and address through kind of through this demo class, which we also were in pretty much in class yesterday. And so I bought to fight it a little bit to test but I didn't go farther than that, because that's what we're going to do today we're going to test these pieces or far as we can, we're probably not gonna get through all of them. But that's what we're gonna start with. And we're gonna write integration tests. We'll start with person. And then we'll do address because it's probably the second most complicated. And then if we have time, we'll do email or phone. I don't know if I'll have time to do all the tests for that. But I want to do at least one of each of the CRUD operations for each. So we probably won't forget to fully Test, test all of them, but we'll get at least you know, insert, select, update and delete. So that's what we're going to do. And as we work, we're going to run into some questions and some problems we're gonna have to deal with. And we'll talk to those that but before we start that since it's been about an hour, why don't we go and take a break, and we'll come back at 1023 and to do that
+
+so what questions came up for you during the break.
+
+So for from lighting, slide 12 when you came in they do being tested can be used. So you're saying like, if insert doesn't exist, I mean, do you can still test an insert using the JDBC. Is that right?
+
+Yeah, you can still use it do an insert during our test using JDBC template. So that's when we'll set that up for in our test files, our integration test files, we can use it as needed.
+
+Cool, I just want to make sure I was following
+
+some other questions.
+
+All right. So
+
+let's
+
+write a test.
+
+So we're going to start with a person
+
+to kind of refresh with What that is, that's the one we wrote yesterday.
+
+The JDBC person do.
+
+And we started yesterday, I should say, it has the person the list get by ID save, update and delete methods in it. So it has all those for the person table and reminder of the person table.
+
+If we select
+
+star from person, maybe
+
+it's just these four columns. So we testing to do the first year with that. So we're going to write our tests or integration tests.
+
+The same way we write unit tests.
+
+So, we're coming down to the source test Java,
+
+we're going to put them in the same package. So I'm going to create a new package in here comes up tech elevator, Sydney. I'm just going to create a package. We could do this with the client creating the class as well and change city to
+
+address book.
+
+So and then we'll create a
+
+test class.
+
+And we're testing JDBC. person do
+
+and we'll call it integration test.
+
+And then be fair. That's the time Have the official standardized name. Most places I've worked, leave out the word integration and just call it test. But
+
+for today, we'll write it out with the full name.
+
+So we're going to start setting it up the same way. And the first thing I'm going to do is I'm going to import org dot j unit. I'm just going to do a star import. Again, something I only do I only use star for imports in testing, not in the actual application code. But that way, we don't have to worry about the asserts and other things when we get to them. So we need to instantiate we're gonna have to instantiate in our before the same way we've done previously, or do so we'll start by making a private variable for it. And it's going to be our person do
+
+and I'm just going to call it do
+
+make it easier to work with our tests, but we're gonna have one, we only have one da or Stan shading per test. So even though we have one for address, book, phone and email, we need those features will mimic them from the template not use them directly. And we're also going to create a private variable for JDBC template
+
+and import it
+
+and now
+
+we're going to create our before
+
+public void setup test.
+
+And I want to create
+
+my do new jd 92 data source. I'm kind of stuck So we're stuck in the first place. Not really, we're stuck in that first part of integration testing. So we need a data source now.
+
+So let's talk about where, how we're gonna use a data source. So what I want to happen
+
+is
+
+I want it so I start testing and see if I have a database over here. And my tests are here and I have 1234, say five tests. I want to create a connection here.
+
+I want to run all these tests.
+
+And then I want to disconnect here
+
+because I don't want to create a connection for each test that would be a waste.
+
+So what we have right now with before and after, if you remember before and afters going to run before Then after then before, then after the before and after. So if I put a here in this before, it's going to happen before each test, and I wanted here, I want it before all tests. So I need something more, we need to re examine the lifecycle.
+
+So
+
+the inner the integration test lifecycle, we're actually it's the same as unit testing lifecycle. Now we're just gonna look at two new pieces. These exist in unit testing as well, we just didn't need them. So we saw before, in testing after and those are going to work exactly the same as we did for unit testing. They're going to repeat before test after before test after for every test. That should be test two, that's a typo but but let's look at two more invitations. One is before class. So before classes going to run before
+
+the whole class runs.
+
+So before all the tests, it's actually going to run before the classes instantiated. And then there's after class, after class is going to run as the classes being destroyed. So as the objects being destroyed
+
+so we're going to end up with
+
+before class runs. Then before test after before, test after before test after repeating for each test, and then after class at the end. So where we're going to do with these steps now that we have two new steps is in before class. We're going to create a data source and we're going to able transaction scope.
+
+So we're going to set up our data source here.
+
+And then it before we're going to run, we're going to do what we've we've been doing So we're going to create this connection. And we're going to do since it's going to be a single data, single connection for our new data source, it's going to establish a connection to the database. And as we pass it through these other pieces, it's always going to be the same connection. And our before, we're going to set up any data we need for, it's going to actually be very similar to the before we're used to. Not really, not really nothing's changed there are tests will be to, it'll be our test. Then after, we're going to call rollback on our transactions. So we're going to, so our transactions are going to be starting automatically, there's going to be a transaction that starts here.
+
+So we'll start a
+
+transaction
+
+and then here, there's going to be a rollback
+
+and then here, it's going to start
+
+In here to rollback.
+
+And that's going to repeat for each test too. So we're going to use after annotation, the one we looked at the unit testing, but didn't really have a use for to do a rollback. And then we said we had to clean up. So we're going to create our connection here. Here, we're going to connect. And here, we're going to do the disconnect.
+
+And we're going to do that by
+
+destroying the data source, which will cause the disconnect. So we're going to connect here, clean up the connection here. Start a transaction here, and roll it back here, and then that will repeat.
+
+So that's how we're going to use the life cycle.
+
+So we need
+
+before class after an after class. And before. So, I'm going to leave before as it is for right now. Unless right before class. So before class, it's going to have to be, if it's going to run before the classes of stand shaded. What does that say it has to be.
+
+constructor.
+
+Well, that's that's a good good guess that that he's
+
+riding while the class is being saturated. But what keyword allows for code to be created so it's not owned by the object for by the class.
+
+Static,
+
+yes, so it's gonna have to be static, because it's going to actually be called before the object stanchion. Before we do anything with this object before, it's going to create a connection. So we're gonna create public static. And we're going to create, void. And we'll say something like, we can call it, whatever we want was called setup data source.
+
+And now we have to set up our data source.
+
+So
+
+we're going to end up using this data source, several places.
+
+So I'm going to go up here and actually put private
+
+data source
+
+data source.
+
+And that's my variables. I'm going to hold on to
+
+import that from SQL.
+
+Now I have those mines from the data store, right? So I know that from my data source I want to create a new single connection data source.
+
+And actually,
+
+I want this to be sorry, single connection
+
+data source. Otherwise, the same thing ran into yesterday where data source interface doesn't have the set URL on it.
+
+So let me import that.
+
+And I can't set it because it's not static. I can't set a non static variable that logs the object in a static method. So I'm going to
+
+change it to
+
+static and I'm actually going to move it up here. Like my static stuff on top. And I misspelled it here. So so now we need to configure the data source. So There's there's four lines, or three lines, we have to type, I'm going to actually come over here. And there's another example class that if you're interested, there's another test class for city.
+
+integration tests, I'm just gonna go steal its
+
+code. So I'd have to type that out in it because I'm sure I'll make a typo in that. And then here
+
+where it says world
+
+were to change this to address book, because that's our database, but the rest of it was the same as working with a local database. And then I got one, too many. So we're going to create the single connection data source
+
+and create a single
+
+connection, data source
+
+and then we're going to Turn it's transactions on off. So that sounds counterintuitive. But the way the single connection data source works and actually our connection pool to is that it starts a transaction between before every statement, rerun every query run. And then at the end, if no exception is thrown, it commits the transaction. So we're actually going to do is turn its commit off, we're going to say we want to handle the commit. So that's called auto committing. So we're going to disable, turn, auto commit off, so we can rollback transactions. So in our data source, set, auto commit, and we're going to set it to false. So now we have to choose whether to commit or rollback each transaction.
+
+So now
+
+let's build our after class, the order we put these in these methods and doesn't matter. Just like any other method, they're going to be called Remember, the annotations, tell the framework to call this before the class runs to call this after the class was called before each test. So the order they are in this file doesn't matter. So I'm going to put these two together. So use the after class annotation. And an after class, what we need to do is destroy this data source because this is making the connection to the so we're making a connection to the database here. And we want to get rid of it after the classes run. So public, it also has to be static, because after class is going to be happening as the classes being destroyed, which means that the objects being destroyed, which means it has to be able to be called in the class itself. So it also has to be static.
+
+So void, and we'll just call it like destroy data source.
+
+And on our data source variable, there's a method we just call destroy. That's it. That's all we have to do. We have to do that manually. That's normally done for us by the connection pool. But since we don't have a connection pool, we have to do it destroy will close everything up and clean up. We could, there's other methods that close the connection, but destroyable clean up everything.
+
+So now
+
+so after all tests are run,
+
+clean up the data source
+
+and connection to database.
+
+So we have our before down here, and we're used to writing that but then other new one is after
+
+after me.
+
+I knew we looked at it With we looked at unit testing, but it's didn't use it.
+
+So we'll put public void, and let's call it rollback,
+
+rollback transaction.
+
+And on here, what we're going to do
+
+is on the data source,
+
+let's call get connection.
+
+And what that's going to do is give us access to the actual connection itself that it has. And then
+
+we're going to call rollback.
+
+And that we look at it can throw an exception, one test code right now. So I'm going to do with this exception is instead of I could add a try catch when it's kind of throws, it fails, I want to go back to the J unit runner and fail the test.
+
+So here We're going to
+
+rollback the transaction after each test completes.
+
+So now, we're before and this is what we're used to doing. So the thing we want to do here before is I'm going to create these two items. So I'm gonna create the template, creating the templates actually optional. There may be cases where you don't actually need it. But I find you almost always do. So I'm going to create it and we are going to for this one, definitely.
+
+So
+
+here, we're going to set up the do. It's going to be equal new JDBC.
+
+person.
+
+Da do so we're going to actually use the JDBC class and we have to pass Hit the data source.
+
+And now we're going to set up the template JDBC template equals new JDBC template. And we pass it the data source. So this data source contains the same connection, which means the do and the JDBC have this one single connection they're sharing. So when we do things on one, they're going to see it and see each other's transaction, because they're all part of the same connection. So we'll create do and JDBC template using the same connection. So they share the transactions. So there's only things we could do here. We don't need to do anything else here. But we may need to, we may want to set up data. So for that, I want to I do want to look quickly at this other integration test file to show what I mean because I'm not sure We need to do this today with our what we're doing. So this is for the city table, right? So this is, if you this is all here it's commented It tests for the city do for the city table in the world database. But the only thing I want to point out into it is that
+
+in there before
+
+they do insert a country
+
+with a
+
+they have a test country country code that they store up here at class level, then they insert a country. And what they've done is they've just taken the data off the very first row the database to this copy the first line and then just made the one parameter country codes they insert the same country that already exists because they know that data is good. data, and they just change the country code XYZ using the JDBC template, and they do that in there before, so a new country gets inserted each time. And then if it's needed down here, when you do something like
+
+return cities by
+
+sea
+
+should be an insert down here.
+
+Maybe not. Here, there's an uncertain here.
+
+So as they are, they're calling things like there's one saving the city. They use that test country code to create the cities on the table. So that's part of what we talked about staging the data. And want to do that when we get to address we have to do that with person. But I wanted to point that out. They're used to that. So let's go back to our code, and now we're ready to test. So this person part right here. These three methods are boilerplate, except for changing the address book, and maybe the connection string. You can pretty much cut and paste these between every integration test, or you could put them in an abstract class or something and extended if you want it, which actually will show you how to do when you get to the capstone. Then a couple days, but now we're at parts that we're sure I'd be familiar with. And give a question.
+
+Yeah, I'm sorry.
+
+So why wouldn't we do star transaction in the before?
+
+Cuz you kind of lost me there like, so we do the roll back in the app there. But
+
+I'm sorry. So in spring because the way spring JDBC works, so spring It handles transactions for us. And what it does is every time we call something on the JDBC template, which is remember what our date deals are using, it starts a transaction. And normally what happens is it starts a transaction. So it starts the transaction here. And it goes along. And if everything's fine, it commits automatically. It's called an auto commit. And if it goes along, though, and there's an exception, so exception, then it rolls back. And it does this for us automatically. So what we're replacing is not the start up here because that's always going to happen. We're not changing that. What we're doing is saying, down here on this autocommit or autoware rollback or exception, turn that off. So by turning that off, that's what we're turning off. So every time we use JDBC template, it's going to start a transaction.
+
+And every time
+
+and then it's going to roll back an exception or commit when we're done. But what we're doing is we're saying turn your auto commit off. So what's going to happen is, it's going to start the transaction. The first time we use JDBC template in our test. And then if we have multiple uses, it's going to build that stock that up on the transaction because auto commits off. So this commit here never happens. And then when we're ready, we're going to manually
+
+we're going to do a manual rollback.
+
+So the start
+
+Waste continues. That's part of Jade spring JDBC we're changing the end. Does that make sense?
+
+Yeah, I think
+
+so other questions before we
+
+start writing her
+
+test. Okay.
+
+So now let's write a test. We have everything set up. So we just need to decide what we want to test somebody to take. I personally do, and I'm going to set it over here.
+
+Actually wanted about the other side, but I came up with that. That's the worst.
+
+And try to get this we can see better. We don't need to see all of this just List of the methods for testing.
+
+Alright, so that's what we're going to test or do.
+
+So let's just start down through them. So, actually, maybe not, let's start with get by ID, it's probably the easiest one to test.
+
+So let's start with that. So we'll create a test
+
+in our public void, and something like get get person by person ID. So we're going to have a few steps here. We're gonna have a range. We're gonna have our Act, the test, and we're going to have our cert
+
+verify.
+
+range is our setup.
+
+So in our setup, what we're going to do
+
+So if we're going to get called get person by person ID, we have to have a person in the database. So we're going to create a person,
+
+create a person,
+
+insert it into the database,
+
+then we're going to select
+
+the person by the ID.
+
+And then we're going to verify,
+
+verify it's the same data.
+
+So that's what we're going to do. That's our steps.
+
+So if we're going to create a person, we need to create
+
+a new person object to put in the database. Because that's we have a saved methods we can use, we can take advantage of the Save method, and I haven't tested it so we can hope it works. I think it will.
+
+So let's create a person we're going to create a person object
+
+This new person.
+
+And let's take a look at that object.
+
+And I'll put it over here so we can see it temporarily.
+
+So we need, we don't need a person ID. So we need person dot set, first name. And this is going to exist just for a very short time period. So we can do put any value we want somebody using things like test first name. So that it gets left behind, I can tell that it came from my test and not something I meant to have in my database. So one of the problems that can happen is that if we shut down our tests, or something goes horribly wrong before we get to that after, like we stop our tests from running, or we hit a breakpoint and hit the end, we're going to leave data behind. We can potentially the data behind we shouldn't but does happen on occasion.
+
+So test last name,
+
+And we need a date. So let's say person dot set, date added. I want it to be, let's, let's put it actual data in. So local date, parse.
+
+And let's see. We'll say they were added and
+
+19 at 1022.
+
+And then I need to format that. So they used to use the date time,
+
+for matter of pattern.
+
+And I have my date and why why?
+
+That format. So that's how you can create a local date for testing.
+
+Have a particular date. That's the easiest way to do it.
+
+So now, we have created a person that we're going to insert into the database. We have a save method, so we'll use it. So we're going to car do dot save, person.
+
+So we have our range done.
+
+Now we're going to select the person by ID.
+
+So let's select the person by ID. So we're gonna have a person. And we'll call this something like selected person equals do get by ID. And I'm going to use when I call that save method, the person should now have an ID on it.
+
+So person dot, get person ID.
+
+And now we have the person by ID now we're going to verify it. So I just want to make sure that the person here is the same as this one.
+
+So I'm going to assert cert equals
+
+and expected is going to be the original person. And a new one is going to be
+
+selected person. And is that going to work?
+
+Is this going to work by default?
+
+We'll just get the references to the objects, right?
+
+Yeah. How can we fix that?
+
+You know what I really want to use that. There's writing there's little private methods to verify objects when Java could do it for us. What do we need?
+
+What is assert equals use? What method is that you Exactly you
+
+say that we could do to string and then we would override it.
+
+Well to string could work, but there's there's a better method.
+
+One method deals with the quality of objects.
+
+Equals right?
+
+Yeah. So let's go over to our person object. And I haven't already done it. And there's already a keystone override, but we can override equals, and we should have read hi script the same time as we talked about, in fact, clips can do it for us. So we'll just use it here and generate hashCode and equals it's an array of everything. So if we need it to be customized if we need it, not just to be everything, then we can change that ourselves and equals, but I'll just let it be. All values are the same.
+
+Can you show me how Just the web and run. Yeah.
+
+So let me get rid of it.
+
+You right click, choose source. It's the same place where you generate getters and setters. There's also generate hashCode and equals empty string. And then you select the filters you care about, and then generate. Because we talked about, we talked about equality, we always don't always care about all the fields. Sometimes what equality means doesn't mean everything's equal. But now we can use accuracy here. To run our tests. We run them just like we do every other j unit test, because these are just j unit tests. So run as j unit test.
+
+And here it is, it's worked. So we have our integration test.
+
+So let's do another one.
+
+So our next one is going to be mostly list.
+
+So test,
+
+public void.
+
+Let's get a list of persons. So this is going to get all the persons in the system. And again, we're going to have a range for the setup. And we're going to have the ACT test. And we're going to have an assert with verifying,
+
+verify. So there's a few different ways I can do this one.
+
+So there's this idea and
+
+four results.
+
+That what we want to test is not the data. What we want to test is not the database We know the rd BAM DBMS works. We know Postgres knows what it's doing. If we tell it to insert, it's going to do an insert. If we tell it to select, it's going to do a select what we're testing is our code.
+
+All we're testing is
+
+protesting list is this code, does this code do what we want it to do? That's what we're testing. We're not testing the data. We're not testing the connection. We're not testing Postgres. We're not testing the tables. We're testing this code.
+
+So really, we're testing
+
+four lines of code. So
+
+often what we need to do to test can be tedious and it very quickly to thought into testing the database or testing the data.
+
+So when we doing an assert,
+
+there is this idea of, can we are we that we need to reasonably prove that what we believe happened happened. So when we do unit testing, we get these absolutes back, we get this absolute value because we're testing a method and it's purchasing a function and function. So the idea, we give an input, it gives us output. And it should be consistent, we get the same input, we always get the same output. Maybe there's side effects. integration testing has this external thing out there. So we need to make sure that we have we reasonably assured happened. And that means that we're going to make some trade offs between we're going to trust the database completely, because we really we can just like we can trust Java's working we can trust Postgres is working. So we might not, or testing a list of things. We may not Do that test by putting a list in getting it out and making sure the whole list comes out. What we may do is maybe we can select everything from the table, count how many there are. And this is kind of relying on individual data at this point, or existing data. But we'll know that moment a snapshot of what's there. We know there's five rows, and then we'll insert one. So we'll call our get all method will count how many rows it returned when cert one and then we'll call it again and see if it's increased by one. If that's happened, it's reasonably sure that get all is working. It's not as intuitive as unit testing where we test these absolute values. We want to be reasonably sure it's working.
+
+Now there's two ways we can test it. That's one way.
+
+Let's start with it that way and it will talk about About the other way.
+
+So
+
+my Tesco there it is.
+
+So get list of test our setup is going to be actually calling the method we're testing. So we're going to say a list. We know we're going to get back a list of persons and persons equals or do list. Now, we could do this with JDBC template. But what we're testing is can is actually getting all the persons in the database. So now we're going to store count and original count equals persons dot size.
+
+So we're going to
+
+use list
+
+to get all persons In store
+
+how many returned.
+
+Now we're going to
+
+add and this is both in the arrange, we're going to insert
+
+a new person.
+
+So I need to create a person. So I'm going to create a person. Well, I had this code up here, I could cut and paste it. Let's do this. Let's take this down here now and move it to private person, get test person. There's no reason to have duplicate code. And we're probably gonna need that test person a lot. So now we'll just say, person return, person.
+
+And up here
+
+are quite a person with person. Person equals new, new get
+
+test person.
+
+And now we can use it down here. So we'll create our person.
+
+So it's gonna be person, person equals get test person
+
+and one cert it.
+
+So, create a create person and insert.
+
+So da o save
+
+and we'll insert a person.
+
+Now our test is going to be list
+
+person.
+
+Actually, we can use the same list, persons equals do lists we're gonna call list again. And that's actually our test. So that should be down below that comment.
+
+Now our assert is going to be
+
+cert, verify that the size increased by one or two, we could do three however we wanted. So we'll insert some and see if it increased. So
+
+then we'll say our cert
+
+cert equals
+
+is the expected when I'll be the original count plus one, the actual will be persons dot size.
+
+And let's run
+
+past so this way, we're reasonably sure that list works.
+
+There's some risk here. This is not 100% Sent safe test because it kind of relies on existing data. But we take a quick snapshot. And we hope nothing happens in the few milliseconds between the two calls, it could, which could break our tests. So it's not completely isolated. But it's a common way to handle lists of things and integration testing. There's another way we could do the same test. And that's me That is, we could get rid of all the data in the table, put a couple things in, like two things in and then find out if there's a got to back. And if that's raised, that'd be reasonably sure. That it's, you know, it worked. So let's write a second test that does that. So call us get list of persons using
+
+risk original table
+
+tables. sighs
+
+before we do that, actually, let's let me stop.
+
+Are there any questions?
+
+Um, so this next one, you're going to be deleting data. What if something goes horribly wrong? Like you were talking about,
+
+oh, then it goes horribly wrong and we've deleted all the data.
+
+All right. So I'm not going to be deleting data I'm going to be doing something called truncation. truncation is like, superpower delete. So delete is we delete a nice single row. That's a DML. That's, you know, one of the data management commands. We talked about DDL which you know about creating tables and truncate is command, that's part of DDL that is for when you're building schema that says, I want to wipe out this whole table and I don't care about its relationships with things, get rid of it. We're going to use that and then we're going to make it Worse, we're going to use this thing called cascade it says, hey, go get rid of all your relationships too. So we're essentially going to wipe out all the data, all the foreign key relationships, and all those. And that'll clean our table. And then we can insert things into it. And then we'll know that it's empty. We know exactly what's there.
+
+So, let's do that.
+
+quick test.
+
+Yes, with that as well. Is, is that like acceptable to do? And like a testing environment? Or is that
+
+discouraged? Let's look at the truncation slide a little more before we go on because that's actually one there isn't acceptable to do. Always ask. So I've never, I've never worked anywhere that allowed us to truncate data. However, an instructor that was here before Matt Andrew Who I don't think any of you got a chance to meet. He worked. He's been in the field almost as long as me and he's never worked anywhere where they didn't truncate data. He thought it was crazy that there was anyone would care about truncating data. I'm like every place I worked was like No, you don't, you don't do that. So always find out don't just go and think I'm going to truncate the data in the test environment. Because it is the test environment if you are truncating that's another test. Make sure in the test environment Make sure your transactions are set up properly. So truncating data is this simple. If we want to truncate the city table, we would type truncate city for when the truncate the city table we would type truncate city cascade which would go out and for every foreign key relationship every country that exists in the country table that has a foreign key relationship the city it would delete off the country table to so turn A cascade can have some undesired results. So for instance, in our database, if we went to the the country table and truncate a country cascade, we would wipe out every record in the database, because the language table uses country instead of the city table. So it would remove all those foreign key relationships. So it's a pretty, it's a command built for building databases. It's not a command built for managing databases and managing data. So we're going to take advantage of it for testing. But really, you want to ask before you do this, that's why I showed you the other method first. But there's, it's useful, and you're welcome to use it here. Because it's safe. Actually, it's a safer test. As long as everything's going well. It's a more reliable test. Because as long as you don't know you Transactions work. It's reliable, and it's isolated more so than the other method. So it's actually a better test. It's just has a dangerous component.
+
+So don't run this test unless you know you have your befores and afters set up correctly.
+
+Exactly. Yes. If you run this test, and this single right here is set to true or this lines missing, you will lose all the data, a large procedure database of a database you're working on. But if you're here, that's okay. We can restore them quickly. If you're at work. That's not probably okay.
+
+So, so, let's avoid let's get
+
+get list of get lists using table truncation.
+
+So we're going to have a range, our range is going to be,
+
+we're going to truncate
+
+all data from the table.
+
+Then we're going to insert
+
+a few records. If you records
+
+then our
+
+test or act is going to be, we're going to call the list there's really nothing there. And our assert is going to be we're going to verify the number, the correct number of records returned. And there's other things we could do. We could verify and make sure the right records returned, but we probably don't need to go that far.
+
+So let's truncate.
+
+So I'm going to write a method to do the truncation because I might need it Multiple test, that's pretty reasonable. So private, void, and we'll just call this a truncate person table. So we're gonna write our query for it, select, we should not be writing queries here, the same way we for regular, so I'm going to go over to dB visualizer.
+
+And I'm going to
+
+start transaction
+
+and I'll do a rollback here.
+
+So I'm going to start transaction by and I'm going to truncate person. If I truncate person and there are foreign key relationships, I'll get an error.
+
+I put cascade on it, I won't, it'll just get rid of them.
+
+So I'm going to start transaction that worked
+
+truncate table
+
+As you can see it truncated the person table.
+
+But it also
+
+got rid of
+
+everything from the phone table.
+
+Everything from the email table
+
+is about the addresses. Here's why.
+
+So from phone person, we have a join table. So truncating person cascade wiped out the entire all the data in the database, there was several records by the same number of records. We saw the address in each of the tables, except for address because it was kind of protected by a join table, but it did wipe out the join table. So it's pretty powerful command.
+
+I'm going to roll back now. So we know it works.
+
+Now we'll see
+
+these are data again.
+
+So there's our SQL,
+
+string, truncate SQL calls.
+
+And I'm gonna use my JDBC template. So JDBC template dot update.
+
+SQL, and that's all we have to do.
+
+So that will truncate all the table and I just put that in the method because I'm probably gonna do it for other tests or might want it for other tests. So there's no reason to not have it there. And I have seen some people in something that Andrew said that he said that every place he worked truncated everything and across multiple companies. They would actually do truncation up here in the before. So they would truncate before every test. So the database is always empty when they went to test.
+
+So it's an option, but
+
+now we'll insert a few records. So we have this skip person.
+
+So we'll say do dot save. And we'll call get test person.
+
+Yeah, what do you do dot save.
+
+And we'll say Get,
+
+get test person.
+
+two's probably enough. We don't care. They have duplicate data, they're gonna get different IDs. So that's fine.
+
+or act now is going to be
+
+list of person.
+
+Persons equals
+
+do list
+
+Now we're going to make sure that works. So well cert cert equals. And we'll say, well, we expect it to be two. And our actual is persons dot size.
+
+And we'll run the test.
+
+It works. So that's another way we can test we can track it all the data in that makes the things actually easier, though there's risk to it. So that's another option. So now we have two things tested. Let's do save, update and delete.
+
+So before we do that, what questions do you have?
+
+It's just making sense
+
+is the The arrangement we're doing making sense that's I find the part that is the most difficult. Okay. All right. So let's do that. We'll just go down the list, do save. So that's insert.
+
+So, so it is because everyone's really quiet. And I found when everyone's really quiet two things are going on either. It's making complete sense. And everyone's just really bored and hoping this is over because they can get started their exercises. I find that's never the case for integration testing. Or everybody is so confused. They don't even know what to say. So if you feel like that, let me know. Because we can go back over things.
+
+I'm hoping here the first class is in the first group, but
+
+alright, one quick
+
+shot. Show me one more time have you run the test chase mine given me,
+
+okay, the running of the test case itself. So,
+
+for the first time, how did you run that?
+
+Oh the first time. So you can actually just click in the middle of the file and choose run as j unit. Or you can click on the file name itself over here. They run the same way as j unit tests. They're just they're hacked they are just j unit tests. So just like our unit tests,
+
+do that fix your problem or
+
+mine is running just like one test case. I even though I did exactly everything you did.
+
+If that's the case, come on, come over to the file name and right click and run on it and use run as j unit from Aragon. Okay, and then see if it'll run all the test.
+
+Hi, I think I put my test case in the wrong project. I'll take you out of it. Okay. Thank you.
+
+Alright, so let's do insert.
+
+So create another test, and this one's gonna be public.
+
+Like, void, save person.
+
+So this one, our range
+
+is going to be,
+
+well, there's not really much we're going to create a person.
+
+Actually it's only one line. So creating a person Test. Our act is going to be save person
+
+with the AO.
+
+And our assert is going to be select person
+
+and compare assert
+
+Sam up same data.
+
+So our act is going to be creating the person. So that's what we've done before. We're just gonna say person. Person equals get
+
+test person.
+
+All right, so we have our person.
+
+We're going to now save it. So we'll call do,
+
+save, and pass it our person
+
+So there's so there's actually more than a couple things I actually want to assert here.
+
+More than before. First I want to
+
+I want to set the ID, Id set on the person object. And the reason is, is if I look at my code for save he does is supposed to be doing this to supposed to be setting that you have a side effects, I want to verify that side effect happened. And then I'll verify that attend the database. So chances are though it has the ID I probably can stop. Realistically, that's probably far enough. Because if I got an ID back, that means that the database generate a sequence which means the insert worked. So
+
+but we could say
+
+so cert
+
+cert true. I don't know what the ID is gonna be So I'll say on my personal object get person ID is greater than zero, it's an integer. So it's default zero. So it's no longer the default. And the idea sequence ID in the database can't be zero. So right can be, but it's not going to be because they started at one by default.
+
+So I actually can probably stop here.
+
+So I'm gonna put a comment on that like that.
+
+At this point,
+
+reasonably,
+
+would be reasonably sure. Insert worked.
+
+What if like, the first name and the last name or like switched up? Like the question marks or whatever.
+
+That's great point. And that's why I said reasonably.
+
+I recently showed the insert worked, but you're right, I could solve problems, which is I'm going to keep going.
+
+Okay, gotcha.
+
+So we're going to select a person. In fact, I'm going to remove that comment. Because I know that when you
+
+open it back, there's only pair exercises today, right?
+
+I'll put it back.
+
+So now person is going to be selected person.
+
+And we'll call do get person by ID. And on our saved person or original one, we have an ID. We know that because our cert above it showed that we did. And now what is assert, assert, assert equals that expected we're expecting it to be the same as the one we inserted and that our selected person is like that.
+
+And now we'll run
+
+this code
+
+And
+
+they've all passed.
+
+So for update
+
+test,
+
+public void update, Ryan
+
+question. So when we're going to use methods inside of other methods like you just did the person get person I'd be testing the database there or because I know we made a test earlier. So like, should they get person ID test come first because we're going to be using it later on and other methods,
+
+the order doesn't matter.
+
+Okay, so it's possible that get persons by ID is broke, right? That's very possible.
+
+And
+
+so there is some risk in using it. But the idea being if I test fails, I can go investigate why in part of my investigation may lead me to fix a problem and get personal ID. So it's kinda like a free test. So the idea with this is that why we have this here is functionality here, why not use it if we want it anyways, so we're going to trust to get personal it works, even though it might not.
+
+So we have update person, I'm going to update person differently. So I'm gonna put a comment says this too. So
+
+this
+
+test can use the demo, but for demonstration only, we'll use JDBC template. So for the update test, I'm only going to use the JDBC template. It would be a lot easier to use to do, but I want to show you how you can use the DA template really In a database of this size, there's not a lot of places where we're not going to have the deals available. We get the address, there's actually some spots. But just in case we don't get there, I want to make sure you have have an example.
+
+So here we're going to do arrange.
+
+For arrangement, we're going to
+
+create and insert a person.
+
+And then our act
+
+is going to be our test. And then our cert is we're going to select the person and make sure
+
+the update
+
+change the field.
+
+So let's create it inserted person
+
+so we got person
+
+Person object equals get test person. Actually, we don't even need that because we're going to do our insert now. So if I'm going to use JDBC template,
+
+I'm going to insert a person.
+
+Oh yeah, I do because I want to change it as I go. So that's right. So I'm going to insert a person. And now
+
+it's going to be string,
+
+epi, their string, insert SQL, and I need to get my insert SQL. So I'm going to go over here and actually right here, nice subscribe, this
+
+can hardcode values If I want, that's actually fine.
+
+So, but I'm not going to.
+
+So what I'll do is I'm going to call now,
+
+integer ID. Actually, let's not do it that way. Let's do it like this. So SQL rosette
+
+result equals JDBC template.
+
+Exactly what we done yesterday. We're a query for rowset. The reason I'm querying for rowset is because I put the how the returning to get the ID back. I could use any method just like we did in the demo to create the ID for a set, insert, SQL, and I need my values first name, last name. So from person I'll get first name, person or get last name And person, I'll get data added.
+
+And I need to import those.
+
+So now, let's say result, dot next. And finally we'll say our person will set
+
+the person ID
+
+with the result, get and
+
+person ID.
+
+So that's what we do.
+
+So if we look at this,
+
+let's get back to our JDBC person class.
+
+We basically just wrote our entire save method, which is what we're gonna have to do if we didn't have it. But we can do this and we can put this in a private method probably probably put it in a private method but Now we have a person saved. So now we're going to act. So our act is going to be that we're gonna update the person. So we're gonna update the values. So in our person object, let's set first name equal to something like
+
+updated first name.
+
+Again, these are going to disappear with my transaction. So I really don't care what they are as long as I can keep track of them. Last name
+
+and the set,
+
+set, date added. Let's just say set date added. We know it's some other date. So let's just set it to now.
+
+Wait, what am I doing?
+
+Local date now.
+
+So update device. Now we're going to call the update to
+
+update and we're going to pass it our person object
+
+Alright, so now we're going to select our person.
+
+So here
+
+using since I said we're only going to use the JDBC template for this and not the other do methods to show how we would do that. We might create a string, like our select person SQL, as be Select
+
+star from
+
+person, where person ID equals should be testing that in dbvisualizer. Before I'm using it here. So I'm skipping that step, but that support and stuff and if you were doing if you're doing your homework, you're working on your Capstone, and you're writing your sequin here, even like this, you're gonna cause yourself a bunch of frustration, and probably caused yourself a bunch of wasted time, because if something goes wrong with this, it's gonna be really Hard to troubleshoot fact the first thing I'll do is cut and paste the DB visualizer and troubleshoot it. But I being overconfident that I wrote it write it a time I explained that I could have tested it. So it's that simple to test but so notice I'm using select star I said not to do that yesterday. This is test test, just like with the import star. This a lot of these roles go away with testing will take the easy way to testing. Not necessarily easy because now I have to keep remember what all my column names are, but
+
+it's still Alright.
+
+So now
+
+we're going to get our results. So sequel rowset
+
+result equals JDBC template.
+
+So we're going to query
+
+for rowset and with our select person, SQL and our ID person, get person ID. And now I can't call this result. So let's call this actually, I'm going to make it rose. We could just reuse this variable here. But for clarity, I'm not going to do that. So now here, first thing I want to do is say assert.
+
+assert true rows. Next.
+
+I want to make sure rows next returns true, but that's also going to move the cursor. So now I'm ready to use rows next. So now I can assert. assert equals, and my expected is my person, dot get first name. My actual is going to be from my rows. So rows, get string, and from first name. So now when I'm doing this, I have to I don't have an object to work with. So we have to compare it
+
+Each field I care about.
+
+It's a person get last name,
+
+rose dot
+
+string
+
+last name
+
+and now we're going to assert
+
+equals person dot get
+
+date added
+
+and rose dot get
+
+date,
+
+date added
+
+to
+
+local date
+
+and now going to so this is going to
+
+cert
+
+row returned data returned.
+
+cert.
+
+I use returned. Now one last step I'm going to do cert. Next is false.
+
+meaning there's no more data
+
+should only get one row back. If I get more than one row back, that's a problem. So I probably can skip this step, but I'm going to put it in anyways. because realistically,
+
+next, right.
+
+If I have a proper sequence, that's not gonna happen, so I'm really more testing the database there. So on second thought, I probably shouldn't don't need that.
+
+But there's no way to test and say
+
+what happened.
+
+Here is spelling error in your
+
+157 157 data added.
+
+This error is coming from insert, that's going to be a whole different different problem. So this is coming from my insert up here. You know where I said I should be testing us in dB visualizer, but I'm not going to
+
+it doesn't like something here.
+
+Some first name, last name,
+
+set object.
+
+Can't do daytime like this.
+
+Why can't I do it?
+
+for the sequel type that works?
+
+Find out
+
+that works over here
+
+resting
+
+Wait. Oh no, it doesn't.
+
+That's right. I read this last night. Nevermind.
+
+So are you converting that to a sequel from the date there? I am. Yes. So date value of convert local date into a sequel friendly date. If you get an error that can't convert it if I'm going to comment on that.
+
+So date, value of
+
+will convert
+
+local date to a sequel friendly date,
+
+date object.
+
+Now we run
+
+again and they're all passing So that's how you can use the JDBC template in the middle of the test, I didn't have to use that, for that test, I could have used just to do methods would have been a lot shorter to write. But there are times when you won't have to you have methods available. So the point of this one is that this test gets quite big, right? There's a lot more code here. But we can do since we have the JDBC template, we can do anything we need with the database. We can do any, any query that we can run a DB visualizer to verify things or set things up. We can run here in our integration tests. So all right.
+
+All right. So let's do the Delete.
+
+So private,
+
+void.
+
+That's all my stuff. Test. public void.
+
+Delete person.
+
+So for delete, we're gonna have a range. Our range was going to be create and insert a person we're going to act was going to be delete using the DA Oh, we're gonna have cert which is going to be select and verify no results.
+
+No results found.
+
+So we can create insert our person right? So we can do do save a beginner's car get person
+
+was it get test person right?
+
+And now we can delete it.
+
+So I can't do that right there. I need the ID. So that to the person
+
+Person equals get test person.
+
+Now a person.
+
+All right, so now our act is going to be deleting it. So good do delete our person ID, which we'll get from our person, it's going to have the person ID, because that's what happens with the Save method. And then our assert is we're going to select the person. So person, selected person will use to do so get by ID, again, person, get person ID. And in Korean ask the question the beginning of is going to be one test per method. So an example of why where you probably want more than one test per method would be select. So we should have a test that says select a person when no one exists, but also a test that says select a person when One doesn't exist to make sure that our code properly handles back no results. selects the one case that's really probably like that update, you may split up into updating each field. We don't all at once, but I've seen if you want to get really down to if you want to take the obvious requirement down to really fine tooth level, that would be a way of doing that. But now we have this and we're just going to assert
+
+a certain off
+
+selected person.
+
+And let's run it
+
+and we're throughout passing.
+
+So
+
+So I just realized that as I'm tend to do that I overshot the break by like 30 minutes. But now we're at 1145. So I'm not sure what we should do. Keep going. Are you saying keep going? Break? Okay. So even a single vote for break gets a break. So let's come back at 1155. We don't have a lot left to do I have one more thing I really want to look at. But as somebody pointed out, every time I say there's not a lot left, it means there's a lot left. But so let's come back at we'll come back 1155 and Bella finish up pretty quick.
+
+Right, would you mind scrolling up a little bit? I missed that line.
+
+there any other questions before we
+
+Alright, so we have a pretty good set of tests for person. But I want to do some tests, not the full test, but some for address, because it's a little different has the join table involved. And you're going to run into quite a few places we need to use that.
+
+So let's run a couple tests for address.
+
+And also to reinforce how we set up a test project.
+
+So
+
+I'm gonna get rid of this and
+
+person do.
+
+And we'll keep this open for now, because we're going to copy some of this boilerplate code at the top. So what we're going to be testing is the address. Do someone open it up so we can see it
+
+and we'll test by
+
+maybe saving an address.
+
+Maybe these first few, maybe not list. Yeah, maybe these first couple here that involve the person ID, because that's going to be important. That's the part that's going to be different is now we have a join table involved. We also have a foreign key relationship involved now. So down here, I'm going to create a new test class, new class. It's going to be JDBC. Address, do integration test.
+
+Oops, wrong.
+
+And I'm going to put this side here.
+
+And we need to do basically this boilerplate code. So I'm going to start by importing the
+
+org j unit.
+
+And now we need the simple data connection. So we need all of this really what we need is everything from here, down to, before or after is all going to be pretty much the same. So I'm actually just going to cut and paste it over here and make a couple changes. And really, it is a cut and paste job. It's the same thing every time.
+
+Except for
+
+this will be address do.
+
+That'll be exactly the same. That'll be the same. That'll be the same. So our before is going to be slightly different. No, it's actually going to be pretty much the same. Let's grab it to and instead of JDBC person who must be JDBC address to. So that much of the code integration test is pretty much boilerplate, we can cut and paste that across. And you should, because why write all that out? First time you do it, I'm gonna encourage you, that's the first time you do it, you should write this by hand. Then cut and paste from your own code, don't cut and paste from my code, write it out by hand once and then cut and paste that. So you get to experience writing it out. But if you feel you need to do it more than once, go ahead. But you could also if you want to explore doing it, you could put this in an abstract class you could extend from every one, two, if you want to play with that when you do your pair exercises today. But well, but if that doesn't make sense, don't worry about it.
+
+It's back here, our interface what we're testing.
+
+So here I have a problem. If I look at my database, to have an address, to have it have integrity in my database, it must be connected through the person address table to a person. Which means in order to have an address, I have to have a person. I don't want to put an address in without a person because that's not valid data. If I look at my do
+
+address do that.
+
+On the insert,
+
+it gets by person ID.
+
+It gets the addresses by person ID, it when it saves an address, it
+
+calls a private method that sets up the
+
+relationship inside of the joint table. Because it doesn't make sense to have an address with Without having it on the join table. So it takes the person ID and the Save method puts it on the join table, that means there's actually something more going on that we're gonna have to test. And then, when to delete it, I just does things like finds out if it has a relationship, but should always should, and it deletes it from the person address as well as the address table. So there's this joint table involved. So I want to test getting it by person ID. And save, because it has the side effects we need to verify. And that should hopefully give you enough of how you would test the rest of it. So if I'm going to do this, every test, pretty much I write for address is going to require a person so I'm going to create a person and my setup my before so always have a person I really need to know about that person is that person ID. So I'm setup here, I'm going to create a person, but I don't have the person do now I can't use. If you find yourself instantiating a second do in your do test. That's a problem. So we can use this other ones, because we're testing the person do. And we were kind of getting some free tests out of it. But having the person do here is not testing the person do so it's invalid to have here. So we have to use JDBC template, which we have. So we're going to insert a person. So I'm going to write some SQL in my before SQL and say insert person. So SQL, and it's going to I'm going to go out to dB visualizer. And we already have this ready. I'll just copy this again. And I'm going to hard code values, because I really don't care what the values are. So we'll make the person just say first name
+
+first name
+
+And
+
+first name,
+
+last name. And I'm just gonna make this nof because there's a default on the table, I really don't care what values are in there, and then put that on the end. But I do care about that ID.
+
+So I'm gonna get the ID back.
+
+And I'm going to need the ID and a lot of tests. So I'm going to start up here. So private int,
+
+tests, test,
+
+test person ID.
+
+And we'll come back down here, and we'll call sequel row set, rows equals my JDBC template. I'm going to call query for rowset. And again, I'm calling inquire for rossette because I'm going to get back the returning ID. And it's just the insert, person SQL, I don't have any parameters, I hard coded everything, so I don't need anything else. And I could shorten this by a couple lines, but using query object, but I'll use this method. So So rows next, and then my test. person, Id will be equal to rows dot get int, by returned person ID. So before we test, I'm going to insert a test person and I'm going to get their ID. It's going to be different every time because it's a sequence and the sequence is going to not update as I roll back. It's going to keep going. But that's okay. I don't really care as long as I know what it is for this transaction.
+
+So that gives me a person to test with.
+
+So now let's test get person by
+
+So our first test will test public void actually have a put some comments. So we're going to insert, insert a person before each test using JDBC. template
+
+and the record to store store,
+
+person ID,
+
+person ID inserted for use in our tests. So here we're going to get address by person ID.
+
+So I can
+
+so I have a saved method where I can save addresses to a person. So let's do use that. So I'm going to have my steps my range, I'm going to create an address, insert it. And my act is going to be get it by ID, like person ID Am I assert is going to be that the address was returned.
+
+cert correct?
+
+address returned.
+
+So I need to create a new address object.
+
+Address address equals new address.
+
+My address object has quite a few fields but I don't have to populate them all I can, but I'm not testing the in save here I'm testing just to get I'm going to say get maybe, or set sorry.
+
+I think line one is required.
+
+This street set, and let's call it, I'll just put some throwaway data in there because I really don't care what it is. long as I can check it SQL. Actually, we can do everything. Mine too. We can put this in a method like we did for person. But
+
+we don't.
+
+Back we will
+
+last set district
+
+and press set. Postal Code
+
+luckily we made everything string. So it's actually pretty easy. I think set type is required, right? And it has to be this has to be a matching type remember because we have a check on the table. So I think address type is home I think was one right Somebody take this here and move it down into a private method. Because we're going to probably want to reuse it, address, get test address,
+
+and return address.
+
+If I wanted some of this to be parameterised, like a different street for different tests, I could just put arguments here and pass them through. But often don't care. In this case, I don't care. I'm going to get address, address equals
+
+get test address.
+
+And now, I'm going to insert it using the do so do. It's going to save address, I'm going to address and I have my test person ID stored
+
+test.
+
+Person ID.
+
+All right. So now I'm going to get a list of
+
+IP addresses.
+
+address list.
+
+And now we'll call my do method, get purse get by person ID with my test person ID that was generated in the before.
+
+So now my insert is just going to be it's the correct address. So I should have two asserts really, I should have one address by person ID, right? Here's another case where I probably want more than one test, and probably one that returns that one address, probably one that returns, you know, a couple, two or three colloquy word for a regular method, or I could probably do a test where I do two or three of them. But so I want to assert that I have the right number of addresses. So I will because I know that since I created this person, fresh for this test that they can't have any existing addresses. someone knows cert cert equals expect one. And that address list.
+
+Size is one.
+
+And now I want to assert cert equals
+
+my original address against address list dot get index zero, I can get index zero because I know there's only one of them. Because my last assert showed me there's only one. So when I have a list, I'm getting one back. If I search, there's only one of them, and that's true. And it keeps going that I know it's an index zero, right? That's the only place it can be. So this isn't going to work into because it's comparing address and address until I put my dot equals and hashCode override him. Or we could write a method that comparison both but I
+
+I'm going to do it the Java way.
+
+Brian, with this hash code that you're adding in, would you remove this when you're done doing your unit testing? Or is it fine to leave it?
+
+No, you should leave it. It's used part it's part of the quality, we actually only need dot equals, but since the automated generation
+
+crates, it
+
+just will just let it do it do its thing. So hashCode is a quick
+
+way for certain methods to determine if these objects are the same object without worrying about their exact values. So it's kind of a weird, so it's used heavily by things like hash map. Fact hash map user sweat value, so that's how that's where it gets the speed. So we technically don't need it unless we're going to use it in something like a map. But really, if you're going to use override equals you always include it, because it's part of the quality. Thank you. But just like dot equals, if you change the getters and setters, you have to regenerate it. So we don't have to only if you care about your change being counted, but right, so now we should be able to run this test.
+
+It's passing. Alright, so I know it's getting late. But I have one more test, I really want to do not save, because it has that joint table. And that's something you're going to run into.
+
+So let's do a test for safe.
+
+So public, void, save address. So for save, it's an opt, it's an insert. We have our person ID. So we already have a person that it was created up here. In our before that we're going to use, we can create all the data that we need in order for if we if you find out you're using going to use the same data and more than two or three tests put before, who cares if it keeps creating, it's not really hurting anything if you don't use it for a particular test. But if you're going to use for one or two tests, then you know, you can put in a method or if it's only a couple, or just put it in the test, like we did for update last time.
+
+Before save, I have a few steps.
+
+Maybe, okay, that's weird. All right. So my range is going to be I'm going to create an address.
+
+My
+
+act is going to be of course saved save the address.
+
+And then my
+
+assert is going to be a couple things because there's a side effect. Now I'm going to want to select the address
+
+and assert
+
+it exists. And I also need
+
+to select
+
+so verify the join table
+
+was generated was created.
+
+So, create an address, we already have code that does that. So we're just going to store it. So our address will say our new address is going to be equal to get test address. We're pretty much done at this point. Then we're going to save it. So we're going to save it with our do, save, we're going to pass it our new address, and our person our test person ID. So we want to associate it with our test person. Then for our cert, I'm going to assert, actually one more thing, I'm going to assert the address ID was set on the object, because that's one of the requirements of the Save method just like it was for person. So we'll assert
+
+assert true that
+
+our new address objects
+
+address get address ID
+
+is greater than zero. So we're going to assert that it has an address ID, that's not the default. Then we're going to select the address. So we're going to say address, selected
+
+address
+
+equals or do get by ID with our new address, get address ID and it will assert cert equals our original address, which is our expected and our selected address.
+
+And now we need to verify this join table.
+
+So before I do that, I'm going to make sure my tests are working.
+
+So I will say that I've been kind of skipping something I do when I code I, when I write my own code. If I have multiple asserts like this, I generally will run like write this assert, run the test, then write this assert, run the test and keep going to I have that rather than work through them all once. I might skip this one and run it after this one like I just did. But if it's simple enough, but but it's easier the quicker you find a problem, the easier it is to solve. So verify the join table was created. So there's an easy way I could do this. Does anybody see an easy way I can verify the joint tables created?
+
+From the Do
+
+you know use counts,
+
+I can use counts the count, but what is there a method I could actually use?
+
+On this particular deal.
+
+So I'm getting an address list of addresses by person ID, what would have to be used?
+
+Get ID.
+
+So get ID is going to give me the address directly. But if I get it by person ID, it has to use the join table because that's how they connect. So I could call get person by ID and make sure it gets the record back. That's One way I could verify it, or I could use and select the record directly,
+
+which is what I'm going to do.
+
+So, I'm going to put a comment here because not every da will have a method that's going to use the join table. So I'm going to put a comment for this one that the GAO method
+
+get by person.
+
+Id
+
+only would only work only work if the
+
+join table was populated.
+
+So it could be used
+
+to verify the join table.
+
+Or, if no such method
+
+exists exist, use JDBC template
+
+So I could have actually appear, use get by person ID, and it would have verified everything at once. But not every do will have such a method. So this one just happens to have it. So I'm going to do it the way you have to do it if you don't have if you're not lucky enough to have a method like that.
+
+So to do that, we're going to write,
+
+string,
+
+select person, address SQL. And what I want to do is I want to select Select star from person address. Let's start there. And I want to what where my person ID equals my test person ID, and my address ID
+
+equals my new address ID.
+
+So
+
+make sure this works. These are long
+
+And I know that one in one, I think have a relationship.
+
+They do. So okay.
+
+So there's my query.
+
+And I'm going to run it with the JDBC template. I thought I'd get rid of somebody get SQL or SQL rowset. My results equals JDBC JDBC. template, query for rosette. And I'm going to run my select query. And the first one is person ID. I know what my person ID is, right? It's my test. Person ID. And then my address ID is in my address object as new address, dot get address ID.
+
+So now I'm going to assert
+
+assert true that results
+
+next, but as a result, I don't have to check if it's the right numbers and the result because I can trust SQL gave me the right thing. From my select. I can trust it's where condition. I don't have to select if there's more than one because, again, I can trust sequels databases working. So all I have to do is I get a result back.
+
+If I see you don't need to test SQL
+
+test the database so if your result is returned, we know it is valid.
+
+So there's a way of working with a join table both with the Save, and the
+
+sorry, the get
+
+the get.
+
+So get person ID tested it by could save address, adds it to the join table, and then it ends up testing it. And then here if we quickly use get person ID we chose just to use the Select directly.
+
+Alright, so any questions?
+
+feel like you're ready to write unit integration tests.
+
+Certainly fast. You want to see about writing integration tests before.
+
+I know it's late, but I'll sit here and code all the integration tests you want.
+
+I would say that
+
+if you could scroll up to the test you'd created prior to this. So we're just assigning the doubt give person ID is going to return an address assignment to that list. If that list is has a size of one, then we move on to our next. Next dessert.
+
+Yeah, yes, which is inserting the address or equal to one. So this is one we know there's one at index zero, that that one in there is equal to the address we started with. Okay.
+
+So we noticed that the hard part of all these is not the test itself. The tests are pretty easy. It's setting up for the test, and then often verifying the test. Actually, I would argue setting up for the testing integration testing is the hard part.
+
+If you haven't set up,
+
+they verifications often not as quite as bad.
+
+Other questions?
+
+Could you do an A? And do it through the DA? Oh, instead of Jamie?
+
+Yes. Yeah, let's do an address update, since we can do that right here and give an example. Or do you want the person done? So you have a direct which would make Which one? I hope you more. I'm not sure. Okay. Let's do the address update, then you'll have a two examples of an update done in two different styles. If you change your mind later today, and think you know what, I wish I would have asked for the person send me a message and I'll write it up and check it in. So let's do a test. And it's going to be public void. What's the update address?
+
+Breaking there.
+
+Alright, so we're gonna have our arrangement, we're going to insert an address, then we're going to our act is going to be update the address, and then our cert, we're going to select the address and verify the updates. So, our act, since we're doing this all with the do, we'll say address, and we have our test address, right. So get test address, so let's call that method. And again, we could write all this code up here. We're just making a method so it's reusable. So if we want different addresses for each one, or if we have a one off, you can write the code there. So now we're gonna insert it. So we're going to use to do for that. So save. Here, we're going to put our address and our test person ID. Because we want to always associate it with this person for most of these test. That's the reason we have it. And now we're going to change. So now we're going to change the address. So our address object, we're going to change it. So set everything with the ID, we have to leave that alone. But we're going to change let's see the street. Let's change it to update.
+
+And this should be the set
+
+update Street.
+
+And let's see, we'll also change the set address line two, to update mine to it doesn't matter what he's valued. I'm using update just because if it doesn't matter why not be say what I'm doing, but you can, you know, put actual values in or whatever you like. We're not testing data so it doesn't really matter. So city updated city I would suggest making the difference though. So calling city updated city makes sense to me because then if it goes wrong, we can see it was the city that had a problem. So I can help with
+
+validation. And I'm going to go ahead and update them all.
+
+But we don't really have to, we could choose
+
+what else set
+
+I think that's it. I just type in it has to be one of the address types allowed. So we set it to home before, so let's change it to work. I keep saying, alright, so we changed our address. So we change the address. So we're going to update the address with the new values
+
+through the DA Oh.
+
+So do update our address.
+
+Now we're going to select the address.
+
+So address selected address equals or do get by ID and our original address, get my address ID. And now I will assert cert equals my address is my expected and the selected address should be the same.
+
+Let's run this
+
+Okay, so update address.
+
+All right, so there's actually we found a
+
+error in the code.
+
+I said I didn't test these. So we don't pretty, pretty well not running into any errors.
+
+Should be an easy fix. Now we have a error for it.
+
+So
+
+test these prepared statements like our SQL exception.
+
+check and see what that wait.
+
+We're address equals SQL error code.
+
+That's not a very useful
+
+very useful error.
+
+So update address set.
+
+See, address Street, Street, point to
+
+city city, district district, postal code, postal code, type, type,
+
+type
+
+address address
+
+has to be something in here
+
+oh
+
+tested value isn't actually these are all strings, right? So you added that comma, didn't you? Which comma?
+
+I'm not sure your code that you were copying from head that comma after that field.
+
+Okay, sorry.
+
+I think I deleted it and then put it back to back cuz that would have been
+
+nice easy fix.
+
+So these are all strings. Premier ones, not last premier is only one it's not. So let's just put some need, this needs to be a valid address. So no, I just want to exist. We'll just make these tests, test, test, test, test and that's used to be work. Test
+
+Okay, postal code
+
+check constraint. So work doesn't.
+
+But postal codes how much easier that error was in dB visualizer. We ran it right away. It's like, hey, postal codes wrong. Java says prepared statement uncategorized SQL exception for? Yes. I would hate to get that in a production setting. Oh, yeah. It's fun.
+
+All right. So now
+
+let's try this again. I think that's probably the only problem that really
+
+fix that. Yeah, it is. So we found a problem. We actually our unit test, integration test done what they're supposed to do. They found a problem in our code. So there's an example of update written with the da yo, is that how Bolivar is? Uh,
+
+yeah, that helps a ton. I
+
+honestly followed, right? Yeah.
+
+I show us all over
+
+the right one.
+
+So, Zack in your question,
+
+we did six things in our seven question marks.
+
+Is that something you still have? I'm not sure what you're referring to. I was just looking at the integration tests. I look like we only set six things when there were seven things and this is just when we were running into an error. So okay, one of the things was required or something.
+
+I saw the question questions or other
+
+Things you want to see?
+
+That's a hard question because you don't know what you're missing. But you don't know what you're not see to ask for it, but okay. All right. So if there's no others then
+
+so for today,
+
+you'll continue your pair exercises from yesterday, it's pair on Monday again, you'll be happy to know this is the last exercise for the week into the capstone. So complete this and then get caught up or working on other things. Work on something, though. So what you'll be doing in your pair exercises is there's there's three JDBC classes that you worked on yesterday for the department, what is a department employee and project I think they were. So right integration tests for those three, the three
+
+JDBC classes. That's the,
+
+the whole, the whole of the pair exercise is write integration tests for
+
+So they're gonna run into a lot of the problems we just looked at right now. And so you don't have to get it
+
+later while we're talking
+
+their questions on what you'll be doing for that. Okay.
+
+And I am pushing the lecture code right now.
+
+So that way you'll have it
+
+since I forget almost every day, so it's there. And let's see. So for today,
+
+things I'm supposed to tell you.
+
+There's the JP Morgan Chase simpler showcase at three. So don't forget about that. lightning talk start, I think at 415 now, so you want to attend that there. So that way you can ask For the showcases, john can go a little over. So that's their move back to then I'd strongly encourage you to attend. Attend that. So also, what why Steve makes mistakes and Brian doesn't so you know. So after go listen to that so I can confirm whether he's telling the truth or not since I was there for I think a lot of his major mistakes or helped possible for someone possibly. So the other thing I want to bring up is that Rachelle yesterday posted about the alumni, student member members, mentorship night night in the main channel. So I'm going to strongly strongly encourage you to go to that. A lot of students don't know what it is they kind of skip it and they don't want to go to something extra. But that is a great event. So not only do you get extra coding mentorship, working with us alumni, but you get a chance to hear about their experience finding a job or work for them what the interviews were like, they can tell you a lot better about it than we can. So you get a chance to talk to them about it, you get the chance to hear what it was like starting out was, a lot of you have asked me questions. And I brought up other questions of like what's actually like to know start out as a junior developer, they can tell you, they've just done it recently. They can tell you about the companies you're interested in, if see if they're working there. So you get to hear those things and ask those type of questions. And this is one of the this whole event is about being able to do that. So so And lastly, not Lastly, the other thing is that by making relationships with alumni, there is a chance not a guarantee, but there's a chance you could end up building a relationship with somebody who went through the same thing as you who could advocate for you at a company that you want to work for. So if they end up, you know, they find out they work at the same company, nothing and they've actually possibly coated with you if you've done the pair exercise with them. So somebody has actually coded for you in for a few minutes carries a lot of weight. So and then there's also just networking, just getting to know more people in the community. So I strongly encourage you to go to that event. I think that's one of the better
+
+see, how do I say that without I should stop recording
+
+Transcribed by https://otter.ai

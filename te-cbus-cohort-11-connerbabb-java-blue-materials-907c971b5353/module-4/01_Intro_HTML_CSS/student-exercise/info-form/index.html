@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Roadster</title>
+    <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body>
+    <h1>Submit Your Information Here:</h1>
+
+
+    <nav>
+        <a href="../fan-page/index.html">Back to main page</a>
+    </nav>
+    <main>
+        <h2>Information Form</h2>
+        <form action="/api/informations" method="POST">
+            <div>
+                <label for="contesteeName">Name:</label>
+                <input id="contesteeName" name="contesteeName" type="text" />
+            </div>
+        
+            <div>
+                <label for="contesteeAddress">Full Address:</label>
+                <input id="contesteeAddress" name="contesteeAddress" type="text" />
+            </div>
+
+            <div>
+                <label for="contesteeSocialSecurityNumber">Social Security Number:</label>
+                <input id="contesteeSocialSecurityNumber" name="contesteeSocialSecurityNumber" type="number" />
+            </div>
+
+            <div>
+                <label for="contesteePassword">Password (for saving):</label>
+                <input id="contesteePassword" name="contesteePassword" type="text" />
+            </div>
+
+            <div>
+                <input type="submit" value="Submit Entry!"/>
+            </div>
+
+        </form>
+    </main>
+</body>

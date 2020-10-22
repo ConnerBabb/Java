@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/logical-branching-javascript.html#blocks-and-scope
+
+Blocks and scope
+#Blocks
+Each of the sections of code that follow an if or an else statement are called blocks. Blocks use a pair of braces {..} to enclose single or multiple lines of code. Although it may seem that blocks exist to make your life difficult, they enhance code readability and deal with something called variable scope.
+
+The below code is enclosed in a block that only executes when the condition is true. Note the indentation that occurs when you write code inside of a code block.
+
+if (condition) {
+    //statement or block of code to run when condition is true
+}
+#Scope
+You can declare a variable at any point in a block, but you must declare it before you use it. Once declared, the variable is in scope. Variables are in scope until the end of the block when they are discarded and go out of scope.
+
+#Nested blocks
+Whether you have complex conditional logic or you are mixing multiple loops with conditions, blocks are often nested. Each nested block can declare and use its own set of local variables:
+
+{ //outer block
+    let i;
+    { //inner block
+        let j;
+    }
+}
+The variable j has the scope of the inner block. Statements within the inner block can use both i and j. Statements in the outer block can only use i. If you write the following code, a compilation error occurs because j is out of scope:
+
+{
+    let i;
+    {
+        let j;
+    }
+    j = 33; //<--- not allowed, variable out of scope
+}
+JavaScript allows a variable in an inner block to have the same name as a variable in an outer block. These are then two separate variables according to JavaScript:
+
+{
+    let i = 3;
+    {
+        let i = 29;  // <-- This is a new variable
+        console.log(i);  // <-- Will print 29
+    }
+    console.log(i); // <-- Back to the original variable, will print 3
+}
+This overlapping of variables is called shadowing. The inner scope variable "shadows" the outer scope.
+
+Variable shadowing should be avoided
+
+Shadowing can lead to bugs that are difficult to spot, and frequently makes it hard to understand the intent of the code. As a best practice, avoid shadowing, and make sure to uniquely name each variable.

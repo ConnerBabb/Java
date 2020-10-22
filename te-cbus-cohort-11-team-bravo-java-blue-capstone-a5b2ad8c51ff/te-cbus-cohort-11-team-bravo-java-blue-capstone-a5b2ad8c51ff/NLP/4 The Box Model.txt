@@ -1,0 +1,18 @@
+Book
+https://book.techelevator.com/content/css-selectors-box-model.html#the-box-model
+
+You may have noticed in the above diagram how each element looks like a box.
+
+When it comes to positioning elements, every element can be thought of as a rectangular box. Some may have rounded corners or there may be circular images, but the browser treats everything as a rectangular box. This is what's known as the box model.
+
+Along with height and width, elements also have some default properties that affect their size such as margin, padding, and border:
+
+Padding is the space inside an element. It's the space between the element's content and border.
+Border is the edge of an element. An element may not have a visible border, but you can add one with CSS.
+Margin is the space outside an element. It doesn't affect the visible size of the box, but it does affect how other content gets rendered around it.
+The content, padding, border, and margin are used to calculate the amount of space that an element takes up.
+
+Below is a diagram of the box model:
+
+
+Image - Box Model

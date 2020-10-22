@@ -1,0 +1,21 @@
+Book
+https://book.techelevator.com/content/css-flexbox.html#when-to-use-flexbox-or-grid
+
+When to use flexbox or grid
+Generally speaking, there are three main considerations when trying to determine which technology to use. While both CSS Grid and Flexbox appear to compete with each other, the use cases they support differ. Here are some questions you should ask yourself:
+
+1. Is the layout two-dimensional or one-dimensional?
+
+CSS Grids help with two-dimensional layouts—meaning rows and columns—while Flexbox helps with one-dimensional layouts—that is, either rows or columns. But what does this mean?
+
+For any layout that has symmetry in both the vertical and horizontal orientations at the same time, Grid is the best choice. One reason is that Grid is more performant for this type of structure. Another reason is that Grid provides a simple way of spacing rows and columns—called gap—that Flexbox doesn't have. It's difficult to provide this spacing manually and requires a lot of CSS to accomplish.
+
+The strength of Flexbox is seen in the ability to organize, align, and adjust related content. Specifically, when considering how information or components tell a story together as a component, Flexbox is generally the answer.
+
+2. Is the design based upon content or structure?
+
+Think of a house blueprint. If your task is to build the house, then structure is important. An architect is responsible for the overall task of laying out the house and how the spaces relate to one another. An interior designer is responsible for focusing on each room of that house blueprint and thinking about how to arrange the furniture.
+
+Solving problems with CSS means interpreting a user interface design that is much like that blueprint. If the task involves applying CSS to solve a page structure or layout problem, then Grid is the go-to for solving this problem. This is often referred to as "outside in" or "layout first" design.
+
+On the other hand, if the task involves placing, spacing, aligning, and adjusting related content together (furniture in a room) the go-to tool is likely to be Flexbox. This is often referred to as "inside out" or "content first" design.

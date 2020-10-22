@@ -1,0 +1,1899 @@
+Zoom
+https://techelevator.zoom.us/rec/share/uMl-E-j9tWdIa7ec11DNUPQmP8PEaaa8hyAZqPMFmhrP42AyHh2cvuPcXdCU2zTp?startTime=1596201046000
+https://drive.google.com/file/d/1WjN9he2hOW501Krh7Gzow9HRdB4P3QtU/view?usp=sharing
+
+All right. So I'm
+
+gonna continue. We started start continuing today with the project we're working on yesterday, we didn't get that far into yesterday, at least not excuse me, at least not nearly as far as I'd hoped. So we're going to see how far we get in the first half of the day. And then that way, there's some topics we want to make sure we cover so that we might force some functionality into it. If we don't get far enough to make sure we cover another API with post and put delete. But I want to start with this where we stopped yesterday with will also change the requirements slightly from an itinerary app to just a favoring and favoriting app
+
+just for time,
+
+And we were looking at this
+
+third, this national park service API. And I want to try to get this third party API working because a lot of your Capstone is a lot of projects you work on will involve your own API's. And then external API's as well. That's a really common configuration for a project. Having multiple API's that from different sources that provide different information and different functionality. So we haven't seen that before. Everything we've worked on so far has been one API either, or almost all internal ones, actually all internal ones. So let's get this one working. So most external API's require some kind of key. And this one does and I sent out a link a couple days ago, how to get the key takes just about a minute. It's a it's an automated process. Because the point of the key is not security. It's not like a login. It's usually what's called rate limiting. And that just means that they want to see who which unique individuals are sending requests so that you can't flood their API with thousands of thousands of requests per hour. So they only allow you to do so many per day or so many per hour. I don't This one's limited, but it's pretty high. I think it's like 1000 a day or something like that. So nothing that we're going to hit. Especially with everyone having anyone following along have their own key. So if we use all use mine, we probably wouldn't have it. But so this particular API requires that in its documentation. Most API's, if you're working with them are going to have documentation looks very similar to this. This documentation looks like it was built by a tool called swagger, which is a really popular tool for building documentation. You should have to do anything you put this library in your code and it generates documentation that looks like this based on your code. And then you can put comments and stuff in, in certain ways to, you know, improve it. So this shows all the end points. This, the National Parks API actually has quite a quite a lot of information available on it. We're going to work with this one particular
+
+endpoint,
+
+parks, which I
+
+closed. And then for each of these, they give a lot of information about
+
+the properties we can send examples of using it example areas, you can get
+
+examples message you you'll get. So with working with a third party API, the first thing I'd recommend doing is after the documentation, some of its not this nice, they range from better than this to much, much worse. It is good working in postman, which is what we ended with Yesterday, we got it working, we saw the message, we're going to work with it with the state code because that's what we have are filled, selecting. So now that we have what we're going to do next, I'm going to go back to
+
+what's already running. It's still running from yesterday. So
+
+refresh the page.
+
+So we can
+
+find what we have. We have the home with a bunch of stuff on it, we'll get rid of that. And then we have this box that it's coming from our our internal API or Java back end. That gets the state codes. And we're storing it right now. We call mutation the story in the view x store.
+
+So let's start by first let's clean up all this
+
+because I want to take a second and it's just a matter Getting rid of these tokens and this must be authenticated to see this. There's no real reason to have all that on there.
+
+So it looks a little.
+
+Yeah, so don't need this selected state any longer.
+
+And get rid of that as well.
+
+As in a minute, we'll use that same filled to pass into another control to actually for these parks selection. So the first thing we're going to need is we have a new URL we're working with. So we have this URL, that's going to be an endpoint. So let's store it in something else we looked at but we haven't used and that's the environment properties. So I'm gonna copy this
+
+and there is this dot end file. The file is
+
+Application wide properties. But they have a lot of rules around them, they have to be very simple, we can't store very complex things. They're only a single string for each key. And they have to start, they have to be in all capitals. And they have to start with view, underscore app underscore, every property has to start with that. So we have the other Otherwise, it'll appear it's working, but it just won't find them. It'll just come back with no string. So to start with that, it was called the MPs API. That's actually good. It'll match our other one. And then an equal sign with no space, just the string we want to store.
+
+And then it needs to have a carriage return at the end.
+
+So let's store that here. And let's also store view app MPs API key.
+
+So my key is here. shouldn't get it probably easier from thought,
+
+perhaps.
+
+So grab my key and store it here.
+
+And then I'm going to save it. And when you change the environment file, you have to restart the project, it won't automatically see changes here. So every time you put something there or make a change of any type here, you have to stop the project and restart it. Because it loads that file when, during the initialization when everything's starting up, that's the last time we time It looks at it.
+
+So we don't restart.
+
+So, now let's build a service to call our API or not our parks API. So in services, the right click and choose new file. I'm going to call it, park
+
+service.
+
+So if I want to call an API from this file, what's the first thing I need to do? Any suggestions?
+
+For axios?
+
+Yes. So back to import.
+
+Who's
+
+from? Okay,
+
+so we're gonna import axios. And then we're gonna have to add a section, export default. And if remember, export default is kind of like, it defines the interface of this service. So when we put a Methods inside of export default, or they are available outside of the service when we import it, which is an important distinction between when we're adding JavaScript, HTML, and it all gets pushed together when we're writing JavaScript like this, and it's more application like then we're importing these pieces into other pieces, and they won't see each other without, except for what's an export default. So it's similar to a public declaration. But it's not required when we're writing in just in the browser, and when it's done, it's not going to be either. So that's the reason the rest of the view components are on export to pop up. So now we have a method in here. Get parks, and we'll pass it a state code because we are where we're going to use it is with the state code. So we can get parks by, by each state.
+
+And then
+
+so now we have to use axios.
+
+And if we look at our other service,
+
+we can use axios. Get just like this because there is a application level instance of axios that's been created this available to us. It's done was done in. If you're remembering the main j s, there's access configuration and is also part of it in the store. So there's this instance out there. So when we import axios, we get we're going to if we choose this axios variable, we're going to get that instance, we get the default instance. But does anybody remember what's happening with that default instance?
+
+What's being done with it?
+
+It has our base URL. That's gone to our remote.
+
+That's yes, it does have the Bayshore goes through, we can actually override that just by putting it literal path here. That's one problem. There's another problem. So anybody have any other ideas? What? Remember we looked at yesterday that
+
+is being done by default for axios?
+
+Was that the user authentication?
+
+Exactly. So that token, the authentication header is being set with the token. So we call a third party API, like this national park service, and we send them an authentication header with a token from our server. They're not going to like it. It's going to reject the request because it's going to say, we don't know what this is in our token. They're not token based, but they're still not going to want authentication header with a bearer token in their in their system, I mean the request so if we use this default instance, axios, we're going to get that default header, which is going to work great. And we're calling any internal API's, we build that use our JW t token. But if we want to do something with an external API, we need to do something else. So any suggestions on how we could solve that?
+
+Let's create a new instance.
+
+Exactly. We'll create our own instance, just for this particular service object. And we'll set up its own base URL, we won't set a default header. And then we won't we won't run into the problem. So it's just like in Java, where we create a second instance of an object and may have different values. That's exactly what we're going to do here. Just something we don't don't have to deal with in JavaScript, at least in the way we've been using JavaScript. So I'm going to create a constant for it. And we'll just call it something like HTTP, or we can call it actually it's called. Now. It's not, it's not specific to the parks API. I'm just going to be a general HTTP client with no defaults. So say axios. Create. And instead of the base URL, we don't have to, but we will. And we want to set it to this key. We sat right here. So I'm gonna grab this key, so I don't miss type it. So to access these values, we use process.nv, environment file, dot, the key, whatever we want access to.
+
+So that was that I'll set the base URL to this value. And now we can call our web service. So we're going to return an HTTP not using the access of the other service, we're using this instance of axios And we would get, and now we need the rest of our path,
+
+which was parks.
+
+We need all of this, we've actually placed two parts of it with scribbles. So let's put that in ticks.
+
+And now we want to replace the state code
+
+with
+
+the state. And if you remember our states for the database, they're all capital. The parks API actually requires the state to be in lowercase. So we'll just lowercase them.
+
+And then that API key is going to be replaced again by another template literal, template literal. And, again, it'll be we're gonna get From the environment file, so process
+
+dot environment.
+
+dot and what this API key.
+
+Okay, so
+
+right, so there should be all we need for this API, or this call for the API for the client. It's gonna return the promise to our other to wherever we use it, which then resolve it. And there was a question on yesterday's pulse survey about where to resolve the promise that because there's just two different places we can't resolve. So the where to resolve the promises really about who needs the data. So often in most cases, We end up wanting to resolve the promise in our component, because we want the component to wait. So the The problem is, is that not the problem. But the thing is that if the component doesn't have a promise, it's not going to know necessarily when something's complete. So it's not going to have something to watch for that to complete. If it is called an asynchronous service, and asynchronous service results, the promise, then, basically, the services out there running, but it has to have a way to tell the component that it's done, which is exactly what it promises. So our options are we can either just return it, which is what we're doing here. Or we can resolve it here and then create a new promise which we saw in one of the lecture code where we wanted to get an individual card out. So if you need to do something with the data in the service, like your like, your goal is to get Now if we wanted to get a single Park, out of like only parks that or a subset, it's more to filter the park so that we have a method here that's get parks that begin with a butter A. So we get the parks and we're going to filter them down to that list. And that's what this method needs to return, then we would do the then here, resolve the promise. And then we'd have to do another that we want to return the results then to handle so that the client or not client, the component knows, can also resolve it, which is what we saw before. So generally we want to solve we want to resolve the promise in the component for that, because it's easier to work with, because that way it can know when it's done. And generally it's the one has to do with the data. The service doesn't care what data is returning. It doesn't really need to know it just knows it caused this API and it gets back some JSON and it returns it the client that the user of it is the one that knows what the date is? So it's like most things, it's an inch depends. It depends on really where you need the data. Answer. There's no necessarily right, perfect answer to it. So without we have this last bullet component. So we're going to return the promise. So we can resolve it there. Let's build a new component. And let's call it something like parks list.
+
+And listening to quick Dev, is it
+
+do Park list
+
+and
+
+let's put something so we can
+
+just see we have it and
+
+we want to put the state there eventually
+
+So the way I would like this to work
+
+is that this box
+
+will select a state.
+
+And I want it to send the state, I want the state to get past two, this component, and then this component to use the state to call the National Park Service API and get the list of parks and display those two parts. So that's the way I want it to work. And the home has the state selector right now, we can move this anywhere, but it has a computed property that watches for the state selector changes the selected state in the store, and the computed property watches for the change and when it does, and then the form whoever's using this. So we have the state here in this property in home and which is where the state selector is and I want to get it into the park list.
+
+component. So how could I do that?
+
+I'm pretty used to
+
+I'll put the name anyway.
+
+Could you use a prop?
+
+Yeah, that would be
+
+the job for props. So in create props, let's create a property state which is going to create an attribute on the tag we're creating. To review what we're with our components, what we're doing is creating tags can use. So that's going to create an attribute. And then we can just maybe list the state up here. So before we go any farther, we're trying to use a lesson get fat working.
+
+So I'm going to save it
+
+I think and come back over to home and import it.
+
+So we're going to import Park list from
+
+att,
+
+nets,
+
+lists
+
+and an add to component down here.
+
+And then we'll just add the
+
+template here. So Park list and what that property did was create an attribute. So that's our act B, we created some what we call it state. So that's created that attribute. So now on this tag, we have to supply that attribute and we have to give it a value. I want the value to come from here.
+
+So let's do selected state
+
+and make sure I'm printing it I am okay so let's try that.
+
+should see the
+
+policy was not up parkwest
+
+Let's refresh this should have
+
+so it shows Park lists for selected state.
+
+Why? They will tell me why what's wrong?
+
+You didn't bind
+
+Exactly. So with state I create an attribute, but it's an attribute just like
+
+this like classes or href or so.
+
+There's nothing different about it as far as HTML is concerned. So in the template, if I use it like this, this is a little string, I have to bind it with V bind. And that tells it that tells view that the value we're going to give it is not literal. It's a variable. And it needs to go look through the variable or computed properties. And computed properties are just treated as variables. They're derived properties just like we had in Java. And to look there to get the actual value, so now we see it listed.
+
+correctly, let's the value.
+
+Right, so now we can get close to parks. So let's add our park list.
+
+I'm going to create
+
+some data. So we know eventually we're going to get this list of parks Some indicate data. And data always has to return an object
+
+with Vega Ray because
+
+looking back at what the parks is going to return, it's gonna it's gonna return objects. Let's make that an object actually won't matter. It's going to replace whatever's there anyways.
+
+And eventually we want it to be an array. We'll get to that point.
+
+So now let's import our park service
+
+service
+
+from
+
+services, Park Service
+
+and
+
+and we probably want a method
+
+The so we'll say
+
+methods
+
+it parks for state something like that.
+
+And we'll pass the state. And then we probably should do something like make sure the state actually is there. Because
+
+the starting point of this drop down list
+
+is empty. And we'll see if we get to the method and that's what's been selected, because that's going to get passed through because it's an empty string. And we can work with that. But let's protect it here just in case. So we'll say if state, taking the advantage of JavaScript truthy nature, we don't have to do anything else because if it's empty, it's not undefined. That'll return false. So we just have to wait for it and Then we'll call our park service. And we have our get parks. And we had to pass it our state.
+
+And it's going to return a promise. So
+
+that the next line just for readability, then it returns as a spot response.
+
+And we'll pass that to our anonymous function. And we'll, we'll take that response and we'll add it to parks equals in its response, remember, the response object returned from the promise for axios is not. It is not the data itself. It's a response object that has that as a key. And it's in the key data because it also has the ability to check what the response status was status code, status messages, they're all part of that response object. And now Then let's console log it. This parks, that will we can take a look at it. I think that can be a little easier when trying to figure out how this all works. And then let's put a catch. And we should do something with the catch. But and for now, I'm just going to pass it to a console error. So it appears in red and I can notice it. And then if we have time, we'll come back and what we should do. And if you're writing this for your Capstone, what you should have is error handling kind of similar to was an exercises in the lecture where we go through each of the different error codes, the request error code, a response error, and other error and axios error and handle them each separately. But just for time, we'll delete it just to put the error in the console. However, you do want to at least put it in the console. Because if not, if there's an error, it's going to just kind of ignore it and you'll be won't see it. We want to see there's
+
+So
+
+is there a way that we could easily like, if there's no state selected display a, like a list of random parks?
+
+Yeah, we could.
+
+Right. So our current, the parks API doesn't require state code, you can actually get like all the parks in the country, you can also get, there was quite a few other ways of getting parks.
+
+You can limit it by number of results.
+
+You can do a search. So you can like look for parks that have certain keywords. So you could write some code here, that if there's no state, you call the API using like a search term, and get some kind of random, random value, or a set of random search terms or get a random state or there's lots of ways you could do that you'd have to write our API is only the way we were at our park service. You can only use the state code, but that was our choice. So you can definitely work with the API to get different things. And do that.
+
+Did that answer your question?
+
+Yeah, I was just wondering if you could do like a V show if and do if there's no state, then show this. And if there is a state selected show the other
+
+thing. Oh, yes, you could. Yeah. If states the same way, if you don't a Vf state, that would only show state has value. You could do a Vf not state and type something else. In fact, we're going to do something well, not with state, I guess. But Yep, you can quite easily do that with Vf. So now let's take it just for testing. I'm going to put, just take put the parks right here. That's going to be the raw JSON. It's going to print in the screen. It'll show us it's working.
+
+So
+
+Like the park, I'm going to go to the Network tab. Because I want to see the API loading. Let's pick a state
+
+didn't call the API. Let's refresh.
+
+Oh, we didn't call the method. That's a problem.
+
+So what do we need to call this method?
+
+Do we need to import the service?
+
+Yep, we have we have the our method that's using the service but how do we call get parks for state? Because methods don't they Something has to call them is it created? Yeah, we can use created so they call it on creation of the component. So we've created hook and this get parks for state
+
+We'll pass at the state.
+
+Park.
+
+Give us refresh it
+
+not calling our API.
+
+Brian, just real quick. So when you use created, is it calling that created method just when the page loads or every time you make a change to the data?
+
+That's a great point. It's not calling it every time we make a change to the data because we're not changing the component when we add when we call change the property.
+
+So that it's not, it's not working.
+
+So it will work if there is a value in this store here if we can get the value and
+
+keeps
+
+it the value maintains which is not happening here. It will work one time, but then it will and not consistently as we can see here.
+
+So, how do we handle this?
+
+computed and stored? Well computed, can't change values. So computer can't update parks
+
+computer has to return something.
+
+So we can use could you potentially use a watcher? Yes, potentially. That's actually what we need. This is a case where we need to watch. We need to have a watch on state. And when it changes in call the API and we'll leave it in created. That's part of the nice things having In a method, it's only one line of code. That way if it does get an error, because when the page is created, the watch is not going to catch it, the watcher won't catch it. So created will take care of the case when there is there. The page, which we see is not very common. But the other cases.
+
+Let's add a watch.
+
+And we'll watch
+
+or watch or we'll go watch state. And every time state changes, it will call a function.
+
+And what that will call our method, get parks.
+
+State this dot state
+
+and now as we change our parks, we can see right here it made the call. There it has seasons right. someplace in this information their states is for Kansas. It's changed jersey we can see the call is right here takes a minute. It's still pending. There's it's completed.
+
+So the state is now the data is now for what's different.
+
+Different lists, the state has different list of parks. So you can see the requests happening right here in the Network tab is a change them if you watch the status, since we haven't worked with a lot of external API's, let's choose that California has a lot of park so it takes a while.
+
+You see where it says pending. That means the asynchronous request is out.
+
+If we wait, see this API takes while it's going across the you know, the actual internet don't have a false slow down and it has its own speed and, and now when it comes to 100, the data updated when it got the 200 or status is not pending. That means it's been fulfilled. It's returned. Isn't the promise fulfillment that means the promise is about to be fulfilled. Notice it was a really short delay between the two, when it was actually visible, so long enough to be visible, but still fairly short. That's because this is the browser getting the request back and then it sends it on to axios, which fulfills the promise, which then causes the reactivity.
+
+So you can see here the Network tab, and now we have
+
+data coming back from the park, we probably want something that tells us it's loading. We could do something really nice and make it look really great for loading but let's just put some text that
+
+does the same thing just without the extra loading.
+
+And if you want to do something like the ping pong paddle if you just find any animated GIF If enemy image around the internet you can grab it and just put it in your assets and no do a Vf on it during loading. That's how that was done. But what is put towards loading for today. So we're gonna create a variable is loading. And we're going to put here
+
+we'll put a div
+
+and we'll put a Vf. I'm using Vf instead of V show because if it's not loading, I don't really want it in the DOM. It won't hurt anything, but there's no reason to have it. This was completely removed from the DOM, just loading
+
+and the Say, say loading parks.
+
+And now we'll do another div that we wrap these parks in. We can put a Vf on it as well. And we could put a Vf not loading but if it's the next tag, I mean I want it to be an either or we can use vs. Or we can use the F not loading either one would work, use vl. So since we only seen it once,
+
+and then down here
+
+how do we need to use is loading and get parts for state to make it work the way we probably want it to work.
+
+So we have to go into the returning JSON object and select the stuff that we want. It's like the name phone number and description or something. Well, we do yeah, we have to do that. But before but just getting the is loading to work. How do we need to use that variable here in this method? So right now it's always true.
+
+So after we get our parks response data we set is loading to false
+
+Okay, so
+
+this so what's gonna happen though if I change parks the way it is right now? Let's find out. So we have it says loading it's loading for California probably made the request it did it's pending
+
+for a minute for to come back
+
+and now we have it in that we changed parks Illinois and it's made the request but it didn't go back is loading how can we make that go back is loading
+
+Can you put it in the washer
+
+but we could put it in the washer so you want to start the is loading or Here.
+
+Yeah, okay, good. That would actually work.
+
+Say is loading, because our watcher is the one that's doing
+
+most of the code, right?
+
+Wait, Illinois, let's choose another.
+
+Now it loads again and Nebraska. So now it does go back that works. So to work, so we just need to change it at some point that before we call the API and change it back. So it could be changed there in the watcher, it could be changed, like right here in the get Park state at the beginning. Because remember, this is a synchronous, so if we changed it, here, this loading is true here, then it's going to be true to this gets called later on. It's not gonna happen just in order. So either either work, but the important thing is we have to change it back to the other state before we call the the API. And then we're going to wait it's going to a synchronously wait and be changed back when we it returns. All right. So we have these displaying, so let's do something with them to make them exactly saying we want this to display information about the parks, right. So let's get that working.
+
+Let's loop when we loop through them.
+
+We're going to want to put one park at a time
+
+in
+
+listed so we have a list like that, that each one's going to be a particular Park object. What does that tell us? We need or probably need
+
+Before, well before we are going to need before but something more design oriented than that.
+
+We have things like we have 10 parks we have to display What does it tell us we probably need object. Very close that's on the right track. But they can view now. what's what's views on it? Exactly. It's a position with object, you're exactly right in an object, we have to represent this, it'd be an object, but we're, but view doesn't have those related that concept, that same kind of idea. So views when we need that same thing, we need to represent a park in our list, and there's going to be a bunch of them, we need a component. If our list is you know, a string that we don't, or maybe even a couple strings together. But if it's bigger than that, like the park data, we want, we want to do component. So let's create a new component. Something like
+
+Park list item maybe. Or
+
+Yeah, that'll work Park list item
+
+view. And we're just gonna put for now I'm gonna put a div in it, class
+
+Park
+
+list item. And then we'll just put an h1 so we can see
+
+we don't need each point we can just say Park
+
+Park item so we can see them printing on the screen. So we're going to have this component for an individual Park. We're going to come out here to our park list, and we're going to have our parks
+
+I want this to be an array. Let's look at the data now.
+
+For what we got back, well we actually are working with. So it's kind of hard to look at like this. I put it here because I easy to test, we can quickly see if things are changing, we can quickly look at it. And so the number change the states changed. But this isn't really easy to use for finding things.
+
+postman
+
+is fairly easy to use. But the reason I put it in the console log is this is actually I find one of the easiest things to use for kind of looking through a JavaScript object. So our each of our state objects or our whole response came back that has these values. That's our starting keys. So we don't have part we don't have parks. We have data limit total and start we can look at them limits 50 start if you look at the documentation, It only returns 50 or a maximum of 50. Parks at a time. And we can change the start and say we want like Park 51, it'll turn the next so it has a paging system built into it. We don't need to worry about that. Total, the total number of parks returned. We could use that. Let's use that. So let's add something like total parks. And we'll set it to zero. And maybe we can find
+
+something like total parks.
+
+Parks found, and
+
+that's a little more readable at least. And now to us that change that to
+
+JavaScript, not Java. Then down here
+
+we can get this dot total parks equals our response. We know our response has a data object that has the JavaScript objects in it. The JavaScript object has the key total.
+
+So total
+
+already, we should see a
+
+change of
+
+wanting to find the parks. That's a little better. And now our list of parks.
+
+We don't want it to be data.
+
+If we look here,
+
+that's an array. Each one of those is a park.
+
+So
+
+how do we need to get how do we get the array of parks here? So our response data is our JavaScript object that was returned. So what do we need?
+
+Absent anonymous function which builds an array or an object, and then you just push it to that array, well, that's something that could could work. But we already have an array. We have an array, right here. This is the object we're working with. Each one of these observers is the object we're working with. So that's the object that's in data.
+
+We wanted to get total, and we just called Total.
+
+If we want to get the array, what do we call? What do we use? Makita. We use just data, right?
+
+Close that
+
+data, that data.
+
+Exactly. And that's why I wanted to walk through it is because it's kind of confusing. So the first data is from the response that's from axios as a response returns the object in a key called data. That object is this, which is all of this. So it's what we see over here right now. It's this entire object. This object has a few keys and has total, which has a value of 10. It has data, which is an array of parks. We can see that here. It also has limit and start, which are values of 50 and zero currently. So the second data is the data inside the response from the National Park Service. So that's the two data's Does that make sense? So for each one, we just called the key we need and now we have a list of parks. And now we save this. We'll see this change.
+
+It'll change very slightly.
+
+Now it's just the list of parks.
+
+So now we have and we can see it Down here. Now what we have in our parks is this page one's a park that has these keys inside of it. That's why I like this console for going through JavaScript objects. Next, he makes it fairly easy. If you console log it, you can see all the pieces in the keys and kind of walk through them. So if I'm starting from the everything in the array, these are my starting keys. If I'm interested in addresses, I click here and it tells me I have an array. So I have to use indexes. And then if I get one of those indexes out, I have these keys. I click here, there's probably no more keys in here. There's not. So these types of these are all values. So these are my final keys I'm going to use. So it makes it very easy to visualize how to step through these objects because we step through these objects by chaining the keys together, which can get tedious and hard to imagine by looking at the JSON. So we have this we have a list of parks now. Each one representing
+
+this
+
+and we have our park list item.
+
+So in my VR, so I'm going to get rid of the parks here. And I'm going to change it to park list item
+
+and V for
+
+each park in parks. So we're going to create one for each Park.
+
+So I need a key.
+
+What key Could I show us from park?
+
+The ID. Yeah. So by looking at this, we can see there's an ID.
+
+I'm betting that unique, unique enough, probably the it's probably doesn't duplicate the same state, but I'm guessing that's unique, globally.
+
+So we use ID
+
+If I if we're wrong, and it's not unique, it's not a huge thing. So actually, and this now, let's save this so that what we should see
+
+is when it loads now we should see just the word.
+
+Park item.
+
+not repeating okay. There's some console errors. Let's see what those are. They're down here.
+
+Oh, yeah, I forgot to import the component and use it in registered. So that was Park list item from
+
+services, Park list item
+
+to this, and we don't have components. So we'll add our component components. I think
+
+it's going to be in your components rather than services right?
+
+But do you mean for heartless item on your import from
+
+Oh, you're right. Thank you.
+
+Yeah, definitely what should be like components in it is? I hope
+
+not. We'll put it there.
+
+Let's see. So now it's working, we get one for each one. We know it's working. So we can go back now and start populating the data. So the next thing I need to do I need to get this park into this component.
+
+So how do I do that?
+
+props, props. So props
+
+and park
+
+and we'll come back to
+
+Park list.
+
+Then we bind it to park equals Park.
+
+So the park here
+
+is the key we created here.
+
+This park is infinite v4. So we'll pass each park to the component. And then we can just use that for today just to print something on the screen. So we could take a look at what we have to work with from over here.
+
+This is what one Park looks like. So we can see it has a name.
+
+So maybe do something like h two
+
+Park dot name.
+
+They have the name.
+
+Let's look at it's a ye that has interest, some Park names with non standard characters. Let's see what that looks like. So we get to have HTML encoding in there. So we can fix that. So here are my h2. I put this tag v HTML
+
+and say Park name.
+
+So is there any dangers of doing that any potential danger
+
+then we can think of her.
+
+I think if you're using like a bad API Maybe that can be scary.
+
+It could be. So if somebody the National Park Service decided to make a park name that had Java that was JavaScript that done something malicious, my page now would render does HTML display and run the JavaScript and do whatever malicious thing it was doing, without me being able to stop it or the user knowing.
+
+So that's risky. But I'm going to take the
+
+chance that in the next couple of hours while we're using this, that the National Park Service is not going to inject something malicious into their API.
+
+And so
+
+if they do I honestly don't have anything important my work computer anyways.
+
+But what I wanted to show is that that is available. And what that does is it renders the HTML of those characters. We saw our HTML rendering there. So that's it. Have you have that option as well.
+
+So now maybe we can get a description
+
+we can take a look at what we have. There's a description to see that as text it is. So you can say, Park dot
+
+description
+
+and let's look a little better. Let's see what else we have to work with. There is a URL we can take advantage of that. So maybe we can turn this into
+
+Park dot Yarrow
+
+and this is this href I want this to be the key from the park, not the literal string Park.
+
+So let's put theirs we'll bind it.
+
+Hey, guess what, that might not have worked.
+
+Let me take a guess why by god it worked.
+
+Because I actually thought that was gonna work. Okay, I see why didn't work. I think I know why didn't work. Any guesses from?
+
+You can't find an href.
+
+You can. Yeah, but I knew that works.
+
+It's a little more
+
+thought out there but a little more difficult.
+
+So I think what's happening and we'll find out maybe wrong. We're rendering everything in this tag. We're running this as HTML, and you can Canada HTML inside of an anchor tag. So it's ignoring the anchor tag. So I think if we take or you can have HTML tag, I'm sorry. We're rendering this whole thing now as HTML. So I think what we need to do we take this I bet if we move here, it won't work.
+
+It does. So yeah, I wouldn't expect to that I didn't actually thought that was gonna work.
+
+So now we have links from each of them, the parks.
+
+We also could do get weather information, quite a bit of information we can get here. Let's
+
+look like they send an array of images.
+
+So we could do something
+
+I should point out also, why might we be using an anchor tag here. Instead of a router like
+
+router link, we've linked it to like, other pages, right?
+
+Exactly. It's four things we have to find in the route. So internal pages regarding regard to an extra page, we need an anchor tag like normal.
+
+So last thing, maybe we could do something like
+
+image, we can bind the source to the park dot was it
+
+images
+
+I don't know if they all have an array but I'm betting they all have at least one image.
+
+Well, I really didn't like that. Okay.
+
+So what do they do don't have at least one image
+
+Oh no images URL
+
+okay so those images are quite large it looks like
+
+so maybe
+
+image
+
+with let's try to our might become a smallest go for 400 so we have a fairly
+
+good list just from the top image of each Park
+
+change to have some
+
+We have our parklets working
+
+is a creepy looking house for that park.
+
+I really want to go there now so yeah. Looks like a
+
+Yeah, to go back to Louisiana. Anyways.
+
+So I have a cemetery listed as a park with the amount of cemetery tours that they offer.
+
+Yeah, you're right.
+
+Yeah.
+
+Yeah, you think they would have? Yeah. Maybe they're a national that maybe there's a state because these are just national register. So
+
+but alright, so before we move on, are there any questions or what questions do you have
+
+I actually had a question about the HTML, how we move that does. Are there other instances in view where the order of
+
+like, your directives will matter?
+
+So the wasn't the
+
+order the director of the mattered? It was the tag that was on. And yeah, that, that that always matters. We had it on the h2 tag, which was rendering. h2 content is HTML, which the anchor tag for some reason, then? I'm not sure I actually don't understand. I took him to look, research why that broke that. Because I didn't expect it to because anchor tag is HTML. But it must be something about everything in the variable or something now is HTML. And I'll look it up after I figure that out. But what all we wanted to be HTML was the park name. So moving it to the anchor tag made it so what's inside the anchor tag mouse HTML renders HTML, not the what's inside h2. So
+
+We're fairly sure there are instances of that, though, because there's like view has a list of things that should be in the order. But, like, there is a thing that shows that because I had a VM that wasn't working because it was like, in the wrong order of a list. I don't know. Really.
+
+Okay. I never ran into that because HTML standard says that the attributes are not supposed to be ordered. So I've never ended. Maybe it's just I've got lucky every time and just or I probably just type them in habit in the same order as probably what it really is, and never run into a problem. So
+
+So other questions before? All right. So let's take a break then. And we'll come back and try some other things. So we'll come back at 1023 Can you put it on parklets? real quick? Yes. I'll look at that a little.
+
+So coming back to the break, do you have any questions? or What questions do you have?
+
+Right? So, um, given where we're at on the last day, are there any particular things that you want to see? You want to go over or you want to look at, or you want to make sure that
+
+we cover?
+
+So the next thing I want to there's a couple things I want to still get through. So not answering not having the answer that is not going to get you out of class early. So and that's we haven't, I was hoping to get to a point where we could take these parks and we still might add them to a favorites list that we could then add To our own API. So let's now that we have the parks listed, let's build another page that allows us to manage manage the Favorites list in a manual way with an API. And then maybe we can get the parks connected to it. That way, we can have an instance of going from the back end to the front end with our own again, that's not just to get the app to start with a get but doing have at least an insert, and probably a delete and update as well. Even if it's rather simple. So let's build we're going to need a database table, because right now we only have two database tables, users, and we have the table for states. So let's put a table that holds like favorite parks. So we can have maybe it hold while ID maybe come with a name
+
+a Part code,
+
+we have the state. So maybe what we need to build this amount of information. So we can have the state maybe the description, the URL, and the image URL, which will allow us to build what we're seeing here. So we can display it without going back to the National Park Service's API to get what we need every time when we do that when we're looking for new parks. So that's what we're going to store having our table and then we're gonna have to connect it to our user. So let's build that first. And get that see if we get that to work. So what means graph to actually do some table
+
+folding so we're going to create a table
+
+let's call it like favorite parks.
+
+Unless somebody has another
+
+name, they prefer
+
+And we're gonna need an ID, we'll make that serial, we'll make that the primary key
+
+a name I
+
+don't know how large the names can be for the parks, let's just make it 255. And
+
+I may not know
+
+the state
+
+into a cartoon because we know we have a state code because we have the state table. And we can make that not all make that required. Have a description. The description is gonna be probably larger than 255. So let's make that text mo LA to be no URL. We'll make that happen. as well, because if URLs can get larger than 255
+
+Yeah, we are going to need a user ID foreign key but we bought each user cap will be that multiple parks and every parks nine multiple users. So we're going to need something, something more to connect that. So my god text and we'll do the same for the image URL.
+
+So there's a table.
+
+Let's see if it works.
+
+It doesn't, because I have a syntax error someplace out here. That's not a sequel comment. Wrong language. Let's try again. Okay, so we build a build our table. I'm gonna put a drop up here for it so we can keep running this drop table. Favorite parks now We need if we want to join this to you, users and a many to many relationship What do we need?
+
+Join table. Yeah.
+
+So let's create
+
+table user users
+
+favorite
+
+parks. And on it, we're gonna make
+
+the user ID and we'll just make that an end. And we'll make that
+
+we'll make a
+
+call it favorite.
+
+Id
+
+dx is not a park it
+
+so we're going to need a practice. Mary, that needs to be that too.
+
+And let's make our
+
+primary
+
+Mary key.
+
+And that'll be user ID and favorite
+
+ID.
+
+Let's see if that works.
+
+That's okay good.
+
+And now we need foreign keys here. So we're going to make a constraint, no.
+
+constraint.
+
+Foreign Key.
+
+We want user ID references
+
+User start
+
+user ID
+
+let's see if that works because I'm
+
+try to do a drop table or use your favorites Park.
+
+Yes, but Oh, you're right, that would have
+
+to add constraint
+
+that's even gets getting worse. Okay. All right.
+
+There we go.
+
+Short the next one
+
+I have
+
+Oh the name
+
+that's what I'm missing
+
+foreign key user ID
+
+Okay, missing something more than that.
+
+Keep looking
+
+Reference products
+
+that's
+
+maturity to find the primary key.
+
+Id but I'm trying to find a foreign key
+
+users dot user ID it didn't like that.
+
+Maybe this doesn't go
+
+No, it's really close.
+
+Go back and look at the other flank.
+
+Postgres tutorial.
+
+JOHN would yell at me for not looking at that w three scores link It was down there.
+
+I probably should have
+
+represented Oh,
+
+that's what it is.
+
+Parent table column.
+
+It's not a dot. It's parentheses.
+
+Sorry, module two has been a long way long time ago. So
+
+okay, now that's fine. That's the table. So now we need a second foreign key constraint
+
+or
+
+the favorite ID.
+
+And I will say that those foreign key constraint names are not very good. And that's going to go to favorite parks
+
+ID
+
+All right. So let's
+
+write that. worked. And now we should feel the refresher objects.
+
+Alright, so works. So that's what we have. So your Capstone, you're not done with SQL at this point. That's just testing it. Because believe it here, my applications now you're about to see this right now. So what do we need to do to make our application See it? It need to add the schema file, rerun the Create, or we have to run the grants ourselves, which you can do either one but it's much easier just let the schema file do it for you. So we'll take these now that we have these working, and I'll copy these. I'm gonna go out to finder, and then the Java database schema.
+
+An app with Visual Studio Code
+
+Just someplace down here.
+
+These and then I'm going to take users favorite parks, favorite parks.
+
+And go
+
+Actually, let's do them together. How you organize your assists UP TO DROP TABLE if exists, favorite parks drop table, if exists
+
+user favorite parks.
+
+All right. And now we have to go out to
+
+here. Hey, where am I at? It's gonna be a module for
+
+this is 45
+
+lecture final Java database
+
+and run the Create sh
+
+Having clothes,
+
+said there's two things, one, it set up all the grants so the application can see it, otherwise it won't be able to see it. It'll get errors that it can't access it, it'll be able to see it, it won't have permission to do things with it, like select or insert, or update or delete. into now, when they're pushed to the repository, all of you can pull it and run that same file have the exact same database I do. I can also put inserts in to add data, test data. And then when you're working in your team, you can push it to your repository and your or your team members can pull it and do the same thing. You have the same database. That's how you keep the database in sync since you have a database running each each of your individual machines. So remember, now you can open the schema file in here and work on it directly. That's fine. But remember, you have to run that create script to get the grants in the end. So if you want to open the schema file and work on inside the schema file, so that you don't you save your changes directly, you don't have to cut and paste like I did. That's okay. That won't hurt anything. But um, remember the end, you have to need to run that script. So now let's build an API for our tables.
+
+Which means we have to build.
+
+So what I want is one of the insert. Let's start with insert and select. We don't have any data there. Let's do our first insert from the table from view or from maybe from postman. So we need to build the do pattern for the user. The favorite parks table and then we don't really need anything for the user favorite We're going to just put that in and joins as we work. So let's put this over here so we can see what we have. And it just disappeared into there going over there. That's
+
+and now it's gone. Alright.
+
+All right, I have no idea what's going on with that. That's weird.
+
+Let's try that again.
+
+All right. So
+
+let's create
+
+a demo I'll try to go quickly cuz I know watching people create do is is not the most entertaining thing, but this was a pre planned so I didn't know what do is the pre create. So we need our data object. And I won't do the integration test. I'll skip that. So not to watch that again.
+
+So we need
+
+the best part. Ryan, come on.
+
+Okay. Well, Michelle's convinced me, we'll do the integration test
+
+for these that are probably take the rest of us today. I'm sure that's what you want to review. So. So favorite parks, favorite Park, and we need these things in it.
+
+And I put it in the wrong package already.
+
+I want it this model package.
+
+Date references, okay.
+
+So the way this dragon is done the drag and drop between five packages works when you don't have you're not using it anywhere. It supposedly works if you're using it in a bunch of places, because it says it'll update the references and my experience. It doesn't weren't quite as well, if you're using it in other places, the move works really well. But I don't know what the differences but if you haven't done used it like we just didn't drag and drop, we'll update the reference just fine. In your experience may be different to or later versions of Eclipse may be better because I'm in a really old version of Eclipse because I haven't updated in three years.
+
+I need to fix that.
+
+So we need private and Id
+
+private name or string.
+
+Name, private string state should be state code. That's okay. Private string, description
+
+Strang URL
+
+and a private image URL
+
+We need getters and setters for all of them.
+
+It don't look, these are their captains because they're kind of hard to set up. But as you go out in your careers, I will tell you there are actually tools, we can point to a database table and say build a data object for me. And it will build one of these for you. With all the getters and setters and everything created, but said don't don't waste time on your caps and looking forward to be quicker just to build them then find it but when you're doing it professionally on a regular basis. So let's build a quick interface for it. And we're gonna need at least two things. So this is gonna be our favorite Park do. I make made it a class again, so I'll change it to an interface.
+
+And we need two things, we're going to get a list of
+
+service called that park, our favorite Park. list. And it's going to be going to the user ID to do that. We're probably not going to have a user ID, because we're going to use the principal object. If you remember, the principal object only has the user name. So let's do string username.
+
+And then we'll do void add.
+
+favorite,
+
+favorite Park and park and Strang user name.
+
+And then we'll import everything.
+
+The reason we're going to use the principal objects is because Then we're only allowed to add or get parks that are for the user that logged in as without having to
+
+check a bunch of things. forgot that.
+
+All right, so
+
+now we see the JDBC class.
+
+Every Park Do you
+
+and we need to implement
+
+implements favorite Park do
+
+me a JDBC template. So GC template, I'm just going to call it DB and we need that injected.
+
+So we're going to inject it. We just have to ask for it.
+
+MVC template
+
+JDBC template
+
+that's going to be this DB equals JDBC.
+
+template, do all of our imports. Alright.
+
+So now we
+
+get to the exciting part of the video where we actually do something with it. And let me go back now I'm thinking about it now component. Otherwise it's going to cause an error. So let's get the ad working first, because we don't have data to get used to get.
+
+So to get the ad working, I'm gonna come back to dB visualizer.
+
+And I want my favorite parks table.
+
+So I'm going to script the table
+
+and I want to script the insert
+
+doesn't look good.
+
+Let's refresh the object tree.
+
+Reconnect.
+
+Oh, I bet the when I ran the Create script it probably
+
+if we create the database, I'm connected to the wrong thing.
+
+Okay, so now try to get it so favorite parks. Go here, make sure I'm in a blank space script the table for insert.
+
+That's going to be
+
+default
+
+and this is going to be returning
+
+ID
+
+and Sophie
+
+Here's we can see the list, and that's our query
+
+string. SQL calls that.
+
+Alright, so now we need to get that ID. So integer ID equals JDBC or dB. That's to query for object, our SQL. Our required type is going to be integer, class and now we Name, state description image URL. So Park dot get name,
+
+Park doc get.
+
+And I did that cut and paste to the line down like that and filling them out just so I can remember the order that's not required. That's how I always do it. So I remember which thing I'm working on because my memories not quite up enough to keep track on the wise.
+
+Plus, as you're working, you always gets distracted and then
+
+forget what you're doing anyways, so, okay, so that should work. If you remember a query for object, we have to give it the class we want to return and it works. If we're returning a single thing. This is going to return the integer because I'm doing returning ID and that'll return it into this ID here. So then we're going to take favorite Park. And we're going to set ID equal to that ID. But we're not done, because we have that join table we have to deal with. So now we need another insert. So here, let's start transaction
+
+and
+
+rollback.
+
+And here we need. These are all strengths. So
+
+let's test in all of
+
+our text that works.
+
+You can run it with the question marks too.
+
+I can, but then I have to fill that out. And I find this just easier. You're right, I can't run out the question marks but I would have written actually the next one with the question marks
+
+Since Postgres doesn't have the idea of variables in this version
+
+value too long for kartu.
+
+And there has to work.
+
+Okay, and I'm actually don't want to keep redoing this, and I've just now messed up my database. So why did I just mess up my database?
+
+Any IDs
+
+does add more tables, something I tape. So it's, it's the tables, I just ran my recreate table scripts, right. So what I've just effectively done is drop the tables we started, we added them and now my grants are all messed up. But that's easy to fix, because I have this nice script. Then when I mess up the database.
+
+I run it again and it fixes the database
+
+which now I've got I have to go here. And she's reconnect
+
+because now I deleted the database.
+
+And I will come back here and now with those going now I can safely
+
+work with that.
+
+So should get my ID one. Okay, good. And now we're going to the reason I wanted that is because we have to do
+
+username.
+
+So let's I'm going to do a select star from user
+
+users where
+
+user name equals user. I think that's a proper name.
+
+Okay, and now I want select
+
+User ID.
+
+Okay, and now I want to Insert into
+
+users underscore favorite underscore something. Thank you.
+
+Favorite parks, I guess what it is.
+
+And that was user ID actually just do values. And
+
+it's gonna be user ID.
+
+It's gonna be this
+
+and then the park ID
+
+which is going to be the output of this.
+
+So I made this manually select this line.
+
+I have to so just to make sure this works for this too. And now this should work. Except I need
+
+to do the rollback.
+
+Okay, so start transaction.
+
+This line now is going to be three, right? I can't trust that but pretty.
+
+Okay, that worked.
+
+All right, and then go back. So this is going to be a variable for my username. And this is going to be a variable for my ID.
+
+So now I'll take the server too.
+
+My
+
+database agaram I think this will be SQL, or let's say join SQL. And that's my insert. And now I have my ID right here. I have my username here. So let's do a DB update. Because this is going to do an insert now without returning.
+
+So our first variable is username,
+
+first parameter username. And the second one is ID.
+
+Oh, and I forgot to put the sequence.
+
+So that should work. I mean, we wanted we could spend some time and I think we could probably get to work in one giant query, but let's not do that, that's probably could by turning this insert with returning into sub query here, and then returning.
+
+I don't know if we can make that work. I bet we could. But um,
+
+that should work. At least these two queries work separately.
+
+So let's get it working with The interesting part now, the API.
+
+So I want to request mapping.
+
+First I need to get that do in here, right? So I want the private and that was what favorite Park do. Let's just call it Park do
+
+so we'd have to keep typing out.
+
+Really shooting this park to you.
+
+And now we have to add it to the constructor because that's where spring is going to inject it. That's how we're going to get the injection. So Park do Park do
+
+and favorite Park do
+
+and then we just have to do with this park do equals Park. Do So whatever we have in the constructor is what spring is going to inject as long as it has that Add Component annotation that we put on in the JDBC. class. So now we can use it. So now I need to request mapping. And we need a path. And we already have states. So what should we call this path?
+
+parks, parks, that's good. Okay with that.
+
+And method equals, what request methods should it be for our ad?
+
+Post, post. Alright, so we're going to go public, and we're going to return
+
+favorite Park object
+
+and now we're going to add Park and We're going to accept a favorite Park object.
+
+So
+
+and then what we'll do is we'll take and we'll call Park do ad pass at the park.
+
+And we have a few things we need to do now.
+
+So let me head to the imports first.
+
+So first,
+
+is there anything else I need here? To make this work?
+
+principle?
+
+I'm going to need principal there. You're right. So let's go on that that. Oh,
+
+and let's call this user
+
+and then we can use the principle. Get named to get the username So that gives us the username of the logged in user. But must return. This doesn't return anything. So this will return Park, because now Park should have the Id do the side effects of it. But we're not done yet. So we need some more things. So what what is favorite Park need? Is it going to work as it is? Do we have that that is the DTO. We have it. But what does it need here? For this method to work? Don't you need the request body? Exactly, we have to have the request body annotation, because we have to tell it that that data is in the request body of the body of the request. Because on a post, that's where the data is going to be, can be because we can actually send a post and have query string data. That's what we have to specify or path variables. That's what we have to specify where it's at. So we Saying this object is going to live in the request body or be there in the request body. So what other annotation should we have for post?
+
+That created? Yes. And that is
+
+let me look it up because I can't remember.
+
+Let's see that was in status. Thank you. We should be status status.
+
+There another thing part of the annotation, it's HTTP status dot created. But there's an annotation we have to use. It's like response that response status.
+
+Response status. I think it's like this
+
+an HTTP status.
+
+That's the one I've never had ports
+
+out there either.
+
+Let me get the package
+
+some reason every time you try to use HTTP status and never imports
+
+that's fine. That's fine. We want to this package name.
+
+Okay used to be a status dot
+
+mean that's not the right one.
+
+That's the wrong one. Spring
+
+web
+
+htt P.
+
+Web HTTP
+
+that's security.
+
+I just looked it up on like an old project. It's spring framework dot HTTP dot HTTP status. Okay. So well, thank you. So it's almost what I found over here.
+
+It's this right?
+
+Or is there to HTTPS? No, that's right. It didn't like that.
+
+Let me just complete it and see what happens.
+
+Thank you for looking it up. I don't know every time I try to use HTTP status it never I always have trouble getting it to import. I don't know what it is about that particular thing. That particular class. Okay, we have the response status, but what else should we have? What else do we have to have now? is authenticated. Yes. We have to have pre authorize with I think it says dedicated because this he says we're using the principle this has to be authenticated work. So now we need I think it's pre authorize
+
+is authenticated. I think that's right.
+
+And that's going to require to have the job It'd be token or to work, which is where we're going to get principle from.
+
+Because remember, the JVC token is three parts. It's the
+
+header information about the token, then it is the token itself, which contains the user, in this case, the username, the role, and the expiration. And then the last part is information for the key for the server to validate verify it.
+
+Right, so now we have it pre authenticated.
+
+And it started now Okay, so let's now go make it work. Or last, make sure it works. So come over here. We're gonna need to get a login. And I'm going to take the same here and I'm going to make another request. I should just get rid of the parks once we're done with that for today. Another request And it's going to go to parks. And this is going to be a post. So to test this, I have to login first. So when I log in, it's going to be a post to login, because that's what was defined in the project. The JSON I have to send his username is the key. And then the username, which we use user.
+
+That's one of the ones to find and then password.
+
+And it's set as password. So where the second part is, whatever your username and password is. So we're going to run this before we test our other API because we have to get a token. So it gives us the token. And copy that and having come over here, and we're going to go to authorization and select bearer token because that's what you wt uses, and it's going to replace the bearer token here. And that's going to go ahead and create whereby other headers went. If we can see them, it created headers for the request, I don't know where they went, they used to exist here, but they've disappeared sometime between cohorts. And I don't know where what happened. But he created the header for the authorization. So we can create our post now. And for that, we're going to go to body cheese raw and set this to JSON. And now we're gonna have to build since we don't have a JSON object, we're gonna build our JSON object manually from our favorite Park object. Because this has to match, this is what we're sending. So our JSON is going to be the request body it has to match the favorite part. But didn't have to have everything for instance rockin have an ID because we don't have one. But we do have to have a name. In fact, I'm just going to copy this. And for each of these, this will turn into a key
+
+like that. I don't know what this is.
+
+Like that
+
+is
+
+okay. So postman has some helpers that I was not aware of.
+
+That's useful
+
+with Visual Studio code.
+
+So what I'm doing is if you just let the word and press the quotes, it quotes, whatever Here you have selected. I actually believe Visual Studio code does do that. Every time I do that deletes the word. Maybe a subversion, your own fit, or Yeah, or some plugin I have has it. Visual Studio, the full Visual Studio, the C sharp one does that. And it's one of the features I really miss. When I'm working on other IDs. I didn't realize postman did it. So to see why my Visual Studio could just delete everything. Alright, so now this is our object, it matches this. And that's an easy way to create it, we have to have the data types the same, these are all going to be strings.
+
+And I would like to make it look like a real,
+
+something real.
+
+So let's go back to our API, where we're looking at one of the parks and let's get this one here. So we can reverse So let's grab. We know it's in Louisiana.
+
+We have a description here.
+
+We have a URL here. You know what I could just get it from over here to know
+
+dress
+
+get the image URL, copy Germans dress.
+
+So here's what our request will look like coming from our client if we're using the parks data we have.
+
+So let's send it
+
+bad request.
+
+It's
+
+are we missing
+
+out? Yeah, I put it in single Quotes instead of double quotes. I wonder if you could do this. Like there's you can
+
+columns, columns a
+
+costume? Yeah. I'm also missing those. Yeah.
+
+Thank you.
+
+Alright, let's try again.
+
+Okay, so it worked. We got an ID. So just seeing that Id knows means I know it's in the database.
+
+So come back over here and let's select
+
+selects are from
+
+favorite parks.
+
+So it's working.
+
+Now let's get it working from view. But before we
+
+know about from our ads,
+
+right, so let's go back to
+
+view and let's create a page now that we can link our park. And we can select a park on our park list. So we have a button for each of these that selects that park and goes routes to another page where we can add the park and that's probably about what we'll get to to the day but then you'll then we'll have walked through using a mutation the store again, you have to set up a route with a variable and call a post from access. So if we get that far, at least seen a touch of everything you'd have to do Alright, so we're gonna stop probably a little afternoon today. But not maybe not right at noon, but a little after there in time for everyone to get lunch before the one o'clock thing that way for Michelle doesn't get angry and yell at Jim. Because that's what happens when she gets hungry. So, do you want to take a break now? Or do you just want to? So, so some of you are, okay, there's at least one person has the thumbs up. So let's take a break. So we'll come back at 1121 and continue
+
+to snack.
+
+Okay, so we were, we have it working now. But now we have the API tested and we know it's working. So you're working through these since you're going to be building integrations To applications like this, I strongly encourage you always to test in postman like that, because it's really hard to troubleshoot API's from inside of view or inside of JavaScript because you get all kinds of strange errors. So I've spent hours trying to troubleshoot API's that are telling me the wrong errors from inside of browsers. And actually, I helped Steve do it for a long time last night, but he was getting a course I didn't help him. I just kept answering questions saying try this type of thing and being a rubber duck type thing for him. Because the browser saying cause errors, but as a third party API, but once you find out testing in postman would have found the problem pretty quick. If it was his own API. He did to be very detest in postman against the third party one first but it's third party so roles are a little different.
+
+So place to save you a lot of time that five years We'll save you a huge amount of time.
+
+Plus, you know what the object looks like now, so it'll be easier when you get to the Select. So our next thing will be to get this working in view. Now that we know what's working. So let's go back to here, let's build a new component. And I would like to get it and hopefully we can get it to we can get a park we should be able to do that get a parks, we can add a button each one of these, we can click it. And then we can add one of these actual parks. Since we set it up to use that data. We tested it with this data to the
+
+to our database.
+
+So let's go here. And this is the park list item and let's add a button that will do two things. It's going to take the park and we have to move the park between here and another component. That's a whole object worth of data. So what how should we move that
+
+knee surgery suggestions from
+
+Can we just pass it as a prop again? Well, we can't pass a whole object. It's a problem. Maybe we could break it down into a bunch of pieces. But
+
+it's a worldview. So how can we move it?
+
+We store it in a state.
+
+Yes, that's that. moving things around like that is the job of UX. That's the only reason we have UX. So keeping in mind when you're trying to move things around, the only reason this whole complication of UX exists, is to get things between components. That's its whole job. That's its only job. So keep that in mind that it's there. Because it's really there's other ways to do it. There's ways to do it using events, and it's really difficult. It's really challenging to set up. It's confusing and it's hard to get working and it's really brittle. That's why UX came about is to solve that problem. So Let's put it so we'll put it in the state, we'll put our single park in the state is something like current Park. And then we'll route to our new component new view where we're going to add the park, and we'll pass it the park code. That way when we get there, we can make sure that the park that's in the state is the one we actually wanted. So that's going to be our steps. Technically, we probably cannot skip pass in the park code. But that'll give us a chance to work with a parameter and the route to so there's value in doing that and as well as do one last check. So let's add a button. And when I add the button here
+
+Yeah, button. Let's see what happens. We add a button right here.
+
+It's gonna push down below I think
+
+no Gotta work.
+
+So value equals add to
+
+favorites.
+
+No didn't work.
+
+Not value is
+
+is it? I thought the buttons didn't close themselves. So you need to actually Oh, they don't get right thank you.
+
+Still not. And then the value seems to be between the tags. Now buttons, I thought this was the whole point of having a button as you can change the value. It'll work between the tags, we can make it work. But that's one of the reasons you had a I think it's a different key. But that'll work is that you, then you could change it more easily give flexibility
+
+that it works.
+
+Because really all I care about is getting a button there because we're in view. So
+
+I care more about this method down here.
+
+methods and well had part two favorites
+
+and then we'll just put a quick
+
+v on click Add park to favorites
+
+and we probably should put a
+
+prevent on that even though we're not in a form.
+
+It's saw as a default behavior we don't want
+
+Alright, so
+
+we'll see if that's working.
+
+So now we need to do this steps. So let's first put it in state.
+
+So this is the state. So let's add a
+
+current Park.
+
+This is gonna be an object. And now we need to add need to add a mutation. Because the mutation is the only way we should be changing the state. So set current Park, the first argument is mutation is going to be the state object itself. The second argument is going to be a park
+
+object.
+
+And then we'll say state
+
+current
+
+Park equals Park.
+
+And so that's gonna allow us to change this and now we'll go back to Our Park list item and we'll take and we'll call the mutation. I'm going to do that by calling this dot dollar sign state. dot. Yeah, no dollar sign a store
+
+then commit. So we're going to commit a mutation
+
+and we need that mutation name which was set current park
+
+in then
+
+our park
+
+that's step one,
+
+this park
+
+so let's make sure that works.
+
+Let's let's make sure we have to select a state.
+
+And now
+
+let's go to the View tools
+
+click Add to Favorites menu. should see a mutation and we do.
+
+There's our payload with the entire park object. So we're actually not we're getting all the data in our park object, but that's okay. So the entire park object can be sent, which means we could do some more interesting things with it on the other side if we wanted in the screen rather than just display it like this. But Alright, so it's working. Here, we can check to make sure loaded state has the current Park that's an object. And it does. Alright. So the mutations working, the next step is to route to our new component. So let's build a new view. Not a component because our it's gonna be we have to route to it. So it's not a new file, and we'll call it add Park view.
+
+And we'll just put a
+
+div
+
+Instead of that, we'll just do parks we can see it and now I'm going to go to the router. So I'm just gonna build that components we can see we got there. We'll come back and after that view we'll come back and add a component for actually the
+
+to actually do the Add Park. So let's go to the route we need a new route
+
+so
+
+we're gonna call this
+
+and our route will be
+
+say add Park
+
+and we'll call it add Park and we need to component add Park and requires Going to be true. Now we need to import the component so import add Park from
+
+views, add Park
+
+and I have something wrong there. Oh,
+
+I deleted
+
+okay and so actually want a woman to pass the park ID so let's put in
+
+park code
+
+so we're gonna add Park Park code
+
+and that's where we're going to link to So,
+
+back to the park list item, we could use router link to get there. But the problem is we need to set this mutation first. So because of that, we're just gonna use the route, do what's called a push to get there. Route push is just like a router link, but it happens pragmatically, instead of when the user clicks on something. So in this case, we're going to imitate it because the user is going to click on a button. But when we have more actions we have to take we have to do that. So to do that, we're going to say this route, I guess has access to the route object. And there is a push method. And that push method takes an object a route object, which is just like it does the same Rob object that we use on the router like it's the same exact object. So name is going to be the name of our route, add Park.
+
+And
+
+so name will be ad Park. And then we have params which is going to be another object. And we have one parameter we're sending Park code.
+
+So get that
+
+and park code and that's going to have the value of Park dot and let's look at what that was because I think it's I think it is Park code Oh, it's not there anymore.
+
+So
+
+I'm not there anymore either.
+
+Pretty sure it was barcode.
+
+If not, we'll get an error fairly quickly on this stop Parker, this park. Alright. So we push the button, it should commit that and it should move To this other page, let's see if that happens. So let's pick a state.
+
+And
+
+so add this one to favorites.
+
+We click the button and we get a bunch of errors.
+
+router pushes a route and it's router. That's it.
+
+It's it's route. It is push.
+
+Alright, let's go find out.
+
+Cuz I obviously have the syntax wrong.
+
+So you You
+
+route push
+
+this router push
+
+30 That's the question. I probably shouldn't listen to the question.
+
+I'm gonna go with it. This route my router
+
+it's this router, which is why I have second time.
+
+Push, push.
+
+This is from the router documentation. view.pjs.org This is the official documentation. Oh, no.
+
+That says a query. This is what I'm doing right here. params
+
+That's right.
+
+params doesn't exist with that. Make it err try. Park ID has I thought it was it
+
+the IDS a different thing in the so I ran into I do know that from looking at the pride the ideas and internal API then there's a park code that is like a four digit external code for for use
+
+linear programming params with the capital C as well in your router index such as
+
+I should go look at the air better
+
+let's recreate the air and there's no air it's I fixed it and if i don't i don't know i don't know what happened. I fixed it now it's working. So it was just a router.
+
+So we got to add Park.
+
+So now on the Hyde Park side
+
+we
+
+want to get the park out right want to get the park out of the state
+
+So
+
+let's create some data.
+
+And it needs to be returned a single Park object, not array an object. And then I want it when I come to the page. So for we've done that a few times, so it's created, right? So we're going to be created. And then now that we have been created, what we're going to do is we're gonna get the park out of the code out of the route. So let's do constant part code equals
+
+this dot router
+
+dot params dot and then
+
+our parameter name, Park code
+
+So now we're going to get the park the current Park out of the state so constant Park equals this dot store dot State DOT
+
+current Park
+
+now let's find out if
+
+no in there that's what the park cards look like. They're the ISO codes and then the idea is that you what you UID that good
+
+then we'll say Park if Park
+
+dot Park we know it's Park code because it worked equals
+
+Park code
+
+then we'll set Park equal to
+
+this park
+
+to Let's do let's change the name of this one so it's a little more clear what's going on
+
+there was that close to the park and then up here instead of add Park let's just print out Park
+
+and that's okay. Let's go back to here. Let's select a park
+
+we add the park.
+
+So, add to favorites, go to park code
+
+and it didn't
+
+let's check the view x store.
+
+We know that Okay, that's the park is in New York store.
+
+It is the park code ch ch
+
+I click this we should see another
+
+set Park. We do
+
+is the current Park
+
+Park code of undefined Why is the park undefined? We have the code
+
+this store dot state current Park
+
+I spell something wrong. Most likely
+
+state.
+
+Current Park is there.
+
+Okay, it's there.
+
+Just state
+
+oh I wonder if this is where something's going wrong
+
+let's do a console log
+
+Park
+
+this
+
+back you
+
+get a new list okay there's some
+
+spec one that doesn't have
+
+i'd created Nike calm
+
+Created
+
+let's refresh this
+
+saying it was an add park that it wasn't defined.
+
+It's and that's a good point maybe it's an
+
+I got the park code here because it's in the route.
+
+See it's an add Park. Not really preppy Park code of undefined and then they play some trying to play some trying to read the park code is right here. Did I mess up the router prams? I don't think so.
+
+Let's find out
+
+so one of the things I hope you're taking away from this is that when not things are not planned out. I have just as many problems as you do that's just part of development
+
+so
+
+yeah, the the constant problems constant things not working process look things up. It's just part of the process. It's so add Park. Let's put a breakpoint in created. And let's go back. So if you didn't see where I'm at, I went to sources. In Webpack. You can see the components in the in the component you can put breakpoints inside the component sorts scripts, you can't put it in the template or other places. We put it in the script tag.
+
+Alright, so what's there
+
+Okay, so it's that route we know it's there.
+
+So I have something wrong in the route any ideas
+
+is it is this bank route
+
+This is gonna be
+
+that's it. So this time it's route instead of router last it's router push route dot params.
+
+So now it's working.
+
+Alright, so we have our park and now we can finally add it.
+
+So let's put a let's go get the park list item and actually We have this template by now because I'll get into with the two favorite parks and that would be a loop. Let's just grab this this and the best way to do this but it'll work and just for time
+
+let's
+
+do that
+
+save that we should see
+
+here and then we'll put a button
+
+button. Do you want to add this park?
+
+And
+
+and
+
+why get rid of the Add to Favorites? I forgot to take out the breakpoint, okay
+
+get rid of the Add to Favorites button.
+
+What I really could do is you what we really could do is add a switch so we could reuse the same question without cutting and pasting, but
+
+to add this park, so let's put a
+
+method down here.
+
+So we get to the important part, which is finally calling our API.
+
+So we'll create a method, add Park. And we'll create a button on our button. We'll do an on V on click equals add Park.
+
+And
+
+Alright, so now we're at the point we're going to call our API.
+
+So we need in our park.
+
+So in our services, what service Do we need to add this API call to?
+
+Or what service should we add to
+
+service
+
+Can we do that?
+
+So what's different about park service with what's gonna cause problems are
+
+that we have different axes things set up in there.
+
+Exactly. That's the one set up for the MPs, the National Park Service's parts. So that's going to cause us problems, we could add it to state service and it would just it would work. But that's kind of weird too, right? It's not state, maybe we should have named State service something better. So we can always create a new one though. Let's create a new service and we'll call it because what we're really doing is adding it to the favorites, right? favorites, service dot j s. And then we'll, that's pretty much gonna be what we have in State service.
+
+And we'll make this add to favorites.
+
+We're going to need a park
+
+Then we're going to call finally call axios. And we're going to call parks with a post.
+
+So for axios, we're going to call dot post.
+
+And our base URL of our standard axios instance, the one we didn't create is going to be
+
+the this so we can just use slash parks.
+
+And then we just have to say, We want the park to the message body, but is that going to work?
+
+Is it gonna have to be a JSON serialize JSON?
+
+access is going to do that for us. But is this going to work?
+
+for other reasons.
+
+I'll give you a hint. No, it's not going to work. So why is it not going to work?
+
+What's different
+
+about our park than our API?
+
+data?
+
+Like this body, I guess, has different information inside of it. So yeah, so let's take a look at our park.
+
+So
+
+this is the park object we have in JavaScript, the National Park Service's Park. This is the Park Service we need in our API. So they don't match. Name, Description state. Those are different keys in plus, this has a bunch have stuff with it.
+
+So what we need to do is take
+
+that and build this from this. So another important part of matter of testing in postman first is the way you built this object. Can we see it working, we know what object we have to send it, we have to be careful that the object we're actually sending to the post matches the object that the API or API is expecting. And fortunately, it's pretty easy to build an object in JavaScript. So that's not going to be a difficult task, but he's had to remember to do it. So back in our add parks,
+
+we're going to do it here.
+
+We'll let X will update service. It'll require the correct Park object. So the park object we need
+
+const
+
+let's call it favorite Park.
+
+It's going to be
+
+An object looks like this. That's the JSON.
+
+But we want to name
+
+the state
+
+the euro.
+
+And for each of these, we need to go to get rid of the
+
+have all these
+
+four keys. And now we just go through and build forgot where we have us. We know where a park name is, it's here. So we're basically building what we have up here, just as in our objects Park name, state. We don't have here in The park and the park doesn't have a direct state code because it because a lot of parks span multiple states. So it has multiple state codes for the ones that it spans. But we where do we have the state code stored right now?
+
+in the store that's in the store. We've we kept a context of the state and the store. So selected state, and that changes every time the state changes and we only show parks from that state. So which means we can use it with this dot store, state, and we call it selected state.
+
+Description we have up here to its parked description.
+
+The URL, we have Park URL
+
+And for the image euro
+
+we have that up here too.
+
+So we need to build the object for our API when we're especially when we're dealing with multiple API's. Even if we're just dealing with data, we need to make sure our object matches the API object, the JSON object. If had extra keys, if that original if we would have built our API, so that uses these keys, we wouldn't have to do this because it can have extra stuff. It just can't have it just has to have matching keys.
+
+But then again, we should we be building our API to match you know, the National Park Service, probably not just by building what we need, not what they have, and then we can convert it like this. So now we have our
+
+object created
+
+and never used oh this these all should be this dot Park
+
+this stock Park
+
+go well
+
+the stock Park and the stock Park
+
+and now we're going to import our new service be created.
+
+So import
+
+import we called it favorites
+
+service
+
+from
+
+services
+
+are you verts service right
+
+and that should be outside of the export default
+
+script
+
+I'm actually gonna make that lowercase.
+
+It doesn't really matter. I like the services to be lowercase JavaScript is lowercase and view components be capitalized, because it makes it easier to see which is which it'll work either way. And I actually don't know what the official convention is or if there is one.
+
+So now we're going to car service.
+
+And
+
+see, favorite service go back to that
+
+we can add to park
+
+and the park will pass our favorite Park object. And now we have to handle the promise is going to be returning the response. We're gonna pass it to this and we're going to check it out. If the response dot status code
+
+remember, let me check.
+
+If anyone remembers what the
+
+status code is, I just can't remember the name of it. Just response non status. Thank you. That's easy to just guess that's probably what I would have guessed. Now the screen I was looking for the code, we want to check that make sure it's equal to a one. And then if that happens, let's just do something really easy. We'll say, put a variable here.
+
+Add status, empty.
+
+And then we'll just put
+
+above all this
+
+status, we probably should put in a paragraph
+
+and then do a V.
+
+Show RPF. Either one.
+
+If add status is not equal to actually just have ADD status. Because of the truth, the nature of JavaScript if it's an empty string, it won't. It'll be false. And then down here, if that's the case, we'll say
+
+the this dot add status equals successful or added
+
+successfully.
+
+Else
+
+we'll just put it to this Status
+
+did not add successfully.
+
+If that happens, do a console dot log of the response to so I can check it for better user experience. If it wasn't getting late, we could do no more, but we'll just do that. And then I want to catch the error. And again, we should check the errors and do something with the three types of errors. But I'm just going to pass it to console dot error, so I can see it for troubleshooting.
+
+So right, right there on your bed and then your catch. Definitely, if you get a response, is it just gonna go into the then no matter what, like, are you ever going to hit the catch there?
+
+The only way I'll hit the catches of there's a the so the promise is going to resolve if there's a response object. If there's a response after the promise resolves, As far as the catches for the promise, it's not an error. That's kind of the weird thing is it's the promises not been fulfilled. It's been rejected, which is like an error. But it can happen for all kinds of reasons. The only reasons it's not it's going to happen in this case is if there's three reasons, if the request fails, meaning we couldn't get to the server, it's going to reject the promise. If a status returns, it's not in the 200 range. And that's because axios rejects the promise if we get a status not in 200,
+
+maybe 302, but but four or 500.
+
+So it rejects the promise, but that's an axios feature. It part of the reason we use it, and then if axios has just another type of error, that causes reject the promise, but not an error, like we see him come up showing up in the console. So an internal error. Okay, yeah. It would actually be a little bit clearer if they made promises because that's a promise that Using then and catch if it was like a fulfilled reject, like it's actually called it'd be a lot clearer what's going on, especially since Java uses catch in a similar but slightly different manner. Yeah, it makes it kind of weird. That makes sense. Thank you. Okay. All right. So the saved so I don't want to do it from here. I'm going to go back to home because I don't that way I can make sure I get Park context these are the parks so add to favorite and then we'll call Do you want to add this? I'm going to go to the Network tab so I can see
+
+my hopeful post here.
+
+And nothing happened.
+
+Why did not Oh, because we didn't know we did.
+
+On click Add the park
+
+Add Park
+
+methods method like I did like four times
+
+Why isn't it kinda API
+
+counselors every time you click Oh, thank you
+
+should be looking for that.
+
+Add to Favorites is not a function.
+
+All right. So it's in the
+
+favorite service. Save it.
+
+Oh, you're right. Thank you
+
+if you're wondering, this is really is what it's like. when nobody's watching me too, it's constant. Oh, I didn't save that, oh, I time this type that it's exactly like this only lasts for hours because there's not 18 people going, Oh, you got that wrong. So
+
+click the wrong link, we go back and try again.
+
+And
+
+let's pick a state
+
+favorite redirects. And
+
+back to the park code problem.
+
+We fix that.
+
+Let's try another Park.
+
+outworked okay I don't know what was going on with something in the data might have been wrong. But now we're here and network
+
+at a park.
+
+There's parks and we got a four one
+
+and we got a 200.
+
+Works
+
+bearer tokens there.
+
+Can we check to see if it got added to our database? Yeah,
+
+that's for us.
+
+So we should have
+
+That's when we added manually.
+
+Maybe? Oh, you know what? We've we haven't logged in today. The tokens probably expired.
+
+So let's add
+
+tokens probably have some yesterday probably. Yeah.
+
+All right. So let's try
+
+the favorites.
+
+The park added successfully. Yeah, that's what it was. And it's added. So we have a round trip with an ad. Alright, so we got I saw that happen. I would not have thought about that at all. So when we weren't jadibooti that's something you're gonna have to keep in mind is the tokens expire or the tokens are set to expire every 24 hours, so you need to log in at least once a day. I would log in more than that. You know, you notice we didn't have to log in. As far as the view side is concerned, we're just logged in, it doesn't expire the token. It doesn't check the expiration, which is common for the client side. But the server side is very particular, because that's where data is changing. So you know, if you're logged in here, and you're on your home machine, this is all happening on your machine. So what if it's pretends like it's logged in, and you still got functionality. So a good behavior would have been, when it gets back to redirect to the login page, have them log in again, then retry the action. And that can all be done inside view, but or to check the token expiration date manually before doing actions and things like that. So there are good ways to handle it. But Alright, so we have it, we have it working now with an ad and you have a word of mouth select. I know that that last part was really tedious. But I hope that some of the problems we ran into Here are some of the of the problems you're going to run into. Right. So hopefully, you'll think back to the solution.
+
+So any questions or what questions do you have?
+
+Alright. So, I know Kevin suggested that we just go straight to one o'clock to your meeting, but we won't do that.
+
+See, I think there is.
+
+Alright, so there's one more thing I do want to show you or take, really boys take a minute I was going to show it to you. It's not code. And it's for Monday, since the way to work on Monday is we'll have a meeting at 9am. You'll be told your teams will be announced two projects will be announced. And then you'll immediately get started then in the afternoon. will have meetings with you for planning. But between that time and the afternoon, your team will be doing planning. So I wanted to show you because it seems to where. So john will talk about or fall to all talk about these Trello boards that you'll be given for them somebody sure how to get to them. So you'll be given a repository for your Capstone. And in that repository, I added it to the main Java blue materials. If you want to try it. There'll be Oh, that's the wrong cohort. I don't have core 10. Yeah, I must have clicked on my mistake, another time. You'll have this Trello icon in your repository for your Capstone. When you click on it, it's going to take you directly to it, it's going to come to a thing asking you to self add, there'll be set up that if long as you're a member of that repository with right access, you can add yourself to the Trello board. So if you don't have a Trello account, you have to create one for free, and then it's really useful. So and then it'll allow you to add, login without Account link that account to this Bitbucket repository.
+
+And
+
+you'll be taken to a board like this, where you'll have a
+
+backlog with all your user stories from the requirements. So I just wanted to show you that that icon is going to be there, because we won't see it before them. And every time we get to teams in the afternoon, they're like, wait, we didn't see the Trello board, we couldn't find it. So that's where it's at. That's how you find it. It'll be linked to your Bitbucket account. And then I'm also going to mention this because another thing that we always have to fix in the afternoon, this backlog. You're not allowed to change them. So you can add, but you can't remove, edit, or do anything to them. And we'll talk about why on Monday and mainly the background cards are not your cards. They're the product owners cards. So don't you can move them between here and here, which will be called correctly called the sprint backlog backlog on Monday night and sprint backlog. But or it may not be. That's, I think I make that mistake ring backlog for like three cohorts. It's not. Okay, you're right. It's not changing. It'll be spring backlog for you as well. But so that's where you'll find your requirements and how you can start with them on Monday.
+
+So any questions before?
+
+All right, so for today
+
+you have your agile presentation with Jim salmons at one. So that actually should be really good. Jim's is a one of the like 200 and some people in the world that have all these like amazing Very high level agile certifications and actually helps write the Agile process on some group, I can't remember the name of it. So he's really well rounded in the Agile world. And so he's not only knows I Agile process, but he actually helps create them that is used by agile practitioners. So we're lucky when he comes in and talks to the student to all of you for free, these cohort. So his sister came here a few few cards ago. And so he's a, he's a big fan of coming and talking when he can. So he'll he'll be speaking at one. So that's required, because you'll need that for next week. So next week, if you're capstones said the Monday the kickoff of me on Monday and I already mentioned how that's going to work during that time. And you're listening to a speech that we'll be talking about some different roles, ones the scrum master and once the product owner. So next Sunday or Monday, Rochelle will be your Scrum Master And I'll be your product owner. So keep that in mind as you're listening to the roles what that means that because he's much better explaining it than we are, or I am, and I do in the past I've heard I wish I would have known that when I was listening to him explain it. So keep that in mind as to what roles will be taken for your Capstone.
+
+Alright, so
+
+then another reminder, in the lead exercises, any past work is due tonight, the night at midnight 11:59pm. I'm sure if it goes to like 12 or one Rochelle will let the slide but not beyond that.
+
+So I'm sure she'll be up at 12 or two watching the
+
+show. I'll just disable the link to the net born so
+
+right at 12 Oh, like right at 1159.
+
+But that's it. That's do and then except for your post in get exercises, those are due on Sunday, right? Is that right? So I want to make sure I'm telling you, right, since I'm alright. So, other than that, this is it. So congratulations, you completed all the lecture. No more, no more having to get up and spend time listening to me drone on every morning. So now just two more weeks and you get to go out and listen to your boss and teammates drone on every every morning to you instead of I mean, but it's not quite as such the monologue at least. So yeah, great job completing everything. It's been a real honor and a pleasure to have all of you in the class. So
+
+let's see.
+
+Yep, that's all I have. So thank you, and we'll see you on Monday. For So
+
+I'm sure I'll talk to some of you about exercises before then.
+
+I think I'm thinking about coming back and doing another round Brian. So you don't see me next cohort.
+
+All right. I'm not ready. I'm not ready.
+
+But thanks so much for your time as well.
+
+Thank you so much wine.
+
+So, so many people are promised that James and nobody, everyone's disappointed me. Nobody's ever.
+
+like yeah, that's funny.
+
+All right, well, take care everyone.
+
+Transcribed by https://otter.ai

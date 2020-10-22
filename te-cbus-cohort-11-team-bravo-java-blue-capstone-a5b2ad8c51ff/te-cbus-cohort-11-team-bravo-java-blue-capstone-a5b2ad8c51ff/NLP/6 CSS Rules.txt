@@ -1,0 +1,17 @@
+Book
+https://book.techelevator.com/content/css-selectors-box-model.html#css-rules
+
+Along with the selector, a CSS rule consists of at least one property and value. For instance, if you wanted to change the background color of all divs to red, you could write a rule like this:
+
+div {
+    background-color: red;
+}
+In the example above, background-color is the property, and red is the value that is being set to that property. Note that the property and value are separated by a colon : and the CSS rule has a semi-colon ; at the end. The semi-colons are important when you have multiple property/value pairs.
+
+If you wanted to also style those divs to be only 500px wide, the CSS rule would look like this:
+
+div {
+    background-color: red;
+    width: 500px;
+}
+You can find all the CSS properties that can be changed on CSS Reference

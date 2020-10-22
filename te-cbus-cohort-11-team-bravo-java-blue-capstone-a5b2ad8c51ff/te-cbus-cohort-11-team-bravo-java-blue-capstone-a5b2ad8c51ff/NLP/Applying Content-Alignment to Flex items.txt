@@ -1,0 +1,82 @@
+Book
+https://book.techelevator.com/content/css-flexbox.html#applying-content-alignment-to-flex-items
+
+Applying content alignment to flex items
+The ability to align and justify content is where the value of Flexbox really shines. Flexbox considers content to be on two axises for arranging items inside a container.
+
+To arrange items in the vertical axis, you'd use the align-items property. justify-content arranges items along the horizontal axis:
+
+
+Image - Align Justify Start End
+#Arranging flexbox items along the vertical axis
+To arrange items along the vertical axis, you use align-items. The align-items CSS property has several settings.
+
+#align-items: flex-start | flex-end
+#bottom-horizontal {
+  display: flex;
+  align-items: flex-start; /* | flex-end */
+}
+
+Image - Align Start End
+#align-items: center
+#bottom-horizontal {
+  display: flex;
+  align-items: center;
+}
+
+Image - Align Center
+#align-items: stretch
+#bottom-horizontal {
+  display: flex;
+  align-items: stretch;
+}
+
+Image - Align Strech
+#Arranging flexbox items along the horizontal axis
+To arrange items along the horizontal axis, you use justify-content. The justify-content CSS property takes several values.
+
+#justify-content: flex-start | flex-end
+#bottom-horizontal {
+  display: flex;
+  justify-content: flex-start; /* | flex-end */
+}
+
+Image - Justify Start End
+#justify-content: center
+#bottom-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+Image - Justify Center
+#justify-content: stretch
+#bottom-horizontal {
+  display: flex;
+  justify-content: stretch;
+}
+
+Image - Justify Stretch
+#Spacing flexbox items along the horizontal axis
+To space items along the horizontal axis, you'd use space-evenly, space-between and space-around. These CSS properties provide spacing in various ways. Look at the examples below to see the subtle differences achieved by using each of these properties.
+
+#justify-content: space-evenly
+#bottom-horizontal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+Image - Justify Start End
+#justify-content: space-between
+#bottom-horizontal {
+  display: flex;
+  justify-content: space-between;
+}
+
+Image - Justify Space Between
+#justify-content: space-around
+#bottom-horizontal {
+  display: flex;
+  justify-content: space-around;
+}
+
+Image - Justify Space Around

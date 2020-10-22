@@ -1,0 +1,2019 @@
+Zoom
+https://techelevator.zoom.us/rec/share/xuhENKizzVJIQInrxE_eefd5EsP_eaa82iUX_qZYmEtZQl9QObmfBQo4U38jlzLc?startTime=1595596737000
+https://docs.google.com/presentation/d/1yZYbsgGkJCe6MnOx9L5fJCIaAFi7Z4R4DGEZNNGqLkY/edit?usp=sharing
+https://drive.google.com/file/d/1SeR31ge8dnC6ZW7c5VQWp0na8kWq9adl/view?usp=sharing
+So, today, I think we call these review days, but they're really more project days. that focus on everything we've learned throughout the week. So we're gonna, it's gonna be divided into kind of two parts today. First that said, we didn't finish yesterday, there was one thing left to talk about. So we're going to look at, and that's just alternate views. It's not really about view x, or, but it is about components. And yesterday was mainly about the components. Know, the hardest part was the view x. So we're going to take a look at of using alternate components, which means just changing the whole look and kind of fill the page, like when you go to a site like Amazon, and you can switch between different views of products in the list. So we're looking at how that can be done. And then we're going to take a look at building a project from view project. from the ground up, so we're going to start with an empty folder. It has an empty, it has a JSON file, and a couple of images in it. And we're going to build, we're going to start with a view, create and build out a project from that. I'm including a couple things we haven't seen yet that we're going to need to import in or be able to use the JSON file. So we'll take a kind of a preview, it's some stuff for next week. And then something we won't even talk about that. So that's the two things we're going to do. So to start with, let's look at this project. It's this is NPM run surf. This is where we ended up yesterday. I just a copy and paste of the lecture code at the lecture final from the end of yesterday.
+
+So
+
+if you remember yesterday, we built out the start here, but we got off the page into multiple components. And we ended by having the page fully working to the way it was the day before only using the new york store in the model ponent design.
+
+So let's start
+
+with a common requirement of many pages is not to have a static view like this, because different users prefer different ways of looking at data and using data. So we often want to have multiple ways to see data so that as different users come to the site to go to use it, they can get the experience that is best for them. So let's build out Want to build out a table view. So this information, it's more in a tabular view, it's just a list of data, a list of the reviews, that is a little more concise than these larger kind of card, card views, less card list of cards. And then I want to make it so the user can select which view they want. So to do that, we're going to need some new components because we're going to need first to build kind of the alternate view of what we want. I'm going to go to the source of our components or your components.
+
+And
+
+if we're going to build a table, so we're going to build a know a traditional web table that's going to have a table and then inside of it is going to have multiple rows. I think it makes sense to build this and these rows are going to be where the date is. Make sense, the build this is two components. The table itself being an outer component, that will then put into the main page. And then each row being its own component, since each rows representing a piece of data or one full set of data. That way we have, we can encapsulate a way of building a row that shows the data. And then we have the table itself. That's a single component that uses that other components so that we can put it where we want it on a page. So let's start by building the table rows. Well, we'll start by building just a simple table row that doesn't really connect to the data. Then we'll build the table itself, and then we'll put it onto the app view so that we can see it and work with it. And then we'll complete Both of them. And then we'll make the table and the review list, which is the listing
+
+component that does something similar to this
+
+interchangeable by a user selection,
+
+do that
+
+build a new component.
+
+And we'll just call it review, table row dot view.
+
+And this is going to be a single, use the view snippet.
+
+Sorry, the resample. Again,
+
+this is going to be a single row of a table. So
+
+tr, and it's gonna end with a tr
+
+That'd be our single containing element because a tr is a containing element.
+
+And we'll leave it
+
+just like that for now.
+
+And for the start off our
+
+export, what a sname it.
+
+Review,
+
+view table row
+
+sheet. Let's do one more thing in here, let's do a single TD, that is just something like row. And we're just going to use that so we can see it on the page when we load it before we start changing the data in so the purpose will be that we can get this listing here just with the word row. So we You can see it's building it, the proper number of them. And then we'll fill out the actual data. So we'll get the components working the way we want first, and then
+
+complete them with
+
+connecting them to the view store. So with that, let's build the second thing we'll need, which is
+
+the review table.
+
+Your table view.
+
+Again, I'm going to use the view x snippet. And this is going to have the table
+
+and
+
+it's going to have
+
+probably start with a header.
+
+So let's put a header here. And
+
+what a speedo there's a title is probably gonna be the first thing so let's just put that in there.
+
+And what's in it at that point
+
+Let's get these cleaned up.
+
+Okay. So in the same way, we'll do an export default, or the export default we'll start just by putting a name here
+
+because this will and we'll import.
+
+So review dot table.
+
+We do a couple more things here.
+
+So we want we want to get the reviews the same as we had in the other component. So the other component we had a method a computed property called filtered reviews, and we need the exact same set of reviews. So I'm going to go to that other component, I think that was in review list. Remember, right? Yes, this method, right, this computed property, I'm just going to grab it, because we need it as is.
+
+I think we need it as is.
+
+Alright, so we'll just take that
+
+back to the table and
+
+put that here, computed in the script.
+
+Review list anymore.
+
+And that way we can use it up here to build
+
+our table, each of our table rows. So we'll import now, the table row.
+
+Import, review,
+
+table row
+
+from
+
+the table row.
+
+And then we'll add it to
+
+our components.
+
+So we can use it on the page, which will give us the ability up here to put the tag on the page. So review, table, row. And now we have that filtered property that's coming from the store the York store just like before. So it's the same thing. It's on the other view, and that's what we want is
+
+to have
+
+the same data had filtered the Same way on this page list to start with.
+
+So
+
+we'll come up here.
+
+And for each of these,
+
+we'll do
+
+four
+
+equals, review in filtered
+
+reviews. And then we'll just find it
+
+be buying the key to the review title.
+
+We'll just start there.
+
+Alright, so this should give us enough to connect it now to the app view and actually see it. See it working, at least see the one row per review being built. It'll just be one column. There'll be no data, but we'll see should at least see one for each one. So to go back to App view,
+
+I'm going to import. Ryan, you had a typo. I did see in table, line six, filtered. Thank you.
+
+capital E,
+
+capital E to I typos. Thank you.
+
+And let me save. All right.
+
+So now back to the app view. And we'll import
+
+the
+
+table review table
+
+from
+
+components
+
+and the review table.
+
+And the same way we'll
+
+add it here.
+
+And then instead of having the review list up here, just going to put that in the comment.
+
+And we'll change it to our
+
+review table.
+
+When we save it, we should see a change in this page. Where we have weeks back we have title, we know there are four reviews before. So there's four rows. So we have at least we know the date is there. We can check in the dev tools at this point if we wanted, but since we couldn't copy and paste that code, we know the view XOR is working where we can be confident that's there. So now we can go back and finish the
+
+actual components.
+
+So let's look at view table first.
+
+So we know there's more than just the title. So let's fill out. We also have to remember the reviewer, the review the rating and that favorited checkbox.
+
+So let's add
+
+something like the reviewer.
+
+The
+
+review itself
+
+and th for the rating
+
+and then
+
+that favorited
+
+checkbox.
+
+So
+
+now, something else we probably want to do
+
+So a table if it doesn't have rows, it without with those cards, if there's no data, it is going to show the ID to show the top part, the well part without any review, and nothing below it with a table, it's going to end up showing the table titles. And when tables are data, they often if we don't, depending on our CSF, they often kind of compressed to the, to the left. So let's put in something that can help with that.
+
+So below the review table, we'll put in an extra tr.
+
+And we know that if the list is empty, that there'll be no table review table rows created. So let's check if just do a V show on this tr and we'll say if the filtered reviews length is equal to zero. So if there's no reviews, we know that that these weren't built, the review tables weren't built. So let's build this tr instead. And if ever, the show is not going to add it to the DOM and less, the last is true. And we'll just do a TD. And we'll do a call column span on it to five so will span across all the columns. And just make it say something like there are no reviews. That way that it'll have let the user know what's going on. And we'll also keep the table it'll make it look nice and give us good user experience without just having kind of the column headers kind of floating there. Alright, so the next thing we need to do is get
+
+the reviews to
+
+me The review itself.
+
+So to do that, we're going to need a property. So when we pass data from one element to another one component to another, there, it's going from the parent to the child, we can pass it through a property. So, so the loops going is looping here. But what we're looping over is a review. And we need the each review to be available in the review table row. That's creating the row for it. So to do that, we'll go back to the review table row.
+
+And
+
+we'll add a property.
+
+So we add properties by props. And then we just have an array of the properties we want as strings, and these are going to become attributes on the tag that we created. So this is creating a, you know, tag, we're using an HTML those properties, we'll look at It's, so have a review attribute and back on their table row, meaning that we'll use that review attribute we just created review. And we're going to set it to this review here.
+
+Let's make that more clear. Let's say let's call this
+
+something like next review.
+
+Which means to change this here and here. That way, it's more clear that the review names are not connected. This is coming is this out I fall in then this is coming from the property name. So I'm missing something here to the MC number. Tell me what I'm missing.
+
+Do you need a V bind it? Exactly. So
+
+When I have this with any of the attributes, including the ones I created, like the review attribute, this is just being treated as text. And sometimes I want to just just text. If I want this to be evaluated as a possible variable that's in scope right now. I have to be bind it. And that tells you that what I have in here part of it, or all of it is going to be a variable, not just text. Without v bind, it would be the literal text. Next review, with V bind, it becomes the variable next review, which is going to be the next review object. So for here, that's probably everything we need for our pages. We'll give it some style. Like yesterday, I'm not going to type out all the styles and today, instead, I will, I'm going to cut and paste them and I'll put them River
+
+lace this whole style tag
+
+and River.
+
+So you can see it already gave some styling to it and gave it its alternating row color and some other pieces. So let's go back to the table row. I think we have just about everything we need here. So for here, now we have this property review to work with. So now we can bind that data into our table row itself.
+
+And so we have a title.
+
+And actually, I'm going to grab go to the table. I'm going to grab this just a reference. I know what the T let's see where can I put it.
+
+The script because I can use a better comment
+
+there. Alright, so the first one is a title. So I'm going to one way by that. And by one way binding, it means that the data is going to be written to the screen, it's going to it's going to be actively update, anytime this object, whatever I bind here updates, it's going to update the value that's being printed here. So one way binding is one way because it binds from the object to the value on the screen. So we'll use that property review and we know that's going to be a review object. So we're going to bind it to title. I'm going to save it and we should see the review titles now. here and we don't
+
+get probably
+
+just refresh here.
+
+Yeah, they're there. So, browser cache. So we saw the view review titles now.
+
+So now let's put the spine the other ones, the
+
+review dot
+
+reviewer.
+
+And we'll see that one reviewer up here, and we'll just go down through them. So we went through review next
+
+view dot view.
+
+Now we have the review.
+
+Be nice if this didn't wrap like that. So let's put
+
+Okay, looks a little nicer. And now we need to favorited we need the stars. So that's going to look very similar to what we had before.
+
+So class
+
+equals stars
+
+in this are going to be this images. So we're going to have an image and its tags here. And we have some things we're going to source will be the assets star dot png. Then we're going to we'll want the title so v bind to To the title like we did before, review dot rating plus star review, where there'll be a tooltip. We're going to add the class to it,
+
+of star.
+
+And now we'll do that before
+
+we do in and review dot ratings. So we loop one time for each thing in the rating, then we need to do a binding of the key, which is going to be just the end because that's gonna be a number one through zero through the rating.
+
+Just see what that looks like.
+
+Alright, so
+
+maybe needs constraint. Let's put up with him here. Okay,
+
+you know, wrap again, right?
+
+Yeah, we could. Yeah. And do that up here. Oh, actually, we haven't done any CSS for it yet.
+
+Let's add the CSS.
+
+actually think if we just go down and it's add a style stars, so it's pretty easy just to display and change it to a Flexbox.
+
+Yeah. So Flexbox can fix it for us.
+
+So
+
+we have our stars and now we just need favorited.
+
+And that's going to be that checkbox.
+
+Wrong tag,
+
+it's gonna be a TD
+
+and inside of that we'll have an input, which is going to be type equals checkbox.
+
+And
+
+the reviews for remember let's go look at the reviews in
+
+cuz that was filtered right.
+
+I think it's what it was bound to and the other one. See product review. That's our
+
+product review display.
+
+Yeah. favorited
+
+so it's gonna be this
+
+This exact thing, let's copy it
+
+off since I'm here
+
+it will row.
+
+Alright, so now we have
+
+reviews. We don't have that working yet, but we'll fix that. And then we need the on favorited change. So I'll get rid of this here now. So they don't feel ready to change is going to be a method. And it's just going to call if you remember, commit in the UX store. So it's great to commit a mutation. So I've a methods. And, again, it's already written. It's in our review display here, I think. Yeah, it's right here. So let's grab it.
+
+So,
+
+okay, now we need CSS in here for that. or someplace for that. Oh, no, we don't know we wouldn't have CSS because we're not going to change in this view. That is
+
+a checkbox there, I think is enough.
+
+And the other view now, it's hard to see the checkbox, but here in a table view, we can see it quite quite easily. So let's, uh,
+
+alright, so we have that working. Let's add one more feature.
+
+Let's see where can we add it?
+
+Let's add a favorite all feature.
+
+So a single checkbox that controls the rest
+
+which is a common thing and a lot of
+
+sights.
+
+So we're going to do that not here on the table row. But on the review table itself.
+
+We're gonna end up having to
+
+put a div here.
+
+We're going to have to wrap this whole thing in a div.
+
+And let's make sure we didn't mess them up. In fact, anything it doesn't. That way, we can put a div right here. And inside of it, we'll put a checkbox and put type equals checkbox. And I don't really need anything else for it. And we need to put her ID so we can label it. Id
+
+favorite read off
+
+and
+
+in this Blue Label out here
+
+label for
+
+Favorite Oh.
+
+Put them on separate lines so they
+
+have the proper hierarchy just for readability and put our div. Closer div here.
+
+Why did you see your kid does that?
+
+Alright, and our label could be something like
+
+favorite
+
+Change all.
+
+We have that here. You probably want it over here so we can do this at a quick class.
+
+We'll call it
+
+favorite all.
+
+Grab that ID and come down to the style.
+
+And for the style, we can just do
+
+let's see if we make this flex display.
+
+Flex and then we justify the content
+
+to
+
+flex and I think
+
+I did nothing
+
+need a dot before
+
+favorable.
+
+Oh, thank you.
+
+That would explain it.
+
+There so it's over here now. Doesn't look great, but maybe we can do a favorite all
+
+and may give the
+
+any input associated any div
+
+a child of that input would give it a right. P margin. Right of
+
+10 px.
+
+Margin left not right.
+
+Okay. It doesn't look perfect, but we'll go with it like that. I think that's close enough. So I wanted to so when I checked this, all these check, you want to uncheck this all these uncheck. So
+
+We're going to have to do,
+
+we have to put an event on here.
+
+And it's going to call a method.
+
+So we're going to need a method
+
+and method will equal say,
+
+cold.
+
+Which
+
+favorite on all.
+
+And that's our method. We're gonna call in the event.
+
+And then our checkbox was to a V on
+
+change.
+
+And
+
+you want to change it's a checkbox, there is no default behavior. So
+
+should be how we need there. And now here, I want to
+
+change all of these.
+
+So the change all those, it's about data.
+
+And yes, we are, we are going to add something to switch between the two. But we're completing that we're gonna complete the components first and then add it to so we can switch between the two views. So it's about the data. If I change the data in this list for all of these, then they're going to change which means that in this case, my data is in view x. So I actually need a mutation that's going to do this. If it wasn't here, it would just be changing the list But since it's in view, x is actually a little more complicated I have to do with her mutation, otherwise it won't, they won't be seeing the other components.
+
+And that's not something I want to happen. So
+
+let's go over to the store.
+
+And I'm going to build
+
+we have this flip favorited
+
+we could just make it so it flips the state of each one using this. Let's do that. It's not quite as common woba
+
+No, cuz I want to put them all the same.
+
+So we need something we need one like this, but let's make it where it's a mutation that is
+
+change
+
+all
+
+favourites
+
+ever take the state and
+
+favorited somebody's value. So this code is here in view x, but it'd be the same thing we would write if it wasn't using view x we'd write in the other component.
+
+The since we're using view x.
+
+So what we'll do here is we're going to loop through
+
+each of
+
+the items in the filter.
+
+And we're going to modify it so we can do state reviews.
+
+For each for each review what's called our
+
+we want to change our dot favorited equal to favorite did actually change this to our favorite it has caught some like new state.
+
+That should work.
+
+So this one flips one.
+
+This one should change all of the reviews to one one of the other states. I think we'll find out. So now this is the mutation we're going to have to commit.
+
+So we'll take that back to the app view.
+
+And we need to get
+
+so we need the checkboxes current value, right? So we have we have we need to know whether it's checked or not. So to do that, we're going to need something more. So let's get this working hard coded and then we'll get the check box. cart value since we're in the middle of doing that, let's complete that. So to commit this mutation, we're going to call this
+
+store
+
+dot commit.
+
+And then we're gonna use the mutation. And then we're going to just make them all true to start with.
+
+Past the new state of true.
+
+And
+
+let's see if it works. That works. It doesn't.
+
+Let's find out why. It's inspected.
+
+costs were
+
+not defined.
+
+I have a methods.
+
+laboratory typo
+
+Let's clear the console.
+
+There. So now there, they all check true.
+
+So we have that done. So I really want it to be all of them to be the same as whatever this is. So to get this value in view, I don't just select this and get it, I want a value that I can v bind this to.
+
+So
+
+I'm going to, that means I need data from my page.
+
+So create some data.
+
+And the data method always has to return
+
+an object. So we'll just make something like
+
+a favorite.
+
+All value and we need a default so our default will be false.
+
+And then we'll come up here. And in our checkbox, we're going to be use v model to to a bind
+
+to
+
+that value. So two way binding means that if I change the checkbox here, it's going to change the data here. And if I, and conversely, if I change the data here, it's going to change the checkbox here. So it'll go both ways. A change on either side of the binding the binding is between the HTML in the template and a value in the data or in the properties as well. The binding is connection between those two in two way means that a change on either side will change both or change the other. One way means of change on the data will change the HTML, but the change in HTML will not affect the data, but that's used for things We can't change an HTML anyways.
+
+So now we should have
+
+or not should we will have if we look in our view tools.
+
+And here in the view table
+
+we have our favorited value, we check it. It's true, false. So it's going back and forth now with our checkbox. So now we can use that as our value
+
+to our mutation
+
+right here. So this
+
+favorite all values
+
+and I'm going to refresh the page so everything restarts Once this is done, you know, restart the view x store. So now we have a checkbox. Now this doesn't take into account if they're already checked. But that's that's just a matter of In that loop, just checking the value. But the the point of this is that with view, we don't change the component we elements. We don't manipulate the checkbox. We don't manipulate any of this, like we do with vanilla JavaScript. The key to view is we manipulate we connect it to data binding, and then we manipulate and use the data. I think that's one of the big difficulties of view is switching your thought from, how do I manipulate the data and let the reactivity update the page? to how do I update the document object model, which is something we're used to. So we think, How do I know the checkbox in JavaScript we select it with query selector, we find the checkbox and we find out its check property. In view, we bind it to data, a data element, and then we just look use the data element is just a variable and it tell it has the value. And if we want to change the checkbox We don't change the checkbox is checked property, we change the data, it's bound to it, but views or activity, change it. Alright. So before we do the last step, which is getting this component we have now switching with the other one other questions.
+
+Alright. So let's add a link up here, right here. We're gonna have some kind of stacked links, but that's okay.
+
+It so we won't look great, but
+
+and I want it so that when
+
+the user wants to see the ListView, they can click a link here and they'll say list and it'll swap to the ListView and change the link. And when they want to see this view, they can just swap back. So that's going to happen in the parent, which is the app view
+
+So to do that, we're going to need
+
+something that we can
+
+make a decision on which one we're using. So we just need a very, we need a variable a time, we need a variable that's just internal to the component. We create data, we put it in data. We put it in the return of the data object. So let's just call it something like a table view.
+
+So table view, will start out as false. So this is our table view.
+
+The other one will call ListView.
+
+So if we come up here, we have two view types.
+
+And we want to say
+
+Vf
+
+four v four doesn't really matter. So table view is True.
+
+pay per view,
+
+table view if table view is true.
+
+So the table view and it's false right now, so it's going to be nothing. And then we'll do the same thing for the ListView, which is our review list up here.
+
+And what to say when not table view.
+
+So now we should see the old view, which shows up. And we have this variable here. And the app. If we switch as we switch it switches to true, we get that view. We switch it to false, we get the other view. So now we'll just add a link
+
+right above them. So maybe,
+
+Brian, sorry to interrupt. Is that just pretty much the exact same functionality as doing like a V show? there?
+
+Yeah, it's But it is a V show,
+
+keeps it in the DOM and hides it and shows it Vf completely removes it or adds it to the DOM. From the user's point of view, it's the same exact behavior. Which one we used here Really? wouldn't matter. We could get by with either one of us either one. Okay, cool. Thank you.
+
+All right. So
+
+let's just add something
+
+like maybe here we'll add a new div because we want to container for it and why two links.
+
+Right. And let's give it a class. So we can
+
+you type will add to
+
+anchor tags. The first one And we're going
+
+right there. So the first one will be for the table view. And for that, we're going to add an event v on it, we want to add the event to click. It is an anchor tag. So we don't want anything that we want. It has a default behavior, so we want to prevent it.
+
+And
+
+on click will set table view variable equal to true. And we only want this to show if table view is false. So do a Vf or V show either one.
+
+When not table view,
+
+and then we'll build a second anchor tag.
+
+It's going to be
+
+almost identical. It's beyond. Click
+
+Again, we want to prevent the default behavior, the link of the anchor.
+
+So when it's clicked TableView will be set to false. And it's Vf will say, only show this if table views true. So the opposite of what it's going to set it to, and this would be ListView.
+
+And then
+
+actually gives us give us a link here to table view. Now we get list view, or the table view, and we want to go back to ListView. We can swap between them. So the user can put it now maybe let's just put it over here. So we can take that class, that should probably be few type and build a class just to clean that up a little bit.
+
+And we'll do the same same idea to use splay flex
+
+justify
+
+content to flex and we could do more but
+
+that push it over here giving
+
+what we want. And then this is still working with that as well. And these are working in this manner on this page. So we come here, you see they're still checked. We checked them all. Go back to our ListView they're all still checked.
+
+So table view.
+
+We would need to change that to properly display but that's okay. That's just a matter of so now they're it's switchable
+
+So, what questions do you have?
+
+I know there's been a lot of questions about the checkboxes on the exercises. I hope that that helped some. I know it's not exactly the problem you're solving. But the idea that it's all about the data and the list, it's not about the HTML. Alright, so the next thing I want to do then is create a new project. And we'll take a break before we get into it, but I want to run the view command before break that way. It's done we get back. So let's do that.
+
+And I'm gonna close this
+
+and close all these
+
+and
+
+do Ctrl C here.
+
+Add a new project to my workspace when I add the folder to the workspace and when to add the review folder, lecture final.
+
+So this is there's nothing in it right now. And then I'm going to go down to terminal and switch directories into that. It gets to your to up, thank
+
+Okay, that's right. Okay, that's where we want to be.
+
+So I want to create a new view project. So what I thought we could build going back to module one. I thought we could build a view version. Not all the functionality, but the functionality of the vending machine. So doing the same type of behavior, the same type of thing, because it has a lot of lot of everything we've done this weekend. It has lots of events, it has lots of data, it's going to require review x.
+
+So it has a little bit of everything to do that.
+
+So let's start by creating a new note, I want to do it completely from scratch, except for CSS. We'll cut and paste some really horrible CSS for you to use. But the rest we'll do all from starting here with a blank folder that has a few images on it and this JSON file we'll look at. So to do that, we need to create a new project.
+
+So
+
+I'm going to create so view
+
+Create
+
+and then let's call it like wii u dash
+
+vending machine
+
+and that's going to give us some options
+
+and it's actually question is answered your questions No I don't.
+
+So
+
+when I manually select features before we select defaults, but we weren't view x this time, the manual stuff is only only Babylonia slant. So I'm going to manually select the features babbles already gonna be selecting that I'll leave that I'm going to come down to view x and press space to select it. I'm gonna leave Lennar and for Mater selected as it is. And once we have Babel view x and linter selected, I'm going to press enter and then continue processing Pressing ENTER through all the options that we have. So we're going to accept defaults on everything.
+
+Alright, so at this point, I'm going to press Enter. And it's going to go through each of these. And when it's told No, that doesn't matter if you want to say the presets that just allows you to have it on the menu
+
+somewhere, tell no. And then
+
+I'm going to
+
+it'll start building it.
+
+Alright. So this is going to build the
+
+view project. And this as we know, it takes a few minutes. So at this point, let's go ahead and take a break. So we'll come back at 1124 and then start building the project should be done by them.
+
+So
+
+So now we have this project that I've built.
+
+And since we included view x and the list,
+
+it built the store for us.
+
+So the first let's look at the starting files and reposition those to where they need to be. So the first one is the inventory JSON. I'm gonna open it up. If you're following along, you don't need to. But if I open it up, it's a JSON file. It should look familiar. I took the CSV file from your Capstone module on Capstone and ran it through a CSV to JSON converter and it's Just JSON file that. So I'm going to take this, we need to take this JSON file and I need it in the public directory, because we're going to call it like it's a web service. And we'll talk about that means in a moment. So I'm going to move it to public. And then there's some images that we'll use and application. So I'm gonna put those in the source assets folder so we can access them the same place the view logo is. So those four pieces, those four files, let's move to up to assets. Because for internal images that we're going to work with for view, that's where we want to have them
+
+so we can work with them.
+
+Alright, so now that we have bad
+
+We'll close that, we need to start setting up. The first thing we're going to have to set up is some things that are gonna look really unfamiliar. So the first thing we need to do is we need to call that inventory Jason loaded. So we're going to walk through it, but not in a lot of detail, it's going to be more of a preview of what's coming. Because I want this to this application to not be just a bunch of hard coded list those, those are fine, but it's time to move more towards what real application data looks like. So we're going to do this in the store in the index js, so in the view x store. So I want to load that list of JSON items in here. So got to create
+
+first in the state
+
+items, and it just be an array.
+
+It's gonna be an empty array.
+
+And then the second thing we're going to create is we're actually going to create an action. So that's not something we've done before.
+
+But the action is going to
+
+allow us to call is where we're going to call the web, the JSON file from. And that's actually the job of an action is to be business logic and calling the JSON file to load. That data is definitely business logic.
+
+So we're going to call it from there.
+
+So
+
+we haven't seen one yet.
+
+So the way they're going to look is they look a lot like methods. So here in actions to create one, it's going to be Get Products, and all actions are going to have this commit part. We're going to use the commit argument that it's going to send to us through our binding to it to actually commit the changes to the store or to the state. So this next part is going to be, again, I'm going to talk say what it does, but it's going to be a kind of, you're following along, type along and just don't worry too much about it, because we're going to spend two days or not two days, but a day on all day on this next week. So we're going to call the JSON file like it's a web service. Because we can do that. We're going to use this thing in the browser called the fetch API. And the next week, we'll look at it we're gonna use this library called axios. But it's going to work pretty much a tentacle. So I'm gonna start with fetch. It's just a command in JavaScript. It's a method, and I'm going to tell it I want the inventory dot JSON. It has to be in public because since it's going to be treated like an API, it's going to call back to this to the local server for it and expected that public directory
+
+Then dot then.
+
+And that's where it's going to handle the response, we're going to pass that to an anonymous method that is going to return response dot JSON. So it's going to convert the response into JSON data, even though it already is sorry. It's gonna return response JSON, which is going to convert the JSON response into JavaScript data into a JavaScript object. And then to handle that, then now it's going to be JavaScript object items.
+
+And here,
+
+we have to do something. But let's finish this statement. Then we'll do dot catch. And if we get an error, we're going to pass it to console
+
+dot error, error.
+
+And now we need to look at Wrong, nothing.
+
+That's right.
+
+See what see what. So now we need to
+
+change save this items, which is going to be the JavaScript version of that JSON data into this item. So we need a mutation. Anytime we're changing the state, we need to do it in a mutation. Because if we don't, it's not going to reactively. It's not going to be reactive, and it's not going to be a log of it. I want to be able to see the history of this happening. In fact, that's how we're going to test it initially is by looking at the mutation history. So to do that, I'm going to build a mutation, add all items. It takes a state and the list of items and it's just going to take for the state Items equals the items I passed into it. So this items is going to equal to the state items, which is this. And then down here, I'm going to commit the mutation,
+
+add all items. And I.
+
+So now we have an action, we can call from our view,
+
+view component to get to initially load the list of items. But, again, that's all new code. But we have to have it to get the list of components. I was going to initially started cutting and pasting that into an array. But I think this I think preview of next week is more beneficial. So if you don't understand what's going on there, don't worry about it. That's completely okay. That's set a whole day next week.
+
+If you don't understand what's going on here, that's a whole different then we should talk about that. But Alright, so we have our, the beginning of our view x store. So now let's create our main page. So I've been calling views that our pages views, vi, E, Ws, all week. So let's build one of those, instead of using App view this time, most actual sites wouldn't use App view, they would have their own version. So let's do that. So I'm going to create in source, I'm going to create a new folder views. And this is going to represent our pages on the site, the components are going to represent the parts of the page. So if you think about our, the way we use an app view, like earlier today and yesterday, where it had brought all the pieces together that's ever presents a page that a user is looking at, right? So the views represent those Today we're only gonna have one because we need Tuesday's lecture routing before we can have more than one. But so we'll just start with one, I'm gonna create a new file. And it's just a component views are just components that are organized differently. There's no no difference between them besides just the organization.
+
+So vending machine view, this will be our main
+
+page. And I'll use the view snippet to get the template. And I'm going to start off with just, I'm going to do two things. I'm going to give a div. And this is important for my starting page. I want to give it the div id of app, if remember, we looked at that in the starting page of app view, because that's where view is going to do what's called Mount mounting, and we'll look at that again next week, but mounting means a little more. So I'm gonna build on each one here just so we can get started. Let's say view fitting machine, cuz that's when we get data displaying on the page first. And I'm gonna come down here after the name,
+
+the name, machine.
+
+And then I'm going to put in another, something new here to that we'll get this almost to the end of the stuff that's for next week. But uh, I want to, it's called created, and it's what's called a hook. And it's going to run code when the page has been created. So the page has been loaded it in that code, we're going to call that action in the view in the view x store. So this dot store, and we call those actions using, we call them dispatching an action, Get Products that's going to cause that action to Treat that JSON file like an API, and call it like an API, get the JSON file, that it's going to convert it to a JavaScript object in calling mutation, if you remember to change update to store. So when this vending machine page gets created, that file is going to get loaded. And it will be in the store if things work and they will, probably so so the next thing we need to do is since we're getting rid of app view, we need to fix main main dot j s. So main dot j s is where this is where I've used. This is where we load the initial application.
+
+So I'm going to import my vending machine
+
+from
+
+it's not in the same directory instead of confused
+
+vending machine. I'm gonna get rid of
+
+app from here.
+
+And then down here, where it has this line render will change app to vending machine telling it to start with render that component. That's where everything for view is going to start the Mt. app, we weren't to leave. That's the reason we had to have that Id app is we could change this. But it's, it's also a good indicator that that's our starting point in the application, when we look at through the components, so we'll leave it at that. And that's all we have to do here, we have to just get rid of the app view and change its name, import it and then use the variable here
+
+in the main.
+
+So let's save it and now we should be able to do NPM run, serve and see if it works or what problems we might have.
+
+And we have problems.
+
+I'm in the wrong directory. So we have to change because we created it and it creates a directory, we have to change into that directory before we can run it.
+
+So there I'm in the one with package JSON. So this is where I need to be.
+
+And it's taking a moment.
+
+So when it loads, what we're going to do is we should see just the Wii vending machine. And then we're going to use the dev tools, view dev tools, just make sure that things loaded into the state because if that didn't work, Then there's no point in continuing to have that fixed. So we have the vending machine. So our vending machine components loading first, like we want,
+
+inspect.
+
+You've got dev tools.
+
+And I'm going to go to View x.
+
+I can see where my mutation at all items was called. So that's a good site, good sign and had a payload of 19 items, which is good. We'll load state and state has items 19. Okay, so there's JavaScript, so the JavaScript objects in my state from the JSON file, so that all worked. So now we're ready to actually do the part that's not new. That is for Freeview. Before we do that, or any questions At least about the general idea of what how it's what it's doing.
+
+Okay. All right.
+
+So let's, we're going to need that quite a bit. So.
+
+Okay, so let's start building the components. So the first thing, let's build a component. Actually, let's, I'll put there I have some really bad. And that what I say really bad. I do mean, I'm in the wrong place. All right, let's actually get rid of app P. Let's delete that.
+
+Let's delete the app view.
+
+And let's delete the Hello World component. There's no reason to have those in there.
+
+And then in our
+
+Don't buy clothes that there's some style.
+
+I'm going to
+
+copy and paste in here and if you're following along I will copy and paste it to wherever as well
+
+change anything yet but
+
+so it'll just when we get the whitelist IP and stuff, it'll just do some placement to make them not to worry about that. So the first thing we need to do is get the items display. So I want the items to display in this manner.
+
+So we'll have
+
+this for item types right? This will have boxes so like a vending machine, but look at each one of these will have the items inside of it listed like this. With buttons on each one of these that can be clicked to purchase that item.
+
+And then we'll build
+
+a way to add money right here. And we'll build a shopping cart right here. So multiple things can be purchased. And as part of that, we'll have a total like total to the shopping cart and stuff in this area.
+
+So that's what we're gonna end up building.
+
+Roughly.
+
+So questions on, or ideas or anything for that before we build it.
+
+So like,
+
+actually, let's put these
+
+things here item. So this would be an item. Each one of these, each one of these will be
+
+an item list.
+
+Have something, maybe we'll call it.
+
+See?
+
+Oh yeah.
+
+Somebody can add money component.
+
+And then we'll build a shopping cart.
+
+So those will be our, our components.
+
+Let me do what I did yesterday and shipped a four I think, take a screenshot of that.
+
+So we can refer back to it.
+
+It's not a very detailed design, but it'll work to
+
+get us to where we need to be.
+
+Alright. So let's build these items first. Because that's the bulk of it, right? So let's start by building an individual item. And then we'll build the item list. The hold is similar like we've done yesterday, and like we did earlier today, we'll start with a smaller piece, build out to the larger piece, and then add the larger piece to the ending the main display.
+
+So we have components here.
+
+I'm going to build a new file called item dot view. I'm gonna use the view template again to display it. And let's start off with just a div. We'll give it the class of item
+
+and
+
+an h1
+
+that it says item
+
+And we'll do an export name
+
+for each item.
+
+And we'll stop. We'll just leave it at that.
+
+And now let's go build the item lists so we can get this on the page so we can see it working as we work. So my components, I'm going to build a new file called item list view. And use the view snippet. Again, here while the container class for it, it's class equals to item list as we can refer to it later. And I should be in the dev course.
+
+And so here, I want
+
+The items. So what? If I wanted to display the items here? What do I need
+
+to import the item?
+
+When should I need to import the item?
+
+import item from
+
+what else do we need?
+
+Are we gonna need to loop through it and pass the item as the object? That's Yeah, we won't need to do that.
+
+So we're going to have to loop through something.
+
+So what do we need to loop through
+
+the prop
+
+property of what?
+
+Where's our data being stored?
+
+So where's the where's the list of items currently stored
+
+in this store? state?
+
+So if we want to get to that list, what do we need? What do we need as far as a view component piece?
+
+So we want it to be reactive, right? So what gives us reactive data that we don't have in this page? via mutation, mutation changes the store. So when we change something in the item, like add it to the shopping cart, I will definitely be true. But here, just to get it interactive way, which Which part? There's all the different parts of
+
+a view component, which part allows us to do that second,
+
+So can we do with a method?
+
+I see some people shaking their heads for that work.
+
+Work wants
+
+to work the first time. So why wouldn't it web would only work once. What about a method
+
+with features of a method?
+
+Only it would only allow it to work when we load the page.
+
+It needs an events to trigger. Yeah, methods aren't reactive. They don't trigger on their own. Yes, exactly. So what does trigger on its own computed Yeah, but a computed property computer properties are used when we need to. We need to determine without how already having data and we needed to be reactive in that data changes. So if we need something from the state, the view excellent Data is not reactive. But if we put in a computed property that computer property will watch the state in react when it changes. So we need a computed property get the list. So let's build a computed property. So we'll make it computed.
+
+And let's call it something like
+
+it's called filter items again, because we will eventually filter the items, but for right now we won't. So we want to get the items from the store. So we say this dot store, and then state and then items. So this store is going to point is to, again to the store
+
+and then state
+
+State and then items.
+
+So the store is already loaded to store state items and stores with $1 sign to reference, the one that's currently loaded on this page.
+
+Let's save that.
+
+And now we can we said we needed to put the items in a loop and have them
+
+one display for each
+
+item. So item
+
+before item and filtered items, and then we have to V bind the key and if we look at the JSON Which is represents what the JavaScript object is. So we can look at that to see what our JavaScript object is going to look like. It has this key here. That is going to be, it's going to be unique, that's the unique identifier. So we can bind to that. So buying the key to the item key.
+
+And then
+
+if we save that,
+
+so
+
+let's say extra, and we're missing the name. So let's put the name in. Name is going to be item not Java item dot list.
+
+And now we have to add, we can add the item list to the vending machine to see if it's working. And then we can talk about how we actually want it to work, or how we the detail more the details. So to add a component to any other component, we import it.
+
+item list
+
+from the location, so we're in views right now. So we need to go up one level, and then to components and then to the item. But there's a shortcut. So there's a built in in the components. There's a built in alias, the at symbol, which is the source folder. So from the source folder, we want to go to components. But the problem with the is that it doesn't autocomplete for you.
+
+It must
+
+Now down here we need our components.
+
+item list.
+
+And then up here
+
+we'll add our item. Dice list are tagged that's created.
+
+Save that. And we should see on there.
+
+Okay, so item list has an error.
+
+Does anyone see the problem on there?
+
+Can we tell me what's wrong?
+
+We need to return our items from the comfort items list.
+
+Yeah, exactly. So um, computed properties have to return a value Because that's the whole point is to get a value, not to just do work, but to compute some value and return it. So to return items there. So now we have this big component has what looks like riding on the items
+
+on it. So we have our data working.
+
+So I will point out when you're working with the store, that last night, I was working on this, and to see if it worked the way I hoped it would. And I had it like this, which is not in the store. And I spent an hour trying to troubleshoot, loading the JSON file, because JavaScript just went Alright, it's not there, but I'm not going to tell you that's not there. We're just going to go with it. So be careful when loading things from the store. It doesn't check the names exist. It just comes back undefined.
+
+In the spirit of debugging with them computed properties What is a good way to debug that?
+
+So we can look.
+
+Right? There's our computer properties. In the view tools. If we look at the chart, if we look at the component, it'll have the section computed, it'll also have all the data if it's there. But in the computer section, we can see the values that it's currently returning. So the computed property filtered items is currently returning an array with 19 items, and you can see the right here.
+
+Okay, I mean, yeah, that makes sense. But like, if you're just trying to get something to work, and it's just giving you an error, you can't like console log from computer or something like that. Yeah, you could, if you could also. I mean,
+
+you could do I
+
+think you can't from here.
+
+console log from it the same
+
+way. You can also go to sources
+
+and
+
+go to Webpack.
+
+To refresh to make this work, it doesn't always.
+
+Yeah, Webpack and then I can see the view components.
+
+I can go to any view component. And I can put a breakpoint and refresh and it'll stop at the breakpoint lobby to step through it as well. Thank you.
+
+All right.
+
+All right. So now we have the items loaded.
+
+Now let's make them divide them up the way we'd want to. So what I would like actually to do is not have all the items in one list. There's four types of items, right? There's, if you remember, I'm sure everyone will never forget there's appetizers there's. So I got the catering system lists, but it's the same thing, right? It's worked pretty much identical. So the, there was appetizers, desserts, entrees and beverages. So I went through a list for each one. Well, so we need a way to make this item list. Be a list for each one.
+
+So how could I pass?
+
+If I look at the JSON data?
+
+I know I can determine the type each one is by this code.
+
+I don't want to build multiple item lists. What I want to do is be able to use the same component and how Have it to know which type to load. How could I pass in a code? To tell it? What type of item to load
+
+from the main vending machine?
+
+Could we give it four items? And then like for a Vf or something where the code is equal to d or something? Yeah, yeah, we can but but how do we get the code?
+
+That's, that's what I'm asked how do we get in this item list? I don't want to rebuild. I don't want to build for item lists. I want to use it as tag How can I have the main page the parent page, tell it which one it should be looking for?
+
+By passing it the code as a Prop, maybe? Yeah, so it's a property. Yeah.
+
+So go to properties and maybe pass a code like item,
+
+item type.
+
+So that's gonna allow me to pass it as an attribute on the list. An item list type. So I have this property now, so that I could come down here.
+
+And I could
+
+change my filtered items.
+
+So return set of returning the list directly. We could call filter.
+
+filter the list based on that property.
+
+So return this
+
+sorry, item, dot, I think it was code code.
+
+equals this dot item type.
+
+So we'll photo the ones that are only for that code.
+
+So now that we have that,
+
+now none of them are working. I don't know where that line came from. That's interesting. But we'll figure out later. Let's go back to the vending machine and we have the item list. So we have the item type now, item type equals and
+
+one of them was in a I think.
+
+So now we have
+
+save something.
+
+We have the first one
+
+I think another one was
+
+the
+
+second one.
+
+And I don't think it's using the filtered list properly, but we'll fix that
+
+was he?
+
+And the last one was
+
+like D, E, A and B.
+
+And B, we could reorganize them however we would like but
+
+so shot for them now.
+
+Okay, and there looks like they're all loading the same thing. So let's figure out what's going on with that. So let's go down to the vending machine to one of them. I didn't have eight still has it a filtered item array of 19.
+
+So what am I doing Let's take a look at the item list.
+
+Return. So it gets items, close items filtered off, is it the V binding? Yeah, that's the I had one equals that. So always return true. Instead of three equals like I should have
+
+and refresh it.
+
+There. So now they're different sizes. That's what I would expect.
+
+So now maybe here an item list, it's time to
+
+start applying some CSS.
+
+So I'm going to grab some CSS for the item list here. Again, not good CSS but CSS and paste it into the style. You can also paste it into river
+
+And we'll save it.
+
+And I don't know if we put the we need CSS in the item as well. And I probably just put the item CSS demo. Nope. So the item, CSS for it.
+
+So that first one goes into the item list. This CSS goes into the item. I think
+
+that's not the way it should be looking, but we'll figure that out.
+
+No, it's because we haven't finished everything.
+
+So this CSS gets into item.
+
+pop it up. I don't know. All right.
+
+Now let's
+
+finish, get the data actually working. So now we have them displaying. And we have all the items, but now we need to make the item actually do something.
+
+So how could we get an individual item in this item component? What do we need?
+
+Yeah, prop work. So
+
+we have a property, because we're going to pass it from the parent component A time we're going to pass for the opponent component.
+
+That we that's what a property is for.
+
+So then, now we can go up here and let's start changing this. So maybe sort of page one That was just there for testing. Let's change this to an h3. And we're going to one way bind to our property item. And we know there is a name. We save that we should see that. Well, let's keep going before we decide it's not working.
+
+And now we'll have a div.
+
+And let's give it a class of price.
+
+Oh, we're not passing them in yet. So that makes sense.
+
+And our price while the dollar sign, and then item dot price.
+
+And then we'll do another div. And let's give it a class of the code. Because their CSS it'll change the code into a button once we have it and we're binded to item key
+
+And we saved that it's not gonna serve, it'll look like this because we haven't sent the past the items through yet. So we need to go back to item list now.
+
+And here, I need to pass
+
+item as an attribute.
+
+So want to pass this attribute item. So what do I pass here?
+
+What I put here
+
+wouldn't you
+
+as item that's right. Before.
+
+Yeah. So past item, but what do I need to do that? Is that going to work like this? Or do I need something more
+
+needed to be found?
+
+Yeah, I need v bind because without v bind, it's just going to be the string item. But with V bind, it'll use the variable. So now I finding it. And now I have this.
+
+And I'm missing some CSS.
+
+css someplace.
+
+So I'd like to get titles on these and actually figure out why they're not showing up the way they're supposed to be. I mean, they're not said the CSS is not great, but it's should look a little better than that. has to be a vending machine.
+
+Items list.
+
+Maybe another div here.
+
+Let's add another div here.
+
+Item lists,
+
+just wrapping that around, it's just a wrapper of those lists.
+
+Because that div is a flat has the CSS that turns into a Flexbox. That's what's missing. There.
+
+That's the type of ugly they should be not the one we had so.
+
+So now we can do some other things. I'd like to get a title across the top. So we have these four list items.
+
+How could I pass the title to each one of them that I wanted to display?
+
+Can we just make data in the defaults?
+
+COVID How about know which title? It is? How do I know in this list item? Which title that it should be displaying?
+
+Can you do v bind a, just like a string to that? whatever it's called, I can't remember the element.
+
+So which element because we can, we can be V bind to anything but
+
+the other screen that you are on
+
+each of the item lists since you know what each one of those will be, say, as appetizer.
+
+Yes, that's good. That's a good point. I probably do want to set it here in the main vending machine. But how do I pass it then from here? To here, what do I What do I need? items? That's the problem. So item type props being taken up by the letter ad EMB. So what if I want to pass two things? How can I do that? Or can I do that?
+
+Can we create another prop? That's an item title?
+
+Yeah. So we can still comma.
+
+And let's call it title.
+
+And then we'll put the title.
+
+I mean, put it above this div, we can put it as something like
+
+an h2
+
+should be inside the class, sorry. So let's do an h2. And we'll just find the title from that property. So the components by using props, we're moving the need To know what it is, we're saying this can be this is going to be called something, but what it's called, it's not up to the component, it's up to its parent. And that becomes just another attribute on the tag. So let's see that's going to be appetizers.
+
+title is going to be desserts.
+
+entrees.
+
+And we'll give it the title of
+
+beverages.
+
+And we should see it now displaying across
+
+each of the items.
+
+So we can so
+
+the next thing I would like to do is there's images that we removed at the beginning. They're an assets so there's four Images, they happen to be named the same as the titles. So we can take advantage of that. But we're gonna have to figure out understand a couple things about the way view works. But to do that, so we're gonna have to actually talk about something new. So what I want
+
+here in my components,
+
+I want an image
+
+above the item.
+
+So between the items and this dessert
+
+I want to have, let's put it another div. Give it a class of image just contains it and also so it'll put it into your makeup block. And because
+
+and then inside of that, we'll put an image
+
+and I want to source
+
+To be, see we're there. So we're going to go to assets. So we're here in components, we're going to go up one level to assets. And then let's say Happy tiser
+
+dot png.
+
+So I want the source to look like this, but I want it to be dynamic for each of the images. So I have the title and the images are named the same as the title.
+
+So what I really need is a title right here.
+
+But if I just do
+
+this,
+
+it's not gonna work.
+
+So if I'm going to make a dynamic
+
+source.
+
+What do I need to do with source?
+
+Can we concatenate the title into the string?
+
+We can try. So, plus
+
+title. So something like this. We need to
+
+smile like that.
+
+And I have an extra or something.
+
+Yeah, it's not respond to that.
+
+Make sure I'm doing it.
+
+So to use this here, what do I need source to be? start there.
+
+Why can't I use title later?
+
+Can we just make a source into a string? So we could define source somewhere in the components and then pass that as the source. Where are we going to do that?
+
+Maybe data.
+
+Okay, but how are we going to use title?
+
+title there?
+
+Maybe it's a computed property. But maybe, but
+
+even then, to use that computed property here, what what is source need?
+
+We're going to use something from view and an attribute. What is that you'd have to have
+
+Have we done it a few times stay ready.
+
+So titles of Prop title is in the properties, which means it's a variable that view has access to fine. Yes, it needs a bound. In order to use a variable with an attribute or tag or any place we have to bind it. That's how we get the value. It always has to be bound. So means that our source has to have the bind. Now it has a possibility of working but you can see it already has. Now it has to be in
+
+double quotes
+
+And now HTML is mad because HTML doesn't know what concatenation is. So maybe we could
+
+try
+
+this to single quotes.
+
+Because we actually can concatenate a string like that. Let's see if that works. And it doesn't, because it's so maybe we can get rid of these
+
+because the binding and Theron went away.
+
+And now we have enough now we that's not working. Let's see what it's built.
+
+So I'm going to load the image a new tab so you can see this URL easily.
+
+So it's built assets Andre, Andres. But
+
+that's not what we really need.
+
+So it's not now now it's not recognizing that this is relative. So it's treating it as relative to the URL, not relative to the view directories. So something was said that before it was, was on the right track, what we need is something like Peter property, this would be more of the job of a method. It's gonna be called once, it's not gonna be updated. Again, it's not reactive, we're not going to change the title. If we do, we're changing the entire component. And it's going to be another thing that's going to we're gonna have to do. So let's build a method. We could make it work with computer properties. But the thing is, it'd be a lot easier if I could just pass an argument to it. And I can't do that with a computed property. So that's one of the, like, could use the property. So let's do something like get image URL, and we'll pass it the title. And then we'll concatenate this all together there. So we'll return because now we're just in JavaScript. And when view gets it, it'll be seen as one string.
+
+I just said a curiosity ago. Could you insert that Doc, could you use that symbol trick that they mentioned?
+
+I can't know that that works in the imports. It doesn't work in this because this is going to be this is part of the template so it doesn't work in the template. It'd be really nice if it did.
+
+snowing, call this method.
+
+Here we have to remain bound as south of the V bind into call a method. And then what is past the title?
+
+And still didn't work.
+
+But we're a lot closer now.
+
+So
+
+there's a problem that we have to that's new, something we haven't talked, talked about. We won't again, but you're running into it in your capstones. So I guess we're probably well during the two day project next week, but so, these images and asset view has a optimization. So we hard code them like we started out we put appetize was the only image then it worked right. So concatenating the same path should work but view when we have at home hardcoded it says, okay, you're using the appetizer image. So I'm going to include the appetizer image when I build, when I go when I put everything together and package things together to be used on the server. But when we make it dynamic, and now we're concatenating in this title, and view doesn't know what title means at any given time, not a time not at build time and only knows at runtime. It doesn't. It looks at images and says, you know, you have appetizer beverage dessert entree image, you're not using any of them. So we're not going to include them. We're going to make it more efficient and not include them. And now they don't work because now they're not on the server that is in our source code.
+
+So I'm bringing this up, I want to show it because you're going to run into it during the capstone, it's guaranteed.
+
+And other times because every time you want to use dynamic image links in view, you run into it. And is it actually easy fix. You just have to know the fix. They're so down here, we're going to wrap this return and require this method require. All it does, it says whatever's in this, whatever resource this points to this URL points to, or this path points to, it's required, it's going to be dynamically used. So included. So when we save that,
+
+now they work.
+
+If we had hard coded the values up here, like we started, they would have worked. It's only because we made it to namic. So we wanted to mimic image we will call a method. There is a way to actually get this all working up here. But it's much easier just to call a method and have it work. And then on our path we can get together we have to wrap it in require. If you do get it working up here directly, you have to put it require up here as well. But so questions on any of that? I did that was all completely new but
+
+all right, are not new just to require parts now. Yes.
+
+Right. backtracking a little bit. When you use the title in that item. Bob, you you didn't do a V bind. Can you explain that to me?
+
+Where did I use the title? Well, sir,
+
+I must get an
+
+item. I don't think item has the title.
+
+The vending machine has a title. It has the title and the item list has the title.
+
+There is a place to Okay. Can you get to the intermission?
+
+Yes. All right. That Sorry. So you say title equals upset others.
+
+Yeah. What is that?
+
+Because it's setting it to a literal string.
+
+So if I wanted this to be a variable called appetizers, so I could do this, I could, if I wanted to, I could create data. And in here, I can return and I could say,
+
+See app name,
+
+IP, tigers.
+
+So I can do that. And here's a little string if I want to use this variable. Now, if I do that, we'll see that it's appetizers is well broken because there's no items in it right, just two items called app name. And the reason is because app name is what literally gets passed through the string app name. If I V bind it, we're going to see it working. Here we should, yeah, that's working. Because now app name gets evaluated as a variable someplace in scope. So all v bind is doing is saying something in this string is a variable.
+
+So allowing you to look for it.
+
+So when we heart if we if we want the string desserts, then we don't need to be binded. If we want, so the V binding is not about, does that make sense? To the bindings about this side of it? The value not about this side.
+
+Yeah, that makes that makes perfect sense. Thank you.
+
+And actually, I'll leave that there. So there's an example both maybe it'll Alright. So other questions before Move on. Alright, so the next now we haven't displaying. So now we need to get
+
+what's going on?
+
+up. There's a lot of contours may refresh to see if this goes away, Brian. Yes. I think it's time for a break. Okay. That's my vote anyway. All right. That's, that's good. All right. So let's take a break. So we'll come back at 11. What if I can i 1131? Right. Come back. No, that's five minutes. Come back in 10 minutes. 1130 seconds. That's my brains just not working right now. All right, so before we get started again, I'm finished. The rest of the parts are there. What questions do you have?
+
+Um, so I just kind of wanted to talk about like the hierarchy real quick. So vending machine is the Parents have item lists, which is the parent of item. Yes. And so to, like item list needs to have the props that vending machine will be passing to it. And then item needs to have the props that will be coming from item list.
+
+That's correct. Yeah. Okay, got it, thank you.
+
+And each of them, you know, we know what they are, the way the view hierarchies are actually built. Each of them doesn't really know or care who their parents are. As long as the bright properties are provided they they function, meaning we can take our item and use it on something besides item list, or we can take our item list and use it in a different page. And that's the whole point of components that become these wee wee little reusable pieces as long as you give them provide them the data they need. They work.
+
+So So I guess
+
+in this specific case, I list is clearly defined right there where you've got it highlighted as a component. And that's why we can pass those values to it.
+
+Exactly. So when we define item lists as a component allows us to use as a tag in our template. And then item list requires that if you're going to use it, you need to pass these two properties attributes. So since we're using here, we have to pass those two properties.
+
+So they're not optional, you have to pass those properties,
+
+oh, we can leave them out. And it's not going to error because it's JavaScript and HTML. But what's going to happen is, it may or may not work. So in this case, we got a bunch of errors. Because it needs that those to work or actually didn't know didn't know we didn't get we got a bunch of errors and the rest of the page worked. So user just sees that. That list is not there. But there's actually See a bunch of arrows going on? Because it can't find some of the things. Okay, cool. Thank you so much.
+
+So anything else before we turn out the questions before we move on.
+
+So let's
+
+get some of the other pieces then working. I think we have these working as well as well as they need to.
+
+So maybe the shopping cart
+
+somebody created another, I'm actually gonna close the item and item list. I think we're pretty much done with those. I don't need the inventory anymore either.
+
+So let's create a new component.
+
+And I don't know why I got my node. Let me fix that so we can see the files better.
+
+No, Marshall is open. But let's create a new component
+
+on record shopping cart view.
+
+And in the shopping cart, I'm going to use the snippet to build the template.
+
+And let's build out a template. So
+
+div class equals cart.
+
+And let's make it just we'll start out with it's not, there's already an h1 on the page, so this will be the second level. So we'll make an h2. Then we're going to display the cart items. So let's put a div for that for later. Class equals cart items. Then we have to talk about how we're going to get the cart items. So we need someplace we need something ways to store items in the shopping cart.
+
+So where should that be?
+
+It depends on how you are planning on
+
+making this app, I think, because I think there's arguments for it being like in the server, or if it's a single page application, I guess
+
+we could make the argument, we're going to do everything here in view. So we're not going to call this we're not going to do anything on the server side yet. But yeah, I could see an argument for being the server side. But given that we're, we're going to do everything just in the page. And we're not going to do complete transaction today. That was that would be server. So given that design, where should it be in view?
+
+The state in the state bar?
+
+Yeah, it makes sense. Could we put it in data here? Without work,
+
+maybe preferred and data.
+
+So there's there's two different two, which ones are how we're going to use it. So what's going to add things to the cart?
+
+Are they going to get added
+
+by those buttons by those buttons, which are an item. So that means item has to add to have access to the cart.
+
+And this has to display the cart.
+
+So anytime we have that we have multiple components using the same information. It belongs in the view x store. That's the whole purpose of the view x store. Second, if only one component needs it, if we only have the shopping cart using this data, then it doesn't it doesn't need to be in the box or it can be in data. But the second a second component needs it. That's what the UX that's the problem of UX is solving. Because there's no way for them to communicate large things, or dynamic things back and forth easily. So we need this in the store.
+
+So cart,
+
+the cart,
+
+and
+
+we're probably going to need a way to
+
+eventually add items to the cart. We'll come back to that.
+
+So eventually, we're gonna add a new mutation.
+
+But for now, let's just build out the card.
+
+So we're gonna have things in the store.
+
+Save it, that's all we have to do to add it to the store. And now we can use it over here. And so if we want to get it out of the store to us here, what do we need? All right, put in the name where we're talking.
+
+Can I do this because we know we're going to have a div, right? It's going to repeat. So class card item. It's going to do a V four equals item in something. Can I do this?
+
+store, state cart
+
+rebind so it stops airing
+
+forgot that.
+
+So let's just put an h3 here with the
+
+item name.
+
+We can see it
+
+without work.
+
+I think you would work. But I believe you said that it's probably not the best idea to do that.
+
+That's that's a great answer, because that is exactly it. It will work. But it's not the right way to do it. So what's wrong?
+
+What problem Am I going to run into? If I do this
+
+state isn't reactive.
+
+Exactly states not reactive. So this is not going to react properly. I'm not going to get the results I expect. So what how do I fix that? Would it be
+
+computed? Exactly? Sorry.
+
+Yeah, it's gonna be we need a computed property.
+
+And the computed property seemed almost think about computed properties that they can do more is one of their functions is to watch data. And when it changes to let us know, that's part of what their job is. So if we return
+
+this store state
+
+cart, from the computed property, can use the computed property here. Then it's going to watch that cart in the date of the store and anytime it changes, it's going to let us know which is going to cause this to react and re rebuild. So the computed property is, that's one of their, one of their jobs
+
+is to make things that are not reactive reactive.
+
+That's why they work with methods methods are not reactive. If we use a methods that have computed property, we can cause a reaction from something changing that would update the method. So here, let's just complete it by putting a div in and just put the item dot price. That way we see it be done. And again, we're going to need some CSS. So I'm going to go ahead and just put that in now.
+
+Here, and
+
+this is the shopping
+
+cart dot view.
+
+css. All right.
+
+So, we have this there, but nothing's in our shopping cart. So we need to put things we need to add it to the vending machine. And then we need to add it to our shopping cart. Right make it so we can add items to our shopping cart so we can see them working.
+
+So let's first add it to our vending machine.
+
+So we're going to import our shopping cart
+
+from
+
+at components
+
+and its shopping cart.
+
+Going to
+
+and we'll just put it here at the bottom
+
+shopping cart.
+
+Let's do that. We should see it down here.
+
+So we need to go add some events now. So now it's time to add some events. Let's add the event to these buttons that when you can see they already they have a hover effect already, but nothing happens. So added event to these divs. So they work like buttons and add things to the shopping cart.
+
+So those are over in item.
+
+So
+
+we're going to need
+
+on our code, that's the div we have. That's that div.
+
+We're gonna need an event.
+
+So what event Do we need here on a div? If we want to get the mouse when someone clicks on it prevents we need to prevent default or anything Is our default action on the diff. Now, I see people shaking their heads now. There's not there's no default actions. We don't need to prevent default. And then we just need it. So now we need a method.
+
+So how about by item?
+
+And what can we pass it here?
+
+What should we pass it?
+
+The event,
+
+though, do we need the event?
+
+That's one thing we could pass it. But do we actually need to do anything with the event to buy the item?
+
+was gonna say the item key? That in key, we could do that.
+
+But then we have to go look up the item someplace right and get it out. Why not just the whole item? We have the whole item right there, the whole object. So let's just pass the entire item To make it really easy to add to the, the card, there's no reason to break it apart. Just we'll just keep it together. We're not gaining anything by passing pieces and going to get it later.
+
+Would you be able to just use the item that's that already exists in there? Or does it exist in there? It does
+
+exist what I just used in.
+
+Oh, nevermind. I thought the item you could use like the props item, but
+
+No, that doesn't make sense. Yeah, that's what I used this item is to find the props. That's what I'm using.
+
+So are you allowed to save this item?
+
+instead of passing it there? Because each component has its own item?
+
+Yeah, we could. Yeah.
+
+But that would work. Because every component has its own item. So it's one individual component that would work. I'm going to keep it there because I think it's more readable. But that's just that's press preference. So You can make it work with the item and that would be fine. So we need a method. This is definitely gonna be a method because it's only going to happen when it clicks is not reactive at all. So we're going to buy item, and we'll take the item in. And now our store needs a mutation. So to update the cart, so go back to our store. And we're going to build mutation, add item
+
+to cart, it's gonna take the state in an item.
+
+So it's gonna add it to the cart. We don't want to recreate the cart. So we'll say state cart, push item. Pre warning at the beginning, we could put it on shift, it doesn't matter and now we have this Balance involved, right, we probably have some kind of price involved. So I probably want to update, start thinking about that at this point. So I'm gonna have a balance that's going to be needed here, not here, but it's going to be in the shopping cart, it's going to be needed pretty much across the system. So it makes again, that's what UX does. Anytime we have something needed in multiple places in multiple components, then that's the UX job. So it's credit balance instead of the zero.
+
+Here, our mutation will just take the balance
+
+and we'll make it minus equal the item item dot price. So in these methods, and all these places don't get caught up in the fact that they're called mutations or they're called computed or they're called in inside of the brackets for all them, it's just JavaScript. No matter what they're called, they're just JavaScript. So you can do any code you can do in JavaScript inside these little segments until we get to asynchronous stuff next week, but we'll save that for them. So you can do everything we've learned so far in these little segments for JavaScript. So it's kind of like when we talked about the controllers for Java, that they're not special. They're just
+
+JavaScript methods with different names and filling different roles.
+
+So we can do multiple things. So we'll update the balance and the cart now we have a balance available to us from the store. So which means we can go back to our cart, our item, and we'll call that mutation. So to do that, this dot store, remember we commit a mutation
+
+and I should have got to be
+
+cut and paste them Name,
+
+commit to be notation and then we'll pass it the item. And again, you could use this item from the get them from the props as well that would work.
+
+And
+
+now we have a balance to deal with. Let's go back and update the shopping cart
+
+to display that balance
+
+well if it needs to balance let's get it to display the card total instead with the balance the next segment.
+
+Well, let's make it see if it works before we do that.
+
+So we have this here now we should know the shipping. Click on these items. And we can see
+
+they appear on the shopping cart.
+
+If we look at the view x state
+
+View x state, we can see all items has been changed. There's been add item to cart mutation. You can see the balance is changing for each one. There's the balance, we add another item to the cart. We'll see the mutation in the balance changing. So it's working.
+
+So let's get a shopping cart job to display.
+
+You don't need it anymore.
+
+So I want to display the total for the cart up here.
+
+In the shopping cart,
+
+inside the HTML
+
+right here
+
+div. I'll say total
+
+I want something to display the total right there. So what can I use to get the total?
+
+What do I need?
+
+Yeah, so computer property, so maybe cart total. And we'll come down here, another computed property. Like the other stuff, this is just JavaScript I'm working with now this this though, that's in my state. So I'll get that out. So items in cart equal this dot state, or store, dot state, cart. So get the cart out. And then we can just use reduce on this list to reduce it to a total. Remember, reduce is going to work by
+
+the accumulator and each individual item
+
+and then we'll take That just return the accumulator plus equals the parse float of item price because it's a string currently, and will default to zero. And then we saw in the data there was a decimal, a double air. So let's just set right now let's just fix that. Now. So to fixed to always put it well rounded to two decimal places. Now we have a cart total down here. And if we add things, we can see it updating. So now we have a simple cart. Now the last thing we need to be able to do is add money. So we can
+
+update the balance in a positive way.
+
+So before we do that, if there's questions on how the carts working or how all the pieces are working or anything, actually Before we Okay, all right, so let's add one last component why to ponent a component to allow us to add money to the the to our vending machine.
+
+So we'll create a component
+
+at money dot view again
+
+using the template. Let's give it a div
+
+describe the class equals
+
+money and then we'll put a form in here.
+
+So form
+
+and
+
+probably just a couple pieces and try that again. form.
+
+We don't need an action
+
+And we'll have an input field
+
+equals for speaker type numbers, we don't have to worry about it as much. We'll give it an ID of an amount
+
+and then we'll put a label for it.
+
+And then maybe a button to trigger Smith.
+
+Alright, so now we need to do a few things. One, we need to get the value of this into some kind of data.
+
+So how can we do that?
+
+The name and why we're here. What do I need for that? Sorry? To a binding so the model, okay, but what do I need before I can find it?
+
+I need
+
+something in the store. So the store Do I need this? So that's that's a good question Do I need to store in this case? Or do I need to hear in the component?
+
+I need something to bind the amount to.
+
+So as anything else, I use the amount
+
+the balance sees it. Well, the balance will but that's data itself. So the balance is going to be updated with the amount but what other components use it?
+
+I guess nothing.
+
+Exactly. So when the answer is Nothing else is using this. It doesn't belong in the store. In fact, it's going to make it a lot harder in this case when we're going to bind it with V model.
+
+So we just need data.
+
+Because nothing the amount is going to be used to update the balance, that's true. But nothing is going to use the amount, we're just going to send the value in the amount when we do that, we do the mutation.
+
+So
+
+data returns amount.
+
+And now we'll bind this field. So v model, and I would have bind it with number. That modifier means that it will only bind a number to it.
+
+And I binding it to amount.
+
+So this variable in this input are going to be dumped to a bound together. Meaning if one changes the other one update. Doesn't matter what side changes, they stay in sync.
+
+Alright, so now we need
+
+a two things. Let's make another div
+
+class equals. Let's make a thing here to display the current balance.
+
+That's something we're going to bind to
+
+what should we buy? What do we need to get for the current balance here?
+
+Where's the balance stored right now?
+
+in the store,
+
+so the store so what if we want to get this balance here? What should we have to get it from the store? Yeah.
+
+So
+
+the, if you remember when we saw
+
+yesterday we saw this
+
+store
+
+dot state and its balance. And we saw that on a couple of places. So we saw it specifically with the title and description. So why was that okay? And this is not
+
+those values aren't changing. This one is going to be exactly. They don't
+
+need to be reactive, they're always going to be the same. If something's in the store just for storage sake, and it's not reactive. You can use it like this. But if you need it to react, we need to download the computer property
+
+and
+
+Let's take this
+
+down here and use it with this keyword.
+
+And then take this
+
+up here, and I'm missing the return. So I'll turn this. And we're almost done with this component two. So now we need an event. So what event should we capture from this too? When somebody presses the add money button we created.
+
+Click.
+
+Click.
+
+Does That's right, if yes, submit.
+
+So the click will capture the button, but then the event for the form is going to fire and it's going to well submit the form. So we want the form event. So we're dealing with a form submission, we always capture the form submission event, never the button click, because it's not the button click we care about. Because also it's possible for other things to submit a form. That way, no matter what submits it, we get it. And also we don't have to worry about capturing it and preventing default on it because well, we're stopping it in other ways. So, submit, we have to prevent default, because we do not want to actually submit. Instead, we wanted to call a method, add to method we're going to create add to balance.
+
+And this can be a method, why should it be a method?
+
+Not a computed property?
+
+Because it's not returning anything.
+
+All methods can return something
+
+that is true, sir. Maybe Because interacting with the store.
+
+So this one is too. So there's so you both kind of part of it.
+
+So they can actually store. Yeah. So the first thing I actually said that wrong. So yeah, it's not returning anything. So for this for just me creating a side effect, it has to be a method because computer properties have to return something. And I meant to say that is we could make it return something. I like the balance, but is it reactive?
+
+No,
+
+exactly. It's not it's it's event driven by the user clicking on the button, not reacting to the data. So it's a method.
+
+So add to balance.
+
+And we don't need any arguments because we're going to get it from on the form submission. We're going to get it from This binding, which is going to be this data.
+
+And now we need
+
+another mutation in the store. So we'll go back to the store and create one. Now one more mutation, this mutation is going to add to the balance. If we wanted one to remove or do something like that, we could add that as well, but we'll just make it say State DOT balance
+
+plus equals the amount
+
+that we pass to it.
+
+And then, so that's going to create a mutation that when we click the button, we'll call this mutation, send the amount it's going to change the state of the balance. And we're using that balance in the shopping cart as well. And the mutation it's it's using, and then we can display in any component we want now
+
+will display it in the ad money.
+
+So again, for mutations, we're going to call the state, sorry, this dot state commit, and then the name of the mutation. So add to balance and comma the, for this case, mutations don't have to have our additional arguments, but this one does. And that's going to be this dot amount.
+
+And now our last thing we need to do is add
+
+it to the vending machine. So we're going to import money
+
+from
+
+at
+
+components and money
+
+Money. Now we can use it up here. Let's start at the top. Use add money. Now we can buddy we can see our shopping cart. So now if we add an item to the shopping cart,
+
+you can see the current balance is negative 1.8.
+
+We probably want this to fixed right here. So let's change that really quick. And our add money we're seeing current balance. Two fixed because we know that's going to return an integer. Okay, so now it's right so we add something else. It's adding to the cart total to the balance. If we add money
+
+at nine, something
+
+went wrong here. Let's figure out what
+
+Event
+
+cause had to balance.
+
+It's not calling the mutation. Let's see if it's
+
+not capturing the event.
+
+There's some errors. There are Thank you.
+
+So there's something wrong here. Cannot re commit undefined. So I have
+
+this OSS door not stayed.
+
+So now let's try.
+
+So, five, other five.
+
+So now we have a balance that we purchase something as cart, and it removes the balance. So we can add wines to cart, remove the balance, add more money. So we have the balance working this as well.
+
+And let's create the console sweet.
+
+So
+
+now we can also make the decisions now that we have this part of the reason we have these components is satisfied. I don't want add money up here. I wanted it down here. So I can see it with the shopping cart. It's not just becomes a matter of saying,
+
+Oh, I move tag and the whole component moves down here. functionalities are unchanged.
+
+That's part of what components gives us the ability to
+
+work
+
+your keys. Okay, that's all right.
+
+So it doesn't like the fact that we used to be bound to the code in the shopping cart because we can have duplicates. That's all right, it's actually causing a problem a user will see. And we can fix that really easily. Let's go fix that because I shouldn't leave a that's in the shopping cart. It's right here. Let's just do the trick where we bind to something that's doesn't exist.
+
+And now we should see.
+
+Yeah, there goes why now.
+
+So
+
+now we have this component. These components we can move around at will as long as the thing in the state exist as long as they can. The store exists. So one thing I've noticed there's no nothing about these items. Except they have to have a name and a price, and they have to be in a cart. So we can actually use this reusable for selling books or selling any services pretty much anything we want. Now, it's not bound actually to shop to food items. Alright, so let's add one more event. I know it's late, but I'm gonna add one more event just to make these collapsible so we have one more example of an event. So let's just do a switch like if you've been asked to several times that just collapses these
+
+on the items.
+
+So now that we have that we only need to do it in one place. We can do the whole thing on the item list and we do it once. And all of them are going to have the same functionality. So if I want to add the ability to collapse to make this only visible when the user clicks are swappable, when the user clicks the these images.
+
+What do I need here?
+
+Yeah, we need some kind of data, right? We need something that I'm going to swap somebody's data. And we'll return our object and something just like, show items. And we'll start at false.
+
+And then up here
+
+in our item list,
+
+it's this we want to hide.
+
+So we can't put a v4 or Vf Or v show one four, because there's multiple of them. So, and that's just something view doesn't allow. It's, I think, just for clarity, so instead we'll wrap it in just a div, that the only purpose will be for the hold the Vf of the items that are created. It will bind it to that. Not that money, but to that show items
+
+that we started with.
+
+And we'll create the div here. Now we save it, we're going to see that they all disappear. And it starts like this. Because of the show items, hiding it, and now we just need an event that when these are clicked, it swaps the show items. So let's put that on the image.
+
+Why don't one
+
+beyond
+
+Click equals. What do I need to put here?
+
+exclamation point show I don't.
+
+But I set it to that of check if it's not show items. Show or do you mean show items equals explanation point show items? Which What did you mean? Which Did you?
+
+I thought if you did an exclamation point and then show items, it would flip the value
+
+on the click, like this.
+
+Yeah.
+
+No, but you're really close.
+
+What's, what do we need to change to make this actually update? So we're saying, one click, not show items. So Make it true or false. But what's that actually doing?
+
+Perhaps we should have a computed method for changing from true to false. We could do that. But we don't need something complicated.
+
+Show items equals not show items.
+
+Yes, that's the part is missing. I said you were very close because you are. But the key to all of this is that what we're changing in these events, what we're changing with view to make things happen is the data. If you're not changing the data, nothing's going to change on the page. And if it is, if you're making it happen somehow through JavaScript or some other method, that's a problem. Views whole job is to be reactive at the DOM through the data. So in a line, like any of these events, we can write a single we can call a method or our property, use a method. Actually always a method because they're never reactive.
+
+We could Write a single line of code.
+
+So the two type things that we could do with line of code is changing a variable, which is we're doing here. Or you can also use like a ternary operator if you wanted to change it between, you know the word active and is it enabled or disabled based on some status and an object.
+
+So we changed the data here. And now
+
+we can hide and
+
+it needs to work with the CSS, but that's, that's another problem. I have to maybe not make all of them expand, but but the part that we're interested in is working now. So it toggles back and forth depending on the old state.
+
+Alright, so
+
+I think we have
+
+enough functionality. Now.
+
+Of course, we haven't completed the transaction or anything like that, but that's That's probably where a certain API would take over. Austin, that's something that would be a permanent change to the state of things.
+
+So questions or requests to see if
+
+why we talk about those I will.
+
+So how long did it take?
+
+How long have you when you built the if you remember back to module one to build the vending machine in Java?
+
+It took a while, right?
+
+So I'm
+
+sorry, I can't type in. I need to get better at that.
+
+So it did.
+
+Yeah, I did. When I did it. It took me Think the build the vending machine in Java took it took me like six hours. We just built pretty much all the functionality in view and what, two hours. And we did it slow as we talked through it.
+
+And it's a lot more usable
+
+than the Java one.
+
+So that's actually what view does for us. It gives us this ability to very quickly build applications. As long as they're web based. That's that's part of the trade off. It has to be a web based application. I shouldn't say view. That's what the reactive frameworks view, react, Angular, they all provide that in just different slightly different ways.
+
+All right. So
+
+there's no other questions then.
+
+There's no exercises today. I was thinking So in your match big new Monday, so spend the next few days getting caught up, or preparing for matchmaking, or working on other things. So if you're having if you're struggling with
+
+JavaScript,
+
+those
+
+days are code that Michelle's been sending out, you can solve those in JavaScript, you can make a UI for them and view. Those actually might be good little things and making a view project where you actually make a visual representation of those are also just building a simple page or working with one of your other capstone projects in view or something. gum.
+
+Also is another
+
+way to practice if you're looking for more ways to practice or just finding a webpage and emulating it. Let me know what page you'd like and say, how would How would I build this page? a page that looks like yo Kim Now Amazon's layout, printed out maybe databases layout or Spotify layout? How would I do that in view? And actually emulating it. That's a good, good way to practice as well. Pick one that's interesting for that, because it's
+
+emulating Google's layout. We pretty easy. But so
+
+that's and then the tutorials out there for Tuesday, will give you router which allows now we have one page. And now they're not called app view router, which allows on multiple pages and route between them with the URL.
+
+So that's tours out there for that. And today,
+
+let's see.
+
+Well, in so Monday, also there's no class. So if you didn't pick up on that, from the first matchmaking, or from what I said, there's, we won't meet here on Monday will be available if you need us, but we just like the last matchmaking And we'll be back on Tuesday. And then today the only event going on the only event but the event going on is the T shirt pickup. It's from two to four. Where if you come to, but wherever that park is, we will throw our shoot t shirts at you. So
+
+slowly concerns that wherever that park is, Are you not going to be there?
+
+I am going to be there. But I find things like at the last minute, I'll find that as I go.
+
+There's no there's no reason to look up now where it's at. It's some someplace. You
+
+can't just follow somebody there cuz we're not leaving from
+
+work. What are you right? Actually, that's how I usually get there. I just start following people. And you're right, I can't do that. So yeah, I'll be there.
+
+I'll find my way eventually. I always do. So
+
+so any other questions for today?
+
+Sounds like a challenge you.
+
+Oh, it is Brian.
+
+All right. Sounds good. You're giving away t shirts.
+
+Oh, yeah, that is my old t shirt though. So there's nothing
+
+special. I just want to shoot. Whatever. Yeah.
+
+That's my side project actually a T shirt cannon.
+
+All right. That's nothing else then. Thank you, man. Good luck on matchmaking on my day for Israel. I'll talk to you guys
+
+Transcribed by https://otter.ai

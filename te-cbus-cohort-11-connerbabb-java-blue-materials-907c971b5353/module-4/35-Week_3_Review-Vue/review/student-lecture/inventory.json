@@ -1,0 +1,113 @@
+[
+	{
+		"key": "B1",
+		"name": "Soda",
+		"price": "1.50",
+		"code": "B"
+	},
+	{
+		"key": "B2",
+		"name": "Wine",
+		"price": "3.05",
+		"code": "B"
+	},
+	{
+		"key": "B3",
+		"name": "Beer",
+		"price": "2.55",
+		"code": "B"
+	},
+	{
+		"key": "B4",
+		"name": "Sparkling Water",
+		"price": "2.35",
+		"code": "B"
+	},
+	{
+		"key": "B5",
+		"name": "Punch",
+		"price": "0.90",
+		"code": "B"
+	},
+	{
+		"key": "A1",
+		"name": "Tropical Fruit Bowl",
+		"price": "3.50",
+		"code": "A"
+	},
+	{
+		"key": "A2",
+		"name": "Meatballs",
+		"price": "2.95",
+		"code": "A"
+	},
+	{
+		"key": "A3",
+		"name": "Bacon Wrapped Shrimp",
+		"price": "4.15",
+		"code": "A"
+	},
+	{
+		"key": "A4",
+		"name": "Bruschetta",
+		"price": "2.65",
+		"code": "A"
+	},
+	{
+		"key": "E1",
+		"name": "Baked Chicken",
+		"price": "8.85",
+		"code": "E"
+	},
+	{
+		"key": "E2",
+		"name": "Pork Loin",
+		"price": "9.45",
+		"code": "E"
+	},
+	{
+		"key": "E3",
+		"name": "BBQ Ribs",
+		"price": "11.65",
+		"code": "E"
+	},
+	{
+		"key": "E4",
+		"name": "Beef and Gravy",
+		"price": "5.15",
+		"code": "E"
+	},
+	{
+		"key": "D1",
+		"name": "NY Style Cheesecake",
+		"price": "2.55",
+		"code": "D"
+	},
+	{
+		"key": "D2",
+		"name": "Cake",
+		"price": "1.80",
+		"code": "D"
+	},
+	{
+		"key": "D3",
+		"name": "Brownies",
+		"price": "1.10",
+		"code": "D"
+	},
+	{
+		"key": "D4",
+		"name": "Jolly Ranger Tart",
+		"price": "0.85",
+		"code": "D"
+	},
+	{
+		"key": "D5",
+		"name": "Apple Pie",
+		"price": "2.50",
+		"code": "D"
+	},
+	{
+		"key": ""
+	}
+]

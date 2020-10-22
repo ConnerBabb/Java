@@ -1,0 +1,30 @@
+Book
+https://book.techelevator.com/content/inserts-updates-deletes.html#deleteing-your-data
+
+DELETEing Your Data
+Sometimes you want to delete data from the database and get rid of it completely. You do this with a DELETE statement, as shown below:
+
+DELETE FROM countries
+WHERE code = 'JOE';
+This deletes any row from the database that matches the WHERE clause.
+
+Be sure of what you're deleting
+
+As stated with UPDATE statements, if you leave off the WHERE clause on a DELETE, all the rows in your database disappear. There is no undo in SQL - at least not yet - so once they're gone, they're gone. And so is your job.
+
+It's better to write a SELECT statement first, make sure those are the rows you want to delete, and then change it to a DELETE statement afterwards.
+
+The standard format of a DELETE statement is:
+
+DELETE FROM table_name
+WHERE condition;
+In most real world applications, you don't delete often
+
+In most real applications, you actually don't delete a lot of data. Data is valuable and keeping data that you don't need on the site anymore can have its advantages. If a customer calls up and says that they accidentally deleted something they didn't mean to, you'll be glad you kept it in the database after all.
+
+So how are deletes handled then? Usually, you add a disabled or deleted_date column to the table and set that when you want something "deleted." Then all of your SELECT statements can look for that when pulling data from the database.
+
+You can pull back all users from a database that haven't been deleted like so:
+
+SELECT * FROM users
+WHERE deleted_date IS NULL;

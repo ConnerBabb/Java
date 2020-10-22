@@ -1,0 +1,1348 @@
+Zoom
+https://techelevator.zoom.us/rec/share/7-t4Ee_W0UBORYXT2mzmX_YwJ5rgeaa8hyMX__YFyUklj0If0owAOXaPl9CDdiTT?startTime=1591017301000
+https://drive.google.com/file/d/1oLs37mmwoYVdYyUcAn-i8Ed3mtzsY4WV/view?usp=sharing
+https://docs.google.com/presentation/d/1bQWvl8pcrnVO3y5f6c4imskhN2ppNJuHtVq4aGn9lHM/edit?usp=sharing
+
+So today we're going to talk about
+
+a little more about testing. We're going to actually not about testing itself, but about another way of using test cases that we looked at on Friday to do development, and it's this process called test driven development, where we're going to flip when the test cases are written and how they're being used instead of writing them to verify development, with the idea of writing them to drive development. So the problem that test driven development is going to couples with is that as features get very complex, it's, they often can take a lot of time and they can often
+
+end up with a significant amount have
+
+significant amount of work that is just can be confusing. There's a lot of requirements, a lot of parts, algorithm development can have an issue of as you're working to be able to very easily visually break what you've done before as you're moving forward to complete your algorithm. So, testing your DOM is going to help us solve that. And this isn't a new concept, it's often considered to be a newer concept or a newer idea. But a lot of the stuff we've been talking about recently the like test, testing, development, pair programming, and even the time boxed kind of iterations, the sprint iterations we've looked at on Friday. I've actually been around since the 1950s. They were used during the mercury space program quite a bit during the development that would have been no punch cards, but They were still the ideas were being used then. So it's a very kind of powerful idea that when applied to the right problem. So familiar with unit testing, what we wanted was to validate our code worked. We wanted to unify, all the different branches are kogatende, to make sure we're recovering everything. And we wanted to have this kind of suite of tests at the end that we could keep verifying that we didn't continue breaking things. So it's unit testing me lies on the code to validate the correctness of the code and using our assumptions about the code itself. And we already have existing code. So we try to write to the requirements and we hope it turns out for the best, but it's really hard not to be kind of biased by what we've written, which means that a lot of unit tests get and they're getting written in a way that they're honest. consciously biased forward towards the code, meaning the developer has in the back of their mind this idea that they know this one particular things go to break everything. And they just kind of skip it. They don't make a choice to skip. And it just kind of happens. It's usually edge cases, the kind of extreme things we looked at, like max integers and things like that. So we have this problem with unit testing that because of that, we often end up with biased results, or more fairly to say, we often have results that maybe don't cover everything they should. We also run out of time, with unit tests quite a bit. It's really common to keep them to the end. Nobody, say Modi, most people don't want to keep them to the end. But it's no common that when, if you're running tight on a deadline, the thing you're going to drop is not the thing that goes to the customer, you're going to drop the validation on, but you're going to start doing things manually. It's common to run out of time. And it's also common to just shortchange the tests to say, Well, okay, one's good enough. So it's not even a missing something by being biased by the code, but more of just a, I, I only need to verify this one thing. So that means that unit testing When done, right, when we force ourselves to do it works really well. But it has this disadvantage that it's very easy to end up with unit testing, it doesn't really cover the requirements as much as our version of the code. So we end up with something that tests what we wrote, rather than what we were supposed to write.
+
+So
+
+test driven development
+
+solves to fix some fat.
+
+So what we're going to look at today, with fat is we're going to look at first ideas What test driven development is. And then we're going to walk through is part of that this concept called refactoring. And then introduced this idea, these things called caught us. And then we're going to apply all of these together. So by solving a caught up with test driven development. So now we know the problem. And kind of what we're going to look at it with test driven development is this idea of what if we took instead of waiting to the end or writing code and writing a test for it, what if we wrote tests first, and then we wrote our code to the tests?
+
+If we did that,
+
+then we could really focus our code our tests on the requirements, because that would be the only thing we have to work with. We wouldn't have the option of being biased by the code because it wouldn't exist yet. So we would be looking at the requirements and writing everything based on those That would help us then if we had this set of tests based on the requirements to know when we actually solve the problem and help it's another bias three get into with coding is, it's very easy to start thinking, well, it'd be great if I add this. Now this would be a really cool feature. So I'll put this in as we go. And to add these little extras, or to go too far. So if we already had tests, we would program more towards the specific problem we were trying to solve. And the ditions that we wanted to create. It also meant would mean that we could start taking in rather than coding a whole method or whole piece, and then writing tests and then repeating that, we could take small steps towards solving your problem. So if we had a simpler, complicated algorithm, we could solve small pieces of at a time and do that easily because we'd have tests that are broken down into the smaller chunks. So we could focus writing, solve the problem, how do I pass this one test? rather than how do I pass this larger piece of the algorithm. So the other thing that if we had this constantly changing invalidation of our code as we went, as we were solving the problem, we are more likely to start recognizing patterns and generalizations in the code and start realizing where we're doing things similar, or where we could remove duplication, or maybe where we need a method or we could simplify things. And then when we do those changes, we'd have instant validation that they worked, that we didn't break something that everything was still functioning. So and then at the end, we would have a full test suite that we wanted anyways to refactor this suite so that we could use it to change, change the code. So putting, test putting our test first, so we can do things In really small steps,
+
+is
+
+not necessarily always the most practical way of doing development, which is one of its big criticisms, but it for certain problems. It's incredibly powerful for algorithm development or complex features, test driven development sort of over and over again, to be able to read produce quality results at a faster rate than traditional development and other forms of development. If you're building something that is, like the fruit tree type things, or are some of the classes and stuff we're building you're building last week. test driven development necessarily isn't always the most efficient. So it's a tool that can be used for particular jobs. That being said, there are a lot of companies, especially fewer encountered that do everything using TDD using test driven development. So that's not uncommon as well. But it's generally seen as a tool to be used for complex development.
+
+So let's look at
+
+how it's done. So there is actually a process to it. It's not just writing tests up front, it's more than that. It's a process that needs to be followed for it to work. And it's a lifecycle. Remember, we talked about lifecycle is just really the steps you go through for something. So for the test driven development lifecycle, the way it works is we'll write, write a test. And we'll fail the test and actually failing the test an important step. So one thing we'll have to do with test driven development is write the test fail the test to make sure it fails correctly. So if we write a new test, there's a couple ways it could fail. One is it could fail because something's wrong in our test. So it fails because there's a null pointer exception or it fails because we try to use it index something in the test itself, the tighter range, or because we have a syntax error in the test. Or it could fail because the code doesn't exist that we're trying to test. We want it to fail because the code doesn't exist. So we need to verify it's failing the right way that's failing for the right reason. So we'll fail the test.
+
+And what that'll do is we'll they'll give us some
+
+reassurance that the test is good.
+
+And then we're going to write just enough code to pass the test. And we'll go through some strategies around that and what that means. But so we're gonna write minimal code, we're going to get just the test passing this one test. This test is going to be looked at. on Friday, this test is going to test something very specific. And so we're going to write code to pass the test. And then we're going to do this process cover refactoring, which means we're going to now focus on the code to To improve it using the test because now the test is passing, we can validate our changes aren't breaking anything. So we're going to refactor, possibly just that portion of our code, possibly other pieces, we've already been steps we've already done. And then we're going to repeat that we're going to write another test. And we're going to fail that test. And we're going to write just enough code to pass the test and then refactor once we have it, and then go to the next test and keep repeating that cycle until we're done. The tests are going to be written in a very small level. So just like they were on Friday, it's going to test one thing at a time. So allow us to focus on one thing at a time. If we're trying to solve some complex calculation and has 10 parts we can focus on one part if you're trying to solve fizzbuzz, for instance, not a complex calculation, but something like fizzbuzz it allows you to focus on you know, just multiple, three And then just model five and then model three and five together and separating each one. And then when you hit the common problem of, you know, putting the model three and five at the end and being in the wrong order, the other test start failing, and you can see immediately there's a problem and solve it. So
+
+that's
+
+how we're going to use it.
+
+So the way we're going to use it,
+
+some strategies we're going to use with it is we're going to start out we're going to create a list of all the tests so we're gonna have an understanding a need to have a clear understanding of what we want to test and what we what we want to test in how we want to test it before we start, so we're looking The requirements, and we're going to build a list of we're going to test this, we're gonna write a test for this, each thing we're going to do. So basically the small steps we're going to have, then we're going to start writing just enough code to start testing. So we're going to do things like build an empty class, and build the test class. You know, we put the before annotation on, there's those basic steps to get started. And then we're going to just start through that list. And we're not going to worry about what order we pick them in. After we have our list of what we're going to test. We can pick any test them again there. And so we'll pick one at a time. And then we'll but one at a time, we'll run the test will fail the test. Then we'll write just enough code to pass the test. And we'll just then refactor Mariska. Continue that until we can solve the entire problem, one of the things we're going to do is as well Writing just enough code to pass the test. If we come to a situation where we can't solve the problem, if we're stuck,
+
+we'll fake it.
+
+We'll get there, we'll hard code something get the test passing which is comes off across this very non intuitive, why would you want to fake The result? But having the passing test with an answer? So
+
+having a passing test with an answer
+
+can give us the freedom then to start working with the code in start experimenting. So giving is a last resort. So it should not be the first option. faking the result, actually can give us the passing tests to start having freedom to play with the code and start experimenting and get immediate feedback have this worked or this didn't work. And then we'll just continue in that into the implement tation becomes obvious until we solve the problem. So we'll try something and then we'll see, Vitaly went away from our hard coded value to our actual value if it worked or not. And we'll continue that until we have a result. And then at the end, we'll go through everything and refactor the entire solution looking for things like methods, we can pull out our classes we can break apart. And also some other things we'll look at. And in a moment. So the point of this part of the thing we're trying to get with this is this concept that will, that we actually have two things we worry about when we code. We have a problem, what we're trying to solve, and we have the code. And this testing development allows us very much to work on those two things as separate entities to solve the problem first, and then come back and solve in fix the code in May Worry about the quality of our code. So before we continue, is there
+
+What questions do you have?
+
+So um
+
+so I keep using this word refactoring. So let's talk a little bit more about what that means.
+
+So we factoring is this idea of after we have a problem solved to introduce modifications to our code to improve the code itself. So it's rewriting code refactoring relies on running test cases relies on test cases that are Passing, because that's what we can use then to refactor without worrying about breaking things. So it really just means to rewrite code to be better. It's commonly done to rewrite code to be better and structure to be better in style, or to be better efficiency. So, refactoring is all about, not about the problem. It's all about the code. Some of the things that we'll look for, that we'll start looking at, we'll look at today is there's oftentimes, and I'm sure everyone's ran into it already. If not, you will soon where you find yourself cutting and pasting code. So in your writing a language like Java, if you find yourself cutting and pasting code, there's a problem. The whole idea is to write code in a way that everything has one what's called source of truth, one place that it's at. So one, you know Place to break, we're one place to change. The idea is being that every if everything we do only has one spot, we're doing it. And then if it breaks or there's problems, we only have one place to change it, or one place to explore where that problem is. So became code becomes more reusable and more maintainable. But it can be difficult. So as rewrite, it's common to end up having to cut and paste. So when you find yourself doing that, because you will, a, you need to even if you're cutting and pasting or changing one or two things, you need to question, how could I make this reusable? And that's part of what refactoring is. It's the idea of, well, let's solve the problem. And then we'll come back and figure out why this happened, why there's duplication here. But often, if we're changing one or two things after we cut and paste it means it probably could be a method with some parameters. Maybe for there's one or two changes. there's what's called the rule of three that a lot of the a lot of older Books idea that if you cut and paste once, maybe it's okay, but a second time you do it. So the third exists type of existence, then you need to stop immediately and figure out why. So I would suggest that if you discover cutting and pasting, not for spelling or variable name, but actual lines of code, that as you paste it, you need to think about, why did I just copy this, at least in Java, that'll change a little bit. When we get to JavaScript, and web development, there's a lot more cutting and pasting there. But Java is the whole language is developed around this idea of reusability.
+
+So
+
+we're going to look for duplicate code, we're going to fix those problems. So the other thing we're going to do in refactoring is start looking at our methods. Something we haven't talked about, we have these methods, these blocks of code we've been writing. So there's rules about how long code should be. There's nothing in the language that says you can't write everything in a single method or method can't be 200 lines of code. But methods like that are hard to read and hard to maintain. They're hard to troubleshoot. So most places I've worked have had a role that if a methods are 10 lines of code that you need to be able to explain why. If it's over 15 lines of code, you have to have a really good reason to know the set in, you know, immediately in what's called a code review with your peers and explain why this has to be 15 lines of code. And if it was 20 lines of code or more, you had to have a really strong argument for it, because there's almost never needs to be a method that's over that long or that long, but there are some rare occasions. So methods should be short. They should be a few lines of code, because each one should be doing one very specific thing. And most specific small task can be done in a few lines of code and then we find that if we're changing tasks, It's now doing something else it should be in another method. So we'll look for that we'll look for when our methods are too long, we'll examine them for is this method really doing multiple things? And if it is doing multiple things, or is then we'll break it apart into multiple methods. And or is this method, maybe doing one thing, but this one piece of it is something that is duplicated someplace else. So it's other unlike method, this has one small part duplicated. So we'll break that apart into multiple methods. So we'll look through our methods to make sure they're, they're reasonable each one doing one small task. So one action. So an example like in the math library, when you call the math ABS method for the absolute value, all it does is calculate the absolute value does absolutely nothing else. So that's three lines of code. To calculate an absolute value, probably last Mark probably is only one or two. If you look in there By the way they've done it. And that's all it should be. So it's a small amount of duplicate or reusable code. So the other thing we'll do is break down complex operations into variables. And this is something we looked at in a very simplified way, actually a week to to solve the problems like the ROB Peter to pay Paul problem. Were doing the math once, or the division once storing the value and then using that model places that made reads creates four readable code and also means that each portion of the calculation has or the operation only has to be done once. So we'll look for places where we can optimize by saying, you know, we're doing the same action four times, we'll store it, and then we'll just reuse it. Storage is more efficient than repetition of many operations. So we'll look For those, and then we'll introduce constants and static finals with names for magic numbers. So we haven't magic numbers are just literal numbers. So in our code when we write
+
+so if I write the number five and code,
+
+it's got a magic number because it has no context. with strings of text, they often have context. So we can, you know, get just from the fact of what the string is, often identify something but for a number, no five could be five books, it could be five pair of shoes, it could be five people in line. It could be five letters, it could be it has no
+
+interest way it has no
+
+information about what it means about what it's referring to. So so what we store We placed those with things and like instead of having five, which I should have used.
+
+So instead of having something like an x equals five,
+
+or
+
+Yes, the thing like this might be better if some variable is greater than five, we'll switch that out for to read more like this
+
+with using static finals
+
+because the first one, the magic number means that we have no context for it. The second one gives us identification exactly what it is. We also do that with literal strings, but it's not as important because they often carry context and just what they are. So we'll in but I say the final static I mean, we'll switch this out to variables that look like this. The private and Final static, got this backwards, final static. And
+
+so we'll make our code readable.
+
+Also with the same idea. Simplifying, a lot of our cutting to functions can create readability as well, not only reusability, but we can name our functions in a way that it will make it more readable. Our goal will be to end up with code that reads almost like sentences. So as we're reading it, that the ultimate goal, the hope would be that even a non programmer could get a sense of what is going on, but that a programmer can read it without having to rely on much thought about what it's doing. That'd be our ultimate goal. So we'll introduce concepts from magic numbers will also simplify conditional expressions. So we know this Boolean conditions can get rather complex. So sometimes we'll break them apart into multiple if statements, which seems counterintuitive, but readability is more important than anything else. So sometimes we will take complex code and write into simpler code. Having
+
+statements like
+
+we're having a statement with
+
+a bunch of conditions.
+
+Continue on
+
+is, can be fine and often the way when I'm writing code it's no more efficient as far as the code runs than having model is statements. So breaking it down. If what we really meant was something more like
+
+maybe not that simple
+
+was more something like this,
+
+then this code doesn't run more efficiently than its honor code. The JVM is gonna optimize them both to the same thing. But the second one is a lot more readable. So often break, almost kind of to really break down that code that every step on the internet when you go to like code wars and stuff that everyone hears about and thinks is great, and it is great for competitive code, often break that down into simpler forms for code. We work with a production system, because we want to be able to troubleshoot it easily that's readability as well. More important than kind of how slick the code is itself. Nobody cheers in your team because he wrote the most amazing, short little piece of code ever. In fact, they angers them. But they do cheer when they wake up at three in the morning because I got a call and they're the one on call. And what they find is this. And they can say, I know exactly what's going on. I don't even have to wake up all the way. Or, you know, I'll be back to bed in five minutes that makes that make works well on a team. So, we often break things down into often simplify into simpler code, when we refactor, because will tend to write as you've grown your skills, you'll tend to write things like this first, because they'll start making more and more sense. So and then there's a bunch of other stuff. So I'm looking for this is where we efficiently start looking for what's called cost. Smells, code smells are common problems in code that come up, there's been articles and a bunch of different ones out there. So things come and mistakes started looking for where we could use different data structures. Or this is might be during the stage where we would say, you know what we're using an ArrayList for this, but all we ever do is insert to the beginning and remove from the end. So maybe using a linked list and with a queue might be more efficient. We won't always do that type of level that depends on what we need. So if you're noticing more, and refactoring, there's a link to an article here that has a bunch of information about it and some code smells some other stuff. But it's more of just remember, it's the refactoring step is about the code. The first step that we start from is about the problem. in solving the first steps, the more important of the two because we Have a problem working.
+
+Alright, so before we move on, what questions do you have?
+
+Okay. So let's talk about how we're going to work for that. What these things called cottas are. So has anyone here done a kata yet? Or looked at them up? Okay. So a Kolkata, for those who have encountered them yet isn't just a programming exercise it comes from me the idea of kata and martial arts were just practicing the same move over and over and over again, repetitively. And the idea is the same encoding. It's, they're small. For me, well, they can be all different sizes, but generally fairly small problems that are designed around honing skills and algorithms and Design and other and structures and things like that. And they're built to be done repetitively. They're built to be something that you practice and redo the same kata, often multiple times. So TDD is a really great resource for caught us. It's a commonly used tool with them. Because it allows you to focus on the problem. There's even cars that will give you the tests in advance. Or say these are what your list of tests could be, see, write your test cases, since the problem is about the the content about solving the problem itself and factoring afterwards. So because it allows to separate the problem and the solution from the refactoring cars are all about practicing code itself. They're really useful for that with them. So the whole point of these is to practice just practice coding, to improve your coding skills, improve problem solving. And then companies can use them to be part of the interview process. So, I would encourage you to start looking into them. If when you have free time, I know how much free time all you have right now. But when there are these moments when you're thinking, you know, I don't have I'm done with my exercises, I'm caught up and I have an hour so rather than if you haven't started a side project or anything I should, I would encourage you to look at Carlos. Actually, a lot of programmers do them all throughout their whole career. I still do caught us on occasion, they, they're meant to be repetitive. So there's caught as I've done 20 times, okay, there's only one I've done that 30 times but there's it's that's the idea of in each time, it comes down to know is kind of solved this in a new way. So example, between cohorts. Well, that's a great question what language we do in cars and right now, any language you want? That's not the that. See, that's the I know that's a wishy washy answer. It depends answer. But it really is. One of the things cars are great for is learning any language, or exploring ideas in other languages. If I was learning, every time I've had been challenged on any language, that's usually the first thing I do is find a car I'm familiar with and do it in that language. Because it gives me something practical to do. Personally, I'm not great at sitting down and reading documentation and getting much out of it. I'm more trying it and exploring it. So that's what I would use for Yeah, someone There are a lot of JavaScript ones that would translate just as well in Java. Yes. In fact, doing them in multiple languages is a great way to explore the differences between languages. And most cottas not all, there are some that are very language specific. But the strong majority of them are language independent, because there's a problem. And just about, there's very few languages or problems that are specific to a particular language. So some might be easier than others to solve in a particular language. But they all can be solved. So and then you can explore the languages and more multiple ways tonight did a kata for over this past break. For the students who just graduated, we don't caught us each quarter each week. And
+
+one of the weeks I, I participated,
+
+I challenged myself to do the kata without using any loops. So writing the entire thing Even though it was something that had lots of loops in it, I would do with loops. That was hard. That was enlightening. You so you can actually write all your code with never using a for loop, even though you need repetition using this thing called recursion, but not something I would recommend. But it's an interesting way of doing a problem, but that's what they opened you up to. So for those of you who aren't thinking, Oh, that sounds fun. Because I know they're not to everybody. They're also used during the interview process. There have it that's one of the main things we see is companies say No, okay, here take complete this quarter, often when they've written so it's not one you'll find on the internet. And no, we want you to spend two hours on it and give us the result. Or we want you to spend three days and figure it out. They don't mean three solid days are expecting to spend an hour or so here and there to complete it, and then they look at it so they can see how your code works. And most of those companies will expect you to do it with test driven development. And they'll actually expect you to do very particular steps for testing development that we'll look at. So here on the slide, there's, I put some links to a few different sources of different causes. There are many more if you search programming, kata on just go any search engine, you'll find bunches of others. So there's lots of them out there to explore. So, and someone mentioned that code wars is a great tool, and I would agree that's one with the list. Also, I also like hacker hacker rank, I forgot to put it on here. I like code wars actually a little better. The Hacker ranks pretty good.
+
+And there's
+
+another one I just forgot. I was thinking trying to say it just there's another third one, it's similar. But all those code wars, if not from Earth, code wars 100 hacker rank in similar sites, they're competitive. They're more competitive. You don't have to use them competitively, you just solve the problem. But then you get to see this other solutions of other developers who solved it, which is where the competitive part comes in. That's where you end up seeing the top solution. It's one line of code that makes no sense and a bunch of small variables. And in that format of exploring just code, that's fine. So usually, if you go about the middle of the solutions, that's where the reasonable solutions are that you would find in a workplace. So Alright, so there's this right. So other questions or other comments or anything before we look at how we use okay.
+
+So, the way TDD is usually done with interviews
+
+is
+
+in a way that most of you will actually probably end up having to do it during the interview process. is taking advantage of the fact of the way Get works. So get has this local repository, we've talked about this idea of this local repository. When you add a new commit, it puts a change in the local repository. And it labels it. Those are the check ins, we seen the different check ins with the labels. And then when you push it takes that repository, all the changes and move just those changes to the remote repository, which means that your local repository has a full history of every check in and it keeps that. So that can be taken advantage of interviews with TDD. So what they'll commonly have you do is they'll give you a kata, they'll assign you one, so you know solve this particular
+
+kata and as you do it, we want you to
+
+show the TDD process using get. So that means that first you'll figure out what you're going to test and come up with your or your steps that meet the requirements. And then they'll want you to write a test, fail. And then adding commit, write just enough code to pass the test the next step, then adding commit, then refactor, and then adding commit. And what they can see then is they can go through a history of from the repository and when you push it, or they'll have a thing called get bundle, where they'll have you just send your history to them. And they can see for each adding commit what you had done what you did. So they can look through and say, okay, they wrote a test case, now, they in the test case, and it was failing now, they've wrote just enough code to pass it and see that you've actually followed the TDD process. And they'll have you just repeat that until it's done. And then they'll you'll end up doing them final refactoring at the end, making small changes again, adding committing between each small change, and, and then repeating that to you're done. And then there's this thing called job Have a doc that will want to add to public methods of classes. And then adding commits, there's a lot of adding committing to local repository. And at the end, you push it to their repository, or they'll use this tool called get bundle that will bundle up your little code and local repository together, and they can you can email it to them. So that's the
+
+common steps to
+
+have common requests for interviews, and follow this process. And one of the most common problems we see is when people were interviewing is that a skip they try to skip the TDD process. One thing data commits give it away because you can see exactly what they are. But even then code that's written by test driven development looks very different than code. It's not. For instance, code written by test from develop not tester development, often Have code in it that doesn't have unit testing fully covered, covering it. There's no such thing as i plus 100% coverage in customer development, because everything's written around the test. And there's also other kind of talk about the code smells, things that show up in code that are not tied TDD driven compared to the way so it changes the way you code. So somebody has the experience of looking at the same solution to the same code from a bunch of different candidates can pretty easily tell which ones did test driven development, which ones didn't. The other common problem is missing the good part the ad and commit. So I'm telling you this now because we're going to practice this, this is what we're going to spend the rest of this morning doing. And we're going to do it with the we'll take a look at this kata called the triangle kata.
+
+So, the triangle kata is
+
+Rather, rather simple kata has is just identification of four classifications of tribes. So given three sides, so given this method, public string classifier with three sides as integers, identifying if it's a scaling OSI Sully's, equilateral or invalid triangle, so no farther classification that no more further detail, but I just did that level and then returning the string, invalid scaling, I saw sleaze in the collateral. So that's the kata we're going to take a look at. And we're gonna do it with test driven development and following all those steps for like you would do it for an interview. So it's pretty tedious. So before we do that, why don't we go and take a break. I know it's early, but I'd rather not break this up. This caught up, take a break. We'll come back, let's say 1010 and we'll take a look at it.
+
+So let's see. Now I need to.
+
+Alright, so what we're going to do instead is build, use TDD to build this kata method I was looking in this definition is actually the definition of valid triangles. So you're right, it's anything. So the definition I have here is the sum of length of 80 sides must be equal to or greater than the third, which makes it valid. So it's the opposite of that. So it must be less than. So
+
+it's weird.
+
+What I meant is the sum of any length of two sides must be greater than two. This statement is true except for dead equal toward it, you are supposed to remove that. For example, there is a triangle 3453 plus four is greater than five. It's a triangle.
+
+So you're right. So yeah, so
+
+um, was teaching German just I just want to.
+
+You're right. That's what I was trying to do. So I'm like,
+
+so that's. So this is the requirements we'll be working from. And we're going to build a classifier for this. And we're going to follow TDD to do it. So we're going to follow this not only just TDD but I'm also going to follow the steps that we would do if you were doing this for a kata for or work for our job interview. Which means some of its going to be a little tedious.
+
+So the first thing we'd want to do
+
+is figure out what tests we want to start with. Not start with what tests we need.
+
+Let me bring up
+
+Side by side, so what tests would we need?
+
+If A is equal to b and b is equal to C, or one I'm sorry.
+
+So A is equal to b, r one is equal to two, which is equal to three, which is going to be equal lateral, right? So maybe we can change this to a
+
+trial
+
+run either individually or to test them. No because
+
+that trip triangle. Before we close,
+
+let me rephrase that the code order will matter. So I was answering a different question I think you're asking. So I was you said, the code order will matter. The order rewrite the test in and write the coding won't matter. But the code order and the final product, rewrite the order that we check. The triangle checking the invalid first may be important.
+
+Okay, thanks.
+
+So what tests other tests we need?
+
+Because there's one
+
+no sides are equal.
+
+Okay, so no sides are equal.
+
+But what's that actually testing for in our our classification?
+
+The scaling triangle okay.
+
+skimming
+
+Is it enough to test just one test for that? Do you think
+
+you might as well pair that invalid
+
+triangle test with the scaling.
+
+So you'll want to test to see if
+
+two sides if the addition of two sides is
+
+less than the third.
+
+So it was for that. Yes.
+
+So we want to invalid triangle,
+
+two sides, less than 32 sides such sum of two sides.
+
+But is no sides are equal. Is that really the only thing we'd want to test for scaling?
+
+Maybe this I'm asking
+
+three maybe
+
+different tests.
+
+First is not equal to second one. I mean, three methods are three things to check, I don't know. First is not equal to second, second is not equal to third and first and third are also not equal. So any two pair are not equal. I think there are three things to check.
+
+Okay, so you think there should be individual tests for sure this
+
+should be let's handle it methods or civic
+
+are we it so then they're only giving us three sides?
+
+The signature that were method signature we're building is right here, okay.
+
+Say we have so.
+
+So an individual test then for a test case, or these are test cases, these are the J unit test cases are both said we should have one for one equals two, but we also know it can also be equal to three. So, really in all cases, the valid test is going to have to be all three sides on equal.
+
+So, the codes gonna need to do that, but
+
+so, what other tests so, let's see a phrase like this so we can look at it, we can check
+
+to see if one side is not equal to zero, because if it's equal to zero, it's just a line.
+
+Okay? So notice sides
+
+equal to zero
+
+Other tests,
+
+no sides negative.
+
+That's good. sides
+
+negative
+
+Can we just combine that so less than or equal to zero? Okay, so
+
+we want to do this one test.
+
+Yeah, make sense?
+
+So to ask Do we
+
+do we need
+
+Well, we've got a test for the I sauce Elise. Hmm
+
+and is that can that be done with one test?
+
+It could continue to like on. If a and b are equal to, then C does not equal or whatever.
+
+However, what if C and D are equal? Yeah,
+
+I get two if two sides are equal and not the third.
+
+So, we probably need at least three tests or three conditions that stand out, right? So for our stasis, it's valid if it's a, one equals two, we have two, one equals three, or if two equals three, those are the three. All three conditions to be valid, considering the third is not equal. Okay. So
+
+are there
+
+other tests you might want to do?
+
+We do anything with angles at all.
+
+We're not just a simple
+
+task, but you won't want to go any farther and this by the time we're done
+
+I think we have enough, right? Okay.
+
+We have enough to start with. So I would argue we probably need a little more around invalid. We probably want to classify some things because of the code order problem that was pointed out. Some things like making sure that invalid when sides one and two can be equal, but the third sides also when it meets looks like it's going to meet the criteria of the other conditions, probably invalid for each of those. But we can start with these. Alright, so now we just pick a test doesn't matter which test
+
+so some I want to pick a test to start with
+
+equal lateral,
+
+okay, so we're gonna start with equal ladder.
+
+So, looks like that. So that will come to our code. And I have the lecture code open here to D lecture, so I'll expand it. And we're going to work in two places source, main, Java and source test Java. So the first thing I'm going to do is I'm going to create
+
+a new class in combat tech elevator.
+
+And
+
+let's just call it something like
+
+triangle kata.
+
+And I'm gonna finish it.
+
+I'm gonna do nothing else with it for right now.
+
+I'm going to come down into source, test Java unkindness. Took Aveda and create a new class
+
+called triangle
+
+called a test.
+
+Finish that
+
+put these two side by side so we can. Alright. So
+
+the next thing I would say the first thing is get just enough code to start writing the test. So, here and the test.
+
+I'm going to go ahead and create the variable to hold
+
+triangle kata
+
+and
+
+let's call it the same I'm also going to set up the import import or dot j unit
+
+star.
+
+And then last thing I'm going to do before we are first check in, I'm going to go and put the before and that's going to recreate the time, triangle Cotta each time.
+
+public void
+
+was called setup doesn't have to be called out. That's what it's doing. So to set the triangle kata equals new
+
+triangle
+
+kata
+
+create a new offer each time.
+
+And then the final thing that I do over in the triangle kata class, I'm going to come here and get the method signature. I'm just going to copy it
+
+and paste it and that will be our method.
+
+Let's return a string. So we'll return just an empty string to start with actual return all to start with. Alright, so now, at this point, I'd want to do my first checking our first commit, somebody go out to get into a get add
+
+get commit, sham.
+
+So
+
+setup project.
+
+So now we're ready to start our first test. The first test case, and we've already agreed grid is going to be equal to one. So we'd want to
+
+start by
+
+writing writing a test that will check for any collateral when I say test
+
+And you can call something like public void identify
+
+a lateral
+
+turn.
+
+And now we're going to this returns string.
+
+So,
+
+and we expect the return of the string to be the word equal. I don't want all lowercase.
+
+A copy that
+
+wants to assert, assert equals
+
+expected is going to be collateral. The actual is going to be
+
+is going to be calling this method with something that should be equal lateral.
+
+So
+
+called triangle CATIA dot classify, and three
+
+equal sides.
+
+So what maybe four, four and four.
+
+Anybody have any other favorite three equal numbers they had other sent?
+
+Right, so now we have a test.
+
+So the next thing we're gonna do is fail the test.
+
+Somebody says, J unit
+
+just failed the test run down here maybe easier to see
+
+quite what I wanted.
+
+Alright, so we can see it failed. So the reason it failed, expected equal lateral but was no that's what we expect. Right? Our method It's returned all. So that's failing for the right reason right now, it's failing because it's getting the wrong response from our classifier. So what we want to watch for is for things
+
+like this.
+
+So compared to that, if I check that out, where I get a null pointer exception on line 16, that tells me that something else is wrong, right? I shouldn't be getting back in the air. So it tells me there's a problem in my test. But telling me that I'm getting null back when I expect equal lateral shows me the assert worked. Alright, so I have my first test, run it again. So there's back to failing correctly. I'm going to come out here and get add.
+
+Get commit Sham tests for equal
+
+Alright, now I'm going to come back here and I'm gonna pass the test. So
+
+we'll be right to
+
+pass to check for any Colorado triangle. How do we write that?
+
+statement?
+
+If statement so what are we going to do the if statement for
+
+if A equals B and A also equals c.
+
+So, change out to side one
+
+equals
+
+side two,
+
+and side one equals side three, that I would check if they're all equal.
+
+If that's the case, then we want to return our
+
+key word here, which I will cut and paste once we know we want to return to be collateral. So now I'm going to run it back to the past now, and it does. So I'm going to go out and add
+
+and commit,
+
+test first
+
+equal
+
+at URL test.
+
+Now we can look into refactor. So there's probably nothing really to refactor. Right now. We don't have a lot. This is about as come. It's not too complex. It's not doesn't need to be separated out. It doesn't need to be more complex. It really doesn't need more tests because three equal numbers. We're not always going to be the same, right? It was just three equal numbers. So I think we're done. fecal matter less somebody disagrees if you if you do if there's other tests you can think of, or other things we should do
+
+tests for like less than or equal to zero or the invalid triangle test.
+
+Okay, so I'll be the next another test though, right? Yeah. The only thing we care about right now is identifying a collateral triangle. All right, so I think we're done with this one. So now we're here we have this one done.
+
+What do we want to pick next?
+
+invalid triangle test. All right.
+
+So we'll do the invalid triangle test. And that's going to be where the sum of two sides is less than the third because there's actually two invalid triangle tests. They're gonna be separate tests because they're tied to t. We just do one requirement at a time.
+
+So
+
+our next thing would be to write a test
+
+Test
+
+void
+
+identifies
+
+invalid triangle
+
+with
+
+non with positive sides.
+
+Right so be our next test and
+
+assert
+
+assert equals
+
+word invalid
+
+and then here
+
+we're going to call the triangle CATIA dot classify. And what three sides should we give it? What number should we give it?
+
+Thank
+
+you like maybe six six and 11
+
+six, six They're 11. Okay.
+
+So let's
+
+now we're going to run the tests.
+
+validate that it failed for the right reason invalid was no, go out and committed
+
+an invalid positive sides test.
+
+And now we'll come pass the test.
+
+So how do we write enough to pass this test? We don't want to take any consideration to negative numbers, we're gonna assume they're positive at this point to pass this test.
+
+So
+
+what code Do we need
+
+I mean for this particular test, straight. If side one plus two is less than side three
+
+and you would pass just this test. So we're gonna say
+
+if we that's all we care about right now, this test, we don't care about anything else. So we'll say if the length actually side, one plus side two is less than side three.
+
+We're going to pass
+
+and then we're going to return
+
+return invalid.
+
+And if we run the test,
+
+so one
+
+plus side two is less than side three,
+
+I think is it supposed to be less than or equal to run
+
+with a net? It's So it's invalid. I thought it was okay to be invalid with 10 equal sides.
+
+If he made if it is equal, so it's
+
+or as my test wrong, should it be 13 instead of 11? Yeah,
+
+I think that's. But
+
+I thought when we decided before, it was invalid, the sum of length of two sides greater than the third.
+
+There was a, I think miscommunication. What I meant was for a triple to be a triangle, the sum of the length of two sides is greater than the third. What makes it invaded is just the opposite sum of the two sides is less than or equal to 30. So sorry about that. Sorry. I like to take responsibility. Okay.
+
+Good. All right. That's all right. So we can
+
+so should we actually change it to 12 since we want it to be like the brink?
+
+Well, do we just want it to be the brink? Or do we So this first test, that's something we have to talk about is we're gonna,
+
+this is gonna pass so let's pass it.
+
+And that's okay. So we passed the first test. So now we're going to get add, commit,
+
+added
+
+invalid.
+
+For past.
+
+We're back out here. And as we just identified, there's quite a few other conditions that exists besides this one that can make this invalid. When they're equal, they're invalid. sides two and three, can be invalid. So I think we have more tests that we need around invalid than this one. So in this stage will be can do is we can start looking at some of those different situations. And this is a place in TDD where we can actually break one of the roles of unit testing.
+
+So as we're looking at this,
+
+we have
+
+this test four
+
+here, and we already said that we should also be testing for this set of tests for it.
+
+It still passes. But what other tests might we need?
+
+If like the other, instead of being side one or step two, you have to check like side two plus side three.
+
+And stuff like that.
+
+Yeah, I would agree. So this is really invalid triangle. With
+
+side one
+
+and side two,
+
+less than three since
+
+that and let's take this test here which means scrap this whole thing and do it when side by two and one and two or one and three or two and three
+
+are less than one, right?
+
+So we can just move things around.
+
+So
+
+that should be valid right?
+
+And now
+
+the next test, we're going to fail it
+
+and it's failed correctly. So I'm gonna go out, get add
+
+git commit, dash m,
+
+added invalid four sides, two and three less than one.
+
+And now we can pass the test.
+
+So it's the same code as before, right? Because it's side,
+
+side two plus side three, less than or equal to side one.
+
+We saving up putting this on the same if statement for refactoring later. Yeah,
+
+I'm putting I could put it in the same if statement now, but technically the follow the process. We solve the problem and then we worry about the code. So If I was doing this right, I probably would just put it right in the if statement right now, but that'd be fine if you did that.
+
+Now we need one more if we already talked about where
+
+two and three are less than, no, sorry, one and three are less than two. So again, triangle one, and three are less than two, which means we can just again move the same. And we can just use the same data because we're not testing the math. We're just testing that it works with our logic, so if it works once, it should work with any numbers that are valid.
+
+Okay, so it's failed correctly.
+
+So I already just messed up. So
+
+and What did I mess up?
+
+I forgot to commit, I forgot to commit before, after I passed the test, it's easy to do that. So I'm going to go and pass it now. I'm going to go and commit it now. So get add,
+
+get commit chin.
+
+So let's admit what we did. So added or passed.
+
+Invalid test added. Next, invalid test. And we'll look at why these comments are like this. If I was doing it for Java, I probably would go a little more detail in the comments, but we'll see him in the end. So now we know it's failing. So we'll do the same thing. So if two plus side three, wrong numbers, side one plus
+
+three is less than or equal to side two.
+
+Return
+
+valid
+
+and we run the test
+
+this past summer.
+
+I say get commit, shim passed.
+
+Third test.
+
+So now let's refactor some.
+
+So these three all go together. So now we can take this
+
+and we know we can do this, right?
+
+And then do it properly. If we're doing something more complicated, we'd make a small change, run the test.
+
+We know we haven't broken anything it still works.
+
+Make its next small change. Maybe,
+
+then run the test
+
+and make sure it still works. So even though that's pretty simple code, and we could have just written like that, to begin with, that's part of what the refactoring is, is that allows us to constantly make small changes to run the test. Because if we change one line of code, and we run the test, and they break, we know we just broke the functionality, and we can just Ctrl Z back to where we were, and then try something else. So it gives a lot of freedom around around being able to work through problems. I see the message and yes, testing is tedious. But for this problem is simple, right? We don't actually need test driven development solve this problem. Again, I chose a simple problem because I didn't want to focus on the problem, which is the more interesting part. I wanted to focus on the customer development for complicated problems. It's incredibly powerful. I would encourage you, for the tediousness of it to kind of see the difference. Unless you can think right now, in your head, oh, here's how I could exactly how to convert Roman numerals between numeral Roman and Arabic numerals. There's an extra kata in some extra exercises a some optional ones. And one of them's that problem, I would suggest you try it out because it's a perfect problem for test driven development. It makes the problem simple, makes a problem that is actually kind of hard to do all at once really simple to do.
+
+So, I'll encourage you to do that at the end because
+
+again, but Alright, so now we're going to get
+
+add shape Shay, get commit sham. Now we've successfully refactor. So refactors invalid jacket.
+
+All right, so we have this one done.
+
+We actually ended up with
+
+quite a few tests on that. So what do we want to take on next?
+
+less than or equal to zero. Okay.
+
+So now we'll add a test for that.
+
+void.
+
+All sides.
+
+All sides must be greater than zero.
+
+We'll grab this again, we know it's gonna be invalid for this one.
+
+So we probably want
+
+tests like this, right?
+
+And maybe one.
+
+Actually, let's just get that working.
+
+And then we fail the test
+
+passes.
+
+So is there a site? Is there a case where we can not meet these conditions for invalid with a zero or negative side?
+
+If they're all equal to zero,
+
+that's the only case isn't it? Because otherwise, the zero always make the One
+
+end up smaller than the third side.
+
+Because even for the same size, then they'll hit. And if one's already smaller, it's always going to be smaller. So I think the only case that really is special is all three zeros. But even then it's going to be hit be valid here. Because then they're going to be equal, right?
+
+So yeah.
+
+So I think we can treat this probably more as a refactoring. Unless somebody can think of a case that has popped my head I, I can't. As I was writing that I was thinking I was like, I don't think it's possible.
+
+Okay, so we'll just leave it at that. So we'll get
+
+ad get
+
+Add a test for zero sides.
+
+And we don't have anything else we can do it past already.
+
+What about all negative numbers? Like take out the zeros?
+
+So all negative numbers, is there a case where this won't be true for all negative numbers?
+
+Uh,
+
+yes.
+
+What is the now Okay,
+
+yeah, I don't think there is.
+
+I think this Okay, catch all cases that would be invalid even with negative and zero numbers.
+
+What if side likes side three was like negative 200 Then side one and side two were negative one and negative one.
+
+Okay, let's find out
+
+side threes and negative 200.
+
+And this is negative one and negative one.
+
+I guess that would be especially invalid.
+
+Yeah. So yeah.
+
+I don't think there's a case that that won't catch.
+
+But I may be wrong about that. I'm not making the claim that I'm right. But I can't think of one and not have that what else can neither so we'll just leave it like that because you know, that's okay. For right now. We'll focus more on the TDD Alright, so
+
+I'm sure nobody wants that extra test cases to watch.
+
+And I don't know what just happened here with the nursing
+
+All right, so let's try to expand this and see if I can. So
+
+we have that one.
+
+So what's next?
+
+I saw Sally's
+
+sauce, please. Okay. So we know we have three tests for our Sauce Labs, right? So we actually have we already decided that. So we have Sausalito besides one and it's pretty similar to the negative tests. So sauce Lee's with one and two equal. So let's do that one first.
+
+Public
+
+If I
+
+sauce,
+
+I can spell sauce nice,
+
+supposedly is
+
+when side one and two equal.
+
+So now we're gonna have finally a valid test. So we're gonna copy this. And we want to
+
+have this output
+
+from our requirements. So that's what we're going to look for.
+
+And what would be a valid in Sausalito triangle where one and two are equal
+
+001
+
+Well, 00 that would be an invalid one because it has zero sides
+
+and in one I'm sorry
+
+what was 10 1010 and one
+
+okay. So
+
+okay, so we got to go correctly. So go out here to say, Get commit.
+
+So added test for
+
+his sides one and two.
+
+Now we come solve it. So here the where we solve this is going to matter some right, like the 001 suggestion would work if we solved the code up here, but it won't If we solve it down here, because invalid, we'll catch it first. So I'm going to solve it out here. We could do it either place. But this will bring up the problem to us fairly quickly if we did do it in the wrong place. So we want to check one side.
+
+One equals side three.
+
+No side to
+
+do we need to do anything else.
+
+Return, I saw sleeves.
+
+So is that enough? Or should we also check that side?
+
+It's not equal to say three.
+
+I think we could just, I mean, we can do that. Or we could just move up below the if statement while now because they're not also ifs. So yeah, we should also check that
+
+So when we return the saucily such I'm going to cut and paste them over here
+
+as we probably so it becomes more isolated probably do want to check and side one is not equal to side three and
+
+we should be able to run this
+
+pass so we come out here and get add
+
+to shun past
+
+it's awesome.
+
+So these
+
+tests, and now we need to add the one for side, two and one, three, right doesn't really matter just the next one
+
+so
+
+it's point three We can actually just use these same numbers. Because the numbers like matters as long as they're valid once again, we
+
+make sure it fails. Get a commit, dash m,
+
+added next.
+
+And now we passed that.
+
+So,
+
+again, I'm gonna write them separately.
+
+Why three? Because I can see this and we can always put them together at the end.
+
+That should pass the test.
+
+You forgot to change. Side 1230 Thank you.
+
+And this will be side. One is not equal to side two.
+
+Right? Yeah.
+
+All right, so we have that. So we'll get
+
+it commit,
+
+asked, shares, go up a couple.
+
+I'll just change this for a second.
+
+And we do the next test. So
+
+we get with it's two and three, right?
+
+We're almost to the interesting part again
+
+and that fail it
+
+can add Get commit, that's fine. And then we'll
+
+create the test for it. And this is going to be side two and three.
+
+And one and two still valid. Yeah.
+
+I should run.
+
+Alright, so we're almost through the test, we have that working.
+
+One thing we could do if we wanted to, that we want, but we have all these working, I think we got emails for scaling. If we want to do other variations, you can see we can have multiple kind of tests in the same one roll like here, where we didn't, we couldn't have that with regular j unit testing, unit testing. There's not a lot of examples of really needing that in this case, but for this particular kata, but
+
+could okay so the last one scaling Oh, I forgot to get ad cache
+
+commit shim passed final. So please test
+
+and I probably would want to refactor these. Now to have them so take the same thing. Maybe
+
+take sides here
+
+parentheses and do or
+
+sure so works. That we all
+
+okay, so grab this
+
+so it works.
+
+Good ad Shea Commit.
+
+Again, if you're doing this for your own problem, this code get stuff. This is for interviews. If you're doing this working on your own, you don't have to, you don't have to do the get that's not part of the TDD. That's part of the interview process for TDD.
+
+I just want to point that out. But I wanted to
+
+demonstrate how we would work together for this for an interview. Since most of you have to do it very soon. I say most because not every company does it. Alright, so we're almost there. So I know, this is tedious. I know this is hard to watch. This is, I think one of most people's least favorite times and the whole cohort is this hour. So watching this demonstration. So
+
+I think it's really going good, you know, lectures, not too long. I mean, right, and
+
+I agree with you at this point. It's really fun.
+
+Oh, good. I'm glad. I'm glad to hear that. So
+
+So maybe this is one of the one of the lectures that works better when we're not on a classroom.
+
+Since I usually hear the exact opposite feedback on this day.
+
+So, alright, so we have one more scalene triangle, no sides are equal. And now we have this one, we'll get to the part that actually excites me about test driven development, the test and setting it up. It's okay, actually, it's really useful when you're working on something really complicated. But final part is the part that I like. So scaling triangle, no sides are equal.
+
+So really,
+
+no sides are equal, there's probably only one test for it, right? Because there's only they always have to be not equal. It's kind of like the equal lateral. So let's do
+
+create the test for that
+
+and public Boyd, identify
+
+me, Brian.
+
+Yes. So is copy and pasting. Okay, when you're making these unit tests, or is this something?
+
+I don't know, I'm just kind of trying to figure that out? That's a great question. So the copy and pasting I'm talking about is on this side, and the code in the test, you're often gonna have to copy and paste the test setup and the test and parts of tests. You can eliminate a lot of it. But the lot of the rules around that change what test because of the way they have to be set up and the way we want them structured. We want them structured as isolated, small things so that we know exactly what breaks. We're code over here shouldn't in the actual code is where we really wanted to copy and pasting. Okay, got it to your question.
+
+Yeah, perfect. Thank you. Okay. All right. So
+
+So now we need
+
+a classification for this. So I'll grab this and while I'm doing that somebody want to come up with a scaling triangle.
+
+Measurements 234234 sounds good
+
+234 fell it
+
+scaly Not at all, so it's correct. Then we'll add our attache, get commit shim
+
+tests for gaylene.
+
+Now we'll pass it.
+
+So it doesn't matter where we write this particular test
+
+Does it? Does this one not really matter?
+
+I mean, I would write it at the end.
+
+At the end after the latter.
+
+Yeah, but I wouldn't even bother put in. Like there's so much you just do return.
+
+scale in, because if it goes through all those, and it hasn't returned anything else, and it's still a triangle, but nothing is equal return.
+
+Okay. So let's return scaling.
+
+So let's see if it
+
+Okay, so we passed the test
+
+ha
+
+Shan
+
+scalene test.
+
+Alright, so now we have the CATIA complete. I mean the the requirements complete. We had all the test cases we set out we've completed all the test cases, we encountered a few ways that were a little different than we thought when we started started out, which is normal. That's completely normal. It's okay to adapt your test cases as you go.
+
+So
+
+now, the next step is to refactor. We've done a little refactoring. But we haven't done done much we can make this code really readable. So I'm going to,
+
+actually at this point, close the tests.
+
+So what ideas Does anyone have on what we could refactor here?
+
+Could we like make a new variable excited one plus two for example, equals sum of two and three.
+
+So side
+
+so create a new variable for like the first step, checking for invalid. And then side two plus three is we're going to define this integer as like sum of one to some.
+
+One and two is going to equal side. Is that it side? One plus side two. Yeah, that's it. Yeah. Okay.
+
+And then change this for that.
+
+Yep. Okay.
+
+As it creates a little more readability, right?
+
+So for doing that probably for the others as well,
+
+as soon for, I mean, because if we want, if we're going to do it here, we'd want to do it for each one of the three cases right? Should be consistent. So okay, so let's sum of two and three equals side two, plus three. And let's go on to sum of
+
+one, and three equals side, one plus side three.
+
+I keep adding spaces there.
+
+Somewhere, we can take this
+
+after any change we make once we have these test cases, let's run them. Okay, they're still passing. So we know we didn't break anything. So which is great, because now we can keep going
+
+So what other changes might remake?
+
+Oh, Brian, can we check if a triangle is legible before it is isosceles. Because it's more specific case, if we do this, we don't have to write a lot of case in line 17. We don't have to check if the first is not equal to search. If it is, it is the political, then let's put this after equal digital and get rid of health ethical hospital.
+
+I agree with you. Except I'm going to suggest we should refactor in a completely different way, which means that we'll make it so we don't we leave the extra check in asylees.
+
+Because we have this methods doing
+
+three, four things right now.
+
+It's
+
+checking
+
+if it's invalid, it's checking if a sauce leaves is checking if it's equal lateral It's checking really, if it's scaling, that we didn't write a check for that. That's a lot for a method to be doing. That's too much. Actually, there's four tasks going on in the methods job is to classify the triangle, it's not to check if it's invalid a socities equilateral scaling. So I think we should, rather than do that, I think we should extract the methods into extract these each into invalid methods, then we'll have this method that we can use anytime we need to identify a sauce least triangle. If that's the case, we want the full check for it.
+
+Does that makes sense?
+
+Yes, sure.
+
+So the idea being is that we have more code, but we end up with two things, we usable code. And also, we're going to end up with more readable code. And that may not make as much sense but let me show you why. So let's start with invalid I'm going to extract a method of extracting a method. This means to create a method. From code we have existing, it's going to be private. Because no one needs to access this internal worker method. And I'm going to return Boolean from it, because I want the output of whether it's invalid or not. And then we can name it something like, is valid.
+
+Triangle.
+
+And we're going to name it is valid triangle instead of is not a valid triangle. Because we're using bullions. We should for humans, we should focus on positive we should try to name them with positive things is this and then we can use not to determine when it's not that rather than naming of negatives. So and that's because of readability. So invalid is the negative side of it. So we want to check if it's valid, and then we'll say not is valid, which will be much more readable than saying is valid for programmers at least So we need to pass the sides.
+
+But that's okay because passing data around is not
+
+the whole point of arguments on our methods.
+
+And the last come up here and I'll grab the entire invalid segment
+
+and completely remove it yet. Copy it, move it down here.
+
+And now we'll return
+
+false seven invalid, and return true
+
+is valid.
+
+Which means we could refactor this to return not this, but we'll leave it like this for readability. I think this is a lot more readable than that.
+
+And then we'll come up here
+
+and he will say if
+
+Not is valid, side one, side to side three. We don't need these anymore. They're done in the other method
+
+and we run it
+
+we see their passing. So we know we didn't break anything, we made some fairly major change there but we know we didn't break anything. At this point, I might go in here and say get add ashay get commit Sham extracted invalid logic if we do the same for each of the other types
+
+so your private
+
+when his
+
+sausage leaves and this is why rather than rewriting it, we extract it
+
+which means we do have to have the other check for the entire
+
+Each type isolated.
+
+Do the same thing here.
+
+Just return true.
+
+Actually, we can just return. I'm gonna look for readability. I'm gonna leave it like this. Normally I would just return the output of this since we're returning true when it's true and false when it's false. But since just for readability, I'm gonna leave it like that. And here now we can see if it's true that it's I saw Sally's side one side to side three
+
+saw sleaze and Ramat
+
+and passes.
+
+And let's do the same prequel ladder with no there's not a lot of code there. There's another reason to extract methods besides just simplifying code is it hopefully it will A little more clear here. So equal lateral, and side one, and side to
+
+side three.
+
+And here we'll just return this true or false because that's not really all we need to do is return that.
+
+And this becomes this.
+
+Again.
+
+Let me come over here and commit,
+
+commit,
+
+commit.
+
+I should have done this commit after each one, but that's okay.
+
+Let's call it triangle logic.
+
+So This code now, each of these methods is doing one simple thing. If the valid duration of the triangle breaks, I have this much code to look at. I don't have to try to figure out which of the if statements up above is doing that. If the ISO Sophocles' check fails, I have this much code to look at. I don't have to try to figure out which if statement above and I don't need to comment whichever statement above is doing the exhaustive list check or try to understand it. Because up here I now my code reads as if not valid triangle return invalid. If it is a sauce, please return to SOS Lee's if is equal ladder returning lotto that's waiting like a sentence almost. I think most non programmers could read most of that, and probably have a good sense of what's going on. And that's our goal. So we can refactor for multiple reasons, but one of the reasons we extract methods is readability and dow these are not only isolated so when something breaks Chances of something breaking up here is not too high. Because there's a really simple, it's more likely to break in statements like this.
+
+Or
+
+this, then we have just a few lines of code to look at. With one method, we can easily track it down and tell the invalid method. Triangle method broke. So we go look at that. And we now have, what seven lines of code that we have to focus on, we'd have to try to figure out which, which of these lines of code up here we have before checking for an invalid triangle. So extracting methods creates readability. It also creates reusability because next time I have a triangle problem,
+
+I have three of the four methods done.
+
+If I was doing this, myself, if I was doing this for my own project, I probably would write the code to do scaling as well and have a method and then return by default at the bottom are now at the end. So we made it through all of them. Just that number should happen. But we can leave it like that because I think it's an okay answer for CATIA as well, that's just a different solution. So we're not quite done yet, there's more refactoring we can do. But before we do that, because I think that this, the methods are the most important of the refactoring you have, what questions do you have?
+
+Doesn't it make more sense? Not to invalid.
+
+Nevermind.
+
+So is this a like, creating methods and identifying when to create them and take them out of the code is difficult for me. So, is it a good idea to go ahead and create like, I like the process that we just went through where we created it in one giant file and now we're been extracting, and that's a legitimate process to go
+
+it is yes, anyway. Okay. So, the represses, were found I'm a huge fan of refactoring. So you hear me talk about it a lot and probably get sick of it is that you solve the problem any way you can first. That means what makes sense to you to solve the problem is writing all your code in one huge file, you write all your code in one huge method. Once the problem solving, then you start breaking things apart. Then you worry about code quality. Because you need good quality code. You don't need perfect code. We need reasonably good quality code. You got to meet standards in the workplace, you got to meet you know the standards of the language. You worry about that second. Because once the problem has been solved, it's much easier to look at start looking at where methods extract it can be difficult sometimes, and often you make the wrong choice. Anyways, when you're looking an advance at what methods should be. It's common to write them and then have to refactor methods into other methods or combined to or split them apart more, because you made the wrong choice up front. That's okay, too. That's the same idea. But so putting it all together in one, yes, whatever makes sense to you solve the problem, get the test passing, and then use those to fix the code, not fix the code, but improve the code. Because in the end, you do want to end up with readable code, you do want to end up with proper methods, but they aren't, they're challenging to come up with. Tomorrow, we'll start looking a lot more class design, it's going to get even more challenging, because we have classes on top of this. But yeah, definitely take advantage of doing exactly that. But if you're going to do that, testing becomes even more important. So the testing is important anyways, but if your three processor refactoring works with test cases, it does not work without test cases. Because you're likely to break things and not realize you broke it.
+
+Alright, so let's, uh,
+
+cuz there's one more thing we were like in refactor. I know we've been going for a little over An hour but we really don't have much left. So unless anybody
+
+does anybody have any objections to
+
+pushing through? I
+
+mean to say that we have a lot more to go. So I'd rather just take a break, okay.
+
+I'm okay with that. That's why I asked cuz, since Yeah, so let's take a break. We'll come back at 1130.
+
+Okay, so
+
+before we look at the last bit of refactor, we can do what questions do you have or what?
+
+Okay. All right. So the last thing I'd want to refactor out of this is just we talked we don't really have any magic numbers. But we do have these strings that are hard coded in. So I'd want to get rid of those. And we can take advantage of that, we can get rid of those in a couple ways. One, it'll make it so that if we have to change the spelling, or we have to change something else about them, we have one place to do it. But two or two, it will make we can make our code a little more readable doing it.
+
+And finally, we can
+
+make it slightly and I mean very slightly more efficient, because it can optimize around having these strings if we make them final statics. Not enough really to worry about but it's an extra extra bonus. So I'm going to move these four strings, these four classifications into static static, final static variables. And if we do that, we can say private Final static.
+
+And what is final static mean? Remember,
+
+the variable can't be changed later on.
+
+That's what the final means. What is the static mean?
+
+Somebody else
+
+does that mean it's a constant?
+
+Yeah, it's the same. Well not the static the final creates a constant like variable.
+
+But what a static means
+
+for a variable,
+
+but it belongs to that class. Exactly. So it means that there's only going to be one of them for the classified class. Now this case we only have one but if we made 20 objects, or triangle color class, sorry, if I made 20 objects off Angle CATIA, it would only be blown to the class would be one copy of it. So we're creating something final static, we're saying we can't change it, there's only one copy of it no matter how many classes, objects get instantiated off this class. So it acts like a constant does in other languages. Java doesn't have that idea if remember, of constant, but it has a similar idea to it. But it also tells the JVM that, you know, it doesn't need to, this is not variable so it can put it has a special memory place that basically puts them into that it can it's a little more efficient, so you can access them easier. So it's a nosers like going to be one of them. But that's not really that important in modern programming, unless you're doing something really high performance, which isn't very often used to be a really big deal when memory was not so easily available. And there wasn't quite so much of it, but so for each of these would have say something like type invalid.
+
+valid. Now I probably would want to do,
+
+these should be outside of the method that's put in place
+
+the top of the class,
+
+someone's taken take this and just change this to that. Now we read it. If it's not as valid triangle return type invalid. mean the other one was pretty readable, but that's much more readable as far as we're on the requirements, says exactly what it's doing. So we can do the same for
+
+the other types. So type
+
+is loss.
+
+And as I do each one, I'd want to run the test cases to make sure if I was refactoring this for, kind of for the job, I would do all of these at once. I'm gonna do all my and then I would commit. There's no reason to commit between each one of something that's small. They're all like you could do them all together.
+
+Excellent free collateral.
+
+And the last one for scaling
+
+copy
+
+I kind of broke the procedure there. I should have ran the test cases after each change. Because it's possible I can misspell something and break something at this point.
+
+Okay, so
+
+Now this code is
+
+a lot different than what we started with. But it's a lot more readable. It's the same code, it's a lot more readable. But it's a lot more broken up into pieces that are easy to find if there's problems, and easy to five, solve and maintain. So our goal was to have code that looks more similar to this, where someone can look at it and say, if it not is valid triangle return type valid if is a sauceless return type Sausalito, you can very easily identify which part of the code is doing and what the whole project problem solving. So that's our goal is to write code that's that readable. It's not always attainable, but we can get as close as we can.
+
+So there's one more thing I want to look at. I'm actually going to go committed
+
+as an integrator, push this and then we'll look at what can be seen with it. So get commit And
+
+quite extracted.
+
+Variables extracted literal strings, which is what that would be called.
+
+Don't forget to add add cache.
+
+Okay, so
+
+the last thing is we hear a lot about comments, write comments and code is something we haven't really talked about. We've looked at, we looked at how to use them. But there's a couple different types of comments. One is in the middle of the code, where you might say something like, this code does x, whatever does for those type of comments, they should be every environments different but most environments will have want them to be kind of few between. So not that they don't mind comments is that if your code is readable, you don't need to explain what the codes doing. You are used for when it's not obvious. And comments should explain what is happening, not how it's happening. Unless it's something, you're doing really strange, which is pretty unusual. So But there is another type of comments we do want to include, especially if you were turning this in for a job, and that's called Java doc. Java doc is the comments when you type something like
+
+me get to a method in this documentation it shows up here comes from the Java doc. So it's generated from that so we can actually generate it for our own code. And there's two things we want to put Java doc one, private methods don't need it. Because private methods are internal to the class. They're not something extra using external, so it's not going to show up in IntelliSense. Well, it will but only inside your class so it's not too useful. But if you're turning something in like for an interview, you'd want every public method And the class itself have Java Doc, you can generate them. So, if I was doing this one above the class, if you do start like a regular comment, like a multi line comment, so forward slash asterisk, but do two asterisks, and then press enter. You see it created it grabbed my name from Eclipse and put the author in there. If there's other information, sometimes it'll put that as well. And then I want to put just a comment on what this class does
+
+classifies
+
+triangles as salsa, Lee's
+
+cuatro
+
+scalene or invalid
+
+there's also some other
+
+what's what attributions we can put here. So I'm going to quickly go over here and say, Java doc
+
+See, see some of the other ones?
+
+Hopefully this will be a good enough
+
+description of it.
+
+See these in a second?
+
+Maybe? All right.
+
+Well, there's other things you put in around date fields. Here, there's the author tag the version. So you might want to put in something like a version
+
+1.0.
+
+And then when someone goes to use this class, that information will show up in the documentation. There's also other ones around the date and some other information. So there's quite a bit of them. So our class we'd want at least probably, just this description, by the way would have the author or the version doesn't matter as much. We can change it like they default to my name, but probably be more accurate to say, Java, Blue
+
+cordilla 11.
+
+So the public methods
+
+do the same thing. So forward slash, to asterisk and press enter. You see I got something a little different now. So
+
+it's
+
+actually the comment I had up here probably is better suited for down here. And so I'm going to copy that. And up here, it's probably better for a comet like implementation. implementation of the classic triangle classification. Cada because that's really what the classes and this is actually probably more of the method and then for each of the parameters, I want to say something like
+
+side
+
+one side first side of the triangle, first side of the triangle, giving a description each one I don't know how to describe three sides of the triangle individually.
+
+It probably more important would be the return a description of what it does. So returns string, though we have that from the method signature already.
+
+String containing
+
+the triangle
+
+classification.
+
+If you When you go to,
+
+for
+
+something you're doing for an interview, you probably want a little more detail than that, you'd probably want to go through and look at some of the standards on how to document whatever type of methods they're they have or whatever type of problem they have. Or even ask them their statements in Java doc. So and then provide that, but that's what Java doc is. Now, if we try to use this class, it could be come down here into the test class again.
+
+here how I'm going to delete this right out but if we use triangle,
+
+kinda dot classify, you can see our comments will be just wrote is right here in the documentation, which is why it's important for public methods, because the public methods of the interface someone is using from outside our class, right? So this is how we can identify to them what the methods going to do and how to use it outside of just the signature
+
+So now that we have that, let me go back and get add
+
+get commit
+
+added Java doc.
+
+Before we go look at this before I push it and we go look at it is there questions or okay?
+
+So I'm gonna push this I'm gonna get push
+
+which is gonna push it upstream. So
+
+I'm gonna go out now. Window
+
+got the bucket.
+
+should be pushed here to come up with material.
+
+And the reason I'm going to go out and look at this is I'm going to show what, what the employer can see or what can be seen and why we got all those steps from development. And hopefully it worked, because last court just admit, actually lost a bunch of stuff somehow.
+
+So here we have our code. We can look here at all the commits.
+
+So you can see
+
+each of them more
+
+set up projects. So They could take a look at. Okay, this is what it looked like when they ran set a project. And then they
+
+at the point that they passed the first I saw sleaze test.
+
+And this is what it looked like when they pass that test. And then they extracted the triangle logic. So we then go through each step and see a full history of exactly what was done. Which shows you doing test shows stuff from development working. And there's other tools that are available to make it a little easier to view them Bitbucket does that are around viewing this type of process and seeing the steps. So that's the reason that all the ads and commits are there is to create this history because the history gets created locally and then we push the history gets pushed to Bitbucket, or GitHub or get lab or said they bundled up often into what's called a get ball or get by bum and send it female So that steps when you get there are important to add intimate steps. Alright.
+
+So before we look at
+
+what you're going to be doing for today, any questions
+
+like it when you're showing a side project or you have it on your resume or something like that, how important is it to have a commit history along with it?
+
+If it's your project? Not? Not really at all?
+
+Okay, perfect.
+
+If you want to showcase that, Oh, look, I did testing development on this, then that would be fine. There'd be nothing wrong with it. But do your project there if they're going to be interested in the project, the final product, okay. Yeah, in their projects, no. It'll tell you they'll often say we want this done customer development wise.
+
+And this is what they mean.
+
+What they've done If I was getting into CATIA by pretty much any company where I had to return good information, I would follow this process pretty closely. If you miss one, they're not gonna, as long as they can see that you're following the process, that's what's important. It's also about can you follow directions? To be honest, it really is because a lot of people can't, won't follow directions. And you do really want that someone like that on your team. So often they'll put directions in, like, do commits on this, these steps and they meet it. They're checking to see if you pay attention. So
+
+So other questions before we
+
+go. So
+
+today for exercises, we'll be doing custom development. So the exercise itself is I just closed the bucket. That's why I wanted to be is familiar because you'll get to do one of the classic tester and development actually sizes of fizzbuzz. So exciting, I'm sure for everybody. But it's a little different than the one you're used to that has some extent, expanded requirements. But also, then you don't have to worry about the problem solving and more about the TDD process.
+
+So
+
+you're going to do basically what we just did, only for
+
+something I want,
+
+only for fizzbuzz. So it has the original requirements like you're used to here. Notice it is between numbers one and 100 and inclusive. So you don't have to have any input you just have a go through the numbers, one 100 and do fizzbuzz for them. Part Two adds some other conditions. So not only divisible by three, but also contains a three and contains a five, and contains a three and five. So this the way this is going to be scored is not just did you solve fizzbuzz? We know you can solve fizzbuzz at this point, you've done it. This is how many times but a lot. So the discord you're out this is based on Did you follow test driven development, and your commit history will be looked at. So you should solve this problem the way we just did with adding commit between each one, then the commit history is part of it. So this one gets looked at by the kind of how we just went and looked at the commit history what we did, we shall go through each of yours and look at your commit history to make sure you follow test driven development solve the problem, and of course, you have to have solved the problem as well. So remember, you want to write a test fail the test committed pass the test just enough code to pass the test out and committed, refactor out and commit it, go to the next test and continue to you're done. And then at the end, refactor if you need to, you can do that as you go or you can do at the end, or both.
+
+So questions are what you'll be doing.
+
+Right? There's also today,
+
+something we haven't had before. There was a set of extra exercises, add extra exercises in here, that has some other things like a string calculator, numbers to word CATIA, prime factor CATIA, Roman numeral CATIA, so that you should try, you can try and I would strongly suggest you try them. Just because they're extra optional does not mean you shouldn't do them. It just means that you're not required to do them. So what it was initially today Originally today there was more than just fizzbuzz. And there was also pair assignments and we decided to make it a little easier for today. So, so you're getting them, it's extra them, but I've encouraged you to do them. So, especially, I would really encourage you to do the Roman numeral one. That's the one that I think is a really, I think it really brings out test driven development. I think it's a problem. That's that's like perfectly suited to it. So Alright, so question questions on that.
+
+All right. So a couple of things for today.
+
+I'm supposed to tell you about somewhere here.
+
+All right. So there's a LinkedIn presentation at three today. So you've noticed you've been signed pair groups already. The first pair assignments are tomorrow. The next two days are just pair assignments, and then the capstone so the rest of the week after today's pair.
+
+But I'm gonna encourage you. So one of the things we want to start.
+
+So one of the things I know it's hard being remote and it's not talking to people it's still challenging is working together, right, and figuring out who to contact, how to contact and getting over. So when occurred, you're in your pair groups to form factor when assign them, but how you use them will be up to you almost study groups. So for each of your teams, I would suggest that are going to say that each week, even we don't have pairs, I'm going to give pair assignments in four teams, the odd teams, you'd be paired your whole team, so your two pair would be paired with a pair of the odd even number this one above so wanting to know be easier to say groups wanting two groups two and three groups four and five and groups seven and 830. Much easier than trying to describe all that because only eight groups. So work together. treat that as like a study. Group, I would, I would strongly encourage you in those groupings to, you know, get together work together and you have problems. Those be the people you reach out to first for the week. And, you know, set up time even to work on your exercises, work on anything you're doing together. So one of the things that we use internally and that
+
+we,
+
+we use during the final Capstone that really helped in groups and I know when we work, it's helped quite a bit that we don't do it only when we're actually coding, which is a much during the cohort. Unfortunately, because I think it really works well is open up. if, let's say, four of you are working. You're working on your own individual assignments. So you're not really working together. You're two pairs working on your pair assignments. Go to a room open up,
+
+you know, zoom or
+
+that other thing that starts with a j that I can't pronounce, or hangouts doesn't matter what, it doesn't matter if your cameras are on, keep them off, you can mute yourself and just sit there on the call. Because then you can just unmute and talk to people. So you can just suddenly want to share your call. You don't have to have we do it. And we'll do it in the instructors office. Well, when we do it, we sat there with we're just muted. We'd have our cameras on into this means that we can just unmute and say, you know, Hey, have you thought of this or I'm having this problem and get immediate kind of acts like sitting there beside somebody working quietly, kind of emulates working in an office, it works really well. So I would suggest trying it. If you don't like it, you don't have to do it. So the requirement is something that's worked for us that might help for you. And and I see the comment from Justin about the study groups having natural effects. incited does. Usually by this time there are groups forming usually, often the whole class.
+
+And yet, that's something that's trying to.
+
+Yeah, I guess artificially is the right word, right? Trying to make it happen. So don't let this stop you from forming bigger groups or your own own structures. This is just a structure that I'm suggesting you give a try. If, and this also will force you into knowing who to have your groups with. So hopefully it'll help.
+
+All right. So that's,
+
+I think that's everything. So any other questions? concerns? Anything else? one by two.
+
+All right. All right. So then, we're done on time for once today. So
+
+Alright, so have a great, so thank you. Have a great day and good luck.
+
+Oh,
+
+Transcribed by https://otter.ai

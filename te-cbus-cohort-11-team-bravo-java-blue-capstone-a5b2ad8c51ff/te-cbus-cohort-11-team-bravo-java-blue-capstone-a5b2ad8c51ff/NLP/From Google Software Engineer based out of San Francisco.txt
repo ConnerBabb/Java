@@ -1,0 +1,48 @@
+Pathway
+https://drive.google.com/file/d/0B-Xlc61CFPaTS1I3YTdVNlZzdHM4QWFpYmxpdnBPQkI4QkFV/view?usp=sharing
+
+From: Google Software Engineer based out of San Francisco
+To: Entry Level Developers
+
+Hi Kaleb –
+Absolutely! I’d love to help. Here are my thoughts:
+Do a hobby project on the side that isn&#39;t school related or advance a school project well past its first
+intended idea. Build and use varied elements of whatever language its in to show that you can
+combine/utilize the language to its fullest. Example is an Android app that uses local storage(DB, prefs and
+file), hit a server REST call, and use a system service like GPS. Next would be is to find different ways you
+could of built that project. Looking and back to see what you could of done better will only improve
+yourself later on so you don&#39;t write yourself into a corner. Until you grow into a senior dev(5+ years), you
+should cringe at about any code that is 6+ months old that you wrote because you can tell you can do it
+better now. 
+Having a simple project that you can show off is one of the biggest things as it show you can code,
+accomplish goals and finish those goals. Whenever finishing a sprint or project, analyze the project to learn
+and grow from it. See what you would do differently or how you could improve it. Doing this all on the
+side shows you are passionate about coding and that you will grow outside of the office. Next is very
+important, &quot;Semi-specialize&quot; in something you want to do. Employers are going to hire you for your
+expertize in a language/framework/project and you need to be able to own it. Know it just about inside out
+but realize you can&#39;t do it forever. Try out similar frameworks or other languages so you never pigeon hole
+yourself in a language. I try to spend about 1-5 hours a week keeping up on programming news, trying a
+new language out or just keep up with how things are moving in the industry. This will keep you fresh in
+what&#39;s what and also lets you see possibly better solutions for future/current issues. For example, Java
+might be a great language but it isn&#39;t the best for everything. 
+I&#39;m hoping some of you have learned the next thing while learning how to code but failure is ok, but not ok
+in production. Failure is a programmer&#39;s way of learning and luckily many of you are learning from other
+programmers or your teacher the mistakes they have done so you don&#39;t run into them yourself. Learn from
+breaking stuff and peeling projects apart to see why people did what they did. There will be many times
+when you will write code, it might work, it might not and you don&#39;t know why it is working or why it isn&#39;t
+working. The best thing is to fixate on those moments because those are the times you learn something new
+that you probably didn&#39;t know about. Or find an embarrassing mistake you caused either way, you should
+learn from it. Sometimes you might sink a few hours or even days into an issue. Always try to keep a clear
+head and remove your ego. Never be afraid to say you messed up or your code is wrong. No one likes
+finger pointers and no one likes excuses. One thing everyone does like is a solution. You messed up? Come
+up with a solution asap. Don&#39;t know one, try to talk it over with other programmers. Even just using
+someone as a soundboard can help. A few of the biggest things I have learned from senior devs is when to
+put down the ego, when to know your limits, and what to do when you hit an issue.
+On a final note, breath and relax. Take your brains off of issues in order to come back to the issue with a
+fresh mind. Our jobs are not about how to write the most code the fastest or who can be the best. Our jobs
+are to build something, whether it&#39;s alone or in a group, you need to build the project to the best of your
+abilities and to meet the requirements of the project. They say in life to don&#39;t live with regrets but in
+programming you will regret writing that line of code or building a project a certain way so many times you
+will lose count. Don&#39;t put yourself down for that. Grow from it and remember it so you never do it again.
+Because the moment you notice a regret in what you did, you can pat yourself on the back because you
+have grown to be a better programmer.

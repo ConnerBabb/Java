@@ -1,0 +1,64 @@
+Book
+https://book.techelevator.com/content/linear-data-structures-ool.html#queue
+
+Queue
+Imagine you're working at a deli counter, and there are several anxious customers who want to order their lunch meats and cheeses. When the employees start working, who is served first?
+
+The most common way to deal with this problem is to use a queue. The flow is fairly straightforward:
+
+Customer visits the line and takes a number.
+One at a time, a number—in increasing order–is called for an individual.
+You wait for your number. When it is called, you give the employee your order.
+After you complete your order, the next number is called.
+Queues follow a First-In First-Out(FIFO). Each customer to the deli counter receives a number that indicates the order their request was received. As a request is processed, the employee calls for the next customer.
+
+Real World Usage
+
+Queues are used when there's a need for a system that manages a group of objects in the order requests are received.
+
+A print queue prints documents in the order requests are made.
+A Call Center phone system uses a queue to hold customers in the order they call. Service representatives take the call of the person on hold the longest.
+Like you saw with lists, the queue is internally backed with an array. The Queue class manages it so that items are read in a particular order and added and removed from a particular position.
+
+#Creating a queue
+Declaring a new queue consists of the same three expressions to create any other object.
+
+Queue<String> names = new LinkedList<String>();
+#Adding items to the queue
+Adding items to the queue is similar to real life. No one can jump the line; they always go to the end of the line. Queues use the .offer() method to add an item to the last spot in the queue.
+
+Queue<String> names = new LinkedList<String>();
+
+names.offer("C3PO");  // names now contains C3PO
+names.offer("R2-D2"); // names now contains C3PO, R2-D2
+names.offer("BB-8");  // names now contains C3PO, R2-D2, BB-8
+What is LinkedList?
+
+LinkedList is the class that you use in Java to create a Queue. Future chapters discuss object-oriented material later. For now, know that a LinkedList object acts like a Queue, and you can use it here that way.
+
+#Removing items from the queue
+The method for removing items is .poll(). This always removes the item that has been in the queue the longest.
+
+Queue<String> names = new LinkedList<String>();
+
+// ... names now contains C3PO, R2-D2, BB-8
+
+String name = names.poll(); // name contains C3PO and names contains R2-D2, BB-8
+If you try to call .poll() when the queue is empty, null is returned. It's always best to check the .size() property before attempting to poll an item.
+
+#Looping through the queue
+As with stacks, you can use the foreach iterator to go through the contents of a queue. Alternatively, you can dequeue each item as long as there are items in the queue.
+
+Queue<String> names = new LinkedList<String>();
+
+// ... names now contains C3PO, R2-D2, BB-8
+
+while (names.size() > 0)
+{
+    String name = names.poll(); // the item is removed from the queue
+    System.out.println(name);
+}
+#What's next
+The collections introduced in this section are an example of linear data structures. A data structure refers to a particular way the data is organized so that it can be used by the program. A linear data structure is a data structure whose elements have a particular sequence. In addition to these collection classes, arrays are common linear data structures.
+
+If you want to learn about other types of linear data structures, take a look at linked lists. They aren't commonly used by junior developers, but they do sometimes come up during an interview.

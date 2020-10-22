@@ -1,0 +1,28 @@
+Book
+https://book.techelevator.com/content/event-handling-javascript.html#the-browser-event-model
+
+Event Handling in JavaScript
+When users interact with a web page--by scrolling, moving their mouse over elements, or clicking on forms or buttons--we can trigger certain JavaScript logic to respond to those events. In JavaScript, this is called Event Handling.
+
+Built into the browser is a system that constantly notifies and processes events that are happening while the page is loaded. This includes browser events, like the DOM being successfully loaded or state changes in the display of the page, and user events, like mouse clicks or key presses. This system is open enough that we can write JavaScript to listen for certain events and have our logic run as well when things happen. We can also write JavaScript that triggers certain events to mimic browser activity or create our own custom events to add more functionality to our application.
+
+In the following chapters, we will be exploring the browser's event model and how it handles and triggers events that we can listen for in our application.
+
+#The Browser Event Model
+Browser events work in what is commonly called a Publish and Subscribe manner. Publish and Subscribe is a programmatic way to pass messages between different parts of a system while keeping those different parts decoupled from each other, meaning that the parts don't have to know about each other, they just need to know which messages to watch out for.
+
+Publishing means that the parts of the system can send messages out for other parts to act on and Subscribe means that a part can listen for certain messages to be published and perform logic in response to it.
+
+Back to a browser example: when a user clicks on a link, the UI can publish--or in browser speak, "trigger"--a "click" event on that link and another part of the browser can subscribe to--or in browser speak, "listen" for--that event and load the link as a new page.
+
+This is called an event driven interface and most GUI applications follow this model in some way or another. With this model, we're not looking to run our program's logic from start to finish but we are going to write our program to listen for user triggered events and then run a small piece of logic in response to it. That logic can range anywhere from adding a class to a table row to saving a form full of user data to a back-end system.
+
+#Where do events happen?
+In the browser, events are always attached to DOM elements. You can listen to events on links, buttons, input elements, tables, table rows and any other DOM element on the page.
+
+When you want to listen for an event in your JavaScript, you will first need to select the DOM element that you want to listen for events on. Then you will attach a function to that DOM element that you want triggered when the event happens.
+
+#What are the events?
+When an event is triggered, that event might have some information that gets sent along with it. If it is a mouse event, you will get the X and Y coordinates of where it happened. If it is a keyboard event, you will get the key that was pressed. This information can allow you to create very powerful user interface interactions with your JavaScript.
+
+In the next section, we'll discuss how to listen for events from the browser and run our own JavaScript logic.

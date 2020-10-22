@@ -1,0 +1,196 @@
+Pathway
+https://docs.google.com/document/d/1-BRb_ov4l639AKcXN472FtDnwSMs4df9S-Ric_rBk9c/edit
+
+FINAL CAPSTONE
+Congratulations! You are now beginning the final module of the cohort. Here you will learn what it is like to build software as part of a team. You will produce a working application from the ground up that puts what you have learned into perspective. You may even learn something new that wasn’t taught in class!
+
+If there is anything to keep in mind during the final capstone, it is that this is not about one’s technical prowess. This experience is about learning what it is like to work on a software development project. Throughout this experience you will:
+
+
+Learn how work is prioritized and worked on by the team
+Participate in daily meetings to share your status
+Collaborate closely with each other and a Product Owner to develop functional software
+
+Above all, the teams that work the best during the final capstone are those that communicate frequently and look for opportunities to share the workload.
+
+AGILE & SCRUM
+During the capstone, you will implement a software development methodology known as Agile. Agile is an iterative approach to managing software projects. 
+
+Agile values individuals and interactions, working software, customer collaboration, and the ability to respond to change.
+
+Your capstone teams will utilize a framework of agile known as Scrum. Within Scrum, there will be a series of events to adhere to. These are:
+
+A Sprint. A sprint is a limited time in which the team’s focus is to develop some portion of functionality within the product scope that can be released. Each sprint begins at the conclusion of the previous sprint.
+Sprint Planning. A highly-collaborative event at the beginning of a sprint in which work for the upcoming sprint is discussed and broken down into manageable tasks. 
+Daily Stand-Up/Scrum. A 15-minute meeting at the start of the day for the team to convene and discuss work completed, upcoming work, and any roadblocks. Roadblocks are identified as early as possible so that they can be addressed.
+Sprint Review/Demo. A ceremony at the conclusion of a sprint. The functionality developed within the sprint is shown to the Product Owner who deems the features as “Done”.
+Sprint Retrospective. An opportunity after the Sprint Review for the team to inspect itself and identify a plan for improvements during the next sprint.
+
+THE TEAM
+There are three primary roles that make up each team:
+
+Product Owner. The Product Owner is responsible for defining the scope and the prioritization of features on the project. The Product Owner is ultimately responsible for determining when a feature is “Done”.
+Development Team. The development team (you) will consist of cross-functional professionals (e.g. BA, QA, Developer, etc.) capable of performing the work necessary to release a working version of the product. The development team collectively works together towards completing tasks within a given sprint.
+Scrum Master. The Scrum Master is responsible for ensuring that the team adheres to the theory behind Scrum. The Scrum Master helps the team eliminate roadblocks and minimizes the work in progress.
+
+Within the Development Team, there is no concept of a title. All team members are responsible for understanding the requirements, developing features, and providing adequate testing. 
+
+There may be specialty skills and areas of focus, but accountability ultimately belongs to the Development Team as a whole.
+
+
+CAPSTONE SCHEDULE
+WEEK 1
+
+
+Monday: Sprint 1, Day 1
+
+
+Tuesday: Sprint 1, Day 2
+
+
+Wednesday: Sprint 1, Day 3
+SPRINT DEMO #1 / SPRINT PLANNING
+Thursday: Sprint 2, Day 1
+
+
+Friday: Sprint 2, Day 2
+
+
+WEEK 2
+
+
+Monday: Sprint 2, Day 3
+SPRINT DEMO #2 / SPRINT PLANNING
+Tuesday: Sprint 3, Day 1
+
+
+Wednesday: Sprint 3, Day 2
+SPRINT DEMO #3 (Feature Complete)
+Thursday: Bug-Fix / Clean-up Day
+
+
+Friday: Cohort Demos
+FINAL DEMO
+
+
+At the start of the capstone, meet with your Product Owner and schedule all of your demos.
+
+
+USER STORIES
+At the beginning of the capstone, you will receive your capstone project. Requirements for the project will come in the form of user stories. 
+
+A user story is a short, simple description of a feature told from the perspective of the person who desires the new capability, usually a customer of the system.
+
+User stories are written in a way so that early on discussions are had around the functionality and expectations of what determines a feature as done. Throughout these discussions, the team should capture a “definition of done” so that they know when the desired functionality described in the user story has been met.
+
+Consider the following user story example:
+
+
+
+A potential “definition of done” may include:
+Hosts can add attendees when the event is created.
+Hosts can see all attendees that have been added to an event.
+Hosts have the option to update an event by adding new attendees.
+Attendees can see events on their schedule.
+
+While you determine your “definition of done” during Sprint Planning sessions, you may find that you need to break down a user story into smaller tasks. This is acceptable and your Scrum Master will assist you with this.
+
+
+At any point in time, no work should be done that is not associated with a user story.
+
+MANAGING WORK WITH TRELLO
+It is the responsibility of the Development Team to manage status and work in progress. On a real project, the Scrum Master and Product Owner may be non-technical, and therefore they may not have interest in technical updates (e.g. “the DAO needs to be written”, “I need to wire up the dependencies”, “the models are defined, I just need to build out the controller”). These team members will rely on project management tools to view the high-level status of your project. One such tool is Trello.
+
+Each team will receive access to Trello. The team is expected to update it daily to reflect the status of their project.
+
+
+
+Your Trello board will come pre-configured with a few lists. These lists will include cards (the user stories for your project) that can be collaborated upon and moved from list to list. 
+
+Product Backlog. The Product Backlog contains a prioritized list of cards representing the desired scope for the project.
+Sprint Backlog. The Sprint Backlog represents user stories that have been committed to during the current Sprint. All work in the Sprint Backlog includes a “definition of done” that has been agreed upon by the team. Do not accept any work into the Sprint Backlog that lacks a definition of done.
+In Progress. When a feature is worked on by the Development Team, it should exist in the In Progress list. The team’s goal is to minimize the number of features In Progress. Before taking new tasks from the Sprint Backlog, look to see if you can help a team member complete their work in progress (WIP).
+Ready for Review. Ready for Review signifies that development work on the feature appears to be complete and needs a final review from the Product Owner. In some cases, the Product Owner may determine the user story is not complete and take the very painful action of placing the user story back to In Progress.
+Done. Done represents features that are 100% complete and have met the “definition of done”. Done means fully implemented, tested, styled, etc. If there are any loose ends or “finishing touches”, then it is not done. Only the Product Owner can determine if a user story is done.
+When working on a feature, it is likely that you will need to track tasks that pertain to a user story. With Trello, you have the ability to create subtasks associated to a card. Use these to track some of the detail level work items necessary to complete the feature.
+
+
+
+If you need to create new cards that do not relate to existing user stories, please confirm with your Scrum Master first.
+
+
+At the beginning of and conclusion of each day, review the work completed and make sure that your Trello board reflects your team’s status.
+SPRINT DEMO & FINAL DEMO
+During each of the demos, the team will have the opportunity to meet with the Product Owner and show the completed work from the sprint. With the approval of the Product Owner, the user story will ceremoniously be moved into the Done column. When it comes to preparing for your Sprint Review and Final Demonstration, here are some important things to keep in mind. 
+
+Script your demo. Create a believable walkthrough of your application. 
+Practice your demo. Actually practice giving the demo. Make sure everything works.
+Get everyone involved. Software demos are something you’ll likely need to do. It can be uncomfortable. Practice now.
+Explain features, not code. Your Product Owner doesn’t understand DAOs or CSS. They understand features. Practice explaining your project to non-technical family or friends.
+Use believable data. john@techelevator.com is much more believable than abcdadsfasdf@xyz.com.
+Clear your autofill history. 
+Don’t talk and type. Trying to explain features while demoing often creates moments of awkward silence. Have one team member talk while the other drives.
+Capture feedback. If your Product Owner mentions “it would be nice if...”, capture it and associate it with a card. Ask if it is required or a nice to have to help determine when the work can be done.
+Don’t pull master right before the demo. Have a team member who has a stable build on their machine be prepared an hour or two in advance for the demo.
+Ask early for feedback. If you want to know right away if you are on the right path, reach out to your Product Owner and offer a short demo or a screenshot.
+
+Never make “one last change”. We’ve all done it and sooner or later it backfires.
+
+
+COMMUNICATION
+Communication between all members of the team (Development, Scrum Master, and Product Owner) is essential. Each team will have access to these tools to aid in communication:
+
+Chat. A dedicated Ryver channel will be created for each team. Use Ryver if you need to seek assistance, meet with your Scrum Master, or schedule time with your Product Owner.
+Video Conferencing. Instructors will send you video conferencing invites for all Stand-Ups, Sprint Reviews, Demos, and Planning sessions.
+Pair Programming/Screen Sharing. We suggest using Zoom for screen sharing. With a Basic (free) account, you can have unlimited-length meetings between two participants. For anything more than two participants, your meetings are limited to 40 minutes.
+Whiteboarding. Sketchboard offers a decent collaborative application for whiteboarding together.
+Project Status. As indicated use Trello to track the team’s work in progress. 
+Code Repositories. A dedicated BitBucket repository will be set up for each team to manage their code. Do not create your own repository.
+
+Working hours are 9 AM to 5 PM. If this doesn’t work for you due to personal commitments, job interviews, etc., address it with your Scrum Master and come up with a solution for you to make up the work. Team members are expected to know the whereabouts of the other team members during working hours. If plans change, communicate.
+
+Be responsive. Your instructor will occasionally check-in with the team via Ryver to make sure you are making progress. While they will do their best to avoid distracting you, it is expected that you respond within 15 minutes during working hours.
+
+Use preferred platforms. Your Product Owners and Scrum Masters will use the platforms provided to you for communication.
+
+Escalate problems early. Ten days is a very short window of time to develop a working product. If you know that there will be an issue, the sooner it is identified as a risk, the sooner the Scrum Master can help mitigate that risk.
+
+Above all, communicate. Agile favors individuals and interactions over processes and tools.
+PROFESSIONALISM
+Treat this capstone project as your first day on the job. Your peers are your team and the Tech Elevator Product Owner is your customer. 
+
+OUR EXPECTATIONS
+
+We expect you to participate in meetings and contribute to the delivery of your project.
+
+We expect you to be accessible to your team and Tech Elevator during work hours.
+
+We expect you to communicate changes that may affect your ability to deliver the project.
+
+We expect you to look and act professional while on camera during all Scrum meetings.
+
+We expect you to work for the good of the group by leaving your ego at the door.
+
+We expect you to remain open to new ideas and learn what it is like to work on a software development project.
+
+
+
+
+FINAL ADVICE
+Finally here are some general pieces of advice to keep in mind throughout the project:
+
+Make a plan. Identify the main screens, the database schema, the user flow and review it with your Product Owner. Make sure it is clear how the work you are doing fits into the plan.
+Agree upon your architecture. As a team determine how you want to build your application. Do you want to use an MVC framework (i.e. ASP.NET MVC/Spring MVC) or RESTful architecture with a JavaScript front-end? Consider if you will need to host your application somewhere.
+Commit early, commit often. Commit at least before lunch and the end of the day.
+Pull often, pull often. There’s like knocking a feature out and going to commit/push only to learn that you were working on an out of date version of the code.
+Mob early on. Early on when there is little code, bring the full team together so that you all develop familiarity with the codebase at the same time.
+Communicate frequently to avoid merge conflicts. Avoid duplicating work or erasing your teammate’s work by communicating what you are working on.
+Review each other’s code. Become familiar with other parts of the system. You may need to jump in and troubleshoot or help your team fix bugs later.
+Avoid spinning your wheels. The final capstone goes by fast. Ask your team to pair program when you get stuck. Reach out to an instructor and talk through problems.
+Use the frameworks and languages we teach at Tech Elevator. You may use libraries and APIs that we didn’t cover, but please do not take on a new framework (i.e. React, Swift). Two weeks does not allow time for the team to take on the learning curve of a new framework or language. When you are stuck, the academic staff likely won’t support you.
+Limit your work in progress (WIP). The entire team should be working towards completing in-progress user stories. Fewer completed features make for a better product than a lot of partially completed features.
+Script your database. Script all of the DROP and CREATE statements for your database. You will continuously rebuild your database throughout the project.
+
+You’ve worked hard to get to this point. This is the fun part.
+
+

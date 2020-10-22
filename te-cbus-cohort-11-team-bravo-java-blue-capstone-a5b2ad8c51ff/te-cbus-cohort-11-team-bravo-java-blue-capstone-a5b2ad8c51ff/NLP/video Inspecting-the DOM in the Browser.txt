@@ -1,0 +1,6 @@
+Book
+https://book.techelevator.com/content/dom-api-javascript.html#video-inspecting-the-dom-in-the-browser
+
+Video: Inspecting the DOM in the browser
+This video shows how to inspect the DOM as the browser sees it.
+

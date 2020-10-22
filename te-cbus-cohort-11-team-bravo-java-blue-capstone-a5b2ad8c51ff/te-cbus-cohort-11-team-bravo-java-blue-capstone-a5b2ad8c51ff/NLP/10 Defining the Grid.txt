@@ -1,0 +1,32 @@
+Book
+https://book.techelevator.com/content/css-grid.html#defining-the-grid
+
+Defining the Grid
+Imagine there is a page with the following HTML body:
+
+<body>
+  <header>
+    <h1>Welcome!</h1>
+  </header>
+  <aside>This is the sidebar</aside>
+  <main>
+    <h2>Main Content</h2>
+    <p>This is our main content.</p>
+  </main>
+  <footer>Copyright 2019 by Me</footer>
+</body>
+By default, using the normal flow of the document, it looks like this:
+
+
+Image - Default HTML
+Depending on the project you're working on, this layout may be fine. But what happens if you want more control over where the elements are placed? For example, what if you want your content to be laid out in four columns?
+
+
+Image - HTML page with Grid
+You can create this layout with grid. To define a grid, you'd use the grid value of the display property. Any element can be a grid container.
+
+When you set display: grid, all of the direct children of the container become grid items:
+
+body {
+  display: grid;
+}

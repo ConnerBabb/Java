@@ -1,0 +1,1430 @@
+Zoom
+https://techelevator.zoom.us/rec/share/58lTaLPyql9OYLfDuWTYfahmNbT3eaa8h3QY_6cOmkei2hrtRp2IScLpV1BRFDJ4?startTime=1592228171000
+https://drive.google.com/file/d/1HUNdulEbzaBN742h4xsd1coCIrBNdDOp/view?usp=sharing
+https://docs.google.com/presentation/d/1TZRQznIj63qKiJ0MgU-N41b4qkiBPrJS5vF9MPoIays/edit?usp=sharing
+
+Okay, so today we're going to be taking what we learned last week. Last week, we work just in the SQL language and with the database, and we're going to start applying it to Java. So we can do use the database inside of our job applications and replace the file access that we've done before and make things just a little more robust. So today, specifically, we're going to take a look at how we interact with a database from inside a job application. Tomorrow, then we're going to look at how we test it. And then a Wednesday we're gonna look at some security concerns around it. So
+
+today,
+
+we're going to start by talking about this concept called JDBC, or this library called JDBC. And what it does, so we're going to start with that and then we're going to talk about a another framework called spring JDBC that we're going to use to work with the database. So these two things together are going to be what's going to give us access to the database inside a job application. And it's part of spring JDBC, we're going to walk through things we need to know about how to interact with the database, how to connect to it, and then how we can execute statements that are queries. And then that's going to lead us to a problem around these things or parameters. So we'll talk about premise ization of queries. And then we'll talk about how we get the results back and how we work with those. And that'll lead us to this idea we did last week we talked about sequences on Friday and how we work with those inside of Java. And then once we have all that kind of in place of working with this with spring JDBC. We're going to take that and apply it this pattern called the data access object pattern to it. Now which will make which will be the best primary way, we'll develop our database on the job application. And we'll make things a lot easier.
+
+Once we, we have it in place.
+
+So let's take a look at what this first thing means JDBC. So JDBC, or the Java database connectivity is a library that's built into the Java language that allows easy connections and use of the database. And it does it by abstracting away the idea of which database we're dealing with, by providing kind of on one side standardized methods that we can call and another side an interface that the vendor the creator of the database can fulfill. That means that we don't have to worry in our code, whether we're working with Postgres, we're working with Oracle or we're working with MySQL, Microsoft SQL, it doesn't matter to us what matters As we just worked with JDBC, and we work with it consistently, and then it will be the one that actually communicates with the database, or more specifically, with a second library, that it'll require that each vendor, each crater of the database supplies. So for every database, so like Postgres, the vendor, to the developer of that database, we say vendor, but it's Postgres case, it's open source. It's this developer, or team, they supply was called JDBC. driver for job. So JDBC has a set of roles and says, here's an interface. And this is what we expect your application your driver to be able to do. And so the vendor or Postgres database developer says, I want job applications to connect to my database. So they develop an implementation of that interface. And that's called the vendor supplied driver. So it's the piece that is specific to the database. So Oracle has one, Postgres has one. My sequel has one each. Each database has its own and it's the piece that knows how to communicate with that individual database. And then JDBC so it implements a particular interface. And JDBC then is a standard Java library that abstracts this vendor supplied driver and calls it these interface methods for standard things like I wanted to be able to execute a query. So I reserved
+
+you maximize your browser
+
+makes a little easier to see.
+
+Oh, okay.
+
+All right. Oh, minimize it again when I get down to
+
+thank you. So
+
+so then
+
+so this The JDBC class provides us abstraction. So in our Java application, we call JDBC. It calls the vendor supplied driver. And then it that finished supply driver calls the database. So that's what JDBC is kind of in a nutshell, we're not going to go into too much detail on the use of it, because we're going to quickly make it even easier. One thing JDBC has a lot of Buller boilerplate, closure code, a lot of parts that we have to keep repeating. So when you're working with it, you end up repeating a bunch of code. And you also have to handle a bunch of different exceptions. So it can be kind of tedious to work with and anything tedious is error prone. So what we're going to do
+
+is we're going to use a nother
+
+another library or framework called spring JDBC spring JDBC is a framework that's going to put instruction on top of JDBC, which remembers abstraction over top, the vendor supplied driver, that's going to make JDBC easier to use. And it's going to get rid of a lot of that tedium from it. So it's going to make it so that it's consistent for us. And it's going to create this easy way that we can run queries, we can handle results, we can and it's going to deal with accept most exceptions for us. So we're going to get out of the exception handling business with databases for the most part, we'll start to handle some. And it's also going to automatically provide transaction support. So one of its kind of great features is that with spring JDBC, if we'll control transactions, through exceptions, so it's very Java like so it'll start everything in a transaction. And unless we tell it otherwise, which we'll look at Tomorrow we're testing. And then if we throw an exception, it rolls back. And if we don't throw an exception, it commits it. So it makes it working with the database become less database like and much more like code we're already used to in Java. So
+
+so we're going to use spring,
+
+spring JDBC for our Java application. So our Java application is going to call the spring JDBC framework. The spring JDBC framework is going to call JDBC. And JDBC is going to call the vendor supplied driver, which is going to access the database. So we're going to care about mainly is that this interaction with spring JDBC, and that's what we're going to focus on. But we're going to need to know in the background that everything we do in spring JDBC is doing other Java code with this library. Recall JDBC that we could write ourselves. And everything that JDBC is doing is not calling the database directly, it actually doesn't know how to do that. Instead, it is using this vendor supplied JDBC driver. The reason we need to know that kind of chain of responsibility and a chain of abstraction is when things are going fine. We don't need to know about it at all. But if we start having problems, the troubleshooting sometimes is down in these other layers. So we need to know they exist. It's more of a we need to know what kind of how it's working, not necessarily the details of how it's working under the hood, but what the general idea that these pieces exist. So I've been talking about spring JDBC. And we're going to run into spring a lot for the next few weeks. So let's talk really briefly what spring is, so that when we come back to it, we'll come back to it a lot more detail next module. But spring is a framework if remember a framework, the different framework and a library is that a library, we call it so it doesn't it's not opinionated on
+
+how code should work or how a project should work.
+
+It allows I just wait on us to call it so like the math library in Java, where framework, it's opinionated. It tells us how we need to work. And it often calls our code. In fact, that's one of the key features of it, it will call our code rather than us calling it. And we'll talk a little bit more about what that means, later, this cohort. So spring is a framework. It's an open source application framework. And also this thing called under version control container, which is mainly really what it is the core. And we'll come back to that, again, also, hopefully this cohort, but it provides a bunch of common tasks in Java so much so that pretty much every Large Java project uses I think in the last 20 years, I don't know if I've worked on a single Java project, at least in a company level like enterprise level or in any working environment that didn't have some, some piece of spring inside of it. Because it does abstract so much away and makes so many common tasks easy to work with, in this streamlines development. So it provides all these pieces like JDBC for connecting to a database, it provides other pieces around what's called dependency injection, which we'll come back to it provides other pieces around web development, which we'll look at an API development we'll look at next module. So provides all these kind of plug in pieces that we can use. So spring JDBC is one of those pieces is one of the spring projects. And it provides the plug in features for the database. So we'll come back to more more detail about spring Why don't we be dive into a little deeper in Module Three? But for today, just a quick introduction to what what it is, since we're going to start hearing quite a bit. All right. So before we continue with more of the details of how I'm getting into the details of how this is going to work, what questions do you have?
+
+Brian, you said that you have to do a lot of well, occasional troubleshooting with those abstraction layers. What does that look like?
+
+Well, on occasion, when it's generally around
+
+the query.
+
+So we'll see, trying to think about example, the last time that I had to go into the abstraction, I've never had to go into the vendor supply driver. But there are some efficiencies around the JDBC, especially with complex queries, where you can get into errors Or exceptions being thrown with
+
+the,
+
+the way it handles very large queries with parameters. So I'm trying to think of a concrete example. But it's been a long time since I've had to do that. So it's more of a knowledge of there's this all this code going on in the background. And I've had a couple times in my career had to go in and say, okay, JDBC is doing something weird. It's not writing the code, or running the code the way I expect. In often rewrite that portion in my own JDBC code.
+
+You're not going to run into that this court
+
+or doing anything basic.
+
+That was not a great answer, but it's, that's what I have. Right. So.
+
+Other questions for before we move on
+
+Would knowing this flow important to an interview?
+
+Yes.
+
+Yeah. Knowing these pieces and how they flow together would be important as far as hiring somebody. You said they had JDBC experience, this would be a question, I would definitely ask them or said they, I'm sorry if they specifically said they had spring JDBC experience. Thank you.
+
+Alright. So I went through all that kind of fast, because that's just to get to the good part, which is how to actually code this. So that's kind of the background we need. But let's we need one more piece of background before we can actually get one more piece of background before we can actually code something and we're going to Start making start by making connections. And that just means we're going to start by connecting to the database inside the Java code. And the first thing we're going to encounter is we're going to have to choose this thing called a data source. And we'll look at that more detail, especially tomorrow. But one of the things that data source is going to do is it's going to provide the ability and the way we're going to connect between this vendor supplied driver and the database. So it's going to give the details it's going to work. Part of it is going to be look like similar to an address in a browser. You know, if you go to http colon slash slash www.google.com, it's going to look similar to that. And part of it is going to be a little more around connections. So connections in it database are actually something that are, we can't leave running. There's something that causes a lot of inefficiency, because every application needs to connect and applications. Because that connection takes the longest parse process, usually of running a query is actually making the initial connection to the database. Applications tend to want to keep that connection open, so they can have very fast access. But there's a limited number of these they're limited resource on any particular database that can only be so many things connected to it at one time. For instance, the Postgres default setting is 20 connections. If you set up 20 connections on your Postgres running on your MacBook, it's going to slow way down the MacBook, not not Postgres. But so there's a limited number even for a large database, there may be a very small number of connections. Compared to the number of applications needing to access it, large web application, so you get to someplace like Amazon that has or Google that has, you know, hundreds of thousands of users per hour or more in some cases. And they have, they're driven by databases as well, they can't keep a connection open for each individual. For each browser, can each browser spawning a different as we'll learn next, not next couple modules. There's kind of an individual process being spawn for each one of them are kind of like a small application. So we need a solution for this. And the solution for it. And then we're going to need to understand before we choose our first data source, is what's called a connection pool. So a connection pool is kind of like a library of connections. It's going to be a data source or an application. That's going to make multiple connections to the database can just hold them open. So
+
+the
+
+connections that it holds open,
+
+whether it be, it can be any number, it's configurable. By default, the one we're going to use, I think holds three open. But I may be off on that, but it's, but it holds a small number. And then it keeps them and this library and when application needs it, it goes to the connection pool and says, Hey, I need a connection. Next posters here, here's a connection. And then the application uses the connection. And when it goes to close the connection, the connection pool doesn't close it. Instead, it puts it back on the shelf, just kind of checking a book out of the library. And when you're done with it, you put it back on the shelf for the next person who wants to read that book. So the same thing will happen with these connections, which means that we can have a large number of users or applications using a very small number of connections, because they only need them for a very small amount of time, just long enough to run a quick query. So that's what we're going to use. And that's actually going to cause us some problems, not some problems, but something we need to be aware of. So last week, we talked about transactions and transactions are connection based, right? So we have a connection pool where we're checking in and out connections. Each time we were going to find out each time we do a query
+
+it we get a new connection.
+
+And we talked about transactions, this idea of multiple queries that go together that have to be run as all or nothing. And we get the first one. It has connection from the connection pool, we started the transaction what's going to happen The second time
+
+rephrase it is the second query. Now I'm going to be able to see the results of the first one.
+
+Could you repeat the question, Brian, I'm sorry, I was jotting down notes.
+
+That's fine. So if we have connection poem, we're getting a connection for each query. And last week, we learned transactions are based on the connections. And they are multiple queries, often multiple queries that we want to run all or nothing. So they need to be aware, like in the example of it, a moving money between two accounts. we withdraw money from the first one is an update for the first transaction, we do a second round Date where we're going to add money to the second account. But for every connection poll and each query is getting its own connection is that what's going to happen on that second transaction or that second query? What transactions
+
+won't have the current state of the database after the first transaction?
+
+Exactly. Because each since the transactions are connection based in a transaction pool, we have to treat or connection pool we have to treat transactions a little differently. Fortunately, spring JDBC is going to do that for us. Until we get to testing tomorrow, where it's going to cause us some big problems we're gonna have to deal with fortunately easy to deal with but what to remember to deal with them. So they can actually pose important to is really because it's going to change the way we think about transactions. So We're going to choose a data source that is a connection pool. We're not even going to see it happening. It's going to happen in the background. So we're going to choose a particular data source that has one built in. And that's what we're going to use for our, our application code. In this, then we're going to switch that out to deal with that transaction problem when we look at testing tomorrow. So before we look at actually making the connection, the questions on the connection for what it is
+
+with which part of the process in terms of the spring JD PC and the JDBC handles the connection pool,
+
+the connection pool in our case is going to be handled,
+
+actually, right.
+
+So it's going to we're going to take a data source, I'm going to create it here. So if it was on this chart the Right. We have this extra class here. That is called DB
+
+CP two.
+
+And we're going to choose it here. And we're going to pass it through here. And then when it makes the connection here, that connection pool is going to be going on right here.
+
+Okay, so we're going to choose a quarterback there in our application.
+
+So the questions before we move on.
+
+So now we have this, let's look at how we're going to use it. So to make a connection, we're going to To build what's called a connection string. And we're going to do this with this thing called a data source data source is a class that we're going to instantiate. And they're going to, we're going to give it some information about our database. So what we're going to give it is this thing called a connection string, which is here. And a connection string works just like a address on a browser to a website. It's actually the same format and does exactly the same thing as we'll learn next module. So it's going to tell it a few things. It's going to first set
+
+what
+
+the databases we're working with which vendor supplied driver to work with. So when it says JDBC, Postgres, it's saying, we're going to use JDBC and we're going to use the PostgreSQL vendor supplied driver. Then it's going to tell it the location of the database So location on the network. As we talked about last week, localhost refers to this computer so that your, your computer and the other numbers is the port. That will, if you remember when we sat last week,
+
+and then
+
+the resource we're looking for is going to be set to the database name. And then we'll set the user ID and password. So this is all the same stuff we've been setting in dB m, db visualizer. So when we selected the driver, Postgres, that's what it's been setting for us. So in the background, a DB visualizer has been building this for us. We just been doing it by filling out what goes in each of these parts. The location is the database server import that we always was leaving alone. The database resource name is the database filled from dbvisualizer. And then the user ID and password are hopefully kind of self explanatory. Well, we're used to user IDs and passwords. So it's that same connection information only. Now we're going to be putting it in code that's going to look like this. And the first thing we're going to choose is a data source, and a data source that has a particular interface it implements. And we're going to choose the basic data source. And the basic data source is going to come from org Apache Commons. So it's something outside of the standard Java language is what we're using from the Apache Foundation, which is another giant. If there's three, three pieces, or three companies that are pretty much involved with every job piece of Java code, or every project could work on its Oracle for Java itself, the Apache foundation For hundreds of libraries, many of which we've already been using, and the sprint and spring for their, their framework pieces. So, db CP two basic data source is database connection pool two. We don't either know much more about that than it's going to create a connection pool, this basic data source from this package.
+
+So let's look at this in code.
+
+So I'm in today's lecture code. And I'm in the spring JDBC example. We're going to start and this is kind of pre coded. So we're going to start by looking at it and then we'll come back and write code.
+
+So for data source, we're going to create the class put a breakpoint here
+
+So for the we're going to create the data source,
+
+again using basic data source imported from org Apache Commons, G Suite. And there there are others. We'll look at another one tomorrow. And for that data source, we're going to set the URL. And there'll be a pause why it's going to create that.
+
+And we'll set the URL to
+
+our finish supply driver. So the connection string
+
+the
+
+location on the network. So localhost is here, Port 5432 is Postgres as default port, the database that we want to connect to. So DVD store,
+
+and then
+
+set that username and password, just like we have been in dbvisualizer. So really, for the code we've been working with, most of this is going to be cut and paste, we're gonna have one play thing we're really going to change and that's going to be there. We're gonna end up changing that between world and DVD store and address book and projects and other databases we end up working with.
+
+The rest of it is going to be kind of boilerplate.
+
+So that's the first step that's going to give us the ability to actually make a connection and do something. So in spring, the next step is we're going to create this thing called a JDBC template. So spring JDBC gives us this class called a JDBC template that encapsulates all the functionality of the database for us. So in regular JDBC, we have multiple objects we have to work with. But in spring JDBC, we just get the template, and it does everything. So we don't have to decide in advance what kind of query we're going to write, we just have this one object that we work with. And we're going to pass it the data source. So and that's how it's going to know how to connect to the database where it's located, which database, we're using what credentials to use. So it's going to pass that through to the vendor supply driver. And in this case, actually is going to get to the connection pool, the connection pools, I'm going to use that to make its connections and then every time we call something, when we get to the connections and then making a new one, it's going to check one out for us. So we're going to pass it to this JDBC template class. And that's gonna put us in a place where we're going to be ready to actually write queries.
+
+So the queries themselves
+
+are going to be
+
+written as strings.
+
+And so we're just going to write queries like we write in Jade dbvisualizer. In fact, one of the things we'll talk about a lot is you should be writing your queries in JDBC in dB visualizer. And then they're just going to be strings here in Java, that have the same, the same syntax. So we can cut and paste from dbvisualizer. We can put it here Java, and then we can run it with one of two methods. And there's more, we're just gonna look at two of them heavily today, we'll look at a third actually towards the end. But there's queer for rosette, which is used for queries that return data like a select statement. So when you run a select, you get data back, right. So those will come for this query for Rosa.
+
+And then
+
+If they don't return data like insert, delete and update until we do something with insert today, then we'll call update.
+
+So,
+
+we have two methods, main methods, we work with one and their decision needs to be, is this going to return data, if it's going to return data, then query for roadside if it's not going to return data, then update.
+
+So let's look at this here.
+
+We create the template.
+
+And here's a query. So you can see
+
+we have just a string.
+
+It's hard to see.
+
+And then we're going to call queer for rowset.
+
+And we're going to get back
+
+on 40 Couldn't get back to it.
+
+We can see here
+
+we get all the list of comedy films, which is what this was returned, we can. So these are coming from the database. But there's something going on what's going on here? So in this, we wanted all the category of comedy that put this down so you can see it better. And
+
+in our query
+
+there's a question mark.
+
+So that's a pret what's called a parameter.
+
+So there's often pieces in our query that we might want the user to provide for us. So in this case, we want to use it to provide the category name for our workload. That way this is reusable. So you know, if I don't want comedies, I can change it to core.
+
+And if I run it, I get a list of
+
+instead of comedies, the horror movies in the
+
+database. So I might want to ask the user, you know, on the command prompt, what what type of movies do you want to category Do you want listed? So, we have that type of information, something we want interchangeable, we want the user to provide us we can add in the queries a couple ways. The 10 most tempting way because it's just a string is to do this. Well, I have a category and I'll just concatenate on my category variable. Let's move this up here.
+
+So I'll catenate that on. I need to put some quotes
+
+Temporarily get rid of this.
+
+And
+
+I get back my list of films.
+
+Except this has just caused a huge problem.
+
+It doesn't look like it on the surface, it has not caused any problems at all. But behind the scenes it's caused this it's opened our application up to this danger this exploit called SQL injection. And we're going to go through SQL injection in detail on Wednesday, so I'm not going to spend too much time on it. Today, I'm going to show you not only how it works, but how to do it yourself, and then how to stop it. But SQL injection is the exploit that is responsible for some of the biggest data losses in history. A lot of times you hear in the news and you hear giant data losses. SQL injection is what's caused it. What's caused it is things like this concatenation of strings. Because SQL will, since we're running this whole statement is just a string, we're sending it. How to SQL know what cat when it's data and when it's a command? It can't, because it's just part of the string. And we'll look at how that can be used. maliciously, I said on Wednesday. So this is a huge security problem. But it's intuitive, which is why a lot of people do it because it's just a string, they will concatenate it together.
+
+And we're already concatenate other pieces together.
+
+But the difference between those is these pieces are absolute. They're what's called safe because they're hard coded, right? Nothing can change that the category, even though we did set it here. If we're asking a user for we can't control where It's coming from, it's coming from our database, we can't control where it's coming from. If it's coming from anywhere outside of our method, we have to consider that we can't control where it came from. Remember methods are meant to be called from multiple sources. They're meant to be called from other developers from from other code. So anything that's not hard coded, our method is unsafe, we can't trust it, which means we can't concatenate into the middle of a SQL statement. So what we
+
+what Java provides
+
+is parameters, we say okay, we would like to protonate category here. So where that value is going to go, we'll put a question mark. And then in queer for Rosset, or for update, so in our JDBC template methods, the first argument is the SQL so it's this string of the SQL and then it takes a list of comma delimited listing of every parameter. So my category
+
+And then the way it matches them up is that
+
+in this one we had Select star from actor where first name, question mark and last name, the first argument. After the sequel gets put into the first question mark, the second argument gets put into the second question marks, these fill them out in order. Which means that when we get to update updates kind of weird the way it orders things, right, so we have to pay attention to where they were question marks are. But it just comes down to we put question marks in we want to do a replacement for data. And then we put data in and were these in the same order as the question marks we want them to fill out. We think you might be thinking, Well, why? Why would you do this? I mean, this doesn't seem any better than concatenation, but what's going on in the background, so what JDBC does for us in the background, Spring JDBC is taking advantage of is when we set something as a parameter, it can identify that we meant this to be data, we didn't mean this to be part of the SQL command. So it does this thing called escaping it. So it takes it, there's something unsafe in there something that will look at a wizard, it can cause problems, it will say it will change it and just treat it like text. They're pretty like, you know, if you go to, if you put text in a comment in Eclipse, it won't run if you put code in a comment, right? Because it gets treated as text as a comment. Compared to outside of a communist tree, this code is executed, it's the same idea. So it'll treat everything in those parameters, just just text. So a value and it can identify it because it's separated out. We're saying these are our values. These are not SQL. And here's our SQL, so they're separated. So parameters, allow both the database and spring or JDBC to separate Break them out in JDBC to protect against SQL objection for us. So we're going to write, we have now our JDBC template, which we declared up here, we pass it a data source. We then write a query as just a string, putting question marks in where there's parameterised data with his values we want to replace.
+
+And then when we call it,
+
+we call the template, we have two methods we can call query for result rossette for things that are gonna return data, update for those who are not looking update them a few times today. Then query for rowset and update both they take the string of the SQL as the first argument, and then a list of it's just a listing of so if there was a second parameter, it would just be listed like this. So Alyssa, the parameters, comma, Dom, so any number of other arguments that are all going to become the parameters. And in order, these parameters are going to be taken. And they're going to
+
+go in order and fill
+
+the question marks in the query.
+
+And then when we run it,
+
+the query for rowset it's going to return
+
+this thing called a sequel rowset. So before we do that, if we look, jump into the results,
+
+what questions do you have?
+
+So it's all making sense. Um, so the template that we made is that like,
+
+A data that won't change once we make it, it's just making it so it's faster for us. So this template, so
+
+yes, so the template is our object that's going to have access to the database. So it's gonna allow us to run queries, and we're going to it's going to be reusable. So once we have one of them built, we don't need multiple or another one. So it's kind of our, this object is encapsulating all the database for us. So we have one, we have multiple in the same application, we'll look at that when we get to the da yo pattern, but in the class, we really don't need more than one.
+
+Does that answer your question?
+
+Well, what's the difference between the DVD? Like, because I think maybe I'm wrong. What's the difference between that and the data source? It's just creating a copy of it for our usage. That's all it is.
+
+Oh no, the data source sets How to connect to the database. Okay, gotcha. So the if we go back to. So the data source is something that we pass into spring through the template that keeps getting passed to here that tells this piece here how to connect to the database. It also tells us whether we want a single connection or we want the connection pool. So that's going on there for the data source. But for the template, the template is
+
+this portion.
+
+So it's this interface an interface into this.
+
+So we pass the data source to it because it has to pass it through to the driver because it's the one that knows about what JDBC is, which is the one that knows where the vendor supplied drivers. And technically, I'm actually even a little off there. It'd be more true to say
+
+that it passes it to JDBC
+
+that the data source gets passed here, because one piece of it tells it which driver to load. But then it passes the rest, like we just talked about, and establishes the connection to this driver. But the template is spring JDBC. It's the abstraction of all this other piece, all these other pieces, the data sources, kind of like when we go to a browser, and we put a Euro in to go someplace. That's what a data sources. It's a it's a way of telling it how to make the connection.
+
+Gotcha. Is that Thank you, that helps.
+
+So other questions before we
+
+right, so Now we have
+
+skit.
+
+So it almost is done. I see your response. Thank you for reminding me. So what I want to do is I want to talk about the result set. And then I'm going to give you a break so you can think about the result set, and then come back with questions. So we'll talk briefly about them. We'll talk about again after break. So and the reason is because the results that's one of the places that is a little not quite as, but yeah, not always quite as intuitive.
+
+So let's uh
+
+so we have the results here. We're making this query with this Commodore this selection that's going to search for comedy. What it's going to return back is this thing called the sequel rowset. So JDBC template when it returns a query for row, so it's querying for this sequel process. So sequel rowset is a data structure that represents the rows returned from a query. It actually ends up we can visualize it very much like, we go here. Let's see where to work. And we select star from Citi.
+
+We, it's very much like this.
+
+But the way we work with it is a little
+
+it's kind of easy, but a little different, what we've done with with other things In the past, so we have this row set.
+
+If we look at it,
+
+we can't get much information really, from inside of it by looking at it. So what a row set is, it's a set, it's a set of the rows, and the database is set meaning you know, we can loop through it in order only. And it has inside of it, each entry inside of it as a single row from our results. So when I say it looks a lot like this, this is how we can imagine it. Each item in this set is one row. But we don't start out pointing with this other concept of this idea called a cursor. And it starts out it points to which row we currently are looking at in our SQL results at our website.
+
+And it doesn't start pointing to one.
+
+It starts pointing up here. Not literally at the titles, but we can I find it very easy to imagine that way. And you can imagine it that way. And it'll be fine. It'll work fine. So it's pointing here
+
+to these appear, well, we can't. Those aren't data.
+
+So it's a point above the first result. So what we have to do is we have to ask it if there's another result. So we call this method next. And we'll see it here in tapping in a while loop. And we can do an if statement as well. So we call this method next and next what it does is it says Okay, is there
+
+another row
+
+And if there is another row, it moves this cursor in this pointer to point to the next row, and it returns true. And the next time we call next, it checks and says is there another row and if there is then it starts pointing to this row. And it returns true. And it's going to continue until there is no other row. And then it's going to return false. Which means that we can loop through every row in the row set by calling next. But it also means we have to call next every time to get to the first row. We don't start. We don't start at where when totally we believe.
+
+So,
+
+if we look through here, we call Next, we get and then in So next moves to the next row. But now we're pointing at the row. So if we want to get something from the row want to get data from the row, what we'll do is we'll identify which column of data we're interested in from this row using the column names. And there's getter methods on the JT on the roof, SQL result rowset that we can call the get data in particular data types. And then we tell it the column name we want from the row. So here we say we want the title, because title was one of the things returned. That title and release year the two things returned. We have to know titles of string. So we have to know something about the data being returned. And then it returned Prove that into the get string, it gets a string and we get the first one airplanes here in the film title. The second one says we want to get int. So we know that the second value release here is gonna be an integer, and we get it into an int. We see it's 2006. And then they're just in Java variables. So then we just continue calling next in each time as we call title. If you see it here and see it changing, it gets the value from the next row for that column.
+
+So before we take a break either questions
+
+on that so far.
+
+Okay, so, so let's take a break and then we're actually going to go through that again. Because that's kind of the one of the critical concepts we'll come back at 1037 and content
+
+Okay, so what questions come up for you during the break?
+
+So you have to use the query rossette no matter what to pull data, but then you're using the
+
+wild loop to go ahead and just process that data no matter what, how many rows you expect to be returned.
+
+Well, you know, there's going to be one, you can use an if statement, or if we're even looking at a data case where if you know, there's gonna be one that's guaranteed like in a sequence, you can skip that and just call next, but you have to call next. That's kind of the the thing and it's going to return a true or false.
+
+Hey, Ryan. Yes.
+
+It's, can you hear me? I can't Yes. Where are you in Eclipse? I tried to pull up that package from all finding it.
+
+I'm in the
+
+spring JDBC example in the lecture code from today.
+
+Okay, lecture final, okay, okay, okay, I got it.
+
+So the next method is gonna be really the evaluator if there is a next row or not.
+
+Yes, it's a, it's a it returns a Boolean. We can use it in any place we can use a Boolean condition. To, so if statement a while loop to check to see if it exists, or we can just call it if we know it's going to exist. There is there's limited cases but that happens sequences is one. We know if we call a sequence, next vow there's going to be a value return. So in some cases like that, We can skip an if statement I just call next. But the key is we always have to call next.
+
+Okay, even if there is just one row,
+
+exactly, yes. Got it. So, infer that I'm gonna
+
+results
+
+document and this is LinkedIn, the slide deck today. And it's also in the cheat sheets, this document we're going to walk through, or not walk through in detail we're going to look at briefly, but it's a cheat sheet on this next method. I find that the hardest thing about running doing all this is actually remembering and knowing when how to use next, and kind of understanding what it's doing. So this TTS out there so given given with us we had a query and it returns person ID, first name, last name, date of birth, from a table person. So like the person table that we wrote on Friday. So very similar. So I'd return this. And that's the query, it gets it into the sequel results set rows. So the way it comes back initially is like this, where the arrow the cursor position is where we're pointing to where the results are pointing to. So initially, it starts here. Notice, I tend to imagine it is pointing to the title bar, which is a good way to imagine it, but it's actually pointing to this other location. So it's above the data. And the reason it's above the data, as Matt pointed out before is that and we're going to look at this document in a minute is that there's no guarantee there is data. So, the first time we call next, it moves to the first row, the top row in the result set. This is sets, we can only loop through it in order.
+
+And then
+
+as we call these getter methods like get int, get string with the column names, person ID, first name, last name, the value returned are the values for those columns on this row that's being pointed to. So after the first colon next is going to return true, because there is a row. Now we're going to be pointing to this row. And if we call get person ID, we're going to get 19. If we call get first name, we're going to get jack
+
+and then the second quarter next,
+
+it moves to the next row. So now it's pointing to the second row. So again, if you call person ID now GET IT person ID, we're going to get 20 instead of 19, because that's the row we're pointing to. If we call first name, we're going to get Edie. And then if you call next again, so let's imagine a while loop doing this So it keeps calling next. While it's true, it's going to return true again, because there's another row. Now it's going to be pointing to this row. Now if we call person ID, get person ID, or get in with person ID, we're going to get 21. If we get string with first name, we're going to get Gracie because we're pointing to this particular row. And then if you call next again, it's going to be true again, because there's another row. Now we're pointing here, and person ID is going to return 22. First Name, we'll return john. The next call was going to be true again. Now as pointed this final row, so person Id get in person ID now returned 23. Notice this as a change. We've just repeated this over and over again. After each next call. The values change because we're pointing to a different row. First name will return Jenny. And now this last time when we call next, it's going to return false because a lot of data Just like we do, looping through a list, now we're done. So if we're in a while loop, it's going to say, okay, true, true, true, true, true, false and be done. And each time, it's going to move the cursor to point to the next row in the set.
+
+So if we only have
+
+a single row of data returned,
+
+then it starts like this.
+
+Notice the starting position is exactly the same with a single row. So you have to call next and get true. And you get back. You get to the first row, and the second time you call next, then it'll be false and you'll be done. So in this case, if you know there's only going to be a single row, you can do it with an if statement instead of a while loop. You can say if there's a row next, because it's possible there could be no result returned. So with no results returned, what we get back is this. So if your SQL statement and find any results, you get back this, it comes back exactly the same in the same state the differences now when we call next, it returns false right away, and we're done. So if we're in a while loop, we're just going to skip the while at point if statement, we're going to go to the else or skip the F. So next, we always have to be called, whether it's one line zero lines or 1000 lines, it doesn't matter, it has to be called to go to the entries. So
+
+what questions do you have before we continue?
+
+So the while loop appears to be kind of a catch all, what circumstance would you really use the if because it seems like why would just be safer in case more data comes up than you expected. You can always use a while. That's the time you might use an F or when you could Using if is if you know, there's only one result coming back. But technically, there's not really many times in the database where you could be honest, you can be really sure, because data can change at any time. So if you're selecting on a unique value, like you're selecting by ID, the one time you can be sure, just like me on the primary key of the table, you know, you're gonna get one result. So you can do an F. But if you do a Wow, it's actually gonna be no less efficient because of the optimization of the JVM. So and it'll work exactly the same because it'll loop one time.
+
+So
+
+and that's may not be true at every other language, but in Java, the JVM optimized to be exactly the same. So if you're, if you just want to remember to use a while loop, that's fine. But you can actually use this anyplace you can use a Boolean condition, any place you can use a Boolean, you can use the next. So if you want to get to something more crazy with it, you can Like put it inside of a larger condition that actually can be done to. He's just a boy into the end.
+
+So the questions,
+
+could you use the F if you just want, like the first piece of data, and then like maybe you decide you want to change that data. So then every time you're going to be getting that new thing after you change that, get it rerun the query.
+
+Yeah, if you did, if you're going to get a query back and you had 1000 lines, and you didn't want to limit it at the database side, and you just wanted the first result, then yes, you could. That would be easier than a while and keeping track of where you're at. So yeah.
+
+Though, if you only want the first piece of data limit, one might be a better solution.
+
+Other questions?
+
+So if you take one thing away from this one major thing because it will cause it causes the most problems of anything, every time you call query for reset before you do anything you have to call next. That's the number one problem with working with Jade spring JDBC that we see is my queries aren't working and you haven't called next. Until I show you later, that's when you're using query with rest using other methods or update or when I'll show you the later then it's not the same, but alright.
+
+Welcome back. All right.
+
+So
+
+we can see here.
+
+If we have an insert, update or delete, we look through it select without we have a way of getting results. We have a way of doing so But if we want to do insert, update, or delete, they're all the same, we write the query the same way, we put parameters in the same way. So these ones are often gonna have a lot more parameters, update might have quite a few parameters. And then instead of calling query for rowset, we'll call update. And then you pass the SQL and the parameter list the same way you do for the query for our set, so it doesn't change really at all. And it doesn't return any results. We don't have to capture anything. Technically update actually returns the number of rows affected, but well, depending on the database you're using, you should not always trust it. With Postgres, it's actually accurate. But other databases, not boys. So generally you don't you we just like we do in SQL when we're working with dbvisualizer. We trust SQL knows what it's doing and If we try to do an update, it doesn't update if it didn't throw an exception. So
+
+now after careful Rosset, there's really nothing to update.
+
+So questions before. So
+
+the last thing we need to understand before we can look at a better way to do this, because really this this kind of linear code like this to do something is really messy, hard to read, and not easy to use. So we're going to make it better. But before we do that, we have one thing. Last thing we have to understand, and that's the sequences that we looked at on Friday. So we have these IDs, we have to work with the autogenerate, but only the autogenerate. But they have to be used among multiple tables. If we're inserting making our address book we wrote if we're inserting a person, and then we're inserting And address, we have to know what person ID we just inserted and what address it was inserted to create the person address table, right the join table. So, or if your, your projects your projects database from your, your pair exercises, or that you if you insert, you know, most of them, you probably have to have the ID of the employee to put on by the department to put on the employee table. So we have these ideas, we have to link around and they're being auto generated for us these sequences. So there's three ways we can work with them in Java. And though I'm not usually a fan of showing people multiple ways of doing the same thing, I'm actually going to show you all three because it's I would look at it as varying degrees of difficulty. In plus 2am I going to show you some new things which are really useful So the first way is we've looked at next Val. That's just a query. So we can select Next Val, one, the sequence we're interested in. We can call with query for rowset. Because it's a select right, it's going to return a result called results. Next, this is a case we're going to get one row back, we know we're going to get one row back, we still have to call results next. So we don't do an if statement, we're calling a sequence. If this doesn't work, we're going to get an exception. We know if we get a result back we have one row.
+
+And then we can call
+
+get Ent. And we give it this one. That's an
+
+index. We only have one one row, one column and one row.
+
+So why do we have to give an index one
+
+with just like the
+
+see if it gets in here.
+
+Just like the rose
+
+the sky Start on the first position, they start above the first position. The same thing happens with the columns. So the first column returned is index one, not zero, the first index, the zero index is actually someplace else. It's it's metadata, mini data about the results. So that means we start we can choose to, if we have multiple columns, we can choose to call them by person ID, first name, last name, date of birth, much easier. Or we can choose to call it index 123 and four.
+
+Well, in this case, we only get a one thing back.
+
+So rather than using it, we could do like as next city ID, and then call it the next city ID because that as is going to change the name of the month. Though I just heard a Java syntax there instead of SQL, but we can use as, or, since there's only one, we can just say we want the thing in the first index. So we just want the first one, just have to remember that he started index one, or instead of zero in this case. Alright. So then we start, right, we have an integer, stored in the ID. And now we can use it. So we do the insert, and we do the ID. That's one way we can take advantage next file.
+
+So there's two more ways to them.
+
+That to me, that is, this is, though,
+
+you can use it, you're welcome to use it. You're welcome to use any three methods. To me, this is the hardest method because there's a lot of code but it's actually Probably the easiest to start into, because there's no no new code, right? It's all just the same thing. And we'll look at an example of using this with a method in a moment.
+
+So the other ways we can work with a sequence.
+
+And these are listed two places there in the slides today. And also, the more I won't walk through a detail at the bottom of this document is all three methods of working with a sequence, this cheat sheet, and it also goes through some prop common exceptions. So that's the set in the cheat sheets folder, so you have access to it.
+
+But the second way,
+
+is using returning.
+
+So returning is a feature in Postgres nine, so it's a newer feature. So Friday insert. Let's go I'm gonna go back right wrong tool, like visualizer.
+
+Somebody back to our sequences table from
+
+Friday if remember, we had a
+
+simple table in there that was called our table, I think.
+
+Let's make sure it's still there. And it is right. So it's just to two values. So if we want to insert something and this won't work because there's no ID on this table, no auto generated ID.
+
+So let's go to world
+
+Select star from
+
+the country, the language
+
+didn't have much to it right? For columns. Yeah. And we want to insert something. So if I'm gonna write an insert for this, let's go down to
+
+public country language.
+
+So my values
+
+Oh, this doesn't have a primary key.
+
+Once again, I'm learning a lot less than of God just do things on the fly.
+
+So
+
+country, city city definitely has a primary key God generated key. Let's try this. Alright, so this will work. So we know we can do this right? We can set this default and then we're going to give it a city name. Our city has to be in a valid country. So put it country and make it a valid district
+
+and
+
+before Now we get back. We've been searched our new country, but we've created a city idea, haven't we? So, what we can do if I want to know what Id just got created, because one guy's got generated, but the sequence
+
+starts at two, I can add,
+
+returning.
+
+And then the column I want returned, I want ID returned.
+
+So now what I get back is the ID that was generated.
+
+So it returns So what it does is it does the insert and it does a select immediately after that, and returns the ID.
+
+So we can take advantage of
+
+this. And with sequence working in Java.
+
+So what we can do is add returning with the ID or to our string. But now we're not running just a insert now Now we're running a selector meal afterwards, that's what returning is doing. So we call queer for rossette. Instead of update, even though it's an insert, because it's returning something now it's returning data we call queer for rowset, which gives us a sequel rossette. men come next. And then we can get int and get the ID because it's returning with the name of the column name, we're returning with you. And as here too, if we wanted like as
+
+city ID.
+
+And then we can get it just like we have any other reference. So that's the second way we can work with sequence. We can insert it use putting returning onto our insert statement running as queer for rowset. And then we'll get back the ID.
+
+So, questions on that before? Continue.
+
+I understand what you're doing, but I do Just I guess I don't really understand the purpose of why you would need to immediately return the ID back to yourself.
+
+So what if so let's go back to
+
+our the question you asked earlier about putting back join tables, we said does it automatically when you insert employee in a certain department is ironically put the IDS in the join table? Let's say you're starting a new department you want to put you're also inserting a new employee. Okay? Or not even a certain new employee, you have existing employees or to insert a new department. And you have to put it on that joint table. How do you know what Id was just generated for that department?
+
+Okay, I see what you're saying. So then you could maybe possibly store that into a variable and then use that for another purpose,
+
+exactly, to to create things like join tables and other relationships. So we often need these IDs or multiple tables. So this allows us to start That's what.
+
+Okay, thank you. So
+
+So now there's another way, I'm going to show you the last way, actually my favorite way, but it's by far the most advanced. So if it doesn't make it, it's the next. So if any one of these three ways makes sense to you, then you use that way, use that method and ignore the others. That's fine. They're all three fine ways of doing it. Not one is not better than the other.
+
+It's just,
+
+you get less code for each each time. So we're returning one value every time and it happens to be an integer. So JDBC template can cast the result to an object if we know what it's going to be. Well, I know it's an integer, and we have this nice wrapper integer object. So we can write our query. So notice it's still using returns That has not changed, what we're going to get rid of is this kind of mess down here, we're going to move that onto one line. So instead of using queer for rowset, we use queer for object, which takes the sequel, then you have to tell it what kind of object you want to cast to. And then the parameters. And then it just returns the ID as an integer directly. So we just get the city the ID generator ID back as an integer or long. We just changed this long in this too long. Notice it has to be the wrapper class because it's going to create an object version of it, that we actually could use a lowercase and it will auto unbox it for us, but probably safer to use a wrapper class. And now we just get the ID back in
+
+our editor.
+
+So again, all three work with it. I'm showing you all three because one I wanted to show you returning, because I think returning is really useful. It's useful for a lot of reasons. And when you get to your Capstone, it'll be really useful. And also some of your exercises coming up. And also query for objects. So I only place really, we can talk about query for object that exists. There's other methods besides query for recite and update on the JDBC. template, and query for object. There's actually some others as well. So feel free to explore those.
+
+So before we
+
+move forward, what questions do you have?
+
+I'm trying to read through this code right here. And so I see you have your ID name, country code, district population, and then you still have the default incrementer right there. Yeah. And you're just replacing that with the integer class. So here
+
+So here, this is the same sequels before. It's just the one from before. Here, the arguments for queer for objects slightly are slightly different. So the first argument is the sequel string. The second argument is the object type to cast to, and then the list of parameters.
+
+Okay, that makes sense.
+
+Okay. So on the questions
+
+instead, if this is making sense to you this last one, it's okay. Actually, I have a question for you. Yeah. You just typed in what, like a double class or float class? Would that have changed the result of query for object? Oh, yes. So it'll cast to the type that it's needed. But it'll Java will. can auto See that? So if I made it a double, I would, it wouldn't If I made a float, it would truncate. And because that's widening, so put it into the integer anyways. So change the result, but I can end up with an integer. So
+
+but if I made the ball, I'd have to cast it.
+
+So could you potentially with that thinking, return it as a string as well, the ID.
+
+Yeah. If you can cast the result? Well,
+
+I think it'll work. I'd have to try that. I'm not positive. The reason is, is because technically, that would be a parse. And I don't know if it can do that. This Java can auto parse string and integer to string. I treat it like a implicitly it may work. So I'm not sure okay. So after all the try that might you know, because I asked an interesting question with string other Alright,
+
+so now we have all these pieces.
+
+Let's make it easier to use.
+
+So
+
+to use this, we're not actually going to write code.
+
+We're going to write all the code that's in this file all the time or like in this file. But we're not going to write it in this way. Because this is not very usable. So there's a pattern called the do pattern, or the data access object pattern. And so a pattern to go back to what that is. We mentioned a couple times, but a pattern is a way of doing something. It's a known way of doing something that works well. So there's multiple patterns and development and it's just a way a common way of solving a Problem talked about multiple times, we don't want to solve problems that already been solved. What's the, what's the fun in that? So patterns are saying, hey, this problems been solved so many times. And here's a great way of doing it. And it also makes it so if everyone's following the same patterns for the same basic kind of tedious work, then when we move between projects, we can we understand how they work. So the data access object pattern, or do is it is a design pattern is going to encapsulate storage. So not just for databases, we're going to use it with a database, but it can encapsulate any storage.
+
+And
+
+it's going to break this pattern into kind of pieces. Or this this file that we were looking at, it's going to break it into this business object or domain object or the data objects was we'll call it which is going to represent essentially a row returning in the data set. But it can represent something that broken build to. And then it's going to have an interface that's going to guarantee what at what crud actions can be done. And then implementation class, if rose will be a JDBC class, a spring JDBC class that can actually interface with the database. But the idea being that you can then swap out that spring JDBC class and then mutation class with another implementation, you want to go to a file, you just swap out that piece, and the rest of it stays the same, the rest of your code doesn't change. So this is going to decouple our application the database to a point that it doesn't The only thing that needs to know what's accessing a database is one class, the implementation class. With the exception of we're gonna have to create a data source. But we're only gonna do that for a couple weeks because very soon, next module, we'll get the data source out of code. It should not be there in the configuration, but For now we're going to hard code it. So that's going to kind of break this a little bit, and for the next couple of weeks.
+
+So this means that
+
+I'm just gonna isolate this code away from the database. So no one has to know, except for one class, there is a database in that class, the only one has to know things about, like, what tables are involved, or what queries are involved. So the way the pattern works, is we're going to simply in three pieces, we're gonna have the data object, which is called a simple data object or pojo. We haven't ran into that before plain pojo stands for plain old Java object. So plain old Java object we've been using all along. Those are those just those objects. They're just member variables with getters and setters. They don't do anything extra. They don't have a lot of behaviors. They might have a to string overload, or maybe some simple methods, but most of the code we've been writing so far is what would be considered a poacher but you'll see you'll hear that See that term a lot, especially around frameworks. And these are often also called domain objects or business objects. So you might hear him called depending on what you're reading data object, business object or domain object, they all mean basically the same thing. They hold data. And they're all just getters and setters, member variables and getters and setters. And we're going to treat them like we treat string or integer, their data we're moving around. So we're gonna have one of these is going to represent a row returned by the query, or something that can be that row can help build doesn't have to be the exact one for one. And this often, in many cases, will just not matching the columns or table. Not always, it doesn't have to, but it often will. Then we're going to have an interface and it's going to lay out what crop called the deal interface. It's going to lay out the CRUD operations. So it's going to say we can update this we can delete this, we can create this Here's what we can do. And there can be multiple methods. For instance, you know, selecting, or read method to get everything from the city versus a particular city by ID, or cities for a particular district, maybe all different read methods. So it's going to find what methods exist. It's going to use this as arguments in its return types. That data object we created. And other, it can use other things too. But it's going to rely heavily on that and string and integer and long the basic data types, this one data object. And then we have an implementation class, which is what's going to actually be the one that connects to the database and does the work. So we're going to put the data object that's used by the data interface that's going to be implemented by a JDBC do implementation class for us is going to be a JDBC class that's going to encapsulate the database access. So what this does is the idea is to decoupled, almost completely decouple the database from our code. Because databases change, if there's one thing in our code that's going to change often, it's can be or can change often, it's our data source. Last place I worked and nine years I was there I think we started in Oracle then went to Postgres that we tried my sequel, then went back to Oracle, and then we tried Postgres. Again, there's a new version out, and then it gap. And we just kind of keep swapping out the implementation class. Otherwise, it would have been a lot more work. And we wouldn't be able to do that quite so easily. So we want that separated. And that's what this pattern is going to do for us. And it's going to make our code a lot easier. So this code this file, a code, runs, gets the list of you know, categories and prints them out. So it gets one value from the database, and it prints it out to the terminal, compared to what's using the world database, but it's doing the same thing. It's doing a simple query, getting back results and printing them. Well, they forgot the print line, but we'll put it in. In displaying them. But look at how this reads. Oh, City, New City set the values do save, find city by ID. Compared to Okay, well, we're selecting from film on category name. So this is get films by category. I have to actually do something and process something. I forgot what's going on here.
+
+Here.
+
+I'm guessing if I showed this to most non programmers, they could probably figure out it's going to get a city. They might not know what that means. But it's something to do with the city. It has something to do with an ID. It's readable. It's easy, it's reusable.
+
+So that's what the do is going to
+
+do is going to give us disability. So these two abilities, one, this decoupling into this readability and reusability. So I guess that's three things. So let's look at a da. So we've looked at this using do, let's look at how it's laid out. And then we're going to build one of our own. So this is the example code. And you can see it starts out, it starts off the same, it gets the data source. Instead, this data source does not actually belong in code. It's it's almost painful to see a data source hard coded into code. Because one thing it's going to change is password right? That's going to change all the time. It should change all the time for security conscious, which means we don't have to recompile and redeploy our code application every time. And this could change an address on the network. So this should be someplace else. We're going to get it there eventually. But so it starts the same. But where the real do pattern begins is here. It creates the interface city do let's look at that. So city do is an interface. It has these methods of it. Public save, find city, by find city by country code, find city by district. So here it has, you know, the Create method has three read methods. It has an update method, the Delete method, so it's defined all the pieces of the crud that are needed. Now, we don't have to have any of these. We can choose we talked about we've talked about this idea of these four things that we can do with data that we pick and choose right, we say Now for a city, we want all four. And we want three ways to read it. But we might say we don't want to be able to create a city. So we can choose which methods we want. But it defines what they're going to do. It's using the city class, which is our data object.
+
+And things like long in string.
+
+So simple data types in our city object. It can use others if it needs to. But the general rule was, it's going to try to stick with our data object in simple data types. If we look at the city object now, when I say it was a pojo, just a plain old Java object, or a domain object, or business object, this is what they look like. We're also call them Java beans later the court. So that's the thing with many names, but it all means the same thing. The really simple class, it has member variables, and it has getters and setters and not much else can have there's some rules around the bullet. We talked about them in more detail later. But there are some rules. But so there's some other things that can have. But generally, that's all it's going to have. All this does is represent a city represents the value. If we look at here, and we go over here to city, select star from city. We have an ID, ID name, country code, district population. And this data type a Java data type that matches the SQL data type.
+
+So then, but
+
+now we're down here in our do again, it calls that's the interface. It's using and then does a new JDBC city do. This is where the core of our coding works going to be.
+
+So let's look at it.
+
+So it has
+
+it implements our city do
+
+it's going to have a variable for the JDBC template.
+
+It's going to take as a constructor argument a data source. That's important because we want to build a swap the data sources out.
+
+And then it's going to create the template and it's keeping this as a
+
+member variable. So we can use it throughout the entire class. So one JDBC template created for this class to use each individual JDBC class of its own. And then we have methods so here save city, are we ready to insert statement here's the here's why I said we're looking at, we use a method to do it. And we'll walk through these in a moment. So it's going to get the next city idea. And it's going to call JDBC template update with the values of the insert. And it's using the city object. So new city gets the ID, it gets all the pieces of it to populate this query.
+
+Find city by ID.
+
+It's doing the same thing only now for select. So now it's going to return a city object. So it goes through, it gets the results. Because this private method we'll look at called mapper to city and then it returns the city object. Get find cities by country code. Now it gets a list of cities. Each one has just a little bit of code. That's around doing that one thing, this one, select this one, update this one insert. And that's all that method does. Which means a couple things. One. I know everything in this method is about finding city by country code. I don't have to try to figure it out by reading it. If my country codes finds it by country code breaks, I know where to go to find it. And when I want to use it from over here, I just call geo maybe
+
+find city by country code is called the method.
+
+We'll put some breakpoints in so we can step through it actually working because there's a couple other pieces in here I want to point out.
+
+So let's do
+
+insert city
+
+and here.
+
+I think I just mess something up in here.
+
+So for this example
+
+and one more breakpoint here in the constructor.
+
+Try that again.
+
+Okay, so we have our data source already set up. We're going to crawl the JDBC city do we're going to instantiate a new one passing it the data source. I'll step into that. And then we'll step into the class loader. So I'll continue. And now we're in the constructor. It's been passed the data sources going to create this JDBC template, which is being stored class levels, a member variable,
+
+passing the JDBC template, the data source.
+
+And then
+
+back to so now it's going to create to create a new city object here. It's our new city, it's going to create a city object and just populate it with the get it with the setters. So this is setting up the city. Very Java like, right. As far as this to code. It's just the Java code we've been looking at for a while. There's really nothing special about it. That's all in the JDBC class. So it creates this object of type city. it populates it with the values and wants to set and then it calls the Save method on the do
+
+Here,
+
+it's going to create the insert code. Now here, it's going to call doing two things. One, it's going to go to this method next city ID, which uses the first value of working with sequences that we looked at. So here, it does a select on the city ID sequence. Maybe
+
+seeing a very slow select on the city ID, okay, there goes. So now the results come back, and they have next. So just returns get long one. So it's getting the first position just like we looked at before with it. And now it sets it into the city object. So this is what's called a side effect. It's going to Setting city objects on the other side, when we're done, the city objects going to have the ID populated. And now it's going to call the update. And it just calls it with the city object ID in each of the values that were set before.
+
+And now we're back out to here. So now if we look at the city object, small bit object, we can see that it has the ID set the last ID, and that's what our method did. So use the method to get the next ID then set it to the city object, we could use any one of those three ways we looked at, we could use returning either with the result set or the returning an object without having to call the method, but we still would want to set it into the city object into our object return. Now, it's going to Find city by ID.
+
+So here it's passing it the ID, which is the one that was returned.
+
+It sets up their query queries and gets the results. So now it's gonna say if next. So here it expects it to only be one. And those are going to be once we're doing it by ID, they're going to be zero or one. And then it calls this method mapper to city. So a mapper method. If you look down here is one that is takes the result set. And when it gets in here, it's expecting it to already be pointing to a row. So then, it creates a new object of the type. So in this case, a city object, and it just calls the get the getter methods on the result with the column names for the columns and populates. So it's just a helper object to help populate the
+
+data options Working with.
+
+So he calls that to get the city object from the results, and then returns it. And then what this map road is city does. If we look at when there's multiple city objects being returned, we can call that for each results. So one piece of reusable code to map the city and then pass it into like a list. But it also means that we have multiple methods like to have these two methods that both need to map the city object.
+
+Then
+
+we can just reuse that code.
+
+So a mapper method helps us map the results that wrote to one of these data objects.
+
+And then these aren't populated so.
+
+So questions on any of that before we write one of our own
+
+So you're still, I mean, you, you're still ended up having to write all the JDBC code, you're just hiding it back in its own class. Yeah. And then, okay,
+
+yeah, we're not gonna, we're not gonna write less code, we're using spring JDBC. so we can write less code. In fact, we weren't more code. I mean, then we actually write more code, but it's reusable code that's readable. And that's more important than the amount of code we write. I would rather write a few extra lines and be able to work with it like this. Then write a few less lines and have to work with that. Wherever went that other mess of just don't know what's going on without comments and trying to parse through the SQL statements.
+
+And then your city classes, just a constructor
+
+that contains the same values that would that are going into the database.
+
+Yes. So So in this case, the city class directly represents one row of the table. So it has all the columns in the same in with Java compatible data types, which are using the same. And then that allows us to map each row two a city or if we want to insert one to have all the data, we need to insert one. It doesn't have to map it directly to a row, it can map to a query or to something else, but it often will. In fact, while you're here, I would encourage you almost always to map to a row. It'd be a lot easier for you.
+
+I say that and I think in the first caps, and I'll tell a lot of you not tomorrow, so but you're you stopped by now. So,
+
+so other questions. So
+
+the next thing I want to do then is build a da yo. Looking through code It's not that useful, just more like slides and Eclipse. Let's write something.
+
+So
+
+let's
+
+close all this.
+
+On Friday, we bought this address book. Let's load it. We didn't put in a database, then we tested it, just like kind of a throwaway database. Let's put an actual database and then write a do to start accessing it. Probably have time to write all one for all the tables. Well, we can get through at least most of them. So in today's lecture cared, I actually would like
+
+slides go here.
+
+There's a file, address book,
+
+SQL, and the database folder for the lecture code. And inside of it is the address book we wrote as is completed the last two tables that we talked about why we complete the meaning get to in Friday. So the email table the phone table, I completed them the way that we agreed to complete them. And then I made one other change. I
+
+added
+
+a date added to the person table. That way we have a date to work with that we have an example for anything with a date object. So other than that, it's what we wrote on Friday. But if you loaded it, then or you load it over the weekend, when I sent out the update that said, Hey, here's some, here's the changes, you might want to do this for Monday. Even if you did that you still want to reload it because I changed it again.
+
+So to do that,
+
+let's go to terminal
+
+and want to go to today's lecture code. In Module Two. Let me get So I can get this and this on the screen at the same time because you can see the light paths here. And we're gonna do the same thing we've been doing with the other folders. So now if you already have
+
+an address book
+
+database, does anyone have a database already cut address book did you create one.
+
+So some people already have address book like one person.
+
+So if you already have address book, so for everybody else, or for everybody go to Module Two. And then it'll be in today's thing, it'll be in your student lecture folder, and database. And you want to be in this folder without just SQL. If you already have the database only, so only the one person's I'm shaking their head. Yes, they have it unless there's somebody else who's just not saying anything. You want to run this command, drop dB, dot, British, you Postgres Address Book. If you run this and don't have it, it'll be fine, you'll just get an error and it won't hurt anything. Like I just did, I already dropped mine. So that's going to delete your address book, because they're going to recreate it. And then I'm sure that by now you're getting used to creating these databases. So the next two commands are going to be these two, the Create DB and the PS SQL. And this is only if you want to follow along. I know that some people prefer to not do that. So if you're going to follow along, you want to set this up today or tomorrow. We'll use it for both days. I'm going to go and do that create db cashyou
+
+Postgres address book
+
+that creates the new address book database, and then P SQL, dice you Postgres HD Address Book if address book dot SQL
+
+and you might get some errors at the top, like you saw here
+
+does not exist, that's okay. Those are from those drop tables that we put at the top of the schema script that didn't know that the table didn't exist. They get an error that says, hey, the table don't exist, that doesn't matter.
+
+So give everybody a moment to get to this point.
+
+Is everybody to this point he wants to be
+
+Is there anybody who wants to be to once a fall along who's not to this point?
+
+Okay. All right, so.
+
+So the next thing would be to write the deal, which means we're going to, I want to do that all one is one piece. So let's take our second break now. We'll come back at 1144. And then we'll write our da.
+
+And maybe the question one then. Okay. All right. So let's go to it then. Let's put it together. So we have our address book. Oh, we need a connection to the address book and dbvisualizer. So let's do that.
+
+So
+
+need to create a new database connection. So when you're using
+
+when you're writing for Java, or in SQL, Java, you want to write all your queries in a tool like dbvisualizer. troubleshooting SQL inside of Java is really difficult because the time it wraps the SQL exceptions into Java exceptions and gives them to you, they, well, you saw how not so friendly SQL errs are. So imagine Java's less than friendly version of the already not friendly squares that Postgres gives off. So it's very difficult to, to troubleshoot. So you want to get your queries are working. So by the time you get them into the, the Java, you know that the problems you might have there are code related, not query related. So you're always going to have a connection setup. So I'm going to create this connection. We've done this multiple times. So name, I'm gonna call it address book. The driver type is going to be Postgres. We know that that's going to tell the JDBC driver in the background here for dbvisualizer what vendor driver to use? We're gonna leave localhost and 5432 the same change the database Postgres, your address book,
+
+and then set,
+
+Postgres and Postgres one as the username and password, and you can go and connect. I'll leave mine there just for a moment for
+
+anyone who's following those of you following along to see
+
+Is there anybody not ready for me to connect and continue
+
+to thank you Okay,
+
+connect and
+
+then just reminder of what we bought on Friday.
+
+We had the address table, email person, person address and phone.
+
+Let's start with person that's what we're gonna start with
+
+our Diego's
+
+the change of address book.
+
+So we have, there's data now that's being loaded.
+
+I got phone, not person. So part of that script is also put some data and we'll use for today and tomorrow. So it puts in six people. And then I add this date column, and it just puts it to today's date. It's mainly so we can have experience working dates from Java between Java and SQL. So this is our table So we're going to write our first deal around this table, because everything else here, the address book, the address, the phone, the email, they all rely on the person to exist. So let's start there. So if I was going to write a,
+
+do pattern for this, what's the first thing I need?
+
+to do? We need to establish a connection to it
+
+in Java. Okay, and we're going to need a connection, the data source so we can start there.
+
+So let's create in combat tech elevator.
+
+I'm going to create a new class.
+
+And we'll call this our address book. Demo. Yeah.
+
+I'm going to check the public static void Main Because that's where we're gonna have to create our data sources in our kind of working class. The one we're going to run to test everything.
+
+Finish in other names.
+
+I somehow got three DS in there. So let me refactor that quickly.
+
+So now, we do need to create our data source.
+
+So we'll create data source. And we'll call it our, I'm just going to call it data source. That's what it is. equals new basic data source.
+
+import all this. So we want to make sure we're importing this we get it from Java x SQL, not from activation. You'll get very different results. If you select the wrong if you get both these from something else, and when we get it from our basic data source want to import it from Commons dp CP two, which is actually the only one I guess the other ones are change. So we have a data source, now we need to configure it. So I'm gonna be honest with you every time I need to configure data source. Here's how I do it. Let's go to do example. And,
+
+and now it's not
+
+let's change this back to basic.
+
+Sorry, the first one should be basic. And then here which is world, we'll change it to address book Again, I just cut, cut and pasted because typing out that string here is error prone and there's the you get if you make a typo or not easy to follow. So so we have a data source. If you missed I changed this to basic data source because
+
+I thought we could use this data source but that's coming later. All right.
+
+So
+
+we have our data source, what's the next thing we need to do pattern
+
+to create something for our person table.
+
+So that gave us that portion. So somebody else tell us
+
+what stuck to us.
+
+Want to volunteer before I call him somebody?
+
+New?
+
+Oh, go ahead, Corinne, it's all you.
+
+Do we need to create our object? Yeah.
+
+So So what's what's our object gonna represent? Which object?
+
+Is it going to represent? an address?
+
+Yes. In this case, we're building it for the person table. So we represent a person will eventually build one for a dress to represent when we get to the address table. Yeah, so we have person ID, first name, last name and date added. And it's the table names person. So we'll build a person object. Some combat tech elevator with a right click on it, choose new class.
+
+I'm going to change the package. Let's change the package to address book.
+
+And here it'll be person
+
+and then finish when You're done.
+
+Click Finish. And now we need to create data elements for these. So we need to know what data types they are. Well, we know that sequences can be to be represented to analog. These have to be strings, and this is a date.
+
+So it's great.
+
+Private will do this in
+
+person ID. And then we need private string, first name, private string, last name. And then for the date, we could use Java util date, which a lot of you ran into during the capstan that's doing it the hard way. So let's take the easy route. use Java eats local date.
+
+And this was called date added.
+
+local data is a lot easier to work with and the date object, but it's new. So if you're looking for it's in Java time. So if you end up looking for ways to work with dates in Java, you'll also find this older method that evolves calendars and Gregorian calendar and it's just a mess. It's really a mess. Local dates really easy to use and not quite such a mess. So I'm going to create getters and setters for all these. I'm just going to go source, generate getters and setters and select everything.
+
+And we're really done, except for maybe a space there too.
+
+Alright, so we have our person object. So we have our data object now. So we're trying to create it for this person table are do.
+
+So who wants to give me the next step? The next piece?
+
+Just a high level like create a game for Zach a four we need a data source we need a data object.
+
+instructor
+
+and instructor. I'm sorry, do we need a constructor for this class? We don't need one. Now we can use the default constructor.
+
+Okay. Are we gonna pass this to the JDBC?
+
+We are eventually Yes.
+
+Before we need the JDBC class that is does the last step. What else do we need in the pattern?
+
+interface?
+
+Exactly. We need an interface. Great. So let's put an interface.
+
+So their interface name is going To be
+
+person do
+
+I'm going to make do all lowercase or like that camel case, I mean.
+
+And I'm putting in the address book package.
+
+And I already messed up I made it a class. But we know we can change that just by changing the word class interface. And here we're going to decide what we're going to be able to do what credit operations we want to be able to do with our person.
+
+So what should we be able to do?
+
+Should we be able to retrieve
+
+Weezer's, like the crop
+
+crop things? Yeah, yeah, we need crud, CRUD operations, but we need them all. We just want some.
+
+So let's start with two.
+
+How about a get on The people get all persons and get one person by ID. We can change this we can come back and add things, right. But whatever we add here to start with is going to have to be, have to be there. So, if we're going to have maybe what's called list we'll get all the persons. And its return type can just be a list of person. We could also call this get all persons or something like that. I personally like list because it's going to give us a list of the persons and we're in the person do we, we know it's a person
+
+and maybe a person.
+
+Get person by ID
+
+and ID
+
+so are two methods
+
+and sudden
+
+change You had said that we need a JDBC class. So let's create that.
+
+We're going to call it
+
+person JDBC do
+
+and
+
+what do we need to do with this class? What does it need to do?
+
+This is going to be the class that actually interacts with the database, right? Yes.
+
+So what's the first thing we need to do is your constructor. Do you need a constructor? Yeah. So what does a constructor need to do?
+
+Take a data sources that construct an argument, exactly.
+
+The source data source
+
+What you're gonna do with that data source?
+
+Set the values of the object. Okay, what object
+
+they're gonna make the template.
+
+Exactly, it's gonna make the JDBC template. So we're gonna have a private
+
+JDBC template
+
+and we'll just call it JDBC template.
+
+Just so for readability.
+
+At one point it spring core. And now said we're going to make the template so equals new
+
+JDBC template and pass it the data source.
+
+One thing we noticed when we created the data source Whereas before we could use basic data source
+
+and this uses the data source interface, right in the basic data source. That way we can swap out the data source. Well tomorrow. Right, so now we have our template, we have our data source. What else does this person JDBC do need to do?
+
+So, how does it relate to the person do
+
+doesn't need to implement it?
+
+Exactly. We need to implement Parson Gao. So we implement the interface
+
+means we have to add unimplemented methods And now we're at a point where we're just writing the sequel. So let's or we need to write the sequel. So the first one to get all persons.
+
+Well, we have it Select star from person.
+
+so we can write our SQL.
+
+Select SQL is just going to be a string.
+
+Let's copy this
+
+except
+
+the star.
+
+So my entire career I've never worked at a single place that will allow star and production code.
+
+I know there's, I've heard they exist, but I've never run into one.
+
+They exist. You don't want to work for them. Yeah.
+
+Because it's not explicit. It's hard to read. And if you work in a secure environment, like financial things, you'll fail ever secure immediately fill any security audit by doing this because there's some extra weights, it can take advantage of selecting everything instead of being explicit. So it's okay in testing. When we get to unit testing tomorrow, we'll go crazy with Star.
+
+But when in the actual code, it should not exist.
+
+So there's a really easy way around this because this only has four tables, right? It's easy to code. If you didn't see me doing it before, if you take a table, and you right click on it, and DB visualizer, the city visualizer trick not necessarily for other tools. There's a script table. You can tell it whether you want to select insert, update, delete, or the Create script that created the table and then click OK. And it'll put in wherever your cursor is it'll put there we just grabbed these
+
+the Select
+
+so if you star in your Capstone. When we get to code reviews, I'm going to tell you about how dangerous it is and how it shouldn't be there. But
+
+it's
+
+it's because if things change if we're explicit, we always know what we're getting. If we're not, if we're just saying give us everything, then we can run into conflicts. That's one of the main reasons. It's also makes the code easier to read. I know exactly what this query is doing.
+
+So we have our select.
+
+Now we need to run it. We're going to get back
+
+a
+
+sequel rossette sequel row set, rows, or results, we'll call it rows equals JDBC template query
+
+query. For
+
+rowset
+
+and I'm going to pass in my sequel. I don't have any parameters, so I don't need to do anything else. Except landport score.
+
+All right. So now
+
+I have the rows back. So what do I need to do with the rows?
+
+Until list?
+
+How do I do that? We need a list off.
+
+But how do we add them to the list? What do we need to do with the frozen
+
+create a while loop? Okay, what are we going to do in the while loop
+
+others Next line.
+
+So rows Next, we always have to call rows. Next, we're going to write a loop. Wow row, there's a while there's a next row, but it has to be around the first time. And now, here we're going to create a person object, right? So what we want is a person.
+
+Person equals, while something.
+
+And well we really need to do is I need a method.
+
+Because we're going to have the map a person down here as well, probably a couple other places. So let's call it map row to person. And it's going to take our rows object. We haven't written the method yet. We're going to write it next. And we'll come down here and build a private method. It's going to return a person object and be called map row to person. It's going to take the sequel rowset object, am causing other rocks. That's what's going to be And we're going to take advantage of Java's pass by the fact that when Java passes by value, it passes a reference to reference objects, we will take advantage of that fact by we're going to crease the row, then we're going to pass the ref the value of the reference to mapro to person and then we'll have the sequel rowset on the road that the other method change to two. So we can build a person object from it reusable and return it. And if that doesn't make a whole lot of sense, or that's okay, will you take away from that is we're going to change the cursor position here, pass it into map where the person actually do the mapping to create the object and then continue through the while loop. Do that for each thing in the list.
+
+That means I need a person object. Oh Brian with
+
+this map row to person are we creating as many person objects as rows returned,
+
+we are with the wallet, we're going to create one in this method. So we're going to, we're going to map one row to one person object. And then we're going to call this method for each row, and put them in a list.
+
+Okay,
+
+so that's about it. And then when we get to the next person by ID, we can do it for single row, we don't have to rewrite anything, we have existing code. So I'm going to return that person object. Now for each setter on it, so person set, person ID, on my rows object, I'm going to call one of its getters. So are my results. I want an int, because that's what my personnel ideas in my object, and then I'm going to give it the name of the column. So person ID. In order to map it here, it must exist in the select one of the biggest problems that I see that it's easy to run into is not selecting everything you need for the mapping these have to match.
+
+So then the second one
+
+set, first name, row, get strength and ready get the column first name. And this is where I said that the the aliasing can be really helpful with Java. So we alias a column, we can use the alias here. So that means that allows us to get things like counts and aggregates or concatenated strings together easily out into Java is by using aliases. Or if we have name coming from three tables, we can alias it so we know which was the city name versus the country name.
+
+So row, get string
+
+Name, and then person dot
+
+set date added. So, we have a problem, we have kind of a problem now.
+
+So we want to use local date. I'm gonna encourage you to always use local date. You can use Java util date, but it's really painful. So but Java SQL stores everything in SQL date.
+
+So we have to convert it.
+
+So we're going to say row, get date, and that's going to store everything in SQL date object or return that.
+
+And it's going to be date added.
+
+And if you're trying to convert this, and you were doing this on your own right now, and you didn't have the internet to search would be the first thing you would do.
+
+I would try putting that data type in front Disease before it.
+
+Okay, that's good, Justin, it's not gonna work.
+
+But that is a great suggestion. So because that is something you should try in early on that it doesn't work. So what be the next time you might try
+
+to date? Is there a to date?
+
+That is a great thought, because there is to local date. So once again, when you're stuck on what to do, put the variable press dot and see what the methods are. It'll actually Eclipse watching you say, hey, you're trying to create a date to local date there is a local date. But now we have another problem. What risk is there from this line of code?
+
+It throws an exception because it doesn't match that thing. So do we need a try? Catch well
+
+They we could, but it's Wait, we know it's going to be a date. It's a it's a sequel date.
+
+But so it should always match Should I actually always work? But you're on the right track.
+
+So to call a method,
+
+what is this have to be?
+
+Or what can it be maybe better way to set?
+
+An object
+
+has to be an object. Yes.
+
+But if it's not an object, what is it?
+
+What value we'll have?
+
+No,
+
+exactly. It could be no. SQL doesn't have this restriction on its data types of saying like we did with ENT and other things, saying they may or may not be no. So We can never trust something coming from SQL whether it's no or not. So if we're going to do something like call a method on it, and the column happens have a null value in the database, what's going to happen?
+
+We'll get a null pointer exception.
+
+Exactly. So we could write a try catch for it. Or we could just write an if statement to make sure it's not No. So when you're working with dates, or anything, where you're going to immediately call a method, we need to check. So row dot get date. We want date added.
+
+If it's not equal to null,
+
+then we call the method and set called the setter. We don't call the setter data it is going to be no the same it would be if we call it so it won't change anything. So we're working with dates.
+
+Or we're working with
+
+anything that we're going to immediately call a method on coming from SQL. Or if we're trying to put it into a lowercase n, or lowercase double, we need to check if it's null first, because they could be fortunate. Fortunately, the getters will handle nulls for most cases, but anytime we're going to call this method like a date, we have to check. All right, so now we have
+
+our map done.
+
+So it's set all the values up here. For each time through the loop, it's going to add it to our persons list. So persons dot add person and then we'll return our list of persons
+
+and
+
+Now let's get our address demo over here. Let me get them side by side here. And now we can use our do. So to use our da, what data type? Do we make it?
+
+What data type variable do we need?
+
+So, yes, so that's a good question. Why are we calling it mapro? This is an overload of the term map. So map can refer to many things. Map outside of programming can refer to mapping values, meaning to match values, or to put values in. That's something that's not just programming specific. That's more general term. And that's the way we're using map in this case, rather than map is the data type. So okay, that was confusing me a little. We could call populate, populate row from results, it would be fine. Or change or anything that communicates that doesn't that's just a name for the method name it will make sense to you. Doesn't have to be called map road to person. It can be called crate person from row or something like that.
+
+Okay, thank you.
+
+So what data types Do we need a variable for to create our do?
+
+The JDBC template
+
+that's in our JDBC class, in our data pattern, what are we going to treat our day as?
+
+What we build that defines a data type.
+
+About three things Person person do in person JDBC do. person do interface? Exactly. We want it to be personable No. And this actually important to the do pattern. If we make it directly person JDBC do, it's going to work. But then there's no point to the pattern, the whole idea of the pattern is to separate the person from the do from the JDBC do so that we can exchange it kind of hard to imagine the way it's working right now. But by next module, we'll see some better uses of it, where we'll start using it a different way where it will make more sense. So we will person do, we can call it whatever you want. I'm going to call person D as we might have time to get more but hopefully there's one more and now it's going to be new than the implementation JDBC person or sorry, person JDBC do it. Sometimes you might be called JDBC person do that's fine too. As you'll see in the examples today, in your exercises, too, and it We're going to pass it our data source.
+
+And we got to import all these
+
+must put on this.
+
+And now we'll just do a quick start doing list type person. We can call our, let's call this person's equals our person do list.
+
+And
+
+so give us a list to show that we have something. Let's do System dot out dot print. Actually, we should do an a for loop. Say,
+
+for each person,
+
+person and person
+
+System dot
+
+System dot out dot print line. And we'll just find each person
+
+run it.
+
+We're going to get this Why?
+
+Going back to like week three?
+
+All right, yeah, I need to see stringer for ride. Great.
+
+So let's go here and we can generate one from source
+
+to string. It will just let it be everything. I just want to see what people are in the list.
+
+And now we get
+
+each of our persons from our database populated.
+
+So we have the first one done.
+
+So now get person by ID.
+
+We want this but we want it to be by ID, and then division one, right? So it's going to be where
+
+person ID equals and then
+
+a primer, or minus db visualizer, I can change the parameter type
+
+to a value, so to
+
+get just the rough to, so that's the code I want. That's my SQL code. So come back over here. And get person by ID. That'd be string.
+
+Person SQL equals space it.
+
+Try the question mark where I want to parameter and now we're gonna To see that this is actually going to be. So SQL row set rows, it's going to be equal to JDBC template. I'm going to pass it the Select person SQL. And then my second value I'm going to pass is going to be that ID. And I forgot to call the method query query for Rosa.
+
+And
+
+here, I'm gonna find out is I have to call next. So rows next and I don't know if an ID is going to return somebody. So I want to do an if statement.
+
+And here
+
+we want to person
+
+Make it No.
+
+Then here, person equals mean car mapper, row map row to person. So our second method gets much easier to work with, right.
+
+So if we want to call this, let's do system dot out print line. And we're going to take person do
+
+get person by ID, and we know there's an ID too.
+
+So
+
+we run it, we can see that it's calling that method.
+
+And it got the person of it too.
+
+So I know it's getting late. We really want to get through at least an insert. So last out of insert update and delete are almost the same as insert. So if you don't do insert, you don't have to do all the rest of them. But one, we have to work with the sequence. So I want to show that. And then. So let's add an insert to this. So I'm going to add a new method, it's going to return
+
+what should it return?
+
+Anything.
+
+Not can return void. Some people would argue it needs to return a person
+
+method. I'm actually really
+
+don't care on that particular argument. I don't have a strong opinion either way.
+
+Because there's some people say there shouldn't be sure you're trying to object shouldn't have side effects, which is where we're going to change the person object without returning it. Then other people would argue that's the whole feature of an object oriented language that we should be taking advantage of those features. I tend to fall outside. If we're not doing functional programming in Java. We're doing Java Java, or object oriented programming in Java. But so if you see these arguments or hear them, that's what's going on. We're going to call it add, or let's call it create. It's going to take a person object, it's going to create it. And soon as we add this to the interface, we have to add it to the JDBC. class.
+
+So I added a method.
+
+And now we have to right.
+
+I'm going to move it. I like my
+
+like methods.
+
+I don't like public and private methods that are mixed together because it makes it hard to read and know what's going on. So I tend to put all my public methods at the top and private methods at the bottom of the class. Except for getters and setters, those go through the opposite end. So let's go we need to figure out an insert statement.
+
+server here.
+
+I'm just going to script it again using that scripting tool, because it's easy.
+
+It's a person script table, I want the insert. And
+
+I want to make sure this works. So I'm going to send this default
+
+I'm going to do returning
+
+person ID.
+
+And let's say I need to do a name. So let's just do a
+
+and now just to make sure it works,
+
+it does, okay.
+
+So this is going to become
+
+these values.
+
+The semicolon, so I'm going to grab my own.
+
+Nothing here. It's gonna be my strength to insert SQL
+
+So now to run this
+
+I can probably room to see everything. What do I need to run it as since I added the returning
+
+update or
+
+and row whatever I figured it's called query for reset.
+
+So SQL row set in this is going to be called rows like normal JDBC. template and insert
+
+SQL.
+
+And now I have three arguments First Name, Last Name of day data. I'm gonna call person dot get first name, person dot get last name, in person dot get date added.
+
+So notice Why'd I forgot to
+
+query for rosette.
+
+So notice, I don't have to cast the local date into a date. So even though it can't auto cast it for me what it's coming from the other side, I have to call to local date. It can do it when I'm going from local to Java, Java, util, date, or sequel date.
+
+So after anything more there.
+
+So I'm calling these. So first name is for the first question mark, last name for the second, and so on.
+
+And now I'm going to say rows. Next.
+
+I don't need
+
+an if statement, because I know that if this didn't throw an exception, it worked, because it's returning the ID. So if it didn't throw an exception, I have an ID and then I can just say and
+
+And ID equals
+
+rows dot get int.
+
+And I know it's called person ID, because that's about returning it as. And now I want to take my original person object and set the person ID to that ID. And the reason is when the caller this method after it completes, they need the ID. And that'll allow them to use it but like address or phone number, other tables are going to need it.
+
+And we should actually be done with an insert
+
+and back to our sorry, summer one to be back to our example, if we want to insert a person
+
+so here, create a new person.
+
+Let's insert john since we always insert john smith You,
+
+person,
+
+and we're going to person. Actually, it's not person. It's
+
+our john Fulton object. We will set
+
+first name,
+
+john.
+
+Set, last name, Fulton. And now for date, we need to set a date. Even though if we look from the database, we would find out it does default to today. But we'll set a date added to local date now, which will set it to just the current date. So we have a person object, and now we can call with insert. So say, person do create and we'll send our john Fulton object to it.
+
+And then let's do
+
+make sure it's there. So we'll print out this but instead of printing this object directly, let's use the person da, and we'll get it by the john Fulton dot get person ID. So we'll retrieve it from the database to make sure it's actually there.
+
+If we run it,
+
+see that? It has the ID eight, the new ID, and it's been added. So, I know I said I wanted to do one more with insert. But actually, I want to do delete too, because we don't, but it's really quick. It's like three lines of code. But because I realized we don't have an example update, so we need that and delete is quicker to write that update.
+
+So let's create a void Delete.
+
+I enter the speed by end person ID.
+
+Let's go over here and
+
+implement a method.
+
+And I'm going to skip what I've been telling you to do. And but don't do this. So we're going to delete from when is it person where person ID equals, you should test that in dB visualizer. First, especially with a delete, you should definitely test it in a transaction in dB visualizer. To make sure it's working, you should use the where clause appropriately this WHERE clause to make sure it's going to select the right thing. But, you know, if we delete our address book, that's okay. I can live with that. So what I wanted to show with this Is that we have our SQL right now all we need is our JDBC template and for deleting update or inserts that are not returning the ID, we use the method update
+
+and then delete SQL.
+
+It takes parameters the same way and we're done.
+
+That's all we have to do.
+
+So to make sure this is working, now that we've have john in the system, let's remove john from the system.
+
+So let's
+
+person do
+
+and will delete
+
+person.
+
+JOHN for dot person ID.
+
+So deleted by ID and that will describe these things appear list everybody again. So we can see the log number First, we run it and I can't call a person's again. But Candice, get rid of this and use it again.
+
+So we'll run it and we see that
+
+is it still your original list if you don't call it again? Oh.
+
+So, um, no, I know what it is. So we added junk food multiple times now. So we deleted the last john foot we added but not the latest john Fulton we added.
+
+So we can see that working better if we just put it to.
+
+Actually we can see right here there's a john form of ID eight or nine But there's also one of ID eight, because that's the one we added previously, before we wrote the Delete off it in the new list, the 119 is missing. So we don't need to do anything. We can see it there. All right. So I know at the end there that got kind of fast.
+
+So
+
+So what questions do you have before
+
+we take a look at what you're doing. Is it making sense?
+
+So you think you can write these?
+
+It definitely makes sense. But combining all three of those files was
+
+a little tough for me. Okay.
+
+So for each of these, I don't know if this will help. And it's just repeating what I already said. But sometimes that helps. So for each of these, it's three files, but doing the thing that we've been looking at these files doing for a while now, interfaces just providing an interface. So you just Just think of it this way, you always have to have an interface that says what you can do. The data class person is just about representing one row. You think of it like that for now represent one row. So if you look at your table, when you select from the table
+
+and not what
+
+when you select off from the table,
+
+you should be able to put one of these into that person class into that class you're creating. So the whole thing. So you need a class that represents a row. And then the JDBC class is the one that actually does all the work. So really, the JDBC classes the focus, but you can't really start there because you have to have the interface and the other one to build it. Right, but the JDBC classes really what we're building. It's the one that does all the work. It's the one that has the seek one, it's the one that does the connection. The other two is about abstracting it, the interface. So we saw that, you know, hasn't changed, it's what they often do. And then
+
+the last one is a data type just so we could talk about it.
+
+So if you focus on the JDBC class realizing need this other two to support it, that I don't know if it'll make it easier or not. But another way of thinking about it from the way we kind of, we came at it from the opposite direction.
+
+Which class implements the interface, the JDBC class. So, all right.
+
+So Other questions?
+
+All right. So I'm going to open up your exercises for Today, so it's pair exercises only today, actually, it's pair exercise only all week. And only today and tomorrow, you get Wednesday off of exercises, so and that's all on purpose. So if you're behind, you're struggling get caught up. If you're caught up, don't take time off. There's There's no time off here, it's 14 weeks of no time off. So start working on something, it's time to seriously start thinking about what you're doing what you want to do outside of what we're telling you to do. So the side project type stuff, or researching something, that side project does not have to be a project. It can be, hey, I'm learning. Don't learn Python. I'm learning Ruby on the side. Or I'm learning C sharp two, it can be something like that. It or I'm looking at the big data, or I'm looking into this other type of technology. So if you, if you're completely caught up, then you should be doing something like that for next couple days after your paperwork. But
+
+I have a question. And I feel like you already answered it. Okay.
+
+Why do you have to have an interface again?
+
+So it's hard to imagine with the way
+
+we're working things now. But so next module, so Okay, actually, from your first Capstone, you had this file, right? And it got your inventory. And let's say you wanted that inventory to be in a database, which makes sense. Why would you want a file you're moving around when you can put in a database, which is much easier to handle. So you wrote your Capstone, and it's getting that inventory from file. If I told you to change it from a database Right now, think about how much work it's going to be how much you're gonna have to change.
+
+Probably a few different classes, a few classes that use them.
+
+If it's behind the interface, if you're fine inventory readers by an interface, then or your file reader, then you don't have to change anything but that one class. So what we're eventually working towards is making these swappable pieces. So in so that we have an interface to our do. And yes, it goes to a database today. But next module, we're going to switch it out for an API and go across the internet to another computer and ask it for its answer. Or we might want to go to a file, we might want to go to some other source of data. So the interface allows us to start making it so we have our database access here, but our rest of our application doesn't know where that data is coming from. It doesn't know there's a database involved. doesn't care either. So it's but that's hard to imagine when all we have right now is our database.
+
+I will bring an example tomorrow. All right one
+
+that does this with a between a fight what we know now between a file and a database that hopefully can help clear it up.
+
+Or make it easier to understand still hard to understand you actually
+
+want to have more sources. But does that help?
+
+Yeah, actually, that helps.
+
+Yeah, I mean, I guess right now is
+
+probably more like a learning thing, because we probably don't have to do it, but we should learn how to do it.
+
+Exactly. If you get that interface right now everything is going to work.
+
+Yeah, gotcha. But
+
+no real application on any application where you're actually building it for customers. You don't want to skip that interface because things change too much. So you want To practice the pattern now, if you get in the habit of always using that pattern, it's actually building an interface doesn't take very long, right? You can build it after the fact too if you really want to, but your JDBC class, decide what you need, get everything working, then go build the interface secondary. But put a using having the interface between your code in your class that has external access, like to a database will save you a lot of trouble in the future. So learn if you learn to use the pattern. and set it really it's adding what a few lines of code
+
+I'll bring up example, hopefully.
+
+Alright, so I'm going to go to today's folder.
+
+Oh, it's in pairs.
+
+Oh, that's right.
+
+Have it in there. It's embarrassing, okay.
+
+So it's two days, two days long.
+
+And
+
+good. I need to
+
+pull it before.
+
+clone it real quick, which means I don't can't be here, because I'll put it.
+
+All right, so it's two days.
+
+First day is the data access objects. Second day is integration testing. So you can't do that until we talk about integration testing tomorrow. So you're going to want to create this database called projects, and load the sequel file projects SQL, just like we've done with other databases. so far.
+
+And then for today
+
+I want to open this because there's it's a little more
+
+complicated than some of the other work you've done. Because it's inside of existing code. You're going to be changing existing code rather than writing a lot of things from scratch.
+
+It's actually kind of a whole different skill.
+
+So here
+
+if you just run this project, their projects there's a project CLA, if we just run it, it works. So it comes up with this employee project dB, and there's departments employees projects, is I move through them show departments, I get no results. Show employees again results, I get no results. anything inside of the file. Inside of the project, there is model JDBC. There's three JDBC classes, the interfaces are here. And also the data classes, those are done for you. So there's department data class that represents everything you need to know about a department, department table. There's an interface for the department do these are all complete. And the place where you're going to be working in the only code you're going to be changing is these three JDBC classes. And I say that because there's gonna be times when you're tempted to believe that there's bugs and other parts of the code that you should fix. They're not if you make the proper changes to these JDBC classes, everything will work. So the bugs even though you will be convinced because at least some of you are probably most of you because that's, there's a there's a point in this exercise where it feels like you're doing everything right. And you are. But they're the other codes not working, right. But there's actually just one more thing you need to do to make it work. So when you get there, keep that in mind that you're on the right track, because it's working kind of, but not the way you think because you're missing a step.
+
+So for these for each one,
+
+there are methods in here and you're going to dis populate the JDBC methods. So you're going to have to write you know, one that gets all the departments search department, my name, save department, create department, get the prompt ID, you have to write any macro methods you want to use, you have to figure out how to use work with the
+
+sequences.
+
+Write your queries in dbvisualizer. Don't write them in Java, write them out first, make sure they work and cut and paste them over. And then for employee
+
+and project, it's going to be the same thing.
+
+The way you'll test this is by running this. So they're not a one to one, each menu has a, something it goes to in these files. That would be nice, but it's not quite that easy. So sometimes there might be a couple different methods you have to finish before the menu options work. But like get all departments, if you complete get all departments, then when you select Get all departments in the menu, you'll see a list of the departments. You don't have to do anything. You just have one except for complete these methods. So that's what you'll be doing. So questions on that. So,
+
+today, give 3pm
+
+interviewing one on one.
+
+So keep that in mind. That's what's going on this afternoon.
+
+And for those of you who have not done one on one yet, there's a few people, every all of you should have an invitation for one this week if you haven't done more than the previous week. So
+
+I sent those all out yesterday,
+
+the last few. All right.
+
+So if you don't let me know, and I'll resend it or fix it or whatever needs to be done.
+
+So anything else for today?
+
+Are you gonna be pushing that lecture code? I will I'll do it right
+
+now for everyone can
+
+you the
+
+CD? Taro
+
+thank you for inviting me.
+
+All right. So lecture code is pushed. Is there any other questions?
+
+Stop Recording
+
+Transcribed by https://otter.ai

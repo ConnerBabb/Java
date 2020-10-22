@@ -1,0 +1,1499 @@
+Zoom
+https://techelevator.zoom.us/rec/share/3M1OHZjI-m1JTpWW8XDtAYclFYL4X6a8g3JI-6YFz8XI_ohih--KeEK-ACtIeVo?startTime=1596029093000
+https://drive.google.com/file/d/1cjQvWMMqUl5Xk0ucA5gumBif3e9dh4Lf/view?usp=sharing
+https://docs.google.com/presentation/d/1kaLk71Riwm1wQSJS65QFHXCI6GsOl49OJ8mPIrMf1cM/edit?usp=sharing
+Okay, so today we're going to be covering using restful API's with few. So in the materials that are out there, there's two days of materials that we're going to be covering through both of them today. That's the web services with getting Web Services post. We'll find the post materials is really small, which is why we'll put it together. So before we start talking about the web services, I want to get the npm install started.
+
+So I'm going to open today's
+
+materials and I'm gonna start with web services, get
+
+an infection find a folder.
+
+Terminal
+
+Sherman, the right
+
+directory and npm install.
+
+And then while that's running, we can talk about what we're going to be talking about and stuck talking about some of the
+
+introductory portions. So
+
+today, we're going to start by talking about the difference between a server side versus client side application. We haven't really built client side applications, or server side applications. But we're going to talk about the difference because there's two main architectures that really exist for web applications. So that we've used to unify both and what the differences are. So we're going to briefly talk about that. Then we're going to talk about, or just a quick introduction to this library called axios, which is what we're going to be using for web services calls for the rest of the day, and was set up in your capstone projects as well. And it's part of that before we can start making services calls, we're going to start talking we're going to talk about this concept. called asynchronous programming. And the difference between that and synchronous programming.
+
+So,
+
+to do web services calls, we're gonna have to have this concept of things not happening in order. So click events, but now not driven by user doing something or something completing, but driven by the fact that tasks can take different amounts of time. So that's what a synchronous programming is. So we'll talk about that. And then this idea called promises, which is a one of JavaScript ways of dealing with asynchronous programming. And they're important to web services. So and the using API's and Java scripts will talk to you promises. And that'll lead us to building our first web service interactions and these things called service objects, which is just a similar to a class in Java, the same ID and encapsulates everything about one service service object. So we'll look at those and then we'll go through the different request types So we'll start with get, and that'll actually in the first set of lecture code, and then we'll swap swap over to the second days, and go through post, put and delete. And then, as part of that talk about error handling as well. So there's two major architectures in web applications. what's called server side versus client side. And what that means is really where the content is built. So server side architectures are very traditional architectures. So a Rouse requested. And the route points are a resource that's actually on the server. Or it can be it can be dynamic, but it's something on the server, it's going to build the resource. So in this case, the browser would go make a request to the server doesn't have to be a Java server here it says Java server, but in our case, it would be but it's it makes the request To the server, the server builds a response. And the response is the form of an entire HTML page with all the data in it, all the structure in it, everything applied to it. So it's full HTML. And it delivers that entire HTML page to the browser. That's the very traditional, that's the traditional web model. And it's the way actually most websites work still, when something changes about that HTML in the browser makes another complete request back to the server. The server builds an entire HTML page and sends it back to the browser. So in a traditional application, if something's changing on the page, like if I'm typing some data here
+
+then
+
+forget to do small things.
+
+Like, put the bounding box here and there was some other things going on. It has to send the request back to the browser. Actually a better example than that would be like click the slide, that would be probably a more obvious example. So I click the slide that changes the view. To do that, it has to send the request completely back to the server, the server rebuilds everything and since the HTML down, and that means everything, so everything you see on this page, so all these controls up here that are static, all these pieces through here, all these previews. So this entire page, all the HTML involved, gets rebuilt on the server and sent back down. And if I click here, again, again, it would go back to the server and we get the entire HTML that represents everything on the page and return it. Which means that there's a round trip time for everything that's going on.
+
+So the
+
+that's the traditional method. And then, as they CMS rendered, it goes through and gets all the images, the JavaScript, everything else that
+
+it needs to display.
+
+So in a client side application, which is what we've been looking at already talking about, so none of this should be really new.
+
+There's,
+
+instead, the there's an initial request made in the browser, we get to go to the site, they get HTML. And it also gets this large JavaScript package, which is what we're building in view. And after that, the interaction between the browser and the Java server or the web servers are done is done. It has the HTML as a single page, in our view app for everything we're doing in a view app. Remember that it's going to be Now this is the entire entirety of the HTML for everything the page is doing. So that's returned by the server. And then after that the JavaScript screen to make requests to make changes. So this is the part we've been missing. We've been doing things with the JavaScript, update the DOM, but this step
+
+here,
+
+where the JavaScript can, goes back and forth to the server is the portion that we're going to be talking about today. So where Today we're in the past, the last few days, actually, we can have we've been getting data from things like the view x store or from arrays. We're still gonna be getting data from there, but now we're going to get the initial data from API's. So the goal is, net was never been to just have everything in the UX store, hard coded. It's always been to happen. This interaction going from the JavaScript to the web service. And then when it gets a response, updating the DOM and the HTML, like we have been doing with data, only now the changes are coming from this web service on the server.
+
+And I will also say that in modern applications, this server that's being represented as one thing is often two distinct things. In modern application spec, the way we're running it is because we have this side running as an NPM server. And we're going to soon have this side running as a Java server. But today, we're going to use NPM for both, but we'll talk about that when we
+
+get more than into the lecture code. All right.
+
+So the veil In this architecture is the ones that we've been talking about. It's going to give us this much faster, more rich user experience, it's going to allow users to do things like click between these slides quickly. And that make it feel like a desktop application make it feel like something they're working they're using on their computer, like something. The way Visual Studio code can move between tabs, or that PowerPoint which knows installed and not running, the web can move between it slides. It also is going to a huge part of this is decreasing the need to keep going back to the server. There's no point there's no reason to have to reload a bunch of HTML, if it were just repeating work. Instead, we can just work with data and view as if it hasn't kind of that idea hasn't settled for you yet. Then hopefully it will soon the Idea view is that we work with data. Now everything about view is data driven. And that's why this view that's also Angular and react and Riot and all the other racket frameworks. That's their core idea is, why should developers be in the business of having to really think about as much the DOM and these other elements that are just kind of repetitive. When what really matters to users, what really matters to the product is the data. So these products are very data driven. And this idea of why do we have to keep repeating the work for the HTML and getting it in retrieving it again, if all we really care about the data, so it's going to limited to that. And it's going to allow this rich desktop experience. So you'll notice if you start going around webpages, when you start using different web pages, as you click on links as you click on no opening sections on the page, if you click Pay attention, a lot of them there'll be a quick flash, it's it's almost on a lot of applications is some pending on the speed of their servers and the speed of the internet the time, it may be really noticeable, it may be something that happens that you can, you know, the page disappears. And there's almost a second or so delay, or maybe something you barely see, but it's still there. When you see that flash, that's a traditional web application, it's going back to the server the flash is carrying because the entire DOM is being destroyed and recreated, not just a portion of it, but the entire thing. The documents being unloaded and the new documents being loaded in, even if it's the same document getting served multiple times. Because the browser doesn't know the difference. It just knows that I got it has a new HTML file to render. The fact that it's the same HTML file as last time with a small change, it can't tell that so that flash happens anytime we have to re render an HTML No. And that's part of what this architecture also gets rid of. Because if every time we click here, I had to have a slight pause, why it wouldn't got something on the server. And then there was a whole screen kind of flies. For me, it gets very annoying to use. It's difficult to use, it doesn't feel natural.
+
+So what advantage is getting rid of that.
+
+And the workflow that's going to build for us is that the HTML page is going to, like we've been using have events that are captured and responded to by JavaScript. So the page loads as the page loads as though every web page loads up loads, and it's renders and it sets waiting for the user to do something. We talked about that we're waiting on the user to respond to click a button to click a link. The user is going to take action and that's going to fire an event. The Vinton is going to be responded to by our JavaScript But starting today when we need more data for an event to be responded to. So like we looked at earlier this module, or last few times, we looked to view things like this review app, we add a review, and it gets added to the state. Now, it'll be we add a review, and we call an API to add it to the database on a server. So the Web API is going to respond the JavaScript file using Web API using this library called axios. And then, JavaScript is going to inform us when it gets the response, which will be JSON, using this thing called a promise, and we'll talk through what the promises and then once the JSON is returned in the promise, will use JavaScript like we have been doing to update the DOM which is why fuse does force through its reactivity. So that storage that we've been working with is going to be a lot replaced by these web service calls. Doesn't mean it's going away. It just means that now we'll get the data initially from web services will still often store in to the view x store. And we'll talk about that when we get to it later today and a lot more probably tomorrow in the next day after the product worked through our actual project. Alright, so before we look at more of the details of how this is going to work, are there questions on
+
+I know that was a lot of repeat of what we've talked about a few times now. But I think the concept of what we're doing and why is really important to how this flows. So we're going to use this library axios. So there's a few. There's a few different ways and methods of using API, web services from JavaScript, there's a built in. It's not built in the JavaScript, it's actually built into browsers. There is a library called fetch. That it's not a library starts an API called fetch built into the browser. And all browsers supply it. And you can call an API by calling fetch directly. And there's libraries like axios, which are wrappers around fetch, they make it slightly easier to use. So if you think about when we looked at the rest template we talked about there was these convenience methods that made the more difficult methods like a chant, like good for object that made exchange easier to use. So access to something similar, but it also part of the reason we use it. And it's by far the most popular way of accessing a web service in JavaScript right now. But part of the reason it's used is that This fetch API that's in the browsers doesn't exist outside the browsers. So if you do JavaScript from a server, or you end up using JavaScript in an environment, like electron, which is desktop development, then this fetch API doesn't exist. So they have their own ways of doing web service calls. And axios is a wrapper around all of them. So when you work with axios, they matter which environment you're working in, even though we're always going to be in a browser based environment here. If you take it to another environment, it works exactly the same. So it's kind of a convenience around the different styles. A web service needs a web, calling a web service for JavaScript, since there's not really a standard of standard way of needing to do it built into the language. So we're going to be using that and what axios is, is a promise based client HTTP client. So remember, Rest template. That's what that was, it was a HTTP client. But it wasn't promise based. It was synchronous. And we'll talk about what that means here in a moment. And it allows all the HTTP methods to be made from JavaScript. And we're gonna find it works very similar to what we were used to in the rest template. And Java app fact, it's actually a lot easier than the rest template a lot easier than the rest template. It's fairly simple compared to using the rest template that's going to be filling the same, the same need in the client, providing a HTTP client to call the web, the API's. Another huge advantage it has over things like the fetch API, that's built into the browsers is that axios does automatic conversion from JSON to JavaScript objects. Just like Spring Boot was doing the automatic deserializing On serialization for us, axios is going to handle the same type of thing. And JavaScript. Otherwise, we would have to do it manually, which is just one line of code. But it's still one must line of code we have to write. So it's going to handle that for us. And it's going to it is a synchronous, meaning that we're not going to sit and wait on this response. And we're going to talk about what that means here in just a second. So it's, instead of having a back and immediate response, it's going to give us this thing called a promise. And we'll talk about what that is, and that's response is going to come at a later time at a high level. So there's a couple things here there is. So axios has to be installed to install it into a project. It's already been installed into these one using. The capstone project you'll be working with next week already has installed the project. We're going to work with the capstone project started the rest starting tomorrow, and it's so it's going to be installed all the projects. You have Hear, if you do need to install it, there's that's the command npm install axios to add it to a JavaScript object, and there's the documentation on the NPM. I don't know what you would call it NPM documentation for it. There's also a link to an axios cheat sheet, which walks through how to do a pull up how to do a get in a very easy way and some other things that can do as well. So that's the library we're gonna be using. And I just wanted to say now so when we get to it, we can just talk about and say x is doing this without having to define it in the middle of some other things. But before we can actually make a web service call from JavaScript, we have to understand this concept called a synchronous.
+
+So there's two types of programming, model types. There's two major types synchronous and asynchronous programming.
+
+So actually,
+
+the A volunteer, or
+
+just to type numbers on a chart. So it's nothing to
+
+write exactly do. Could you please in the chat, type the numbers one through 10 on one line each. And then when you're done when you're having them complete say they were done.
+
+Okay, thank you. That was synchronous. I asked him to do some work for do some work asking the type one through 10 in the chat. And then I paused I waited. I waited, we said done before I continued. That's a synchronous request. Synchronous means that we request work from a library we request work from a resource and we wait on it. We can't do anything farther into it started. So a second person could you do the same thing? Who would who would like to Okay, James, if a same thing, just type the numbers and say down when you're complete. So as James is typing this, this is asynchronous, James is completing the request. And as a request, we're continuing to talk about asynchronous, and then hit a thank you. And then when he's done, there was a pause, there's a pause and went back and completed the task. So the completion of the task was simple, just thanking for the completion of it, but while he was working, the other work continued, we still kept talking about a synchronous, that's a synchronous what a synchronous means. So it's the idea if you do another example would be if you ask. You ask your friend to go to the store and pick up some milk. So you say go to the store and pick up some milk if they leave for the store. And they go to get milk and they come back and bring you the milk and during That time you're standing by the door where you where they left from, and you don't move. You just wait patiently. You don't do anything until they return in the hands of the milk and then you go about doing what you're doing. That would be a synchronous request. you pause everything you're doing waiting on that request to be done. So asynchronous would be the way we mostly would work would pin on someone going to the store, we'd say, could you please go to the store and get some milk? why they're going to struggle? No, you go and do you go and work on your exercises, you go do the dishes, you go do whatever else you're going to do while they're doing that task. And when they get back, then they hand you the milk and you take the milk from them. You put it away, and then you go back to the task you're working on. So if you're washing the dishes, they come in handy the milk, grab the milk and say thank you, you put it in the refrigerator, then you go back to washing the dishes. So there's a pause, where you handle the response. That's what a synchronous is. So it's not just a not waiting on the response. It's a pause when the response is done whenever that is to handle it, and then a continuation of the task that was being done. So, it's, I find that asynchronous is an easy concept, until you try to apply to how your codes running. I mean the concept of no synchronous being you ask somebody to do something and they do it in, you get the result. And it continues compared to you ask somebody to do something. They go off and do it, you continue. Then they come back and bring the result you handle it and they continue is fairly easy concept. But applying it to lines of code running is a different
+
+way of thinking about coding.
+
+Everything we've done so far, this code has been synchronous.
+
+So if you think about the way Java works, we call a method and we wait on the response, the method waits on the response. Java is a synchronous language, it doesn't have to be asynchronous because of has some other advantages, called threading. JavaScript doesn't have those advantages. So JavaScript is what's called a blocking line, which means it can only do one thing at a time. So if one line of code runs, the next line of code runs, then it nothing else could be going on. Something we didn't talk about, like the language like Java, is that why this thing is going on, there could be 10 or 20. Other things also happening. But in JavaScript, it's not like that. Everything has to occur one at a time. So a synchronous is an awesome thing to happen and ask something else to do it. Maybe we could ask the axios library to go do something for us. And then way that library is working are one at a time line of code is going to keep Running. And then we're going to give it a method and say when you're done, call this method. And when it calls that method, then we're going to our code is going to go run the code in that method, and complete the task, and then go back to what it was doing, where it was at. And that's the part that can be challenging, kind of think through. So that's the difference between that's what a synchronous is an easy concept we're going to learn it's not always easy to apply. So before we look at how we're going to use it in JavaScript, is there questions on on that?
+
+So when you say that, like the there's going to be a method that's called when the response actually finally gets back to the program. Does that like, because the code is continuously running and then it goes back to that method that has been called. And so like after that method is executed, where does the program
+
+goes back to where it was. So it goes back to where it was working. So
+
+if
+
+we had, say, a line of code,
+
+and another line of code in here, there was an asynchronous process started. And our code continues. And here we, we tell it, this is the method we want to call. So we have run this code. This is where we're going to call and then our code continues running.
+
+And now this returns.
+
+We're going to go back up, run this code, these lines of code, and then go back to where we were and continue.
+
+Okay, Which is why it can be hard. Think about it here. Here's one of the big.
+
+I'm sorry, I assume I just pause. So if that's why I was pausing, because all of you froze. So the big one of the biggest challenges is that we don't know where we're going to be in this code. We could be up here, we could be down here somewhere.
+
+And we're not going to care.
+
+And that's challenging. Because as we move through this, we'll continue working through the code. We can be anywhere, when in whatever this asynchronous code returns, we're going to go back, run some other code and then come back to what we were doing. So just like when we send our friend for them, the milk we don't know how long it's going to take. Now we could be for had three tasks, we're going to wash the dishes, and then we're going to sweep the floor. They're going to do the laundry, we don't know which one we're in the middle of when they return, whichever one it is, we're going to stop that for the most part, the moco. And and go back to that task that we're working on. But we don't know, we can't predict which one when we want to predict, but we can't guarantee which one we're going to be in the middle of. And that's what it's gonna be with our code.
+
+So, others Oh, yeah.
+
+So I have one more question. So if you have following code that is related to that event, like that person's username or something for a login request to go ahead and say like, Hello, your name, like is that code included in that method that will run after the request is successful or
+
+so it? It has to happen after that returns after the response returns? If like we're giving you like a login, we're getting the user's name and until we have the user name, we can Greet them, right? So we have choices we either can make it. So whatever. Whatever is using the user's name doesn't start until after that request returns. We can also block things. That's what loading. That's what things like loading animations, which we're going to look at today. That's what their whole job is. It's the block into these asynchronous requests return.
+
+So, yeah, we have to,
+
+we have to make keep that in consideration that things that the data that we need may not be there, what our code runs, were to make sure it runs in the right, the right moment. I'll say the hardest thing I learned from Mike, for me. And the hardest part about JavaScript is something we now are just getting to is that when you start working with web services, you have all these asynchronous requests going off. Doing things like getting waiting on this web service to return before you call The Next Web Service, because they build on each other is probably the most challenging portion of JavaScript. Because you have sometimes three or four pieces that are all working independently that have to come back together. And being able to write, write the code in a way that when they do get back together, they can be cohesive, can be really challenging.
+
+We're not gonna do something complicated yet, but
+
+all right, I appreciate it. Thank you.
+
+So other questions before?
+
+So, the way we're going to handle this said, we're going to tell
+
+JavaScript. When we call a method library like axios, it's gonna return it's going to go do some work. It's going to be asynchronous. But we have to tell it what to do when it's done. So what it's going to do instead of this thing, Okay, tell me a method to call when you're done. It's going to return something to us called a promise. So a promise is a asynchronous response object, it's an object is going to respond when
+
+there's
+
+his response.
+
+So a promise is a
+
+object that's not going to be called until later. And so it's exactly it's called a promise, because exactly what it says it's a promise of future response. And it has three states. There's a pending state, and in the pending state, it means that things are running. We don't know the state, we don't know the final answer. fulfilled state means that it's successful and there's original state when it's failed. So to kind of put this in non programming perspective, these three states, and this whole idea of a promise is something that we see outside of code as well. So imagine your kid. And when you're a kid, you go to your your mother and you ask for a new video game. And your mother says, I promise I'll get you a new video game next week. So now, are you waiting the week. So you're waiting a week to see if you're going to get the video game during that Wait, during that time that you're waiting? That's a pending promise. So you don't just stand there and wait. You don't spend a week standing in place waiting on the video game and you go do other things. You're going you know, doing whatever you do as a kid waiting on the promise to either be fulfilled or rejected. Later next week, next week. Now during the time when it's pending, you don't actually know you believe the promise is going to be fulfilled. But you don't know. If something's going to happen during that time, that means it's going to be rejected. So during that time, if you make your mother really angry, and your punishment is that you're no longer you get the video game. Now the promise has been rejected. So it but if next week comes and your mother gets you the video game, then the promise has been fulfilled. So for the week, you're waiting, it's in a pending state. So now applying this to code during the time that it's actually making the web, a library like axios is actually making the web service call. Our promises object it gives us is going to be in a pending state, meaning we don't know how it's going to resolve. We don't know what's going to happen. Then it's going to if we're going to get a response either it's going to failed. And it's going to go to a rejected state. And we'll talk about later when we talk about error handling how I handle that, or it's going to be fulfilled. And it's going to go to a fulfilled state, meaning that things were successful. And we talked about the difference between success and failure, it's not necessarily for promise always going to be, you know, 200 versus a 500 error. By definition of a promise itself, it doesn't care it if it got a response back from the server that's successful, we're going to see access is going to change that a little bit. Access is going to actually reject promises if they're not 200 pair 200 statuses, which is another reason we use it.
+
+So we're getting this off.
+
+And part of what we're going to give this object is a function. And while we're in this pending state, this objects going to sit there and do nothing. It's just going to be this object with a spider. And eventually is going to call something that's promised to call something. And then when the response returns when the asynchronous response returns, this promise object is going to call the method we gave it. And you can imagine it's going to be anonymous method. That's like we do to pretty much everything else in JavaScript to give this anonymous function. When it returns and the promises fulfilled. It'll call this function. And we'll also tell it what to do. Eventually, we'll tell it what to do when the promise has been rejected.
+
+So promises I think are easier to
+
+understand when you're working with them.
+
+So we'll talk through it when we actually get to the promise. And also we'll say that what we're going to do with promises is just scratching the surface of the things they can do, and the way they work. We're going to do what we need to do API calls. So if you're definitely interested in exploring Some of the more advanced features of JavaScript promises are a great place to start. But
+
+so before we move on to
+
+the actual, you applying all this are starting to apply all this. What questions do you have?
+
+Okay. All right. So
+
+back to lecture code.
+
+I'm going to run NPM.
+
+Run serve, it's going to look a little different than we've been used to. So why that starts, I'm going to start postman because we will be using postman. Oh, by the time we work with API's, we'll use it quite a bit. So we can see it started. development server and we Have a resource for the sports. And then it should be continuing. Hopefully it will be.
+
+There it goes. And now it's going to continue and
+
+do what we normally see when we do an NPM. Run serve. So these today's lecture code, and it's starting two things with NPM run serve. So before when you were working with API's in Module Three, on a few days, you had to start Node. js API's. And so it's doing that that's what that first thing we saw it starting a node JP a node API that we can work with. And then we're going to apply it with our Java API's tomorrow.
+
+Actually, in
+
+and then
+
+It started the server for the
+
+view application as well. So we have two servers not running. We have one running on port 3000, which is a node server for the web that has an API in it. That's just there for us to work with. And then we have the NPM web server, which is where views work running that we've been running few over and over, regularly. So here in postman,
+
+let's close all these.
+
+When I create a new request, and we get this address that said, sweet, you can just see that there is something running there is an API running on port 300. Now
+
+That has this. This is its response.
+
+It's what we're going to be using today.
+
+So this API just returns JSON. It doesn't matter to node. It can be in Java, it could be in Python doesn't matter. And that's actually part of the reasons of using API's is this side of it. All it matters is that the JavaScript or the client language, can call a URL and get back JSON. What does that processing whether it's our Java API's, whether it's this node API, whether it's, you know, Python, Ruby doesn't matter. It doesn't matter at all to our, our view code. Our view code just cares about URL and the JSON the same way that this client, postman running as a client does the same thing. It's All he cares about. So this is the, we're gonna work with. And now I'm going to open up
+
+the
+
+view application,
+
+which is just going to do this for a while, because we have to write some code to make that stop. So that's a loading animation. It's just, it won't talk about how we make it work and it loads it runs the animation into the data is loaded. So it's waiting on a synchronous response. It's never going to request, the response is never going to come because we never made the request. So I'm gonna minimize that because that's your dating. And now let's talk about how we're going to build it. So what we're going to do is we're going to build these things called service objects, or we don't have to, but we're going to. So a service object is a JavaScript object that is around encapsulates essentially the functionality of something. So in our case, were to capsulate the functionality of our API. So we're going to have it do all the API calls from there, then we can just import this object into wherever we need it, and use it. And that's really all there is to a service object. It's just so we remember we had service objects, the same idea in Java, we had them capsulate with console, we had to calculate the API's for that we built with the rest templates. We had everything in the service objects there. So the idea of a service objects not Java specific, it's not language specific. It's used across all languages. Ready the same idea in JavaScript. So to do that, in source, I'm going to create a new folder called services.
+
+And inside of services, I'm going to create a new file.
+
+Let's call it Ford
+
+service dot j s,
+
+because we're working with this board's API, and we're going to see when we get past the ping pong paddle that this is a Kanban board, which is an agile board similar to Trello. So the boards are,
+
+are there each of the project boards
+
+so with a board service with a service, and JavaScript, there's a one thing we we need, we need to do what's called export methods. So similar to sit defining which methods are public. So we say that method JavaScript methods don't have public and private, but they kind of have this idea of methods you can see outside of the script methods you can't.
+
+And
+
+we do that with something, it's gonna look familiar, export default. So any methods we build inside of this block will be exported. That means that we can use them outside of this JavaScript library that we're building. And that's what it's doing in in view, when we click Export default, it's making it open to the public to be used. That's why everything that we have that's accessible in the template, it's accessible, accessible in other parts of the script is all inside that export default. So that's where we're going to build our methods. But before we do that, we need to import axios So to do that, import axios has already been added to the project. So we can just once we've added a JavaScript library to the project, we can import the name of the project. And we just have to tell it, we want it from the import name. And this information of where to get it from, it will be in his in the access documentation. So for any library, you would get that from the documentation, I would say this is how you import it.
+
+So now that we have that,
+
+we have to create an instance of axios. So to do that, we're going to create a constant GP and axios and then create and we have to pass it an object that has the base URL.
+
+And our base URL is this without the board so we'll take this
+
+That's our base URL. So this should be fairly familiar. This is pretty much what we did with a lot with JavaScript. And I mean, in Java we were working with, sorry. Web API's, right? We had a base URL, but the same idea here. And when we'd call creative access, it's creating an instance of axios. That's set up a base URL. It's not exactly the same as what it is in Java, technically, but the concepts the same. So now we have this instance of axios isn't set up with this URL available here in our board service to work with. Which means that we just use this variable HTTP, we can make Access Request, and we don't have to keep resetting this URL.
+
+So let's build our first GET request.
+
+And a get request with axios is going to be, we're gonna use axios, which was going to http. It has a method get, we'll pass it a URL. So let's do that. So since this is a service object, we're going to make get boards.
+
+We're going to return
+
+HTTP GET. And now we just have to tell it.
+
+Since we have the base URL set is this, we just have to tell it the part after the base URL, because it's been already been set with a starting point.
+
+And for this, we're done.
+
+So what the full thing is going to do is on the other side, we're going to add this then. So the Full Access Request is going to be axios axios instance GET or POST or put or delete, we'll see that as a method for each, we pass it the URL of the API. So this URL, and then this method is going to return a promise. A promise object. Promise objects have a method on them, we can call called then. So when we use this in the other interview application, we're going to put the promise response there. So we'll call the then method, we chain it off of that, because this returns a promise, we chain then onto the promise. And then, for the VIN method of a promise is where we provide the anonymous method that is going to handle the asynchronous response.
+
+And in this case, the anonymous method
+
+is going to pass a response object. The response object is going to be The JavaScript object representation of the JSON. So it's going to convert it to JavaScript objects and then pass it to us as response.
+
+So
+
+this method, our get boards is going to call axios. Get and return a promise. We're going to handle the promise in our view component. So let's, let's complete the service. There's three, three things we need. We have the board's Ross, we're going to need to get a board by ID. There's an ID.
+
+And there's just a single board.
+
+So that's familiar, right? That's the type of code We have before. So let's build a second method. And we'll call it get cards. Because what that's going to return is the cards, which are, you've seen Trello now, so the Trello has the cards for each individual tasks. So the boards are kinda like the projects, the cards are the tasks on that project. So we'll call get cards, and it's going to take a board ID.
+
+And we need to call a URL like this. For
+
+axios. We just build the URL. So similar to what we did, and sorry for Java, right, we just concatenated together the URL the way we needed it. So here, again, we'll return HTTP dot get and I'm using the tick here. Not the single quote, because we're going to have a temperate little, if you remember those from a couple weeks ago.
+
+And we'll put the board ID here.
+
+That's going to create a URL that looks like this out of that board ID.
+
+And again, this the get is gonna return a promise. And we're just going to return the promise out of our method.
+
+The last one,
+
+yes. So quick question. These, these, these pads have already been determined at some point like,
+
+right. These past Yeah, these are the API tasks that we're working with. So those are built in that we talked about the node API that starting up the node j s RP either starting with the server and we call it here from postman. Yeah. So these paths are defined by that. So if you if you are building both sides, server in the other side, these paths would match your request mappings in your job API.
+
+So they're just URL, their URLs is really what they are.
+
+They go on to the space. Does that make sense?
+
+Yeah, thank you.
+
+So the last thing
+
+we would want to get is
+
+being able to get one of these cards by ID. So once we start this, there's going to be three, three needs of our service. And we could build these one at a time, but I'm going to focus on hopefully, the access portion and then we'll focus on the battle. This next one will move us into the promise a little bit. But the promise portion more as we get into the view components. So here
+
+actually, it might be easier to come back to that.
+
+We'll come back to that one.
+
+So now Let's go apply these, we have two of them that apply. So we can get the boards and cards that gives us a starting point, when we come to get an individual card, want to come back and build this. So let me save, save it. And the components in the views have already been built. So we just need to add some things to them. I'm going to go to boards list. And that's the starting point that's going to board I'm
+
+going to show the initial
+
+projects. And you can see right here, there is a
+
+div that has that ping pong paddle that says is why show this Why is loading is true. And that's what it's stuck out right now. So what we're going to have to do, what we're going to do here is make it so when this page starts, when this page loads, we're going to call the API to get the list of boards.
+
+So first of all, To import
+
+our boards service.
+
+So our board
+
+service
+
+from
+
+so we're gonna import it. And I did not mean to have that I should be
+
+up here in the script outside of the export data,
+
+export default. And then
+
+if we want something that happened when the page loads, what do we need?
+
+lifecycle hook? Yes, we do. Any suggestions on which lifecycle hook we probably should use.
+
+created,
+
+created exactly the Create lifecycle hook. So we're created created lifecycle hook. And inside of here, we'll use our board services. So when I call board service, and our method get boards, that's going to return a promise. So when we get a promise back, we can just chain
+
+this then method. So promises have the method then.
+
+And we have to send them a
+
+anonymous method. So then is going to pass our method a response.
+
+And then we have to do something with it.
+
+So what we'll do, so when this promise is resolved, and this response gets passed to our method, we know we now have data, we know things are there. We know the promise has been fulfilled because then there's only called when the promise has been fulfilled. And we so now We can start doing anything we need to do with the page that is data involves data.
+
+So let's
+
+this dot boards. So there's this boards method and response is going to be.
+
+Let's go back here.
+
+It's going to be these boards.
+
+So we're just going to put it we just put it in that boards array. That's what it already is, is an array. So when we say boards is equal to the response or the response object,
+
+and then we'll set this is loading
+
+equal to false and when that happens, then this will stop and this will be shown which is the list of boards.
+
+So Let me save
+
+everything
+
+back to that.
+
+Here we can see that
+
+boards add
+
+we need to do some more but we have boards now showing so it's got data if we look at the view
+
+few tools
+
+you can see in the boards list that the boards
+
+Oh yeah, I messed up. So we have the response object
+
+We actually need from that response object
+
+that response dot data. So the response itself, I misspoke on the response itself is, is an object that has the JSON the JavaScript object within it in data. It also has information about whether this was like a 200 response, or 200, the actual status code is returned and some other stuff about the request. So it has the header information as well. So the payloads and data but it's already been converted to a JavaScript object for us. So now if we have data into the boards, there, that's what it should look like. So now we have the boards. And if we click on each one of them, we go to the next page, which is going to stay here for ever so let me go back. And I will say that it's taking that time when we were like refresh this page with Because there's an artificial delay built into this API. It purposely delays response. So it simulates what it's more realistic for them to be going across the internet, specifically, so we could talk about things like loading animations, because otherwise you get the experience of
+
+mistake this loading animation out.
+
+The experience you get is this.
+
+That's not a very good user experience.
+
+So telling the user that something's loading is important.
+
+Alright, so now we have the first one working. So now let's do
+
+this second one, and then we'll take a break.
+
+Let's get Cards lists working and then we'll take a break and come back and talk about the individual cards.
+
+So I'm gonna go to the cards list component.
+
+And
+
+it's going to be very similar. We're going to import
+
+the service we want to work with. So the board
+
+service from
+
+service
+
+service.
+
+Important, this is lowercase
+
+and then down here in the same, the same way, we have cards that we're going to get this time. But now there's going to be as we click on these, there's parameter in the route that we have to get in use.
+
+So we're going to put in created,
+
+send the crate and created we're going to see when the page loads.
+
+We're going to call the board service,
+
+our get
+
+get cards. And that takes, remember our board service, get cards takes an ID
+
+and I have something wrong services.
+
+And then we have to pass in an ID.
+
+So if that ID is in the print, is that a parameter in there? So let's look at the route and see what it's called. So if we look at the route for the board, it's an ID, this parameter ID.
+
+So we know it's there. How can I get
+
+that ID here?
+
+this.route.params.id, or whatever it was called, I'm not sure what we called it in the path.
+
+It was it. So, okay, so get us the ID. And now we have to deal with the promise. So then, then, and the promise is going to return us the response
+
+and pass that into our anonymous method
+
+and What we're going to do is we're going to set the title and the cards, and then is loading. So first, we'll set the title. If we look at,
+
+we're getting this title from the object.
+
+And we have a single object this time instead of an array. So if we look at this returns an array, but if we look at this
+
+now we have a single object. So I'm gonna get title,
+
+set it to this title. So this title will be from response. And from response data, I guess it's the data as the JavaScript object, dot title
+
+and the equal sign
+
+and I would do the same thing to get the cards so this cards, so this cards equals the response. Got data and response that data is going to be a JavaScript object that looks just like this. So key cards is going to be an array of cards.
+
+And then finally, this
+
+is loading equals false.
+
+See that and now we come back to our board.
+
+And let's go back so we can click on it. We have a board
+
+and now we click on one of them.
+
+And we have some costs where see what the contours are.
+
+Thank you for created not inside
+
+notes params and not puram it is
+
+There goes. Okay, so now we have the cards display.
+
+And this display is styles and everything in the displays up here where it's just
+
+going through and there's a
+
+free plan in progress and completed. There is a computed property for each of them. It just goes through and filters the cards based on the lowest return.
+
+All right. All right. So now we have
+
+our cards. So our next step will be when we click on them, using this URL to get a single card, but let's take a break and we'll come back at 1039 and we'll continue
+
+So, are there any questions? or What questions do you have coming back from? Break? Okay.
+
+All right. So then
+
+the next thing we'd have, we get this, the individual cards working. So if we get the board, we click our individual card, we'd want to have that display here. And it's already good mostly code to do that. So we need to add, add a few features for that app. So the first thing we're going to need, we have this URL that has the board and the card ID. So we need a method in our service to do to do that.
+
+So let's build a new service method
+
+to get an individual card. So on board service, I go back to that. And I'm going to build another method. We had get cards, so to speak, get card, it'll take the board ID
+
+and the card ID.
+
+And so
+
+what we'll do is we'll get the
+
+board because we don't have a, we don't have an API method to actually get a card. We only have an API method to get a board or an individual board or all the boards. So because of that, let's get
+
+the
+
+boards and we'll get the board ID
+
+And we'll make that call and when they will handle the promise here.
+
+So
+
+we're going to handle the promise by tool then chain that on. And that's going to return as the response will pass to an anonymous method here. And let's get the cards out as a just variable so it's easier to work with or makes it more clear what we're doing
+
+cards.
+
+And then we'll return
+
+from our promise will return
+
+cards dot find.
+
+And we use the find method and we'll just check where for each individual card where that card ID is equal to the card ID that was passed in will return that
+
+and then we'll just need to put a return On the whole thing.
+
+So what's.
+
+So what it's doing is, it's going to get the list of cards. And when the promise is resolved, that it's been returned from the API, we're going to get the cards the data out. And if you remember, that's going to get us this array of cards. And we want just one of them just one with an ID. So we're going to use the fine method on the arrays, JavaScript arrays to return the single card. That should be double equals the single cart object that has that ID. So we're returning this from then which is going to be in be the response that returns here that we're returning from our entire thanks what our entire method. So what are methods going to return? is a single card
+
+Right, yes. Can you explain
+
+on line 18? Why you do like the dollar sign board ID in the past? Because why do we have to do it like that?
+
+So we could concatenate it. This is very back from the first week of JavaScript, first a JavaScript, this is a template literal. So this and this
+
+plus our variable board ID, or equivalent. So using Tex, and using this syntax in JavaScript is an easier way of doing a shortcut to doing that to concatenation. Oh,
+
+cool. Thank you.
+
+So the questions before we
+
+use this inside of our view up view.
+
+Why are we handling the promise here when we're doing so we're hitting the promise here only because we want our method to return a single card. And our API only returns boards. It doesn't return the individual cards that are on the boards. So returns an array of all the cards for the board. So since we want this method to be one that gets a single card, we're handling the promise here. So we can retrieve the single card from the array of them that gets returned from the so it's more of just a convenience of this service gets a single of what we need to do to fulfill the service giving a single card does that we could use this method In our view component and add this portion to it with this method, and it would work the same way. So this is just encapsulating the behavior is really the only purpose of it. Okay? It can work both ways. It can work both ways. Yes.
+
+So you said that this, the API
+
+doesn't have a path for a single card? That's correct. Yeah. So we're making it have a path in our front end.
+
+Yes. So we're making it appear like it we're making it work like it would have our our service work. Like it doesn't have that path. So we're capturing the idea of the pie didn't have it. So we're just doing it.
+
+Just part of what a service provides, sir. No, I'm sorry.
+
+So when we're working with our gift card now, is it still gonna have the data, the dot data are we going to have to work with the properties directly
+
+So now when we work with get card, we're going to get back a single card object. So we're going to get back one of these. Okay, thank you.
+
+All right. So are there other questions before we?
+
+Alright, so let's go apply this. So we're going to apply this in the
+
+card detail component.
+
+So card detail,
+
+which doesn't have a lot in it right now. So we're going to build out more of this component. So let's start by building some data. So here after card detail, let's create our data object and have it returned. Because it always has to return an object, whatever card object that it's going to be. title,
+
+description,
+
+status
+
+and comments.
+
+And
+
+so now, let's put something in quick in our template. Let's just do an H. Let's just display the title and description to start with. So we'll do an h1
+
+for
+
+the title.
+
+So card
+
+got title, and then we'll do just a paragraph
+
+for the description
+
+And then we'll add
+
+a call to our services to get the individual card.
+
+So we'll need to import our board service again.
+
+Board service from
+
+services or
+
+service that imports the board services. And then after the data, we'll create a create it again. So it's one load.
+
+And we're going to call our boards.
+
+Service.
+
+Get card.
+
+And now we have to
+
+remember a URL has the board ID The cart ID. So we need to look at the route to see what those are actually called.
+
+So if you look at the route here, there are two variables in it, two parameters, card ID and board ID.
+
+So those are the names we're going to use. So we're going to be to get params board ID to get this first one, and params card ID to get the second one. That's a card detail. So we can just use the, let's put this here to make it more clear. So constants our board ID is going to be equal to this
+
+route
+
+params
+
+port ID and our current card ID will be equal to this route.
+
+params
+
+card ID
+
+I'm only putting them there, we could put them right here just to make it a little more clear what's going on.
+
+So here, then we send our board
+
+ID and our card ID.
+
+And
+
+so when this returns, let's go back and look at what this is returning.
+
+So we return the response of that.
+
+Before we didn't, we didn't do that when we go back to let's look at forward list. We used to then, but we don't continue. So the response of them actually return something. It returns a promise. Another promise if there's another promise to fulfill, and it'll pass along the data between the promises So we could chain. If we had more we wanted to do, we could chain another one on here, and another one and another event. And each one would return that response object. As long as this one's This one's returning something, it'll get returned as the argument to the next woman.
+
+So with that,
+
+back to our board service, we're returning this from our then
+
+well then only returns things as a promise.
+
+So now what we've actually returned is a promise that is going to pass as its argument, the result of this
+
+which is really fortunate for us because in our
+
+other code in our car detail, we need to know when that promise was resolved, we need to wait on it. So we need this to be be part of a circus chain. So that means here we have to resolve that promise and what it's going to pass back as a single card, not the response object. And we'll just set this card equal to
+
+that card. Actually, let's call this response card.
+
+That way it's clear what the difference is.
+
+So without further questions, that's uh
+
+so because we're calling a promise, we need to use a promise. I guess I'm confused there. Sorry.
+
+No, that's, that's why I paused here. This is, this is where it starts getting even more confusing. So when we call our service here, the reason we want to handle The promise resolution here and not in the service is because we need this to know, when the asynchronous actions when it's finished, we need to know when the promise is fulfilled. Because this is the portion that has to update the card. This is the portion that has to turn the loading animation off. This is the portion has to do something. So it has to know when the promise is fulfilled. So we that's why we handled the then and the components not in the service. So now going back to our service with this one, we have more we need to do than just the initial promise, the initial promise returns. And we need to we want to get our individual card out, because we want to encapsulate this idea of getting a single card. But we still need
+
+this service
+
+to know when the promise is resolved. And the only way you can know when the promise is resolved. If a method inside of it, namely this method gets called.
+
+So
+
+when we have promises, we commonly chain what's called chaining promises. So every promise, every then can return. Another promise if it returns data returns with a promise. So in board service, when we return data, the card that's returning from then this method, this may make it more clear. You look at like this.
+
+So returning from this method
+
+is returning from here. Then this is returning us a promise with this as the data being returned, and the other places we just ignored, the promise being returned. But here because no data, but here we're returning that promise that we are component can know when the promise has been fulfilled? Because if we handle the full fulfillment of the promise here, then a component will never know when the in synchronous events can done in a circus actions complete.
+
+Does that make sense?
+
+So it's going to know when the event is complete when it gets the card,
+
+I guess, is when this promise is fulfilled, and they get the response card, passed back to it. It knows the problem. It's, it's complete. Because the promise has been fulfilled, then is only called when a promise is fulfilled. When it's rejected when it's an error, we're going to talk about that in a bit. But is that
+
+so would we still get Get our card. If we didn't do that, then. But if we didn't get our card, then it would be a problem.
+
+We would still get our card. But if we, if we just are displaying it like this, it would work, there would just be a blank screen for a moment until it loads. But if we have something like a loading animation, which we're going to add, then we'd have no idea when to turn it off.
+
+Gotcha. I
+
+mean, we could do something like add a watcher to it. But that's not really what we want to use those for. That's the point of the promise resolving is to let us know it's done.
+
+So we're still we're still using then over in boards list as well, when we're doing that call. But our response in this case is just the card rather than the entire JSON.
+
+Exactly. Because in the board service, we've we've got the response of the entire JSON. We pulled a single card out of it and then sent that is the argument to the next promise. Okay.
+
+So any other questions before we?
+
+Let's go back to
+
+Alright, so now
+
+we have the car details. There's also a components or comments list here. Let's import that and use that to add the comments
+
+report
+
+components
+
+Comments list.
+
+And
+
+we will add a component section here. And the order of all these sections does not really matter. Since they're JavaScript objects, they're Qi driven, not order driven. I put them in this particular order because I personally like the components at the top than the data then the but that's just personal preference.
+
+So comments list.
+
+And now we have to use it. So let's come up here and ask inside of our div.
+
+So add
+
+comments list and we'll bind it. So v bind. Actually, if you remember v bind could be a column. So V, bind it to comments.
+
+Comments.
+
+And now in our comments list component, let's go look at it.
+
+We have this comments, but I don't think the comments those components been completed yet, so
+
+we need to add a couple things to it.
+
+So first, we need a parameter to handle that. So let's add props. Remember, props are going to take the comments, so that'll give us the comments from the other side. And then we just need to fill out this template. So actually, let's just do a div and we'll give it a class of comments as our wrapper and it will On h2
+
+comments
+
+another div
+
+with a class of comment.
+
+We're gonna make this repeat.
+
+So we're going to do a V for
+
+each comment and comments.
+
+And that means we need to bind the key. Let's look at our data. So here's what our comments look like they have an ID so we'll bind that as our key.
+
+So our key can be
+
+placed. Our key can be
+
+met ID.
+
+Why is it unhappy?
+
+cuz I've never used it. Okay, that's fine. And now let's use it so we'll build an h3
+
+Don't you have to call it singular comment. So it's different from
+
+I do thank you I would
+
+I should have paid more attention not just last year written said sure that's fine.
+
+So
+
+our comment
+
+and here's our fildes author body and posted on. So comment dot author and paragraph with a class posted on in these classes has been predefined
+
+work should be half the time
+
+And then
+
+posted on.
+
+And last one we'll need is another paragraph that would just put the comment body.
+
+So we bind everything from the comment. And we should come back here and we see there, the comments are on place. And the CSS sub was pre provided so but when we go to each of these cards, we go back to the boards. We click on one. You can see it doesn't look real great. It's not the best user experience. So
+
+comments shows up and then the whole page shows up.
+
+So what we want to have happen is something similar to Well, we'll make it same this ping pong paddle that shows up on the other pages. When we click on one of these cards, we should show the user this progress.
+
+So they don't just see
+
+just word comments appearing, and then the rest of the page appeared. So let's do that. Let's add the animation, the data loading. So we're going to do that back in the card detail. So the card detail, I'm going to add another key called is loading. The set is the true. So our default state for the page will be loading is true. And then in our promises resolved, we'll set it to false. Because that's when we know there's data so until the promises are resolved, we don't know if there's there's no data. We know that so we'll keep it true. And then up in our template.
+
+We'll create actually
+
+Sweet credit,
+
+okay to div.
+
+And there's a class loading that's exists already. So we'll use that.
+
+And we'll set on this div.
+
+What's that a Vf
+
+is loading. So if loading is true show this div. And we want it to be a Vf. Because when it's not there, I want it completely removed from the DOM. There's no reason to keep this loading animation in the DOM after we're done.
+
+So
+
+image source, and there's an image here and the assets already. So we're here so that's going to be one backup, and then assets. So that's going to be
+
+and we have to
+
+back an assets and then Does it ping
+
+pong loader
+
+just right.
+
+So that should make it have an error. Yeah, yeah. Over assets.
+
+Thank you. Okay, so now we have
+
+this working but now we have everything else showing up when this is still loading, so we need to put, do something with that. So there's this
+
+list here. So on this list I'm going to put v else
+
+and let's actually move these two above. Loading animation.
+
+We save it. And we'll come back and talk about that vs. Now we get this.
+
+And we need to turn that off.
+
+So the last thing we need to do is down here in the when the promises resolved, we'll change this.is loading equal to false, then the experience we get the user gets is that.
+
+So refresh it.
+
+So let's talk about this. Specifically this because we haven't seen it before, but it's useful. So these two are going to show up into this data. We don't have to worry about those right? Because an empty h1 empty paragraph Tigers They don't, they don't show up on the screen, which is why we don't worry about them. But this comment list has this hard coded value in it. And that's the ones we care about.
+
+Which is why
+
+we don't want it to show up
+
+until this is false. So when we have a element that has a Vf on it, the next element, and notice I had an error until I moved it to be the next element. The next element, if we want it to be the opposite, we can use else it saying, if this is true, do this, else do this. So it has to be the next element though, which is why when these were between them, there was an error. And it was saying that the VLC didn't know which app to go with. So I can we can also do a Vf, not loading Right here, it would work the same way.
+
+Alright, so the
+
+last thing it might be a good idea to do is let's add a link back to the boards because this isn't very usable. So maybe at the top of the page, we could do a navigation link. Let's do a div and there's a class already here called board. actions. Think.
+
+I think that's the right class name. Let's find it someplace else. It's in the right somewhere. Pretty sure I started class to it. We're gonna do the same thing with it. We're gonna put a Vf on it. And we'll say we only want this. Let's put the link in first. So we'll do a router link.
+
+And we want to bind it to the
+
+so our bind our two.
+
+And our object for the link, the name we're going to go to, let's go look at the router. Want to go to this? Here. So we're very this board. So we're going to pass we're going to have to give it the ID. And that's the name we're going to use. So we'll bind it to the name.
+
+And let's see it was card detail. Nope. Yeah.
+
+So the name is going to be board.
+
+Now we have to bind it, add params
+
+so prams, and we have the one params that we just looked at ID
+
+And that's going to come from
+
+Let's finish to this this first so that we get rid of that error.
+
+rather like.
+
+So that's going to come from the route and I don't need this because I'm in the template params dot board ID. Alright, so that'll give us create our link back to the board the board that we're currently on. So what's going to it's going to get this ID and build a link back to this,
+
+which is the board that we came from.
+
+And let's give it a name. Something like back to board.
+
+Save it.
+
+I mean, see, it's there.
+
+I really don't want that to display until the page is loaded. Someone here wants to another Vf.
+
+B, if
+
+not is loading.
+
+So when it's not loading, when is loading turns to false, we'll show that link.
+
+Which means then I'm gonna go back to the boards.
+
+We go to individual card back to the boards
+
+get each individual card.
+
+So any questions on what we looked at so far because we're about to switch projects. So
+
+I do have a quick question. So when you leave the card Detail page, is it destroying that instance that you just opened up and that's why it is loading is resetting Back to true.
+
+Yes, exactly. So.
+
+So when we leave the page when it leaves the browser, so destroyed means to leave the DOM to be removed from the DOM. So the DOM is what we can see here. Remember, the DOM is the browser, it's not views. So we go here and the entire Dom has been changed to display this, the other portion has been destroyed that components but that also is why created keeps happening when we go back and forth. So that lifecycle happens every time we leave the component and go back that life. So that entire life cycle happens, which is actually convenient for us because that means we can use destroyed and created are a lot more useful than they would be if we had to worry about them being persistent. Now, that being said, there is optimizations that can be done, that you can make them So that doesn't work that way. But that's way beyond the scope of what we're gonna look at it probably not something you would need, unless you're, I don't know, when you would need it, maybe something really high performance. So if you're building a tool like the slide, you know, Google Slides, they probably would need things like that to cache. It's called caching, it's keeping things alive in the DOM and stuff that aren't visible. And they had to pay a lot of attention to that to get that kind of really fluid application fill. But unless you're building something at that level, you probably would never do that. Just like there's abilities in the router to pre load things. So you can say, when you go to this page, like when you you can say things like just an example, when you go to this board page, preload, all of the in progress cards in the background that have them ready to be loaded to the DOM so that you don't have to.
+
+You can do that kind of stuff as well.
+
+But again, way beyond the scope of
+
+what we're gonna be looking at.
+
+And I only want to bring that up in case you run into it of case where it's not happening. That's, that's why so it is possible to make it not happen. Because every time I say no, it doesn't happen, somebody comes back and says, Well, I went to the workplace and it didn't work that way. So
+
+So Other questions?
+
+Alright, so now we have get.
+
+So let's take a look at post put and delete. They're really easy after we have these concepts down.
+
+Actually, I say that
+
+I need to stop saying things are really easy. I mean, compared to what we just had, you just had to absorb the rest of the materials. Not a lot. It's pretty similar. I should say it that way. somewhere. Not easy.
+
+So let's see I'm going to close.
+
+Let's save everything. Something's not saved.
+
+I'm going to go ahead and close this
+
+and close down all these.
+
+And I would open up
+
+add folder to workspace and open the lecture code from the second project Web Services post.
+
+And go
+
+find the one add it
+
+and come down here. Just do a quick photo now. Hey, Brian. Yes, but now be a good time for a break. It will be in just a moment once we start npm install. Okay, that's a great, thank you. Because that's going to take a couple minutes. So let's get that started. And then we'll, we'll take a break while it's working. And I have nothing to talk about why it's working. So that's.
+
+So I'm going to go into 42 Web Services post
+
+and to lecture
+
+package lock package JSON and right. So this is open now. The second project
+
+and it's that's the first way work to
+
+keep it up in case we need it. Make sure it's Yeah. So I'm going to run npm install for the post project. And that takes that a few minutes. So let's take another break and we'll come back at 11
+
+Take a look at the other pieces.
+
+So I forgot to hit record again after the break, but that's okay because we're going to repeat everything in actual code itself, but don't lose anything.
+
+So it's a good point to actually notice that.
+
+But so
+
+looking at this catch
+
+the when a promise is made, it has to be said as to sponsors, there's the three statuses pending. That means the promise has been made, it means the promise objects been returned. Then it can become fulfilled when a promise is fulfilled,
+
+it's going to call
+
+whatever method is passed to them.
+
+So this is going to be the first code for when it's fulfilled.
+
+And that means it's successful.
+
+But when it's rejected, meaning that it's failed, it's going to call whatever method we pass it in catch.
+
+So catch is going to be for rejected.
+
+And we change it. So this is chained off of add card. So the promise it returns, then, and then after the then we chain on catch. And if the promise is fulfilled, it's going to call the method and then if the promise is rejected, meaning it failed, it's going to call the promise or the method in catch. Which coming from Java is fairly easy to remember because we're used to using catch for errors, right? So it's the same idea. We're going to catch the air. Here, it passes a response object, if the if it's successful, that contains The status and the data and some other header information on error, it passes an error object. Because it's it's going to pain, much similar things that but more things around the error message. And what happened.
+
+So
+
+when this promise is made, if there's an error. So normally, if we're using most web vanilla JavaScript to Chrome API, then an error is when something can't connect. It's not a 500 error. It's not a 400 error, because that's a successful response from the API.
+
+axios
+
+rejects the promise if you get anything above a 200 I think it's above a 300. I don't think 300 they wouldn't they shouldn't be considered errors. But so if you get a four or 500, you get axios converted into every rejection of the promise, and it calls the catch Which is actually one of the other reasons that accesses ease makes it easier to use is because now we can easily treat, we can easily define this was successful, these were 200. These were failures. These were other error statuses in two different resolutions of the promise instead of having to all do it in one in only having be able to catch things when there were things that connection errors. So this error object, so in this code, he calls this handle error response. And let's go look at that method. All this methods going to do in this mess is not required. This is just because we have this code gets cut and pasted a lot. It's a kind of a bunch of if statements that about how to handle there. So let's go to get a handle error response.
+
+It's going to take
+
+this error object and the error object has
+
+two pieces to it. Error response is going to be true I have value when the error occurred during the response. So the error means the response returned an error. So it's a 500 error, it's a 400 error. And we can get it from response dot status code will tell us the code. So 400 500 excetera. So in this case, it's going to say error in verb is just like the word adding, that's just texts that make the error message dynamic. It's not really part of the error process, just part of this method. But what is interesting for us is that on the response, we can interrogate to see if it was a response error. If it was we can use status text to find out what that error was. So they'll tell us you know, four four not found or 500 internal server. So this will print out to the user response received was given the response. Air also has a second value request. When it has value, it means the error was on the request, which means that the server couldn't be reached, that's pretty much the only condition that's going to cause that we couldn't connect in some way, the request failed. So here prints out is the message the server cannot be read. Third reason that we could have a rejection of the promise is as something went wrong in trying to even build the request itself. So we didn't provide the right we provided invalid object that cannot be converted to JSON. Not sure that can happen but that type of thing or something, it's not we get like a Java's equivalent, I mean an undefined error when something's undefined or null when it's not expected to be. So those type of errors they are when they throw to catch the error objects not going to have the response or the request be true. So That's the third case. And here just prints out request cannot be created. So part without axios, the only thing that gets caught is this request cannot be created. And actually, I started true both of these two, but it adds the ability to get the 400 and 500 errors also. So that's why it catches doing. And we can see it used here for update and add the card.
+
+If we look down here with the get of the card,
+
+we can see you slightly differently.
+
+So is the saying if the error is in a response, if there's a response error, we can also call response dot status, just like we did for so this response object is the same response object that we see when it's successful without just embedded in the error object is not going to include data. So we can call status it the same way. And we can check if it's a four, four. If it is, we can tell them something like the cards not available. Because so rather than saying four and four, we can tell them something a little more useful, this card wasn't available.
+
+So we can also get the status directly.
+
+All right. And if we look at when it's used with deleted
+
+card details, it does the same thing likes to get on deleted. The catch is the same as that handle the handwear.
+
+But now it's just right here in the catch without the method.
+
+So here it's written out.
+
+longhand, instead of typing it in a method.
+
+So that's what catch does. That's how we handle errors and
+
+view. So for each of these, there's this error message. Let's look at before Before we do that, before we look at what that's what that's doing, what questions do you have?
+
+So the error message itself.
+
+If we look,
+
+here,
+
+there's an error message in the data. And it's just setting that data in this part of displaying that message is not something new. It's something that's just part of, you know, the way view works. So if we look
+
+up here,
+
+there is fine find it.
+
+I picked the one that we have to do.
+
+Let's look at this one. So same thing with error message.
+
+But if you look up here, there is someplace in here
+
+This. So there's just a div that just prints out the error message. And it has just a V show that says if the error message is not equal to an empty string show, show this div, and it is printed. So that's how we can get the user there back to the user. And we also saw on the other end, the Delete there was an alert that could pop up as well. So the way we show the error to the user is just using view and JavaScript standard features. So either alert to show them pop a pop up, or using view just by using Vf or V show two, display a div that just has the value we set from the data. So we can see this working, go back to board service, and say, Get cards that should work. Let's say get cards and I'm just going to break its URL
+
+And if I go to one of the boards,
+
+it somehow still worked or not save something
+
+that is interesting. Oh,
+
+it's when we use this one. So get card in there we got card out available, this card may not be deleted because at this point it failed because we got four or four not found.
+
+So back to the Ford.
+
+Same way, let's go and break
+
+this. So let's just change 303,000 to something like nine nine
+
+Now eventually we're going to get a network error
+
+because this first board doesn't have it
+
+sorry, let's do individual one.
+
+So maybe get cards
+
+so there was the pop first one was the pop up of there. This one
+
+time.
+
+Let me worse
+
+should be
+
+on might not be a good choice either, because we haven't completed that one yet.
+
+Hey, Brian, I do have a question now that I'm watching you do this. The base URL is localhost 3000. But the URL in the browser is localhost 8080. Because
+
+this is pointing to the API.
+
+So we have API running a node j s that started up at the same time. This is pointing to the view server. So tomorrow, we run this, this is going to be lady at pointing to our Java Spring Boot application that we'll build out tomorrow. And this will be pointing to add one, which will be our view server, then we'll talk about that when we get to tomorrow. So the because that's what the port does, it decides the individual server. So we'll try this again. Later. Oh, actually, we have the other code in I think that's blocking it. But what would happen is we would just see the
+
+that div appear
+
+maybe it's more try
+
+so I think if we do get card I think it will break it
+
+click on the card
+
+not maybe not nice to the collector refused already came back. Alright. So we have some code dad so I think I'm already blocking it so let's come back to that. But anyways, we show the error just by
+
+if in the dev with the data. Alright
+
+so let's add the board features
+
+Since we've talked through doing these pieces and kind of looked at the code let's make it so when we click this add board and we add you know a some board information at save, it adds a new campaign board.
+
+So we look at that.
+
+It's going to be
+
+about add board button.
+
+It's gonna be inside the board list view.
+
+And there is an add board button here,
+
+somewhere.
+
+Down here add boards. It calls a method
+
+on click
+
+shows the ad board form, which is here when we hit the submit button it says save new board. So this the first one that shows the form. The second one on the Save button is what adds the board. So it calls this method save the board, which is where we're going to write code to add the board.
+
+So first thing we're going to do is we're going to need a
+
+service method to call
+
+the API.
+
+So back in board service.
+
+Let's add a new method, add board
+
+and board.
+
+And we're going to return
+
+again, what is called the
+
+POST method.
+
+And we give it the URL the same way we do for
+
+Get, and then we just pass it the JavaScript object, which is going to be a board object. That rep that is that is going to convert to JSON for us access will convert to JSON.
+
+So we convert
+
+that.
+
+And now we'll go back to the board does view so we can use this code. So if we look up here in the template, it has a V model going to new board,
+
+which is right here as a title and background color.
+
+So
+
+has an error message we can use as well.
+
+So let's add a
+
+new board. So we'll say first we're going to say is this is loading equal true. And that's just so we can have the animation show up and block everything so the user can see something is happening.
+
+And then we'll call our board.
+
+They haven't called boards service. And when a car new add board method and we're going to pass it this new board, so our board object, and then we have to handle the promises return. So that's going to be a response object.
+
+And it's a post.
+
+So we'll come back to how we're going to handle that. And now we're going to do a catch. And let's make this a little easier to read. Let's put the then down here.
+
+And then the catch
+
+and the catch is going to catch an error object.
+
+Now we'll come back and actually handle both cases. So when the promise is fulfilled when it's successful, what we want to do is we want to check to see if the status is One has to post. So it should be 201.
+
+If it is, then we want to
+
+get the boards again. So we're going to now we know it's been added to the database. There's a method retrieve boards right here, that we'll call that goes against the boards again, because now we're on the same page last time we redirected to a page that wouldn't got things again. So we're going to call the API again, by calling retrieve boards to we get the boards, which is going to reactively cause the boards to update. And then we want to hide this form, because it's going to look like this. So we're going to hide the form. And then finally, we want to reset the new board object back to defaults. So those are the four steps we want to take when it's successful. So the first thing we're going to want to do is find out if it really was successful. This is the type of success that we're interested in, which is one is a two a one error. So we'll check that out. response status equals to one.
+
+And then
+
+we know there's a board in the database now. So we're going to call this other method that's going to retrieve the boards.
+
+Then we're going to show
+
+add board.
+
+It's going to be false. So we're going to close that.
+
+This form.
+
+Then we're going to set new board
+
+equal to,
+
+and we're just going to put it back to its default state which was this. Let's just grab this and
+
+clean up that
+
+a bit. All right, so now we have our new board. So
+
+finally we will set is loading
+
+to false.
+
+Either way, we want to set is loading to false.
+
+So is this
+
+is loading
+
+equals false
+
+comments quickly so we can make sure this works.
+
+So we add
+
+a board,
+
+give it a title.
+
+And we press Save, and it goes in ads and it reloads the page and gets the boarded them.
+
+So what it's done is we click the Add board, again it went called retrieved boards, which is why we saw it go back to a loading status and it loaded all the boards again. So we loaded all of this which caused it rapidly to end up reloading this component.
+
+And then it
+
+cleared out everything back to its defaults state. So this is loading looks a little weird I know here. So what's happening is his loading get set to true.
+
+And then other things happen.
+
+So it doesn't run sequentially, just codes not running sequentially like this. What it's doing is this is running. And then this promise this is happening, the ad board. But then
+
+any code down here continues.
+
+And then when this promise is resolved, it
+
+momentarily comes back and runs this segment of code. And then Once that's done, it goes back to where it was and continues. So even though this looks like it's just a sequential, this happens, then this, then this, it's not this happens, then this line happens, then everything down here happens in someplace along the path down here. Whenever the promise is resolved, it goes back runs through this code that goes back to where it was and continues. Now in this case, there's no other code. So what it's going to do is going just wait on a user interaction, because that's what web pages do. But that's the workflow with the promise.
+
+Alright, so let's
+
+add the air in now.
+
+So for the air, we're going to
+
+see if we got three air conditions, if the errors response. So if it's in the response, then we know that It's something there was something wrong you got a four or 500 error. So we got a response back that was an error. So say like errors submitting new board
+
+received.
+
+And then we can catenate on
+
+the status message. So error response dot status,
+
+text will have a message is readable for the user like not found.
+
+So the second condition we could have
+
+be elsif
+
+error is in the request,
+
+then we know we couldn't reach the server. So let's set the error amount Message
+
+to server could not be reached.
+
+The last condition is that something else happened. We don't, in this case axios couldn't even build the request. So this would be like an exception occurring in Java, that this particular one, like a null pointer exception or something like that, but a JavaScript version of it.
+
+Because it's rare as they are they do sometimes occur.
+
+So,
+
+requests could not be created. So something else went wrong. And then at the end of this, we also have to set is loading equal to false because only one of these is going to happen.
+
+So if
+
+it's if the promises fulfilled, this happens and we get to this line, when not this, if the promise is So if the promise is fulfilled, this is going to happen. If the promise is rejected, this is going to happen, but not both.
+
+So in both cases, we're going to set as loading back to false so the user can see the screen and we get rid of that ping pong paddle. Alright. So let's do one. Let's The last thing we want to do
+
+is we have our boards. Let's go back to
+
+the board. I want to build the delete the board.
+
+So let's look at how we could do that.
+
+So again, we're going to need a method in our board service to do that.
+
+So let's go to
+
+Ford service and we'll create a new table. Delete method,
+
+delete, board.
+
+And we're going to take the board ID,
+
+because that's all we need for it. And we'll return because we're going to return the promise that returns HTTP. So from axios, delete. And then the URL is going to be I'm using the ticks here. So we can use the template literal. just for convenience. It's going to be boards, and then
+
+the board ID.
+
+So you're all looks just like this.
+
+Should be boards, or boards. That's working. Isn't it?
+
+Interesting. Okay.
+
+So
+
+that's gonna be our method we're gonna call
+
+save off of that.
+
+And now let's go. the delete button itself
+
+is on
+
+this
+
+view component, which is I think the card first presented be the card list because these are the cards to the card list. Yeah, there it is. So there's the Delete board button. So one click, it calls a method, delete board.
+
+So
+
+let's go populate this method.
+
+So under delete, we always want to confirm the user does want to delete it. So we'll say if
+
+and we can use the Confirm
+
+JavaScript confirm functionality. Are you sure you want to delete the sport and all associated
+
+cards,
+
+we probably should tell them something like this action cannot be undone. But
+
+we'll stop there. And now if that's true, so if they clicked, okay, then we're going to call the board service boards service that's already been imported. We're going to call delete board on it. We're going to pass it this dot board ID, which is in the data right now. Because that let's check, it's right here in the data. And that came from the URL
+
+and then we have to handle the promise.
+
+So let's put that down a separate one.
+
+And when it's successful when a promise is fulfilled, it's going to send a response object. When it's rejected, it's going to send the error object.
+
+A method for each. When it's successful,
+
+we want to find out first the status is okay. Then we want to tell the user what happened because the user is not going to see a difference as much here, we want to form them that occurred. In this case, there's also something that we haven't really looked at much here there is a store of these. So we want to call the Delete board mutation. So going back to view x before and then we want to push back to the main page.
+
+So those are the steps we want to take
+
+So we're going to check and say is the response
+
+dot status, that's the status code.
+
+Is that equal to 200? It was successful. If that was let's do an alert
+
+board
+
+successfully
+
+deleted.
+
+And now we're going to call this on the store. We're going to commit. Let's go back and get that the Delete board here.
+
+And whether we'd have to call it like this from the store, is just because of the way this particular projects been set up. If you didn't have the view x store involved, you wouldn't have to do that. If you're a US stores and keep track of the board, you wouldn't have to do that this one happens to be this is the first time we've ever changed the board. As I'm just editing it where we didn't care.
+
+That was the card. So
+
+we have to delete it from the store. And now we're going to say this
+
+router,
+
+push.
+
+And let's find out the route we're gonna push to.
+
+We can push to this,
+
+but we don't want to
+
+because that could change.
+
+So let's go to the router here.
+
+We want to go home. So those are name.
+
+So we're going to push to an object where name colon. Oh, man, let's uncomment the error here. Or come out to error so our catch so we can try it. So we click on our something board Now we should go the Delete board,
+
+delete it.
+
+That's okay. For subtlely deleted, and we go back to the starting point
+
+with our boards,
+
+click on one to load the cards.
+
+Now we just have to deal with this error. So again, the error message is going to have three states of command. One, it could be an error with the response, it can be an error with requests, or it could be an error with axios.
+
+So if it's an error
+
+with response
+
+then let's just set the error message which is just going to trigger
+
+it to display above.
+
+So error deleting
+
+ordered
+
+response was something like that and was concatenate on error dot response dot status. Text.
+
+Else if there was in the request,
+
+then we know it was a connection error. So we've just changed the error message
+
+to server
+
+cannot be reached.
+
+And finally, if it's anything else, we know it was an axios error, or an error with something went wrong. We're trying to build the request of axios.
+
+So
+
+requests could not be
+
+created.
+
+So probably without blossom probably should ever happen. But like exceptions in Java, it's a catch all
+
+right. So if we save all this
+
+Now let me go back to
+
+board service and
+
+let's try
+
+adding that to leet.
+
+Save all
+
+now delete the board.
+
+And there we see the error message display because I broke the URL. So now it says hardly more response not found, which was coming from
+
+board list.
+
+Yeah, the one card list
+
+is coming from the catch
+
+somewhere in here.
+
+No response was oh yeah, right here.
+
+It's coming from right here.
+
+So that's the air we got because we actually got a four or four back because I didn't break the server, I broke the URL. But if we did got if it didn't get to the server, then we would get the other because that's just the error message display.
+
+Alright, so
+
+what questions do you have?
+
+That was a lot I know.
+
+So, the good part I think, the hard part the post and putting delete, the big takeaway from there is really, that
+
+they're almost the same.
+
+And then the error handling
+
+is
+
+a little weird, but it's kind of very similar to exceptions in Java. I know how much everyone loves exceptions and dealing with those. Although there's only one of them, there's only one catch a bunch of if statements instead of a bunch of catches to put in. So these exceptions are actually a lot more forgiving, coming well in JavaScript way of being forgiving. Meaning that it just goes with a lot of things that you wish it wouldn't
+
+have the Saturn of forgiving is right word because yeah,
+
+it's sat there.
+
+I had an error message for like three hours one time, which is syntax. Oh, yeah.
+
+That's the way JavaScript is. Lots of it's just go with the language. So it's everything catches are no different. It's, we can make this work somehow we will, which is why you don't see that last one very often. I don't know if I've ever maybe encountered this one. But if you do, there's an airport.
+
+Alright, so
+
+I do have a quick question.
+
+So
+
+if
+
+because then you know, you said you call the store, but
+
+we wouldn't call the store if he did. So like, if we're working with an API where we have a store,
+
+often, yes.
+
+So because the store is meant to communicate between the components, and the components still need to communicate among themselves. We don't always want because there'll be new data, like a user enter new data that often needs to move between components that the API doesn't have. There's still functionality that we're not going to have from an API that is involved that we may need to move between components like messages or views, different view, things for the build the view. It's also, we may not want the API to be called every time a new component loads. Something we're going to do with the store. In the next couple of days, there's gonna be a list of states. And we're going to talk about this idea called caching, we're going to grab get those two states, the first time, as long as we have it, we're going to put it in the store. And as long as it exists, we won't call API again, if it doesn't exist, we'll call the API. So there's things like that use. So the store is still still heavily used with an API. It just doesn't have a bunch of hard coded values in it like our stood. It has a bunch of empty arrays that we populate with other things.
+
+So Other questions? Okay, then
+
+place
+
+so for exercises, there's two sections.
+
+So they're both there's an exercise set forget and there's an exercise set for put or post. They're almost the same. They're very similar to what you've been working on for the last few days.
+
+Let me get to
+
+the right folder.
+
+So and get
+
+if you look at the readme, just want to follow through the readme
+
+and I won't go through a bit walks through how to run it. They do test, you can run with NPM, run, etc. So those are the Cypress tests that pop up and run in the browser. This walks through implementing a service object, it's going to start at API just like it did for lecture today, a Node JS API on port 3000. That's going to start along with your application NPM run serve, you'll see a both start just like we did today in lecture. And then they walk through what the API looks like, and the steps of calling it so that's for the get one.
+
+For the post one, it's
+
+the same.
+
+Same setup,
+
+but
+
+the wrong thing.
+
+And they're in a separate folder so that there'll be some
+
+They
+
+are set up the same way.
+
+Where has the same API running on port 3000. They have the tests of the same way, you're going to just be building out the other pieces of the CRUD operations the post, put in delete, and setting up the error mode, setting up an error message and handling the catch in this one. So that will be done the second half of the day. For the same, essentially the same application, I'll just extending it farther. And a different projects. They're two separate projects. So so that's what you'll be doing. So pretty similar to what you've been doing the squatter, the readme for each of them. So there's two of them. And this is the last assignment to the court. So normally, the one assigned Today we'll be doing Friday, but since there's two and
+
+think
+
+Shall we give it into Sunday? Or is it Friday? Right? She's shaking her head. Yes. So, Sunday, so they're both due by Sunday at 11:59pm. You can't make these up. So you have to get them turned on. If you're going to turn them in. If you don't turn them in, then it's just, there's no, it's just as premise zero. So it'll do that tournament because you have two extra days to do it. So there's no reason to be late for them. If you are, it's not late, it's just not accepted. So that's so you'll have to Sunday night to get both of them done. 11:59pm nothing's accepted. Exercise wise once capstans began on Monday. That's That's why all right.
+
+So questions on that before we
+
+Alright, so then for today
+
+should really put the announcements at the bottom of my document so the top of school quarterback I
+
+think I've learned
+
+today there's a benefits what a one presentation at three. So don't forget about that. reminder that if you have past you assignments, those past two assignments are due at 11:59pm on Friday. So, past two assignments already set that after that. The extension to Sunday is just for these two new assignments. So since they're being assigned on Wednesday, and there's two of them. So if you have past two assignments past work, you need to get that in by Friday night.
+
+For it to count.
+
+Again, if you're planning or getting stuff done during the capstone don't, they will not things will not be accepted. After that. Let's, because we want you to work on the capstone next week. Let's see. So tomorrow, there'll be two quizzes, so be prepared for that. So we done two lectures today. This was supposed to be tomorrow's lecture two, we done it Both the day that way tomorrow and the next day, we can do a larger project that looks more like your looks more like a capstone. So hopefully that will make a little easier going into your Capstone. So have two quizzes tomorrow. And then we'll start into a cohort review or project that review concepts for the entire cohort. Except probably not database design, because that takes too long. So I'll probably do that in advance, but everything else will be included. And some new topics as well like using JW t with view will be included.
+
+So any other questions or
+
+anything else we would like to bring up?
+
+Yeah, so we have the benefits thing today. What's the best benefit you've ever gotten from a job?
+
+best benefit ever gotten?
+
+Maybe like the weirdest one, something that isn't like sort of standard.
+
+So
+
+we had this one
+
+Let's see, that'd be a benefit.
+
+Well, one, one job we got, we got caught
+
+to sleep once we didn't have to leave the building. Is that a benefit?
+
+No, that's not a fun that's trapping you.
+
+In the same bar we also had, same, same job. We also had a fully stocked bar that we were allowed to use after 5pm. We had a game room and a bunch of other stuff. But again, we were trapped there. That was all ideas, not because we wouldn't want to leave.
+
+So when you get those weird benefits, it's almost always
+
+Transcribed by https://otter.ai

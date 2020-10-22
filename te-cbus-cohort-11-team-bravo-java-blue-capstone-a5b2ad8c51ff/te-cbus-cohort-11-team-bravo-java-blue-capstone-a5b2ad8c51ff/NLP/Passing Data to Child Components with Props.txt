@@ -1,0 +1,78 @@
+Book
+https://book.techelevator.com/content/component-communication.html#passing-data-to-child-components-with-props
+
+Passing data to child components with props
+Vue components have several different types of properties: data, computed, and one that you'll look at now called props.
+
+props are data that is given to the component from outside the component, either from another component or from the mounting of the component. props are how data gets into your components and then can be used inside the components to perform other actions.
+
+props properties can be used inside the components just like any other kind of property. They can be bound to UI elements using v-for or {{ ... }}—props are rarely two-way bound to input elements because they are changed from outside the component—and can be used inside methods or other computed properties.
+
+They are useful to set configuration options on a component so that the components can be reused. Examples of that kind of information include what API URL it should connect to or what display options should be shown. They also pass the main data that a component needs to work, like a blog posts component that needs a list of blog posts to display.
+
+To define a new prop on a component, you can use the props option. The props option is a list of props this component accepts. In the BlogPosts component, you define a prop called posts:
+
+export default {
+  name: 'blog-posts',
+  props: ['posts']
+};
+With the prop defined, you can treat it like you would with data in your component:
+
+<template>
+  <article v-for="post in posts" v-bind:key="post.id"></article>
+</template>
+
+<script>
+  export default {
+    name: 'blog-posts',
+    props: ['posts']
+  };
+</script>
+By default, your BlogPosts component doesn't have any posts. You need to supply your component with a list of posts by passing them in from a parent component. In this example, the App.vue is the parent component, so you need to create a list of posts there, and pass them into the BlogPosts component.
+
+To do this, you'd pass the data in using the prop name you defined in the BlogPosts component, which is posts. In your parent component, you could declare a list of posts in the data option, and then bind to them using v-bind. If the list of posts is updated in App.vue, it is passed to your BlogPosts component:
+
+<template>
+  <!-- other components omitted for clarity -->
+  <blog-posts v-bind:posts="posts"></blog-posts>
+</template>
+
+<script>
+  import BlogPosts from './components/BlogPosts';
+
+  export default {
+    components: {
+      BlogPosts
+    },
+    data() {
+      return {
+        posts: [
+          {
+            id: 1,
+            title: 'My First Post',
+            content: '<p>This is my first post</p>'
+          },
+          {
+            id: 2,
+            title: 'My Second Post',
+            content: '<p>This is my second post</p>'
+          }
+        ]
+      };
+    }
+  };
+</script>
+#Prop names
+When it comes to naming props, there are a few things to know.
+
+The example above uses a single word for the name of the prop: posts. What happens when you need to use multiple words, like blog posts? In that case, you'd define the prop name using camel case:
+
+export default {
+  name: 'blog-posts',
+  props: ['blogPosts']
+};
+The caveat is when it comes to using that name as an attribute of the component. HTML attribute names are case-insensitive, so browsers interpret any uppercase characters as lowercase. That means when you’re using in-DOM templates, you must use the kebab-cased (hyphen-delimited) equivalent of camelCased prop names:
+
+<template>
+  <blog-posts v-bind:blog-posts="posts"></blog-posts>
+</template>

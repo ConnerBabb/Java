@@ -1,0 +1,59 @@
+Book
+https://book.techelevator.com/content/groups-and-aggregates-in-sql.html#aggregate-data-to-get-information
+
+Aggregate Data to Get Information
+So far, you've been selecting rows of data from the database and returning it. But sometimes, you might not want all the data from the database. Instead, you may some information that the data can tell you.
+
+For instance, you have your users table, and you can select all the users from there, but what if you just want to know how many users are in that table? You could select them all and then count them manually with a simple select statement:
+
+SELECT * FROM users;
+You would get:
+
+first_name	last_name	age
+Nick	Smith	11
+Adam	Smith	10
+Beatrice	Gold	8
+Zachary	Claus	9
+You can count these rows and see that there are four of them. But if you have more than that, you might run into problems. Thankfully, you can use aggregate functions.
+
+#Aggregate Functions
+Instead of counting the rows, you can tell the database to count the rows like this:
+
+SELECT COUNT(*) FROM users;
+Result:
+
+count
+4
+Using these functions, you can collapse your data down into pieces of information. COUNT(*) tells you how many rows are returned from the statement.
+
+A call like this:
+
+SELECT COUNT(*) FROM users WHERE last_name = 'Smith';
+Returns:
+
+count
+2
+So, COUNT(*) counts the number of rows.
+
+There are some other aggregate functions, too.
+
+AVG(column) returns the average value in a certain column:
+
+SELECT AVG(age) FROM users;
+avg
+9.5
+SUM(column) adds up all the value from a certain column:
+
+SELECT SUM(age) FROM users;
+sum
+38
+MIN(column) gives you the smallest value in that column:
+
+SELECT MIN(age) FROM users;
+min
+8
+MAX(column) gives you the largest value in that column:
+
+SELECT MAX(age) FROM users;
+max
+11

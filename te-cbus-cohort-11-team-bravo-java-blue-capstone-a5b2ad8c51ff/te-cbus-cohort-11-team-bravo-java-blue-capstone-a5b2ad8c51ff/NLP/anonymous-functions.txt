@@ -1,0 +1,30 @@
+Book
+https://book.techelevator.com/content/functions-javascript.html#array-functions-using-anonymous-functions
+
+Anonymous Functions
+Anonymous functions are functions that don't have a name. Functions in JavaScript can be used just like any other value, so being able to create a function without a name isn't as crazy as it sounds. You create an anonymous function with the following syntax:
+
+
+Image - Arrow Function Signature
+As you can see, this function has no name and can't be called as is. You can either assign it to a variable to call it:
+
+let multiply = (multiplicand, multiplier) => {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+
+console.log( multiply(5, 2) ); // Prints `10` to the console
+Or you can pass the anonymous function to another function!
+
+// Filter an array of numbers so that we are only left with even numbers
+let numbers = [1, 2, 3, 4];
+
+let evenNumbers = numbers.filter( (number) => {
+    return number % 2 === 0;
+});
+
+console.log( evenNumbers ); // Prints out `[2, 4]`
+In the code above, a new anonymous function is being created and passed as a parameter to the filter function on the numbers array. That's right, a function can be passed as a parameter to another function in JavaScript.
+
+Now, you don't need to fully understand how this is working, but you do need to know that you can do it. If a function is just a block of code, then you can put the block of code in a variable and pass it around in your program. And that makes anonymous functions very powerful. And you'll be seeing much more about it in the weeks to come.

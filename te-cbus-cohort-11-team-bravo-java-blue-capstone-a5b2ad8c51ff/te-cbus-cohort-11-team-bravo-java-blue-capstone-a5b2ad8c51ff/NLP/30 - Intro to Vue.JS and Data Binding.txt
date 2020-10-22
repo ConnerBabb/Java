@@ -1,0 +1,1443 @@
+Zoom
+https://techelevator.zoom.us/rec/share/w5BPKLj62WhIb4Xj60zvW6wkWa_qT6a82nMc_foOyxzJ93Kt1_TQ3skXsU7t6p8K?startTime=1595250495000
+https://drive.google.com/file/d/1miWzmEwODljoHVvmoRIatOffZpnxziLY/view?usp=sharing
+https://docs.google.com/presentation/d/15C_0c0toT39mexxQ54eNkj0YZ9MBM8hW4yzODnFtZgk/edit?usp=sharing
+So, today we're going to talk about two,
+
+two parts of view. We're going to start by talking about view itself what it is, and do set up a project and walk through the parts of it in what the problem view solve going to solve for us, and walk through that. And then as part of that, we're going to we're going to start by creating a new project. If you didn't do the reading and follow along with the directions on setting up the vcli then if you normally follow along in class, you won't be able to without the vcli for this first part, we're actually going to build throughout the morning throughout the day. If you did follow the directions, then you'll have the tools needed and you can start setting it up but it can take quite a while so it can take upwards of 20 minutes to half an hour, depending on your Internet speed. So just to kind of level set, if you didn't do that yet, I would encourage you to get the process started, because you'll need it for your exercises going forward. But that will be some limitations on what what you can do with together today. So we're going to start by creating a new project in view. And that takes about two years why that happened, we're going to why that happens. We're going to talk about what view is doing and what it does for us, and what it is and what it means to create be what's called a single page application. So we're gonna talk about what SBA is, or single page applications, and the problem they solve and some of their pros and cons of them. And then we're going to take a look once the project is completed the parts of, of your project in the components and these things called components. And then, as we build out the components, we're going to run into To the need to connect what we're seeing on the screen with data. So we're gonna look at data binding, spend probably most of the day, looking at data binding. There's multiple ways and multiple parts of data binding and view and including what data binding is, we'll discuss that when we get there more detail. But we're gonna look at this thing called one way data binding. And then we're gonna look at data binding arrays, and then binding the attributes of elements. So you know, the tags like the ID equals or the class equals those attributes in the tags, binding those two data. This thing called computed properties, which are, we'll learn to kind of like derive properties in Java, only for view. And then we're gonna look at conditionals. So essentially, if statements and then two way data binding, which we'll discuss what that means. We get there. And then using conditional attributes. So making those attributes we look at binding earlier, making them conditional. So making choices about which class to associate with an element. So that's what we're gonna look at today. So it's a lot of a lot, we're going to go over a lot, we're going to get through a lot of new concepts. So let's first start by, I'm going to start by creating the project in view. And the reason is because the project takes five to 10 minutes or so to build from when you're starting fresh. So that way we can talk about what view is while that's working. So to do that, I'm going to go in Terminal. I'm going to go to today's lecture code folder. So
+
+see, module four.
+
+And today will be the 30
+
+or 30 introduction Nope.
+
+On day 30 introduction view and data handling data binding. And then I'm going to go into the lecture final, you'd want to if you're following along and want to go into single lecture, so we don't have gift conflicts. And we'll notice these folders are they have a readme, and they have an image inside of them a couple of images just so we, we can work with the star image for something we're going to build, and the other one a image of what we're going to build.
+
+And then there's a
+
+excuse me, a readme file that basically says this folder is supposed to be empty. So we're going to build our project here in this lecture folder. And we're to use the vcli to do it. So what the view CLR or view command line interface is is a tool tool that allows us to build out kind of starting view projects. So you only would use this when you're starting a brand new project. You in their lives today, when you give your exercises you won't, you'll be given existing projects. And we'll talk about the end how to get those set up. But when you're starting a new project with view, the vcli kind of helps bootstrap or make that easier to set up because there's a lot of pieces to it. So to run that, UCL, I want to start installed, installs a command on the command line view, when run view, and then create and that tells us we're going to create a project and then the name of the project and I'm going to name the project view, guys product. reviews and on the slide. You can see the command in the middle there. And then press Enter. And the vcli is going to starting up and it's going to give me some menus. your viewers may not have the same update message Mine's quite a bit out of date.
+
+So we're the thing, what this gives us is the option of
+
+things we can pick that we want to be part of this project pieces that we want to include. In these are tools or libraries that we want to include in, we want to have the vcli include when it builds off this default project, yours probably just says default him manually select features may have I don't know if there's a third default choice or not mine has the T defaults, because I added that you probably want something like that by the end of the cohort. But for today, what we're going to select is first, I mean, you don't need to follow along with this first part, so I'm just going to show it to you and then we'll back out and come back to this menu. But if I manually select features, it gives a bunch of options. So we don't know most of these are yet. We'll talk about most of them by the end of the cohort. But you can allows us to do things like choose to write view and TypeScript instead of JavaScript. It gives support for something we'll use later called the router in view x, which will allow us to do global state management, which don't worry about that means yet. And also to set up URLs for the router, it gives allows us to add unit testing and end to end testing. So the Cypress tests that you ran last week that pop up on a browser and you can see it running. And then some other features that will really need to walk through right now. And so allows us to select different options we want to add and
+
+see how do I get back to the last menu?
+
+That could be a problem. Okay, no.
+
+So I'm not sure how to actually get back to the mass menu. That's gonna stop it and restart the command
+
+to get back to the menu that you're currently on.
+
+So, here on this menu, it gives options of presets of those selections. Today, we're going to choose default, which is going to add two pieces, two tools, it's going to add this tool called Babel, and we'll talk about, we're going to go through the project. And we'll talk about what Babel is. And this other tool called es lint, and the same, we'll talk about what that is. So I'm going to choose default. And if you follow along, you can go do with this, this part and press Enter. And it's going to start creating the project. So it's going to be working for a moment. And right now what it's doing, it's setting up a project structure that the vcli builds for us. And it's also going to go out and download a bunch of libraries and to build out the project. So very similar to what Maven did in the Palm Pilot for Whereas in Java, that's similar idea. But while this is working, said it can take a while. Let's talk about well, first, I'll pause and ask if there's, at this point, any problems or questions that?
+
+Yeah, how did you make it stop? Because I was definitely in
+
+the menu that you were in? Oh, Ctrl C. Gotcha. So that's not the view CLR Ctrl. C basically will kill anything in Terminal, go back to the terminal. So I'm sure there's a way out of that menu. But that'll. So let's talk about then what view is, and what problem it's going to solve for us why this is working.
+
+So view
+
+is what's called a progressive framework. So progressive framework in JavaScript is a framework that allows us to easily more easily build the UI to build a user experience. And it is, does that if he was going to do that by allowing us to define what's essentially new tags that we can add into HTML. But what the write that HTML in a very specific place in a very specific way, using actually this templates that we looked at a little last week. So one of the things about view views, one of the competitors of react and Angular, and it saw they solve a similar problem. They're also progressive frameworks. View is what's called incrementally adoptable, react and angular not react or Angular, you change your entire project reactor Angular, that was called opinionated means you build it the way they they tell you to build the project or they needed to work. And that's really your only options. And then they give you a bunch of really powerful features for that trade off. Kind of doing it the either react way or the angular way. And then converting your project but views incrementally adoptable meaning that you can convert your project slowly, you can have part of your project view, and part of your project be just vanilla JavaScript in HTML, or some other technology. So it's core libraries are going to focus on just the view layer or the view, vi ew. So the visual user interface layer of a project of a project. But view also has the capability to be like react and angular and be able to create use by adding to what's called the tool chain, and we'll look at what that means in a minute. It's able to create single page applications as well, or which is called SPI, you'll see that mark does SPI quite a bit. So and that's the type of pages that react and angular kind of for into building view can also do those. And this actually the way we're going to use view is by building single page applications. And we'll talk about what that means as we look through the project. Or just a moment, we'll talk a little more detail separately about that means. So some of the other differences of using open source, so it's source codes out there, it's available, you can contribute to the project. So it's community driven community developed, compared to react, which is Facebook's framework, and Angular, which is Google's framework. So it's for the third party, it's also the most currently it's the most quickly being adopted. So it's behind racked in popularity, it's behind both ranking Angular, but it's growing very quickly and expected to overtake them. So for those reasons, the reasons that it is incrementally adoptable and that it's not as opinionated but it can still do the sta technologies and The fact that it's becoming very popular, and it borrows heavily from react and angular the way different pieces are done, meaning that learning view makes it much easier to learn react. And Angular is the reason that we chose view as the framework to work with. And then there's also view has a really high learning curve is are going to be learning finding in the next couple days. But it has a pretty low learning curve compared to react and Angular, their their learning curve is much higher. So those are the reasons we chose it is because the knowledge is transferable. And because it's gaining in popularity, and it's also open source, and has multiple ways we can use it. But it said we're going to use it as a single page application. So let's talk about what that means. So single page application means that instead of building multiple HTML pages, So if you go to most sites, you'll see, traditionally, most websites are multiple HTML pages. That is you switch between the different parts of the site, it switches it to a different HTML page. And it delivers that HTML from the server. So you get that HTML page in your browser, the browser renders it. And then when you switch to a new one, you click a link and go to another page. It goes and gets a whole nother new HTML page. And it continues for each page in the application or on the site in that manner.
+
+So a single page application
+
+goes to
+
+get it gets around that or not gets run out has a different approach. So it's the idea that why should the server be containing all this HTML and have to why does the user have to keep going back to the server to get an entire page to render So it's this, that puts all the work on the server. Because every time the user needs to do something new, every time there's a change the das via communication for the server, the server has to determine what usually dynamically what the HTML is going to be asked to deliver that HTML to the client again. So there's a lot of back and forth communication.
+
+And that also causes
+
+don't want to say decline. But eight Yeah, it's not always the best user experience. Every time that happens, there's going to be a noticeable flash in the web browser. The web browser is it renders a whole new page, it'll, the user can see that whole page has been rendered, it appears to flash the content, meaning that it disappears and reappears very quickly. And so if you want to change something like if we're giving a list of say, we're giving you a list of All the employees in the company and they have 30,000 employees, obviously don't want to show all 30,000 plays at once. So we show them in groups of 100. You know, I'm sure everyone's used site similar, where you click next, and you get the first hundred, and then next you get the second hundred. And then so on to get all of them, you can go to the beginning of the list into the list. So what's called page data. So I'm going to show something like that. So in a traditional site, every time you went to get, you know, the next 100 data, all the HTML, all the images, everything about the site has to redownload it has to get the new HTML with the next hundred in it. And then it has to go out and look at all the images, look at the CSS, look at the JavaScript files. And it might not, there's optimizations in the browser that keeps it from actually always re downloading everything, but it technically has to look to see if it needs to, not technically does and then sometimes it may have to, which means that there's a positive user experience and that's also intensive on the server. server has to do all the work. So single page application changes that it moves the work from the server on to the clients machine onto the browser. And it does that by delivering up front, a single HTML page, usually with just one or two div elements or sections in it. So a container that we work with. And then it delivers a JavaScript file that knows how to manipulate and create the pages as needed in the DOM. And that and also to communicate with the server through an API. And then what happens is the JavaScript file creates the page in by DOM manipulation, so it uses that single HTML page to create the first page it is the things change. It goes and uses an API to get just the data, not all the HTML, not all the images in the browser. As far as it's concerned. It's honestly Single HTML page, so the page hasn't changed. And as the user navigates between what would be different pages, the JavaScript does DOM manipulation to update the document on that single HTML page to a new, a new view of itself. So a new arrangement, I will what it does, it means that all of the kind of page to page navigation on the site is now on the client side on the browser. And the only time we have to go back to the server for information is to get new data. And the only thing we get from the server during the interaction is the new data. So that's what a single page application is. So single page applications are really, they give the impression that a web application something that's actually just a web page, it makes it feel like a desktop application. It gives the feeling of working with, you know, something you've installed on your computer gives a much more robust user experience and it gives a much better user experience. So examples of single page applications, I'm sure use at least one of the listed Google Slides here is a single page application. Gmail would be one as well. So Google Maps, Facebook, sites like Twitter and Google Drive, mostly all the Google products, use any of those, you've used a single page application. And like, cure with slides, it works just like if you've, if you've used or seen PowerPoint like Microsoft PowerPoint, you install on the computer. This works pretty much the same. It feels like it as well. But it's actually just a web page. And that's single, that's what a single page application and one of its goals is to give that rich user experience through delivery through the web. And so there's some pros and cons to this. The not every website is well suited to be a single page. application, it's a tool that when we have a need for it, it's very useful, but not every.
+
+It's not the everything needs to be one or everything should be one, it's a selection of, here's one way we can do it. And when we have certain criteria, we use it. So the pros of it is it's going to give a much better user experience. And this is due to the user is going to get instant feedback. And it's going to be responsive to feedback, it's going to feel like it's interacting. They're interacting with this application, instead of with a web page, web server and a website. So that's going to give a better experience. It's going to the servers are going to require a lot less resources, which means they can support many more users at the same time. And that really, the cost to the company is much lower because they don't need as much power as much powerful servers or as many to support the same applications. It allows more reusability of the server side code, since it is serving just this JavaScript, it's called this client side code. The single applications can be served from the same server. And a lot of the web services that provide data can are now will be so decoupled from this view that they become pretty much just reusable across different applications and different uses. So it's gonna make the server side code more reusable. And then it's going to be able to create start creating things like an offline experience. Like if you've worked with Google documents, and your internet goes out, one of the things you can do is keep working if you already have the document open. It's a web page. So what it's doing is it's keeping things locally. And then when it eventually has a connection, then it used caused the API to send the data. So we can start giving an offline experience to web applications, which is something that's not really possible or easily possible, out when traditional websites. And then it also splits the focus of the developer. And that's, you're gonna, we're gonna see basically that in the pros and cons. So by splitting the folks, the developer, it means you can have front end developers that are completely focused on the front end become kind of experts in using frameworks like view or react and Angular, and building out a rich front end, the kind of back end developers who are specialist in the API's and building out the back end code. And while and then have a complete separation between those groups. They don't really have to work together except for knowing what interface they expect. So what the API's URL endpoints are going to be what the JSON data is going to look like. Which means that they can be working on different schedules, they can be working completely in different timelines. That's the same, I guess. And they can be separate groups. Now they can, of course, you know, be the same. We talked about full stack developers talking about working at both across both. But it does allow for more fine grained separation teams. So the the cons of it, the reason that we just don't use it across the board is that it does have a slower upload time. Meaning that when you come to the webpage, it's much harder to get the page up and running as fast as time as a traditional pay website. Because all this stuff has to download that has to do all the DOM manipulation, compared to the HTML where it can download. We can load start loading content from the HTML file before while other things are still happening, by just the way we ordered the HTML. And that gives the user the appearance that things are happening very quick. So we can 13 content from like a table show up, why the JavaScript still loading in the background? Or why images are finishing. So we can't do that as much with an SPI, everything loads in once. Because it's just this really small indexing into JavaScript has to be fully there before it can start manipulating the document object model. But when we talk about slower, we're not talking about, you know, 10 seconds, we're talking about a second or so. But there's, you know, in the in web design and performance, there's most there's a lot of indication that a user will wait three seconds on a web page to load before they get frustrated. So that's not a lot of time to work with if you're talking about even a second difference. So the other problem, though, if the other con is that since they feel like desktop applications, people treat them like desktop applications. So with traditional web pages, a user If they leave there, you know, I'm sure many of you have a bunch of tabs open right now to a bunch of websites.
+
+And that's fine. That's normal, most users do. But with all those sites, the traditional sites, when you go back to them, the site doesn't have to have any memory or ability to kind of sync from where you're at to where it is, something's changed, it refreshes, you just get a new copy of it. And he probably hasn't changed on the static, most static sites. So it doesn't the server in the user has no expectation really, of how they're going to interact. It's just kind of leaving a book open to a page. When you go back to that page. You don't have any expectation that something on the page has changed. There's going to do something, it's just laying there open to the page. But single page applications they fill like desktop applications, users expected this desktop application when you come back to it to be immediately able to interact from the spot you were. So for instance, many of you will probably leave over the quarter probably left Eclipse open overnight or between sessions or working on it. Now, again, something just about everybody does. I don't know if my personal machine Eclipse has shut down in the last year or so. And so when when you come back to it, you expect it just to work the way it's, it's been working. You expect it to have this idea of kind of the state of what things were at and just kind of continue from where you're at. So since SBA applications feel like desktop applications, the users have the same expectations. And since they're running in the client, they actually are working in that manner. Which means that for the first time, all these problems that are desktop application server problems like memory leaks and memory management. Now, our JavaScript and client application problems with SPI. So when developing SPI, you have to be much more diligent developers to be much more diligent about things like not closing resources and cleaning up memory. But views actually going to handle all of that for us. But it's still a new problem. That's UI developers traditionally aren't used to dealing with. So that's usually a back end developer problem that mouse sbas brought to the UI. So the other thing and probably the biggest reason they don't get used across the board as much is that search engines can index them. They can index the front page, but they can't index content. And that's because to them search engines work on these eight individual HTML pages. So when they get to the first HTML page, they index and they don't realize that they can't tell how many other pages might exist. on the site. So, because of that they're not SPS are not really effective for sites with static content, you wouldn't want to write your blog in sp nspa application. You probably wouldn't want to write, like a shopping site in an sp application. That's not you would defeat a lot of the purposes, a lot of the things benefits you get out of the search optimizations and the SEO, all that by having that you could write all that stuff, and you would, you would lose those abilities. So the next thing is that they require, it's, again, that two developers but now we require, even though we can have a separation of front end developers, back end developers with a traditional page, you can have a developer that does both, it does both, okay. They're they're like they kind of know both and they'll get by just fine. But with SBA you have to have a much higher level of specialist both on the front end and the back end. So that division of kind of work means that the developers doing it require more, more understanding of how it's working. And you're gonna end up with a lot more back end development, because everything has to be exposed to API's, rather than just maybe one or two things or nothing in some sites. And then the last couple last Next one is that limits users with slow machines now, machine speed matters. It also can limit users that are using accessibility tools, which often have trouble though this is changing virtually. But traditionally, accessibility tools and they're still one of the most popular ones in use, has this issue. They have trouble with JavaScript, which means that they use markers in the HTML to now help navigate the site. And with SBA, those that are having issues JavaScript already. And then they don't have the HTML, that because if you go to an SBA site,
+
+you'll notice that you can't see you can see the DOM changing, but you can't get the source of the page and see the page. And they rely heavily on that. So it causes trouble for users who don't have JavaScript, or users that are using accessibility tools like screen readers that have issues with JavaScript or require the HTML. So there has to be extra care taken and building SP sites out in for testability. And then a big one, that's going to cause us a lot of problems. So all these none of these are really going to cause us problems. The next few weeks, or the next four weeks, this last one will. So all the browser buttons like the Back button, the forward button, refresh these all work on what's called browser history. browser history is defined by each HTML page. being loaded. So if we load one HTML page, and we use JavaScript to change, you know, three pages deep, the far as the browser is concerned, we've loaded one HTML page, we haven't changed content, which means the Back button, the forward button, all these buttons that are built into the browser navigation, they don't work with SPI. If you back out of a SP a site, where you'll go is not the last page on the SP a site, we will go to the last page in our HTML page loaded by the browser, which is probably another site.
+
+So that means that nspa we have to
+
+actually mimic those that behavior. We have to take act we have to do work to actually make those common features work. And know they're not going to work always the way users expect. So there's some things that we'll look at later this week. History API in the browser and routers that will help with that. Help us deal with this issue. But that's a another con is you want to trade off the common user experience and have to meet now manually manage that user experience in your code. Have the browser's give you that functionality out of the box. So before we look at the next thing, we'll be looking at the view apps done. So we'll go look at what it built.
+
+So
+
+So before we continue their questions, what questions do you have?
+
+Can you talk more about why it requires more back end development? Because in traditional application
+
+it's generally the HTML pages or both. Often, often dynamically, but they're built. That way they are built on the back end because they have to be served to the front end. They're built in very traditional manners of the HTML connects directly or thing building the HTML connects directly to the database and makes the decisions to put the data in, and then HTML delivered. Then when you come back, and you know what the next, like 100 set, it does exactly the same process. So there's this direct connection between the HTML that's building the HTML and the back end the things like the database or, you know, Java code that does work or whatever client is using in your server. So there's not a lot of extra back end work that's required. It's the database in the stuff that already existed, already is going to exist. But in Sapa everything, all the data has To be available through API's, which means that in the traditional model, you can use a very, very well established, very easy to use tools to make this direct connection from, here's my, my HTML. Here's the data I want in the database and just kind of inserted where I need it. With SBA, since the HTML does it in the server and the front end really don't know much don't anything about each other. Everything on the server side has to be API driven. So there is that not that common direct connections you have to have, you have to basically build web services out for everything you want to get, because the SP application is going to have to call those to retrieve them. So it ends up being a more robust back end. So before the back end, developers would have built the database, that middleware tier, the front end, developers would have built the HTML and just connected to that stuff directly. Now, the back Developers still have to build the database, the middleware tier, but now they have to build an API front end on top of it. I say front end, it's not front end, but the API interface on top of it for the front end two years. So it creates more work. And those API's, when you get into larger API's, there's a lot of workouts we done around optimization of them. We worked with very small, simple kind of API's that had these kind of nice little. The Jason didn't get very complicated. In larger API's and larger states they gets can get very robust and very large. And then there's also the problems of the pages loading. You can't have it calling, you know, 200 API's to get a bunch of data. So there has to be wrapper API's around those that call other API's to which is the whole microservice idea. So your page calls from One API that cause a bunch of other API's to gather data. So there's a whole whole infrastructure that now has to exist to support these pages through API's. Does that answer your question?
+
+Without that, yeah, make it worse.
+
+I mean, it's definitely complicated.
+
+I'm just trying to figure out like, I'm reading the pros again and thinking like, Alright, so why are we doing this, but I understand it seems to be user centric. It's user centric, in the real goal is to make web applications feel like desktop applications. That's the big goal. Because if every time I click a button, every time I click something like this, I have to my page has to refresh. Which means that if we look at a page refresh, see, if we go to google search,
+
+search for
+
+tech elevator
+
+So you see there was a quick now it's not really so fast that is we change pages
+
+trying to think of a place to go. It's not a mixed SP application. So as we change pages
+
+there's
+
+I'm kind of a flash.
+
+I don't think Google is the best place to go.
+
+I think I understand James was talking to me about yesterday. It's like if you went to Facebook and you like to post and you click like it had to refresh the whole page to just show that like happening. Exactly.
+
+That's, that's exactly that. So if I had to refresh everything to know click this box or to click between the text box into the Select tool, that would be a really frustrating experience, because that means I have to everything you go, it has to go back to server, get everything and it has to get everything again. So the experience, we want for the users to be able to just click here and be able to click that like button Facebook and not have the page refresh, only have the minimum work needed done to fulfill what they they're asking to be done, the action they're taking, which is how desktop applications work. Now you don't reload your entire desktop application because you turn on bold when you're typing. If that happened in Gmail, that'd be very frustrating. And there's also the response, we have communication of actually losing data during those those points. So imagine you're typing in, like Google Docs, and you type a few letters. And you now have to press Save, because you have to tell it intentionally you're going to save it don't have that automated feature. And you press Save and half your data disappears because it lost something in communication, or it lost something, it was reloading the page. And everything had to reload or every time you turn on bold, so every time you make a small change has to reload everything, which is where a traditional page works. So traditional pages can have a application like fill. So SPS are really about having an application like fill, which is why they don't fit every page. You wouldn't want to build some one way to build a blog or a shopping site in SBA. You might use pieces of it, but but if you're building Google Slides, you want to build an SPI. It wouldn't work the other way. Does that help them? Yeah, that's really helpful. And like, I was thinking through my side project, the porch Fest, and I don't want to do this, okay. You probably don't want that SP, because you'll want that indexed. And now unless you just want to, don't play with them. That's okay. That's
+
+alright. So other questions before we look at
+
+all right, so let's look at the parts of the project. Somebody go actually out to find her
+
+And two,
+
+and four, and today's lecture code
+
+and build this folder, be product reviews up and there's a bunch of stuff in here
+
+organizes better.
+
+So it built some folders and I bought some files. So let's look at what all these are.
+
+So we built three folders.
+
+The first is the node modules. So
+
+the the COI built this for us when it created the project, when you run npm install on a project which you've done a few times now. What it's doing is building doing the same thing. It's building out this node modules and what's inside of it is all the libraries that are needed. In this project to run, so it goes out, and it downloads all of these, all these libraries. So very similar to like the dot into directory, we looked at a Maven for Java, we'd have all the libraries that we needed for the project and organized in but node modules is per project. So meaning if you need a corn in five projects, you have five copies of acorn on your machine, which can cause a lot of problems if you want to, you know, use put the same project multiple times on one machine. And the large boat and barges is a lot of a lot of information, too. So that's part of this building. This is what takes so long for it to download.
+
+So the second one is public.
+
+Public is all what it's gonna contain what's called a static files. So static files are files in a site that you point to directly. So when you go to an image, nothing needs to process the image, nothing needs to build it, you just get the image and serve it. Now, we're going to not always put images in static, they can be here. But the most important thing it's going to contain for us is the index HTML. We're not going to really change this. So let's look at no better way to view this. Then view this here. a much better way to look at this would be in code. And what's actually what I meant to do horrible why I want to find her. So I'm going to code dot here. You can also go to code and go to open folder. And open up the lecture code folder.
+
+Because then we can look at the files too.
+
+So the same thing we're just looking at and file finder only here.
+
+So if we look at as the index HTML.
+
+So for the application, we're not going to really touch this, if we do need to add something like we wanted to add bootstrap or some CSS library, we could add it here in the header. So this is going to be the head for all the pages.
+
+And this is going to be the only body tag.
+
+And this div is where the entire website is going to exist. So this is the only content container for all everything. We're not going to worry about it. The Seelye built this for us We're just going to close it. And that's, this is the HTML that's going to be delivered for our application, everything else will be built inside this HTML by JavaScript. So close that. But if we have other files, we need to serve statically. Like let's say we want to serve something like music files from our site, or PDF files. This is where they would go in public. And then source is where we're going to do all of our work. So source is kind like the source, main, Java, and Java. It's where all the source code is. This is where the view code that we're going to work with exists. And it's broken down into a few pieces, has two sub folders, and it will learn as we go throughout the week, we'll add more sub folders but by the default gear, it has two sub folders assets. Which is, is where the images we're going to use our site. So images, we want to refer to Not by their full pass, but we want to refer to relatively. So our internal images, which is where most of them are gonna end up going. So the difference between the images I said we'd have here and here, if you had an image library like something like, I can't remember that large image sharing site that everyone loves, but a big image sharing site where you could download users could store their images and download them later. Those would probably go in public, there's images themselves, but the logo, the icons, all those pieces that make up the site would go and assets. So far sites that just about everything is going on assets, image wise. And also anything else we have. So we'll also put CSS here, we'll put additional JavaScript things like that here.
+
+components.
+
+We'll come back to what components are in detail, a lot of detail, but view components are what make up the view application. So that's what we'll be building and what Talk about So talk about those in a lot of detail. So there's a component folder. And then there's two files that creates in here. These are the kind of the starting point of the view application. The app view is the starting component. And we'll come back and look at all this means. But it's going to be, it's going to represent kind of the main page of the site. And it doesn't have to be up view. That's the one it builds for us.
+
+And
+
+that's,
+
+but we can change the name and we'll see that fairly quickly. This week, we'll get rid of that view and have other pages, other views that define that. And then main j. s is the it's like the Java main. This is where everything starts. Again, it doesn't actually have to be called main js, but that's what The vcli builds. And what it does is it's actually going to start everything and everything starts right here. By creating a new instance of view, and telling it to render the app, and put everything in that div, and that man which had the ID app, we don't have to change this. It builds this force, the CI, build it for us. It will exist in existing gi projects. But if we did want to, this is where we could if we did decide we didn't want to call it app w want to call something else, this is where we could change it. And when we get to this thing called view x, later this week, we'll look at other things we can do here. But this is essentially the main static main, static, void main, you know, string arcs that we saw so much in Java that starting point this is that in view. So builds that out in the source directory, and almost Not almost all of our work will be here in the source directory.
+
+The other things that builds is some
+
+supporting files.
+
+First thing it builds that the COI bill is the get ignore file. If you look at it, again ignore file we've been using them on court whether you realize it or not, they tell tell it files that we don't want checked in to get to get.
+
+So here,
+
+node modules the big one, we don't want all these node modules checked in to get because they're large there.
+
+So
+
+it builds that. And then there's this tool called Babel, we're going to come back and talk about briefly in a moment, the configuration for the Babel tools here. And we'll talk about what that means that in a moment. We talked about the tool chain, and then there's the package JSON. So every time you've told an NPM command to run npm install One you'll be running, we'll be running in a minute NPM run serve, which starts the view application server. It has to be run in the folder with this package JSON. So the package JSON is very similar in idea to the palm XML, and the Maven applications. It lists out all the libraries that and all the things that all the configuration for the project, and it pulls it all together. So when you build a project when you do an NPM, install, and or in this case, Create Project does essentially an npm install as part of it. It creates this file called package dot lock. So we talked about briefly talked about in Java, there was this prob problem of all the different versions, right, that caused us to cause all kinds of issues that probably exists in JavaScript, too. Having worked with both the problem of JavaScript is about 100 folds worse than it was in Java. JavaScript, and it still exists, there's still lots of problems with it. And not not putting down. That's not an attack on JavaScript, I actually think JavaScript to find language and use it for a lot of things. So but it's more of just the reality. It's there's a problem in, there's a problem with versions, you spend a lot of time if you start doing a lot of stuff in JavaScript, fighting with versions. And the package lock when you build, when you do the npm install, it takes a detailed account of the version of everything that's in that NPM, that node modules, the exact version down to, you know, the, the smallest point requirement of it, including where it got it from. It does a hash of it so that it can compare it to make sure it's exactly the same file. And it keeps it so that when you want to rebuild this project, you can make sure that you have exactly the same versions. So there's this idea of deprecation. And we've talked about quite a bit. And Java deprecation means that someday in the future, things are going to go away in the Java kind of ecosystem, so if it gets deprecated, there's things that were deprecated in Java one that's been 20, some 25 years ago. So in 1995, they were deprecated that still exist in the language, they still work. in JavaScript, there are things that were deprecated last week that no longer work. So things very quickly change. And this package locks make sure you get the version that has all the pieces you're using. So the ecosystem is very much more faster moving and much more less tolerant about let's make sure old stuff keeps working. So the package lock does that. And then it creates a default freebie, which is just tells you all the commands you can use with this. So that's what the vcli built for us. But there's some words in there, we didn't like Babel that we need to talk a little more about. So before we do that, are there questions on? All right.
+
+So let's talk about what's called the tool chain.
+
+So you probably have ran across.
+
+Yes. Sorry.
+
+We've been going for about an hour.
+
+Okay. almost want to take a break for a minute before we jump into something else? Yeah, we can. All right. So we'll come back into 1011. Okay. Thank you.
+
+So what questions do you have
+
+Back from break.
+
+So I guess something that I've been struggling with kind of on the side is doing the whole, like replacement of the page with JavaScript, so is that like really the goal? It is me. Okay, so I guess I'm just not using enough JavaScript is what something is.
+
+I think by the end of today, it'll hopefully be a little more clear. That's what view is going to do for us. It's going to facilitate that replacement. In a way that is, makes it so we'll start focusing less on the page, we start to build out the patient design and set it up. But we'll focus the page more around data. So we'll still have the design for the page but will will We'll be heavily data driven. So a tool like this, like I said, I keep using Google Slides because it's the one that's open. But a single page application like this is heavily David driven. It's driven around what I'm doing the data I'm entering into it. So view will kind of abstract away a lot of the work of just making the JavaScript work. And it allows us to focus on how we want the data to be displayed, and how we want the page to be displayed without having to write all that DOM manipulation, it's going to completely get rid of the DOM manipulation portion, not get rid of it's going to write it for us.
+
+And that's
+
+part of what you have to understand with view.
+
+Try to remember this later, too. So is that we're going to write in view but what views going to do is write JavaScript for us and the end. It's going to be JavaScript running in the browser. The views going to take we're going to give it We're going to tell it what we want. And it's great to build that for us. So all that DOM manipulation, JavaScript, all that stuff we did last week to change out small parts of the DOM. We're going to get rid of words, it's going to handle all that.
+
+Okay, that makes a little bit more sense now.
+
+Because Yeah, cuz changing everything out manually is very tedious. I mean, we'd have some small pieces last week. Now imagine, you know, doing a whole page like that would take forever, it'd be a lot of work. That's
+
+exactly what I was trying to do. And it was like, there's gotta be a better way.
+
+There is. That's what that's what these frameworks do. Reactive frameworks, that's their,
+
+their main purpose.
+
+So other questions before we move on?
+
+Alright, so let's look at this concept called a tool chain. So you see this, you hear this a lot and JavaScript toolchain. What it really comes down to is just a set of tools or set of libraries that are are going to work together to facilitate as developing, building and also providing functionality for an application. So it's also called a tool chain because they often work in parallel, where the first tool will do something, then pass the results to the next one, which will pass the results in the next one. And in build a chain of kind of changes as they go. So our tool chain that we're in a default view application, we're going to expand this tool chain as we go over the next couple weeks. But for today, our default application is going to have three major pieces. One MPM, MPM, really more of the build manager, it's a bill manager, and what's going to keep it running so it's replacing the doing the work that we were used to Maven doing for us in Java. It's going it's called the NPM is node package package manager. It's going to manage all those packages, the libraries have all the pieces we need for the project to work. It's awesome. To facilitate the project running and building. So again, very much like what Maven did for us. We've used NPM a few times for exercises, I suppose during module three to use it to run your server, just when we started working with API's. And from now on, you'll use it daily. Because everything with view is driven, kind of driven around and managed by NPM. So our second, so that's going to set up our initial project, it's also going to allow us to run our projects. Our second tools is es lint. So yes, lint actually exists in two places. We have a plugin that's been pre installed for you. And Visual Studio code for Yes, lint. And then we also have there's also one in the tool chain as it builds the project for view. But what he isn't is static code analysis. So it's going to look for problems and code and patterns and for coding styles. So it's really very similar to what you're used to in Eclipse where you know, you missed a semicolon and you needed one Eclipse would give you an error immediately, it's going to be the same thing only, oh, it's going to be happening on Save. We have different places can save. So you can do Islam, we, by default, it's set to save. So when you save the file, it'll say, okay, you, you have a syntax error here. So it's going to give us that syntax errors, but we're going to see that some of the JavaScript ones are, even though they're valid for JavaScript, yes, that will not allow us to do it. One of the things that it's by default doesn't allow is if you define a variable, you have to use it. So we're going it's going to provide that sort of the tool chain that analysis and then that is going to flow into this tool called Babel. Babel is really important in our tool chain, because it's going to do serve a few different features functionality for us. JavaScript. Remember everything view creates is just JavaScript. In the end, we're telling going to get view, basically directives on how to write JavaScript. And it's going to write out this big JavaScript library that it's going to what's going to be delivered to the browser is going to be that script. babbles what's going to do that? So Babel has three major things it does. It does compiling. And we know Java scripts an interpreted language we'll talk about that means for JavaScript, it's not quite the same as what it means for Java transpiling. We'll talk about what that means and this thing called polyfill. We're not going to go into real anything more than a basic definition of any of these because we could spend pretty much a day on any one of these topics. And for what we need is that for what we need to make it work and understand it, we just need to have a basic concept these things are going on.
+
+So compiling we're not actually going to Take advantage of. So when compiling in JavaScript, there's other languages we can write, like TypeScript. And they compile in. Actually, we are going to take advantage sorry, they compile into JavaScript. So Babel is going to help compile some of the view components into JavaScript for us. So compiling JavaScript is not compiled, taking JavaScript and compiling into something like bytecode instead is taking another language and compiling it into JavaScript. Remember, the browser can only run JavaScript in the end, that's the only engine it has. So everything we give to the browser has to be ever all the code that we want to run has to end up in JavaScript. So Babel, but handle that do the compiler. It's also called a transpiler, or also does what's called transpiling. So transpiling is not is like compiling, but it's converting the same language between different versions. So there's different versions of JavaScript like any other language, the most current one It's called ECM a sec. So JavaScript six, it's not fully supported. It's still, every browser has to build their own support for JavaScript. And they all have to do it in their own way. The way it works is, when JavaScript a new version of JavaScript gets released, they released this thing called a white paper, which defines how it should work. And then the browser manufacturers, the browser developers have to go out and update their JavaScript library to match all the new features and how they should work. And that takes a long time. And often what they'll do is they'll say, you know what, we're not gonna, this feature looks suspect, because it changes. So as they release the standard, and there's problems they'll, they'll update the standard and the version of the language and so a lot of manufacturers will actually step back and say, you know, we're not going to implement, we're going to wait a year before we implement all the new features new feature because we're pretty sure it's going to change So because of that the features in the newest version of JavaScript aren't available across all browsers, meaning that and they might not be completely supported in the same way. So meaning that Firefox may have different support and different features that can handle from scma six as Chrome. And I'd be very different edge very different than what Safari supports. And then their mobile versions will be all very different as well. So what transpiling does is allows us to write JavaScript in the latest version, so we can use the CMA six, we can write our code as Java six, six code. And when Babel runs as part of the process of building the view project, it will take our code and will convert it to comparable code. And version five the language is supported by the browsers.
+
+So it
+
+It knows it keeps up to date on what is supported it what's not supported, it will transform it into the older version of the code. Often, it's just a syntax different. A lot of the new additions to JavaScript are just improved syntax. They're not always necessarily. It's not necessarily something always something new you can do, it's often just a better way of doing it. So it puts us back into the older way of doing it allowing us to use the better syntax. So transpile goes between versions of JavaScript. And then Babel is going to provide what's called polyfill. So a lot of newer web features, like html5 and what we just talked about these CMS topics JavaScript six, they're not fully supported on browsers. And when things like html5 are not fully supported, that's a much bigger issue. So the major browsers like Firefox, Chrome edge, they all are. They support all html5. They have that full support, but there are many other browsers and the mobile browsers are a bigger issue. But there's also things like the IoT browsers, Internet of Things browsers, the ones that run on refrigerator or run on your toaster. When they're internet enabled, those browsers are often custom built. And so they have different levels of support. So what polyfill does is four really old browsers or browsers that don't support even the basic functionality of maybe even JavaScript five or html5. It provides, especially a older type of code for it. So it may not look quite the same. So with transpile, things are going to look the same, they're going to feel the same, the user is not going to know the difference. With polyfill. The user may get a slightly different experience, but it'll still be a it'll still be a usable experience. So it provides support for older browsers so babbles about allowing us to work with the latest version of everything. and not have to worry about what the browser support. So browser support is a huge issue in JavaScript. We looked at we saw a little fancy it. But we talked a little bit about the CSS that all these browser manufacturers know Microsoft and Google for Chrome and Mozilla for Firefox and Apple for Safari, and Opera. Opera browser, I think it's about the upper foundation. Now, I believe I can, somebody might have bought it, and dolphin and all these different browsers, they have to each individually write their code to support CSS and JavaScript based on requirements, which means they're not all they don't all have the same support. Just because something works great in Chrome doesn't mean it will work the same in Firefox, or looking exactly the same. So there's a lot of and working with vanilla JavaScript as you get more and more complex. There's a lot of actually happening. To say, okay, which browser is this going to be running on. And if this is running an edge, run this line of code, and if it's running in Chrome run this line of code. It's running everything else run this other section of code. Babel gets rid of that. It does that for us. We'll just write in the newest version of the language, it'll take care of making sure that it's supported by browsers. So that's the tool chain we're going to use, we're not going to have to actually touch them. We've chosen our tool chain. And for these tools, every time we run view, runner server or build, it's going to build the JavaScript, it's going to run through these tool chains, it's going to run through a slit after it's passed the ES lint without error, the process what is once built, it's going to be passed to Babel, and Babel is going to apply the compiled transpiled polyfill to it and build off the final JavaScript that there will be served by NPM. But that it just happened for us. So, before we The next thing I'm going to do is actually run this application we built and start looking at the code. So before we do that, is there any questions about kind of the concepts or what he's doing or
+
+anything we've talked about?
+
+I have a question. The
+
+it's sort of unrelated, but this package
+
+package managers like NPM, and Maven, are those something that you don't have to deal with if you're not working with an open source language?
+
+No, they all have.
+
+Every language I'm aware of has some kind of package management.
+
+Like because having libraries is always a problem. You always want to be able to use other pieces of code. So try to think of an opening Source non open source language that exists that's in popular use right now. Because C sharp is an open source that used to be their kind of default, not open source. But they have their own their own management as well. And I know so does Ruby and Python. I don't know of any language, it doesn't have some some similar thing except for the esoteric languages, but those are a little different. Maybe Pearl, Pearl might not, but it may I haven't kept up on Perl. Or COBOL. Maybe they don't have it. That's possible. I know see, got one finally. Because that's a huge issue and see too. But, yeah, package management's always a problem. Some of them handle it, traditionally through like header files, where you list out all the exact things you want, and you after you go and kind of manually collect them, but it's very specific. Most of the modern languages I'm aware of handle it in this way where you say, I want this thing and it goes and gets the version for you.
+
+So, so yeah, you'll do a lot with package managers.
+
+Okay, thanks
+
+to other questions before we
+
+write, so let's run this application.
+
+So I'm going to go to terminal, you can go to terminal in the regular Mac terminal, you need to see the end of this directory, the view product review directory, you need to be in the director with the package dot Jason. I'm assuming you use the terminal built into Visual Studio code and do that there's a terminal up here in the toolbar. Let's use new terminal.
+
+It's a bash shell tool. We used it some last week.
+
+You can use either one. They're both just a bad show. I personally like the one built into Visual Studio Code just because it keeps everything together Yeah, kind of, isn't it in one location, rather have to find a bunch of Windows but they're, they're fine to use either one, they'll work the same. So first of all, make sure my where I think I am, and I'm not I'm one level above in the projects, I'm going to CD into the folder that was built by view p product reviews last and what I need to make sure I'm at is this file needs to be in the directory when I do an ls.
+
+So
+
+if you had to do like for your exercises later today and other things, other projects this week want to run npm install at this point to install the project. But
+
+we already have the node modules set up
+
+in the package lock and everything set up. Because that's what the COI did for us when we created the project. So we can just run it. So to run a view project, we're going to run NPM run We're telling NPM, we want to run something, and serve. And what we're saying is we want to run, we're telling NPM, we want to run this on a web server. And NPM has a built in web server. And so it will start, it'll go through the process with view of going through as let building starting the view build by going through a slant going through Babel. Think the all the external stuff. And we'll see kind of like when we start a Java server, and we see lines happening, but we don't need to know about them. The same thing is going to happen is going to do all that it's going to start a web server. And then it's going to load the site, load that index HTML for us or start a web server that can load it. So I'm going to hit run. And so what's going on in the background right now is that toolchain, the ucode that the default view code is
+
+going through it and now it's starting up the web server
+
+Right. Is it really run serve instead of run server?
+
+It is run surf? Yes.
+
+Okay.
+
+Yeah, I don't know why they left the roof. That bothers me because I type it out all the time. Because why they saved one?
+
+I think it's I was
+
+sorry. I was gonna say I was wondering if they corrected you automatically. But No,
+
+they don't. I think it's because it's the idea. It's not run server, it's run and then the command is to serve the page. I think that's the thought behind it. That it's not run server. It's we want to run. And then when we run, so the run is the server, I think and then the service load the page. I think that's the idea behind it. But yeah, it drives me crazy. And I've just kind of, I don't know for sure. That's the idea behind it. That's my rationale. To deal with it. Make sense? My own head. So yeah. So now it started. It tells us it started on localhost 8080. So it's all the same port as Eclipse likes to run on. That's gonna cause us some problems next week, but we'll wait to them to get there. But so if you start playing with this, I will just give you hints. And some of you may start playing around with running view and your API's. If you are doing that just started Eclipse First, I'll just leave it at that eclipses will only run on port 8080. And this will actually pick the next available one. But it's not going to cause us problems this week. So I'm going to Command click and it'll take me to the server, I can just go to a browser and type this in. I'm going to Command click to load it, it loaded on my other window. So I'll drag it over here. And it loads floated up. So we have essentially view hello world running. This is what we look at the file it actually is called hello world. So this is running from our view application. This is a full View Page running as a just a demonstration of all the pieces that that COI project creates. So it creates out kind of a starting project for you. And then it has some extra information. So here this actually is a good page to walk through in your own projects or to set up a project to say you can take a look at it because it has a lot of stuff around the documentation. There's links to the COI documentation. There's links to the Babylon yes lead documentation. As we add things to the tool chain. It'll be other links there to turret text what is in the tool chain and builds out links to each of the pieces. Then it has links to some of the view down here to some of the view documentation and community. And then the ecosystem links are to some of the pieces that can be added in essence For instance by so they're kind of plugins or framework or not frameworks, but extra libraries, you can add. By the end of the week, we'll look at view router view x. And the view dev will look a little bit the view dev tools today.
+
+So
+
+for for Zack, for your question, it's you can go into the JSON file and change the address, but it'll actually do it for you. If Eclipse won't do it for you, the view will, or NPM will, it'll, it'll pick the next available port. The problem is, if you're running both you have to start Eclipse first not really with this. Now with the MPM side. Alright, so now that we have we have this let's take a look at
+
+what the code is.
+
+So let me go back to the lecture code here.
+
+And view is built these things called components.
+
+So components represent
+
+more parts. They represent either a page. And when they represent a whole page, we'll call them views vi E, Ws.
+
+In
+
+word, they can represent a widget in a widget is just a part of a page, a thing that's reusable. So each component is going to be one of those two things. It's either going to represent an entire page. And it's going to be made of other components, which are widgets, or it's going to be a widget a small piece. So if we had, like a, we're putting a chart on a page, the chart may be a widget, if we were putting a form that collected your name and email address that form maybe its own widget, and then those pieces become reusable. So we'll build more into that as we go. We're going to start more looking at very big components and then we'll start shrinking them and using them as pieces as we go through the week. So today we're going to end up with one large one component much larger than it probably should be. That's okay, just so we can learn components. So here, it starts out. This page we looked at is made of two of them, the app view is working as the view, vi, e w.
+
+So we're the page
+
+and it has some code in it we'll look at and then in the components are where the widgets are the parts that make up the page.
+
+So here's our hello world component.
+
+That has, we can see all those links. You can see it has the Welcome to your Vue js. It has the text here, all the links that we see in some other information. So components are made of three pieces. Each component has three parts. I'm going to go back to the app. components, it's a little smaller and easier to see. And then we'll build one of our own, the three parts are going to be the template. And the template is going to be the HTML
+
+for that, that little section.
+
+So for when we're representing a whole page, these components, the widget components are actually going to be used usable as HTML tags, and other pages and other components. So here we see the Hello World component, we can see the HTML tag for hello world. It's being used. So it's loading this other component. And this component has its own template with its own HTML code that represents just that small piece. And that'll load wherever this tag is building out the entire page. Each template must include a single container, that everything else inside of so usually a div that can be a main or a section, it just has to be some container. And then all the pieces are inside of that container.
+
+So the second part is,
+
+is a script. And this is where our JavaScript is, it's going to do a few things. It's going to import the other components and we've talked through about in more detail in a moment. And then it's going to set up an object that has all the information about this component, including its data. And so we'll walk through that in just a moment. And then the final thing is it's going to have style. So it's kind of CSS that is just for this component. So we'll style each small piece in the Usually, and then we'll have a style that is this particular style, since it's this is the main component, that it's actually applying styling to the main div, the one that was in the HTML. But it didn't have to comply style flow, it's actually applying style here, which is going to replace that div and HTML. So sorry, same same idea. But we can apply a style to any of the pieces inside. If you look at the hello world. It's applying style more directly to these pieces. But when it styles, the h3, it's only styling the H threes in here. So in other components, their h threes get their own styling that we can make global and we'll look at that when we go. But so our components are going to be these little encapsulated pieces of code that have a little bit of HTML, some JavaScript that defines the data and functionality that HTML And then CSS that defines the look of that small amount of HTML. And then we'll have that all come together by adding these pieces to larger components that make up pages. And I know that sounds really confusing right now. Today, we're going to work on just building a single component. And we'll work throughout the week to getting to that more global, small components going into a page. So if that's not making sense, at this point, don't it's okay. I just want to let you know where we're going. So I think the best way to learn components is not looking at them, but building one. So let's build a component. I'm going to close both these
+
+in the case of Brian real quick,
+
+so even though the app view is handling the Hello World component, the app view is still a component itself.
+
+Yes. Okay. It's the starting component. And that's loaded. Here. So this loads the first component, which is right here. And then the each one of those just represents the first component represent the starting page. And then it when we get later this week, we get called router, we'll learn how to kind of link things two together into multiple pages. Actually, that may be early next week, but this later this module. So everything in view is written into components. With the exception, we can have JavaScript libraries, but we'll get to that later.
+
+And then it doesn't answer your question.
+
+Yeah, yeah, definitely. Thank you so much.
+
+All right. So in components, I'm going to create a new file.
+
+And that was crate, right click on components a new file. I'm going to call it
+
+Product
+
+Review
+
+dot view.
+
+So dot view extension is something that we're working with an sp a version of view. So something we created with vcli. That's something that it uses internally to represent these view files. So we're working with the way we're with SP a style view. That's what we'll use view can be written directly in JavaScript as well, but we're not gonna look at that. It's not a very common use of it. But it's possible. So what, before we go any farther, let's look at what we're building. So last week, we built a product review page. So I'm gonna put up this image.
+
+I got to review it and find it to look at it. So I'll do that.
+
+You build the other
+
+So we're going to build the same page. And then we're going to add some extra stuff about the reviews on the top. But we're going to do it using Vue. js instead of vanilla JavaScript like we did last week. So whereas last week, we ended this with doing all of this through DOM manipulation. Or not last middle last week, we got all this new DOM manipulation. And then we're going to do that today with view. So we're going to do all the sphere DOM manipulation, including them why this extra part at the top.
+
+So that's what we're building.
+
+And we're going to build it as a single component, even though eventually we'll break it into a couple components. But for today, we're going to build a single component. So to do that, let's start by building our pieces. So the first piece we need is a template.
+
+And here, we're going to have to have a single container. So I'm going to create a div. And I'm going to give it a class like main. You could have any class, but it'll generally have you want some way to easily, easily refer to the stub either class of ID.
+
+And then
+
+let's do h2 will say product.
+
+Reviews, should we pull up that image against we can
+
+the product we use for it, and we'll just like we had last week, one week, this last part reviews for and we're gonna have something go there. So I'm just gonna end h2 for now.
+
+And then sort of extension that, like, auto fills those tags for you.
+
+Like it doesn't a JavaScript file.
+
+I don't know why it's not doing that. But I guess I don't have to worry about it right now.
+
+I can look at I don't think I have any extra extensions.
+
+I can send you a list of what extensions I have. But yeah,
+
+I thought Visual Studio Code I'm not on by default, but
+
+I'll send you a list of extensions or maybe before the store again, but you should have. If not, you can go check out Oh, inner. Oh, and James, you said yet, div then tab.
+
+Yeah. So if you'll just like if you type div without the starting bracket, or h2 without the starting bracket, you can click tab.
+
+Gotcha. Nice. I didn't know that either.
+
+Or maybe I'm doing that unconsciously.
+
+Which is very possible.
+
+So let's make a
+
+paragraph
+
+now going to give it a class. So we can refer to it later, like we had last week description.
+
+And we'll come back and we'll need to put the description.
+
+So the next thing we need is
+
+our script.
+
+So I'll create a script tag, you see it automatically put an export default, it may not have what a record should recognize them working with view and put an export default. So export default in JavaScript is it's going to export this object as what's called the view model. So it's the model of all the data and all the functionality of JavaScript functionality for this component.
+
+So we're always going to have that. And
+
+our first piece of data it's an object's it's going to be key value pairs. So we're gonna start with name, and this is going to be the name of the component. So our name is going to be product Review. It is traditional, the standard is to name the component. Our file name should be product review, Pascal case. So with capitals for each word, including the starting word, and our component name, this should be all lowercase with a dash. So I think that's called. I can't really that's called kebab case, I believe lowercase kebab case or something like that. It doesn't really matter, but.
+
+So we're gonna, that's the standard.
+
+And so we give it a name, that's gonna be a numeric component. And then every component is going to have a method called data. And data has some method. So notice there's a comma because this is an object, so
+
+and data is always going to return an object.
+
+So this is the way These two are going to be part of every component. And then a data we're going to define data. Well, exactly what it says we're going to find our data. This is where we're going to link our data to. So I'm going to create a name. And let's see our name is what?
+
+cigar party for Dummies.
+
+And then it's comma delimited. For each thing we want in our description.
+
+hosting plan.
+
+Perfect. See our
+
+party?
+
+Friends. I think that's what it says. Texas, almost beyond too small for my ability to read. But I think that's what it says. If not, it doesn't really matter. Right. That's our descriptions. We have our data So we have our two pieces of data we're gonna start with.
+
+So before we do anything, let's use the data.
+
+Actually, no, let's not. Let's come back to that. So that's our so our script is going to set up on the minimum, the name of our component using the name key, a data method, that's going to return an object. And the object is going to be key value pairs. So a JavaScript object that contains the data for the page. This whole page is going to be driven around this object in this data. So we say view is reactive framework. And we haven't really talked about that means yet, what it means is that we were going to do this thing called Data Binding, which means we're going to take our template and we're going to say we want these things this part of the page bound so connected to this data. And the reactivity means that if This data changes those parts of the page update without us doing anything. So JavaScript automatically updates the DOM, the JavaScript is generated by
+
+view will automatically update the DOM with the changes.
+
+So
+
+that's the reactivity is that as things change, the things in the template that we defined that we burned, meaning connect to this data will change. So let's find these two items up here. So we have we want this name to appear here, right?
+
+So let's do that by
+
+I'm here. In Dubai, there's what's called one way binding. One way binding means that it's bound from here
+
+that if there are changes
+
+Here in this value
+
+that it will update, we're going to put it right here, update where it's bound to. That's one way binding. So it's for when we have just text on the screen. So just static text. So I'm going to do one way binding, we use two curly braces, and we close it with two curly braces. And then in those curly braces, we put the name of the data we want to bind to. So here are binding this data in this location. It means that this is going to be replaced by the value. And anytime this value changes, it's going to update this content on the page automatically. So eventually, we'll have it So know the user can change this actually, by then today will have its the user could change this value. And when they change it, then it'll automatically update the name on the actual view of the page. That'll reactively change. That's what reactivity is. We don't have to write the DOM manipulation, that's going to do it for us. Alright, so let's find the second one. We'll bind. Here we're buying the description.
+
+So again, two curly braces, the name
+
+of the key, and then we close the curly braces. So we're binding this here.
+
+Save it.
+
+So before we continue with the last, the third part of the component, other questions on that so far?
+
+So is the name in the h2 above is that referencing The name on line 10, or the name on line 13.
+
+It's reference the name on line 13? That's a great question. So when we bind, we bind to things inside of we bind to data in the state object. So when this gets bound when it sees this and it's bound, it looks in this data object in the return of it for key. So this can't see this.
+
+Okay, thank you so much.
+
+So,
+
+so, on line 10, the name that you have there that's just for like your own sake, so you understand what you're looking at.
+
+That's the name of this component. So one thing we we haven't done yet, because we have to finish the component. Once we have it finished, we actually have to tell it how to display where to display So we're going to add it to the view component, the page component, which is the app view. So we're building a widget, we're building a piece, but it itself can't display as it is, we have to add it to a larger component that is representing a page. Or we have to add this thing that was later called routing. But we're not there yet. That's later this week, early next week, we'll get to routing. So we have to add it to a page right now we're building a piece of a page. So we're building not this whole thing on this.
+
+We're building
+
+this portion
+
+of this larger page.
+
+So this larger page exists.
+
+This page that's here exist, and we've already seen it running. It's running in the background right now. With this up here, and then this part down here. So we're going to do is when we're done with our component, this, we're going to take it. And we're going to say,
+
+We want this piece
+
+to display right here
+
+in the page. So we're building this chunk, this piece called a widget. And then we're gonna eventually have to tell it, we want it to be here on the page. And that's where display.
+
+So does that answer your?
+
+Yeah. The name in line tennis is the name of the component.
+
+Yes. So what we're doing is we're eventually going to say that name product review. When we tell it we want to display here we're going to say that name product review displays here. So our name Eric component.
+
+All right. So
+
+third piece is style. So let's have some simple style to this.
+
+So
+
+when I add style,
+
+it has this keyboard scoped.
+
+So by default are normally in by default in view, style tag is what's called scoped. So scope style means that the style here will only apply to this file to this template. So scoping and CSS was this ability to have CSS apply to very specific sections, so that you could write CSS for this particular div file. And you could write the same CSS, and different style tag for a different one. And it would be scoped variables in JavaScript. After Java. So it allowed us only to affect to assign styles to a node or style section, not just by tag, but a whole section of styles to a particular node in the DOM. So that's what this is doing. It's saying when it's scoped only apply this style to this. Because if we don't scope it, it actually can't apply to other pieces. It'll apply more like regular like regular CSS. So it needs to become part of the cascade. So in this case, this is going to override everything else in the cascade and style this component only, but it will not be part of the cascade for anything else. That's what scope does. So scope sounds really useful. And there's always the question of, why can't we use this in CSS because that would be really great. It would be in fact it scope originally was part of CSS three When it originally was going to be, there was a tag in html5 that allowed you to work with scope scope styles to particular pieces. And it was pulled out almost immediately. So it's actually been removed from the standard and removed from all browser support. So nobody supports it. But the frameworks picked up on this idea of here's a scope keyword just does exactly what we need to do. And they make it work inside their framework. rack and I think Angular uses it too. I pretty sure racket is one of them uses exactly the same thing. And the other one uses the same idea. So the scope keyword is a CSS key word doesn't work in regular CSS and longer, but the frameworks like view are using it. So that's what scoped is doing. So let's just put what is select this div main.
+
+And if another component now has another div main, this won't affect it.
+
+And let's just do a quick margin on it. Something like that. Just so it ends up, not pushing right against everything when we added. So now let's make our component part of our page.
+
+So we have it,
+
+we build a component, but we can't see it in the browser yet has to be part of a page, or, which is also just a component. But the only page, the only view we can work with right now. In the main j s, it loads, this view is the starting point. That's the only page that exists. So all of our components right now how to be part of that app top view, or the starting one, if it's not app view, because we'll see once later this week, they're not app view. They're serving the same purpose. We'll get to a point where we can have multiple or multiple views representing multiple pages, but we're not as of today. We have to have everything in app top view if you want to see it in the browser. That's what's being loaded as a page.
+
+So let's go to App view.
+
+And to do this, we're going to do it in three steps. So we have to add the component to a page or we can also add it to another component. So we can have components be part of other components. So app W is itself just a component, it is the one that is being routed to by view as the page. So to add our component to another component to be used, which is going to create a tag we can use, and it's in its template. We're going to do it in three steps. The first we have to import it. So in the script, we're going to import and we're going to give it a name. So give it the name of the component product review. And then from and then we point this to
+
+the location of our product review. W file.
+
+We can to put dot view on here, the top view is actually optional.
+
+So you can see I got an error right away. So that's because I saved before I complete it says product view is defined but never used, said that one of the things yes Lynn's gonna do, and this isn't as linear. It's saying, it's going to tell us that you can't define any variables unless you use that variable, which is going to frustrate A lot of you. I know it frustrates me on a daily basis. Because in Java, we create variables and you say, I'm going to use this later to get ready to use this and I'm going to build this variable. So we're working with you with the sled, you can't do that in to your want to use the variable. You can't. If you save the file, you'll get an error if you actually use it. That's why we're getting an error. It's not a row error, because we're not done. So the second part, so step two, we're going to import the file. Now there's a variable product review that points to this question. In our export default, so in our script, the same thing we worked with before, there's another we saw data. This one doesn't have data. It has components. And it has an object. This is going to be a list of these components names, we can add this components section to any of these data, this object for any component. So if we wanted to import a component here, we could add the components section over here. And our product reviews, we just don't have that need. So it's a common delimited list because it's a JavaScript object. So comma, and product review.
+
+And we'll save it
+
+and I still have an error because now it says, Hey, you registered a component, but you didn't use the component because again, once Don't use it. So but now I have the ability to use this as a tag. So again, the standard would be if I name it like this, my tag
+
+is going to be
+
+generally
+
+version of it.
+
+So I put it under the hello world.
+
+So I refresh and we can see it's here. So when I putting it in, now it's a tag in this component. I'm writing HTML with this tag. So I building structure so I put it where I want it. So I want an after the image, but before the Hello World component. So now we can see it's here, between just like our image, it's starting here after the logo before the Welcome to your Vue JS app. Because of the location of the tag I had yeah view so that's how we add it to another page, we have to add our component to a page that can be shown that is, can be routed to which right now is only you
+
+know, the product review with the dash was the same as the product review down there.
+
+So, it takes this it this variable name should be Pascal case or Pascal case with the upper cases. This should be that we can be like we see with hello world.
+
+The convention is for this usually to be the
+
+lower the kebab case lower kebab case, just like the nature. One of the things that is kind of confusing is this is not the name from the other file.
+
+This
+
+even though they look the same is technically not the same if we change this We still use this based on this. So it's really just turn make this the name of the component, it should be the name of your component, which should be in Pascal case, and they just turned it into lowercase kebab case, and that'll be your tag name. So it's not from the other things not today.
+
+So it either looks for a Pascal case, and if it's not that then it looks for the kebab case.
+
+There's ways you can set it. Okay? We're not talking about that right now. So there are ways you can set a defined name.
+
+But we generally don't need to just use the
+
+so now it's displaying. There are quite other questions before we
+
+I'm I'm a little confused. Kind of the same thing as Kareena saying. Like, I just changed mine to product for review online. I don't know, for app uppercase, and it still works. So I'm a little confused why it still works.
+
+If it matches this, it'll work to
+
+as long as it matches one of those two, that'll work.
+
+So I will say that the uppercase version is a newer version of view. I'm sure how it used to be. They weren't always like this. It doesn't really matter which one to use.
+
+And modern view. They're
+
+questions.
+
+So feels like there's a lot of magic going on here. There is it's not magic. It's but there's a lot of stuff us doing for us. That's why we use it because it's going to do a lot of work for us to framework We write code its way and it will do a bunch of work for it's just like our spring MVC web MVC framework did for API's, just like j unit did for j units. Now this is doing a bunch of that job that JavaScript we have manually last week for us. Alright, so let's continue building out our page and building out a component. So now we have this in the app view, we really won't need to do again today. So I'm just gonna shut it
+
+because all of our other work now will be in this component.
+
+So as I make change, if I make changes to actually will lose it one more time to get rid of some pieces, but if I make changes here
+
+and successfully save it,
+
+we can see the changes show up.
+
+More than that, Going to go to inspect.
+
+And there's a tool extension called v tour or not be tour view tools that should be installed in your browser already. And if not, it was in the either tutorial they're reading on how to install it are pretty good. But if you just look up view tools, it's should be there, but I'm pretty sure everyone already has it. And you can see when you're on a view website site that used using view the view tools highlight up here.
+
+It also adds a new view
+
+tab, or selection to the dev tools. So I'm going to go to that. And we can see it's showing me my page. I have app which is about view, by expanded has two components product review, and hello world. Product Reviews are component. You'll see the components color, or highlighting how they're broken down. If I click on it, Product preview, I can see the data that's being loaded right now
+
+to show the activity
+
+if I change this data to something else,
+
+maybe not.
+
+refresh this.
+
+Okay.
+
+I think you just need
+
+some quotes around it, Brian.
+
+Oh, you're right.
+
+Yep, thank you.
+
+So why would I expected to do something so simple for me
+
+so you can see it By changing that data object, it updates the data. So I'm changing this in the browser's memory right now that it's keeping track of. And it's updating the DOM. For me, that's what reactivity is. So which means that, if we change this in JavaScript, it's also gonna update it. So now we can just work for changing this data to update the page. But this is going to get a lot more
+
+a lot more useful than just the static data.
+
+So let's expand.
+
+Let's do a couple more things first. First, let's
+
+get back to App UI said we wouldn't need it but let's do a couple things there. Let's clean up
+
+an app you
+
+a couple pieces of it's
+
+Let's change Set a max width to it
+
+800 pX Mozart's some margins to things 60 pX, auto zero
+
+auto
+
+as we start working, then we must get rid of the Hello World portion.
+
+So let's just get rid of this
+
+and the image. Let's get rid of hello world and the import and then we'll save it. And now we've taken over. So the margin we just built was up here. But now we kind of take it over the page as our own page, got rid of those components, see the components. So there if I want to put them back I just reinforced it, add it here and put the tag back in. So I see from some people's looks that that may have just caused. There may be some questions. So what questions do you have?
+
+My look was just why are you destroying the page, but that's all
+
+destroying the page. I'm gonna make it our review page. Why do we want the destroying, like you're getting rid of the logo that was on the final? I was like, Oh, why is he doing that? Because why do we want this up here? That's us logo that's there, hello world. So that's what they say they want us to build, but I want to build the product reviews page. I don't want views hello world on it. And it also shows how easy it is to switch out, switch the page and change things. I'm going to put it back I put those three things back the components still there. So now it gives us a place We can start, everything's centered, we have a nice, some nice margin. Now we'll get rid of that.
+
+So the next thing I want to do is
+
+we looked at the one way data binding already.
+
+And there's some terminology here to go back to. We've already looked at the one day data binding. But let's add some more data, some better data to use. So I'm gonna come up here, and let's add
+
+a comma after the slide.
+
+Let's add a reviews array.
+
+And we'll add an object in it. And we'll have reviewer
+
+B to some name.
+
+These were some of the reviews from last week.
+
+The review itself
+
+and
+
+ages and the rating will give a rating of three. So we'll start with this one.
+
+And let's find it in our template.
+
+So
+
+I'm going to create a div up here for it after the description. div.
+
+And we'll say class, let's call it this reviews, we can apply some CSS to it later. And what I want to happen is I want it to loop for each time through the array.
+
+So
+
+I can make a tag, any tag repeat multiple times using this attribute v4. So by adding v4 to any HTML element, it'll create it once for each time through the items in the array.
+
+So
+
+say v4
+
+and then I'm going to set it to
+
+this reviews. So it's going to be like a for each loop. So I'm going to create a variable review in reviews. And now it's going to loop through reviews. And for each item in the array, it's great to put it one at a time and to review and it's going to create this div for each of these, each of them reviews. Now as part of that, I have to give it what's called a key. So I'm going to use v bind
+
+key
+
+and we'll set it to review.id. There is no review ID, but that's okay.
+
+Because instead of two,
+
+well, there's nothing assets really unique. It's supposed to be two unique value, but it is required. So we're just kind of
+
+giving it a fake value at this point.
+
+So now inside of here, I'm going to create my tags that I want for each review. So I want to h4 and we'll put inside of that we're going to bind the review. So this variable
+
+dot that reviewer
+
+and then we'll complete For.
+
+And now
+
+let's see if that works. All right, let's see that working. So saving the wrong file. I'll save that.
+
+And we see the first reviewer shows up.
+
+Let's create this
+
+and create another review.
+
+I don't know maybe
+
+john can write a review.
+
+Amazing.
+
+And we can see we have both of them, one from each of the things in the array. So the v4 takes an array
+
+So are we right here
+
+and go well, let me try that again. So takes our re here add it takes each item one at a time puts it into this variable that we can then use inside of the tag. So in this scope, and it kind of works just like a for each in Java or fortune JavaScript, each item in the array one at a time is going to be review and then we can refer to the items,
+
+the values that are in each of the array items.
+
+So before allows us to work with an array
+
+and let's
+
+Explaining the the bind key again, and how does it work with the value that doesn't exists?
+
+Yes. So we're kind of taking advantage of the fact that I've saw aspect of JavaScript objects. So v bind key view, right looping through an array has to be bound has to have a unique identifier, or wants to have a unique identifier for each item. But we don't have one. So JavaScript objects can have new keys added at any time.
+
+So we're saying
+
+there's an ID key maybe. And you that's our unique identifier, and view looks at it. JavaScript looks at it and says, okay, there's an ID key. It's not there, but it could be at any time. So we're going to trust it, it's going to eventually show up so it doesn't air. So we're kind of getting around this requirement to that. We have have to have a key bound. Because we take that out, we get an error, that you have to have a key bound. So often we will have a big like forgetting for a database, it's going to be an idea of all right. And we could have just added the ID to the objects that would work. But wait, there's sometimes we won't have one. And if we use a non unique value, like we use reviewer, as long as it's unique, it's fine. But if we actually end up with two reviewer two reviews from the same person, then it'll air when it sees them. So we're taking advantage of this idea in JavaScript that we're taking advantage of JavaScript very.
+
+Oh, let's see what happens. attitude.
+
+We're saying here, JavaScript, we'll just give it a try. So let's let it give it a try and not Aaron. For once it'll be to our advantage instead of frustrating. So that's, that's what that's doing. Does that answer your?
+
+Yeah, that's perfect. Thank you so much.
+
+So now we want to
+
+have
+
+that switch go.
+
+These stars show up.
+
+So we have to get, we have this image, the star image, and it needs to be in the assets folder. So I'm going to take it this, drag it up to assets, because that's where our internal images are going to be. So now we'll have access to it inside of our component route from a relative path. And now I'm going to add, I want one image for each star, right one star image for each rating. So we did that before. So I'm going to create first a div class equals rating
+
+and if you're not
+
+everybody Buddy memorizes all the lecture code. So since you have you probably noticed at this point that we're writing the same exact code that we wrote last week for this, this page. Only we're doing it now instead of for loops with the DOM, we're doing it in the view way, which is just using the tags and putting the loops here. So just like we did before, we had our dev rating. And now we're going to build an image tag. And I want this image to be the source.
+
+And I can
+
+refer to assets in a relative path.
+
+Star PNG.
+
+I need to finish the image tag though.
+
+So you can see there there's one star for each one.
+
+But I want it to occur for
+
+all When one of them for each rating.
+
+So let's do another V for you, when I wanted to go from between two numbers, it works exactly the same way. So let's say and because we're actually gonna use it, we just wanted to loop one time for each time and rating for each review dot rating. So if I use this, this second part in the end is a number, like it is now instead of an object. array, it'll loop for that number of times, and I need to have that key. So I'm going to V bind. Key equals I'm just gonna bind it to the number. Now I save that and now it creates one image for each star in the review.
+
+So it's part of us yards one.
+
+Yeah, good. Here's,
+
+I just gonna ask,
+
+and they sound like the whole before being a loop. And so
+
+can you just write a for loop? Or does view not use for loops?
+
+This is a fourth view for loop. Right?
+
+Okay, so is that the V stands for view for loop?
+
+Essentially? Yeah. Yeah, the view tags, the view attributes start with V. So and then, yeah, so we're saying this is a for loop, view, view. Okay, cool. Le, our context now is our tags.
+
+Alright, so I'd also like to have
+
+a title for these.
+
+So let's,
+
+we have the for loop. And let's add some more to this.
+
+So let's add a title. So I can bind to I can buy data to attributes as well. So we looked at binding data to just text on the page. But I also can bind data. And there's a better thing of the for loop but to an attribute, like source or title or class, or ID any of the attributes that can bind data to it using v bind, so I'm going to use that to bind the title of the image to say, essentially, that it's a one star review or two star reviews.
+
+So we'll say
+
+V bind.
+
+And then the attribute I want to bind, title,
+
+equals and then we in double quotes, and then we can write what we want to Bounce, I want review dot rating plus and then the hard coded value in single quotes, star review. So here I'm building a JavaScript string in the middle, but it has to be a double quotes because what HTML requires. If I go back to my page, these things
+
+I can see that
+
+shows me
+
+that now it pops up with over the image of what review it is, which would help with accessibility. So generally, images should have a title so that screen readers can read with the images. So now we have that and it's dynamic based on the review by binding that attribute and then finally, let's add the class.
+
+rating star.
+
+And then let's finish this out with the review title and the review itself, which should be quick because we have remember it was an h3 tag. And we're going to one way bind it to their title. And then we'll do the next one on one way binding to the review. So, our C tag that's going to be used this review dot title, close h3 tag, and then the paragraph, we're going to bind it to
+
+our review dot review.
+
+And
+
+now we have our reviews but we need some CSS here. So
+
+Let's add.
+
+So I'm going to cut and paste some CSS. And for anyone following along, I'll put it in River. Because I don't want to type out a bunch of CSS we've, we've spent enough time on CSS. So, class, we have a lot of new stuff to get through today.
+
+So here's the CSS, I'm pasting and
+
+I'm just gonna paste it here after the one tag we built and save it. And now we get the, the view that we're looking for from the CSS.
+
+So now we're creating each of the three views.
+
+Alright, so
+
+before we go to the next thing, questions.
+
+So the title, when you use v bind title, that's like a keyword that tells us to do that hover thing?
+
+No? Well, the title is The title is just a regular H. On image. That's a regular HTML attribute. Okay, so v bind says bind the title to some data that's in here. And then when we use a name from here, so reviews or review from our for loop, review dot rating, then it replaces that variable with the value from the data. So v bind is telling it we're going to set title to or whatever this attribute is. And we're going to use something from the data object to do it. Does that make sense? Yeah, that makes sense. Yeah, we'll see v binding the class attribute to set us CSS class in a moment.
+
+Where did you paste the CSS versus in the script and distill in the staff?
+
+We had the one device paste, just paste it right after that.
+
+Okay, thank you
+
+for the questions.
+
+Can you
+
+make it just the just see the code a little bit bigger so I can see the whole
+
+line? Yes. So good.
+
+Right. So
+
+why don't we go ahead and take another break, because we still have a lot to get through. So come back in 1040 and, or 1140, and keep going.
+
+All right, so any questions that come up Okay,
+
+so let's keep taking a look at some of the other functionality of a view. So the next thing we want to do is add
+
+these components here at the top. So these pieces here,
+
+which we want to be reactive as we change this array, we want these numbers to update with the average star reviews and the number of each type of star reviews.
+
+So we got to add that.
+
+So add some
+
+code for that. And just so because typing out a bunch of HTML is tedious, I'm going to post some HTML and rubber channel.
+
+I'm going to add this HTML above
+
+So between the description the review
+
+so what I just pasted I'm gonna paste it myself right here.
+
+And
+
+I'm gonna move it so it
+
+matches up the way it should
+
+and save it. And we'll see
+
+what we end up with these boxes here. Again, I pasted because there's nothing special here. It's just HTML, right as a div that has five divs inside of it are six divs inside of it, build these boxes. And then it's span classes where some numbers are going to go.
+
+So we're going to
+
+want to take and I want to bind
+
+the
+
+Average star review. So the average of the reviews to the
+
+this first box and display it.
+
+So to do that, we need a way of finding the average of the reviews, right? That's not something that we have just in the data as it is. So let's look at how we could do that. There's, in view there's, we have properties that are not data, but they're things we want to be computed from the data. So there's this idea called computed properties. So computed properties are they allow one way data binding with a calculated value. So they're very much like derived properties. Some job, it's actually the same idea. It's properties, we don't store the value of we derive each time we need to compute each time we need it.
+
+So,
+
+but by using them as computed properties, they remain reactive. So what this means is that we're going to derive a computed property from these values in the data. And if these values change, like the ratings change, then the computer property is going to reactively update, which will update our HTML. So by again, it's gonna be all driven by the data, the data changes, the computer property will recalculate in the HTML and the template will update
+
+without us having to do anything to react to it.
+
+So to create computed properties,
+
+we add them after data. So this is the bracket that is called Closing data, I'm going to add comma. And we can add other things here. Like we already saw that we have components. We don't need that for this particular component. But we could have a list of components that we're importing. But I'm going to add computed and then a colon. And then it's going to be an object. And then each key in this object is going to be a method. It's going to look like a method or a function. But so we're going to say, average rating with parentheses, so just like a function,
+
+and then we're going to go to
+
+a function or a block of code. And then let's find the bow average. So we'll say let with a variable to hold it some equals. And if we want to refer to other things in this object, So this object is being exported like the data, we can refer to it with this keyword. So similar to the way it works in Java, or in other languages that this keyword in this case is going to refer to this instance of view
+
+of this instance of the view component.
+
+So
+
+we're going to say this, and that's going to give us access to these values. So let's say this reviews, and let's reduce it. It's an array, so we're going to reduce it. And remember that's going to give us reviews takes the aggregator and then each individual review the item.
+
+And that's the wrong arrow.
+
+And now we'll say we'll return
+
+the current sum
+
+plus the review rating. So it is possible that there is going to be no value, there is going to be no ratings that are three, that could be at rating two, it's going to be none. So in reduce, we can just set a default and say if there's nothing to reduce return this default. And we do that by after the method was to a comma zero. And that says, if there's nothing to reduce for this particular array, then set it to zero. And now, since we want this, the average will say we'll return the sum we just calculated divided by this. So this object, the reviews, the array, dot length, the number of items in the review. So now we can bind instead of binding to one of these values in the data We can bind to a computed value. And we do it the same way. So up here, in our average rating, we'll get rid of this data binding goes here and change it to see, there's a so called helped me too much, I think there and change it to the double curly braces with the. So we use it the same way, we noticed there's no parentheses.
+
+And now
+
+we have the average rating. And if I change the array,
+
+like let's change John's review to a five star review,
+
+the average rating changes. So as we add more items to the array, it's going to change that let's add more items to the array. I'm going to take the easy way out to do that. Let's go back to Finder. I'm going to go back Let's see was I think a DOM was when we done the same thing, like a DOM to the lecture code, and product reviews to the JavaScript, app JavaScript. I'm gonna open it with this Studio code
+
+and just grab the rest of these,
+
+like gives us three more.
+
+That'd be four total, that'd be good. You could just write it, it doesn't really matter where you get them from. I'm just going to take the shortcut since we know we have them in the same format. They're yummy.
+
+So now we get a better we can see from all the different reviews. Boom, see, as its data is changing. It's reacting to it.
+
+So let's put slides back to one.
+
+Alright, so now we just need to do the same for the 1234 star reviews.
+
+So we're gonna have some cutting and pasting here.
+
+So we'll say number
+
+of one star reviews.
+
+And we're going to do the same thing. We're going to return this reviews dot reduce. And again the current count and for each review, and a reduction will be return
+
+the current
+
+Count plus
+
+review, dock rating
+
+equals one.
+
+And we're taking advantage of JavaScripts.
+
+dynamic typing here. So this would never work in Java, right? We just added a Boolean condition. And that's kind of crazy, right? Coming from Java, that would never, never work. But JavaScript, since it treats doesn't really have the idea of volume's What does but just like Java treats them as zero and one, what's going to happen is if this is equal to one, then it's going to store it as one. If it's equal, not equal to one, it's going to store to zero. So when we add true or false to our number, what JavaScript is going to do is saying, hey, you're trying to add these two numbers together, I know how to represent true or false as a 01. And today, typing will take over and add the one or the zero to our number. We're taking advantage of so don't go worry too much about that. But just let you know that without Monaco's doing, taking advantage JavaScripts dynamic typing to add the output of a Boolean condition to a number. And if that doesn't make any sense, don't, don't focus on that. That's that's not a new thing. That's just JavaScript. And you could write it out very differently. But now we have this. We'll take this number one star reviews. And we're going to go up and use it
+
+the same way we did before.
+
+Somebody up here, I'm going to bind it here.
+
+star review. And let's also bind it. Let's use it here. So we'll say if number of one star reviews equals one. So we can do ternary operators here inside of the binding. So if n equals one We'll make an empty string. Otherwise we'll add an s. And that'll just make it have no, it'll say, one star review, or no three star reviews, or three reviews. So don't just read better. Save it. And we'll have our C 121 star reviews shows up. So we're going to repeat this 43234 and five. So we have to take this and say, Alright, number of two star reviews.
+
+And really, we're just going to change this to two.
+
+Because that's what we're now looking for. And we'll take this, go back up to the top
+
+40 star reviews will bind
+
+In both ways,
+
+actually, we can cut and paste this to just update the name.
+
+And we're going to repeat that for the other three. So we're duplicating a lot of code here, we have to have a computed property for to remain reactive. So we need a computed property for each of these.
+
+But we still have,
+
+you know, once we, once we're doing this right now, we're still repeating all of this code, except for one number. And that's not efficient. So later, this week, we'll learn about methods which could fix this and make this a lot less. A lot less duplication. But we're going to leave that to later. today. We're just going to use the computed properties and just duplicate it for each of them. So We need four star reviews.
+
+And finally,
+
+five star reviews.
+
+And, and there's a lot more cutting and pasting in web stuff than we've already talked about that there isn't job anyways, but we really can make this more efficient with methods. But we'll we'll deal with methods since they bring up some other things. Next week, and really, we could take this whole section here.
+
+And let's see, we need to change this to the word three.
+
+And this needs to be the same.
+
+Now this needs to be three. I got to work. Let's make sure
+
+okay, two three star reviews. And we'll do the same for
+
+four
+
+before and this before, so each of our computer properties.
+
+And for five
+
+Yeah, I'm sure there's a really high chance I made a typo someplace in there and something's not working right, but that's okay. So the idea of computer properties is that they're something we can bind to with one way binding. And we can then they update like a derived property in Java. So they're been they remain reactive. And that's an important distinction, that they're going to remain reactive. Because when we do get to methods we're going to find out as methods are not reactive and that the state reason I don't want to talk about them today, we'll just cut and paste our code instead of dealing with them at this point. Again, reactive means that if this data changes, so the way this is going to work is, if this data changes, every time a rating changes, it's going to any place for that rating is used. So here, here for each of these, it's going to recalculate the result. And then it's going to update the result wherever that computed value has been bound.
+
+So that means if we change
+
+we look at this. Look at this over here. I changed like a review, change jobs review to five star review. And we'll see that reactively the reading has changed in the five star notices it's redoing things it's not refreshing the page. Page, it's refreshing data in the page. In the same way, I can go to the View tools, and I can see all my reviews. And if I change the rating here, and memory, like then it refreshes, re redraws the page or not redraws the page redraws the section of the pages, as needed. So when I change this to reactively, change, the number starts displaying he reactively changed the ratings. And it rapidly changed all of the review, review numbers. I didn't write. So there's JavaScript behind the scenes doing all that. But I didn't write any JavaScript to do that. I wrote JavaScript around the data. And that's what view does for us. It's allowed us to remain focused on the data rather than the DOM manipulation. All right.
+
+So before we continue Are there
+
+questions? All right.
+
+So let's keep going.
+
+Because we still got quite a bit. That is a big day. So
+
+the next thing we will look at is, we can use view to make elements conditional. So let's add a new data element down here on this guy here in data. And let's call it something like show description. And we can add any keys we want. And we'll just make it true to start out. And you have to have a comma delimited because it's a JavaScript object. Let's go back up here to the paragraph tag with the script. If I want to make this conditional,
+
+I can do it in two ways.
+
+So I use Vf.
+
+And then I give it a Boolean condition it or I can use v show. And the difference is going to be how it relates to the DOM. If I use Vf, then when it's false, the element is completely removed from the DOM. When it's true, the elements added to the DOM. If he's v show, then element always exists in the DOM, but it changes whether it's visible or not, or changes display.
+
+And let's look at what that means. So I'm going to add v,
+
+f equals and then a Boolean condition Well, a boolean value. So description is a Boolean condition by itself. So that's the same as it was in JavaScript. So when show description is true, It's rare to show the description when that value is false. It'll hide it. So with if. So you can see it's true right now. So it's there. If I look at the description, let's change it to false. And now it's gone.
+
+But more
+
+if I look at the elements, and actually I need to go back to view. And let's make this true, back to true. And it's back and look at the elements. I can see that there is this data class description. And you can see all these data dash v. identifiers have been added everywhere. Those are, view internal identifiers. So we just ignore those. not ignore them, but we don't do anything with them. That's what view uses to identify things internally. So it's there in the DOM. And now if If I go back here, and I change this to false, go back to elements, I can look at it, we can see it's been removed from the DOM completely. So it's not there. I'm going to change this to be show. So the show, and it's still false. So it's not showing, but you can see here, it's in the DOM.
+
+And if I go to source and change it to true,
+
+it displays. So v show Vf. Either removes it or adds it completely from the DOM. The show, keeps it in the DOM at all times, and then adds, hides or shows it. So it's really just a matter of which, what whether you need it to be in the DOM or not.
+
+So
+
+that's how we can make a whole tag conditional
+
+So questions on that before
+
+we continue.
+
+Sorry, I guess I missed what what his show description
+
+referencing. So show description is a variable that we added down here in the data. It's just a Boolean condition of true or false.
+
+So that sorry.
+
+So when we do a V f or show we just use, we set it to a Boolean condition when a condition is true. Well, just like an if statement. So we're just using the simplest Boolean condition to civilian variable to handle it.
+
+Alright, so
+
+could could we like put
+
+the description itself in there and if there was no value in there, then that would be falsi. And so it wouldn't like
+
+put that
+
+Yeah, we could do something like that. I think I think the falsie value would work let's find out.
+
+Because it never actually tried that with just an empty string.
+
+So, sorry. So
+
+let's go back to
+
+few how we have that.
+
+And we have our description. So we should be able to set it to empty, empty string. And it's got a lot of search on things running double quotes. Yeah, that works. Yeah. So so we can do it that way at any point in condition. And since that works, Morgan
+
+because of JavaScript so truthy nature?
+
+That's a good, a good question.
+
+So that means that if you had something before that description and the double curly braces, then it wouldn't show that either.
+
+Yeah, if you had something, yes, because it's going to hide this entire paragraph tag.
+
+Alright, cool.
+
+So, um,
+
+so other questions before we
+
+move on to the next. Okay.
+
+So let's look at
+
+something else. The next thing so the next thing we want to talk about is, we can also bind two ways. So we've done one way data binding, which allows us to bind a value to texts data value to text on the screen. Or texted doesn't change but the user can't change the text. But we also know we have form fields we deal with, we also have to have places where you want the user to give us input. So we need to build a bind to those as well. But those are, those go both ways. So a change to the data should update the form field, but change the form field should update the data. So that's what two way data binding does. a two way data binding allows us to bind to any form field, and it's going to do it using this V model. So let's add a checkbox where we can set each of these reviews to be favorited. So we can add favorite reviews. So before that, we're going to need some more data. So we're going to need to have a value that we can check in here. So to each of these reviews, I'm going to add favorited and just set it to true or false. So what a start up all false, actually, does this make the first one true? Actually, that's my false. What's that one of them to?
+
+True. Let's set John's to true.
+
+And we'll make the rest false. And then we can.
+
+And I'm writing in Java and JavaScript, let me remove all those
+
+semicolons I put in.
+
+So
+
+add this to each object. So each of our objects have this favorite value. And that's not going to change anything on the page yet. But we're going to be able to use that then to bind to a checkbox we're going to put on so then up in the code just after the review here. So at the end of this review, let's add another paragraph.
+
+And
+
+inside of that, we'll add favorite.
+
+And then we'll add an input field type equals checkbox. And now we're going to use the V model tag. So the V model tag does, or attribute or tag does two way binding. So that means that if either side changes either the value of the element or the value of the data changes, it'll update the other one.
+
+So I'm going to say V model
+
+and happy to bind it to the review that review favorited because a checkbox is just true or false, and that's what favorite is. It's a Boolean. And it was closed the input tag
+
+and we'll have it listed here.
+
+And we can see that the second one that we said was true is checked, the other ones are not. So I'm going to look at the data here. Let's actually let's pick up one of the objects. So number three, number two, which is Tim Ferriss review, is favorited is false. If I click it, you can see it's set to true. If I change it to false here, it updates the control. So it's bound both ways.
+
+Meaning that again, that
+
+if
+
+if I change this here, this data, it's going to update this checkbox. But if I change this checkbox, it's going to update this value. So changed either side updates the other that's to a data mining and it's used for fun builds. That way we can set default values in the form field, we can set the value of what we want them to be. But as the user makes changes, because that's what they're for, our data objects automatically get changed. And then if they happen to be reactive, your action occurs as well. So let's see that working. Before we see that working.
+
+Other questions on
+
+the two way.
+
+So let's bind. We know we can bind attributes we looked at doing that with V bind. So let's add a new page. Let's add a new CSS class. Down in the scope. I'm going to add it to div dot main and div review when it has the favorited class
+
+Want to add the background
+
+color of light?
+
+That's, like yellow.
+
+So when this class gets added to a review, that is a div that's inside of the div main. So the one we looked at above our, our div review, we built it favorited gets added to it, then it'll set the background to yellow. So let's go up and see what that would look like. Up in the HTML, and this is this class review. So I'm actually gonna just put that like that for easing make it a little easier to read. So what I what I want is
+
+if
+
+that happened,
+
+then I want it to be yellow only if favorited that was true. So let's remove it from there. I'm going to V bind me to be V bind class. So that means I'm going to dynamically bind to the class attribute.
+
+And
+
+I can bind just to a value, like to favorited. But I wanted to put, I wanted to enforce or use a particular class, the string, if they find it, so I also combined conditionally, I can bind to a Boolean condition. And to do that, I'm gonna put it in single, curly braces. So the single curly braces identify that we're going to have a condition inside of it. The double identify that we're binding directly to data.
+
+And then in here, I'm going to put the name of the
+
+was it just favorited, the name of the class. I want to If it's true, so if the next part is true, apply this class, otherwise, just do nothing. And put a colon in there, we're going to bind it to review
+
+favorited.
+
+And now, if it's favorited, it has the class favorited. Look at the console elements, we can see that for the one that has favorited, it has the favorited class attached to it. If I uncheck it, it removes it from the DOM. And it's not. So the reactivity is as I change the value of this control, it's updating the value in the favorited object and then that's bound to the class attribute to When it's true to add the class and when it's false to do nothing, not to add the class. And as I make changes on the page, I don't have to I don't have to do anything about those changes the activity is what does that
+
+have questions on that before? We?
+
+Yeah, I'm kind of confused on what's going on. Okay. When you're actually getting to the styling. Yeah. Like the div review favorited I guess I don't understand how that's actually apply.
+
+Do the class bind. So
+
+So the way this section works, is we give more binding to an attribute we give the value we want the attribute to be then a colon and then a boiling condition. And when this condition is true, this value will be about applied to this attribute. So this condition again, it's just a boy added value. And down here in our, see if I get this all on the same
+
+network see all three,
+
+I get to see all three old.
+
+Alright, never can see all three little small but so this condition here, this favorite is bound to here. And so when this is true, it's going to apply this class to the class attribute on this div. This is also to a bound to the checkbox. So when the checkbox updates, this is to a bound. What's happening is that it
+
+When this updates, it changes this value.
+
+But when this value changes, it's bound
+
+here.
+
+So when this updates
+
+this reevaluates.
+
+And if this is true,
+
+then this class is applied to the class attribute on the tag. So is this as this changes as this value changes, either because of this changed here or it's changed here directly, so we can change it in script as well. It automatically causes this to re evaluate. And when this is true, this gets applied as a class. This gets applied as a value to the class attribute. When it's false, this does not get applied. So it's just an empty string. Does that make sense?
+
+Okay, so now when it's actually true Classes review. And then it's also favorited as well. So it can claim it contains two classes. It
+
+does, yes. Okay,
+
+I got you. Thank you so much that makes total sense. So,
+
+and we can do this with any attribute doesn't have to be class, we could invite him to source in this way and pick different images. We could bind to ID and pick different ideas on why we would do that, but we could. So anything that's an attribute, any of these key value pairs on the that are not the view, key value pairs that are on the classes in the STEM, they show attributes we can bind to and make changes based on our data.
+
+So if you put like review, inside of where you have favorited right now, the class thing on line 3939. So now if it Yeah. And so In the quotes, single quotes, if you put review inside of that when it was favorited, would it take off the review that was already there?
+
+I don't think it will. I think it
+
+probably would have nothing. Let's find out for sure.
+
+So here
+
+that's fine.
+
+There's John's review. It has the class review, when it's favorited. decides to review twice.
+
+Now removes,
+
+yeah. How does it remove that then how does it remove the favorite part? If you got rid of the review again? Or is that the only place that's being established? So if it's false, then it's not going to have it? exhausted, actually. Oh, so it's not taking it off. It's actually like reassessing the whole thing and only adding it Okay, God, exactly.
+
+That's exactly. It's reassessing. Its re calculating. Its that's what Rakim As it's recalculating the way, it should look and changing it. So it's not removing it. It's rebuilding it. But it's only rebuilding this one div tag, which is the well, it's rebuilding the whole piece, but that's the, their activity. So yeah, it's every time there's a change of data at reassesses everywhere where that data is used, and makes changes appropriately. As long as they're in the computed or the data. Well, we'll see times when that won't, but that's later this week.
+
+So other questions before.
+
+So now we have our page working.
+
+Now I know it's late. But I really, we need to see more of two way binding. We've seen one checkbox. And also, we've only seen one component. So let's add another component. That's just so Two Way binding example, actually the binding example, two in one way binding.
+
+And we'll just put a
+
+section down here that can add and collect an email address from a user.
+
+I'm going to go back here, we have this component done.
+
+And I'm going to add a new component.
+
+So in the components, I'm going to add a new file. And I'm going to call this component add email, dot view.
+
+So with avitar,
+
+extension in Visual Studio code, there's what's called code snippets. We saw this with HTML, we could press the exclamation point and then tab, it would build a skeleton HTML page. There's a view snippet as well. And we can type out the word view and press tab and that didn't do what I expected.
+
+Try again. View
+
+Okay, I did not do what I expected at all. Maybe it's enter
+
+it's working on my end so that should
+
+be building out all three pieces. I don't know what's going on a mine.
+
+What list does it give you when you type it out just type out view because doesn't it give you a list of things before you hit?
+
+No. Oh.
+
+So what should happen?
+
+Now a bowl template? Well there it was. It was at the top when you start scrolling through the list.
+
+Was there actually?
+
+Yeah, if you scroll up on the list
+
+I've never had I've never had that.
+
+Okay, that's what it should do. Yeah, I've never run into or done anything but just build the whole thing out of what I've done to my machine in the past but so But anyways, he can build the template out. View pieces. Add a new component which speeds up development a little bit. But I think more importantly reminds you that there are three pieces to begin with, which can. So let's add a template aswad div, an ID, something like an email.
+
+That's going to be happy to have a single container
+
+inside of our template, and that'll be it.
+
+And then we'll start with just adding to each one ad email, just so we can see it working. And now I'm going to go once we have that, that amount, I'm going to add it to our main page so we can see it and then we'll come back in. So add it, then we'll come back and fill it out. I'm gonna go to App view. And again, if we want to add a component to our page, to another component, actually to any other component not just to a page, but to any other component. We're gonna do it in three steps. The first step is, we're going to
+
+import it.
+
+So we're going to import and then the name of the component, add email from, and then a path to where it's at. So components, and then the Add email component. Step two, we're going to add it to the component list here in the app view. So add, add email. And step three, we're going to use it as a tag up here. So we should really use it as an email. And then once we do that, we should see our h1 down here. So this is where our form is going to build. Again, we're just going to make this a really simple form to so we can look at the binding. That's what I want to focus on rather than the fours. And it's just the binding because that's actually one of the most important aspects of view is the binding. So I'm going to add just a simple form to it that collect three things will collect the name, the email address, and email type. And for each one, just to make it simple, I know it's not good with well formed HTML when it's well formed, but it's not following all the rules of HTML that we've talked about. of semantic HTML, but we're just going to wrap each one in a div tag. I just so that we can take advantage of the block To make them flow, it will look great, but it'll look better than all just wrapping up to the side. So, we will have to apply the CSS. I'll put a label for each one.
+
+And we'll call this first one, we're going to give it the ID name.
+
+And we'll have an input type
+
+equals text.
+
+And we're going to give it an ID
+
+equals name.
+
+And then I'm going to just copy this once for the email. We'll change this to email,
+
+email,
+
+email
+
+And then I'm going to create a div tag here. And this one let's do something a little different. So we'll create a label again for email type
+
+and it's called email type.
+
+And let's make it a select. We'll give an ID of email type
+
+and we'll give it a few options.
+
+So maybe give the options of option value equals home.
+
+When
+
+what is copy that do work and other this we have a few options in our drop down fill.
+
+This will make this one work
+
+and other
+
+So we can see now we have our form filled down here. It's not a really pretty form, but it works, right? It's, and we don't have a submit button, we're not going to worry about that. Because the few minor thing, we really won't need to worry about that. We can have one, but we won't need one. So we have our fields. So the next thing I need to do is build something to hold the so I'm going to build the simplest data object we could really for these. So first, let's give it a name. So we'll say name, our name of our control is going to be add email,
+
+then our data
+
+to a method of data,
+
+the method of data is going to return and it must return an object. That's important and this is actually one of the places that you're going to, that it's easy to run into problems with me to start out Actually, even if you've been doing it for a while I've run into this all the time. When you're building a component, the data must return an object. It's easy to just start using the object. And it doesn't give you an error. It just doesn't work. Actually will tell you it can't find the fields. But it doesn't tell you what's going on. It says I can't find these fields. It doesn't say things like, Oh, you need an object here. Because it's JavaScript and JavaScript is, you know, it's it's kind of like Java's hippie friend that just like let's go with anything we can. So yeah.
+
+So we
+
+So because of that, we have to remember that return.
+
+So let's put in some values.
+
+While name able to set them to empty strings. We need to have to give them a value. If we give them a value, it's going to show up and rebind it right away. And of course, it would probably be more are useful if it was a list, but want to keep it simple. So we can really focus on these bindings. So now we have our data object. So we need to bind it to this.
+
+So to a binding, I'm going to pick the input field I want.
+
+I'm going to say V model
+
+equals, and then what I want to bind it to,
+
+it's really that that's all I really have to do for view. If we come over here, I'm gonna go back to the view console, at email, and if I change the name,
+
+it changes here. If I change the name here,
+
+it changes there. If I set a value here in the code
+
+it up it starts out with that film. So there's bound books. ways this value in whatever data is in this input box are now bound. Of course, one of the problems you run into really quick is that users tend to
+
+Yeah, do your question if somebody use that analogy with me at the interview, I probably hire them just based on that so
+
+so you but you don't take that as you will with each interviewer. So
+
+we can also add there's actors extra attributes we can add to binding so the one that we often want was strings tremor, and what that'll do is we'll watch Look at this, and it's bound if I put a space on and put another name in. You can see the actual I put space space for show the actual name is takes the spaces out. The same way of add some spaces the end but added the dot, but I don't know why. That's happening. I press something with Chrome or something. But anyways, I put space at the end, one space in, it doesn't. So terms of space is off the beginning. And because users tend to accidentally put spaces in a lot, so we have a string, we can use trim for that.
+
+We don't have to worry about it.
+
+Yeah. Are we are we serializing? Our object right here? Like, is this how we would pass our data back to the back end?
+
+So we don't have to serialize it because JavaScript objects are just strings. So but it's the same? Yeah, if we want to pass that data back, we can make this object match our JSON object. And then we can actually it's not true. We do have to serialize it. We don't serialize and Jason you stringify you stringify and D string of phi. Same idea. Just call us Big difference. So we'll do that when we get the connecting API's to this. So we can take a JavaScript object and string a fight in the JSON, because the only difference with a JavaScript object and a JSON object is these, everything's these have to be in double quotes. That's really the only difference. Okay, gotcha. So yes, that is, this is how we'll fill those objects to be used.
+
+So we'll do email the same way.
+
+And I would encourage you with V model as you work with different data types, like numbers, because you don't have to worry about the data type. It's JavaScript you do it's dynamic data type, type the same way. So v model will work with all different data types. But as you work with them, if you look up v model, there are other some other things you can do to clean up your data. So let's do email. So again, I wanted to connect to this field. Somebody v model I'm going to trim it again. I don't have to trim it, but I don't want to spaces. So we generally will trim it for text. So now here, if I type in something in the email, he gets added the same for name. If I change either one of these in the data,
+
+then updates the form fields that are bound both ways.
+
+And then for select, I don't need to worry about trimming it because these values are here. But so I can just say V model and bind to
+
+the email type.
+
+And now here, if I select a value, we'll see the values here. If I change it to a value that's valid for the options, like home, it changes here. So this one binds the same way I get the value here, instead of the text, which is what we'd expect from a select. We saw a checkbox by brown to boy and so all the any form filled we can create binds can be bound to something in an object in the data object.
+
+So let's add one more piece.
+
+So let's add here, one more div.
+
+And it's this guy. We're gonna kind of press together, but
+
+remember that tab.
+
+And, again,
+
+I'm gonna just put them in divs, just for convenience, not because it's the right way to write the HTML. But let's put name if I wanted to print something Place to what one way binding.
+
+So the same value can be
+
+bound
+
+one way in two way at the same time, or even the multiple places.
+
+So that would be kind of a
+
+stretch case.
+
+Type.
+
+Now we can see they're listed here because I make changes here. It updates here. It's also updating here. As I make changes here, the updates here, it also updates here. Because of one way binding in the same as I make changes here, it's both if I make changes here, and updates it here, and here. So the one way binding means that if anything changes here, it will update here one way, the two way binding means if things change here, it updates here in the input field. But if the user changes in the input field, it also updates this and the activity is going to update the one way binding down here. So these things are all bound together. Just a directional, whether it's both directions or one depends on whether we do it with a V model, or with these double curly braces.
+
+So any questions What questions do you have
+
+So let's look then at what you're going to be doing today.
+
+So for your exercises today,
+
+save this, save all this.
+
+And to quit the
+
+MPM server, it's Ctrl C, so not Command C, but Ctrl C. So we ran into that before when you were using the NPM server. But just a reminder that that's how you quit it. In fact, I know a few people have started to run into this, you can pretty much anything in Terminal with Ctrl C.
+
+Across all the OS is the same.
+
+Alright, so
+
+silver exercises, let me open it up.
+
+So go ahead, close that and close it. Add folder to workspace
+
+First thing when you open the exercises, you're going to have to run NPM. And this is in the readme. So you want to read the readme. But the first thing in follow the directions that you have been, but the first thing you're gonna want to need to do is run npm install. So I'm going to change directories, see where I'm at
+
+CD.
+
+So you'd like to find it to be an instructor folder. In your exercises, your student exercises folder, you need to be in the folder that has this package JSON. So I really suggest before you
+
+get
+
+before you run npm install, you always just do an ls, make sure you have a package dot JSON dot there, there, because it's really easy to end up in the wrong folder and then it won't work in that it gets confusing when it doesn't work because it doesn't tell you that it doesn't have the file. Instead, it tries, and it builds the package lock. But now it's filled with nothing. And just tells you that it didn't build. It doesn't say things like, hey, there's no package JSON to build or nothing to build here it just confusingly, so it does give you a nice error. So make sure you're in that that folder, and then you'll run npm install it, you're gonna have to do this with every thing we do from now on. And npm install slow. So every project you have to run it, and it's gonna download all that, all that stuff, and it's a lot of stuff. It's so much that is it one, one exercise or shall it fills up your hard drive from 18 students. running it for each of your stuff, it fills up an entire one of these entire Mac's hard drives.
+
+By the end of the cohort act like delete everything just
+
+to make people sciences
+
+there's a lot of stuff being downloaded. I just was pointing that out because this show that it doesn't take, it's a lot. And you have to run this for each, each thing takes a few minutes, and I'm counting, killing time why it's going. But um so you can use either terminal, this terminal or the one in Windows and when in Mac, it doesn't matter. They work the same. They're both a bash shell. So it'll be fine. Let's look at the readme. What's going? Why this is going you actually can work in the files, you just can't run it. So you can start taking a look at things and start, I wouldn't probably make changes but you could start taking a look at things
+
+while it's running.
+
+So
+
+the completed application you're going to be building, which Visual Studio Code can't show
+
+is going to Look, I know
+
+I must be in the wrong place
+
+is going to look like this with a form that's bound to this list and some conditional builds. So you're gonna run an npm install to run it MPP, MPM run server run it. But there's also test cases built in, which is why I want to install it and show you the test cases running. So the test cases are not like the ones you use last week. These are you last week use what's called Cypress tests, which are what's called end to end tests. They bring it up in the browser, and they actually run it like a user one. These this project has unit test just like Java You know, tests. So they run slightly differently. And there's directions on how to run them. But again, you have to run it from the directory with the package and the package. json. So if you just for all the node commands, if you just get used to looking for package JSON, you'll be in the right place. sites have most of them. There's a few exceptions, but I don't think we'll run into them this cohort, and then we'll run NPM NPM, run test colon unit, and you can run this as many times as you'd like. It, actually, I think it's faster after the first run. You can run this in an external copy of terminal two, just in the Mac. You don't have to run it in Visual Studio codes terminal the same for all these commands.
+
+And it's running.
+
+You're going to see some warnings like this.
+
+When you run a lot of these projects, you can ignore them. You're not deploying this anywhere. So it just means they haven't been updated for some of the new versions have security fixes but it's not going to matter for
+
+what we're doing.
+
+So they're they've run, you can see it says a failed. If we look up here, they have assertion errors just like we're used to, you should be sure in Java, there's no text.
+
+So
+
+so the tests are starting. And as they start passing, it'll tell you how many are passing and show you which ones these will be green instead of have the red assertion errors. Right. And then as you follow the steps then to complete the exercise, that's what you'll be doing today.
+
+And your shot with matchmaking one of these do
+
+when would they normally be due Wednesday?
+
+Yes. Then it'd be due Thursday. Yeah, I think that's okay. Yeah, cuz matchmaking counts like a weekend. So.
+
+Alright. So these will be due Thursday.
+
+So just like normal two days just don't count tomorrow.
+
+All right. So that's what you'll be doing any questions on that?
+
+So tomorrow, there is no class. You just have matchmaking and the things around that. And then on Wednesday, we'll resume with you have been handling so well. Add events to what we looked at today.
+
+Let's see for the rest of today
+
+there is
+
+I get to the top of all these
+
+others lightning talks it for anything going on today. And I didn't write down who's speaking I apologize if
+
+Yeah, I'm speaking. Awesome. Alright,
+
+so any other questions or what are you talking about pattern
+
+I'm going to do mine on natural language processing awesome
+
+minds about opening up credit cards so you can travel for free.
+
+You're doing right today too.
+
+Yeah, nice. All right.
+
+So do anything else for today.
+
+All right. Well, thank you and good luck and good luck, everyone tomorrow matchmaking. If you need anything, we'll be online all day. So as a message if you have any questions or concerns or anything,
+
+and I'd appreciate if you push the code.
+
+Yeah, well, I'll do it right now. Thank you for reminding me
+
+you guys
+
+Transcribed by https://otter.ai

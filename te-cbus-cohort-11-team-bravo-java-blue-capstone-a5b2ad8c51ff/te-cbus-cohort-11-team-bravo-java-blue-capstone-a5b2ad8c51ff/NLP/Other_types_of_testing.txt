@@ -1,0 +1,29 @@
+Book
+https://book.techelevator.com/content/unit-testing-ool.html#other-types-of-testing
+
+Other types of testing
+There are a lot of different types of testing, and at times it can feel overwhelming. Some testing is done by developers, some testing is done by automated testers, and some testing is done by Quality Assurance.
+
+Quality Assurance (QA) is an umbrella term to encompass testing that's done outside of developing the functionality. It's a person who generally doesn't write the functionality.
+
+Instead, they try to mimic what a user would do with the application or website—good or bad—either manually or by writing code. So, they might put in correct data or type 'one' if asked to enter an integer. That's the sign of a good QA analyst.
+
+Below is a chart that shows the different types of testing. Note that the "Who Does It" column indicates who usually does it. Being a developer doesn't mean that you shouldn't do manual testing or exploratory testing on your own code - you should.
+
+Type of Testing	Who Does It	Description	Cons
+Manual	QA	Uses the application like a regular user would. Types data into input boxes, clicks on the buttons, etc.	Slow.
+Automated	QA	Writes and runs scripts using a tool that mimics what a user would do. It’s much faster than manual testing, especially for regression testing.	Can be brittle—changes in UI can break automated tests
+Exploratory	QA	Doesn't follow any kind of script. Just tries things. Looks for missing features or room for improvement. Allows for creativity.	Has to be done by a person.
+Regression	QA	Validates that existing functionality still works. Can be automated or manual.	Slow. Depending on how big your app is and if it's automated.
+Unit	Developer	This is a test in the code. It tests a small piece of functionality.	Slows down development. Takes discipline.
+Integration	Developer	This is a test in the code. It tests that one piece of code returns data as expected to another piece of code (more on this in a later chapter).	Slows down development. Takes discipline. Hard to write.
+Acceptance	User of the system or Product Owner	Validation that the software meets the needs of users.	At this point, the software is written and complete, so it's more costly to change.
+There are other types of testing as well:
+
+Performance/Scalability
+Security
+Usability
+Accessibility
+Portability/Compatibility
+#Why is there a cons column, but not a pros column?
+There is no pros column because they all increase the likelihood of working software that the end user wants. You're focusing on unit tests right now because they're earliest in the development cycle and find defects when they're less costly to fix.

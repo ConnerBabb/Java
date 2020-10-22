@@ -1,0 +1,50 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#exception-object
+
+Exception object
+While the catch clause can be used without any type of argument after it, this isn't recommended.
+
+Java provides access to an exception object with additional detail about the exception that was thrown. Exceptions are similar to classes, and they use properties to represent their current state.
+
+They're built on the principle of inheritance.
+
+Object
+    Throwable
+        Exception
+            RuntimeException
+                IllegalArgumentException
+                    NumberFormatException
+                ArithmeticException
+                NullPointerException
+                IndexOutOfBoundsException
+                ...
+The number of built-in exception classes is far too many to show here, so this is just a sample. Intellisense indicates which exceptions you need to watch for when calling a method.
+
+Using the example from the previous section, you'll catch a NumberFormatException, which is used when a call to one of the parse methods can't complete:
+
+try {
+    System.out.print("Enter a number: ");
+    String s = input.nextLine();
+    int result = Integer.parseInt(s);
+
+    System.out.println("The number typed in is " + result + ".");
+} catch(NumberFormatException e) {
+    System.out.println("An error parsing the input.");
+}
+
+System.out.println("Thank you.");
+Example with valid input
+
+Enter a number: 2
+The number type in is 2.
+Thank you.
+Example with invalid input
+
+Enter a number: two
+An error occurred parsing the input.
+Thank you.
+You can configure the catch block to look for a specific type of exception. It catches anything that's of type NumberFormatException or inherits from NumberFormatException.
+
+Notice this looks like a method call. e is now treated like a parameter and represents the object that contains the detail about the exception that occurred.
+
+In sum, you should catch exceptions when you have a good understanding of how you want to recover from it.

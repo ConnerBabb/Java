@@ -1,0 +1,19 @@
+Book
+https://book.techelevator.com/content/relational-database-design.html#building-a-sample-application-tach-escalator
+
+Building a sample application: Tach Escalator
+Imagine that you're asked to create a relational database for a programming training school called Tach Escalator. You meet with several of the people from Tach Escalator who provide with the following information about the company and the data they want stored for their system:
+
+There are several Tach Escalator locations across the United States. Each location has its own unique internal identification code.
+Each location conducts three, 14-week cohorts a year.
+Each cohort offers two courses: a Java class and a .NET class.
+A course has at least one instructor, and no more than 20 students.
+Instructors typically only teach one class per cohort at a single location, but some instructors (tutoring/mentoring) may be assigned to more than one class during a given cohort.
+Instructors may alternate between Java and .NET between cohorts, but never within a cohort. For instance, if an instructor began a cohort assigned to Java, they're assigned to Java throughout the entire cohort.
+Instructors may also change locations, but once again, never within a cohort. If an instructor began teaching at one location, they stay at that location throughout the entire cohort.
+Students may only enroll in one class per cohort at a single location.
+Students are bound to their course, cohort, and location. A student who began in .NET stays in .NET throughout the cohort and may not switch from one location to another during the cohort.
+Each location has a single campus director.
+Campus directors need to know the number of students enrolled in any class for any cohort, past or present, within their location.
+Campus directors need to know the number of graduates in any class for any cohort, past or present, within their location.
+Campus directors want to store notes/comments about each cohort, past or present, within their location

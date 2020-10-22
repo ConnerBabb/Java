@@ -1,0 +1,48 @@
+Book
+https://book.techelevator.com/content/server-side-api-2.html#actions-on-resources
+
+Actions on resources
+Actions on resources are defined by the HTTP methods of GET and POST, which you've already seen, and PUT and DELETE, which you may not have seen until now. These four methods implement CRUD operations on your resources.
+
+#CRUD
+CRUD is an acronym that stands for Create, Retrieve, Update, and Delete. These are the four basic operations that you can perform on data. You'll see these operations again when you learn about databases.
+
+To Create a new resource, you POST data to the URL for that resource.
+To Retrieve resources, you GET from the URL for that resource. You can set this up to send search parameters to specify which products you want, like GET /products?name=headphones or GET /products?addedAfter=2019-10-15.
+To Retrieve a specific resource, you GET from a resource URL with an ID.
+To Update a resource, you PUT data to a resource URL with an ID.
+To Delete a resource, you DELETE a resource URL with an ID.
+The table below shows you how these CRUD operations apply to the /products example:
+
+Operation	HTTP Method	URL	Use
+Create	POST	/products	Create a new product using data passed in the request
+Retrieve	GET	/products	Retrieve all products
+Retrieve	GET	/products?name=headphones	Retrieve all products that match the search
+Retrieve	GET	/products/5	Retrieve the product with an ID of 5
+Update	PUT	/products/5	Update an existing product with an ID of 5 using data passed in the request
+Delete	DELETE	/products/5	Delete the product with an ID of 5
+POST versus PUT
+
+The question of whether to use POST or PUT is frequently asked by developers new to REST. The answer lies in the term idempotency. Programmers say an operation is idempotent if it produces the same result regardless of the number of times it's performed.
+
+PUT is considered idempotent because no matter how many times you perform the PUT operation, the results remain the same. You've simply updated the resource with the same values again.
+
+POST on the other hand, isn't idempotent. Each time you POST, you create a new resource. If you POST a set of values five times, you've created five new resources.
+
+So then, as the table above says, use POST to create a resource and PUT to update it. Furthermore, the URL for a POST doesn't contain an ID since a new resource is created, while the URL for a PUT does to identify the resource to update.
+
+#HTTP status codes
+HTTP Status Codes are returned from the API to let front-end applications know if there were any errors or if everything worked successfully. Common codes that are returned are:
+
+HTTP Status Code	Description	Use
+200	OK	Everything worked as expected—should have data returned. Common for GET requests.
+201	Created	New resource was created. Common for POST requests.
+204	No Content	Everything worked but no data is returned. Common for DELETE and PUT methods.
+304	Not Modified	The data hasn't changed since it was last retrieved. Common for GET so data doesn't have to be redownloaded if it hasn't changed.
+400	Bad Request	The request from the front-end had errors. Check the data passed back to see more specifics about the error. Often a data validation problem.
+401	Unauthorized	The user isn't allowed to perform this action either because they aren't logged in or because their login information is wrong.
+403	Forbidden	The logged in user isn't allowed to perform this action because they don't have permission.
+404	Not Found	The given URL doesn't point to a valid resource.
+405	Method Not Allowed	The HTTP Method given isn't valid for this URL. This could be because certain resources can't be updated or deleted and don't support the PUT, DELETE, or POST methods.
+500	Internal Server Error	The API itself has a problem and can't fulfill the request at this time. This could be due to a code issue or because services the API relies on, like databases or application servers, are down.
+These pieces work together to provide a foundation for designing a REST API.

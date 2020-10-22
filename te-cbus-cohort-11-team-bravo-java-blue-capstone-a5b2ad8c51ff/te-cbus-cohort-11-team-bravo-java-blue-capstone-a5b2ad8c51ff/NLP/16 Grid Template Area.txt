@@ -1,0 +1,73 @@
+Book
+https://book.techelevator.com/content/css-grid.html#grid-template-areas
+
+Grid Template Areas
+In this section, you'll learn about a new grid property called grid-templates-areas.
+
+Until now, you've assumed that every item in the grid takes up a single cell. There are times when you'll need a grid item to span multiple columns, rows, or both. Take a look at this first example:
+
+<body>
+  <header>
+    <h1>Welcome!</h1>
+  </header>
+  <aside>This is the sidebar</aside>
+  <main>
+    <h2>Main Content</h2>
+    <p>This is our main content.</p>
+  </main>
+  <footer>Copyright 2019 by Me</footer>
+</body>
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr
+}
+You know that this CSS places the content in four evenly-spaced columns that results in this layout:
+
+
+Image - HTML page with Grid
+With grid template areas, you define a grid of rows and columns that your page should be split up into, and then assign elements from your HTML into those grid areas. Using the same markup from before, you can create a grid that looks like this:
+
+
+Image - Grid Template Areas
+You define the template in CSS, defining grid areas and naming them so that you can insert your content into them. First, you'd define the grid-template-areas property and set it to a string template. Each string is a row in your grid and each word is a column in that row, as shown below:
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "content content . sidebar"
+    "footer footer footer footer";
+}
+If you define the same name to each column in a row, that means that element spans that entire row. If you put a . in one of the areas, that means that the area is empty.
+
+You then have to give these grid names to your elements that are in the body element:
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "content content . sidebar"
+    "footer footer footer footer";
+}
+
+main {
+  grid-area: content;
+}
+
+header {
+  grid-area: header;
+}
+
+footer {
+  grid-area: footer;
+}
+
+aside {
+  grid-area: sidebar;
+}
+Now you can see your page is laid out within this template:
+
+
+Image - HTML page with laid out Grid elements

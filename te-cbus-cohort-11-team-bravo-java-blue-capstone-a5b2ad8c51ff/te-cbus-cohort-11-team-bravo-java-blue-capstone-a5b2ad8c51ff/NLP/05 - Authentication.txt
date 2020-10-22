@@ -1,0 +1,1379 @@
+Zoom
+https://techelevator.zoom.us/rec/share/yuxEEImtxDJOXqfKxmHNd7IZBN3kaaa803Ie_fQJmE6enTpbpXAPYDH0Pkb0XTv2?startTime=1593436194000
+https://drive.google.com/file/d/13ytNy_mUprlGY1TxGpo5OCRc7zmecKzO/view?usp=sharing
+https://docs.google.com/presentation/d/1cKW9bzW40NwsVQwk6AsgeYp005uQbhmR0D4KpPbZOls/edit?usp=sharing
+So today we'll be talking about another security topic. We'll be talking starting with authentication. That'll be our main focus. And we'll talk about what that is. And as part of that, we'll talk about some details of authentication, including what's called authentication factors. And then some of the look at passwords and why password policies are, where they are, and then the process of authentication. Then we'll look at one particular authentication type called DWT, which is commonly used for API's and modern web applications. And from that, will lead into Dean to talk about a second topic called authorization and the difference between authentication authorization, what each of those do, and then we'll take a look at using JW With authorization in Spring Boot, and then finally from the client side, so applying it to what we will be been we worked on last week.
+
+So authentication is
+
+the process of verifying that an individual is who they claim to be. It's when you go to a site and you get a password, your username and password that's authentication. It's the key to the site. Its main purposes to verify that when a user comes and they claim to, you know, be Joe user, that they really are that user that they have the right to enter your site with the authority to present themselves as that user, both in sorry, both on a web application or a general application, or actually, authentication is something that's done in real life too. And somebody asked for an ID To verify that it's you that you're the person you claiming to be. That's a type of authentication. So it's the kind of front gate to any application or any process. So we're going to talk about specifically in the concept of applications, of course. So in application application, there's what's known as factors of authentication. And there's three of them. And these factors with authentication are the knowledge factor, which is something your user knows. So it's a password. That's that's knowledge that or PIN number for a bank card, or passphrase, or challenge response or security question. Those are our knowledge based authentication. So it's information that give the user the user gives us that they have knowledge of the second factor is ownership factor. So ownership factor authentication is something the user has. So that would be something like a wristband, or an ID of our driver's licenses or state IDs are a form of ownership factor authentication, a security token, like an RSA token, if anyone's used one of those it work or for web applications, where the either you get a little device that has a number that changes every 20 to 60 seconds, or now there's common phone applications as well, that a lot of sites use that does the same thing. So those are things that are owned by the user. So they're a physical thing that the user brings with them or has with them. And then inherent factor is something the user is so Harris factor is biometrics. It's things like fingerprints. Or retinal patterns, facial recognition. So it's things that we don't have knowledge of the user or they don't own, but they just are. So these three factors together, are meant to be used to, for secure authentication for any one individual factor. It's not considered to be very secure authentication. So just having a password or is not that secure, because it's something that can easily be gained knowledge is the easiest one to gain from a user because it can be done remotely a phone call or email can gain knowledge from a user that time. But it's tricking them into telling you that information. Ownership factor has a weakness as well of that. While it's harder to gain, it's still something that can be taken away from the user, right? And inheritance factor biometrics, whatever Something that user is, it's something that has two, two weaknesses. One is that it's the most unreliable the three at this time, just because of the technologies around it. And also, it's something that a user can be in person can be forced to give. It's something external to them, right? So, good. authentication is meant to be multi factor. The so we hear a lot about two factor authentication. You hear that from websites all the time, we have two factor authentication. And what that's supposed to mean is that they use two of these factors of authentication, that they have either knowledge factor and ownership factor is probably the most common to two they're used together. But there's two of these they've chosen and it could be, you know, ownership and inheritance. inheritance. It's really just two of the two choices. That's what two factor multi factor authentication is picking two to three of these, in some systems actually can be for all three
+
+factors involved.
+
+So you see this quite a bit. You also see a lot of sites that say we have two factor authentication and then they give you a password and the security question. That's not two factor authentication that's doubling up on the first on the knowledge factor. Why more secure than a single password, it's not as secure as using two other factors. But it's also across the web that inheritance inherits factors almost impossible to do. Because if we're sending just data about what the biometrics are, then that can be faked. And ownership factor can be difficult as when we have to physically give or get something to the user get them to install an app on their phone. so common, it's common to treat two knowledge factor pieces. multi factor authentication. So authentication again being how we get into get into an application defining who we are.
+
+So I can do with that.
+
+When we do see true two factor authentication, though, is becoming more and more common. That is kind of outside of computers is, you know, your bank card and a pin number is true two factor authentication, giving a knowledge factor, the pin number and ownership factor with the bank card itself.
+
+So
+
+before we look at the thing we're going to focus on which is the knowledge factor, mainly passwords next. Are there any questions about what authentication is
+
+We're going to look at these passwords because that's what's going to affect us in applications, right? Just about every application or website has that have user based experience. Have a password.
+
+So let's talk a little bit about what
+
+how do we judge a good password?
+
+So I have here two passwords on the screen. The first one, they are numbered zero, lowercase V, uppercase E, lowercase r, and you can see it and the second one, and my first dog is named Grover. So how many people by I'm not sure how to tell you this, I guess the hand feature or something on it would fill that the first one.
+
+This one is more secure.
+
+People, how many people filled this one is more secure.
+
+Okay, so so it's pretty evenly split.
+
+So this is what every
+
+time password policy
+
+pretty much pushes us towards currently this idea of substitution of letters having special characters involved upper or lowercase letters, numbers. So it has four sets where we have upper and lowercase letters, numbers in a special character with this would have three upper lowercase numbers, or upper case letters and a number, but it doesn't miss the special characters. So this has been our traditional, what we've kind of forced users into believing is a great password. In one point it was in current. So this right here is getting with seven characters.
+
+Its uses mixed case,
+
+number
+
+and a special character, someone's character characteristics. This particular one is 20 characters
+
+and uses
+
+mixed case and a
+
+number
+
+but two different ways.
+
+So what's a modern
+
+modern computer looks like we're all using right now the one, the one that you're on, you know, these kind of order. entry level Mac books. This first password can be cracked right now in about 58 minutes.
+
+So oughtred say user
+
+level computer
+
+approximately 15 minutes
+
+a supercomputer, right, we talked about a while ago we done secured last time that you can rent supercomputer array for about $300 an hour for about 3000 computers. One of those arrays so supercomputer array can crack this password and point 06 seconds. So, you know you have to have something more than your home computer and of course, that's if somebody is targeting you're trying to crack this password. They're targeting you It's not, you know, going after an individual, they wouldn't be against, you know, mass amounts of people would be if they wanted to get into your password. This one
+
+with a modern user level computer
+
+it would take about 30 382.4 years
+
+for the supercomputer array
+
+1.3 weeks those are all averages are just kind of
+
+rough. Right? Not.
+
+So why and that's really the point of this is not to say Oh, look at these two passwords and look at how wrong everybody's been. It's why is it the first one even though it feels more secure to most people, and I've been happy to notice see, as I've been going through The courts that more and more people are voting for the second one. A couple years ago, everybody voted for the first one. And that's because password policies are starting to change on applications and websites. But how do we determine which of these is really secure? And that's this idea called entropy.
+
+So entropy
+
+is the measure of how is how we can tell how strong a password really is. And entropy is a measure of how unpredictable a password is. It's not a measure of an individual password, but it's a measure of the selection process. Because remember, if the if somebody is attacking a password, they don't know the password right? They only know the Select possible selection process. So it is what a password could be. It also when we talk about entry doesn't take into account Common user patterns behaviors, it just is about the selection of what the password is possibly could be. So going back to these last passwords when we use this password policy of having upper and lowercase letters with and when not at least one number and one special character I just about every user. And actually, there shouldn't be a one there for the password that I wrote out the details I wrote out about it. Just about every user will put the special character and the number at the end of just about every user, and by a large majority of them will put the special character first and it will be an exclamation point, and then put a number at the end. There's also common substitutions OHS almost always get one a few users have to put numbers on they almost always substitute O's for zeros, three or threes for easy And there's an ace for 444 a, and there's a set of these that are really common actually tables of the most common used. So
+
+that would actually speed up these times.
+
+So entropy is not a measure of an individual password, but it's given without having that knowledge that there are seven characters, and that it uses from pulls from these four poles of possible characters. With our keyboard really has four poles of characters that can get from it can be the lowercase letters, uppercase letters, numbers, or all those other characters that are not numbers or letters,
+
+which we just lumped into a special characters.
+
+So an entry itself is there's a calculation here for it, but you don't need to remember that or even know anything about it. I just put it there. So for those of you who are interested, could know Got a sense of where it comes comes from. But it comes from this calculation of all the are all of the pool of the characters being used. So in the first password rover one, it actually has a larger pool of unique characters. And then raised to the power of the number of characters actually using the password.
+
+And then taking the log to have that.
+
+And there's some links down here that if you're interested, I'll show you what they are. We won't go this first one actually is where I got one of the places that calculation and it explains it and goes through character polls, and it actually has extra stuff about dictionary words and things like that.
+
+If you're right, Brian, you can guess
+
+that. It's like very likely for a person to have the number on the end and the exclamation point like why is that? That's So interesting.
+
+I don't, it's just human nature. It's just what users do. I'm sure there
+
+are like, you are actively describing my, my PC password, so I'm gonna have to change that.
+
+I don't know the psychology behind it, but I'm sure there's been lots of studies on it, but it's just, but users do.
+
+And it's
+
+just sure something to do with memory. Why they choose the explanation point? i? Yeah, I don't know. But just yeah, I can say why I did it is because I made my password and then it told me you need to add letters or numbers and then special characters. I'm like, Okay, I'll just put those on the end,
+
+because I already know the front half, if
+
+that makes sense. And that's, I'm sure, why not. Yeah.
+
+So the second one, maybe a bit more interesting, is an entry calculator. And just get out This model bleeds out in the web. So it's a password strength tester. There's lots of these around. A lot of them, this one actually is fairly accurate. It can be hard to find one that's fairly accurate. It matches up with actually, into recap, manually calculating entry. A lot of them are almost as good as just a guess. But for all of them, don't go put your real passwords in here. I have no signal. This is a well known security contracting company, but that doesn't mean that that's Yeah. So don't put your password in any website to test it. But put other passwords on and this also stays fairly up to date. If we put our password password 123 and it tells us problems with it, based on the current password recommendations, such as It'd be longer than 12 characters. It should contain a special character. It didn't it breaks down into dictionary attacks, it gives the it gives the interface someplace in here. Not right here. It'd be a five the higher that number is the better. So the crack time is point 002 seconds for this one. If we go to our, their passwords, like
+
+it gives us you know, about four hours, they're actually estimating
+
+much shorter with a dictionary attack, interior 27
+
+and problems with it.
+
+So
+
+did it wrong The last one too, but you get the idea.
+
+And can track time in seconds. So the display century in 56. And it breaks it down into all the different. It's via the individual words in the dictionary. So it can be interesting to look at different passwords in a tool like this. So that's there as well. And then the last one is actually injury crack times which I find really useful. But let's take a look at this site. I use what's interesting to look at and especially one thing one thing is this comes up I've learned about security side is that the more somebody is team seems to be insecurity. And deeper into it, the worse they make their webpage look. So when I see a web page that looks like this, I really think this person knows security. And it really is it gets deeper to the topic. There wasn't sites get more and more ridiculous looking. But this has this really good tool on it. Despite how hard it is to read where we can set it is the only one I could find like this. So you can set the size, the alphabet. So if we go up to 64, which is all the characters that can be transported across the web. So base 64 is the set of characters that can go across HTTP, which means that if it's higher than that, we can't transport it anyways. So it could work on a desktop system, but it's not necessarily a web system. And what's interesting, then we can set let's see, said 2 billion 60 billion the current systems are actually doing about 120 200 and 50 billion guesses per second. So if you go to there you can see on this password length of 10 is about six weeks for a modern supercomputer using base 64. But just one character addition, goes from six weeks to seven years. So one of the most important things in interview is actually password length. The character set is very important as well. So having a large character set and password length is more important than using all those characters and every password, just having the ability to use them gains a password entry. So if we lower this to just letters and digits, we can see it's also lowers it quite a bit. So using every character at our disposal, so the base 64 set
+
+and creating passwords
+
+even at like 11
+
+or 12. And like 12 at that size gets 498 years, no matter what characters were chosen from that set. Which means that those easy to remember passphrase somebody put in there called passphrases. And they often come with code that is easy to remember, passwords, or passphrases are much more secure than these passwords we've been training users with. or password policies have been telling people or secure for years. And they're also easy to remember. I know after resetting my daughter's password for her on my game, about 1000 times in over a couple days. I reset it to how to set her own password her original one. It was my favorite shirt is yellow, using capitalization and that's much more secure passwords and all the ones she was trying before that they were trying to and she didn't forget it after that. I'll point out that she's changed since then. So you can't, you know, hacker Roblox account. But so, but it, they're easy to remember, even children can remember them. And so we don't need to write them down, which also makes them a little more secure. So before we look at the past the current password recommendations or questions on
+
+what we've
+
+looked at.
+
+I had a question about using the arrays and what to crack passwords. If you look at the a lot of sites will give you a limit of attempts right before they will kind of lock you out, I imagine is not considering that sort of security measure, right? When you talk about a just a brute attack of trying different passwords, because the law sites won't let you do it. For the amount of times, it'll stop you and make you verify some
+
+other way first.
+
+Yep, no, it's not. It's talking about being in able to guess the password randomly giving the speed at the limitation on the computer. So for I'm not sure what it average, but I think I have it written someplace an average computer know how many seconds how many guesses they can make. But I noticed the current supercomputer arrays can make about 100 and 720 200 and 50 billion guesses per second. So given given that, that they're able to do that, which you're right, they can't do against, directly against like a web front end if it's well written, or actually, against any web program, because the internet's just not that fast. But they can't against an application that's downloaded or
+
+things that are not not web based that are
+
+not necessarily secure.
+
+Like if somebody got a hold of your phone or your computer. There's tools that can be used to directly attempt passwords against them. at that speed. So it's more. So because when we get to we haven't talked about process yet, which is a lot of what's going to help to with security. So everything we've talked about so far is just given a perfect scenario for the person trying to break it.
+
+So just so we can talk about what is a good password?
+
+And does that answer your question?
+
+All right. All right. So there's a group called Oh, wasp, and we've talked about them. Last time we talked about security, the open web application security project, which is an open source collective, that set security policy and they they come out with a password policy they keep up to date, what the current recommendations are for passwords. In most companies end up following it eventually. After changes you'll sometimes see a while before places will follow suit. But you eventually will see at least larger places or more security conscious institutions start implementing it.
+
+So the current Oh OS password policy
+
+is that passwords should have three of the following complexity roles. So at least one uppercase number, at least one lowercase character, one digit and one special character. So it's pick any three of those. It can have all four, but it should be forced to have any three which allows the still requires a number of special character because if we forced to smallest set, since you have to publish your password policy, you have to tell the user how to publish color change, how to create their password, right? If you tell them they can pick from any of four of these, then somebody who's trained to look at their password or crack their password individually. Doesn't know which of the three they picked. So giving the option to pick from all four Depends on the entropy to the full set of all the all the available characters. The second is it should be at least 10 characters and we saw that there's no huge jump for each character we add to the to the entry.
+
+And then there should be a maximum length set as well.
+
+So which sounds kind of backwards, but there has to be a maximum length because there's actually a well known tack, I guess passwords that are too long.
+
+So
+
+there is if your password, so they recommend 128 characters, which is long enough for pretty much any passphrase somebody wants to create, but they their actual full recommendation is you should pick a number and whatever it is, that's what it is. So if it's 256 characters your system can handle then that should you should set that as a maximum limit, but there should be a master Maximum. And the reason is because of the hashing algorithms we've talked about. We've looked at those, they have artificial slowdowns on them. And there is a common denial of service attack where I called the long password denial service attack where you are attacker will send a password of like a million characters or more. And then the hashing algorithm will bring the whole website or application down as it tries to hash this giant password. And it doesn't try it's working. But it might take it a day to complete that work. And during that time, it's going to take up all the cycles from the CPU and essentially bring the website down. So because of that, there should be a maximum length and then that it should be no more than two identical sequential characters. So you know, so two threes in a row are fine, but three of them are. A should not be allowed. That's the current recommendation. And there's a link to the wasp recommendation. They have it, they publish it on GitHub right now.
+
+Which will go through and explain it in more detail than I did and a bunch of other information about it.
+
+So the point of it is just so they give you some context into know why, why you're going to be asked to set these policies, you as a developer won't be asked to set these policies that are in a large company in a small company or startup, yeah. You'll be asked to just probably follow whatever a wasp does on a larger company. A security team will say this is what our passwords have to be. But to give you some context of why that is.
+
+Alright. So then let's talk about the process of authentication because some of that's going to become important for today. Then we get to it. So the process is that and this just means how we should be implementing, and some things we should be taking into account. So the first is that we should only be passing credentials, so usernames and passwords only through the post request on the web, and only using HTTPS, so Transport Layer Security or secure socket layer five, call it so only using those things and so should always be encrypted and choisy and post so it's and then the encrypted message body and never on the query string. The second part of properly implementing login is that error messages should be generic. They should never identify what's wrong. So a bad error messages something like invalid password or login failed invalid ID Count disabled you unable to login, the user is not active, this are a really bad error messages because each one of them tells the user something that's wrong. The first one tells the user or somebody who's trying to a malicious user that the passwords fine, or the password is a problem. But the user IDs wrong. Sorry, got it backwards. user IDs, right. But the passwords wrong. The second one, telling the opposite, that the user IDs wrong. The third one's telling him the accounts disabled, which in those last two, you might think well, they'll go away if they know those those pieces of information. But we actually don't want a user performing an attack against an account to go away. If they have wrong information. We want them to continue trying. Because if they're, you know, they spend their seven hours it might take to crack a password with our granthi on an account that doesn't exist or has been disabled. Then they've wasted seven hours. And a large part of security is actually getting used to getting malicious users to waste their time. That's kind of what we looked at last time as well. A lot of is just slowing them down because you can't actually stop it. But you can slow it down to a point that it's not, has no value to them. And then the last one, you know, unable to login, the user is not active, the same idea is telling them, it doesn't matter what you do the users the problem. And it's been activated. So we don't want to give that information. Now the good password error is one that identifies to the real user what the problem is, but doesn't go into any detail. So login failed invalid user ID or password. I tell them one of them's wrong, which will prompt users to try again. It tote but it doesn't tell them any information about which one's wrong.
+
+Yeah, you Yeah, Zack, you can, you could, you could keep track of IP requests. But again, all the all security majors are talking about in a perfect world. And also it's pretty trivial to refresh your IP. So, so IP address might stop somebody for a few seconds, but I can run a command on my computer to get my ISP to give me a new IP and I'll take about 10 to 20 seconds. And so,
+
+so yes, we can, but it won't add a whole lot for it.
+
+And the same with MAC addresses for the device, we could gather those but those are easily spoofed. So
+
+the attacker would just build up something that cycles them.
+
+So the second
+
+set of error messages that we always want to keep generic is also taking into account preventing brute force attacks. So this is a Justin talked about a lockout, this is part of that to the current recommendation is that after so many attempts, so after like three attempts, or five or whatever number we set, we should lock the user's account silently. Most sites will tell you, most sites will say your accounts been locked, because they want you to call and often they'll then force you to call customer service to
+
+re enable it. Or they'll tell you to wait so many minutes.
+
+That's not really a great policy, but it's also because it's, they're also trying to balance the idea of how much do you frustrate the real users to protect them. The actual policy is that the accounts get locked out for a set time, anywhere from a minute or two to 20 minutes and it's silence They count locks. And it should also the actual recommendation is that it's not always three times it's between usually three and eight times. So that there's, it's hard to make it hard to script. Try three times, wait 20 minutes, try three times. Instead, it's more times, there's x, try some number of times, which is going to be variable, and then some unknown number of lockout. And then finally, rename the account. And the idea is that a lot of users will come back and try again later. And it'll work. And if not, they can call customer service, you can you immediately unlock their account for them. Most sites implement this inside is three, usually three to five attempts, and then they tell you your accounts been locked out, either come back later or have to call them or contact them in some other method. So that's one way of preventing brute force counts attacks. The other common way is adding Random slow down or what's called work factor. This really is to slow down to login forms. I kind of mentioned this last time. But login always seems like it's the longest process in the system. You go to log in, it takes him 10 or 15 seconds, and then everything else is just really fast when you're logged in. That's not because login process takes longer than everything else. It takes no longer than everything else. There's artificial
+
+slowdowns built into most login systems.
+
+And that's just because users will wait
+
+a few seconds to login the wait considerably longer to log in, they will get information mainly because they become used to it. But if we take 10 seconds to log in, and then that means that if somebody is going to our application, then they can only make an attempt once every 10 seconds no matter how fast your computer is, which puts even the weaker passwords into centuries.
+
+cracked on
+
+so that Kind of annoyance now that you're going to notice it. So now that you know that there's an artificial slowdown, it will annoy you. But you can always think this is on purpose, right? This this is actually protecting me and is good policy. But you will notice it now. So.
+
+So that's the other
+
+process. That's the process we use for passwords.
+
+So questions on
+
+anything
+
+we've talked about so far for authentication, that's what a dedication isn't.
+
+So, there's, they don't tell you sometimes when you're locked out of your account, and I feel like I've entered a password like 20 times and I was probably just locked out and
+
+I didn't know it. That's very possible. The more security conscious a institution is, the more likely is they Don't tell you.
+
+Yeah. So any other.
+
+Alright, so the next thing then, let's talk about how we'll do this with an API. Because an API has kind of a weird
+
+system with everything stateless with HTTP.
+
+How do we even do login? So now we understand what authentication is. And we have this idea of what the passwords are. How do we do that when in a stateless environment.
+
+And
+
+so especially for something like an API where we don't have user interaction directly, anyways, so the way one of the ways in the way we're going to look at and probably the most common way to do it is using these things called JW T or JSON, JSON Web tokens. And what a JW T is it's a token. So it's a string of encrypted information. And we'll look at what those look like that is generated on a server is going to include some information about how to generate This can include what's called a payload. And that payload will be called a claim. It'll be what these who the user is, what they can do. And then some what's called a signature, which is going to be some details that the server can use to verify it was that server, who created it so that it's valid. And then that'll be sent to the client. And then every time the client needs to send a request, after they've logged in, they'll send this token. And the server will use the signature to verify this token hasn't been manipulated. And as long as it's not been in manipulated, it'll know that they're a user that is currently authenticated with the system. And so it's going to start by a user coming to a system. And they're going to sign in with their user ID and password. Often against an authentication server doesn't have to be these two can be. It's a software. So it can be the same, the same application or multiple ones. And they're going to send back this JW t, so a Java JSON Web Token back to the user, then every API call they make they're going to include this JW t in the header to the to the API, the API, then its server will verify that it's a valid JW t. So it's going to verify that all the information is correct. And it's gonna do that using the signature so often to the signature of the authentication server. Verify that it's the one that created it. And these signatures are created in such a way that only the authentication server can build them. matching with the magic magic signature and the information that so if someone changes information, they can update the signature to match the authentication servers signature, because they have to have the key. So similar, it's basically encryption. It's symmetric encrypt or symmetric encryption, this part point that's being used. So they have to have the key that the authentication server and application server share, to regenerate the token with different information. And then, you know, verify it, and if given it passes, it will then continue with the API call. If it doesn't pass, then it rejects it with a four one or four three error and we'll look at our status. We'll look at those statuses what these mean as we go today. So that's how we're going to do authorization on an API focused application. This is not the GDP is not the only authorization format. There's also more direct authorization where you just send a POST request to the credentials that websites often use. But API driven authorization is done in this way.
+
+There's actually quite a few different methods of authorization.
+
+So
+
+let's look at one, put a go to today's lecture card. I'm gonna start
+
+the server side of it.
+
+In this, the lecture today has been set up to do JB two authorization and has all the code setup to generate the JDBC tokens. And then we'll set it up to use them with our controllers. But in most cases you won't be writing, you won't write code that generates these tokens or use them. It's usually boilerplate code provided by the framework, which is what we're using. We're specifically using something called spring security, which is a security framework provided by the spring by spring as part of it, and it just plugs into Spring Boot or other spring applications. And it's actually considered very insecure to ever build your own security. So it's the go by the enjoys use encryption, algorithms and security that are built built in to the tools. So you will use the pre built ones because the chances of you building one more secure than them, then, you know a group of thousands of developers working together is pretty slim. And that's actually one of the larger most common security flaws and companies is in homebuilt security. That's because that great idea that you're thinking this is no one will ever beat this often has some hidden flaw that maybe somebody else has already discovered, or often is already discovered. So I'm gonna bring up postman to
+
+get rid of these old requests.
+
+This first one here, and
+
+there is a login page now on this
+
+request
+
+Sophy may post request to the login.
+
+This is some raw Jason.
+
+And Jason, this post request takes his username. And the user. There's two users built in admin user. user. We'll talk about that what that means in a minute or later today. But the user's username is user and their password is password.
+
+So sending that to login, we'll walk through exactly how to do an occasion against the server. Started violating one of the roles choosing HTTP, but it's on localhost. And just for demonstration and going in getting setting up an HTTP certificate is not really an easy or simple tasks. So that's why it's an HTTP
+
+definitely not something you would To set up on our local,
+
+we'd spend all day working through that, rather than
+
+looking at the Pat day login, so we're going to run the request. It's going to go to spring security at a JW t token. And here's the token returned here. So this is a JW t token. Now I can send this with the request to this API.
+
+And
+
+it will
+
+use that to show that I'm authenticated as
+
+user user.
+
+And we can actually it contains information about my current authentication.
+
+So I'm gonna copy it
+
+back out and look at the parts of the token system. It's broken down into a header, a payload and a signature. So in the token itself is actually broken into, you can see there's a dot here and a second dot here. So this is the header. Between the two other two dots is the payload. And then this last part is the signature. So this header tells it what kind of algorithm was used to build the token?
+
+What kind of so basically what kind of token it is.
+
+This second part, the payload, has details about that my user by user name user actually three details my username is user, what role I have and we'll talk about what roles mean in a moment and also when this token expires, so how long it lasts, and the last part
+
+is the signature. So all this is encrypted
+
+and But it's encrypted in a way that can be easily decoded, and we're actually gonna decode it.
+
+And then
+
+that signature, though, includes information, it doesn't include the details of how to do it includes information on how the signature was built so that the server can build the same signature to verify. So the course kind of like, we looked at hashing, where with passwords, word hashes, does the original hashing of the original password in stores with it stores the user's intersite password and then compares the hatches, the same idea with the signatures. Same basic idea.
+
+So there's a tool here, I go to it.
+
+And there's quite a few of these on the internet that can decode jbt tokens.
+
+Here, I'm going to paste
+
+that token. That way. So great. Yeah. So the token
+
+and
+
+it see the header. So this first part, this is what it comes down to. And what it's doing is saying choosing the HS 512 algorithm was used for this token. What we really care about the part we're going to really pay attention to we're going to use a lot is the payload. Because the header in the signature are actually done by the security framework. The payload is to the payload contains information that's useful to us as application developers. So it contains three pieces, the subject, which is who this token, whom this token refers to. So it says user, but that's because my username is user. The second one is the author's the authorization We'll talk about that means we're going to talk through authorization. But it's what the user can do. So this is saying that they have the role of a user. And we'll talk about more what that means. The third is the expiration. So this is a time this is a Unix time stamp. And that says when it expires, when you say here, it expires on Tuesday, June 30, at 957 GMT time. So then at 7am 11, second, it's GMT it'll expire, actually minus four, so Eastern Daylight Time. So don't expire tomorrow. But the time I created it looks good for about 24 hours and this type this time stamp here is what's called a Unix timestamp. And what is it's the number of seconds since the epoch, the Unix epoch, which was actually I have it in my notes these notes. Here, which is the number of seconds since
+
+1970
+
+January 1 of 19 1970, exactly 00 zeros how many seconds expired since claps since then. That is the
+
+what that is and that can be changed into a date.
+
+Which is on a side note when you hear about the what is it 19 or 2036 problem or camera the date but there's a coming date problem that's like the y2k problem was with the dates. It's about this these seconds because we're going to overflow long.
+
+That's, that's what that's all about.
+
+But that's not important right now. It's just kind of aside. So those are the those are the parts and then to go back to the sorry, signature. We can see this here. gives us information about how it was built. But again, that's that's more of the framework we're really gonna pay attention to a lot is this portion right here. And actually, specifically, these two lines, the sub in the off. So that's going to give us a way to always get to users name. It's also going to give us a way to know what they can do.
+
+So but we need to talk more about that auth portion.
+
+Because I keep using this word, authenticate authorization, we need to understand that before we can really know where this token is going to do for us.
+
+But see, it's 1003 and we started.
+
+Wouldn't have the long quiz today. So are we going to take a break now, since it's been about an hour of you listening to me, then we'll come back at what 1013 and continue
+
+So what questions come up for you during the break?
+
+Alright, so this The next thing we need to
+
+really understand this this portion, what it means when we say authorization.
+
+So let's take a look at that.
+
+So a syndication is the keys to the site, it's the way to get in authorization is what you can do once you get into the site. So it's what permissions or privileges a user has, once they've logged in, so it's not the process of authenticating who they are or letting them and it's not login. But it's what when you get into the site, it's what makes a shirt If you log into your bank's site, it's what makes it so you can only see your account. Or that a manager can only see their customers or their doctor customers, their employees, and not another managers employees. So it's what separates is what determines what actions a user can take, and what they're allowed to do once they're inside of a site or an application. So once they've logged in
+
+so there's two
+
+types of authorization.
+
+There's role based authorization and there's also what's called permission based authorization.
+
+And
+
+so, role based authorization is access decisions based on a user's responsibilities inside of organization are their role. So the fact that they are a manager versus an employee or their doctor versus a patient. They get certain abilities inside of an application just based on on that, who they are, what what role they're taking. So a manager can maybe assign work, where they can see all the employees that they manage. And they can see details about their schedule, their schedules, where an employee maybe can only see information about their own, their own individual schedule and their own individual work.
+
+So
+
+there's a
+
+so role based authorization is completely based on this role. The fact that somebody is a manager or they are an employee, and it makes it easy when, you know a new employee joins the team. You just add them to the employee role, and they get all of the Access and the permissions that that role provides. So it makes it very easy to understand and very easy to administer or manage. And it's easy to understand because, you know, users are it's easy to communicate user to users, what their roles can do, because their business rules all the other people like them in the business, all the other people with that role, all do the same thing. It's easy to communicate with these are, you know what a manager can do, because they're already used to the idea of these are the responsibilities of you know, their responsibilities because of the role they're in. So, some authorizations are defined by that the role of the user, other authorizations or what's called permission based, permission based authorizations or access decisions based on who the individual is who their actual identity is. This is The idea that, okay, it's fine that every employee maybe can see the schedule for their team because they are an employee. And maybe they can make changes to their portion of it, but not to other employees. But they should not be able to see, you know, all the other employees paycheck, they should only be able to see their own paycheck or their own 401k. So that those decisions have to be very user specific. It's this resource is available to this user. Because it's individual to this user. So for you when you logged into, like your bank, your web bank, the fact that you're a customer allows you access to see the account page. But and that's role based authorization. But permission based authorization is what says that the only account you can see in the account page are the accounts you own So there's these two forms of authorization. And both with, you know, some advantages and disadvantages, actually, almost all the advantages are too robust. So we will generally try to use that, in most cases because it is easy to structure based because the companies that were the applications for we're already have that structure in place. So we can use that existing structure. It's clearly it's easy to communicate and understand for the user because they'll understand their limits and the rules of their position usually are ready or that can be communicated outside of just the application. It's easy to administer, it's not on an individual level is administer all the employees, all the managers of each role, and just isn't it most isn't as easy as drag and drop to give somebody those abilities. And it's built into just about every framework just about every web or applicant. framework there is has role based authorizations built in. It's only really disadvantages that it can't be user specific. It has to be its smallest level of granularity is down to the role based. So we'll use it when possible. But when we can't, when we do have to have individual authorizations, permissions, then we have to use user specific
+
+authorizations or permission based.
+
+Oh, when I worked at restaurants, like the POS system would have, like everybody would log in to be able to use it. Yes, but then it would still show all the options. But you were able to click on them, but then it asked for like another code. That was like the managers code or whatever. Yeah. So is that how it like I feel like on a website, it wouldn't be that way. You wouldn't show them those options even.
+
+Ideally, no, you can. And you will see applications and websites that are like that, where they do show all the opera options and only give you access to the ones that you have. But ideally, you would hide them if the user doesn't have access to buy, why should I even see the options exist? Yeah. But that, um, yeah, what we're describing occurs me it's in the OS. It's called elevated permissions. So actions that you can take, but you have to what's called elevate yourself to another world to to do that.
+
+So before we continue, are there other questions or Alright,
+
+so what's going to guide? A lot of
+
+what permissions will give a user
+
+is this principle called the principle of least privilege. And that's that the user should have the least amount of privilege necessary to perform their function. So that means we should not give them any abilities more than what they absolutely the minimum they need to do what they need.
+
+And the whole idea is that it's reduces the vulnerability if
+
+a user's account is compromised.
+
+So, you know if a user
+
+shouldn't be able to drop tables in the database, So let's they need to be able to drop tables. Because the idea being that
+
+if
+
+somebody gets a hold of their account, and all they need to be able to do is select that if they can drop tables, and then that access has been lost with her account, but if they've been limited to not be able to do that, then if their accounts compromised, they don't. The person who's compromised the account only gets the minimum that that user can do or should be able to do. So an examples. Manager shouldn't she be able to see the employee records for their team only date not for other teams, or a backup user should not be able to install applications. developers should not be able to access customer records in most cases, or an application that collects user information. So collecting information from the web but not displaying it should tap insert access to the database But not select access on the same table. So it should be limited to the absolute minimum, which is something you'll find, depending on where you end up. quite frustrating when you find out that a lot of companies say, well, the minimum of a developer should be able to do does not include install their own software. So va crossett, places very, you can't install your own software in the machine, they give it to you, it's built out with all the developer tools. And those are what you use. If you don't like those tools, then you want to work someplace else.
+
+That's a very common setup.
+
+So
+
+and that's part of this principle of least privilege. If you can install things in your own things in your machine, then you can install actually install malicious software on your machine which happens all the time for users. So that's the principle It guides what what authorizations are given.
+
+And,
+
+and then, well, before we, I guess, continue with how we're going to use it. A common interview question, now that we've looked at both is what's the difference between authentication and authorization. So again, authentication is the key to the application. It's login and registrations part of authentication to. So it's what the user does to find out if they are who they say they are, and to be allowed into the site, but it has nothing to do with what they do once they get inside. authorization, also, sometimes called access control, is about what the user can do once they've committed entry. So that's a common thing that comes up
+
+quite a bit.
+
+So now that we have a definition of these, let's see Look at how we can actually do this in spring.
+
+So in spring, I'm going to go to the controller, the hotel controller.
+
+First, I'm going to go to postman again and grab this request and create a new GET request here. And this is the one we were looking at last week. So it has the hotels.
+
+So I run it and see if we can get the list of hotels back.
+
+So the way authorization and authentication as well. We looked at how authentication works with the jvt token, but being authenticate itself as a type of authorization, meaning that you've been given access. So authorizations are applied. We're gonna apply them through this framework called spring security. And there's a link to the documentation here, if you're interested in deeper details about it. It is going to add both authentication and authorization using JW t to our application. And if we look at the code here,
+
+there is a lot
+
+this whole security package here. There's a lot of code around that. But it's kind of it's boilerplate code has been set up around building getting key tokens. So if you go through the documentation, it basically says this is how you need to code out these pieces for your individual application. In part where it might be a little bit interesting as the authentication controller which has the login, we're not going to really go through it much in detail in any detail at all. But know that this codes on here based on the screen Spring security documentation has been provided. So what we're going to look at is how we apply that to our code. Because that other code said you would get from looking at the spring documentation even say you write it in this way, there's going to be some places where you have to change things based on your application, which is why they don't just have it out of the box for you. You basically extend their classes and do your changes.
+
+So spring
+
+security uses this annotation in the controller called pre off, or pre Authorize. And what it does is we apply it to a controller method. And what it does is it before that controller method can be called so is the dispatcher servlets. Looking at these controller methods and determining which ones if we call do this looked up and it says Okay, the past hotels. So I should be calling this list method. Oh, it has a pre authorize annotation. So it's going to take in, do whatever the pre authorize says the verify that it's true before it allows you to continue. So if that combat tag comes back false with whatever role we give it, then it won't allow the method even to be called. It'll return an error immediately.
+
+And specifically to return a 401 error,
+
+which is not authorized there.
+
+So with this tag, we have to give it an argument. We have to give it an argument of what we want it to do. So one of the most common authorizations we might want to check is is the user logged in.
+
+Did they Send a valid JDBC token.
+
+So they currently authenticated. So for that, we send it a method name, or a key because someone wants someone will just be won't be method name, someone will be. Just keep just a keyword that tells us what we weren't done. So if we want to find out if they've been authenticated, we can send is authenticated, it's a method that it will call and we send it as a string. So we have to put it in quotes. So now, this method, if I try to get the list of hotels will check and make sure that I bet authentic kid and what that means is, have I logged in, got a JW T and sent that token as part of my request. So I'm going to put that here in place and then save it so don't wait aren't to redeploy.
+
+I'm now going to go out to postman again.
+
+And let's run this request again.
+
+So now we get 401. Unauthorized. And it has an extra message for authorization is required to access this resource. So if I go to individual portal where I have not applied that pre authorize yet still works. So that one method now is limited to requiring authentication is requiring me to have be authenticated with server.
+
+And we redirect them to like the login page instead of giving that air.
+
+Or, well, if you're on a website, yes, but that'd be up to the client. So remember, this is all API based So if you were on a web application, what would happen is like next module, we're dealing with web, your web application would get back this for one, and then it would make a decision. We'll talk about how we can make those decisions to redirect, then to redirect to a login page. But for the API, we would never do that because API just returned statuses. Does that answer your question? At least? At least enough? I know a lot of that was just next module. We'll see it but
+
+yeah, that's fine. All right. All right.
+
+So then,
+
+so the other thing we can do, so I probably want this applied in more than just this one bubble. So I have this but I also want, you know, single hotel applied, I definitely want to know there's update, there's delete, there's add reservations all in this API that we built, and I wanted to apply to all of them, not just to this one.
+
+So doing that,
+
+I could go
+
+and apply it to each particular method. And that'll work. But that's a lot of duplicated code. So, we can apply this preauthorize in two places, we can apply it at the method level.
+
+So like we have here
+
+or
+
+we can play at the class level.
+
+I can remove it from here now.
+
+Why pre authorized authenticated at the class level it means every method in this class have to be authenticated to use any of them.
+
+So now, I try one.
+
+I get the honor authorized I tried the list. of hotels.
+
+It's unauthorized, if I try No hotels,
+
+one reservations
+
+there now all require authorization.
+
+So I can apply to either place using the method level or the class level. But now we probably want to know be able to authorize to make our these work for our user. So to use the token with this authorization, now that we have authorization required, we have to login first. It's going to go back to this login form. And we're going to I'm going to send it again so I get an updated token. Because the web server started a few times since then.
+
+So I have a token. I'm gonna grab it.
+
+So I copied it. And I'm going to come back to my request for this get this list of hotels right now. For hotels, what I need to do is I need to build a header, I need to build the authorization header.
+
+So the authorization header is going to be,
+
+it's going to look, I think I put an example of it here. It's going to look like this. It's going to be the header for authorization. And it's going to be what's called a bearer token, which is what this would be called. So we're going to have the word bear with a space and then the JW T. And postman can kind of do that for us. We can do it manually if we want. So I could create authorization here. Or, if I go to this authorization tab I can change this to bearer token, which is the type of authorization jadibooti uses. I could paste my token here. See what old one from something in the past. And then if I send this request with bearer token selected, and the token
+
+see now it's allowed.
+
+I change authorization back to no authorization. So it doesn't send it. See now it's an authorized. Fortunately, it saves us we can go back and forth.
+
+Brian, yes. Is that is authorized method that we're using in the annotation? Is that part of or is authenticated? Is that a part of the boilerplate code? Or did you already make that
+
+it's part of the Spring Boot, it's part of the spring security. So you have to provide some functionality for it to show Basically what it means to be authorized in your application. But there's a set of standard kind of methods that are available. Some of you have to ride and give your give your own version. Other ones are just kind of out of the box. But the documentation is a list of them.
+
+Cool, thank you.
+
+Alright, so now if we look at the headers here,
+
+you can see that it's created
+
+the authorization header with the bearer and the token just like we talked about.
+
+So before we
+
+continue,
+
+what questions do you have on
+
+Do you mind going back to that initial request where you're getting your username and token?
+
+username, password? So did you just pre fill in that or I'm sorry, I missed.
+
+Yeah, I did pre film this. And we're gonna look at doing it from the client side. So it was in a JSON request that has in this right here. This login is our code. That is custom code.
+
+Because the login has to be done.
+
+Every system is gonna be slightly different way log logs in. Doesn't have to be good. We should use out of the box login when possible, but there's often more to it than just username password as part of the user creation. So we'll look at the login method in ours takes username and password with the username and the password. It just happens to be this user's name. user has their password as password. Okay, gotcha. Thank you.
+
+Okay, so let's look then
+
+snap who want to apply this to other request, we can so stick the same request here and we know we can go like hotel bond reservations. We get two for one and this request again, we go to the authorization tab because we need to build that header
+
+bearer token
+
+and paste
+
+my one token
+
+back here getting the token that was returned from login.
+
+I still get it. Try one more time, another time.
+
+Sure to work right?
+
+And then once we have the token in place with that header, it works. And they're all limited by that class level, pre authorize
+
+annotation but
+
+we probably don't want
+
+list of hotels
+
+Let's go out get anonymous requests again. Actually, I'd be better just to do it this way. back to our original list of hotels, let's turn off authorization.
+
+Probably want that to be available to everybody.
+
+We don't want to limit that only to people who are logged into the system, right? Why should only logged in users be able to see the list of hotels, it makes sense for them, maybe only to be able to see reservations, or individual details, but we probably would want anyone coming to our application to be able to see what hotels are represented there before they login. So there's this idea. There's some other types of access besides just authorization, or sorry, authentication.
+
+And one of the other
+
+levels is not what's called anonymous access, sometimes called guest access. This is Access to everybody. So one of the problems we'd run into is that if we put everything restricted to, if everything in our sites restricted to being requiring to be logged in, then how can you log in, because the login page has to have the ability for anyone to get to it. And we often have a warning or landings data that get to whatever, you know, we have something for our business, where users we want users to log in before they can order something that can be okay. But we probably want to be able to tell our business hours or give them some idea of what's available before they're logged for logged in. So anonymous access is public. It's anyone can use this. They don't have to be logged in. If they request it, they'll be given an answer. So there's no security on it. And there's often methods that we want, we'll want to have that ability, said like the login itself, or in this case, our list of hotels
+
+So there's a pre authorized, we can use for that.
+
+So I'm going to put in the class level or the method level. And the method level. If we add a pre authorized annotation to a method that already has a pre authorized tag at the class level, the method level will override the class level.
+
+So the
+
+so it's kind of a hierarchy where the class level applies to every method, but the method has its own more specific, or own preauthorize. That's considered to be more specific. So it overrides the class level for that method. So if I want to make something public, anonymous,
+
+we can use the keyword permit all
+
+so permit off, we'll get back to Everybody for this method.
+
+So if I save that, and we're not to deploy,
+
+done, let's go back to our list of hotels.
+
+And we send, it's still not authorized. Now it's working. But we can see our
+
+single hotel and be turned off authorization
+
+is still an authorized so everything else in the class is still an authorized but the one method now doesn't no longer requires authorization because of the permit all. Submit all can give anonymous access. And that's how we can all things that have a site full of security will still allowed user to come and register for it, or to log in for it or see a front page.
+
+So the next thing we're interested in is
+
+we want to limit
+
+go back to
+
+this author section, we have a user and it has the author section, the authorized section of the token is the user's role. And the way that would usually be represented, let's take a moment to look at how a user normally represented. So this is represent all in memory, like we've been looking at permission to look up, show another, see
+
+if I can find where my
+
+I'm sure I have something in here that your user manager
+
+I remember what tables are in here. So give me a moment to expand it to see I think it's user users. Yeah. So user manager is a simple. If you remember from when we took a look at security, the first time we looked at a problem with and we looked at passwords and how they were held in the database, this was the database that was used for that, because it has a user table that is fairly, it's small, but fairly common for the way that would look from it.
+
+Nope, there's data, okay.
+
+So the way most applications would hold a user would be like this in a database. So they would keep you know, the username, the password and the salt ice, but then
+
+oh, it doesn't have it.
+
+Okay, this Some dust have asked me.
+
+But they normally we keep the role.
+
+And the database save critter.
+
+We dropped the table. But anyways, I'll just describe it then I thought I had a better example. But the role would usually be kept. It's just a column in the database. So it'd be a column that says something like roll that would have like admin or user listed as the value. So when a login occurs, it's going to go and it's going to look up the user and their password and do all the hashing to validate it, validate the password hashes correct. And then it's going to return from the database the role that they have And their username and populate into this j s t token or JW T. Their role, which is what's an author in this particular user has role underscore user that has been defined by this application not by spring security, and then the username.
+
+And so we can ask,
+
+we can use the
+
+pre authorized to check what role exists here.
+
+So an example might be that
+
+if we go back to let's go to reservations
+
+authorization
+
+So we can see the reservations that are currently in the system. And right now
+
+delete
+
+and change it back to a gets, we can see them again
+
+can see that I can delete a reservation, I probably don't want a regular user able to delete reservations make sense, they probably can make them or see the hotels or see the reservations. But being able to leave them is probably something that we'd want different levels of access for. So
+
+go back to the login
+
+and change this user to admin.
+
+With the password admin, again, that choice admin admin was just chosen. That's just any username and password that go together and I send that
+
+Guess they get back a token.
+
+I should probably point out that if I send
+
+invalid information, I get back this for one authorized bad credentials. So meaning that the user ID and passwords incorrect invalid.
+
+Let's put it back to admin,
+
+admin.
+
+So I get a different token. If I look at this one
+
+and decode it.
+
+Happy By doing something obviously like crazily wrong, right, like selecting copy, right. Copy
+
+paste
+
+that happens to me constantly so I'm so glad to see it's not just me.
+
+So let's try it with the girl caught it
+
+didn't know for me assays control cut
+
+that's how I started because that's how I always do it and then I went to the right click method because it wasn't working.
+
+It strangely Ctrl X to
+
+cut it worked, but it didn't actually cut it. That's Yeah, I don't know what's going on. Anyways, so this one I'm going to have this token in place. We can see in its payload, its user now is admin. But its role is different. So it's been marked as having an admin role. And these roles will be to somebody to find our own system, though, out of the box is going to come come with user admin, because those are the two most common roles in the system. The admin role is only an administrator role he only can have access to do you know anything in a system where a user is using more limited. So what if I wanted to make it so only an admin could delete to call the Delete on my website on our API.
+
+So preauthorize can do that as well.
+
+So let's find that delete. It's down here somewhere, I think in the don't change anything after this line.
+
+That's so right here. Let's add a
+
+premium To rise again putting on the method level, so it only applies to this method. And it's going to override the class level pre authorization we have. And there's another one
+
+we can use which is has role.
+
+And then we can tell it what role we want to check that the user has. I want to check for admin. What it's going to do, it's going to take this here, and it's going to look to see if this exists. So row admin exists because of the way this has been built. Quote, and double quote matter for this, it does Yes, because Java only allows double quotes. So the has role so it can send a string, am uses the single quotes. So if we put double quotes here, Java sees that as this is one string, this is another string And it has no idea what this is. We put single quotes. And as far as Java is concerned, this is one string. And then when this has roll admin is received by preauthorized. It knows internally to use the single quotes to get the string out of it. And this is because admin is something that is out of the box, but we can define our own. We don't have to use the ones that are built in.
+
+Okay, thank you.
+
+So now that we have that,
+
+if we go back here, and we go to delete again, so let's try to delete
+
+number two now.
+
+And we should let's make sure we still have authorization at the top and delete it. And now we get a four three error. So when we are not authenticated, we need to authenticate to do something, we get a 401 error, which is that there's no access when we're authenticated, but we don't have permissions to do something because of authorization. Instead of authentication, we get a four three error forbidden. So the four three tells us that you're logged in, but you don't have the rights to do this. And that's because we've applied the pre authorization to check to make sure this user is an admin. So what I need to do is bad admin login we had I'll copy from here since that Mike it from the other place. If I change my token, the JW T, the bearer token from the ballgame, this is the one for you. To the one for the admin. And now send the same request. Now it's allowed.
+
+And the user, the admin user can do everything. So
+
+I can see that it's been deleted number twos now from the list. Number three is back because the server's restarted, this is in memory like we've been working with. So it resets every time the server restarts. And the server restarts every time we make a code change. So the preauthorize tag can be used to limit two roles as well. To get in most cases, you're up to roles user and admin, but we can add more. This is where we would limit if we had a role for like employee or manager, we can create roles for those unlimited appears just like we did for admin and user
+
+and they didn't Kama, like, can you have multiple set for a certain thing?
+
+That's a great question. I
+
+don't know if with top my head if you have multiple, you can have multiple because you often want to apply multiple roles, but I'm not sure and I'll find out right now. I can't remember if you do it through comma delimited list, which I think is what you do, or if you apply the preauthorize tag multiple times, I'll find out
+
+multiple roles.
+
+This one looks like
+
+us So
+
+spring has this own its own language. They're caught. It's spring el spring expression language. And you basically put it together with ampersand. So has role and this is just concatenating. So a better example would be
+
+let's go out here
+
+and be like this.
+
+Or you could do that's impossible that would nobody would ever get through some say or
+
+you've got a boy and condition of roles.
+
+And maybe you can't
+
+you, you forgot to parenthese
+
+Oh, I did. Thank you out there.
+
+So now they can delete the reservation with this was our admin token network. If we go back to this one, if you remember had our non admin token
+
+permissions to
+
+so now they both can delete call that's done again.
+
+Now they both can delete reservation so we can string them together
+
+and if that works, then yes
+
+As in any role,
+
+me, before I verify that
+
+is it possible to not have a role?
+
+Yes, you cannot have a user.
+
+If you're not, if you're a guy, then you're anonymous. So you don't have a role as anonymous or guest
+
+Sorry. I'm
+
+looking at Has any room to make sure I answer you correctly
+
+I guess I should put it in the other screen so you can see what I'm doing because that's
+
+someone the spring
+
+and spring documentation
+
+Yes. So it is it will be the same
+
+so because it says come to Columbus so that would be equivalent to
+
+has any role
+
+will be equivalent.
+
+Yeah, good catch.
+
+Sorry, I didn't realize it was gonna reading. I guess I get yourself a great job of reading. I guess I should have done that.
+
+So either I'm going to put it back to you.
+
+But there's also in this that documentation link, it's in the slides or the the link to the document the spring security documentation. There is
+
+a whole language around all these commands,
+
+spraying expression. And there's a bunch a lot more, as you saw the documentation resist looking at. Oh, not a lot here. Actually, here's all the different ones. Denial is anonymous. Remember me? dedicated, fully authenticated. It goes through all the pre authorizations and ways of using things. There's lots of examples.
+
+But that's in that format documentation link in the slides.
+
+So there's more to it than what we're looking at. We're looking at kind of the basic idea, like we do with a lot of things. But that's good to know the hazard he wrote in the expression that actually worked out great too. Two versions of the same thing. Right. So any question other questions before we?
+
+So, now we have this working on the server, there's really, oh, there's one more thing we could do on the server. And that's how do we find out who the user is? We haven't really talked about that. Yeah. So on the server, we often want to know, we often need to know more than just what this preauthorized can provide. So this works fine when we're doing role based authorization. But when we're doing individual based authorization, we're doing permission based. That's not built into most frameworks. Because frameworks don't know how we want to apply them. They don't know what resources you know, are we Our user can do. So they usually built by looking at the username with a bunch of if statements
+
+or SQL queries.
+
+So we don't have that, really example that but we but if we know how to we know how to write if statements, we know how to write SQL query, so you know, we'd have SQL, the data, like the paycheck data in the database key to a username, and you would select where the username equals, we have to get that user's name. So we often want to get information about the user current user on the server. And we could do that. Unless let's do it here in the Delete, because this lead has something in it called this audit log call, which is not built into the framework. It's something just a private method that was built here. And if we go look at what it does, when we delete something prints out the user perform this operation on this reservation. If I go back here and delete a reservation again
+
+This is the one that has the right
+
+token.
+
+And we'll see the user username performed should be a space there. But when the operation delete, somebody can do well with the spaces, Delete on reservation one. So just print it out to the console, which is actually a pretty common security thing as well, to log every time a user takes permanent action on the database. So it's common a lot of systems anytime there's an insert, update or delete, that it gets logged. They who did it, what Id they changed and what they did, and then usually a timestamp of when they did it. So let's change this. So it doesn't say the user username. It actually uses. You know the user's username.
+
+So to do that we need is access to the user.
+
+And the
+
+spring keeps the user in this object called principal. In fact, we just saw it that close the thing I closed the documentation, we just saw it talked about in the documentation briefly, but it has this object,
+
+the principal object that
+
+we can request. So we're working in spring MVC or Spring Boot, in this case, which is using spring MVC internally, we can request ahbs set of particular objects be given to us when our methods called remember whereby these controller methods were writing them to be called by the framework, right? We're writing something and saying when this path exists, call this method and We have a setup already it says okay, when this path exists, call this method, take the this position out of the ID, or out of the path and populate it into this variable. We can also though, tell spring that we want other things passed to us. And there's a list of particular things we can ask for. And it'll give us the populate object. So it'll passes those objects. And if we look at, we'll go through them all familiar look at one, but if you're interested, there's a list of fact prize mistake, you can open this because it's quite long in detail. But let's have all these different objects wouldn't get sick, it was going to go to write to a nice listing of them. But here, the special being types, so we don't care about most of them. But one of the ones we do care about is the user. And the user is inside of this one called principal So to get one of these objects, we add it to the argument of our controller method.
+
+And that's all we have to do. And now when spring calls this delete method, it'll say, okay, go you have an argument principle. That's one of the things I know how to give you. So it will pass the principal object into this parable for us. And we have a list of ones we can ask for. Julie. For an API, all we're going to probably care about, in most cases, is just the user which is an is principal object.
+
+So now that we have that,
+
+we can use it principal
+
+and on it, there is
+
+Getting name, we can see there's some other things on it. But really what we're going to care about is really just get name.
+
+Now if we run the same delete, remember our name is admin, our username is admin. So if we run this delete again, as the admin user, we can see that it gets the username. So by adding this to any controller signature, we get immediate access to it you can use get name to get it from a get the user's name, which means then we could write if statement if this user names the one that owns this paycheck type of thing. Then show this information or select where you know from accounts, where username is equal, that can be used them for fish based authorization If we need it the most systems, we actually don't end up needing permission based authorization. It's usually just role based, which is why it's another reason it's not built. But we often want to display the name and things like logs or to the user.
+
+All right. So questions on on that.
+
+Does that make sense? The just adding it to the path because I find that's one of the more kind of weird things that's
+
+not pathi signature
+
+was like getting to the print
+
+a print line that you did.
+
+Again, it's calling this Autoblog method. Oh, gotcha. Gotcha about odd log methods, the system out print line.
+
+Okay, cool.
+
+Okay, so any other questions? Yes.
+
+is the principle only used with a pre authorize? Or can it be used like standalone?
+
+It can be used with any controller method. Okay, what is going to have in it's gonna depend on whether it's been logged in. But yes, you can catch any controller method. Okay. So what allows us to use it is actually, the request mapping is that's actually a great question leads into something. So we, you asked the principle of the author's eyes, but really, to use these, this and the other ones that are here. It's this annotation that adds that ability to request mapping. As soon as we add request mapping to a controller. It gets mapped by that mapping handler we talked about like, really briefly and talk about I mentioned exist system To get the catalog and part of that is, in order to call this it creates a catalog of what needs to be sent to it, what arguments need to be fulfilled. And spring internally has a bunch of objects is keeping track of. So as soon as we add request mapping, it allows us to add arguments, objects that spring has available to it, and it will pass them to us when it calls it.
+
+So the questions
+
+Alright, so this is a server side. So let's take another break. We'll come back at 1123 and then we'll talk about the client side.
+
+Do you set these getters for principal
+
+What do you mean by the
+
+like the art like is principal always going to have like name?
+
+Yeah, it always be In it always have the currently logged in users name.
+
+Okay, cool, thanks.
+
+Okay. Right. So that's the server side of what we're going to have the authentication and authorization. Now we need to apply it in the client side. So this will be everything we done the limit the, the way the API's worked, but on the client side, the clients we're working with, we have to have some idea of how to handle this token and work with it. So I'm going to go to the client side code, and we'll leave the server side running because it has to be running for the client to work for the client to access the server.
+
+And I'm going to start just by running it to show what we have.
+
+In the course next module, we're replacing this client with web application. Yeah, we'll do all what we're doing here. Java will get replaced by HTML and CSS and JavaScript.
+
+So it has the same application or the thing we're looking at, we can list hotels. And let's try to list reservations for hotels. And we get a 401 error. It just prints out there. Because our API the server side is currently limiting.
+
+You know, it's to not allow
+
+to not allow access unless you're logged in. So this does have a login now, some option zero test number six login. So what we're going to have to do in the client is we're going to have to login and then we're going to have to take that token We're going to receive it from our login. So remember we do a login or when we get back is this tub bearer token. And then we're going to have to add it as a wrong request. We got to add it to as an authorization key with this value with the bearer and then the token to all of our requests that need authorization. So like showing the list of hotels doesn't need it, but check certain lists or authorizations does. So we're going to have to then add, start adding it to our headers of our request, including a Gilad ever get requests which is gonna actually change something about the way we do get. Because before the way we were doing get we never had to deal with headers for GET requests.
+
+So let's first look at this login. So you can see it working by six, and why the username and password. And let's look at the code for it as we go. So if we look at this app code and I'm going to be started so we can get the six. So option six,
+
+restart
+
+the breakpoint as debug.
+
+So we can walk through how the codes working. So the login codes already been working already been written in the client side. If the concepts are the same men really go use a client side login like this this week, and then probably never see one in Java like this again, as where you place it with a web application.
+
+next module.
+
+So let's but the concepts are the same Just will be written differently.
+
+So let's walk through how it
+
+structured maybe
+
+there. Okay, so the first thing is going to do, it's going to ask for the photo. Again, this is just a prompt a system and prompts. So we'll just skip over that. And when I really want to stop that as 960. So this system takes user name and password is comma delimited. And that's just the way the system does the split. The Warner said, Here is this login. I'm gonna step into this. And in this code there is now the hotel service we worked out before, but there's also an author Authentication Service.
+
+So that's the code we're going to step into.
+
+So this login DT
+
+if we look at what that is,
+
+it's just the US In a password, there's nothing special about it. It's just a data object. DTO is data transfer object, why they chose So, but they could just been called login or credentials or something like that as well.
+
+And if we step over,
+
+so now it's going to create the headers.
+
+So the login has to be a post.
+
+So our login only accepted posts on the client side. And that's the way that's following proper procedure for a login login should never be allowed or anything but post because with get, it's going to be it's going to send the credentials in the URL, which means they're going to be in plain text. So in order to encrypt them, or to hide them, at least they need to be in a post. So it's creating the headers with the application JSON, like we've done for post in the past. And now it's going to create the entity object with the login object which is good Just a data object and the headers. So just like we done for post. Now what it's going to get back from this is a little different than what we've done before. So we're going to get a response entity back, we have to give it a type. And we've already used entities with HTTP entity. But the response they would type we're going to get back is just a Java util map. That's what this is going to return, it's going to give us a map that's going to allow us to get
+
+this token out.
+
+So now when we call it, here, it's calling it with the exchange method, which is a little different than what we received before we saw the post for object method. And to be fair, the post for object method would actually work in this case, but exchanges a post objects is a abstraction of the exchange method. It makes it a little easier to work with. And the end they basically work the same though returns response entities instead of the entities themselves. And then we'll have to call a method on it later to deserialize it. And it requires you to tell the POST method. It's been called the exchange method to the URL. I said at the post, the entity object, which is the HTTP entity with the header and the login information, we tell it we want back the map class. So we went back a map.
+
+The rest of this is
+
+just the Erica we're used to. So now it's doing the request. We'll wait on the response
+
+and thing a while but there is. So part of the reason what this response in the back is something we're going to see in the next back in the last method. So now we didn't get an error because they try and catch us what we looked at, you know, just with the client response here. So here is why we wanted the request entity for the authorization just makes this next part easier. So response dot has body on the request entity or response entity sorry, tells us whether this exists or not, then tell us what it is just doesn't have a body. We know if body doesn't doesn't come back. So if I go back to
+
+and I put in a run password,
+
+I get back
+
+the status message, but I'm not going to get back the JSON body of the map body. They'll postman's putting it in the certainly the status method method that way So it checks and says if it has body, that means I know if there's a token there, because I got here, otherwise, I would have thrown an exception, or I'd have no no response. So then on the response, it has to call get body, and that is serialized into a map. In this last method here, get token is just about method off of a hash map. So the get body method on the response entity deserialized, into whatever data types been represented here.
+
+So I'm going to stop there, because that's a lot.
+
+What questions do you have about
+
+Okay, I'm going to be honest, you can cut and paste this code into things like I don't know your Capstone or, and because you don't need to memorize this particular code. When we get the JavaScript it'll be a lot more important and just confusing, but we'll go through a lot more detail. And then the important thing, now is the process of your call the login API, it's going to return a response, you'll have to get the token out of the response. That's the important steps. how it's done in Java.
+
+Not quite as important to remember.
+
+So once you get when it gets the token out, it's going to save it into the string. So now if we have here, we look at the token it has the string token has the JW t in it. And now all it's going to do is it's going to call and on hotel service. There's a public static variable string auth token. Does anyone want to tell me what's wrong with that code? Public Yeah. What should be going on here instead of that
+
+should definitely be private.
+
+Yes. And how should we give access to it? Um
+
+Oh good. Yeah, yes, we have getters and setters for it should not just be a public member variable even if it is static. But the author's decided to take a shortcut. So don't do not emulate this. Keep your eye out look at this and say, Oh, they made it public. It's okay because it's not. That's breaking encapsulation in a huge way. And creating a getter setters, you know, it's just a right click, but so it's setting this auth token. So we'll skip the rant about why that's bad, or not skip it. We'll continue past it now. Setting the string auth token. All this is doing, it's setting it for this service. It's just going to store it storing it statically because it doesn't have to. But there's really no reason to have there's only one off token for the whole system, right? So if there's 10, hotel services instantiated, they're all gonna have the same token.
+
+Not necessarily. They are different users that could.
+
+That could cause a lot of problems.
+
+I probably wouldn't store my EOS token statically not I think about it. Not that I'm speaking it out loud. I would never do that. That's a horrible idea. Because now you're limiting this whole system to one user at a time. And that's, yeah. But anyways, you store it. The important part is you store it, because we need to save it because we have to use it forever request. So, again, the steps as you call the you do a post to the login. You get back the response and the response you need, I guess, need to send the login that's when you see the response. We need to get this token out and store it as a string and just have that in a place that is part of our object we're going to use because we need to maintain it. Because if we lose this token, that's essentially a logout. Our clients logged out and can no longer perform in the users path.
+
+So that's login.
+
+If we continue that we're here, now this prints login successful, and it's done with login. So that's the login process. Again, call the login API, get the token, store the token.
+
+Those are the three steps.
+
+So questions on that before we
+
+move on to using the token right
+
+So
+
+let's look at now how
+
+this works. So we'll continue. And now we're logged in. So now, we could do something like, list the reservations for a hotel. You can see the reservations, or we can delete a reservation.
+
+No, I can't cuz I'm logged in as user password. So I can see it that I exit and restart the application. I think I could just log down again, but we'll do it this way.
+
+And I log in as admin, admin.
+
+Now I can delete a reservation
+
+If I list the reservations, I think that's wrong for one. Yeah, they were. So number three is gone.
+
+So now I have the login working because of that. Let's look, look at how that rest of how it's working with the token to call the Delete reservations or the list reservations, enable writer, then we see if we go back to create reservation and we create a reservation for somebody on a particular date.
+
+We get this non implemented error. So I have to come back and fix that then. But let's first walk through the code of deleting a reservation that's going to be in the hotel service.
+
+Go down to here
+
+and we'll delete another reservation
+
+finally reservations delete reservation to debug
+
+again with debug.
+
+Okay, so now we're gonna debug what the login before we can do anything so we'll log in as
+
+these breakpoints
+
+as admin
+
+admin, the course if you're writing your own login system, like some of you, or all of you will be doing later this week. Then you probably would want to you know, ask the user individually what your username what your password not have a comma delimited like this.
+
+So now let's go to delete
+
+reservations to delete.
+
+So let's try to list
+
+reservation reservations.
+
+Reservations All right.
+
+So that's the only one
+
+reservation so I'm going to restart the server.
+
+Stop following what I'm doing right now since I'm,
+
+I'm restarting the server because we deleted all the reservations and
+
+we can't get to where we need to be without some
+
+that will restock them.
+
+Alright, so switch back to the application. Let's try this again.
+
+reservation. All right.
+
+Now we're doing for last. Okay? All right. So, here, first of all this reservation, so we're doing a get request, um, it looks totally different again, from what we're used to. And this is the place where I said, well, we're gonna have to do something different with get. So with post input into elite, our post input, they have a message bot, they have an HTTP entity that are part of the request. So we can just add the header to the headers object, like we do the content type. But get the way we were using it we were using get for object, good for objects and abstraction that makes it so you don't have to deal specifically with the header. Because on many GET requests, we don't care about the header. So part of what get for object does is make it so you know what you just have to do with the URL and the type you want back and you're done. But now that we have to do with a header for authorization, we can't use get for object, we have to use what it's abstracting, which is exchange, which itself is an abstraction of a method called execute. Each one gets harder to use, but more more flexible. So we have to go down to the second level. And that's because we have to provide the header. The good news is we can choose to use exchange for every method type. It'll work for every type because it one of its arguments is the method type. We call get for object we call put for a post object or put or update in the background they're calling the exchange which is in the background is calling execute. And they probably call execute directly but so what exchange does it takes the Euro, which is what we were used to. Then its second argument is it takes the method so we have to tell this is a get
+
+the third argument is an entity And actually
+
+better. Let's see.
+
+So the URL, the HTTP method, the entity which remember is going to be, can carry the message body, but forget doesn't have one. So it's going to include the header.
+
+And then a data type we want to get back.
+
+So there's this make off entity method here. Then when we write it down, we'll get rid of that. We won't use it but if we look at it, what it does, point to both these
+
+will step into
+
+step two in the string, not quite where I wanted to go, step out of string.
+
+Try to step into again
+
+and step on the string builder, not where I want to be.
+
+Eventually, we'll get to there. So here in the make any method, which is just a private method that's mapped to this class that's going to build the header object and return the HTTP entity. We could do this in place, it doesn't have to be a method. But this can make it easy because we're going to redo this work multiple times, right? For every request we make that has authorization that has a gap to and it's going to require this exact thing to be done. So every get so it creates the header object. And we looked at last week, when we set the content type, we saw that there was a bunch of different things we could set as headers. One of them is bear authorization. If you remember in postman, we set the bearer token. So we're going to set the same thing to set the bearer authorization and pass it the token. This token value is just what we had stored. That's where we started the token. So over string, we started the token and we're going to pass it to a pair authorization and then we're going to pass it into it. HTTP entity. Notice this time there's no data type for each HTTP MD. And for the generic, because we don't have a message product, we don't need one, it's empty. But we sought to pass the header to it, and this returns the entity. So if we go there, now that it sets the data type, we went back, which is the reservation array.
+
+And then if we as we talked about before, it's change part of what we
+
+get for object does for us, is it automatically d serializes into our desired type in exchange almost does that but instead it returns that response entity and we have to call get body to deserialize. So at the talent the deserialize still does automatically we have to trigger it manually. So here on our get records change and then just chain get body to the response which will deserialize it into reservation array.
+
+And we'll get back our list of reservations then
+
+populate yet.
+
+And they pronounce.
+
+So again, the way we're calling it, we're building the headers. We're setting the bearer off with the authorization token. We create an HTTP entity object and pass it the headers just like we did with post. We don't pass it the message body, we just pass it the header. And then we call on the rest template, the exchange method. We pass the URL HTTP method get the entity object that was created up here. The data type we went back and then off of the exchange method call we chain dot get body so it'll be sterilize. So it's Almost the same and if we don't have authorization of all, we can still call it project. It's only when we have the authorization token involved the JW t that we have to now do it this way. So for other things, for things we know there's no authorization, like we want to get the list of hotels, we can still use the easier method.
+
+Alright, so ask before we continue with the questions.
+
+Um, so what data type does that return? Like? Are we going to be setting that to like a variable? So we're telling it,
+
+we want to deserialize into the reservation class. If we call get body immediately, that's what we'll get back is our reservation array. Okay, gotcha. If we don't want to call get body immediately, we actually go back to the authorization service for login. What is actually returning is a spot response entity. That is a data that has the data To type reservation array here we got a map and then remember we call get body These are so spread out, get body on the response has body then get body on the response to get the map to get the token out of it. So we could get it as a response entity, reservation array, but we can skip that and put it all just to move on. Because if it's not there, we should have got another error or another exception anyways.
+
+So Other questions? Alright.
+
+So now let's delete the reservation. So
+
+with that down here
+
+and now we were doing a delete. So it Lead is going to look exactly the same. The only difference between this and the get is the HTTP method is now delete instead of get.
+
+And it returns a string class.
+
+But it doesn't actually do anything with us we don't have to do anything farther because delete doesn't have a message rolling message returning right. So in everything that can be returned as JSON can be represented as a string, hence the string class. So delete also has to be called with exchange now because when it requires authorization, because it has to send this authorization entity
+
+and see it's creating the same header, and then
+
+so the
+
+last thing Alexa want to do is He wanted to
+
+make it so this
+
+this method works.
+
+It's getting not implemented. And the only thing it's not working about is the actual API call.
+
+Hotel service. There's an ad up here.
+
+And I managed to break something here. They break off.
+
+They broke
+
+someplace and here is a add reservation method.
+
+Maybe it's up further
+
+Yep, there, right. So we want to get rid of this right now this has it's not a permitted method if we wanted to actually do the reservation. So let's walk through this before the post, though we'll do it. We can do it the same way that we would do it forget or put or delete, because they're all going to work the same with the exception of the method now.
+
+So first thing we're going to do one, we're going to create an HTTP
+
+entity with an authorization header.
+
+Now for posts, we have to also give it the content type header. But that's okay. It's the same object. It's just we're going to set two things that are one. So we'll create our HTTP headers, object.
+
+New HTTP headers.
+
+Next thing we're going to do is we're going to set
+
+Set the content type first. Doesn't matter what order we do this one. And but we've already done this. So we'll do it first media type dot application JSON.
+
+So here's where we're going to set the authorization header.
+
+So
+
+use set,
+
+bear
+
+off
+
+with the JW t.
+
+So headers set, bear off, we're going to pass our token, our token free members stored here, because the login methods was stored it called this since it's public, and assigned it the token. So whenever we have the token stored in and that's going to create that header, the authorization header and then we're going to take And build just like we did before.
+
+Our entity that is going to be
+
+our data type entity for with a message body of type reservation. And again, if this was a get where it has no message body, we would just leave, we just leave off the type definition.
+
+And that's going to be our request
+
+entity
+
+calls new HTTP entity of type reservation, and we're going to pass it our reservation object in our header headers. So that's the only part new in that from what we learned about post last week was this line right here.
+
+That's the only new part the rest is just what we've already been doing a post.
+
+So now
+
+let's To we're going to build our URL. But but that's not new either, right? We've already done this. So we know our URL here, if you remember from squeeze our base URL, and it's plus what hotels comma, plus we need the hotel ID. So our reservation object, get hotel ID plus
+
+reservations.
+
+And again, that's not new. That's what we did last week.
+
+And now we're going to call the API. We're going to make POST requests. And we can do it the way we've been doing it.
+
+So as
+
+I said, our reservation object equals can use rest template. Post for object with URL and then the request entity.
+
+And then the response type,
+
+which is a reservation class,
+
+we could do it like that. Or
+
+we can do it. reservation
+
+equals rest template exchange.
+
+And now we need our URL.
+
+What is the order? Stick like don't ever quit because
+
+the URL, the method, the entity, the data type,
+
+the URL
+
+the method so we use the HTTP method, dot post. And then our entity service request
+
+ID and then the data type we went back
+
+to our reservation
+
+and then we have to
+
+call get body on it.
+
+I misspelled that.
+
+Copy, Paste, look it up.
+
+So then the get body with this one we don't have to call get body because it automatically serializes. With this one is going to return the response entity and get body will tell to the serialized into the reservation object. So we can use either one for a post post input, we can do it the way we were previously doing it because they already have the This entity object involved deleting get we can't because they don't didn't have with the easier version, they don't have a header.
+
+Right And now, we should probably put all this in a
+
+try
+
+and a catch at least for REST client response exception
+
+because
+
+we'd want to at least catch if it's not a
+
+200.
+
+And we'll just do something like
+
+there is a hotel service exception. So let's throw, throw new hotel service exception or to skip all status code Plus, if you remember give raw status code to get the 444341 whatever it is
+
+And it's more important that we get it now than normal because
+
+when it gets the response body as string,
+
+that'd be good. Because if it's unauthorized, if we get a four, one or four, three, that's pretty
+
+common.
+
+So we always want to
+
+always catch
+
+us client response exception. So can do with four, one and four, three. authorization, there's
+
+authorization,
+
+authentication.
+
+I guess I put the arrows backwards the way I've just put that simply change that because four threes and authorization or 412 negation air Alright, so now, finally we just return our reservation object which is required by the method not by the post. So let's run it again and make sure it works.
+
+Alright, so what the login actually let's try without login.
+
+So let's create a new reservation without logging in. So this blanket test user. And actually, I don't think it'd be a matter as we put real dates in here on this, but we will
+
+and we get it for one. So we could deal with that what the way we should deal with this in a real application. Now we're just displaying the fourth one is but we could easily just say you need to be logged in and show them the login options. That'd be the best way to deal with it. There's a website this would be you'd where you'd redirect to a login page, often without even showing an error. On this application, we could just say you know, you need to log in and then at least tell him that much. But so we got our for one back. So now we need to log in. So let's log in as user and password
+
+and now let's try creating our reservation again. Test
+
+six
+
+and now if we lost was revisions, you should see our know our reservations been made. So it worked. We got through that time. So the key to the client side is really three or four steps or a set of stops fact.
+
+I just had this
+
+I had the side steps
+
+is this useful to have all in one place. So step one is going to be
+
+all the login API method or API method
+
+and
+
+get the token.
+
+Get the token which is also called in this case, a JW T.
+
+store
+
+a JW t in a string
+
+somewhere available
+
+to your API methods. Then
+
+when making a get or delete request, use the exchange method. Actually, I should have one more here for when making any additional
+
+API requests.
+
+Add
+
+the authorization header
+
+with the token
+
+That's gonna be your near HTTP entity. It's going to be get or set.
+
+Bear off and the govt
+
+access token.
+
+And make this lowercase we can see it's an object.
+
+Make getting a
+
+sweet first this when
+
+add the token, add the header
+
+to request to the API.
+
+So for
+
+posts post input
+
+are the same as before
+
+it and delete
+
+must use the rest template
+
+change method
+
+which looks like this arrest template
+
+dot exchange URL
+
+HTTP method, get or put delete
+
+the HTTP entity
+
+and then the return type class and then get body.
+
+That's the steps.
+
+Yes, right. Do you mind just doing a quick review on why the good delete requires the dot exchange Post and put down again.
+
+Yes, no, that's fine.
+
+So it's because the way we were doing it before. Let's go. Let's find a good here.
+
+Good Hotel by ID.
+
+So the way this is working right now is this.
+
+Let's get rid of this method here. That's.
+
+So if we go through the steps of what's needed, I'm just going to cut and paste this not to rewrite it.
+
+But to build these headers, right,
+
+kids.
+
+So we build the headers
+
+into this HTTP entity, object that we're going to send. And then
+
+when we go to use it
+
+we normally the cough
+
+Equals our rest template.
+
+Good for object. But if we look through all of its overloads
+
+it doesn't have any overload that takes the HTTP entity. Because get four objects, its whole purpose is abstract away the need for us dealing with the header. Because for most of our GET request, you will find most GET requests are not going to require author authorization, some will, but ones like if you think about all the webpages you go to and how much you see without logging in. And even if you are logged in how much you see that wouldn't matter if you're logged in or not. What's going to require GET requests that have authorization we things like you know, the get read list of reservations, we might want to allow an authorized user to see them or get a user's account, but large number GET requests are going to be anonymous. So to make that easier get for object abstracts away the need for attr because we don't need it. But we have to have it now that we have this bearer token. So exchange allows the header to be used, let's get rid of this method here because I find that just the entity to be used to be sent. But now it requires us also to set the method and call get body to deserialize it so it makes a little bit difficult. So when we're using the header, we have to we have to call the more complicated version of doing it, the exchange method so we can set the header.
+
+Okay, that makes total sense. Thank you so much.
+
+So Other questions?
+
+Because I have one that's like not super related to this, okay. But over the weekend, I tried to, like make a separate project that I would put my capstone stuff into, but with the API, and everything, and adding dependencies was like mind blowing to me. And I didn't know which ones I needed, which ones I didn't need if I was adding too many. And it just I spent a very long time doing that. And I felt like I learned some, but it would be way easier if we had like a comprehensive like, this is how you made make a project. Class. Yeah.
+
+Yeah, in normally actually on the second review day, that's what we do. But the second review days to Fourth of July. So I'll try to set some try to figure out a time to do that. Because I agree you, we need that nice chili. The project could do for that the second review module three Okay, cool is less than start from scratch, but it takes a while. It's like a three to four hour process, which is why I usually do it for a class day rather than afternoon. But then do a version that focuses on those dependencies because they're, they're complicated. There are people who spend their entire job around managing dependencies and fighting with the right set of dependencies that can, I literally sat beside Steve, fifth 1015 years ago, and watching him for two weeks straight fiber dependencies for a project with the right side,
+
+because I like I want to make my side project but I'm, like, so scared of just that. And I was thinking about using the address book project, like the base of my project,
+
+so I was gonna tell you to do okay.
+
+When I started a new project, I generally find old project that's close to what I want, and I take it and I just changed They the names. I'll give you a quick. So in the palm, which do sound like you're playing with dependencies, you're already been in there.
+
+Yeah, this was that
+
+the artifact ID is the name of the project.
+
+So if you change that, you can change it. It'll change it over here. And then when it builds and everything else, that's the project name.
+
+Okay? And can you easily just like when you right click on a project, can you duplicate it? And that's something you're allowed to do, because I don't really want to like completely overwrite it, but I guess I can pull again and since it's not there, so I do it.
+
+It's the same. I don't know why I'm showing you I can just describe it. So I just got to find her Explorer, go to the folder, right click on the folder, choose Copy and paste and paste a copy of the whole folder. And then I go to the palm, and so Like Visual Studio code and edit their artifact ID before I open Eclipse, and then open it in Eclipse and just start making changes.
+
+Okay, cool. Thank you so much. That's how
+
+I did the address book, I actually copied their existing one of these projects. I don't know which one. Let's pick one that was close in.
+
+And one more thing if I eventually want to make my projects like a web thing, are all of the dependencies that are there going to be the ones that I need for my, like server side, or is it server side? Use?
+
+Yeah, if use, I would use the dependencies from today's server lecture. Okay, that's going to give you but I won't give you the database. But
+
+you should consider that
+
+to be like compared against the one from the from last week to see the database from. Thank you so much.
+
+So the questions
+
+No, I was I didn't work with him when he printed out the entire database that was before I met him. So I've seen him make some other ridiculous mistakes, but I won't. I won't tell you what they are because he's seen just as many for me and it's not
+
+shared mutual destruction, knowledge that you
+
+should share your biggest mistakes too.
+
+I already did. I said my absolute biggest one where I took down the call center for a whole weekend. I mean, that was not many people can make a ball and I kept my job. So it was close to Malta got really close to a multimillion dollar mistake. So, so I'm quite proud of that one.
+
+I don't know if I told you but it was Chase's call center.
+
+There was not a small call center. It's a very large call center. Oh my god,
+
+I didn't realize it was what
+
+it was. This was back before they was quite as large as they are now this was, you know, before they merged with bank one, but it still was a very large international call center. I took them. So there you got my biggest one
+
+didn't get fired.
+
+I did get a very stern talking to them.
+
+Alright, so.
+
+Other questions?
+
+All right. So the last thing we didn't talk about was logout. But we're not gonna really talk about it. Except for if you want to log out.
+
+This token you stored for the client.
+
+You just set it back to an empty string in the clients logged out on the server. It's a similar process. We're not going to talk about it because there's nothing to it. You just delete the token and it's done. All right. So for today, there are exercises. They're in the, during the regular place. They're optional, we decided to give them to you optional because tomorrow starts the next Capstone. And we didn't want you still working on the exercises when the capstone starts. However, that being said, I strongly encourage you to do them more than I normally strongly encouraged. Because it's your one chance to practice what you're going to be doing in the capstan because you're gonna have to have login, authentication authorization is all going to be part of the capstone. So, you know, that gives you a chance to practice it. But they are optional, so you don't need to turn them in to be scored or anything. We're happy to review them but
+
+right, Rochelle, they're optional, right?
+
+I think she's giving that face for something else. Okay.
+
+interview them. So I think It'd be willing to review them.
+
+I don't know that happy would be the term I'd use No offense to anyone. It just
+
+works for sometimes.
+
+So yeah. If you have any questions about it run into problems, let us know. We'll be happy to help you through them.
+
+But Alright, so
+
+anything else anyone has today? I don't think there's any thing going on this afternoon. So, tomorrow, we'll meet here at the regular time. So tomorrow, the way to work is we'll start with open review. That can be shorter as long as there are questions. So you have questions you want to go over from anything, bring them first thing in the morning, and we'll I'll answer them. And then I'll give you the capstone and you'll get started. And we'll talk about what that means and all that. Then
+
+Is this a pair Capstone or not?
+
+It is I'll be releasing your pairs this evening at some point soon as I run the script and do all the cutting and pasting and a half to do so.
+
+And since I will since several of you, like about half the class now has asked me about partners. I will tell the other half of you that I do not do the pair assignments, I have a scripted as it were technically, specifically john has a script that does it. And
+
+so, is it set up to not do duplicates
+
+is not a duplicate unless we run out of it if it runs out of options and it will duplicate but until those those options, it will not do duplicates. So you won't have duplicates, but I I get blown up Go Go out of trying to control pairs. So I've been asked that question a bunch of times recently, so I just thought I would.
+
+So I'll run that later today. And publish it for you.
+
+Alright. So these are the questions on off. Thank you. Have a good afternoon and I'll see you in the morning.
+
+do my best
+
+you guys
+
+Transcribed by https://otter.ai

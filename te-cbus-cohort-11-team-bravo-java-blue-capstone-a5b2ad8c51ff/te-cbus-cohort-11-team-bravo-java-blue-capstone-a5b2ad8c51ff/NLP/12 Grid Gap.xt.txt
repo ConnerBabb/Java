@@ -1,0 +1,16 @@
+Book
+https://book.techelevator.com/content/css-grid.html#grid-gap
+
+Grid Gap
+You might also want some space between the grid items. You can do this by adding padding or margins to your elements, but it's much easier to add some space between the columns and rows instead. You can do this by adding the grid-gap property to your grid definition:
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 40px;
+}
+This adds some buffer between the cells of the grid:
+
+
+Image - HTML with Grid Gap
+You can see that it doesn't affect any content that spans across the grid but separates the different grid items from the others

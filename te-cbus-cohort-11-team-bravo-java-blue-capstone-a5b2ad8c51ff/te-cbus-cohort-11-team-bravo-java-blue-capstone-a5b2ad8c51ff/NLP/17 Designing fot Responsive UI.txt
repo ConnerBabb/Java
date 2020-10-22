@@ -1,0 +1,154 @@
+Book
+https://book.techelevator.com/content/responsive-design.html#designing-for-responsive-ui
+
+What Is Responsive Design?
+Day by day, the number of devices that sites need to support grows. With the release of any new device, whether it comes from Apple, Google, or Samsung, is a guarantee that things won't remain the same. Apple alone supports many different screen sizes:
+
+Device	Native Resolution
+iPhone 11 Pro Max	2688 x 1242
+iPhone 11 Pro / X / XS	2436 x 1125
+iPhone 11	1792 x 828
+iPhone 8 Plus / 7 Plus / 6s Plus / 6 Plus	1920 x 1080
+iPhone 8 / 7 / 6s	1334 x 730
+iPhone SE	1136 x 640
+iPad Pro 12.9-inch	2732 x 2048
+iPad Pro 11-inch	2388 x 1668
+iPad Pro 10.5-inch	2224 x 1668
+iPad Pro 9.7-inch	2048 x 1536
+iPad (7th Generation)	2160 x 1620
+iPad (5th/6th Generation) / iPad Air 2	2048 x 1536
+iPad Air (3rd Generation)	2224 x 1668
+iPad Mini (2nd-5th Generation)	2048 x 1536
+This list only shows the most recent iOS devices and doesn't include the numerous other versions that were once supported by developers.
+
+With all of the possible screen sizes out there, not to mention various laptop and large-size display monitors, the industry continues to experience a significant amount of fragmentation. No single screen size holds the share of the market. To keep up, companies must create versions of their web applications that render well on any screen size.
+
+This began an approach to web design called responsive design.
+
+Responsive Design
+
+Responsive web design is the approach that design and development should respond to the user's behavior and environment based on screen size, platform, and orientation.
+
+With responsive design, the goal is to create one site for every screen. Take the Medium app for example:
+
+
+Image - Medium.com - obtained via https://mediaqueri.es
+Visit https://mediaqueri.es to see a gallery of common web applications and how they render their sites responsively.
+
+#Designing for Responsive UI
+Applying responsive design consists of addressing three key areas:
+
+Flexible/Fluid Grid Layouts
+Resizable Images
+CSS Media Queries
+As a user switches from an iPad to a laptop, the web application must automatically switch to accommodate the screen's resolution and support larger image sizes. Even if the user doesn't switch devices, but changes the orientation of the screen from portrait to landscape, you want your design to accommodate the extra white-space and fill it with content accordingly.
+
+#Flexible Grid Layouts
+Responsive sites use fluid grids. A 3-column layout shouldn't specify dimensions as pixels, but rather as proportions in relation to the other columns. For instance, Column 1 should take up half the page, Column 2 takes up 30%, and Column 3 takes up the remaining 20%.
+
+CSS Grid and CSS Flexbox allow you to create these fluid layouts that can shrink and grow proportionately as the screen size changes.
+
+Setting the Viewport
+
+Users are used to scrolling a web page vertically, not horizontally. As such, HTML5 introduced a method to let web developers take over the viewport, or the user's visible area of the web page, through the <meta> tag so that the content can scale.
+
+You should include the following <meta> tag on all pages. Below is an example:
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+width=device-width sets the width of the page to follow the screen-width of the device, which varies depending on the device.
+
+initial-scale=1.0 sets the initial zoom level when the page is first loaded by the browser.
+
+#Responsive Images
+When working with images, if the width property is not set or is set to a fixed pixel width, then the image may break the fluid layout as the browser tries to render the image at its full size. In the following example, there are three large images, all with a width of 1920px, in a grid container that defines three columns:
+
+```html
+```html
+<div class="container">
+  <img src="img/gaelle-marcel-ayFT6ze9GRI-unsplash.jpg" />
+  <img src="img/ella-olsson-4dQiaWKiL-Y-unsplash.jpg" />
+  <img src="img/toa-heftiba-igmIX1uOb00-unsplash.jpg" />
+</div>
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+If you don't specify a width on the image, the grid expands to fit each of the grid items. This means that the images run far off the right side of the screen, which isn't a good experience for your users.
+
+You could set a fixed width of 200px on the images, but this doesn't scale up or down. If your visitor has a large monitor, you want them to view these images at their full scale. If they are on a mobile device, you want to resize them down accordingly.
+
+Instead, you should set the width to a percentage that it needs to take up and indicate that the height can scale automatically:
+
+img {
+  width: 100%;
+  height: auto;
+}
+As the user resizes the browser, the container that holds the image changes the size and immediately scales the image. If you run this example, you'll see the images scale to the size of the container:
+
+
+Image - Responsive Images
+#Media Queries
+Even when you design with fluid layouts and responsive images, it may still be necessary to render a completely different layout when there are screen size limitations. For example, take this image from Medium.com:
+
+
+Image - Medium.com Responsive Layout
+On the smallest screen, the layout is a single-column layout where each element is stacked vertically. Article images are placed on the right and marketing images are hidden because they are non-essential. To accommodate this, CSS allows you to write conditional CSS in the form of media queries.
+
+Setting the Viewport
+
+Media queries are useful when you want to modify your site depending on a device's characteristics or parameters.
+
+Media queries can be used to conditionally apply styles using CSS @media:
+
+@media only screen and (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+  img {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    grid-template-columns: 5fr 3fr 2fr;
+  }
+}
+The above CSS conditionally applies one of two styles:
+
+If the viewport's maximum width is under 768px, the grid container only provides one column to take up the full width. Images are also hidden.
+If the viewport's minimum width is 768px or larger, the grid container provides three columns—50%, 30%, 20%—to take up the full width.
+You can use other settings within CSS like orientation and aspect-ratio. A full reference is available on MDN Web Docs - Using media queries.
+
+#Breakpoints
+When you want certain parts of your page to behave differently, you add a breakpoint. A given site, if it supports several different layouts, might have multiple breakpoints defined in its stylesheet. Breakpoints are added using media queries.
+
+It'd be nice to have breakpoints for each device you expect, but supporting those devices will become problematic. As such, it's normal to define breakpoints using a variety of ranges that accommodate smartphones, tablets, desktop, and extra-large screens.
+
+You can use these common breakpoints as a reference:
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  ...;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  ...;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  ...;
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  ...;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  ...;
+}

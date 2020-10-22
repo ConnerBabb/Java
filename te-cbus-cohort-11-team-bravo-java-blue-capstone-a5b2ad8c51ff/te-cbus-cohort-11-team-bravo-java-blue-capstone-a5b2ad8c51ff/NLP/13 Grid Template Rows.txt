@@ -1,0 +1,28 @@
+Book
+https://book.techelevator.com/content/css-grid.html#grid-template-rows
+
+Grid Template Rows
+In the previous example, you only had four elements that were distributed in four columns. The layouts you create in CSS Grid consist of both columns and rows. What happens if you have more elements than columns?
+
+In this next example, you have twelve boxes that need to be displayed across four columns:
+
+<div class="container">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box">4</div>
+  <div class="box">5</div>
+  <div class="box">6</div>
+  <div class="box">7</div>
+  <div class="box">8</div>
+  <div class="box">9</div>
+  <div class="box">10</div>
+  <div class="box">11</div>
+  <div class="box">12</div>
+</div>
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+If you run this example, the layout looks like

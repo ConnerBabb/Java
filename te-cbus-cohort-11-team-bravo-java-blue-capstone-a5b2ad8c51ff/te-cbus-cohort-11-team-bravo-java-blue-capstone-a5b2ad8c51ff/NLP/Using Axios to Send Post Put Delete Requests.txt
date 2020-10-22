@@ -1,0 +1,40 @@
+Book
+https://book.techelevator.com/content/web-services-post.html#using-axios-to-send-post-put-delete-requests
+
+Using Axios to send POST, PUT, DELETE requests
+As with GET requests, you can use Axios to perform POST, PUT, and DELETE requests. Similar to how you used .get() for GET requests, there are corresponding .post(), .put(), and .delete() methods.
+
+To make a POST or PUT request, you'll often need to submit data as well. You can submit data in JSON format with Axios:
+
+axios.post('/users', {
+    firstName: 'Fred',
+    lastName: 'Smith'
+  })
+  .then((response) => {
+    console.log(response);
+  });
+You can also pass a JavaScript Object to either of these methods:
+
+let userData = {
+  firstName: 'Fredrick',
+  lastName: 'Smith'
+};
+
+axios.put('/users/23', userData)
+  .then((response) => {
+    console.log(response);
+  });
+Notice that the PUT method is used here, and the URL has 23 in it. A PUT method updates existing data, and typically a unique identifier, such as a numerical ID, is used in the URL to identify the object that you want to update.
+
+Be careful when performing PUT requests.
+
+When performing a PUT request, you're usually expected to send the entire object, including parts that you haven't modified. This is because the server often replaces the entire object/record with the data supplied. This behavior is mainly due to the HTTP standard, which states that a PUT request creates or replaces the existing data with the data that is sent.
+
+It's up to the API developer to decide to follow the standard or not. As stated before, following the standard is best practice and indicates to other developers how the data changes on the server.
+
+The DELETE method, similar to the PUT method, requires an ID, but doesn't require any additional data:
+
+axios.delete('/users/23')
+  .then((response) => {
+    console.log(response);
+  });

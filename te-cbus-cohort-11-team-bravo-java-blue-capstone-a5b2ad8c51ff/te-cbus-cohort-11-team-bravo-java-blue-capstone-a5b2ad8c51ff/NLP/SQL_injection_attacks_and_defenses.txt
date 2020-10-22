@@ -1,0 +1,102 @@
+Book
+https://book.techelevator.com/content/data-security.html#sql-injection-attacks-and-defenses
+
+SQL Injection Attacks and Defenses
+One of the main ways that data gets stolen or destroyed in web applications is via an attack called an SQL Injection Attack. An SQL Injection attack is an attack where a malicious attacker is able to pass a special value into your application that, when put into an SQL statement, deletes or displays information that the attacker should not have access to.
+
+This is possible - as are all injection style attacks - because the value that makes the SQL bad doesn't affect the rest of the application at all.
+
+#Getting chat logs
+Imagine that you are building a new application that handles chat logs in an SQL database. Each chat message has the following information:
+
+to	from	message
+joe	jack	Hey, dude. What's up?
+mary	joe	Want to hang out Friday night?
+jack	mary	That Joe guy is a real moron.
+mary	jack	Yeah, a real moron 5. rofl
+When Joe goes to his page, he can see his messages, or even search them. AN SQL statement like the one below selects his messages given his search query:
+
+SELECT to, from, message FROM messages WHERE (to='joe' OR from='joe') AND
+    message LIKE '%dude%';
+Now in the DAO, it wouldn't be written like this. You could have a line like this:
+
+"SELECT to, from, message FROM messages WHERE (to='" + username +
+    "' OR from='" + username + "') AND message LIKE '%" + search + "%'";
+If the value of username is "joe" and search is "dude", this would return these rows:
+
+to	from	message
+joe	jack	Hey, dude. What's up?
+This application could run just fine for years without anyone knowing about how insecure this is. In fact, you might not even see how insecure it is. But imagine that a user has the ability to set that search to whatever they want. That's a reasonable expectation.
+
+If Joe sets search to "night", he would get:
+
+to	from	message
+mary	joe	Want to hang out Friday night?
+But he could set the search query to anything. If he knows how SQL works, he might send the following search:
+
+O'Malley
+This generates the SQL:
+
+SELECT to, from, message FROM messages WHERE (to='joe' OR from='joe') AND
+    message LIKE '%O'Malley%';
+This causes a syntax error. It might even print an error message on the screen. This tells Joe that there's a problem in the SQL. Now, Joe can exploit it.
+
+He could send the following search:
+
+%' OR 1=1 --
+While this looks like gibberish, it's actually a very carefully crafted attack. If that gets put into the SQL via concatenation and then sent to the SQL server, the statement looks like this:
+
+SELECT to, from, message FROM messages WHERE (to='joe' OR from='joe') AND
+    message LIKE '%%' OR 1=1 --%';
+In other words, select messages where the to or from are "joe" and the message is empty or select everything. That 1=1 is always going to be true, which means it always returns the row, and Joe gets to see this:
+
+to	from	message
+joe	jack	Hey, dude. What's up?
+mary	joe	Want to hang out Friday night?
+jack	mary	That Joe guy is a real moron.
+mary	jack	Yeah, a real moron 5. rofl
+The 1=1 attack is a way for attackers to get every single record out of a database, whether they own it or not.
+
+This might make Joe mad. This might make Joe do something drastic. Joe could send this search next:
+
+%'; DELETE FROM messages; --
+This runs the following statement:
+
+SELECT to, from, message FROM messages WHERE (to='joe' OR from='joe') AND
+    message LIKE '%%'; DELETE FROM messages; --%';
+This empties the entire messages table from the database. Unless the site has a back up, the data is gone forever. Even if the site has a back up, it'll take hours to get everything back to the way it was and by then, users will no longer trust the site.
+
+All of this is happening because you're using one programming language to write another programming language. Injection attacks are possible because what is harmless in one language is destructive in the other. If the programmer isn't watching for it, it'll come back to bite them.
+
+You can write this in your back-end language and never cause a problem:
+
+String search = "%'; DELETE FROM messages; --";
+But the minute you try to put that in an SQL statement, you've just managed to destroy a large part of your application.
+
+#Preventing SQL injection attacks
+As you can see, these kinds of attacks are bad news. So how do you protect yourself from them?
+
+Luckily, you've already been taught how. When you saw how to generate SQL from
+Java,
+you saw what are called prepared statements or parameterized statements. You should never concatenate strings together to form an SQL statement. Instead, you should always use the prepared statement or parameterized statement functionality of whatever programming language you're working in.
+
+#Spring Database JdbcTemplate
+In Java, you have the JdbcTemplate class to use to make prepared statement calls to your database. By using SQL statements with ? placeholders in them, you let the SQL database put the values into the SQL statement instead of doing it in Java. The SQL database knows how to merge these two values into a safe SQL statement that won't retrieve unauthorized information or destroy your data.
+
+If you wrote your statement from before as a prepared statement, it would look like this:
+
+String sqlSearchMessages = "SELECT to, from, message FROM messages " +
+    "WHERE (to=? OR from=?) AND message LIKE ?";
+Then, you could call your SQL statement with the following code:
+
+SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchMessages, username, username, "%" + search + "%");
+How does this fix the problem? Because now you aren't building the whole SQL statement in your code. Instead, you are making your prepared statement, giving that to the server and then telling the server, "Hey, put these values in the placeholders that are set up." Since the SQL server understands SQL, it's able to insert the values into the statement in a way that treats the value as a string, and not as part of the statement.
+
+Using prepared statements, if an attacker sent the string:
+
+%'; DELETE FROM messages; --
+The database wouldn't execute the DELETE statement, but would instead search for the literal string %'; DELETE FROM messages; -- in the messages and, not finding any, return nothing.
+
+TIP
+
+Always use prepared statements. Never concatenate user provided data onto your SQL statements

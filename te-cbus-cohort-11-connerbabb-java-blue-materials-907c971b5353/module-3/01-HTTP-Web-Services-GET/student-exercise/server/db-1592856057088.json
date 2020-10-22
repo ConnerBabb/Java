@@ -1,0 +1,67 @@
+{
+  "auctions": [
+    {
+      "id": 1,
+      "title": "Bell Computer Monitor",
+      "description": "4K LCD monitor from Bell Computers, HDMI & DisplayPort",
+      "user": "Queenie34",
+      "currentBid": 100.39,
+      "startDate": "2020-06-18T17:04:34.093Z",
+      "endDate": "2020-06-26T11:54:45.117Z"
+    },
+    {
+      "id": 2,
+      "title": "Pineapple Smart Watch",
+      "description": "Pears with Pineapple ePhone",
+      "user": "Miller.Fahey",
+      "currentBid": 377.44,
+      "startDate": "2020-06-21T22:34:45.384Z",
+      "endDate": "2020-06-27T11:02:15.768Z"
+    },
+    {
+      "id": 3,
+      "title": "Mad-dog Sneakers",
+      "description": "Soles check. Laces check.",
+      "user": "Cierra_Pagac",
+      "currentBid": 125.23,
+      "startDate": "2020-06-18T07:35:02.892Z",
+      "endDate": "2020-06-26T05:48:50.561Z"
+    },
+    {
+      "id": 4,
+      "title": "Annie Sunglasses",
+      "description": "Keep the sun from blinding you",
+      "user": "Sallie_Kerluke4",
+      "currentBid": 69.67,
+      "startDate": "2020-06-21T13:26:23.349Z",
+      "endDate": "2020-06-25T10:12:33.559Z"
+    },
+    {
+      "id": 5,
+      "title": "Byson Vacuum",
+      "description": "Clean your house with a spherical vacuum",
+      "user": "Lisette_Crist",
+      "currentBid": 287.73,
+      "startDate": "2020-06-18T14:54:48.238Z",
+      "endDate": "2020-06-23T18:30:55.626Z"
+    },
+    {
+      "id": 6,
+      "title": "Fony Headphones",
+      "description": "Listen to music, movies, games and not bother people around you!",
+      "user": "Chester67",
+      "currentBid": 267.38,
+      "startDate": "2020-06-17T20:47:34.806Z",
+      "endDate": "2020-06-22T22:51:50.911Z"
+    },
+    {
+      "id": 7,
+      "title": "Molex Gold Watch",
+      "description": "Definitely not fake gold watch",
+      "user": "Stuart27",
+      "currentBid": 188.39,
+      "startDate": "2020-06-22T02:48:28.430Z",
+      "endDate": "2020-06-26T01:03:21.764Z"
+    }
+  ]
+}

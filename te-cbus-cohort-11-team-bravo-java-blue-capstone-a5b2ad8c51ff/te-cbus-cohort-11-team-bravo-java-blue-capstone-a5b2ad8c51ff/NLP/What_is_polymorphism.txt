@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/polymorphism-ool.html#what-is-polymorphism
+
+In this chapter, you'll learn about the last principle of object-oriented programming: polymorphism.
+
+Specifically, you'll learn about:
+
+What polymorphism is and how it's useful when writing software
+Where inheritance can help you write polymorphic code
+Interfaces and how they are used
+#What is polymorphism?
+The word polymorphism, derived from the Greek language, means "the ability to have multiple forms."
+
+In object-oriented programming, polymorphism is the idea that something can be assigned a different meaning or usage based on its context. This specifically allows variables and objects to take on more than one form.
+
+Here's an analogy to help you understand this term. Suppose someone told you, "go to the store and buy your favorite food for dinner."
+
+What happens next depends on some context:
+
+If the request were made to your 14 year-old self, it'd consist of you riding your bike to the store and using the cash in your pocket to pay for a pizza and a 2-liter bottle of pop.
+As an adult, you might drive to the store and using the credit card in your wallet, pay for pecan chicken and pinot noir.
+In both cases, the person making the request said the same thing: "go to the store and buy your favorite food for dinner." However, the result differed depending on the subject receiving the request.
+
+Often, you want to write code that can make a basic request, and based on context, allow different behaviors to take place. You can write code once that refers to many different things.
+
+As you'll see, polymorphism supports code extensibility. If you write polymorphic code, you have code that functions independent of the object's class type. This allows programmers to incorporate changes through new object types in the system without modifying existing code.

@@ -1,0 +1,128 @@
+Book
+hhttps://book.techelevator.com/content/variables-and-datatypes-javascript.html#datatypes
+
+Datatypes
+The variable values shown so far in this chapter have been either numbers, or in the case of the firstName variable, quoted text such as 'Bernice'. These values have different datatypes. JavaScript supports a relatively small set of datatypes:
+
+Number
+String
+Boolean
+Symbol
+Object
+Function
+Array
+Date
+RegExp (Regular Expression)
+null
+undefined
+The key datatypes in this chapter are Number, String, Boolean, null, and undefined. The other datatypes are explored in later chapters, with the exception of Symbol. It was included in this list for the sake of completeness.
+
+JavaScript is a loosely typed language
+
+Depending upon your prior programming experience, you may have noticed the lack of a datatype when declaring variables, especially if you've used C# or Java. Unlike those languages, where variable declaration requires an explicit datatype, JavaScript is a loosely typed language. Variables aren't associated with any particular datatype when declared and are free to hold any type of value:
+
+let foo = 42;
+foo = "Steve";
+foo = true;
+Variables can be assigned and re-assigned values of any datatype. foo starts as Number, then becomes a String, and ends up a Boolean. Note the let declaration so foo can be reassigned values.
+
+#Number
+JavaScript supports two ways of storing number datatypes. The first is as 64-bit floating-point values, more commonly known as decimal numbers, or numbers with a decimal point. The second format is once again 64-bit, but this time values are stored as integers, or whole numbers.
+
+The two formats can occasionally cause some surprising results in rare circumstances, but for the most part, JavaScript silently handles the difference between floating-point and integer values. Basic addition, subtraction, multiplication, and division work as expected. Arithmetic is covered later in this chapter.
+
+#Number formats
+As you've already seen, numeric values may be expressed in several different formats.
+
+#Integer
+An integer literal has the following format:
+
+A sequence of digits 0-9 without a leading 0 (zero) which can be signed; in other words, preceded by + or -.
+Here are some examples:
+
+453
+-102
++732123
+#Floating-point
+A floating-point literal has the following format:
+
+A decimal integer which can be signed; in other words, preceded by + or -.
+A decimal point (.)
+A fraction (another integer)
+An optional exponent which has the following format:
+An "e" or "E" followed by an integer which can be signed; in other words, preceded by + or -.
+Here are some examples:
+
+98.6
+-43.45
+-2.432e+12
+7.01e-8
+#String
+A string is zero or more characters enclosed in double(") or single (') quotation marks:
+
+"foo"
+'bar'
+'1234'
+"Rocket J. Squirrel"
+The end quotation mark must match the one used at the beginning. In other words, JavaScript won't accept this:
+
+"foo'
+'bar"
+It's possible to embed single quotation (') marks in string enclosed in double quotation (") marks, and double quotation (") marks in a single quotation (') mark string:
+
+"Occam's razor"
+'Tammy said, "Hi"'
+It's best to use single quotation marks
+
+While there are times when using double quotations marks to delimit strings makes coding easier, you should strive to always use single quotation marks as string delimiters.
+
+#Special characters in strings
+Given a preference for single quotation marks as string delimiters, you wonder how to show the razor belongs to Occam:
+
+'Occam's razor' // Invalid JavaScript: You can not embed a single quotation mark in a single quotation marks delimited string
+Fortunately, JavaScript allows you to embed special characters into any string:
+
+Character	Meaning
+\n	New line
+\r	Carriage return
+\t	Tab
+\'	Apostrophe or single quotation mark
+\"	Double quotation mark
+\\	Backslash character
+"Tony said, \"Hi\""
+'Occam\'s razor'
+#Concatenation
+You can build larger strings from smaller ones in code with string concatenation using the concatenation operator, +, just as you do in Java and C#.
+
+For more on string building techniques, see the Template Literals section towards the end of this chapter.
+
+#Boolean
+Boolean values have one of two values: true or false.
+
+#Undefined
+Undefined is a bit strange. How can a variable have a undefined datatype for a value?
+
+The answer is that values live in memory locations, not in variables. Remember the box analogy: the variable simply refers to the label on the box in memory where the value is held.
+
+An undefined variable means that there is a memory location for the variable to refer to, but no value has yet been assigned, or placed in the box. So, when firstName is declared, the box in memory exists, but has no datatype until 'Bernice' is assigned later on in the program.
+
+
+Image - Variable value is undefined until assigned
+#Null
+Although null and undefined are commonly lumped together, there is a difference. A variable that is undefined still refers to a memory location. You just don't know its datatype since no value has been assigned.
+
+A null variable, on the other hand, doesn't refer to any memory location. Not only is there no value, there's no memory to hold a value.
+
+
+Image - Null variable has no value
+Once firstName is assigned null, the memory location and any value in it disappears.
+
+mutable versus immutable
+
+Many programming languages, such as Java and C#, categorize datatypes as either value types or reference types. This categorization is important in these languages, especially as values are passed in code. Reference types can be inadvertently changed while being passed around, while value types cannot.
+
+JavaScript has a similar categorization, only it's between mutable and immutable. Everything is passed around as values in JavaScript, so there are no reference types to worry about. However, it's the "inadvertently changed" part that's the real problem.
+
+Number, String, Boolean, Undefined, and Null are immutable primitive datatypes, and as such, can't be changed as they are passed around. Objects, Functions, Array, Date, and RegExp are all mutable and may be unexpectedly changed.
+
+You'll learn more about mutable and immutable datatypes in later chapters.

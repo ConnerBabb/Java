@@ -1,0 +1,1412 @@
+Zoom
+https://techelevator.zoom.us/rec/share/wtJ-f5_1zVpOYLOXykuGea9iB7zsT6a8h3BIrKIMn0n1Tsylg7qrxna0j2BZoyUA?startTime=1590067691000
+https://drive.google.com/file/d/1xosni_Ep5adoAjtMeUjYZMDn7-5s31XA/view?usp=sharing
+https://docs.google.com/presentation/d/1LW5eZHFC-ZNPastNbwARAYbA3WzGuuooOJ347tL2_Lk/edit?usp=sharing
+
+Okay, so today we're going to
+
+start taking a look at classes. And this is going to begin a next five days or so of least five lectures or so we're going to explore classes and their usage and in great detail. So
+
+so for today, we're going to start by
+
+looking at the three fundamental concepts of object quantum programming. And we're going to then look at defining classes and packages. And we're going to be looking at creating class, and how we build our own. And this is created by creating a class we're going to build data types so we can create our own On objects. We're going to look at class members and this key word that's going to include member variables access modifiers, properties and derived properties. We're gonna look at member functions. In both methods and constructors. We're going to look at over method overloading and constructor overloading. And we're going to look at object equality and string certification in method overriding. That's a lot. That's the longest list I think we've had. So far this court. So we're also going to make a shift in the way we've been thinking about problems. So we started out
+
+with
+
+just using really basic syntax last week, basic syntax of the language, and then we expanded that earlier this week, by using methods adding methods and objects to it. But we still, all the problems are the sequential problems that are basically math word problems, right? Not something that we could solve, we would normally solve in a real world, nobody's going to
+
+hire a programmer to set and figure out
+
+whether monkeys are smiling or know how many cigar squirrels need. So we need to shift in that focus into something that is more a representation of the real world. And that's what classes and objects are going to do. That's what object oriented programming is going to give us. So we're going to switch from always thinking sequentially to start thinking about how we can break up code into mini reusable parts and then using those parts in in pieces to solve bigger problem. So instead of having a little block of code with a line that starts here and just goes down, instead, we're going to have code all over the place that's coming together to solve problems. So it's, it's a different way of thinking about it. And
+
+we're going to start looking at that today. So
+
+to talk about that, we need to be able to talk about, first how to build a class. And that's a huge topic. There's a lot of pieces to it. And we're going to go through all of it today. All of those pieces, because we need that as kind of a foundational block for where we're going next. But I many people tell me at the end of this class that they feel like they got ran over. They feel like that they they were so much that It made us feel exhausted and like they didn't get any of it. And that's okay. Everything we talked about today, we're going to be repeating over the next five days or so. So there, it's, though there'll be things you'll have to use today, everything we talked about, we're going to go in more detail about in some way. Because we have to have this foundation so we can talk about those greater details. So we can kind of look at it as in, I don't want to say urvi day because that implies that it's not important information, but a day where it's okay if you get some of the concepts and not others. And that's something I hear all the time coming for this next few days, where the concepts get much more abstract, they get much more difficult, much more challenging. Now the exercises actually most students say they get easier, but the concepts get harder. So before we had no kind of easy concepts and not easy but easier Comparison concepts with much more difficult exercises. So that'll start switching doesn't mean the exercises easy by any means I don't want to give you that impression. So you're in the, but in the ability to switch of applying this to
+
+the problems you'll be asked to solve becomes a little more challenging. So
+
+I'm bringing that up because I want to, I want to assure you, because I've heard from many of you, that you feel like you're struggling, you feel like you're behind and you feel like you're the only one. You're not. That's the norm. It's the norm to feel like you're not getting the information. It's the norm. They feel like you can apply the information. It's and then the next day, it happens again, and in a few days, you don't realize that
+
+you're not worried about that thing anymore. You're worried about something else. We keep telling you that but I know that doesn't help.
+
+So I'm warning you, you're going to feel like that today, and that's okay. So I want to show something from a past it. So, and I see your your note, Kevin in the chat and when I'm saying easy and difficult, I putting it in comparison to the material, not to your not to individual ability. So some of the concepts we're going to talk about the next few days, I spent months trying to figure out and I'm going to ask you to do it in a couple of hours.
+
+So it's, it's relative,
+
+but you're also not alone. Normally class like this. So I want to show something past it. Who wouldn't ever going to the classroom Took really meticulous notes. We have giant notebook bartable notebooks of a bunch of notes they took. And on one particular day, I saw a couple of their notes. They showed him to me. And on one particular day, not today, but unfortunately the day that it's for we no longer teach. So I'm going to use it for today anyways, because I think it's real, it demonstrates something important. So for one particular day, their entire notes was this.
+
+It was there No, for the whole day.
+
+It came back and filled it in later you can see what they did. But so you're not alone, not only in this class, but in every other student that came through this program. And this to continue the story to know what happened to them. So the student gown does fantastic. This was actually Michelle's Book. If you were in the office, you would see giant piles of notebooks on her desk from which was a student in sentence.
+
+And obviously, she has the material now she's has
+
+a great grasp on it to a point that
+
+she's working with it every day, and you will too. So.
+
+So when you're feeling like that you're like you're not getting it.
+
+You can figure that you're not alone and you won't get it.
+
+So with that, with the,
+
+I guess, encouraging you not to be too discouraged by what's about what we're about to go through.
+
+Let's talk about object oriented programming.
+
+unless anyone has anything they would like to
+
+add, I should add at the end of that, when you are feeling like that.
+
+Come, come talk to us. That's what we're here for. We're happy to go through Any this material again, we're happy to help you through exercise. We're also happy just to review things. And we're happy to go through, you know, a mini lecture on the same stuff with you. And if you're not getting it from
+
+what I'm going through now go in
+
+ask Rachelle or Steve or john to go over it with you. They're all be happy to and there have a different perspective on it and often that can help. So take advantage of that. That's, that's why we're here and that's why you're here is for for that type of help. Alright, so now we'll talk about operatory programming.
+
+And just for reference, okay, that episode Me want doesn't have a brain right and they keep telling him they're like, just in my mind. Hi. Remember the car And apparently I was wrong. But they kept repeating instructions to them over and over again. He's like, just just grab the wrap. He's like, Okay, I got it. Do what now? And then they like just just grab it and be like, Okay, I got it, do what now and he just kept repeating over and over again. So that's why at that point that's where I was. That's where I was. I was like, I bet you're telling me information, but it's just bouncing right off me. So
+
+So let's talk about the start with before we can continue really talking about classes, I want to introduce the three principles of object oriented programming. So there's three fundamental principles, and we're going to talk about them today in just depth define them. In fact, what's on this slide is about all the more depth we're going to go into. And then we're going to spend time Hold day on each one of them so
+
+or more.
+
+So today is just so that we can start defining them and start being able to use the terms. So, the first one is encapsulation. So encapsulation is the concept of being able to hide data or hide away where the inner workings of a class, I feel would be with the class to be able to completely control we talked about that programs have this concept of state and this concept of behavior. And we want in classes and objects have the same they have all have state and behavior so data and things they can do. And the capsulation means that if an object knows how to do something, it should know the details of how that works. But to use that object, you shouldn't have to know the details. You should just know how to use it or how to ask for it to be done for you. And the object should be in complete control over the state the data. So, from the real world encapsulation in the car, when you go and you put the key in, you start it. Most people using a car and starting your car can't define a detail how that works. I'd say the majority of people can't give much detail at all about it, but they don't need to. They only need to be able to know they put the key and how to use and ask for it to do the job that they want. When you use the string class this week, and you call something like substring. You don't need to know how substring works. You need to know how to ask it to do a particular job you need to know to how to ask it to say I want the between these two indexes, but you don't need to know what it's doing internally for that to happen. That's encapsulation. So one of the principles of object oriented programming is that we should build our classes in a way just like that they have a user friendly, easy to use interface. And again, easy is relative here. But the user of that should not know, or have to know, really how it works, just what it can do. So, second principle inheritance is the idea that we'll create hierarchies. So, essentially a parent child could a parent tribe relationship between our classes. And so the classes are, like classes become related to each other. And the reason we'll do this is so that we can pass on functionality. So we can build functionality in one class and then pass it to another class without having to rebuild it. So in that will be both its attributes. So it's state or its behavior. So while I was to write code Once and as we expand that code to be able to not cut and paste it, but just to say I want to pull that code in from this from this like thing. And again, that comes from going back to the car analogy. It. We have the same concept there. Cars and reward objects also inherit things. Every car, when we think about it, it's going to have four wheels. If I change that to motorcycle, it inherits two wheels, right, but they both have this concept of wheels. They, if I say car, it has a steering wheel. They all have their own version of it. But they have to have these certain things to be a car. For us to say that it is a car it's going to have to have certain features, including wheels, and steering wheel or steering mechanism. So it's inherited those concepts from the idea. We're going to mimic that encode and that's what inheritance is going to do.
+
+The last one
+
+prints. The last principle is called polymorphism. polymorphism is closely related to inheritance. But it's this idea that once we inherit, once we have to pass on these concepts, then we should be able to make the individual things. The specific things have their own results, but still treat them generically. And again, going back to a car, there's multiple types of cars, right? So there are five, there's a Honda, Toyota, they have a different look, they have a different color. They have like some like things, but their internal mechanisms don't necessarily have to be the same. a better example might be something like a Tesla compared to one of those where you press the accelerator pedal in one is completely running
+
+electrically. And the other one is
+
+using combustion to, you know, do something or make it for but they both accelerate the they both have this generic idea. These cars have the generic idea that they can have a color. This one has a blue color, this one has a red color, the electric versus combustion cards, ideas, they both have an idea of acceleration, but how they do it specifically is up to them. We can still treat them just as car, we can still treat it just the accelerator pedal. We don't have to treat them specifically to get that specific result we can treat them as the more general thing. And I know that sounds confusing, and that's okay. We're going to spend a lot of time on polymorphism. But that's what it is. It's this idea of things should be able to be treated like the concept of what they are, but still have their own specific actions.
+
+So why would we
+
+do this? So what some of the benefits of this have, because buying those principles, I know that the first time you hear them and even after you're applying them, applying them can make coding more tedious, it can make a lot more work, sometimes you need to do. So the benefits we're going to get from this is we're going to have a natural way expressing our reward objects and code. So we're going to be able to start modeling our code around real world objects and real world interactions, which means that it'll be more readable, it'll make more sense. It'll also means we can start solving problems that are not a math word problem. We can start solving more real world problems with it by mimicking that.
+
+So we're going to make our code
+
+That's gonna make our code more modular. Meaning that we're going to be allowed to be able to make changes to one part of the code that's specific to that without changing other parts without it affecting other parts. So for an example, without going back to a physical object, the car example was looking at, if you go in, you have to make a change. So there's, you have to do a repair to the edge of the car to replace the fan belt. That doesn't affect the steering wheel, right. They're unrelated Parts that come together to work together, they're modular. And that's what we're going to mimic inside with using OPI as part of what's gonna help us mimic in our classes. And that's going to make them more reliable because it's going to mean that we can test and focus on little pieces of functionality at a time to make sure it's working, just like a manufacturer might and those cases would be Testing
+
+each individual part
+
+before they put them together, and then when they come together, we know that the parts work separately, we just have to worry about how they work together. And that's gonna allow us to do that in our code, which is going to make our code a lot more reliable. So it's also part of that it's gonna allow us to create discrete units of reusable code, we're gonna have these now. little pieces that we can use, we don't have to keep solving the same problems. We've been using other people's code like that. That's when we pull in a class like scanner, somebody at some point said, you know, system is hard to use. So they built a discrete unit of code that just makes input streams easier to work with. So they could work with something like system in and now it's reusable every time we need it. We can just use it. We want our code to be like that. Once we solve a problem in code, we don't want to have to come back and solve it next time. We want to be able to just to pull that code in, import it into Are our current code and use it. So it's going to give us that ability. And then these units of code are going to communicate to each with each other by sending and receiving messages to process data. And that's basically going to be a communication is going to happen through methods. That's the primary focus, boom, we've already been doing that when we, but we just haven't seen the inner workings of it yet. So when we get using scanner, and we're calling it to next line, we're sending in a message, we want the next line, and it's responding to us with the response of the data from the next line. So the reason we can do that in such a relatively simple way of just having to say next line is because of these principles, of what they're allowing. So, all of this, we're going to be talking about a lot more over the next week and a half. So we're going to spend tomorrow in pretty much all Next week talking about exactly this. And really, it would go beyond that it'll go for most of the rest, the cohort will spend a lot of time talking about these principles and how we apply them. But we're going to focus one day at a time through each of them for the next few days after we have the ability to talk about classes at the end of today, and then we'll start looking at how we can apply them to more and more types of problems. So before we jump into classes, there are questions on
+
+this one. I have a question, Brian. Yes. So I'm just curious, we talk a lot about these are critical things to know for interviews. Is this something that comes up where like an interviewer would ask about your overall like, describe to me object oriented programming? Yes.
+
+That is, yes. Describe your current programming name the principles of object oriented programming. Find them. give examples of how you use them in your own code. Give your, your own description of them. Those type of questions come up in most interviews, that's actually, in fact, a lot of interviews will even the focus of the entire interview will be around the prints round up this, these principles and how the you're applying them. So, that's so but at a much more detailed level than we just went over. But that's why we're going to dive in each one over a day or so.
+
+Other questions before we
+
+start looking at something a little more concrete?
+
+Okay. So we've already talked about classes and objects, but let's
+
+pick another look at those now. It really what they contain, because we've looked at the evidence Excited we instantiated objects from these classes. We know that classes are the source code, and objects are what is instantiated from them. But the class themselves is a blueprint, its source code is what we write.
+
+So we define
+
+what an object is going to look like how it's going to work, and what state it's going to have by writing a class. The class models defines the state with fields, which are going to be variables that are going to be internal to the class. And we'll talk more a lot more detail about those. And that's going to hold the state. So that's going to hold data that the class is working with. And then we're going to define behavior with methods. So methods are going to be things that this class can do so Going to the car example here, I guess ability to get the miles per gallon. It may what might have, if it was more like a road car something like accelerate as a method, or turn, right. So things that can do. So then we're going to create new instances of these classes that are gonna, it's going to follow these blueprints with these property values. And those are going to be the objects. That's when we instantiate objects based on these classes. It's going to find what data they're holding and how they can behave.
+
+And all reference types are
+
+just classes.
+
+So the only thing not defined specifically by a class in Java are those eight primitives that keep coming up as the exceptions that we started looking at. Everything else is reference type, and every all of them are defined by a class in all classes to find a data type. So we talked about few times I mentioned that everything in Java is a data type. That's because it's defined by a class. And that's what classes do they define data types. And so not that we're going to go through it in detail, we can see a sample here, the class is going to pull up. So we've been working with string. So the strings we've been working with are themselves just source code in Java. So this is the string class.
+
+It's quite big. And it has a lot of stuff in it that
+
+we haven't covered yet. But it's the source code. This is the string class. What you use in your code are string objects. This is the blueprint of how they work. This defines how they're created. This defines what they can do if we continue through here.
+
+There starts with one we know. So this defines how the behavior starts with and how it works. So everything in job all these reference types are classes. And the ones that exist that you've already been using like string and scanner, their classes too. But now we're going to build the class side, we're not just going to use the object side. And we're, we're going to do both, rather than just use the use the objects the class can generate for us. So so but first, before we can do that, we need some rolls around naming know everything in Java, or programming in general. And every language has a bunch of rules around how it needs to be named. And those rules are so that we can identify things easily. So we already saw there's a question today about how to identify the interface versus the class just by looking at the package and the answer. There was well, you can But the reason we can identify the package from the classes about the naming roles, the reason we can identify a variable from the class, the class, and so in methods are going to be about the naming rules. So let's look at the naming rules of a class. It will, when we get to interfaces, we'll talk more about their roles and why they do the same. That'll be more hopefully more apparent. So class naming. So what are these nouns or noun phrases to describe classes, so not verbs? classes are things they model a thing. They don't model an action. So they have actions. So they model a car, a person,
+
+you know, a modem, a
+
+keyboard, so they model physical things, or sometimes abstract things, but they So they're going to have nouns as names, or short noun phrases. If it's a phrase, it should be a phrase that describes that thing, because there's times we're going to model things where there's not a real world representation or a singular name for it. So we'll instead have a short phrase that describes it. But so they're gonna be nouns. They're going to be singular. In most cases. There are rare exceptions to this, but they should be singular. So vehicle, not vehicles or car, not cars. And the reason is, the class is going to create an object that models one. And then we use collections, and arrays to when we have many. So since we're modeling one, this should be a singular name. Now going back to string, use a string, you put one string and that string class right when you create the object, you put one string in it. So if it was called strings, it wouldn't make sense talking about your strings. Hello. Because it's a singular one, when we have no five of them, we put them in a list. And the same will be true with our classes. So they should be singular name singular nouns. They, we've already looked at that must match the file name. So whatever
+
+the dot java file name is.
+
+The class name must match. Exactly, that's with case spelling, everything must be identical. And if not, you'll have a compiler to do more to compile. So then, then finally they follow Pascal casing. So Pascal casing is a lot like the camel casing we've been using for
+
+variables, but the difference is that while
+
+camel casing starts with
+
+a lowercase first letter, Pascal casing starts with every word uppercase, including the first word. So this user account with a lowercase first letter be camelcase, like we used for a variable, where this user account with starting capital would be what we use for a class. That's Pascal case. So really, you don't need to remember, terms like Pascal and camel case, the role you really need to remember though, you'll hear them and you'll read them. So it's gonna be good to at least know that they have a general idea what they mean. But what's important is that we're going to follow basically the same type of conventions we do when writing out the names for classes that we do for variables, but we're just going to give them an uppercase letter to start with, and that's going to help us identify the difference between a class and a variable in our code. We'll see that the class has the uppercase letters we know that that's referring to to a data type rather than a reference data type specifically, rather than to Variable holding that reference data type.
+
+So before we go to the next part, we'll jump
+
+into code actually start writing this as we talk about it. What questions do you have
+
+at this point from that?
+
+Alright. So then
+
+go to eclipse here.
+
+And I'm inside of today's lecture code, and there is a paint calculator class that's already been built. I'm going to show you what it does. Because we're going to fix it. We're going to write a class to make it more to make it work better. So
+
+we're gonna run it. job application.
+
+And if we click Add walls, you can enter height and width. And it says adds the walls when no matter how many we add the child calculate, it spits out this. So the idea is we can add walls to it. And then we can have it we'll go through and calculate the number of gallons needed to paint that number of square feet based on wherever this came from. So right now it's all hard coded. So it doesn't, it stores gets the height and width, just print it, the area, and then it just prints out some values here. So we need some way to, we want to make this more dynamic.
+
+To do that, we're going to have to be able to represent a wall
+
+So that's when we have to represent something we have to represent something that is a thing like that, that we need to use in our code. That would be a good indication we need a class. So let's make a new class that does this. But first we have to decide what are we going to call this class? What are we actually going to represent? represent? So ask you what, what should we call our class? What what are we actually going to need to represent? A wall right? Yeah, we're gonna represent a wall. So should we call it wall? Is that what we need?
+
+Wouldn't it just be wall
+
+like one singular? Yeah, we could call a wall. But
+
+is that really what we're representing?
+
+That's We're going to use it as No, no, that's there's there's no wrong answer right now because this isn't something we've talked about. So it's the area. So again, you need the area, we're definitely gonna need to get the area. That's gonna be one of the data points we need.
+
+I guess
+
+the paint calc. So, think calc is what we're this class is doing. It's a paint calculator.
+
+So what is a wall? Fundamentally? What is it? So,
+
+abstractly, maybe I should say, what is a wall?
+
+an amount of space,
+
+it is an amount of space. So how can we represent that?
+
+Just the square feet.
+
+So yes, we're going to need the square feet. So we need to be something that can calculate square feet as part of it. But if we're going to calculate square feet, we're going to calculate area. What What do we actually abstractly need? We need to learn and we will need the length and the width of your data. So we have the state, we first define the state and the behavior we need. But what did we just which is important because that's what helps define what we what we probably should create. So we know we need to keep state of mind with an area and we know we're going to have to have the ability, the behavior to be able to calculate the square feet. So or it probably do. So what are we describing? Doesn't sound like a wall to me.
+
+With length with air To
+
+surface, it is a surface. Yes. So room. So rooms that can be used to build a room. So what about, it's a shape, right?
+
+length width, area, rectangle, rectangle, a wall, abstractly is a rectangle. So we can make it a wall, we can make a wall class. If we do that we have a wall class that we can use, we want a wall. If everything we need that we actually need to represent about the wall actually doesn't describe a wall describes more abstractly a rectangle, which is what a wall is, or can be made of.
+
+Then
+
+we could build a rectangle and now we have a rectangle that we can use when we need a wall or we need to do some kind of math calculation or we need a shape so deciding what classes To build, and if you built if you are solving this problem and you build a wall, I wouldn't tell you are wrong. If you go to wall class, I would not say oh no, you should have shouldn't have build a wall class. If you, but if you go to surface class, I would the same way, I wouldn't say you were wrong, because there's multiple ways to model pretty much everything. So I'm going to suggest we should model it as a rectangle, because that's one of the things I tried to do is I try to think of the most reusable thing that solves my problem. And then using something else will not just next few days, we can expand it out into something more specific.
+
+Here we can even go
+
+more simple is that all we need is the dimensions in the area. So we can just call our variable wall to return our rectangle onto a wall. But now we have something more reusable. And
+
+if we did call it rectangle, couldn't we use the same thing to input the amount of windows and subtract that from the surface area?
+
+Exactly. That's exactly what that's, that's a great example. I'm going to still that for every court going forward. Thank you. Because that's, that's exactly what I've, the type of thing I was referring to is that we can reuse it every time we need a rectangle. Now we have one, so we can use it to represent, we can just change this variable name and now we have Windows now we have doors, those are rectangles to usually. So every time we need that we have this class now that becomes reason when that's part of one of the goals is to build reusable code.
+
+So let's build a rectangle.
+
+So I'm going to go here to come That tech elevator and the right click on it. And I'm going to choose new class. We've done this a few times already isn't really talked about what it was doing.
+
+And then I'm just going to name it
+
+rectangle. And I'm not going to select any other options and press finish once that's done
+
+I'll pause for a second for
+
+so quick question while you're paused. Is it always best practice when you're creating a class to try to go that simple or go as simple as possible?
+
+Is it a case by case scenario it is
+
+a it is a case by case scenario but a if I had to give a best practice for it, or generalized best practice it would be to go as generic as possible that still solves your problem. So if Going to another level like shape that necessarily might not have a width and height because you know, circles are shapes too. And they that doesn't solve the problem. It's too generic. So the reason that rectangle for a wall is we need width and height to measure a wall. Some walls may have two or three of them, but it's still, you know, combination of them. And so a rectangle does everything we need for for our wall. If there was something it didn't do, we might go something a little more specific. So
+
+so I'm going to click finish now.
+
+So to build a class, really, what all that did for is is just created this little bit of code. But if we were building it outside of Eclipse, what we would have to do is create a new file named rectangle dot java and then just add this code to So what creates a class is right here, the public class rectangle that defines our class. All of our code is now in this class is going to be in the scope, this bracket we talked about. And we'll go through scope a little bit more as we go, but we talked about Java don't have this idea of global scope. Everything's scoped to blocks. And every both things are scoped to classes. And that's part of this. Oh, ideas. Having a global scope is not object oriented, oriented. That's actually the very opposite of that. It's very, it's very procedural type
+
+code. So
+
+the idea that being that objects should ask each other what their state is not have a shared state. And we'll see kind of a violation of that, but only, but we'll wait for when that happens. So we have a class now.
+
+So now We need to do something with it.
+
+So our class is going to be
+
+slides broken up into a few pieces. So the first piece is we're going to add what's called member variables. And it's going to find state fours. So member variables are going to be variables just like we've been using. They're also points out known as instance variables. They're going to hold the data. And they're going to define what properties this class represents. So part of what we're going to have to start thinking about is this idea of access modifiers. Something we haven't really looked at yet. We've only looked at one public, we talked about the methods have them we looked at method signatures, but we're gonna have to pay a little more attention. To them, because in order to properly build a class and to follow the principle of encapsulation, we're going to have to at least we're going to make decisions on what people what users outside of our class can see what code outside of our cars can see, and what code inside of our class can see. So for example, with string, when you put in, you put the word hello into a string, you can see the word hello as a string, you can see the values but you can't see the car Ray directly inside you can use it you know, it's there because you've been told it's there. You've been documentation tells you it's there. But you don't have to know that they could have just easily not had car at and just said, you know, get get character or something like that. For car at and hidden away the fact that it's car right So you can't see it because that car ray is private to the class like only be seen there. So we got to make decisions around that. And we'll talk about with access modifiers why we make certain decisions. In fact, before we continue there, let's build some, some number of variables. So for building a rectangle, we're going to need to we've already discovered to find what they were we need with immediate height. So let's make them public. First, we'll just do this. Make it simple. We'll just do them as
+
+just integers.
+
+And now I'm going to build a nother class, just to just so we can kind of test things as we go. So we can run it in Terminal and just see it working. So in combat tech elevator, I'm gonna choose new again and go to class.
+
+I'm going to call this something like rectangle demo. And I'm going to check for this one public static void Main, because I want to be able to run it. So that's another thing that every class we've worked with pretty much has or so far all of them have had this public static void Main in it. So that has to be one per application. The classes that can be made or applications are gonna be made a mini mini classes. So most of our classes won't have that fact we'll have one and then a bunch of other classes as support. Right, so this one's going to be our the one we run. So I'll click Finish then
+
+and
+
+Then this gives us a new class rectangle demo. And what I want to use here and this is more familiar with what we've been working with the last week and a half, I'm going to create a new rectangle. So to do that, we're going to use the data type rectangle because we've that's what we've created. And we'll give it a name. I'm just gonna call it rectangle. Actually, we're building a wall on the ends. Let's call it wall equals new
+
+rectangle.
+
+And now I can
+
+see if I wanted to set the height, I could set it.
+
+If I want to set the width, I can set it
+
+I'm going to change it
+
+I can change it anything, I might change it to a negative 10. That's a valid integer. So I have access to the things that are public inside the class.
+
+These access modifiers are public.
+
+So I have direct access to them, which means that I can change the value to anything that's valid for that data type. Which means that my rectangle class, those objects have no control over their own data. Something else can set it and change it.
+
+And that's a problem. For one thing
+
+to follow. As we talk more about capsulation. To do that, we, somebody knowing this shouldn't know that we're storing in a variable called width and height, they might guess it Name, but they shouldn't have to know it. They should know that they can set a width and height and get a width and height from our class, but not how it's storing it, and they should not be able to access it directly. Because then, now we're gonna have to write all through our code is the number positive, we have to keep checking that, and that's going to be problematic. And if it changes, we're gonna have to check every time because something anyone could change it at any time. And we won't know nothing is going to tell us, hey, the height changed, the width changed. So, access modifiers these variables that hold state should never be public, they should always be private. In fact, as we go, we're going to start talking about some rules around classes that get really strict and one of them will be that no public access modifiers so let's make these private. I'll save that and we'll see I immediately get it going to error and rectangle demo Because right now, where I was setting width and height, when I click there, it's going to say, oh, that you can't do that. There is no width and height. And click over there, we can see the error comes up as it's not visible. It's telling me Yeah, maybe there is a height, filled there called height, but you can't see it. Now, when I do wall with an item no longer in the list. That's because those variables are internal to the rectangle now. So the reason why I do this is we don't want to allow. We make them public, it allows that direct access, it allows them to change it without our knowledge. We don't want to allow we want to have complete control over the state of our object. And as part of that, we want our object to be able to verify data to modify data if it needs to. We want To be able to even say, No, you can see the data but you can't change it, or you can change it, but you can't see it, we want to be able to make those kind of choices. So because of that access, my x member variables will always be private. But we still need to use them from outside the class. So that requires something else. But let's talk about that after the break. So, we'll come back at 1028 and
+
+talk about that.
+
+Okay. All right. So
+
+before we continue, what questions came up for you during the break?
+
+or thoughts or
+
+so you don't have to actually import rectangle to utilize In rectangle demo,
+
+only because I'm in the same package. So they both accomplish elevator, if I wanted them was in a different package than Yes.
+
+Okay, got it.
+
+So anything else before we continue?
+
+Okay, so now we have private
+
+member variables. So the width and the height, but we can't access them here in the rectangle demo. Because they're private, private, keeps them only inside of this class. That's what defines.
+
+So to get access to them,
+
+we need to give some public way for them to be accessed. And we're going to do that with getters and setters. And getters and setters should be the only way we can access data in our class. There'll be methods for behavior but the data itself Stage only be accessed through these getters and setters. And they're going to have a role of getting, they're always going to start with a prefix of getter set with the exception of boyan, which will start with his or has, or one of the other boy unquantified prefixes.
+
+So
+
+if we look at these two things together, we now have a change your access modifier, we only have public, which means everyone can use it. Now we're adding private, which means only things in this class can use it can't it's not visible anywhere else, outside of this class, and that's how we're going to start defining things so that we can hide them the inner workings to meet the needs of encapsulation, or the requirement of capsulation. Then we'll talk more about tomorrow. So getters and setters mean that we're going to have, we have a task name as a private member variable for our getter. We would have get TAs name, and it returned the task name. So the datatype of the getter method is going to be the same as the data type of the variable, remember variable, it's going to be the same name with get and then the first letter capital capital. And this is going to return the variable at a minimum. Now we can this allows us to make changes here to what is returning without affecting the user of our class.
+
+The setter is going to be
+
+void. So void is a return type that's tells says that our methods returning nothing. So like when you call think of a method that we call it doesn't return anything right now. So what we call a setter, we're setting a value we don't expect any response back. So like when you get it, you do add and nothing comes back. That's that's void. There's no way response. So the sender name is going to be set with the variable name now. So set task name, it's gonna have to take a variable have to pass in to set it, and then it will just set the variable here and the number equal to that at a minimum. And we'll look at other things we'll do. So in many cases, they're just going to be pastors. But what it means is the external to our class, users of our class will call get inset cast name to change the task name. So if we want to change where task name is being stored, it won't affect them. If we want to change something if we want to make it so that we only allow tasks to be set, if it has more than three characters, we can do that. They can't control it. So it puts us in complete control of this internal workings. Which is how when we get the methods, what they're going to use to do work. So the getters and setters allow us to hide away how it's being stored. And
+
+any rules around that storage.
+
+So and then there's also an example of bullion complete. So it's a get used is complete.
+
+So let's write
+
+some getters and setters
+
+real quick. So why was the setter using void versus the string?
+
+Because the center is not going to return a value. We're setting a value into this variable. We don't need to send anything back. Okay, got it.
+
+So if we're going to write these, right,
+
+public is going to be the same data type so and right get her with first get with systems. name with the get and needs no arguments for the getter is going to return this dot with and we're going to come back to what this means. So for now, immediately after we typed this out, so, so returning this with this variable, and then for the setter, we'll say public void. Because we're not going to return anything, we're going to do something we're going to take an action, which is set that variable to set with. And then the convention is usually to have the same variable. It's got to be the same data type, and the same variable name. And then set this dot width equals to with and we'll come back and explain that in detail as well. Let's do the second one for height. So it's gonna be public and get height.
+
+return this dot height
+
+and Getting the setter will be public void, so nothing set height. So the variable name and then a variable to for the user to pass in the value they want set. And then it'll set this dot height equals to height. And so that's what getters and setters are going to look like. They're going to always follow that pattern of the getter, having no arguments, returning the data type, and returning the value from the member variable. It can do other work first, it can make changes or do anything it wants to calculate something before it returns the value. But in many cases, it's just going to return the value. The setter is always going to have a signature of being void. And then an argument of the same data type that we're setting and usually the convention is the variable name will be the same. And we'll talk about what that means. And then it's just going to set this value.
+
+So we use something, there
+
+was two things there that we haven't seen before. One is we use this this keyword, we need to talk about that and describe what that is. And then we also have this case where we have this variable and this variable in the same name, existing right now in the same scope, and we've never had that before. So we need to discuss how that's working. So let's start Well, they work together they come together so let's talk about the this keyword. So the this keyword refers to is using a class refer to this object this instantiation of an object So, objects, we know that we can have multiple objects from the same class. And they're unconnected. They're each individual distinct things. So for instance, if we have, you know, three strings and or we have 18, strings, you know, each one of your names, each one of those strings is distinct. They're changing one will not change the others. So, this refers to this distinct one, because the code of the class is generating this object, it's telling an object how to work. So it's saying in this object, make a change to the value or use the value that you have your distinct value. So example if we had something like a public class car that had a number of how to member variable and a getter and setter for color, the district's a string If we had made one instance of a car instead of the blue, or the color, it would be this cars blue. But this one is not this one. If we made a second one, and we set it to red, it would be red, but this one would not be. So when we're talking about setting this color, we're talking about this instance, this physical thing. It's just like in you know, in real life for each of us, if one of us decided to just we can all see the walls and we're talking about walls right now in the background. If one of us decided to paint, you know, the wall behind them bright red tonight, only that wall would be bright red, right? everybody else's wall would remain whatever color they are right now. Because it would be this wall that was affected. The individual one. The walls are the same, they're also this idea of a wall, but the individual object was changed, not all of them and that's what this is referring to. It's a weird concept because we're writing this in a class, but then it's running inside of these individual instances. And individual instances is what this is referring to. So, I'm gonna go back to rectangle demo. And let's set a spin a second wall. So we'll go to second rectangle, wall to equals new
+
+rectangle
+
+and let's value so let's set the width get set with and we'll set it to something like 10 and wall
+
+set height to 20.
+
+And then we'll set wall to set the width to something else set to 12 and a wall to will set the height to 10
+
+now I want the same value eight.
+
+Now let's go back to wall one.
+
+And we'll change one of them. Let's change the width to
+
+210 to 19. That's good.
+
+And those numbers don't matter as long as their difference, we can see them.
+
+I'm going to put a breakpoint here. So we can actually put a breakpoint up here, and let's walk through how this is working. So this is using our class we built.
+
+So run as job application. Maybe
+
+debug eyes.
+
+Okay, so now, we're going to instantiate our first wall from our class. Standard ad, we can see that it has walls, we can see internally it has the height and width, we stand to the second one, and it's a separate object. This was it 3132. So they're distinct things. So this would be like, if we were, you know, got some lumber and built walls of our own, and we built two of them. They're distinct. So now we step through it, we're going to set on the first wall, we're going to set the width and height, we can see the values change internally, as we call the setter. Now we're going to set the second wall. So it's going to change this wall because the code says to change this height, so it's going to be this this object's height. When it ran the first time it was this object height, because it's the same code running in two places. So there we saw the say the width and the height change. And now we're going to set the width, this width But now it's running in this object because it's our wall variable. And we can see it changes, but it doesn't affect the other ones. So that's what this is referring to, it's referring to this object or this object or whichever one is running in. So that's the default, actually, of when we're working inside codes, we can actually usually admit this, except we have an exception to that right now. In in Saturn specifically.
+
+So before we
+
+move on with that,
+
+what questions do you have about this?
+
+or anything else? We just whatever.
+
+So you're gonna give an example of the good.
+
+Oh, I can't. Yes.
+
+Yeah. Let's talk about the finish the thing about width, and we'll write an example to get yes So
+
+this
+
+annotation tools here,
+
+this variable
+
+and this variable have the same name. And they both exist in this scope. That's something we haven't seen before. This is the one time where we can have the same variable name in scope twice.
+
+And it's because of these private member variables.
+
+So we can have it we can't create a new variable here. If I tried to write a line of code. Here named with it would be an error, but I can have it as an argument as a method method. This is basically a roll it's only used for usually for setters or other things that are going to set the value. So what is referred to Too without this when we use it in this block, without this, it's referring to this. Guess it's referring to the variable that's in the argument. Without that this, when it has the this it's referring to the one in the class because this refer always refers to the class level. So it's saying the one in this object. So in this class, set it equal to the one that's here. And then once this setter stops running, this one disappears, and only the one up here exists. So it's the convention in Java is to use the same name. for readability of mainly for external readability. So when someone looks at our setter, they can see we're supposed to send them the width.
+
+Even though it says that with but
+
+So there's two variables named with here. They're distinct. This key word is what is making the connection to this one up here. Without it, it's going to use the one that's in the most local scope, which is this one here.
+
+So let's take a look at, I guess I should pause because that's, I know kind of a strange concept. does have questions about that or how it works?
+
+So this demo page, the rectangle demo? Yeah, let me try to get these both on the screen because I want
+
+there I can see both.
+
+Okay, James, you had a question.
+
+I just wanted to make sure so When we're, when we're doing wall dot set width, we're accessing our first instance of rectangle. And that's why we can use the this width, because it's setting the instances with.
+
+Yes. So we have our object of wall. And when we're calling set width here in our first object, which right now is the wall, so it's this class, but now it's in the wall object, wall variable is an object, this value here gets put into this variable, which then sets this variable because of this, it sets in draw that very well, but this variable here, okay,
+
+so this is what let's rectangle, the rectangle class know that we're working with in that particular instance.
+
+It's Yes, it's telling it the rectangle class that when this runs, we want to affect the variable in this particular instance. And we are going to see variables that are coming, or the next few days that can exist across them, which is part of that. And then this one has a smaller scope here. It's telling you that we don't want this one in this scope. We want the one that's part of the instance. Okay, got it. Yeah.
+
+All right. So let's right.
+
+I went out and you can leave, use this anytime you're using these. And it can be a good idea when you're starting, you'll see a lot of code that looks like this. And that'll work fine. If there's no other variable in scope. Then if use a variable that's a member variable, it will assume this so it'll default to it. In the center, it has to be used because this variables in scope with the same name, but I was encouraged everyone because you This when they're starting out, and I'll try to remember to as well, as I do, as I demonstrate things, so that it's clear more clear until you get used to the idea. And then like a lot of things once you get used to the idea, you can start taking shortcuts and when you understand what it's doing,
+
+so let's try to get over here.
+
+So, if you want to get the values back out to int, wall one,
+
+with
+
+we call whichever variable in our sin say get with.
+
+Do n 12. To height, this wall to get height.
+
+And if I
+
+the breakpoint here, line 16.
+
+debug it
+
+see that we have wall. One and two with or without 30 set, it's about ready to set the height of width of 219. So, step
+
+by step was to call the first one roll one. It's just, I believe,
+
+I'm sorry. Well, one 919 You call this bull one. There is no one in the field. So you're right. That's just GAF bad variable name. I'll fix that after we run it. So I call it wall here, which is what is referring to here. So it shouldn't be wall width and wall to height. Okay. Yeah, yeah, I'll change it after. As soon as we finish running it so that the code I check in is more clear. So now we call the getter, what it's going to do with get width, it's going to go to this wall variable. And it's going to get the width value of the width which is going to be 219. Return it and put it into this integer variable here. Or we could do something else, but it's going to return it, like, so call that we can see that the variable, while one with is to 19. Now it's gonna be the same, we're using the second object, while to get height is going to return the height into this other variable. And see that it's just returned that. So get the getter returns the value where the setter sets it. And these are just methods. So these are methods like we've been using the last few days, like when string and map and listen, I'm just right now just writing them on our own. So I'll change this to just wall width so it matches the other name. Right.
+
+So now we have height and width.
+
+So the next thing we're going to want in our
+
+rectangle classes and area.
+
+So I could create a private member variable for area.
+
+But area changes every time the width or height changes right into it. So, calculation of width times height. So every time one changes, area is going to change, which means I'm gonna have to write some
+
+code that
+
+watches for width and height to change which means I grabbed if I put it in their centers and then keep changing the area if I storage area. So a better option would be to calculate area and demand every time a user somebody wants it. I'll just create it then. So I can but I don't want them to necessarily have to call a method like calculate area. They shouldn't know my user my class rectangle should not know or care where areas coming from it's just know what there is. This just get a result back the same way when they called Get height or get with this filler called get area. So I'm going to create a
+
+another method called get area, it'll return the integer
+
+and was called get area. So that's
+
+going to return something here. Actually, we're going to return this stuff with times this dot height.
+
+So this looks like a getter.
+
+We come over here and use it.
+
+Wall dot get area, there's no difference between get area get height get width, it's just another getter on the class. The user of the class rectangle demo doesn't know whether it's stored or not. So some of our getters, our properties can be what's called derived, we can calculate them as we go. So a derived property is a getter, that instead of returning the member variable, it counts. returns a calculation from the member variable. So it doesn't store data. Instead, it calculates it every time. So the example here, if we have a first name, and a last name, already being stored in our class as part of its state, we don't need to also store the full name. We can have a good full name. So from the users of our classes point of view that is calling another getter. But our get full name could derive it can put concatenate the first and last name together with a space in between and return it. The same way with with area, there's no reason for it to store the area, it's something that's going to change. So if anytime we have something that's going to change, there is a good chance that we're going to get out of sync, and eventually it's going to break. So derived properties allow us to do exactly that. allows us to store a value that or return a value that we're not storing. we're calculating each time.
+
+So area is going to be
+
+derived property.
+
+So the last thing with getters and setters is the purpose of all those we said was, so we want to control the data. And we started by talking about with our public variable that we could we show we could set it to a negative number. And the code, arc or object would not know the difference. It wouldn't know that that happens, we'd have to write a bunch of protective code around it.
+
+So we still have that problem right now.
+
+We can set Either one, type
+
+two, negative 10.
+
+But what we can do now that we have a setter, now that we're in control of the data, we can come over to our set height, we get to say when we set the height, you can do something like we'll set it to the absolute value, right?
+
+So I'm using the math library and its absolute value method.
+
+And we can do the same for the width. When they set the width. We'll set this math, absolute value.
+
+There's multiple things we could do, we could, we'll learn in a couple weeks how we could throw a return error. We could do other changes to it. There's lots but we'll just choose to always use a positive value.
+
+So
+
+now run it again.
+
+The breakpoint now here, line 22.
+
+We can see at this point that wall has a height of 28, we're going to set it to negative 10. When I do that, it's up to the 10. Even though it was originally was so using a negative, we're setting with a negative. And it's doing that because of the absolute value, so we now have control over it's now in our rectangle, we don't have to keep checking Is this a negative number we know that if it's there, it's zero or above.
+
+So we have some guarantees about our data controller.
+
+So before we move on to that sets us up with all the state we need. Now we can go keep our width and our height on store and we can return In our area when we need it. So the next thing would do would be to
+
+add
+
+some behaviors to it. So before we do that, what questions do you have about what we've looked at? Around getters and setters and the member variables?
+
+Alright, so now
+
+what? I don't know how to even begin with this.
+
+I don't know what questions to ask right now.
+
+Yeah, I mean, that's, that's kind of where I'm at. Like, I do have a lot of questions. To be honest. I don't know how to ask them because I don't even I don't think I know what I'm trying to ask. Okay.
+
+That's fair. in common, normal.
+
+Okay. So,
+
+all right. So let's keep looking at as I mentioned, today's there's a lot today, but do stay It's not.
+
+So I don't think that's unfortunate gonna get better.
+
+But I will say a lot of this solidifies pretty fast when you use it for the first time.
+
+So now we have
+
+data being stored there state. And we have it encapsulated. So this is encapsulation. We'll talk about that in a lot more detail tomorrow. But
+
+it will govern. So.
+
+But what we just done is encapsulation. We've hidden away the font onto the functionality, we've hidden the fact that within the areas calculated, we've hidden the way how width and height they're working, and we've hidden away the fact that we always have to have a positive number to be available. Or valid rectangle sorry. So now we To add some behaviors to it, we need to do something. A lot of classes stop here, there's a lot of classes, we're going to see that all they are is data, their data type. And they just are meant to represent something, they don't really have behaviors. And there's lots of things that don't have behaviors. But we'll get more into that when we start looking at some of the uses of classes. But this particular rectangle, I do have a couple behaviors I wanted to have. For instance, well, let's talk about how we're going to put them in first, and we'll talk about what behaviors we want. So behavior is going to be given to the class two methods. We've already looked at methods, we've been using them. And we're gonna start writing them today. But that's really going to be we've already written methods, you just done it in two parts. So we talked about that method signature a lot. That's the part you haven't written yourself yet. Today, you'll be starting, but you've written the methods, the all the code you've been doing since day three, when you've been writing inside those functions. And then running test cases, those are methods, that's what you're going to be doing only now you'd be solving different problems. And now you have to create the signature portion to. So a method is like a mathematical function, it's going to take multiple parameters, or none. And it's going to return one value in Java eight, at least. And there is in later versions of Java, Java, there's been seven cotton troubles added that allow you to return more than one value. But I'll let you find that when you're out in the workplace. for Java eight, which is what we're using, they can return one value. So public methods are going to define the behaviors if we're going to use public and private methods, both in public methods, five behaviors, but I said that's what methods do but there's also practice methods that do just manageability of code. So together, the public and private methods are going to help by making the codebase more manageable, it's going to allow us to write in small chunks, will very quickly get to a point where we'll talk about a method to do one small task and only one small task. The second we deviate from doing that one pass, it should be in another method. also talked about, they should be short, they should be a few lines of code. We're going to reduce these code into these small units of work, because it's going to make debugging and problem solving simpler. If there's only one place in our code in three lines of code around getting the area of something of our rectangle. Then in that paint calculator class had a lot of lines of code or something's broken in the area, we only have one line to actually look at. We know where the problem is. So it's going to help us debug and solve problems a lot faster, not just here, this is becomes more important. When you're in the workplace, and developers almost always end up at someplace in many places not every place in call on call rotation, where if something breaks, you get caught in the middle of the night. And, you know, being able to debug that fasters critical. It's going to introduce a lot more reuse. So our goal will be to write code once. Eventually, I'll until we get to web, if your once now once we start, once we get through this next five days or so, if you cut if you find yourself cutting and pasting anything, there's probably a problem with your code. We'll talk a lot more about that. But you shouldn't have to cut and paste because that's the idea is to build code once and reuse it from one place and methods are going to help us do that. The private methods are going to support the public methods, which give the behaviors but they're going to do a lot of the work. It will look more private methods going forward. We won't really be Look at it more than mentioned they exist today. So, methods are going to have a signature. And we've already looked at the same issue we looked at on day three. In fact, it was the thing, the only thing is cohort so far. There might be one more, but it's only one of the few things at the quarter I just said, memorize this.
+
+Put it on flashcard and just memorize it.
+
+So the method signature is going to have a name. It's a method names, the roles around them is that it's going to be a verb, because it describes an action. So they describe what they do.
+
+And
+
+they're going to have a return type.
+
+method names also are going to follow the same rules as variable names. They're going to be camelcase. So you should be descriptive actions that are clear. What does it mean? That can't be in context of the object, they're part of the class they're part of. For instance, in string, you don't have to their method substring doesn't have to be substring string because it has the context, it's already part of a string. If you had, you know, a document class method, my appropriate breath, Amy might just be save, that saves the document.
+
+So it's gonna be a verb that describes what it does.
+
+methods are gonna have a return type the method, that's going to be what data it returns. So you've been used to work with that now for a few days. Now we just got to pick data type is going to return. When we looked at our getters, they're returning a data type and four, with a nice this could be anything so any reference type or primitive can be returned from a method. And it can also we can use void to signify it's going to return nothing like we just did with the setter.
+
+So methods can include parameters
+
+So like this setter, they had the ability to send in the value, like here with is larger than it can send him a list of parameters and with a length and width, or they can have no parameters. And that would be defined like this. So this with empty parentheses, which is what we we have both of these cases, all these cases and all these roles and our getters and setters, because getters and setters are just methods. They're a bit special because they have some special naming roles and actions are supposed to be doing, but they're still in the interest methods. So that's what a method is, and how we're going to use it. But now we need let's build some. So everything we've done, most things we're going to do, and I'm going to make this statement out but it's not going to be as useful for Few days for a few days, and I'll repeat it then. But right now, just about everything we are going to do is going to be public. So we use public a lot as we go. Keep in mind that even though we're using public a lot, as we're learning these pieces, that in the end, a lot of our choices are going to be around what's public, and our default is going to become private. And then we'll make things that are needed public. So just keep that in mind. If that doesn't make sense. That's okay. Because we'll come back to that quite a few times. All right, so let's build a method. So one of the actions I would like this rectangle to do is I'd like to be able to ask it, is it larger than another rectangle? That seems like it'd be useful you can compare two rectangles and see, which is the larger one.
+
+So let's find a method that does that.
+
+Pull this over a little bit. So writing this so
+
+See public,
+
+if you're gonna have is larger than I have to decide what I wanted to return. So we're gonna have a method like this what would what would you return?
+
+Boolean? Yeah, makes perfect sense. So we want to say true or false is larger than,
+
+is larger than is gonna be our name. Again, it's a, it's a verb like phrase that's describing what it does. So it's saying, this is going to check if it's larger than and then we're going to take an argument of another rectangle what is called this other, give it a variable name. So here, I spelled something wrong. So here we have, we're using the rectangle inside the rectangle class. So what we're saying is in the rectangle object is running, since there are distinct objects. And if we have, you know, two rectangle objects, they're both distinct, we're saying we can pass one of them as an argument into the other one
+
+to be used. So
+
+that's we're going to take another rectangle objects, we can compare them. And then we need to return, we can just return the output of the comparison. And we can just make it simple and compare area. So we can say this dot get area is a greater than other dot get area. So I don't have to use this here. I'm using it for clarity, because if I call a method that's inside my class, it's going to go there. That's where first place is coming. Use. But I'm gonna leave it there for just for clarity that we're checking this as this rectangles. against the other rectangles area. Notice with this I'm using calling a method with it as well. So we can call methods or properties or member variables with this. Anything that's inside the class.
+
+Alright, so we have that. So let's go back over to
+
+let's see. So
+
+now we have wall one and wall two. We could say, Well,
+
+sure, let's put a bullion
+
+in his wall to larger, we'll say our wall.is larger than, actually we should be. We want to check if wall two is larger, so wall two is larger than And then our other is going to be the first wall. And
+
+guess for that.
+
+And I have a typo someplace so extra parentheses.
+
+So we have our breakpoint already in 22. We can choose that one again
+
+and
+
+continue.
+
+So we know that
+
+this point wall has a width height of 2019, where wall two that's being compared is going to be eight and 12. So this should return false, right because wall is two is definitely not larger than wall. And if you see the value of return was false. So Have this method now that we can compare two rectangles. So we have some sort of, we have some behavior to our rectangle. So before we keep going, our questions,
+
+some random question, but if you mean something called int, wall area equals wall dot get area that get you the area.
+
+So, yes, yeah, let's do that. So you mean int, like wall area equals wall dot get area? Yes. So let me move my breakpoint down here
+
+and see it again.
+
+And when we run that line of code, we'll see that variable while area and it gets the area of wall which is currently has revised 10 to 19. That
+
+was that your question that we're asking?
+
+Yeah, I'm just making sure I'm following.
+
+Okay, good.
+
+Um, we don't necessarily need to get everything that we set,
+
+right? That's correct, we don't. Okay. And we don't need to set everything that we can set, what we're doing is we're creating a way of representing and using this object. So the individual needs of the getters and setters will be up to our use. So we built this rectangles can use the wall but we could also use it if we wanted to build you know, a painting paint Canvas, and that our window and some of those May. Well, in this case, it's hard to imagine you don't need these for a rectangle, but maybe we set the width and height and we never need to get it. We just need the area
+
+or we just want to represent it so we never need To use it.
+
+Yeah. Because I was wondering if we needed to like return the width and height? If it was like a user input? Would you like need to return that every time?
+
+Not necessarily. No. Okay, that would be up to you on the user input. If we were using it for the user input, you would get this value from into a variable from scanner. And then you would just pass it into here and then when you want to print it, if you if you did want to print it, you would call the getter to get the value to print. Does that make sense? Gotcha.
+
+Does the order of the getters and setters and methods matter? Like if you had is larger than above get area without air for you or?
+
+No it does not matter. Okay. The one the caveat, it does not matter to Java. Most teams will have rules around how they Have it and most developers have preferences. For instance, I personally don't like the way I have it right now. I'm leaving it because I wanted to follow the extra code. I put all my getters and setters at the end. Okay? So, but it making it just like you can have all the getters together, and then all the setters together if you want. So it's whatever makes sense to you and your, your team. Okay, you'll find that you want everything in the same project to be the same, but that's Java doesn't care. Alright, so any other questions? So I will say before we move on, does everybody feel like they could given and asked to write a method being told what each of the values we're going to do that you could do that at this point. Your use of methods over the last week and a half than what we just talked about.
+
+What if we give it a shot? What if we say everybody send me a private message. And I want you to message me a public method that returns an integer. And the name of it is
+
+get shoe size. And it
+
+doesn't take in any parameters.
+
+Can you send me a direct message? on chat?
+
+Just for fun, give it a shot.
+
+It's awesome. Thank you.
+
+Should you sir? Could you please repeat the question one more time?
+
+About the method? You're on, right? Yeah.
+
+Honestly, I used to pulling it out of my butt as I was speaking. So
+
+returning an integer, right? So return to
+
+return a public integer, a method that is public. That's an integer that says get it method is called the name of it is get shoe size. And it doesn't take any arguments.
+
+Arguments
+
+Okay, good job, guys.
+
+Good job guys.
+
+Coming in,
+
+let's talk a minute.
+
+Does anybody else want some more time before we post it? what it would look like
+
+you can raise your hand if you want some more time
+
+got most folks are in Okay,
+
+we're good to post it.
+
+Alright, so the methods in adjure would be public and get to size with an empty set of parentheses. That's the method signature. So when we ask to write the method signature, that's what we're looking for. Those are the pieces that go into it. All right. Good job, guys. You guys killed it, you know what's going on.
+
+Okay, so
+
+good. So that means that now we can make it a little more confusing.
+
+adding another layer. So
+
+in the next couple pieces are all about the method signature. So understanding that and how they work is important to what we're going to talk about next. So, I have another problem. So I have is larger than, but what if I want to find out if my rectangle was larger than I know I have encode I have and tight, I have a couple integers. And my height is, you know, doesn't matter what and I have with
+
+and
+
+then I want to find out if my rectangle in wall is larger than these dimensions. That seems like a use case that could come up or a rectangle, right just having dimensions. So right now to do that, I have to create another record. Angle says Create rectangle three and use it well three and use it. But I don't want to do that. Maybe I want to find out if I even want to build an odd more complex object before I or my full rectangle before I
+
+find out if it's the size I need before I built it.
+
+So I needed another method where I could do this where I can use this but that means that either have to find another name for it, like is larger than
+
+I could write about that.
+
+So it's gonna be public still going to be bullying, maybe I can say is larger than using larger than dimensions and anti type in it with a little bit So you can see.
+
+So I can do that.
+
+And return, we'll come back and change that. But now I have to have
+
+no two distinct method names, and they they're doing exactly the same thing. They just
+
+have different arguments. They may do different work, but I mean, they're providing the exact same functionality and the exact same behavior. They're checking if something's larger than. So, when I have this, when I need one, the same return type, the same name, but a different set of parameters. Then I can do that and doing that is called overloading, method overloading. So then I could provide different functionality so hearing say this good area to We're going to be that, but now it's going to be larger than height on eBay with height and width, it was just an N.
+
+So then over here,
+
+I can choose
+
+is
+
+dimensions larger.
+
+And I can use
+
+my variables or or just hard coded values.
+
+I can use either one.
+
+And the right code will be chosen by Java depending on the parameters I send it.
+
+So let's look at
+
+function overloads.
+
+So, function overload, methods are going to use the same methods with the same same name, the same return types and a different set of parameters. That means that the parameters to that can be a different number of parameters, or different data type, changing the name of the variable is not enough has to be one of those two things. So, here are the two that we have. The point is the origin rectangle, when it's called like this is larger than with a rectangle. It's going to call this code. But when it's called, with two integers, it's going to call the version of it, the override of it, or overload of it, that has our two integer arguments. We can have as many of these as we need. A lot of things in code have quite a few of them. For instance,
+
+we don't have any strings here, but let's take a string
+
+and we look here value of
+
+all those methods named value of that have a different argument for different data types. Those are that isn't overload. So value has been overloaded for a boy and type a car, a car Ray and double, float and long any object or when there's a car Ray with two integers.
+
+So we often need overloads in our code to provide slightly different behavior, or functionality for the same behavior when different arguments are present. So this is the same behavior, it's calculating the area or comparing the areas. But it needs to do it in two different ways depending on whether we have a rectangle or whether we have the width and height as integers. So I'm going to put a breakpoint on line 30 here, and line 34
+
+and
+
+22 so it stops over here first, and let's walk through As it's calling these two methods, I want to see both these a little better. So
+
+this starts on get Okay.
+
+That brings it. So let's run it and debug it this time, we're not going to worry about the variables. Instead, we're going to be looking at where it travels in the code. So where it steps. So as we step, when we call is larger than an AI step, with a rectangle, it goes to this line of code. So it's running this method because we sent a rectangle as the argument.
+
+Now returns
+
+now we go down to the second time, we call this larger than the same method name. But now it has the two integers. And when we step when you see it calls this line of code, so it's in this is larger than with the two integers as arguments continues. So in both cases, it returned true or false whether wall or the rectangle is larger than another rectangle, another definition of a rectangle. But you use two different signals to code based on the overload based on the arguments of the method.
+
+So, what questions do you have about that?
+
+So, it requires either different data types or a different number of parameters. And not necessarily both.
+
+Yes, not one or the other. You can't have both But well, I guess if you had extra parameters, then yeah, you can have both. So, but you have to have one of those two. That's what we what we can't have
+
+is we can't have
+
+another signature like this
+
+some other variable name, because the arguments here are the same. Does that make sense? Or not the argument? Yeah, the phenotypes for the single argument is the same. Java doesn't care about our variable names isn't for us. So it only cares about these data types.
+
+All right. And we've already used like examples of that, right?
+
+Yes, you have pretty much everything you've been calling in String class, and the wrapper classes. They have all these different when you see IntelliSense, like we just looked at string value, and there's all these different listing of the same thing over and over again. And you probably didn't pay any attention to it and just chose one and just used it. And that's exactly the fact that you probably didn't pay any attention to vendors used it. It didn't have to pay attention to it is exactly the point of overloading to give that kind of functionality to allow Different input to get the same type of output. So yes, you've used it quite a bit without especially in string. It's about half just about everything in strings overloaded multiple ways.
+
+Back,
+
+we looked at value of but if I build a string real quick
+
+equals, doesn't matter what's in it, we can see.
+
+Now it's going to make
+
+content equals takes two different overloads. Not this is not overloaded. So don't get bite to the start skip bytes takes three different overloads index have, you've used that you see the number as 1234 overloads. So you probably just used it with a string.
+
+You also could use it with an integer,
+
+which essentially is the car app. So you could give it a characters what you would do would be you could use it with a character and then from index So there's even two arguments you can give it. So you can start in the middle of the string and go the next index of essentially, or string core index. But as you used it, you didn't have to pay attention to this, you just sent a string. Because that's how we learned to use it. And it worked. If you would have sent me these other sets of arguments would just work, you'd really have to think about that, which is what overloads do for us. And the reason we want to use them. Because imagine if you had to use index of from car index up from string index out from other index from car that would get very difficult to use and pay it in understand what all the behaviors were. If we keep going, there's you can see there's quite a map of time that names are the same. That's what it is and overload.
+
+So that answer your question for
+
+Yes, thank you.
+
+So Other questions?
+
+All right. All right. So let's
+
+take another break. And we'll come back at C 1141 and 10 minutes and talk about some more.
+
+So what questions
+
+came up for you?
+
+heard anything, new questions come up.
+
+Alright, so now we have overloads that and we have methods. There's something more we need. As I mentioned the beginning, it's a lot of pieces to this. And we need another special type of method. Because one of the things we're missing that our class can't do is When we call new rectangle, we can't send any information. We have classes like scanner, we send it system in string, we can send it the value of characters we want set. But we can't do that we can't initialize our class to a starting value. And that's something we often want to do. If I was building and building a rectangle class, I probably want a way to be able to set the width and height when I create the rectangle. I mean a rectangle without a width and height is not valid, right? So there's a special method we can use called a constructor.
+
+And let's look at what
+
+constructor does.
+
+Well, a constructor is a special method that runs every time an object is instantiated. So when we call me find some code that maybe is not not our rectangle, actually pink outcomes for us. Something in it? Yeah.
+
+No, it does. Okay.
+
+What is right, so all right summer quick. So we call things like
+
+string
+
+s equals new string and give it some value
+
+or scanner
+
+and equals new scanner. System dot n. We talked about that this portion here is initialization. So what we're really doing, what we're, what's happening in our instantiation is we're saying, create a new string, a new object string, but we're telling it to call the constructor of that object, we're making a method call. A special method call to action and we're passing in an argument or not just like, we can
+
+Call methods with or without arguments.
+
+We can call this method with or without arguments depending on how it's been defined.
+
+So
+
+let's look at that. So constructor is going to be the special
+
+method is going to run every time a new object gets instantiated.
+
+And we, it's going to allow us to set starting state or starting data for our object.
+
+So
+
+the rules around there's going to be the name of it is going to be the same as the class it's going to be identical to the class name. It's going to have no return type. Because it's not returning something. It's creating our object. It's initializing our object. You can have arguments that set the value of a member of the member variable Just like it does with the constructor, our setter, sorry, we're gonna see can be overridden just like we did with other methods to have different sets of arguments to build our class, or objects. And then if none, there's not one present, Java is going to give us a default one that allows you, which is what we have with rectangle. So and if we do add one, if we add one of our own, then Java is going to take away that default one. And we're going to have to if we want it no argument constructor, if we want to continue to be able to do this without arguments that we're going to have to explicitly add it to our class. But if we don't have a constructor, like this class doesn't have a constructor right now. Then Java gives us the empty one, the new argument constructor kind of for free. It's just assumes that it's there. It's just defaulted.
+
+So
+
+the In this case,
+
+this is called scanner. It's passing the argument system in into this constructor method of scanner, which is setting it like a setter, internally the scanner to be used.
+
+We call a new string without something value on it.
+
+String during this stanchions calling the constructor with no arguments. So it's saying we want to string but we don't want to set up any starting value, which is something where we can do or we know a string, we could send a string there we can send a literal string and or a character array. So there's three different overloads three different ways we can build construct, string. We can write the same thing in our code by adding constructor in creating various overloads for it. So different ways that can be called an object can be instantiated.
+
+So if we look here,
+
+if we had a class car, and it has no constructor explicitly in it, then it uses the default constructor, and we can construct it with just empty parentheses. If the same class had a constructor since public, it doesn't have to be public. It sounds weird. But when we look at that, we'll look at that later. Right? There are cases where it could be something else. So it's public, though, which almost always will be. It has to be the same name as the class. And this takes an argument of string takes the color of the car. It's a string. So since this is the only constructor there's no overloads. Then the only way to construct this car would be new car where you pass it a string that represents the color theme with the car to be Given the same class, if we then added a constructor like this that has new arguments, that's called a no argument constructor. And it exists because once we add this, the default constructor goes away. The default constructor is this. It's the no argument constructor. That's what Java gives us free. But soon as we add this, it's going. So now we have to explicitly say we also want the new argument constructor. So now when we have both of these, we can use this which will call the no argument constructor. So this one's going to end up calling this constructor. There's no arguments. So it just builds the car object. Empty. It doesn't have a starting state. This since it has a string value is going to go to this constructor, which is going to set the color of the car to in this case, red, whatever color, we're sending in So that's how, what can how constructors work. And how we use them. We've been using them every object we build every time we do a sanitation. We're building a, we're calling the constructor when we call list, or map or hash map, and we have those empty parentheses behind it. That's calling the constructor, the empty no argument constructor of list and hash map. So before we write one, what questions do you have?
+
+Right, so let's write a constructor for our rectangle. So the constructor I would like to have for my rectangle is one where I can send the initial state of the width and height. So commonly, when you're building an object or class, you're thinking about the state of the object. And some objects have what's called an invalid state something that they should not exist. If they're not in a particular state, for instance scanner cannot exist without an input stream like system in. So the scanner class has made the decision that you can't instantiate it without unless you send an input stream. I want to make the similar decision, I want to make the decision to start with that I can't instantiate a rectangle without an explicit width and height. Because it makes sense. Maybe that rectangle
+
+requires that.
+
+So let's
+
+add a constructor. So right now there's a default constructor, which is no arguments, which is why we can do this. But now I'm going to add public. In my name, the method there's no return type for the constructor. And now it has to be exactly the same as my class name. So this and I want to take arguments. So now I can have arguments just like I can for any other method. So it's a method signature without a return type. Name that matches the class.
+
+And height and width.
+
+So as soon as I save them, you get an error over here.
+
+Because now it says there's no
+
+that constructor empty is undefined.
+
+So now if I want to use
+
+while wanted to, actually
+
+I have to put in a value
+
+for the with my wife. But now when my walls constructed, I have guarantee that they have a state where they have an explicit width and height. But they're not doing anything and we are there. This code is empty. So I have to do something with them. So one of the really common uses of a constructor is for The values that are sent to it to basically treat this like a setter to set values only we're setting a model of it once because that's what we're doing, we're setting up state with it. So we can do the same work, we can say this dot height. So remember, this is going to refer
+
+to this one up here,
+
+equals height.
+
+And this one, without the, this is going to refer to this variable here. So it's going to take this value, put it here, put it here in because it's this, it's going to be end up up here in our member variable. So just like our setter does, and then we do the same for this with equals with. So we can set the values and let's put a breakpoint on line two. So we can see these constructed. And
+
+we can see when it built them. Before we call the setters, the value of the first one is 10 and 20. The value of the second one is 12, and eight, so it's called the set the values four is already. And then if we call the setters, it's going to change them, unfortunately, just made them the same, I guess, but so it'll update them to whatever the value one, but then it has a starting state now of that so I can also in my code, I don't really need these lines of code anymore. Those aren't needed, because that works being done up here. So it makes my code cleaner to to have constructors that take particular state
+
+but may want to still be able to
+
+construct this speaker wall 303 equals new, I might still want to be able to do this. Maybe I do want to be able to create a rectangle that I set later. So for instance, creating a single string object, say string is immutable, but to its value set, you can change it once
+
+or at one time, so you can create it, then you can set the value later.
+
+So that's what
+
+we might want to do, we might want to have a rectangle that we can change later.
+
+So
+
+let's write a constructor to do that, for that, do you have a constructor like this, we need to no argument constructor, which was what was given to us by default, but now we have to explicitly have it. So we're going to create an override
+
+and overlook overload. Sorry
+
+That's just like that. And it just will do nothing. When I say that this error is going to go away, and we'll see now that
+
+it's I create the first one.
+
+It has the values of 10 to 20. So create the second one. It has the values that are passed to 12. And eight is a great to third one. Its values are zero, because it had no nothing coming into the art as an argument.
+
+So now we have an option of how to construct it.
+
+So the one problem that remains is that I can still I can do this again. I can construct it as negative
+
+because this doesn't
+
+happen have the math out to value. So I have a few choices of how to fix it.
+
+One, I could
+
+put the absolute value into a private method to use it but it already pretty much is that it's, it's a one single line of code. So or I could call the set with from here, but I should never do that we should, the only thing that should be ever called in the constructor or private methods are variables. And that has to do with the way it has to do something coming up later part of polymorphism. Why we don't want to do that. And also because there's a really rare chance that since the constructor runs first and the first thing it does before it runs the code in the constructor is build everything private. And then it runs the code in the constructor and then it as it does that it's building all the public stuff. There's a really rare chance they could actually get an error where something public is not available by the time you try to use it. But don't worry about that. It's my entire career. I've never seen it happen. I've just read about it. It's possible just happen all the time and see But, and Java, I've never seen it happen. But it's technically possible. So we can really should only call private things from here. So what we do, we just have to do the same work. And it's one line of code. So let's do math dot ABS here,
+
+around both of these.
+
+To make sure our data stays the way we want it is always being positive.
+
+So now we have our constructors.
+
+We almost have working.
+
+We do have a working object, we could actually go and use it in our pink calculator now. But there's one more thing we need to talk about objects or classes. That's equality and stratification. When it changes to a string, all objects need to have us be able to represent it as a string. So let's look at that. Look at stratification first. So
+
+I do system dot out print line.
+
+let's print
+
+our wall.
+
+Get rid of all these breakpoints.
+
+And we'll run it
+
+and forgot to get rid of these two.
+
+And I would do that one to
+
+see what it prints so this line, this is what it prints out. So the default string vacations without strings, string representation. Have an object is its fully qualified name. So it's packaged with the class name. So conduct tech elevator dot rectangle, and what's called its hash, which is a, something we'll look at. But not really in any detail. But it's something that can help. That is used to identify if these are exactly the same two objects or not, not their values, but their actual, the actual objects themselves. So it's using comparisons internally. It's actually why hash map is called heist maps because you use this hash. So that's what it displays. That's not what I want my rectangle display. I want my rectangle to say something useful.
+
+If we go back to paint calculator,
+
+we're gonna have to print it out looking like this.
+
+So why not make it our rectangle, say something like this, which makes sense because you rectangle is going to have dimensions. And it's going to have the square feet. And that's what we're interested in for a wall. But it's also what we're going to be interested in for any rectangle. That's the properties of a rectangle.
+
+So to do that,
+
+we have to have one more concept. And that's called string, or method overriding. So we looked at overloading, but overriding is similar but does a similar action, but instead of giving multiple choices for us to use, it allows us to change the behavior of from something that's been given to us or inherited into our object to our own version of it. So we're going to spend a lot more time on function over writing. In a few days, when we look at an heritance when we look at polymorphism, we're gonna look at a lot. So But for today, let's look at just a general definition of it. So, overriding, some methods are inherited from other classes. And that's one of the principles of inheritance. In Java, we're going to find out that every class is a descendant of this class called object. So it inherits from object, these two methods, a few others, but two main ones to string, which you probably seen in the problem maybe already used, and equals which you definitely used. So every object in Java has to string and equals and they have a default way they work which is generally not the way we want need them to work for our specific objects. So sometimes we don't care. Sometimes we
+
+the
+
+we just want to use whatever the default is not That's good enough. Other times we do want our methods to behave the way we need them to. In this case, I want my rectangle to print to be have a string version that's very specific. So we're going to override it. And that means that we're going to write a method. In our class, it has the exact same method signature as the one in its parent class. And if we do that, then when our class is called our version of run, not there's not the parent one. So we can give our own functionality to behavior that we've been given. And so for some of them, like to string and equals, we have to know the signatures. You'll know them very quickly. So they're pretty short. So let's write one for two string. The signature is public string to string with no arguments. And then we just have to do Something that makes our string representation representation of our object. So let's do that in our rectangle. So this is going to be a override, let me put a comment here of is larger than is overloaded. So for an override, we're going to write a method public string to string and it has to exactly match, including spelling case, data types as what the original was. And I'm going to return something, I'll come back and do that. And then I'm going to put what's called an annotation on it. This is a required but it's strongly suggested.
+
+And that's an add sign in the word override.
+
+So annotation is a hint to the JVM on how something works.
+
+So it tells it
+
+but in this case, the reason we care about it is not for the JVM, the JVM configuration. Whenever I would no problem. But if I'm looking through source code, and I'm scanning down through,
+
+can you tell whatever right is right now?
+
+It's not very apparent is it? I want to go through source code fast if I'm trying to find a particular spot in the code.
+
+But if I have this
+
+stands out, I can look for the override invitation and know exactly I can go. This method is changing behavior I might expect and will look a lot. So a lot more with polymorphism and inheritance, but it bring calls attention to that something's being changed here from the way that it normally would work.
+
+So you want to use the annotation.
+
+And now we just give a string representation of whatever object is going to be said I want it to look like what prints out what we need to print out for our wall or the portion that's generic four rectangles something, say something like this dot with
+
+plus was both string
+
+plus this dot height.
+
+Plus maybe want to do that,
+
+plus this dot get area.
+
+And we wanted to say, here I'm gonna put the stuff to the next line.
+
+Take advantage of whitespace. So we can read it better.
+
+Stop area,
+
+square feet.
+
+I'm going to save it. So I made the change here, I'm going to make no change here. I'm just going to run it again. So now when this system out print line, when an object or reference type is passed the system out print line, what it does is it calls to string on it. It causes to string method. That's how it turns things into strings. That are not strings. And that's why we can just use it with most things. So here it's going to call to string, but instead of getting the inherited one, which just printed out the class name, and the hash, instead it gets our version of it, which is going to print out the dimensions
+
+in the way we want them.
+
+So before we
+
+look at the last thing, I said, I know this is a lot.
+
+What do you have questions about?
+
+So Brian wants to be alright and Matt.
+
+He can use the original method or you can ask yourself,
+
+so there's no way from our rectangle demo to use the original method. And the rectangle class when we ever wrote it, we can use the original method but we We'll look at that we'd like a polymorphism. That brings into a huge or huge topic. So, so I'll say yes, there is a way, but we won't look at it today.
+
+Thanks.
+
+All right. So the last thing is equality. I want to be able to say I have two walls.
+
+And I'm going to make rectangle.
+
+Snake what type before. So, new
+
+rectangle in, let's make it 10 by 20.
+
+Make rectangle,
+
+five equals new rectangle. That's going to make a 10 by 20. I can type it
+
+so right now we know these are different walls.
+
+So, if I do this,
+
+that's going to be false, right? We know that.
+
+Actually, this instead of putting an if statement, let's just put it in a volume,
+
+like, same wall, or our same wall will be a better
+
+is.
+
+So we know that's going to be false, because they're not the same object. But what I want to happen
+
+is I want to be able to do this, like became a string
+
+and find out if I have the same wall, the same rectangle.
+
+So
+
+the
+
+I have the same problem with dot equals, if I do this right now, I would say 10 by 20 rectangle to 10 favorite rectangles are equal. If I put a breakpoint here, we're gonna see they're not
+
+for the current way it currently is.
+
+And I didn't debug it.
+
+See if we get here after we run the next line that is same was false.
+
+So dot equals is similar to
+
+to string and has a default behavior
+
+equals to Wolf of Wall.
+
+All the Yeah, I did I did mean while it's still gonna be false stuff. Thank you though, because when I go back to the next example, it would have not worked. So God equals By default, the default behavior gives us compares, since it doesn't know anything about our objects. It compares the stock location that same The double equal sign does by default. So when we create a class, if we want to be able to use equality with it, we have to give our own version of equals, we have to tell it, what matters, what makes these two things equal. And it's going to be something about the member variables, the state of the object, it may not be all of them. Sometimes we may decide that all we care about in two objects. So we have two objects that identify employees, maybe all we care about being equal is their employee ID. If one of the objects contains the first and last name, and the other one has their middle name, we don't care. We just care that the employee IDs are equal. So our equals method is going to take into account what we consider equality for the objects. So create one and it's going to return true or false based on that it's an override. So I'm going to use the right annotation And then it's signature is public bullion equals. And then it takes a generic object, we have to use it as that, that for now. And to use it, we have this generic object, and we have to cast it into what? Our rectangle. We hope it's a rectangle. And I'll say that if we sent it something besides a rectangle today, it's not going to say, oh, you're not equal, it's going to explode with an error, a caster. But we have to learn something more before we can fix that. So today, we're going to write like we have some other times code that can break if we use it wrong. And then we'll, next week learn how to not break it, make it so it doesn't break. So this line of code was called other and we'll just take our object
+
+We're going to cast it.
+
+And I'm not going to explain what's going on there, we'll just use that line of code as is just know that it's casting it. And that way you're seeing is polymorphism and action and inheritance as well. But we're, we'll come back and describe it on those days. So for there, we just think it's there. But now we have it as a rectangle cast is a rectangle, we can use it so we can return. We can check if this height, the height of this one is equal to and these are integers, we can use w equal get height of the other. And if that's true, and and this dot with, I'm gonna put this on a separate line, so we can read it better. This width equals other dot get width Return the output of that expression. So if they both equal each other, we're gonna return true, if they don't return false. And we could do this in a bunch of if statements, we can do whatever we need to, to make the judgement of are these things equal. And that's up to us what this data represents or the as a designer of the class. Now, when I run this, without with my dad equals override, it's going to use this code my code to determine if they're equal or not, rather than the default code. So debug again, the stop in the same line. So now, now what is taking an account is the height and the width are both the same for both of them. And you can see now it's true. So now our quality works the way we want it to.
+
+So our last thing, we can to do
+
+is we need to finish solve the problem we started out we want to solve is making work with that pay calculator. Before we do that, we have to actually use our class. Now, before we do that, what questions do you have? guessing most of you are getting to the point where you're tired of listening to this and because there's been so much and it's so I expected not to be
+
+connecting as much right now.
+
+So let's, I hope it is but I expected I know I would be
+
+pretty much zoning out at this point. So let's
+
+make this work.
+
+And I'm going to move rectangle to the other side here.
+
+So we can see it as we work.
+
+And now
+
+The first thing I want to do is here
+
+I need to change this to start keeping track of walls. And I'd like to be able to keep track of marble walls. So I'm going to keep track of multiple rectangles, each one representing a wall. So what would I, what would allow me now to take the single wall I built or we built and change it into multiple?
+
+What would you use?
+
+Can we use an array?
+
+No, cuz we
+
+can only have one key. So you would, you wouldn't want to use a map map.
+
+So why a map because we can use map
+
+Each wall is holding a value of itself. Okay, so,
+
+but we don't really have any custom keys that go with it doing
+
+the for each wall. We just have a group of walls we want to hold.
+
+So maybe just a set aside,
+
+oh, wait, but they're also well,
+
+the cassette, I don't know if that's gonna make it. So that could work. But
+
+then we can only have unique walls. Can we complete possibly we might want to paint two walls that are the same, same rectangle list, just use a list, which will allow us just have a collection of the walls and have any number of them. We could we could actually use an array if we asked the user upfront how many walls Do you want, but if we use a list we don't have to worry about so I'm going to put it up here, I'm going to put it outside of the while loop because I don't want to reset each time as well at this ran. So now for the type our list is going to hold, we use our data type that issue built rectangle, we call it walls. And this is actually the first place that we had the demo class, we call it wall. But this is really where the connection that the rectangle is a wall for our program comes from what we name it in our variable, and how we use it in the code. So this is going to be equal to new ArrayList of type rectangle. That's also why we call it singular, we want to plural we'll just put it in something like a list or
+
+another set that holds a collection of them.
+
+I will say that for most times when you holding things, it's almost always going to be honest, unless you have the case where you need to look up something by a particular piece of data. particular key and that's when you would need a map. The other ones you hardly ever end up using.
+
+Alright, so now down here
+
+we can create a new rectangle,
+
+rectangle
+
+and what's called Singler wall equals new
+
+rectangle and we'll pass it the width in the height that we just collected
+
+that the code this code already gets.
+
+And then when we want to print it
+
+we don't need this anymore Dewey, we can just send our wall because our two strings going to print what that was already printing. And then we can call walls our list of walls, add an add our wall to it.
+
+So now if we
+
+Let's see, let's debug it here on line 38.
+
+We can see as we
+
+add a wall,
+
+put in a value of either 12 with of nine. And we can see here we've created a wall that has, we have the hyphen with reversed, so we'll change that.
+
+And then
+
+our list up here has our, our wallet.
+
+So
+
+we just have these variables backwards.
+
+It really doesn't matter for this for what we're doing. But just to be consistent, we'll change it. Right so now we have it collecting a list of walls we know it's a list so if it keeps adding keeps running, we can do as many We can add four or five walls we want.
+
+So now down here, we need to print them.
+
+And we need to get the area. So we have a place to get the area.
+
+So if you were doing this, I'm
+
+gonna do something right here.
+
+And we need to print all of our walls What? What's structure with that? What kind of statement do we need?
+
+Maybe a for each,
+
+for each sounds perfect. So maybe for each rectangle here, we're using our class as a data type, just like we would string or other data types, or integer or any of the other. So we'll say rectangle, you know it's wall and it's going to be in our list walls.
+
+And we have that total area. So let's set that to zero.
+
+And for each wall we can just say total area
+
+less equals
+
+the wall in the list, get area or get area method.
+
+And then we need to print out this.
+
+So, take that line and this is what our, again, our to string method already prints that if I really want this number, I don't know if we really care about this number. But if I really wanted it, I could you could use the regular for loop or we gonna do and I are actually sent while number
+
+equals one.
+
+We can catenate it if we really want to. We'll do it so it looks exactly the same. So while number
+
+and then
+
+Missing
+
+I misspelled song was cut and paste it. Oh, I see I mixed up the order of the letters. And then we just need to increment it. That's just to get that number in here. So now we should be able to delete this
+
+go to the prototype only.
+
+And
+
+now with our object,
+
+rectangle, we should have ADD walls
+
+110 20 side another wall beside it 22 and 13 another wall 55 and 101. And now if we calculate, we can see it prints out like before, but now it's using our data from our class. So our object or deduction rectangle, but all of the behavior all the state around the rectangle In our in our rectangle class so if we wanted to change the way it worked we don't have to change this program. So if I want to go in let's say for some reason and I'm going to take this right out on this using example I want to say that get area
+
+always adds
+
+us 1000
+
+I think that change
+
+I run it again
+
+and smalls
+
+to calculate paint and
+
+oh because we're not using get area they're not using anywhere so let's add it not there. Let's how to do height, height boys as well
+
+Save it add walls. For this add one wall this time
+
+teen. Now we calculate the paint school
+
+oh we're not calling set height.
+
+We're doing it through the constructor.
+
+Eventually this is going to work Hi.
+
+So it's because we're setting it here with the constructor for those particular ones. Sorry this was supposed to be like a 32nd quick Oh, see what we can do think it's turning into
+
+I'd rather see this honestly it makes me feel better.
+
+Yeah, this is what it looks like there for everybody, not just not just you. Yeah, so now we have it. So now the behaviors change of our rectangle But we'd have to update the bank calculator to do that rectangle. So the rectangle is in complete control of its state and what it means to be a rectangle. And the pink calculator just use. And for James, I will tell you, actually, for everyone is talking about seeing that we all have those problems I spent.
+
+I think it was a total of
+
+seven, six or seven hours. over our break, I was working on some code. And my mistake was the difference between I meant to write that instead I had that took me at least seven hours of troubleshooting, because it was in JavaScript where there's no nice errors. It just said, Okay, we'll go with this. And we'll learn about that and get the JavaScript but so yeah, we all have those problems. And the thing is I even showed it to somebody else here. And they looked at it for a while and couldn't figure it out. And I showed it to a third person and they came back and was like, You're an idiot. That's the problem. You're here, sir. So I didn't even saw it on my own.
+
+Was Andrew right.
+
+Andrews want to solve it? Yes.
+
+It's always Andrew. All right.
+
+So what questions do you have?
+
+Alright, so
+
+I want to look at your exercises. I know it's really late. But I think there's a large value in starting at least one of the several ones for today, because they're different than the ones you've been doing.
+
+So let's take a look at those
+
+up from
+
+Find Next classes and we're going to go to, you'll want to consider an exercise file. So what you're going to be doing today is building classes. And you're gonna have to rely on the readme for the directions aren't going to be in the code for this today. In fact, for most of the exercises going forward, as they get more and more complex, then you don't have to you if they won't, you have to rely on their babies. The reasons become requirements for what you're doing, which is how can I have to work in the workplace too. So what you're going to be doing before we look at the readme is
+
+you may given a
+
+Setup starting classes. And as we open them up, it's like a dog. Each one looks like this. They have a class definition and they say write code here. And there's some test cases down here. These test cases, you can run them all together. If you do like you have been run as j unit,
+
+they will all run in being separate. In see here, there's the shopping cart, there's the dog test of the test for dog.
+
+Or you can choose just the dog test
+
+in run as j unit just to see one at a time.
+
+That actually may be easier. A lot of cases. That's how I would personally work on them. So they give you test run of what this class should do, to figure out what you're going to do or to know what you're going to do.
+
+The requirements.
+
+If you look at,
+
+he's gonna look at the readme
+
+and I'm going to look at the bucket. You can look at it in Bitbucket. If you go to the director, main class directory, it has the exercise director has a readme in it, it'll display it. You can also look at it in Visual Studio code. I like the Bitbucket display the best I think they render different ways to this language called markdown. And I think the buckets view of it looks much better than Visual Studio code, which looks much better than Eclipse eclipses markdown viewer is a mess, so I wouldn't suggest trying it there. You can also find it in there you can find plugins for Eclipse that will improve it. I don't have one installed here because I don't want to actually click on it and give you the impression that it should look like that Nick clips so I keep everything together. faults, but I do on my personal home machine. And it can read it quite well. So there's different ways to read it. But if you just open it, like in a text editor, it's gonna look kind of weird. So I would suggest that bucket. And here, it gives you each of the, they're broken into easy, medium and hard problems. They're all required. So including the difficult one. But it's not that difficult. It's just difficult in comparison to the other ones. So for each of them, they give you this is for company. It tells you the constructor so when it says default constructor, what do you have to do?
+
+You have to write code, or do you have to do just keep going.
+
+Man, you can leave it empty.
+
+Yeah, you don't have to write any code. Yeah, in fact, you shouldn't write any code because it's the default constructor. And then it's going to tell you here what the number of hours Elbows are
+
+going to tell you the name,
+
+like the name of the member variable that has happened to be named but, and then it's going to tell you the data type it needs to be. It's going to tell you whether it has a getter and a setter. And you're going to write those, it's going to give you a description of what it means, which is going to be important for the methods.
+
+And then it's going to tell you
+
+a method, I think they give you the beginning signature, see if any of them take actual arguments, it's going to tell you the method. So the name, the return type, and then a description of what this method needs to do. So this description of what this method needs to do, these are basically the problem type of problems you've been working on for the last week and a half. But these are a lot simpler than the ones you've been given because they're just small little pieces. This one returns small 50 or less employees medium, the text. So it's just asked you to check the size and you're going to use this data to check to make the to write the code. So it's going to say if it's small 50 or less employees, this value holds the number of employees. So you're going to check and see if this is no less than 50, you're going to return the string small, between 51 and 250, or return this string, medium. If it's greater than 250, then you return to enlarge. So those are the definition of how the methods work.
+
+And there's one for each one of these.
+
+So for each of these, you're also going to want to keep in mind how keep thought of how the real objects work. Especially there's one called calculator where you're gonna have to keep in mind you think of a real calculator. It has kind of ongoing display that changes as you do things right. So it'll be a variable that mimics that display. And then as you make changes using the methods, add, subtract, it will change that ongoing variable So think of it how that actually would work. But let's start. Actually, let's just do dog. It's the first medium difficulty one, it shouldn't take long to do. And again, I think there's a lot of value in doing this particular exercise, even if we does mean we're going to be here a little longer because these are so different than what you've been doing.
+
+So if I was doing this,
+
+it says
+
+I would start not with a constructor, I would start here with the member variables. So we need a variable called is sleeping.
+
+And it's gonna be a Boolean,
+
+and it's gonna have a getter.
+
+So
+
+I'm going to create
+
+a variable here. Private, Boolean
+
+and
+
+needs to be a kind of sleeping. So I'm going to call this sleeping
+
+and stop there. Now we need getters and setters for it. So
+
+you need getters and setters.
+
+Let's get out of control. If you're following along, don't add these next parts because you'll have to delete it. I'm gonna add a couple quick other variables so I can demonstrate something. Maybe this dog also has, it's going to have int, age. Maybe it's also going to have a string name. And so I have a few member variables. I create all my member variables first. Right click someplace in the code wherever I want the code it's about the build for me go to go. Go down to where it says source. If you look down through Hear there's one that says,
+
+generate getters and setters.
+
+I select that.
+
+I can then choose all of them which will create all the getters and setters. I can choose just getters just setters. Or I can expand them and choose. Maybe I want to get the name but I don't want to set it.
+
+I want to set the age I don't want to get it.
+
+And for sleeping I want
+
+I don't want to set it actually will say, we'll get named getting setname and then click so choose whether I want the getters or setters, it's going to show me shows me what they're going to look like. Or if I just want them all I'm just select off, press generate, and there's my getters and setters. I would encourage you to do that. I always get conscious can't make everyone write a bunch of getters and setters when enrolled. Life in real coding, you never would do that you would generate them. I mean,
+
+I'm pretty sure my cohort You didn't tell us about that little hack until after we finished this exercise I
+
+did that is true during your cohort that is exactly what I did. And the cart before you I didn't tell them for like a week. And I felt bad. And they complain. So if your code I went back to the day after now I'm too I'm going to turn off one up front. So so
+
+I'm going to get rid of all this extra stuff.
+
+So there's our getter and setter we need to believe when getter, notice I didn't have to have a setter in the directions told me that
+
+there's no x for the setter.
+
+So now I need to look at the constructor. It says dog the default constructor. But all dogs are now awake by default. So it's true for dogs asleep and false when it's not. All new dogs are awake by default. So how could I have the default constructor? I could put a constructor and then put it in. But how can I make this default to always be false?
+
+If you're thinking about really simple solution right now, it really is probably simpler. He's not sleeping, that would change it, that would set it to false. And we're going to use that in a moment. But I wanted to start it false.
+
+Can't we just let everyone
+
+know you're there? I think you were gonna say, we're going to set it to false right?
+
+When we define it,
+
+when it gets constructed, it will construct as false. We could build a construct here and put that in there, but we don't have to. So when and I pointed that out because by the directions say to default things now sometimes we have to build a construct to the job, but not for this. So now we have the dog we have it is sleeping. At this point, after I've done a couple of things, I'd probably run the test cases, to take advantage of the see what I need to do. So now I'm passing the first two.
+
+So
+
+the rest of these are going to pass pretty quickly from these other ones, I have three methods, make sound,
+
+sleep and wake up.
+
+So
+
+sleeping wake up, is going to set is sleeping the true instead of sleeping false. So having instead of having a setter for sleeping, having sleeping wake up is part of encapsulation. It's hiding the behavior and changing into something that makes sense to the user user doesn't care about setting a boy and they care about waking the dog up or making it sleep.
+
+So
+
+let's make let's see those first they were void and it was and you do have to have these names again. exactly as they say,
+
+No, even though I'm pretty sure I can spell sleep, I'll still.
+
+So it says to set his sleeping to true.
+
+So how would we,
+
+what code do I write here?
+
+is sleeping equals true? Yeah.
+
+And again, I want to ask you that because I know everyone can set a variable. But it really is that simple in most cases. So be careful about overcomplicating these. They're not meant to be complicated problems. They're meant to be about the structure of the classes, calculate and get kind of complicated, but even then, it's fairly simple. Problem wise, not code wise. I don't mean you're not going to have it's not going to be difficult. I mean, that. If you're thinking that's too simple of a solution, when you're thinking about it, it's simple in that regard, that it probably is that simple. Will
+
+Sorry, I don't want to give the impression these are going to be easy because they're not.
+
+So we have wake up
+
+that does exactly the same thing. So again, I would grab that make it public void like it told me to, like got void from here, wake up. And it's the same thing. I could use this keyword if I wanted to, because I'm referring to the member variable don't have to
+
+and run it.
+
+And now there's just one more. So go back to the requirements. Make sound returns a string.
+
+So I've been cut and paste.
+
+I always kind of paste the names because I miss type everything, as you're probably been noticing. So that way I can picture it's right Now it says if a dog is asleep return the string with disease returns wolf if the dog is awake so how do I know if the dog's asleep from the state i just the ability to keep state I just created
+
+I'm sorry, I didn't
+
+know we have an if statement. But how do I what I'm what am I gonna check it? Yeah, so I know the dogs asleep from the state of his sleeping. That's when we look at it what it was just fighting it's true if the dogs asleep awesome it's not so it's saying return this when the dogs asleep I have an if statement that says is the dog asleep. So if the dog is sleeping
+
+if that's true, then I return
+
+the string. And again I'm going to cut and paste it because I know I'll miss one of those Z's It has to be exact to pass the test case, which is realistic to a real world or workplace type of requirement, it has to exactly match in most cases. And
+
+what if it's not.
+
+And we'll run the test case.
+
+And they're all passing. So I'm done with this, this exercise, this class can move on to the other ones. So that's how you'll work through these. Each one gives you directions usually fairly detailed, or because the structure the focus on these is not solving logic problems. It's building the structure, building and in keeping in mind, the state versus the behavior and how they interact together. Everything you do in the state, or the behavior, the methods are going to be driven by whatever the number of variables are. So you'll want to pay close attention to that. A description of the member variables. So they're saying check for 50 or less employees. You should be looking at these to find out. How do I find that know how many employees they have. They want something about the revenue. How do I know what the revenue is and it gives you that information to these variables and scores can be stored. And I'm going to check I don't think there's any derived ones for tomorrow in this set. Make sure here you can see there's one that takes an argument. So two arguments so you have to go that works.
+
+This one does too. Now, there's no derived from today.
+
+So that's what you were doing.
+
+Yesterday, you're gonna find out.
+
+So generally the for the next few days, the assignments are, I don't want to say easy Because they're not they're generally less work than the ones you've been doing. But the concepts are much more difficult. So that's really more of the soul kind of switches the concepts the last few weeks hard to figure out when to apply. It's always hard to figure out when to apply. But the concepts themselves were fairly simple but compared to the concepts we're about to encounter, they were so the work the work that work was problem solving. Definitely difficult problems. Were now it's gonna be fairly difficult concepts, solving easier problems. Not easy. So please don't take that as easy. Alright, so I know
+
+that was a lot today. A lot. So,
+
+so as you go through the rest today, in the next couple days, I want you to keep in mind this, I want you to keep in mind that that was Rochelle When she was in your place, and you know where she's at Now, most of you have talked to her work with her. She made almost all the slides for today's today. She knows her stuff. It made sense to her and it's going to to you as well. But in her cohort, she was using this things that she drew that for in her final Capstone and actually the module three Capstone. It's time just a few days later, and that's the way it works.
+
+So, alright.
+
+So questions.
+
+All right. All right.
+
+So if you you have a pathway event.
+
+This afternoon.
+
+At three o'clock, it's optional, but I would strongly encourage you to attend.
+
+It deals with some.
+
+Yeah, I haven't been there since they changed it. But
+
+I know that past students have They've really got a lot out of it. I went to it like for code, four or five cohorts ago, the first time they did it, but I'm not sure if it's still the same. So I won't say anything about that. But it was worth it. So I would recommend you go to it. But it is optional. And then a few of you should have emails to me from one on ones to start today, the rush to get them over the next few days. So
+
+hey, Brian, yes. Could you put up the exercise that you just worked on? Yes. I don't believe you're going to push that up, right.
+
+kind of push up your code that you just did for the dog.
+
+I was going to, but
+
+you were okay. I didn't know you're going to
+
+I don't have to if you don't want me to. I'll happily delete it before I push it.
+
+No, I was gonna say cuz sometimes folks aren't following along on the keyboard while you're typing. And so I didn't know it'd be a case that they wouldn't have a copy of what you just did. That's all I was checking.
+
+Okay. Thank you. Yeah, so I'll just do it now.
+
+I always forget later.
+
+Brian, why did you not use this on the public void sleep?
+
+I'm just just for the homework.
+
+Yeah, no, it's because if there's no other variable in scope called is sleeping I don't have to use this. It'll default to this. But I can always use this. So I gave you an example both. Both are fine.
+
+It's still it's still actually there. You're just not actually typing it out. Exactly.
+
+Yeah. Oh, God,
+
+I would encourage you to until you understand this, and when you need it, toys use. It never hurts to be there to be explicit. But if you but you know, if you leave it off one time, it's not gonna hurt anything or if you decide that you want to learn by getting errors by not having it figure out when you need it, because that's a valid way of learning. That's fine too. Okay. Jin, most Like using coding, it becomes a I use this when you need it. But it's always it's always there if you don't have it in, it's needed.
+
+So Other questions?
+
+All right. So I'll leave you to it. Thank you. Good luck.
+
+If you need anything, just a reminder to you guys to. I know we're still trying to work out the bugs with the cocoa, hopefully it's going to continue to improve, we're reaching out to the people that made it and to fix those bugs, but like, any way that you need to try to get ahold of us to get help at any time, just reach out to us. We're here for you guys. Okay, and not just not just Brian or myself, please, please, please. You can reach out to any of the staff members, like john or Matt or Maddie or Steve. Questions. Okay. So, Greiner, I happen to be busy, you can go ahead and reach out to them too. Okay. Cool thank you
+
+guys guys sorry
+
+Transcribed by https://otter.ai

@@ -1,0 +1,1493 @@
+Zoom
+https://techelevator.zoom.us/rec/share/2I8vHaDf8mpJXNac7mGDe5UER924X6a8gCEa-aUOzk0qkEs_5a4oPwziXPvPNj1Y?startTime=1590586166000
+https://drive.google.com/file/d/1ca4F4jvF4aJdimA183XFa7vbMsuITrzl/view?usp=sharing
+https://docs.google.com/presentation/d/1ASlT3zZyytNlbJmMXt6pcJJt-XbamYunSEaCezvDavs/edit?usp=sharing
+Okay, so today we're going to talk about polymorphism. So the last, not the last but the next of the Oh, object oriented principles. The last one, we'll be focusing on heavily, spending a whole day on it, it's the last of the three foundational principles. So
+
+polymorphism is
+
+it's going to extend from what we've been, we started talking about yesterday for inheritance, because in order to have polymorphism, we have to have a relationship with another data type. So hierarchy relationship or something like inheritance, or the is a relationship, or another similar relationship we'll look at today. So the problem that polymorphism goes to solve is How do we treat we know that it are things that have generic properties about them. Just about everything in our daily life has generic properties. And we treat things in different ways depending on how we want to interact with them. And some examples, if you think about when you go to, you know, you go to a store, and you fill your cart full of goods, and you go to checkout. And while you're checking out, you could may have in your cart, you may have a bag of oranges, you may have, you know, a gallon of milk, then you may have a pair of shoes, you may have a book, those things are all very unlike. Those are all things that are not themselves have anything really in common about them except they're being sold in the store. But when the cashiers checking them out there going through on a modern system and is scanning them but even on the older system, it's going Through an putting in numbers, they're treating them just as something the treatment a generic way, they're treating them in a like way there. So, even if the store adds other, unlike things, they still are generalizing them into a way that they can just treat them as something they're selling. Allowing them not to have to say I'm gonna have to run out or do something different for the bag of oranges compared to the pair of shoes. They're these very unlike things have, like comparisons or like usage. So, we want to be able to model that we have the same problem in code. We have the same, the same issues with things that we that are not like that we want to be able to treat like or we want to be able to give
+
+We want to be able to
+
+use in a manner that maybe is not necessarily apparent, it's the way we want to interact with them, rather than necessarily the way things that they have inherent to them. So another example, of polymorphism, that's more, it doesn't require stores, you know, when we when we meet a new person. If you walk into a room for people and you don't know, anybody,
+
+you don't have to interact with them.
+
+By going up if we walked into this room full of people, a little harder example to do what I can't point at people. But if we walk into this room for people in this classroom, and I don't have to be able to say, to find out what like Justin's name is not to say, Justin, what's your name? I can say hello. What Your name. And I can go to each of you and say the same thing, the same sentence, what's your name? And it's it's a generic treatment because I know that you can respond with your name as a person and beating some other criteria as an adult person that's in this environment, I can reasonably assume that you can give that answer. But when you give the answer to my generic question, what's your name? All 18 of you are going to return a unique answer and the answer unique to you. So, I can ask a generic question.
+
+treating
+
+you as if trading is the generic idea of person who can give their name and get a specific answer.
+
+So we do that all the time. We treat things
+
+around found us in a way that where we know what questions they can answer or what things they can do, not necessarily because of what they are because of the abilities they have. And we can treat them in that generic fashion without the knew more about, about the thing, or the person. And we can get back a specific response. So we can get back the person's name, the specific to them, we can get back the specific price of the item without having to know really, in the individual details about the item, or the person and those two examples. That's the problem probably, that is polymorphism in kind of the real world, and that's what we want to model in our code, because that's a really powerful aspect. If we take this now to kind of more virtually the idea of the shopping cart, or the idea of checking out if you To move that idea, how does a place like Amazon, or another large shopping site mimic that same behavior, when now, it's not a bag of oranges, and it's not a pair of shoes. And it's not a book instead, it's now code representing those things. So, what we're gonna look at today is how we model that, and how we make use of that. So that, you know, we don't have to have individual things. We don't have to know when something's going through the checkout or going through the shopping cart, or when we're interacting with something, necessarily, always what exactly it is or the specific details about it. Instead, we just need to know what it can do. And then allow us to start grouping things into these things can be sold, these things can say their name, and then using them just based on or invoking their methods. Just be based on the idea that we know they have this methods. So that's what polymorphism is going to give us. That's what it does. So today we're going to look through, we're going to start out by defining polymorphism, we just kind of dead. But we'll look at a more detailed, not detailed, but more look like explanation of it quickly. And then we're gonna read and revisit polymorphism through inheritance, knowing now more about the problem of solving. And that kind of formal definition of it. We looked at that end of yesterday, we'll look at the same type of behavior today, and talk about a means through to be through inheritance. We're gonna look at this idea called object context, which is what we just described the way we interact with an object and what we can expect it to do. And that's going to lead us to a another relationship besides is a that we looked at with Yesterday. And that's going to lead us to a need for a way of, kind of, I don't want to say the labeling, but it really was what it is a way of being able to identify that particular classes and data types have certain characteristics or abilities. And that's going to bring it to interfaces, which is going to allow us to do that. And then we'll expand. Once we have interfaces, which primarily exists for the purpose of polymorphism, we'll expand how we would do polymorphism with interfaces, and we'll see that it's very, it's very similar to doing with inheritance. It's just the polymorphic aspects of cells the same, just some syntax differences. So
+
+with that,
+
+so polymorphism the kind of technical definition of it is, it's the ability for a subclass to be treated as superclass, or really any superclass and its hierarchy. So we looked at these hierarchies yesterday of inheritance. And we'll look at another way of creating hierarchy today. And it's that if we have a subclass, like we have the class housecat. The one we looked at one of the ones we looked at yesterday. And we know it has a superclass, feline which has a superclass of mammal which has a superclass of animal which has a superclass object that we can treat the house cat as feline, we can treat the house cat as mammal, we can treat it as animal we can treat this logic, because it is a all of those things. It's true to say it's all those things so we can treat it as those things. So polymorphism its course the ability to do that, but still get the house cast specific responses. So meaning that if we would Say that all animals can probably have some, like make a sound, that if we're treating it like animal and not house cat, and we asked to make a sound, it still can return meow.
+
+If we have, you know, a
+
+dog, and we're treating it as animal, and we asked it to make a sound that still could turn a barking sound. So each one returning their specific thing in a generic context. So it's going to allow us by treating the subclasses rather than the group them and start treating things generically. And still providing non generic specific functionality from it, which is going to be really powerful. It's actually the feature that probably gives object oriented programming its most powerful. Its most powerful feature. I guess that's saying the same thing because it's the thing that allows us to start taking objects and treating them like a real world, real world experience. Just what we're trying to model Alright. So I'm gonna start by I'm gonna bring up the lecture code.
+
+Get this weekend see
+
+the lecture code that I am in the polymorphic lecture code has
+
+a class farm animal we're going to start by looking at and the farm animal class has just to two properties name and sound. Because constructor takes name and sound, and it has methods to get the name and sound. There are two classes cow and chicken. For both of these, they extend farm animal. So they both call here in the constructor, since they're extending farm animal and farm animal has a constructor that takes the needs to have a sound Name populated the past to it for it to work. When cow or chicken are substantiated with their constructor, they use super to call that constructor to tell the superclass code, what the name is and what the sound is, which is just going to be used to set these variables here.
+
+So that they can be
+
+used later, or use with the getters.
+
+So, and then, the final thing in this code is there's this method that uses a list of farm animals or array of farm animals that just outputs. It's probably a song familiar for everybody. You want McDonald's song, based on the name and the sound the animals make. So we run it, see it working, and then we'll talk about how it's already working polymorphically And we'll see that then we'll start expanding it with some other pieces. So you see it prints out the song. But that's not the important part. The important part is here. There's two classes the cow and chicken, they both extend farm animal. And we just looked at those and how they call super. And they extend farm animals. So they both can both say that cow is a farm animal and chicken is a farm animal. But when we want to utilize them, what we need to know about them is that as farm animals, they can say their name. And as farm animals, they can return what sound they make. So we can create a new array none of cows and chickens have those data types but have their superclass data type, their parent data type farm animal and then as we add the To this array, we're treating them as farm animal, but they still remain the cow in the chicken class. That hasn't changed. But we're treating them just now as farm animals we have an array of farm animals we can have other unlike types as long as they extend farm animal, no matter what, what they are, and they can go into this array. And then we can loop through the array. And the datatype we're using is farm animal. Which is this code not specific to the cow or chicken. And as it loops through and calls get name and get sound, we can see that the cow class returns cow and move. The chicken class returns chicken and clock. They return their specific responses to the The question of get name in the question and get sound. So they're returning their specific responses even though we're treating them just generically as a farm animal. So that's polymorphism with inheritance. And that's what we looked at yesterday. And we can continue by adding other objects quite easily to the list. Now, if we want to expand this, we can very easily add a good go on be calm to call your firm, new class. And let's add another
+
+another animal so maybe
+
+see a sheep.
+
+If I want to
+
+have it be part of the Harkey, I can extend for a man
+
+So I'm going to make a subclass a farm animal. And that means I have to. Since it farm animal has this implicit, or explicit constructor, I have to provide a constructor that will call the farm animal constructor. So the constructor is going to be for sheep. And I can choose to take the name and the sound or here or I can just provide them which is what I'm going to do. So use the super keyword to call the farm animal.
+
+constructor.
+
+And, let's see, we'll say the sheep and we'll see
+
+sound for it.
+
+And remember, it's doing this we're not calling the farm animal object. There is no farm animal object. There is a sheep object. There's a cow object. There's a chicken object. And what we're it's like having since Classes are like blueprints, they're pieces of them now or separated out. It'd be like having blueprints for a shed or, and then having amendments to it for different versions of it, one that slightly changes the doors, one that slightly changes the roof. Or if it expands it by another extra few feet. We don't have to change the original one, we can just amend it to make changes and that's what sub superclass subclass relationship is like. The actual object that gets built is a combination of the two. It's the original blueprint with the amendments, but it's still just one one shed. It's not that we built the original shed and built the intimate side by side is two objects, the same things happening here. So we have our sheep farm animal class. Now go back to the old McDonald's song. If I want it to be part of the song, I can just add it to the array. Don't have to change any other code.
+
+Because when I run it
+
+I get now the sheep saying its name and its sound.
+
+And that ability to
+
+know that she was a farm animal, it'd be able to treat as a farm animal and still get it specific response still have it return sheep and bark compared to cow and Moo. Compare the chicken and cluck. That's polymorphism or tree treating it very generally, we're treating it as a superclass, and it's still giving us its subclass specific responses.
+
+So I'm going to also put a breakpoint here to make another
+
+if we run debug
+
+Really just this farm animal
+
+of red array that we're gonna look at, so the farm animal, their uptight farm animal. So they're the superclass. But if you look at the objects inside, they're identified as sheep, cow and chicken, they're identified as their subclasses. by treating them as farming, we haven't changed the class, there's still a cow chicken in the sheep. We've just changed the way we're viewing or change the way we're treating them. And that's going to be more important later when we get later today. And for something we're coming close to called object context, that we're treating him in the context of being a farm animal, but we're not actually changing anything about them. The same way for going back to, you know, selling items. If I'm treating both the bag of oranges and a book is something I can sell, and I can run through my cash register. I'm not changing anything about the business. We're just in the book, I'm changing the context I'm using it in. And that's what we're doing here. And when we looked at casting up casting and down casting to subclasses, and super classes yesterday, that's what we're doing there as well. And that's what's happening here. We're up casting to farm animal as we add these to the array. But while we're doing that, we're not changing the objects, the objects still remain what they are. We're changing our context, the way we're looking at the objects where we're using them.
+
+So before we go
+
+much further to the next kind of piece of that, that's what we that's kind of a review of where we ended yesterday. Now with some more context around it, when the problem of polymorph the problem problem polymorphism is solving. So what questions do you have at this point?
+
+Just out of curiosity, why? Why is understand my trading it always farm animals? farm animals considers it polymorphism. But in this case, the methods that you're calling are all in the soap superclass. Yeah. So why is that considered polymorphism?
+
+Because the answers they're giving are from, or the answers specific to the subclass. So, Hmm, I see I see we're saying, Yeah, it's about not where the code lives. And that's actually with inheritance, as what we'll see is that the code lives in the often in the superclass, because that's the purpose of a superclass to have this reusable code that we're just inheriting and passing through, down to the subclass.
+
+It's about the response that code gives when we use it.
+
+Does that make sense?
+
+Yeah, yeah, that makes more sense. Thank you.
+
+So Other questions? All right.
+
+So let's introduce another something else now. So I have this song, and I'm on my farm and I want to add more to it. I don't just want my animals maybe to participate. I also
+
+decide that
+
+I want my tractor to participate as well.
+
+So I could rewrite all my code, or I could easily
+
+add a new class and add a tractor.
+
+Again, I right clicked on the package and chose new class. I'm naming it as tractor Finish it. And let's extend farm animal. I'm gonna have to add the constructor. And I'll get rid of these name and sound. I don't want those there because I'll just like I did with the other ones. I'll just say it's the tractor
+
+and it makes some sound.
+
+So I come over here, and I add a new tractor.
+
+So it works. My code works. So I've now inserted polymorphically inserted my tracker into the song because of the song.
+
+But this is actually kind of a problem
+
+it's not a problem. Now because All I wanted to do is be able to, you know, go through and sing the song. But it's a problem because the hierarchy I now created has something that is obviously not a farm animal in the hierarchy. It's not true I cannot truly say a tractor is a farm animal. That's an invalid statement. Which means that right now when all I wanted to do was sing the song, it's fine. But no, if I want to later write code that takes advantage of other features of being a farm animal
+
+that are more no animal like like feeding them.
+
+The tractor is not going to fit. So I'm about to write code around that. So it's not a true hierarchy. But I want to be able to treat the tractor like the sheep and the cow and the chicken. I wanted to be able to say So I need something more I need so is a relationship is not going to work because it's often we have things that have like behaviors or like things we may want to treat them as that are not true to be in a relationship. For instance, a bird and helicopter both fly we may want to be able to group things that can fly together. But there is no hierarchy where a bird in a helicopter fit. Fit isn't is a there's nothing we can say except for object maybe that we can say you know a bird is a and we can also say a helicopter is a and they they fit in that
+
+and it's a true statement. So
+
+we need another way of looking
+
+at These relationships are the group things.
+
+And that brings us to this idea of object context. So sometimes we don't need a beam, we don't need to want to group things by what they are. But we want to group things by what they can do.
+
+So what abilities they have.
+
+And this is for B, A has a relationship.
+
+So we could say a bird has a ability to fly. A helicopter has a ability to fly both those are true statements. But it's not anything about what they inherently are, what they say. It's about what they can do. When we go back to the initial analogy of, you know, checking out at a store, that's the same idea with the bag of oranges compared to the shoes compared to the book. There's really not much we can say that they all are. But they're qualities that things they all can do they have an ability to be sold, they have an ability to have a price. So they have certain abilities that we give them that we want to take advantage of. We want to be able to use in our code, because we do in the real world. But it's not based on what they inherently are, but instead their abilities. And we're going to see that with object context. We want to be able to switch this context. And as we switch the context, we want to be able to get very specific answers. So again, another thing I'm not sure how it's going to work virtually but how many people here by showing in some way our musician would consider ourselves a musician or some type Okay. All right. So all right. So that's, that's good. That's that works. So, it since most you can see it has been in Connor. So if I, so then if I asked you to play play your instrument, what would what would your response be?
+
+I would sing side by side.
+
+Okay. So Carter would do that. So Ben, what would your response be?
+
+I'm not sure to play my instrument. You said you.
+
+Maybe you're doing maybe I misspoke. You're raising your hand for something else.
+
+So
+
+I asked him, Do you consider yourself a musician? Were you raising your hand for that? Or?
+
+Yes, but I didn't understand the question after that.
+
+So maybe make music. Maybe that would be a better request. So what would you do? What is the I would play the drums Okay, so there's two different responses, right? To the same, the same question.
+
+And so
+
+it's, it's may not work as well with only because usually, there's more for the first generalization, but how many people in the class can speak
+
+more than one language? Me? Thank you. So, all right, so that didn't cross over with either Ben or Connor.
+
+So let's see. How many people in the class can
+
+see can
+
+dance.
+
+Alright, how many people can dance
+
+Okay, so that crossover with at least one person. So that a few of you for language so before I in
+
+multiple cases, many of you raised your hand for different contexts. So the one I'm going to pick on Connor raised his hand played music, he also raised his hand to be able to dance. So I don't need to know anything like
+
+he's ready for his boy band.
+
+So I don't need to do.
+
+So there's two contexts I can put them in. I can put them in the context of someone who can play music, I can put him in the context of somebody who can dance. For those of you who raised your hand for speaking multiple languages and for dancing, I can put you in the context of speaking multiple languages and the context of dancing. So there's three contexts there that overlap with multiple people in different ways. Each of those have different things I could ask ask you, I could ask you if you have to dance, you would probably all dance in very different ways. I can ask you as we look forward to make music and the musicians would perform in different ways or do different things. If I asked you what languages you spoke, I'm sure most of you are all of you have different lists of languages. Again, giving specific response now to not to based on what I know that you are an is a the first one basket you name it was because I knew that you could answer your name because of the the relationship of you is a person. But now it's that you have an ability, I could say has a ability to dance has a ability to speak multiple languages has a ability to make music And
+
+that
+
+context
+
+being both having multiple types of context each or multiple contexts, we can view each.
+
+Now taking it back to code object in
+
+is another way we can achieve polymorphism. And something we it's very desirable in the problem we're currently facing just with your McDonald's song. We want the tractor, the sheep, the cow, and the chicken all to be able to sing. But there is no is a relationship that makes sense for them. There's nothing that they all are, that makes them be able to sing but there is a relationship that they can sing. There is a context that we can we want to be able to view them in that is valid.
+
+So that's.
+
+So let's look now at how
+
+we could fix our tracker.
+
+So we we have contacts. Now we have this idea of this context, we can start applying.
+
+And let's
+
+introduce another idea.
+
+So our tractors working, so we might say, okay, we were not going to fix it. But let's say we wanted to sell our farm animals. Well, we can since it's their parroting, but this relationship from farm animal, I can easily go to farm animal. I could add a new variable here. So out of variable, I'm just going to make an integer to make it easy to work with. Price. sell things for whole numbers. Maybe I'll make add to the constructor.
+
+integer price.
+
+This price equals price and I'll create a quick getter for it.
+
+Public and
+
+price
+
+and return price. So I save this, all the other classes are gonna have errors, and we'll go fix those. So now I've introduced this idea that. So we talked about why we want to have object context and what it is. But why is it important to have hierarchies? Correct? Right? It's poor to have relationships that actually makes sense is because in this case, now that we've we've had the tractor in the song, there's something saying, that's working great. But now I've changed my code where I want to be able to do something more than have the farm animal saying Want to be able to sell the farm animal? So I can go to all I have to do. So we'll sell our cow for 1000 will sell our chicken for I don't know 25 we'll sell our sheep for 300. And I don't want to sell my tractor at all. So, no, I'll just put it as zero. Save all of them errors go away just by putting it to the constructor. So I very easily added them into this context are added this extra ability to them. And that's actually that ability to quickly add that extra ability is what makes inheritance and super classes so powerful. I can change this complete hierarchy by just a very simple change. If I go back to your McDonald class, I'm going to create Secondly down here, next is going to be pretty much the same as this first one, and we're going to go to change what it does. I'm going to copy and paste that for now. And we'll take our of our family farm animals and we'll say, just one line that says, so we want to advertise our items for sale. So we'll say the AB animal dot get name, plus
+
+cos
+
+animal dot, get price.
+
+And we'll run it. Actually I'm going to put right here I'm going to put a system out print line
+
+so that it separates it so we can easily see
+
+where it's at the bottom.
+
+And you can see that we have a basically a sign now for our items were selling but actually tractors listed because it's in this context and now it's we've listed it as zero so now is it not for sale or is it free most people looking at this are pregnant assume it's free so now we're giving our tractor away because we created it in the wrong hierarchy. So we need a solution for this. Because this you know, in this example, that's kind of silly. is easy to see but if we move this into something that has no all the items being sold in the store, and we incorrectly add not just one thing to our hierarchy, but multiple things like a whole category of things, like we have items that are items in the store, and we decided that we want to put you know, our cash registers as items in the store. They are items in the store, we can Because we want to do some kind of listing of everything. So we include those we include, you know, maybe the chairs in the cafe as items in the store. But then later, we want to use that to list all the items for sale. And now we're selling our cash registers and the chairs in our cafe. And it may not be as noticeable because now we're expanding not from a few silly items, but to thousands of items in the list. So, Kruk hierarchies create unmanageable relationships that cause problems, not just in our code, but actually in the real world usage of them.
+
+So we need a solution.
+
+So let's take a break and we'll come back and solve this. So we want to break it up. So we'll come back at 1018
+
+So what are their questions or what questions came up for you during the break?
+
+Okay. All right. So then let's look at how we can solve this problem, this problem of context, our tracker that we want to sing. It's not a farm animal. And now we definitely can't keep it as a farm animal because we don't want to sell it. So what we need to solve this issue of being able to switch from just having an is a relationship to more of a context of we want to treat it with a different context, not because of what it is, but because what it can do is the solution to it in Java is what's called interfaces.
+
+We've already used interfaces, we use them as
+
+From not something we built, but something that we've used, for instance, map, and list, we use the map and list interface when we define them. So when we define list, something equals new ArrayList, we're defining an interface. And that's for the exact problem that we're going to solve. Now.
+
+It's so an interface
+
+defines what something can do or how it can be used, but not necessarily how it does. So it's going to define for us a set of methods or set of behaviors something can have, but it's not going to give us any detail about how it actually achieves those behaviors. So how it actually works. So it so for our financials, we're looking at we could say that They have the ability to sing, but not how they sing. Just that they have that ability, and what it means. So what it means to have a particular context or being saved, what they can do is, remember our, what something can do in Java is coming from its behaviors or its methods. So the actions you can take. So an interface is going to be like a contract that's going to define what methods an object must be able to have to be considered to have this ability to be able to consider to have this context. But it's not going to define anything about how those methods are going to work, just what are going to be there. So it's basically a guarantee that if we can treat something as that data type, because the interface is going to find a new data type, but it's not unlike the ones we've looked at when we define How that datatype looks. Instead it's going to say, okay, the standard types of context. And if you're looking at this thing in this context, it can do these things. Maybe it can say its name, maybe it can return a sound when we look at our list, and obviously, nothing equals new
+
+ArrayList
+
+important to work second. When we look at something like a list, an ArrayList that we've used, the list is a interface. And it's saying that if something can take on this context, we're saying that we want an ArrayList and we want it to have the context of a list. That it can be add. It has an add method has an add all method that has a contains method. It doesn't say how it works. a better example might be Now we think about it. Let's change this to link list, something we used for.
+
+For that, we use linked list. linked lists can be a list. But
+
+linked lists can also be a queue.
+
+Which is the way we used it.
+
+So it's both
+
+two different versions of important.
+
+It's two linked lists, but they're still using the same
+
+object, link list. object, ones being treated as a list, given the context of lists, ones being given the context being a queue by the fact of the interface, the same linked list class, when it's a list, it's guaranteed that it's going to have ADD, it's going to have at all it's gonna have contains it's gonna have get indexes is empty. So it's going to have these methods remove, remove all are going to be available to list when I changed it from ArrayList to linked list, this list of methods didn't change. But this list interface, didn't tell doesn't tell ArrayList or linked list how they achieve it. they achieve it in very different ways. Because of this by nature, but a linked list is compared to ArrayList. But it doesn't matter. It allows us to say we have the contacts we want to be treating as a list. And when we treat as a list, we can do this list of methods with it. It's guaranteed to be able to have that fun, it's guaranteed to have that functionality. How it does it how it achieves that up to it. We don't care. It's just we know that it has disability. treating the same thing as a cue. We solve and we saw at all. But we also have things like peak And offer in pool, those are not part of a list. So we didn't change what we actually implementation, it's still linked list the what's called the implementation class. So the concrete class, the one that actually has the code that knows how it works. It has methods on that class linked list class to know how to do a poll to know how to do a peak, but also know how to do or add and get by index, which you can't do. And when it's being treated as a list, it uses those methods become available and we treat it as a cue, a different set of methods become available. But these data types cue and list. Don't say how it works, just what it is going to be able to do. So it's to an interface is a contract of how of what something can do when we give it a certain context, when we use it in a certain way. What's going to be available for us to use but not how it works, it doesn't give any details on how it's actually going to do it. But this type of contract of how something's going to work is something, again, taking from kind of real world usage. So outside of that we're modeling the same idea. So for instance, some kind of real world examples of an interface that say, what something is going to do, telling us that we can use it in a particular way, if it's this type of thing, if we have this particular context with it, but not how it actually works, if we think about in a car, I assume most people I use those examples of locks I see most of you have driven or at least ridden in a car or at some point, so if in a car, there is two pedals, right, there is one that's going to accelerate so in some way One is going to decelerate. How that actually works is could be very different. You know, so combustion engine is going to do it through combustion. When you accelerate, it's going to use fuel and combust it to move forward where electric engines going to work very differently. So, the, but we don't have to know that there's an interface of these two pedals. And we're guaranteed that they're going to work in this way we press the right one, and it's going to accelerate we press the left one and it's going to decelerate. So somebody switched that interface, somebody built a car, you know, some car manufacturer comes out with their new model and they make it so the pedal on the right.
+
+brakes, the pedal on the left is the gas pedal.
+
+How, how well is that car going to work
+
+if you got into a rental car, you pedals were switched, and you had no way of knowing it, because they're just pedals. It's what broke the interface. It's not doing what it what you expect. Of course, it's going to, you're going to be using the wrong pedal at the wrong time. But the interface still is there, the interface is still the two pedals. So it doesn't tell us how it's been implemented just what we should, what we should expect when it is leaving up to the author of the implementation class. The concrete class one actually has a code to say how it works. And we'll talk about that it's going to be important to make it do the thing that we would expect, based on that, just like we don't want to switch the gas and the brake pedal in the car because it'd be disastrous. We have the same same type of responsibility to when we talk about how we use the interface on our code. We have other interfaces around us all the time. So interface being just a way that we can interact with something without having to understand it without having to really care how it's working. So buttons are another prime example of interface when we encounter when we know how to use it. We know what a button does, but the button on the power button on my laptop, or your laptops here, works very differently than the power button on the coffee machine, or a power button on a toaster which is usually has other functionality attached to it. But it doesn't matter. Each of those has an interface that they have the ability to power on the device. How they do that is implementation, that's the portion that the interface doesn't
+
+worry about so much.
+
+So
+
+other interfaces that serve similar things is every cable we promote attached to the side of the computer. There are devices, HDMI cables or USB cables, those are all interfaces, guaranteeing that they have a certain way we can treat them that we can plug into these particular ports on our computer or our devices, but the way they behave is very different depending on what's being plugged in the USB monitor if my Mac works very differently than the USB drive I have, if I switch them out to the same port using the same interface, how they actually work is up to them. They just have to follow this promise that they're going to have this particular connection available to them. So that's what we're going to model. We're going to model the same idea said that those have word that no electrical plug in your wall has that given a particular usage. We don't care how it works, we're just going to guarantee that it has Particular functionality, and then we can use it in that way. So some other roles or things about this as we write these, that means that what we're going to write in our interface isn't going to be a bunch of code. It's going to be the method signatures. That's it.
+
+So we're going to put just method signatures on our interfaces.
+
+And then we're going to sign these two objects to say what context they can have. And since its context we're talking about not what they are. We could have multiple context, just like as we talked about, you could speak multiple languages have map context, or you could have a context where you could dance. Our objects can have the same thing they can have multiple contexts. Given those different contexts will be different promises of functionality they're going to have, like we looked at the link list being treated as a list compared to the queue. In one case, we're promised that link lists can provide functionality for the peak method. And the other case, we're provided were guaranteed it can provide functionality for the gift by index method.
+
+How it does those is up to it.
+
+So in that case, it has both the queue interface and the LinkedIn interface attached to it. So these interfaces are going to be able to they still can represent is a relationship like we've been looking at. We've looked at yesterday so that we can say, you know, a car is a vehicle or a cow is a animal. They can still represent those because sometimes we won't have actual code we want to inherit, we just have, we want to just have guaranteed functionality, but they also allow us to represent has a relationship. So taking the relationships from not what they are, what things that they can do not because of what they are, but things they can do just because they have the ability to do them.
+
+So for
+
+those of you who can speak multiple languages, you can speak model languages, not because of the is a person relationship, but because you have a ability to speak the languages. code in code wise. So, that's what interfaces are gonna allow us to do. And they're going to work very similar to the way we already looked at inheritance is that once we have, we're going to be forced to when we use them with a class, to write code to give the how. So they're going to say what something can do. But when we attach it to a class, we're gonna have to write code to say how our class is going to do that. Once we do that, it's going to pass on the ability to all of its subclasses. So we can attach an interface to a class, and then pass on that same ability to subclasses. So if we say the farm animal can sing in, we make sheep and cow remain farm animals, they'll gain the ability to sing from the fact that farm animal concern. But then we could also give that ability to our tractor not being a farm animal. So unlike things that are like in their abilities, but they inherit their subclasses or their children or inherit those properties, those abilities. So they're going to be transitive, they're not going to be singular. They're going to give us both relationships. And they're not going to really have any code. They're just gonna be method signatures. Some Before we look at actually implementing this encode, what questions do you have about what problem we're solving or what we just talked about?
+
+Alright, so the Making Sense thing.
+
+I think, personally, I see, okay, well, that's where we're going next. So, let's look at how. So this is the problem, we're solving what it's going to do. Now let's see it how it's going to work.
+
+So, in Java,
+
+Java interfaces said they're only contain method signatures, they're going to look like a lot like class. Only differences instead of the word class here, they're gonna have the word interface. And that's really, they're going to be in packages just like a class and the other big differences Instead of having methods, they're going to have just these signatures. So for instance, a class drivable may have void turn, and then the parameters that take string direction, boy in, accelerate, Boolean decelerate. So the accessors here, public, private. And we'll look at those we'll look at tomorrow. They're optional interface because everything interfaces public, it doesn't make sense that an interface that's not public, because the whole idea of it is to say what something can do. So if it's private, it's not something they can do that's internal working. So everything in the interface is going to be public. So it just defaults to that. You can put the public keyword there if you want, it won't. That's not a problem, but it just defaults to it. So once we have this, we can't stand you interface. So when we have like list Can't say list, new list. Because it's an interface, there's nothing to instantiate, there's no object you can create. It's not a class definition or a blueprint of an object. an interface is just a contract of what the blueprint for objects are going to have. So we can't instantiate it. And they can't have things like member variables, all we can have is these method signatures. Now, I will say there's a caveat. And you don't need to focus on this. But in later versions of Java, newer versions of Java after Java eight, there were some extra things has been added to interfaces, but I'll just leave it at that. But traditionally, they can't have anything about the signatures. So the way we code these is we're going to create an interface the name of the interface can take two forms, or multiple forms. So one of the so often if it's got a form it is a relationship. There's similar to our class names, what that relationship is. So something like farm animal, but if they're going to form a has a relationship, it's common to name them with what they can do with Abel. So drivable or sellable or countable singable. So naming them in that form is a common practice, not required, but it's common practice. So here, this interface would be saying that anything is applies to has the ability to drive. And with that ability, it means that it's going to have a method turn, that's going to take an argument string direction, how that works is up to the individual class that implements it. It's going to have a method of celebrate that's going to return a boolean value. It's going to have a method D salary that's going to return a boolean value. So it's guaranteed that something that has this ability to drive attached to it has these methods, how they work is going to be up to the class that is using it, or what's called implementing it. So we extend an interface, we extend a superclass, but we implement an interface. And it uses this keyword implements.
+
+And that's because if you think about a superclass, where
+
+have functionality and we're extending what it does, we're adding more to it as we add the subclass. We're taking the, you know, the blueprint, and we're adding kind of addendum to it here, but we're not changing anything about the original word, we're expanding it. So we're extending it. Here we're implementing it because it's giving a promise of we're going to her class is going to have these methods this list of methods and we Have to give the code the implementation that works that does the creates them. So if we're going to implement it so once a class implements an interface, it has to provide an override for every method in the interface. So you can't pick and choose. If something is going to be singable or drivable, it has to implement the turn, it has to accelerate and decelerate, I have to do something for all of them. If you if you don't implement them all, it doesn't actually won't compile to be a compiler. And the reason we have to implement all of them is because if we're going to say it has this ability, if we're going to promise that it has this particular functionality, then it has to do something for that functionality. It has to provide how that works and make it work. So a class is going to be able to implement an interface and extend a subclass. So we can extend one subclass that's not going to change. We could, so we could have a public class bicycle that extends vehicle and then implements drivable. A class can extend a single subclass, but implement multiple interfaces to give a different context. So a public class bicycle can extends vehicle while implements the interface for drivable and exploitable.
+
+So it
+
+gives the interfaces give the context of how we can treat it. The subclasses still will give code that we want to inherit, and they're both optional. A class can have either it can have one or the other working out both.
+
+Alright, so let's write Yes,
+
+I guess I just don't understand why would you use an interface if you have to go ahead and declare all the methods in the class anyways, like, isn't that enough at that point.
+
+So the idea of using interfaces to Give
+
+it's to allow us to give the context to unlike things. So, like we're gonna have here with our, our song, or let's go back items that's more of a real world example. So I have a bag of oranges and I have a book and I have shoe three very unlike things, and I want to sell them in my store. So I give them the sellable interface, and I guarantee that they are going to be able to tell me their price. So when I treat them as solvable, I don't know how each one's going to handle giving you their price.
+
+I also don't care, I just know that they're going to give me a price.
+
+And so I
+
+can treat them just as styleable knowing one thing about them, I can get a price from them. And that allows but they have to write the code. So what we're doing the interface is saying how we can treat something so I can put them in a list because if I have the battery oranges, the shoes in the book, there's no natural thing that they all fit in is a relationship with. So when I go to put them in this array, there's nothing I can define that's going to make them like without making it artificial, like we just did with farm animal and tractor. So an interface allows me to have a bill add abilities and say I want things that have this ability, even if they're unlike the How have the shared ability to be grouped together. So there thinks this exists pretty much solely for this idea of polymorphism. To be able to say these things, whether like or not, they have a likeability like a bird and a helicopter, they both can fly. They both do it a very different way. So we don't want to enforce them to fly in the same way we want them to fly in the way they need to fly. So but what we do is say if we say they're flyable if they have that interface, we guarantee they can fly. How they do it's up to them, which now allows them to group In the things that can fly, does that make sense?
+
+That does make sense. Thank you.
+
+So you can also think of it in a way as a way of just labeling, putting labels on things.
+
+That that's falls apart kind of quickly, but it's it at the core. That's really what it is, as long as labels is things that can do. They can fly or be sold. Hey, Brian,
+
+yes. Am I wrong? Or is would an example be like how our MacBooks have the ability to like add a printer or the ability to print or something and then we get like the how of how something gets printed is done by the print interface kind of deal. Is that a thing?
+
+No, that's a great example. It's exactly what that is. So device driver, like the print driver on a MacBook, MacBook ready computer is exactly that. If you buy no different printers They all work very differently. My, you know, if you buy a printer that prints to paper, you can use that same driver to print a paper, you can print that same driver to print to a PDF file, you can use that same driver using the right printer to print to a T shirt. For fabric printers, they all use the same driver and they don't care how they work. The computer just knows take this image or take this thing and print. I call this method and how they implement it. So that's a great example.
+
+So other questions before we actually write the code to
+
+write? So let's write an interface. Now let's fix our problem. So our problem is that we have a tractor here that obviously is not a farm animal, and we don't want it in the farm animal West But we want it to be able to sing about our song. So let's fix that problem first. So, we can create a new interface, something like singable.
+
+So I'm going to create a new
+
+interface.
+
+And let's call it
+
+so I select interface from it. So in the same package, and we call it singable. And finish. See The only difference is the word interface. It still has to be in the file name that matches the interface name. That hasn't changed. You see, there's an eye here in Eclipse that identifies this interface. If I wanted to change it back and forth, it's that simple to change it. So now we have this. We have our interface. We're going to side what does it mean? To be singable, what do we need it? If they have the ability to sing, what do we need it to do? And this is where it's going to break a little bit from the abstractions that when we go to abstraction into our code from the real world, because it's what do we need something that's singable to do in our program?
+
+So make a sound. Oh, sorry. No, no, that's great. No, make a sound.
+
+So we know that farm animal had this method, good sound. I'm already using it. So let's make that
+
+get sound.
+
+That'd be our method signature. So what else? Is there anything else that singable might have to do with our program? We go back to her. We might want singable to do
+
+I mean, what it has happened now name.
+
+Yeah, we want to get its name. So just like when We treat a subclass as a superclass, we lose the subclass specific abilities, not the answers to the ones that superclass have, but we can only access the methods the superclass has access to. When we start treating it as singable, we're going to lose access to other methods who may have. They're not, they're still going to be there. But it's just going to change the list of how we interface how we interact with it. And the reason it's going to do that is because there's could be unlike things in the list, eventually, we want to get rid of the idea of tractor having a price. So when it's a singer, well, we don't it's like the tractor I might have get price but or not have it but the sheep and cows still have it. So we want to so when we're treating as singable, this is the kind of total things that we'll have access to, or
+
+so we also would want string
+
+Get name
+
+so now we have an interface, it's going to be a list of method signatures. Again, it's just a promise of what our simple objects are going to have. So now we apply it.
+
+So I want all my farm animals to be single.
+
+So I'm going to change I'm going to add it to my superclass implements singable so when added there and I have chicken cow and sheep that are all going to continue extending farm animal because they are they all have it is a relationship with farm animal. Will I be able to treat them as cinema?
+
+See some people shaking their heads.
+
+So yeah, because it's going to be transitive. If we apply it to superclass, the subclasses will get the ability. But now I can fix the problem I have with the tractor.
+
+So a tractor I don't want it to be a farm animal.
+
+So I can remove the extends, and I can have it implements symbol. I get an error now because I have to implement all the methods. So I'm going to use the Quick Fix of add unimplemented methods.
+
+And now here I'll just return
+
+implementation will return the name tractor and forget sound will be the return. Sound of these comments is because they and I don't need this constructor anymore because that constructor existed for farm animal so I can get rid of that. When I say this, I have an error in the Old MacDonald class because I have to fix something I can no longer Have the farm animals sing the song if I want tractor included but that's okay. I'm going to change the array. So I want this to be
+
+singable.
+
+So it uses a data type because that's what it's defining.
+
+Here it's gonna be cinema. And as soon as I do that, the error goes away and I can add tractor sheep cow chicken all to the list.
+
+So,
+
+now here
+
+if I wanted to keep the same, I'd have to change this the singable and I probably shouldn't call this farm animals anymore, that's really not valid. So syllables
+
+and,
+
+and then
+
+let's change this to Sanger because it's really not an animal anymore. This no guarantee it's going to be an animal. So I'm going to comment out this we'll come back to the price thing.
+
+Just so we can run it. And we can see now
+
+the code still works with the symbol, the tracker singing the sheep, the cow and the chicken. But now the tractor no longer has a price associated with it. In fact, down here when I create the farm animal list if I go back to creating that,
+
+so farm animal
+
+out down here for new farm,
+
+animals animal
+
+and we're going to add the sheep
+
+chicken. That's all we have right now. Do it.
+
+Now I have two contacts, I can treat them in the farm animals that I want to be able to sell have their price. And each can be listed by treating as a farm animal. But I can't have the unlike tractor included in the song, because I'm relying not on what they are but what they can do. Which means we can add, unlike items, but as we do this, we're still getting the specific answers for what they are. So the tractor as a symbol with the interface is still returning its implementation of get name and get sound, the cheapest of returning its implementation of it, the cows are returning its implementation so we're still getting even over treating him now as the generic singable. We're still getting specific responses from the classes. So We're using the interface now the ability of what they can do, instead of what they are to achieve polymorphism. So much closer to what we would need to do for something like a shopping cart when we first we started with a bag of oranges or a bag of
+
+for
+
+a book compared to a pair of shoes. Also going back to the very beginning when we started we said I could ask each of you your name because of your is a relationship a person. That's not necessarily true is it that breaks apart pretty quick, but I could cannot ask and get an answer back from you know, a six month old their name but they definitely won't want to say a six month old doesn't have a relationship is a relationship a person. So it'd be more true to say that I could ask you to name because you have something like a nameable interface that I know you have VAT grouping. Allow me to would allow me you're not just mean for everyone to generically walk into a room and ask people we don't know their names. We know they have that ability to answer. The fact that they happen to also have an escalation person is actually not that connected because we could ask no robot its name, and many of many eyes can answer. And they wouldn't want to say they have that relationship and has a relationship with something else. So but they have the ability. So
+
+now we can start grouping things by ability.
+
+But let's
+
+make this maybe a little more interesting. So that we have one interface, but let's change our singers again,
+
+or our group. So let's say we also want to add
+
+Why the dog
+
+and
+
+well extends
+
+from animal
+
+about our constructor.
+
+And again,
+
+we have to have a sound, price,
+
+sound and what a price again, we probably don't want to sell our dog someone making zero. So, we can go back here and we can add it to singable. But if we're adding all of our farm animals, we're going to end up with our list here.
+
+And now we have the dogs singing the song, but we have the same problem we did now with the tractor. So we can solve this by another interface. We want to keep the dog as a farm animal because there are other groupings where
+
+that can be true.
+
+But we also want it to be the same, which is going to get from farm animal we know but we don't want it to be something that can be sold. We want to be able to list this differently. So we can create another interface maybe something like sellable.
+
+So I'm going to do that I'm going to create a new interface
+
+sellable
+
+Maybe two things we can do, we can get the price so and get price. And all of these end up being examples with getters and setters, but it can be any method signature, we can define that it's going to use, and maybe also when I get name. So these two methods get price and get name, because when we list out the items for sale, we're going to want to have their names. Now we can start manipulating our other classes into more more specific lists and more specific groupings that we want to see more detailed groupings of what we want them to be able to do.
+
+So
+
+I don't want
+
+farm animals
+
+themselves to now to be sellable. There's other farm animals I could have besides the dog that I don't want to sell For instance, maybe I want to have a horse so I want to have dairy cows that I don't want to sell them I they have on their use their workers on the farm. But they're still farm animals. So let's remove price from here. It doesn't fit. There's many cases where it's not
+
+what we need
+
+so we'll move from the interface far from the farm animal superclass, but I still want certain items to have it in certain not to have it and it's broken here. So let's fix these classes.
+
+Somebody come over
+
+sheep, I'm extending farm animal. But I also want to implement
+
+sellable
+
+and now I have to implement The method
+
+and we'll just remove the price from the constructor and move it down here to get price. So its implementation we call it a price of 200.
+
+Now I have to fix
+
+the chicken class. Again I want it to be soluble.
+
+So it's gonna be the same thing. I don't know if it move the return of its price.
+
+down to here. Let's get rid of that. Not to give her those two dues but some reason they bug me so
+
+do the same thing for cow
+
+it's price here.
+
+Alright, so those are our original farm animals.
+
+So for dog
+
+I have to do is remove the price I'm not going to put sellable on it, it's still gonna allow me to group it into the animal grouping without selling it now back in the old McDonald's and had the same thing here that I had up here I'll change this to sellable now.
+
+So let's call it items or yeah let's call items and we'll call it syllables
+
+doesn't have to be named the same
+
+and the same thing we can say that our syllables list we're gonna print through them for type sellable and they're not going to be That's Aaron animal now notice dog now can no longer go into the list so it constrains our array and what can be sold not to include things that we don't don't have that ability.
+
+So
+
+remove that
+
+and then
+
+must call this item
+
+items not very completed the best name for
+
+this will be in a moment.
+
+All right, so now we have
+
+the song still working with the syllables, the list the list price listing, so working with syllables, and things can still be grouped as animals or the farm animals as we need. So we have three different contexts we can treat things and depending on what individual things either are or can do. So
+
+What questions you have at this point?
+
+Ryan, is there a way to see what objects are created under an interface without just knowing that it's been implemented into the object?
+
+So, as far as looking and saying,
+
+from the interface point of view, so not globally because an interface is kind of like a class we can, we can use them multiple places or extended model, or implemented multiple places we don't the Java language really doesn't know where to use the interface doesn't need to know where it's been used. So there's no connection so the eclipse actually has a shortcut that in your project is only work for your project. If you you can look up OpenType hierarchy you know, show you every place that is being used as a title Perfect, but that's only for your only for your project. So if I'm using your interface in my project or you have a second project, it won't show those. Oh, thank you it. And for the the Java interfaces like, right like list and map, if you look at their Java Doc, they list out all the implementations that are part of the Java core language, but nothing would stop you from building your own list and implementing the list interface and that then it wouldn't be listed.
+
+So to answer the base your question?
+
+Yeah, I was just wondering if I mean, I see were obviously building the array of sellable items. And when you add something that isn't implementing the sellable interface, you're getting a compiler, but I didn't know if there was something that was like get sellable items that would respond with everything that was Use implementing the interface.
+
+No, there's not not built in. Okay. Now if we had a list of things that we were treating even more generically than sellable, like it's just objects we can use instance of, like we looked at yesterday to determine if they were sellable and then cast them into syllables, but that would be kind of convoluted. That's possible. Okay. All right. So let's introduce another complication. No, thanks. Now we have our farm working where we can type our animal sing in our tracker sing and our dog saying and we can sell just the farm animals without worrying about selling our dog or tractor and still treat our dogs in the farm animal grouping or when we when we want that. We want that grouping. But what if we decide you know it's a farm we want to add something like an apple. Maybe we decided to put up an orchard. So now we have apples. So now what this allows us to do with these different contexts is we can say we have an apple, we're an apples to our farm. And we can implement syllable and get that context. pretty much immediately we know we have to have a price in a name. So maybe, let's give a price of one and a name of apple.
+
+So becomes fairly trivial to add our new item, implement the interface, and when we go back to our original code, that's doing some work with these items.
+
+We can just add it to the list.
+
+With no extra work, no change to how we're using them and wind up. Now with the apple something can be sold. We know it can't be single Have a single interface. So it allows us to very easily add new things into our groupings. And like the tractor the Apple was not like, right. It's not like the sheep cow and chicken but it is does have the same ability is that something we might want to sell on our farm so going one step farther maybe we on our farm we decided that we start having crafts and we want to sell something. More than that we want to include something like a music box, something we can sell the music box we build ourselves. So we add foreign crafts
+
+and we add a music box.
+
+Since the farm we'll call it a craft music box.
+
+We can charge more that way.
+
+And now our music box We want to be able to have it sing, right because it definitely is something it should be singing, singing should be something on the song and we have. We want to sell it. So it's not a farm animal. But now we can give it multiple contexts. We can implement singable.
+
+And we can implement syllable.
+
+I'm gonna implement the methods and notice that seamless syllable had a shared method, get name. And we have one getname method here, because the interface isn't saying you have to have a specific method for me, it's say you just have to have a method that does this. You have to have a method called get name and it has to return a string. If I have 10 interfaces that require this class to have get name and return a string, that's fine, I only need one getname method. Because my class defines how my class works. And the interface just says what abilities you have and there can be overlap. So now we give a for each of these our price and our music box. We'll sell it since craft Music Box 50. We'll give it a name.
+
+box, and
+
+we give the sound
+
+let's see, I don't know what a sound a music box should possibly make.
+
+Ding ding ding
+
+ding ding ding All right, yeah. Ding Ding Ding, ding, ding
+
+ding ding. Is that what she said? Alright, so, so there we have our music box. And now it's sellable in singable. So we come back to our list and now we can add to both lists.
+
+Now we have
+
+we know it's crappy
+
+And we'll save it and run it off. And we'll see it shows up in both lists the music, it shows up with its sound and its name when it's so simple, and then it shows up our list of items we want to sell.
+
+So the point is now we have three contexts we can
+
+choose
+
+for each. For any item we add to our fun application. It depending on which context we give it, we can then have different things that it can do. And we have things that have multiple contexts.
+
+Alright, so
+
+and as we treated different contacts as we treat them, Music Box example which has two distinct context. It gives its unique answers whether it's syllable or syllable, it's still giving its unique answer. Because that's just a context we're giving it. It's just a way we're treating it. It's not changing what it means to be the craft music box.
+
+Support questions
+
+so far, or anything we've talked about so far?
+
+Why May I see single interface one more time? I couldn't.
+
+Yeah, Singapore.
+
+Yes, please.
+
+All right. Okay, so um,
+
+so the next thing I want to do is I want to kind of reiterate through all of this with something from scratch. Since we've been looking at this from cutting this pre existing code, we just added to maybe a little more realistic example, use Old MacDonald with farm animals because he didn't even have to talk about really what it meant to be those things right, we can assign them any labels.
+
+So, let's
+
+so like these needs to be like build a shopping cart, probably one of the most classic uses of polymorphism. And with interfaces. It's something we've already been using as an example. So we actually build that in code, see what it will look like. But let's go ahead and take another break since that we don't have to break that up. So we'll come back at 1126 Alright, so no others. Okay, so let's build Something using this that's a little more
+
+real world, like, I'm actually gonna close all these
+
+tabs.
+
+So let's build a simple shopping cart system.
+
+That's probably the most classic example of using interface and one that, you know, most, most people at some point wind ups working someplace where there's commerce involved. So, really common use that we actually use interfaces a lot. I would say that throughout my career, I mean, most projects I worked on, there were interfaces everywhere. We'll talk a little bit more about why other uses that they provide as we go the next week or so. But
+
+let's
+
+build that and we'll just have no real set structure of how this is gonna look. So let's figure it out together.
+
+I'm going to start by
+
+Well, I don't know where we're gonna start.
+
+So if we were going to build a shopping cart, what would we need?
+
+So what I want to be able to do to explain that I want to be able to have unlike items, so like the bag of oranges, the book and a pair of shoes and I want to be able to put them in a single part where we can sell them more.
+
+So what we need to do that
+
+any ideas?
+
+Many would probably want to create a class to get the item like name.
+
+Price.
+
+Okay, well, I guess maybe just items I don't know. So we're just a class of items.
+
+So class of items, okay. So,
+
+so we create a class of items. How are we going to use that to, to do to achieve what we want to do a being able to. So, unlike things I want to build a sound bag of oranges, and
+
+you know, a
+
+book in a pair of shoes
+
+because that would work, we could use a class of items.
+
+But how would that how would we use that to achieve that?
+
+I mean, why not go ahead.
+
+Now I'm just gonna say interfaces, but feel free to jump in.
+
+So I was gonna say maybe we could define some more of like the general attributes that are all consistent Within the items and then I are we going down the sellable versus not sellable path.
+
+Well, um, could technically have items in our, our store that are in our system will probably have a lot of classes that are not sellable for any, any particular system. So what we want is the ability to put a group of things into a shopping cart.
+
+Let's start maybe by
+
+let's build something. Let's start by building items, just a few of them. So we'll start with a list that might make this a little easier to start with something more concrete. So what items are we going to sell in our store?
+
+Milk, bread books.
+
+gonna sell milk, bread bread, we're gonna sell a book New Kids on the Block cities, New Kids on the Block cities.
+
+helicopters, helicopters.
+
+Anything else is that enough? Those are pretty unlike things. Thank.
+
+So, if we were modeling these, these things do very different things. So milk and bread are gonna have different properties than the New Kids on the Block city. Right? Did you kids in the block CDs, not is probably gonna have a description that's probably about it but you know milk is going to have a size there's definitely different sizes of milk we can sell the number of ounces. Bread is probably going to have some things like types. There's different types of bread, milk, the same type of thing. helicopters are gonna have probably Something similar to size for them are different models. So they're not really like none of these things. We could argue that maybe milk and bread are in a category of like food. But there's no category that contains
+
+helicopters and a new kid on the block city.
+
+Not not within is a relationship. There's nothing we could say that where it's true that a helicopter is a something that we could also say is true about a new kids at the block city unless we went clear up to the object of like thing, which would be no object in Java, and at that point, it's so generic that we're not really gaining anything at that that level. So we want to be able to represent these So we can keep track of what each of these are going to be able to do. So what they actually can do. But we need to also be able to add all these things to our cart, we want someone to be able to come to our store and buy milk bread, a book, a new kids in a block, CD and a helicopter.
+
+We want to purchase all those things at one time.
+
+So let's build classes. So there's five item classes we're going to need right there. Some of the start, let's start just down the list. Let's build one for each. And then we'll change them as we go. Because we're gonna have to probably do some edits to them. So let's create new new class.
+
+And let's start with milk.
+
+And let's not put it in farm. Let's put it in shopping. It's called store and store dot items. So we'll put it in package combitech elevator store dot items.
+
+So we'll create milk there, and we can
+
+see what some properties that milk might have.
+
+But milk itself has an
+
+expiration date. Okay?
+
+We probably want to private. Let's make it easy, since we don't know about date type shut in this make it a string, expiration date.
+
+Anything else we don't want. So um,
+
+so that's good too. So let's go the next one bread
+
+store, store and we're coming to class in store items. Fred
+
+Is there any properties that bread might have that?
+
+More than half
+
+wavers
+
+Okay, so maybe a
+
+right string
+
+why versus wheat is also can be rye marble there's quite a few maybe type okay?
+
+Any other properties want to get bread?
+
+So our book
+
+so what property is my book half
+
+excellence String
+
+anything else that might need?
+
+Yep. Okay
+
+page count
+
+it'd be the name of the book.
+
+I mean, unless we're going to have a store full of just generic book book book, which I'm okay with. But each with a different page count a different thing inside of it all called book but just maybe a name. So we have three properties for book that could more you can think of. A lot of properties a book might have. But I think it gives us enough to start with and now our new kids in the block city.
+
+So
+
+New Kids on block city
+
+so what properties as a new kids in the box if you have
+
+titles, album title.
+
+So
+
+untitled
+
+would have a, a boolean value of is very cool always set to true. Okay
+
+it's very cool. That's what you wanted equals true All right. So we have a defaulted scenario the property needs
+
+X number.
+
+It I'm sorry What was the the amount of tracks so like okay make sense count, okay and track count
+
+Alright. So now our helicopter
+
+so class
+
+Helicopter
+
+so what properties is a helicopter app
+
+is very cool defaulted the
+
+Alright, so it has a like property
+
+that could be a constant
+
+so private, static final all right which means it's slightly cooler than the kids on the block so it can't be changed. Right? It's reasonable. So what else might helicopter have? Cool level of armor and post baby armor level. All right. I've got bullying up here. I got too excited by it and so private and armor level. Alright. So anything else we want our helicopter to have? Where's that? So now we have five items. They're all very different. There's really nothing. There's no so one of the things we look forward building like things we'd want to start looking for, is there's something we can extract from a superclass when we talked about behaviors yet. So they're all going to do very different things, right, the helicopter is gonna have probably some kind of fly behaviors. It's gonna have methods like
+
+if
+
+it can fly, maybe to move it different directions to accelerate, decelerate, go up or down. From the chat, maybe it has a transform method. It has, but Brad's not going to have the same method spreads, not going to fly but it's not going to turn it's probably not going to be a transformer. So books the same way it's going to have methods maybe we can read it or we can open it or close it, but it's not going to have any of those Other methods the same with milk or new kids in the block CD, you know milks gonna have maybe a drink method or a method.
+
+I really don't can't think of any other methods milk might
+
+have. Let's look at down the block does not expire.
+
+So yeah, so it's not liking that, but it's kind of methods like listen
+
+or turn off or turn while that would be the CD player, I guess. But so they're all very unlike if they had like things that there were things they could do that we're somewhere then we would probably want to build a superclass, but these don't have that.
+
+So now let's create the problem. We have our store.
+
+I'm going to create here, right click and choose New. I'm going to create a new class is going to represent our store. I'm going to call it store and I'm not going to put it in Items want to remove that, start making it more like a package structure you might really have in an application. And I'm going to put the public static void Main here because our store is going to interface with
+
+the user.
+
+So in our store, what I want to be able to do
+
+is I want to be able to have some kind of cart. So our cart might be let me make sense of a map. And I want to have items in it and account
+
+and this will be my shopping cart.
+
+And
+
+I want to be able to
+
+display what's in the shopping cart.
+
+So now that I have this, I have five items. I saw my store So now my store at least sells right now. So as a book, some books, some types of bread, helicopters, milk and New Kids on the Block CDs. And I need to be able to code this. So I could write, you know, five maps. But then if we add new items, if I decide I want to know, expand this in some way and start selling, you know, bags of oranges, and then maybe tanks. Now I have to add six and seven maps. So how can I change this? When I know there's no like, superclass? It wouldn't make sense to have superclass here because there's nothing I can inherit between these five very unlike things. So what can we add?
+
+Okay, just make it an interface.
+
+Yeah. So what should be car interface?
+
+So, syllables a good name. Yeah. It's unfortunate to say is what we have in the last one. But it's it's a reasonable name because really what these, these are things that are sellable. I'm going to put it here and conduct like other store items, because it's part of the kind of grouping of items. In this kind of goes along with this idea of we talked a little bit about cohesion of things that are grouped together. So
+
+I put it here. I'm
+
+an interface, I'm actually not going to put it items. I'm going to put it in items interfaces interface. That way we can. No, you can't use interfaces. That's right. Their faces that'd be fine. We'll call it sellable. I probably would never have a package items that interfaces in a real project. But I want to have this type of an example of you Using an interface from another package options that was explicitly brought up and something we really haven't talked about
+
+so called sellable.
+
+So we're going to sell things
+
+what do we need these five unlike things to do that is like
+
+prices
+
+the prices that the quarter
+
+so um, so maybe we could have private, we're gonna have something like get price. So let's say int, and let's use an ant. Actually, price assignment let's just double price. So we get quite a method signature for what we wanted to do. What else might we want our sellable items to do? Think about how a shopping cart works. When you go to a shopping cart. What do you want to see about the item I'm
+
+sorry, two things at once and I didn't catch either
+
+what was the I was gonna say
+
+like the number available
+
+so the number available
+
+so the number he mean in the cart or
+
+the amount and the available amount to buy that you can
+
+purchase. Okay. So is that someone asked this is that something that is a product of them being sellable or is that something else that maybe
+
+they should be maybe like inventory or something like that?
+
+Yeah, yeah, I would argue that's probably belongs in like inventoriable or just inventory isn't relationship so what makes them before thinking about a shopping cart? So we're gonna put them in this cart, we want it to display the items like you know, you go to get to purchase things off Amazon or at the end, it says Here's what you're buying name, the name that makes sense.
+
+count of how many you're buying. Okay?
+
+So you're right. But we actually in our store class, find we were gonna have a map that had the item and the count, right? We're purchasing, we're gonna take care of it there.
+
+Otherwise that could be a reasonable thing to put there.
+
+there anything else?
+
+On sale or not? Okay. So maybe a million is on sale.
+
+Possibly the shipping price. Okay.
+
+Maybe double.
+
+I get shipping cost.
+
+When the total go here and it goes Could we calculate it, that was that's a choice that we can make. But the total is going to have to be per item. So if we want the total for the entire cart, we're probably gonna have to do that in our, in our store class. Because they so one of the things that these items know about the book knows about a single book at a time, but we can make a list of books to make 20 books. Again, we have one helicopter, the class and it's about one helicopter, but we can make a bunch of them and put them in a list if we want to sell you know, 10 different helicopters. So, that's probably pretty good for things, it's a good place to start. That means because when we use this on these five things, we're gonna have to implement all four of them. So now we have this idea of what it means to be sellable. So now we have to go to our items, and we can implement the interfaces. So we'll start down through the items. So we'll start with our book. And it's going to implement
+
+our sellable interface.
+
+And I can import it see imports, it shows me two of them. There's a celeborn farm, but I want the one from items interfaces. So I'm going to select that. And I get an error that it can add, add unimplemented methods. With these. Notice that they get added they all get added with the override annotation. Again, not required, but it's actually even more useful I think with interfaces. Because it allows us to easily look down through if we had other methods like public, void read, or maybe a book can say public
+
+string.
+
+Get text from Paige and Page number
+
+might have things like this inside of it
+
+as returned something now
+
+and we can now look down through and say all these are the overrides from our interface. So I'll leave those there too. So we can see there's other methods that we can have. But now we have to do something for all of these. So we have getters for all these. None of these are what it means to be a book. These are what it means to be sellable. So we have to set either set values, but we have to have something in our book class that gives value to these.
+
+So for instance, shipping cost.
+
+It's common have a flat rate shipping for books, right.
+
+That's enough that a lot of places will say every book has this one flat rate.
+
+Let's give it a flat rate.
+
+We're probably not gonna have flat rate for everything. But for books level flat rate shipping. Again, maybe it's on sale, maybe we don't put books on sale. So it always returns false. But name in price is going to change. So how could we get values for these?
+
+We don't want to returning zero and all.
+
+We need a constructor, right?
+
+Yeah, that makes sense. We have a constructor that sets some of these things. So maybe we have a public, our book, it's going to have a constructor.
+
+So maybe it takes a double for the price.
+
+And then it has it already have names. So we'll take our string for name. Maybe string For john Ross, we have those and, and for the page count. So when we build our book, we have four things we have to give it. Now we're gonna have to have a variable to hold the price, because it's not derived. So now here, what is that each of these, so this price equals price, and I'm just going to go down through cuz these are just the centers that we've been doing for the last few days. So this dot name equals name, this dot genre equals genre. This dot page count equals page count.
+
+And now when we get price, we can just return
+
+price in the same name. So notice that the constructor the is built these properties, they're not really anything special from the interface. The interface said you have to have get price and get name. We could have had I'm going to dose with setters to it doesn't really matter how we implement them, we get them at someone by hard coding. These batteries have the book always has $5 flat shipping, it never is on sale. What matters for the interface is that we have these four methods, not how we implement them. So let's look at that by going through the rest of them because we're probably gonna have some slightly different implementations as we go through them.
+
+So
+
+we get a bread we implement, implements are sellable. Again, we're gonna have to import it. Make sure we can store items interfaces, and I will point out this just swapped the positions. Eclipse tries to take its best guess of what you want, put it at the top so don't get used to it always being in the same position in the list your wind up clicking on the wrong one. So I'll click on the one I want. And I'm going to hover over it to add a new one. Many methods, I don't have to use this shortcut, I could copy and paste the signatures in here. But that's a lot of extra typing for nothing. So now that we have here for our bread, how do we want to implement these four methods? Do we
+
+could you just use setters since we don't really need
+
+the variables when we're constructing it?
+
+Yeah, we can do that. So this time, so we need some private member variables to hold the name the prices on sale and shipping right? Unless we're going to hard code any of them. So we have to have something called the state that is requiring us to so the implementation requires the price variable. It's going to require String name, actually. Yeah?
+
+Do we need
+
+a variable to hold the name? Or could we derive that from the fact that we know it's bread? It's not like breads gonna have a lot of different names. So we could say like, if the type is no wheat, we could say wheat bread concatenated together and just return drived. Right? If it's rye, we could return rye bread without having to set it so here we could return the type plus the word bread. So getting implementations very different than the last implementation name we had. So now we're going to need private Oh yen is on sale and private. Was it double shipping cost and that will come down and implementation will be will return it On sale, and we'll return
+
+shipping cost.
+
+And now we need setters for these. So let's build out forgotten return price, return price.
+
+So I'm going to generate the setters.
+
+Somebody go to source,
+
+generate getters and setters. And I'm going to generate, let's see, we need set, we, we want to set the price. We want to set the shipping cost and
+
+type. We could argue that let's do something different type.
+
+So let's generate these.
+
+So it makes sense doesn't make sense to have bread without a type. So let's make it part of the constructor. So public bread. string type
+
+stuff type equals type
+
+All right. So, our implementation here of these four methods is very different than it was for milk
+
+or book sorry.
+
+So as we continue down through
+
+we can implement
+
+copper sellable, the same thing we have to import it and implemented methods.
+
+So now how are we going to
+
+change this implementation?
+
+How What does it mean to be a helicopter now this is what we have to make it do. We have to make it give a price we have to make it a name we have to make it say whether it's once it's on sale. We have to make it give a shipping cost. But there's no nothing that says how we do that. So how are we going to do this to make it make sense for our helicopter?
+
+We can set them we can hard code them, we can pass them in the constructor. We can derive them in some way.
+
+So how about get price Where should that come from?
+
+Well, we're probably gonna need a another price variable right for
+
+your helicopter. Yeah, maybe. So private,
+
+double price.
+
+So that we weren't set that or do we want to? Well, we can we know we turn that
+
+but maybe
+
+just return price. We have to have some way of setting that now. So that we're going to have a setter and we want to do it in the constructor or
+
+you want to hard code it. It's
+
+what makes sense for our helicopters.
+
+No preferences.
+
+Maybe, maybe selling helicopters is just like really hard to do. So it's just kind of like, we don't actually want to sell our helicopter. We just want it to be, you know, an option. So maybe we just make it an unreasonable number, like a billion.
+
+Okay. All right. So, we want to make a billion
+
+so we don't need this anymore.
+
+I have a quick question.
+
+Is there a best way to do this
+
+Are you just asking us to, for us thought ideas so you can show us.
+
+So a mix, there's the best way is generally not to have, you generally wouldn't have things hardcoded much in your classes, you want other things to decide it because it makes them less reusable. We now only can have a helicopter worth one verse only for 1 billion. But it also can depend on the need of the project. If the need of the project is that we only have helicopters that are worth that can be sold for 1 billion then that can make sense to do that. So it's very much depends on your answer. Like most things in your programming, on the needs of what we're doing. The best practice Generally, if there's no specific need would be to have it passed to a constructor or the center. Does that answer your question?
+
+Yeah.
+
+But then To be fair, I'm focusing more trying to focus in more on the interface in the polymorphism than
+
+where we get the price from.
+
+So, if we continue, what about name? So it sounds like we might only have one helicopter to sell have a fleet for pricing or maybe we have 10 of them and there's all the same price I'm not. So we're going to pass the name in order we want to do something similar and just hard coded.
+
+Maybe we just call it Arnold Schwarzenegger's helicopter.
+
+Alright. So So Arnold, sports
+
+They're so
+
+obvious we can all agree that's close enough. I'm okay with it.
+
+Okay, so we do that. So now we have one, our source naggers helicopter, and it's probably not going to be on sale. Or maybe we're going to be one of those places that say this is always on sale at a low price of 1 billion. So maybe we can make it true.
+
+And then shipping cost.
+
+What's our shipping cost be? Free.
+
+Okay, that's fair. So it's gonna return to zero. So, again, the interface give us these four things we had to implement, but the way we implemented was different than the last two. So the outlaw copter moves very differently than the store or the sorry, the book or the bread. So if we continue on to milk We implement scalable.
+
+And the same thing, we're going to import it.
+
+We're going to add the unimplemented methods, and we have four methods we have to implement. So how are we gonna handle this for? For milk?
+
+You probably
+
+mean, name is probably just milk, right? I don't know what else you would. We don't have a type. So sound like we are store console. Chocolate or strawberry monkey can only sell milk. So maybe we could have a subclass, I guess that that that we could do an override
+
+Kevin Java.
+
+All right. So so maybe that one, we could just do like that.
+
+Doesn't make it super complicated. Target doesn't need to happen so
+
+we can make it complicated.
+
+What about price is on sale, get shipping cost.
+
+So let's do
+
+this we kind of had these in a mix of all constructor all centers, let's do them. Maybe this one
+
+as a combination, so maybe
+
+when we create it,
+
+we want to set a price. So we'll set the double price and maybe the double shipping cost.
+
+Let's say private
+
+sorry, double price and private Double shipping cost.
+
+And now
+
+you're also gonna need is on sale. So let's go and put that there is on sale. And then we'll set these in the constructor.
+
+Price priced this
+
+thing cost equals
+
+shipping cost. And now we have a stutter because we want to maybe default is on sale to false it's not always on sale. But it could be so maybe we have a public
+
+void set
+
+is on sale.
+
+It should we really have a settles on sale method or should we do something different? We're not going to do something different but
+
+couldn't we like set it So that if like,
+
+today is the expiration date, it would be on sale
+
+or something could. Yes. So
+
+can we do that without the date object we haven't talked about yet.
+
+Yes, we could
+
+we just have expiration date, be a Boolean instead. And so like if it is the
+
+expiration date to true. So then we could set set expired.
+
+Can we get started false, right.
+
+That's a good idea, because that's something very different implementation we had. So it could set expired and that was set expiration date to true because it's never going to not expired milks, never going to expire and then two days later, not be expired anymore. Well, maybe it's time stores it will be but we don't want that to happen in our store. So that we don't need is on sale. So maybe down here is on sale, we say if
+
+expiration,
+
+we probably should change this from expiration date to is expired. So it's a Boolean.
+
+And we say if it's expired,
+
+actually we can just return is expired, right? Because it expires true. It's on sale with it's not.
+
+It's not.
+
+So it's looks like that. Then the expireds actually is on sale, but it's not because it's encapsulating this idea of it's on sale when it's expired, but the user sees as expired or not. So maybe for practice We could also use that we could say, if
+
+is expired,
+
+then
+
+they return the price divided by two. Otherwise, we just return price. So different implementation we saw before it's unique to milk. If it's expired, this property has nothing to do with sellable, then we're going to give half the price. And now we shipping cost for that we can probably just return it. Right? I'm just gonna get rid of these. So now I think we have an implementation for milk. They got everything we need right now.
+
+And it's very different than the last three implementations we've done.
+
+So each one's giving a very different implementation, the same interface, each one's doing what it needs to be it what it is. And all it needs to be sellable. To be able to answer these questions, be able to have these methods. So we have the last one
+
+so it's going to implement
+
+scalable
+
+and these methods
+
+so how are we going to handle these? How are we gonna implement these four methods for the New Kids on the Block city?
+
+Any ideas?
+
+Let's start with get price how are we going to handle get price for the New Kids on the Block city.
+
+We can't do same as helicopter.
+
+Over here, we want to keep
+
+so I mean, we could do the thing where, you know, we'd set it really high hoping we saw one of them. And then we can retire but we can we can set a set price. I'm okay with that since we're not actually selling New Kids on the Block cities.
+
+So we maybe it does make sense. So we want to set what's a what's a good price for news for all the kids in the block cities. Michelle, how much would you pay for a new kids on the block city? Since I'm guessing you're the only person here who might buy one?
+
+I was thinking if we you know, from the time that it was issued, what does it be like? 999 or something was that
+
+999 so because of the block is worth 999. Okay.
+
+That's, I guess reasonable.
+
+So what about names?
+
+How are we going to handle names?
+
+Either we need more than one. I'm sorry.
+
+I was gonna say return album title.
+
+Turn out and title okay make sense. So how are we gonna set album title?
+
+Do we have to set it or is there only one or
+
+maybe in the constructor if we weren't different new kids in the box unis so we add our constructor and we could also put it in the setter but it makes sense the album title probably won't change once it's created. So it probably doesn't make sense to have a new kids in a block city unless you know a particular one we can sell. So we'll set the stop. I'm title equals album title.
+
+Alright, so now is on sale.
+
+How do we want to handle that?
+
+True always gonna be on sale. That's my experience with the kids in the block cities these days.
+
+We could make it a little more interesting we could say
+
+we have a setter for it for is cool.
+
+So public, maybe void set not cool
+
+and do something like we did before where we set very cool equals to false now
+
+and then
+
+we can return that.
+
+That way we could you know if it goes out of favor we could put it on sale. And if it's comes back into favor, we could take it off sale by determine how but people were thinking of it at the moment.
+
+So then we have finally the shipping cost How do we want to handle that?
+
+How do we implement shipping costs for New Kids on the Block TV?
+
+free if you bought a helicopter
+
+if you buy the helicopter, okay, that's reasonable, but that's gonna be a little more challenging than we probably want to do today, we're gonna need a little more than what we have to do, but we know right now to do that.
+
+So what if we,
+
+so we take advantage of our track count? What if we charge like $1 per track?
+
+So seems reasonable to me.
+
+So we could say $1. Or, yeah, dollar per track would just be the track count. So maybe make it more interesting $1 50 times the track out.
+
+Switch Charge $1 50 per track.
+
+That's, it seems like a reasonable price.
+
+And we probably need to get this somehow that's not going to change, something's not going to change, it makes sense to go in the
+
+constructor.
+
+It's not going to change because for a particular album, once we create it, the track counts probably gonna stay the same. If a new edition comes out of it, then no matter be a different implementation or implementation of the object, probably. So we have all of them set out with sellable. So the point of all that the point of going through the exercise of building all those five objects was really about the differences in the implementation, not about how they were actually implemented. The fact that each one does something different to get price getting is on sale and get shipping cost is what's important in the fact that they all have those four things with their own individual implementation of it. So now we have all these five things sorry, implementing sellable. Now we can go solve our problem in our store. So we have our map. And now we know what we want to hold on our map is sellable. And we want to count. So maybe be integer that we could even go easier and not worry about map, let's go even easier. So we don't get caught into some of the idiosyncrasies. Some of the things we'll put up to kind of get into with map. So let's just use list. So because you can add multiple items to the list, so if we want to sell now three Kids blocks to these will side three of them.
+
+So we'll call this our shopping cart
+
+equals new ArrayList, sellable
+
+and what to import all these interfaces and from our list finally.
+
+And now, we're going down through and we'll add
+
+each of our items. So we're going to have a book
+
+equals new book and do instantiate a book.
+
+We have to
+
+instantiate as price name.
+
+JOHN rrah, and page count. So where's our store?
+
+So what's the price of our book going to be?
+
+Someone pick a number
+
+So I think that was your angle. So I think it was nine fingers, but either way, it's fine. So, what's the name of our book gonna be?
+
+Someone named the book, Harry Potter. Okay, so we're gonna sell Harry.
+
+All right. So genre then kind of gets set into itself. What is it? Why a fantasy i think is will be the genre for that page count. I
+
+700.
+
+I remember right there quite thick. So now the input book.
+
+But this is where we're going to do something
+
+a little different. So, this is how we've been standing objects so far. We don't want this right now as a book. We want it to be a book but what we care about is the sellable So we're going to instantiate as sellable.
+
+And now in our shopping cart,
+
+you can add the book.
+
+So the next thing in our list is Bread.
+
+Bread tastes the type
+
+and this one had, we have to do some setters. So it requires something a little different.
+
+So let's create bread
+
+is bread equals new bread and the type
+
+so wheat bread.
+
+We're going to be buying wheat bread, imports bread.
+
+So I have to
+
+call some setters on this one. So bread we have to set the price price of bread
+
+In 89
+
+we have to set
+
+some
+
+the shipping cost shipping cost to bread, too.
+
+And we have to set whether it's on sale or not
+
+said on sale. Oh say true. Let's make it stand out. So now let's put it into the lesson a little bit slightly different way. So shopping cart dot add, if I add bread, I'm going to get
+
+Oh, I'm not
+
+so I can add bread to it. So what has happened there?
+
+I stand here it is pred base added to my list is sellable.
+
+So why did it allow that to happen?
+
+Any guesses?
+
+Well, it's what polymorphism is going to be what's happening as we're creating this But something else we talked about a couple times this chord just allow that to occur.
+
+Wouldn't it be casting?
+
+Yes, it cast it widened. Because bread's since it implements the interface sellable has to be able to be sellable. So when it happened, it automatically cast it impulsively cast it into the sellable I was able to add just the bread so anything is sellable to my list. So another way we could do it shopping cart add in our next thing in the list is our helicopter if I remember right, the helicopter doesn't have a lot in its constructor. So helicopter. Let me see what it was nothing. It doesn't have a insist the standard constructor. So we have a helicopter. We import it
+
+and try it again.
+
+So now our next one is Our cart
+
+add ms add new milk milk had
+
+its constructor price and shipping cost
+
+so give it a price you know 299 and shipping cost of four and finally we're gonna add not finally but one more thing we'll add our new kids in the block CD. Let's look at its constructor cuz I can take the album title and track count.
+
+So
+
+shopping cart, dot add and we can add new New Kids on the Block CD. And we need to add a title. So what do kids import this quickly? What a
+
+new kids in the block city are selling
+
+So, what are we gonna name this? Rochelle? I'm pretty sure that you're the only person that can answer this here. So on names of New Kids on the Block CD dot Eve, okay, I've given you I can see from your look. So let's
+
+just call it the first album was just self titled. And then after that Oh, then you had the hang of top album? I think it was. Yeah.
+
+It was at so it had to be spelled like that. Yeah.
+
+So and the second thing we were going to set was
+
+track out.
+
+I will give it 11 tracks.
+
+So let's add one more thing. Let's add a second book.
+
+And so, if we add a new book,
+
+what are we going to price or the second book might be something different.
+
+pitsee 999 5999 All right. So what book are we selling?
+
+A book cost 5999.
+
+java for dummies for Dummies. That's pretty realistic away for for many books. So I'm also to be
+
+programming.
+
+And the last thing, the page count 259 99 Okay, too much in a programming books. So. Alright, so now we have all the shopping things in the shopping cart, you've added them, we've added two books, we've added each of our items. each one's implemented differently we've seen we can add to it by creating the cellphone out again, we can create it as a type long implement celeborn out directly. We can add them just by adding them, creating them as we're adding them now slid through them. So if we were displaying this To user
+
+we take our sellable item,
+
+and we'll loop through our shopping cart.
+
+And we can say
+
+something like system dot out front line, your cart contains. Now we have four pieces of information that we guarantee is going to be there. So we could say, system dot out. Front Lines can like product. us our item dot get name. You see, the only thing that's available is the things that is available to the sellable interface. Some of our classes have other methods on them, but they're not listed here. I don't really care which class I'm working worth the time. Just I know it's a sellable so system dot out print line
+
+and be price
+
+plus item dot. Get price.
+
+out. print line.
+
+Maybe we can do something with if item is on sale. See?
+
+That was like that.
+
+Normally it there we could do something here. We're here to get price. We could do something like
+
+if it's on sale print
+
+On sale, otherwise print nothing.
+
+So use the ternary operator just to put in some extra text
+
+in the points, not the ternary operator. The point is that we're making choices based on these things we know exists. This has to be wrapped in parentheses, so it gives preference to the operator.
+
+So then
+
+system out print line. And our other thing was shipping.
+
+cost.
+
+And we might want to total so let's make a double, total, starting at zero. And for each item as we get down through, maybe we say printing out print line. Item total
+
+will be plus. Let's calculate it. So double
+
+Item total. And we'll set that equal to the item dot get price, plus the item dot get shipping cost, something that's pretty reasonable for a cart.
+
+we'll print that.
+
+And now add it to our cart total
+
+plus equals.
+
+Let's change this to cart total.
+
+And then at the very end, we can maybe system out print, line space and system out. print line. Hello purchase.
+
+Us
+
+cart total.
+
+So most of that, I was kind of going fast to it because there's nothing really new about polymorphism there. This is all stuff we've done. It's just printing it out. The thing that's different is that we're treating it as sellable and we have these four things. We know it can do. We know all those are going to do it differently. All of them have other abilities, they have all five of those classes. But we're going through this loop in our shopping cart, that is something we can solve. We can weaken ourself the same way that if you were a cashier at a store and we were scanning items, we wouldn't care what the item was. We just scan it and it's something that we can sell. So let's run it. And something I kind of skipped along the way as we probably should have been running it to make sure we weren't breaking a bunch of things, but
+
+so that prints out
+
+all together.
+
+Our cart contains the first product, the item total. The second product, we're getting some
+
+third product
+
+anytime One has its own specific answers. But as we wrote the code here, we didn't care it was the helicopter, the new kids in a block CD or the bread. We just cared if it was sellable. But each one is giving milk is giving the answer for milk. The new kids in a block CD is giving the answer for the New Kids on the Block CD. The book, Harry Potter's giving me an answer for that objects instance of a book. And what it's set to. The book for Java for dummies is giving the item it's set to. And we can actually make this look a lot nicer very easily just by doing this.
+
+Make it easier to read.
+
+There, so we can see all the items in our cart. each one's answering the questions, those four questions with its own unique implementation. The implementation does not doesn't matter. The questions matter and that's what the interface provides the fact that we can put them all in the list with that interface, but what they can do the fact they can be sold, and ask them these questions and get their specific results. That's polymorphism.
+
+So, what questions do you have this point
+
+to make sense, or is it probably more physical? It's a hard topic. It's one of the I think one of the most difficult topics not the most difficult, but one of the more difficult topics in the court. So
+
+is it kind of makes sense. So,
+
+if it doesn't, that's okay. If it doesn't at this point.
+
+The, if the one takeaway you get from it is this last part that we can put things like things together. We can give them this these interfaces, or we can put them in a list them and ask them kind of generic questions. And really how to do that, at this point would be what I would focus on the definition. You're going to want to know by the time you interview, but that usually comes after some usage.
+
+So,
+
+anything else today? Yeah, the questions myself, look at your exercises, but Okay, so let's look at what you'll be doing today then.
+
+So actually before
+
+So, I'm gonna go to exercises folder you have two sets of exercises today.
+
+One individual and they take from where you were at yesterday. They provided you the bank account, checking and savings account classes. I'm sure these classes do not meet the requirements of yesterday's exercise. So if you're thinking, Oh, they just gave us the answer to yesterday, that won't be the case.
+
+They'll have differences.
+
+So
+
+let me pull up the readme. So if your individual exercises we'll be doing something very similar only now you're going to be adding
+
+starts
+
+coming up very slow.
+
+So now you're going to be adding
+
+some more classes and there's a diagram. If you look down here, look at it. Have you tab
+
+of what the model you're going to be building
+
+So you're going to be building an interface accountable, it's going to a bank account you already had in the savings account you already built. And then there's going to be a new credit card account. So just like yesterday, you're going to build these classes, the ones that you started on yesterday or provided, the ones that the new ones you want to build and the interface and then it gives you information about what the interface should have, and how it should be implemented with different classes. And then we'll be building this bank customer class that's going to have a list of these account doubles and adding this extra method to it. There are test cases for these. So you can run the test cases to verify it.
+
+Verify they're working.
+
+So questions on we'll be doing for individual exercises. So we've also is also pair exercise today. And we're gonna have to fix the pair exercises before you can import them in their clips. So if you haven't checked out the pair exercises yet, you can or you can also do this later, because it's pretty easy fix. The problem is that these happen to be named polymorphism exercises and the pair exercises hadn't been named polymorphism polymorphism ism exercises.
+
+So we'll have to change the name of them.
+
+And we'll do that right the end.
+
+So, while we're talking through this, if you haven't cloned the pair might be a good time to do it. So you have them to fix how long you've long as either your your pair, have them start with the fix the problem is really all you need, but you both can do it as well. So for the pair exercise, You're going to be building more classes and interfaces. So there's two assignments in the pair exercise. The first one is a toll booth calculator. So you're going to build a vehicle interface, that's going to calculate the total distance, then you're going to build a car class that implemented a truck class, a tank class. And for each of these, it's going to have some some extra implementation. So for instance, cars going to have this attribute has trailer, that's going to take in the constructor. And then when you calculate the true it's going to be based on if has trailers true, it's going to add $1 to the total, otherwise it's going to use this calculation. For truck it's going to do something similar with number of axles with this chart based on the grade the tow and for tank, the tolls just always zero. And then you're going to create a program that does similar to what we just done with the shopping cart that prints everything out, puts them on the list and prints them out. So notice you're going to need the name. So you can think about how you can get the name. This gives you the basics, it's so you can extend it, whatever you need to solve this problem. So you got to do something to get the name, you're going to randomly generate a distance traveled, and then calculate the total for that distance for each each line, that is the prints, and then print the total miles traveled in the total toolbox write revenue at the end, so very similar to what we just did.
+
+The second problem is a posies calculator.
+
+And for it, you're going to create a delivery driver interface. So this interface is more of a is a implementation, but it's, there's nothing for a superclass to do. So to be using an interface. It'll have two methods, calculate rate, at least one. It takes an int, distance, a double wait. If for each of them, it'll calculate rate based on this one chart notice that says ounces and pounds so you're gonna have to figure out how you're going to handle that. One idea might be to convert the chart to all ounces or all pounds and then convert the weight back and forth. You cannot add a switch here that says this is announces that this is pounds you have to be able to take a single weight as a double and make this chart work with however you want to. However you decide to use it I would suggest turning all of this into ounces in this have the answer seven but that's up to you.
+
+So here
+
+there's different ways to do it. You can do this in a bunch of if statements. I would suggest you do it as at least three different subclasses. of postal service you know Postal Service influences delivery driver, and you would have Postal Service first class Postal Service second class bus service third class that extends off Postal Service. But that's up to you and your pair. So FedEx perfect said is going to do the same. Something similar with its rates and SP use something similar with these different rates of three different types of rates. And then you're going to create a post use calculator where you enter the weight of the package. And this is where you control the pounds or ounces. So I would recommend making it so you if you put in ounces of juice, use it. And if you put in pounds, you convert it to ounces. And then up here in your method, you only take in ounces, but you can do it any, any way that makes sense to you. That's just one one way and then you'll know what distance we'll be traveling and then for each of the different shipping types, each of the delivery drivers, you'll display their name starting with some way of getting that and then you'll display how much it's gonna cost to ship the package. So Again, similar to what we just dumped the shopping cart, or this one's actually pretty similar to the farm animal example too.
+
+So questions on what you'll be doing
+
+for that.
+
+Alright, so now let's fix the pair exercise.
+
+So to fix it the easiest way, actually, it's, we can go in Terminal or we can go in
+
+Finder. So I told all of you to
+
+download the exercise, but I did not do that. So I'll do that first. clone this. I don't want to be my job of the materials folder. I go back I think I have a pair folder. I don't so I'll make one. So make directory pair, see the pair. Now clone it. So what we're going to do Do Is that POM XML file, we're gonna have to edit it. So where it's located, I'm gonna go and find her. So it's more visual. I think it's easier to follow along digitally probably. But you could do it neither so and
+
+the pear project
+
+in the polymorphism pair exercises POM XML, you're gonna want to open it up. If you're doing it from here. From terminal, you can code POM XML,
+
+or here, you can double click and it will actually open up in
+
+maybe nothing.
+
+So, you should also be able to open with and choose Visual Studio code from the west, which is how I'm going to do it. So again, right click on Palm XML, choose Open With and choose Visual Studio code from the west you probably won't have all the same stuff listed. But anything we can edit this file with will work. So visual Studio codes, probably the easiest one.
+
+You could also go into Visual Studio code and
+
+file open and go browse to it.
+
+I'm going to give everybody a second to a moment to get
+
+to get there.
+
+So everyone's following along. And again, this this directions are fairly simple. So you can probably take notes and follow up fairly easily, because all we're going to do is change. Add the word pair in this file one place. So once you hear what controls this name and eclipse the problem the reason they're not important is because they're both called polymorphism exercises. They Eclipse can only have one polymorphism exercises is open at a time. So here in the palm XML, what creates this name and Eclipse is this artifact ID. So in the artifact ID at the end of it, let's just add dash pair.
+
+And then we can save it. And that's all we need to do.
+
+So once you save it, you should be able to go to eclipse now import the project, it will import as polymorphism exercises pair and shouldn't have the conflict and the longer so it should let you import it but the moment he wants to use working on it now to do that,
+
+was everybody who's working through this able to get through it and get it in put it? Right? If you do run into problems, let resharper I know and we can help you through it. So anyone can help you through it. I just don't know if anyone else will know what's going on because I apologize. This was my fault. I forgot to change the name. So but so that's nice to have your pair exercises open. So you have any other questions for today or about what you're doing there we'll be doing today. So I remind you that there's is in the in, cocoa socket set so cocoa. There is the annex that has those rooms set up for pairing. So you can go claim any of the one of the ones that are open. There's ones that are set aside for our class. So the ones that are marked with blue, the tech where you can use any of them, but those are specifically supposed to be for our class. Um, some other things, three o'clock today, there is pathway presentation, side projects and technical roles presentation. And I don't know if it's required or optional, but if it's optional, you really should attend it for the side project portion. Starting to work on your own projects is really important as we get farther into the court, because it's one of the main things that will get you a job and that's what you're here for. Right? So it's so talking about what those could be and having an understanding of what that's going to be is really important. So I would strongly suggest if it is it is required. Okay, good. I'm glad it's required. I can't remember. I'm actually not even sure how to look is there something The requirements are not so great. So it's required. So ignore all that in just be there. 3pm. Also, there is also an address from about how the courts going to move forward. And for what we're all find out together, what's going to happen. So that'll be happening. And then I want to remind you about the reviews in the morning. So the informations in the calendar invite, and the and also in River. So we review at 8am. Tomorrow. Tomorrow, we'll be talking about polymorphism. Did anyone attend? Today's?
+
+Yeah, there were a couple folks there.
+
+Yeah. I mean, john green represented more than Java blue did I'm just saying but, you know,
+
+I can take that either way. Either. You're not as ambitious as Java green. Or maybe you Just understand that more so
+
+sorry either way.
+
+So any other questions for today?
+
+Hey, Brian, did you see the slack message I just sent you? I do
+
+not because I always worried about opening. I don't know which screen is gonna pop up on. So now and I still don't Oh, wait. Oh, okay. So I was wrong and they did give you that x SRCS JS exercises. Next.
+
+Okay, yeah, so basically, is it okay if we talk about that then?
+
+Yeah, no, I I assumed that they didn't do that because they generally don't. These are new exercises yesterday today, you're the first cohort to do them.
+
+And it's from a curriculum that would it would be due that day. So you would turn it in before you would move on to the next portion and so on. They the person writing it didn't realize that or they didn't make the connection that the due dates will be carried over and there'll be overlap.
+
+So they didn't think that would be an issue.
+
+So that being said,
+
+Yeah, the solutions there, but do the inheritance exercise. The purpose of these exercises is not the score. The purpose is exercises for you to learn the material. So if you Yeah, it's like you can go for half the exercises or majority of the internet and find a solution. If you turn that in. We won't know what I noticed. I definitely not a, I won't pick that up. Michelle might pick it up. But
+
+you're not hurting us.
+
+You're hurting yourself. So you're hurting yourself because you're not learning the material. And that's the whole purpose of being here. And that'll come out when you go to a job interview where you don't have notes and you don't have something you can look at to talk about the stuff So do please do the inheritance exercises for that, like the idea that it's not about getting the exercises done. It's about learning the material. So, but, but if you get stuck, I guess there's some good take inspiration from but I would encourage you to maybe not even to look at the polymorphism exercise to complete the
+
+inheritance one, then
+
+try to resist that temptation. Alright.
+
+So Other questions?
+
+Okay, and I saw thank you for reminding me. I will do that right now. So um, that's all I had. I'm going to push the examples we just went through right now, so you can pull from upstream to get them. But if there's nothing else then thank you and good luck. See,
+
+Brian, I just had a question about my clips.
+
+When I, when I go to import a project, it's not giving me the Finish button.
+
+Okay? So it usually means the project's already imported
+
+is
+
+if you want to share your screen and take a look at it
+
+I have to stop sharing my screen. Actually, let me stop recording too.
+
+Transcribed by https://otter.ai

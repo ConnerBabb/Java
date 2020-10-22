@@ -1,0 +1,1893 @@
+Zoom
+https://techelevator.zoom.us/rec/share/99xIHvKhxmpOHJXp6n7DWap7B4_eT6a8gyEbqfINyxlBAYvTa8N7Gawpa_sWdpDd?startTime=1591190570000
+https://drive.google.com/file/d/16g_-KGtFsTmvE1ZwATlvSpeZLdR6s9jl/view?usp=sharing
+https://docs.google.com/presentation/d/1ktyqPgcBlv1OyED5gc2Mp7r3u00tWF_REFm8GnreQqA/edit?usp=sharing
+Alright, so today, then we're going to continue with files. And we're going to take a look at the other side of it, we're going to take a look at file writing files. Were yesterday we looked at, there were three kind of file operations that are normally done reading and writing and then seeking, which so we talked about reading yesterday, and we'll talk about writing today. And then pension seeking will be kind of a more advanced topic that's outside of the scope of what we're going to discuss. So before we can talk about fire reading, just like with reading, we had to talk about exceptions. With Fire reading, we have to talk about briefly talking about this idea of code file mode. So permissions, because with reading we don't run into we're not likely to run into problems with the OS telling us we can't access a file. Because most files are a lot we're allowed to read mostly files on the system that we're logged into. But that's not necessarily the case for writing a file. So let's look at what's called file modes, or faction. Before that, let's look at everything we're going to talk about. So we're going to start there with file modes. And then we're going to take a more detailed look at that file object. And some of the operations it can do. mentioned yesterday, we looked at the fact that they can tell if a file exists, or it can also determine if it's a directory, we mentioned that the file object can be used for directories or files. So we'll look at some other things you can do. And a little more detail that we'll look at actually writing file when the code to do that, but that's going to bring us to a couple problems, one around this idea called buffering, and another one around this idea of that file stream we've talked about a few times. Since files are stream like we looked at for the console, there's going to be an issue that we got to deal with when we're writing called flushing. So we'll look at both the solutions to those. So let's talk about file permissions. So whenever you LS, there's permissions or allowances on who can do what with any particular file or directory. So these are set the say, who can access it, who can read a file, who can write to the file, who can run a program. So there are rules around the users of the system, and what how they can interact with it. So for most, for most the time we spend an LS like Macalester in our user folder, but we have kind of complete control. But if we go out of that into the system folders, where we can Can Kengo manipulate it we by default, don't always have the same permissions. And other people can log into our computers, they can bondable accounts. And those different groups of people who can log in might have different permissions, different things they can do. permissions are just what they can do. And then, when a workplace or an environment where there's more of a team type of environment, there's going to be groups of people that are B groups that are other managers, groups that are developers groups that are the system administrators that are in charge of the systems that each of those are going to have different abilities on, on resources and files as well. So let's look at how we can read some of what those are. There's three, three ones and three groups in backhoe OS or what and though for Linux, and they actually are mirrored pretty much across the whole world. operating systems. So we'll look at how we can read those and use those. So I'm going to go to terminal here. Let's go to clear this and go to butter, four, go to my development for my own Porter price. Sure packed with stuff.
+
+That is, so we do an ls dot
+
+L, which gives us the listing. So it gives us this information.
+
+We have all this,
+
+these letters over here, like day two we talked about. We talked about file systems that know the first day. The first characters I'll be cared about D, meaning it's a directory, or folder, and the dash meaning that it's a file. So we get into the file modes. permissions. Then we need to understand the rest of these letters. And they look complicated, they'll practice a lot, but there's really only three of them that repeat three times.
+
+So these other letters,
+
+give an indication of who can use this file or directory in what way how they can access it, and how they can use it. So
+
+it breaks down into three groups of three.
+
+So for this one, make sure to make this a little bigger, make it easier to read.
+
+So for this first one, these three characters, the are the W and the x. So that first grouping is the what permissions What can I do with the file as the, the user of the owner of the file, so the owner, the file is owned by this name here. So it's saying that I own the file. This could be owned by somebody besides me if there's a guest on the system, and they've created their account, or if we go outside to get the user folder, we can see the files that are owned by the system itself.
+
+So for the owner, the file
+
+listed here,
+
+what can I do with it? So are the file or directory. So this is the first one, the first character is either going to be an R or a dash. I don't have any dashes for read, probably on the whole computer, but there's a dash here, you can see in space of the x. So it says I can, that first R is positioned as whether there's access to read the file. That means Can I open the file look at it. It's possible to have a file on your computer that you can't look at.
+
+There. those files exist often for the system itself. To use.
+
+Or if said another user created on your system, when they were logged into your account and you're in their folder, you may not have permission to read their files. So the first marker is going to be an r dash and say, can the owner of this. So the person that owns this right now, can they read it. So it's almost always going to be our for the owner. The second one is either going to be a W, or a dash. And that's can they write to the file, and this is the one that's going to affect us today. So we're not going to really run into probably many cases where we can't write to a file, but on occasion, a file can get created or we can try to run our program in a location or folder where we can't write. And the error is we'll get an exception saying that we don't have access to write to that location. So knowing How we can look at it. And when we get those accessors is important. So we can, by doing the LS dash L, we can see in for that file, we can look. And if we're the owner of the file, if there's a W here, we do have permissions to write to it to make changes to it. If there's a dash in the second position of those three, then it means we don't have permission to do that. So the computer will stop us from changing the file. The third character, the X is either going to be an X or a dash. In it, if it's if it's an X, it means we can execute this file or directory. And what that means is we can run a program there, if it is a program, we can run it. If that's a dash, it means if there's a program in that directory, we can't run it. We can't cause something to start running in this directory, or we can't cause this file to start running. If it's something that can if there's an accident It means we can. So we, so we can, programs can, or users can block, protect, be blocked from running particular applications. And this is how we can tell whether
+
+we can or not, for instance,
+
+above it, we can see that
+
+for the file Alice Adventures in Wonderland dot txt.
+
+I'm the owner of the file.
+
+So this line right here,
+
+I'm the owner of the file.
+
+I can read it, I can write it, but I can't execute it.
+
+So it's been set that like this on this case, because that files, not something you can run, you can't execute a text file. But even if it would, I would make changes to it to make it something that was executable, and I would have to update the permissions around it right now the OS would stop it from ever running, or ever being able to run as a program.
+
+So
+
+those three, first three Mark what you as the owner can do, or it's not always on your computers, right now, you're almost always going to be the owner, either you or the system and outside of your user folder. But on something like a work computer, like a team computer, there's probably going to be more than one user. And there's probably going to be a secondary user even if you're the one controlling the Dell computer and that's it. So there it's not it's it's more common in this type of environments to have things that you don't have access to.
+
+So actually know if I can find Let's go.
+
+Let's go out of this. So CD back into our into the main LS and Actually, we can see here
+
+that
+
+these files are owned by root. So these are owned by the computer. For each of these, it has its own access. But other groups or other other users may not. So for instance, I'm not root. I'm my own user.
+
+And in this case,
+
+I could
+
+for this folder, I could read it. I could execute if there's a program in there, but I can't make any changes to it. As we'll talk about the second group, so that's so this would be something that me as a user of this computer, I can't change with at least, them with my regular account.
+
+Back to work, work
+
+Hitman, you kind of lost me right there? I don't what what's the difference between
+
+this and the files we were just looking at? Okay,
+
+so I changed directory to the root of the drive so I'm not in my home folder anymore. I'm not I'm not in my user folder, I'm in the system folders. So these folders are the ones to these are actually owned by root, which is the
+
+basically the computer itself, they're owned by the OS. So take
+
+the left side displaying the root level access or is it displaying your access?
+
+So right now these first three are displaying roots access to it, okay, so it displays the owner of the file, not the not the current logged in user. Okay, they may not be the same now. That's actually the what I was trying to try to show. No, that's okay. That's It's great. It's kind of a weird concept. When you Get two files that aren't yours. It so those first three go along with it really you can go by this name, usually not always actually. But you can usually go with this name of the first three is what can that user do with it. And often that user be you, but not always
+
+something to go back to pick up there.
+
+So those are the first three characters, and they set up what the owner can do of the file. So in our user directory, we're going to own pretty much everything. And that's where we do all of our work in the Mac OS. So before we look at the next two groupings, what questions do you have? Okay, so the next, those three groups, the Arthur W. Next, repeat two more times. And that's it. The Nine characters are. So this first set was, what the owner can do with it. The next set is what is read, write and execute again. But it's what was called the user people in the user group could do with it. And this is something that will affect more in a workplace environment. So, II work group, your user group is in a network type of environment, you'll generally be assigned a role. And we'll talk more about these rules. We talked about some security issues later in the cohort. But at a high level, it means that you'll be assigned you'll be grouped together with no other people with like, like position or like needs in the in the system and the network. So all the developers may be grouped together if an example here might be that You know, Java blue, maybe a role that you have access to Java blue materials where Java green, maybe a role where they have access to Java green materials. And you don't, we don't actually have those rules, but some in a workplace you can, I can see that being, you know, something will make sense or, or your team may have a particular role, or the managers may all have a role. And each of those roles then can be given, you're grouped into them you're given, given that role. And then each of those can be given permissions to particular files as well. And those are the second set. So people in your group people in your role, your user group, so it's saying that if people were in my user group that what can they do with this file? So somebody logs into
+
+my computer
+
+And they have an account with the same user group, then what? How can they access the file? So for instance, on this particular computer on my account, there is a role called staff. I think I have the only computer left that has this role. That was something we had years ago. But the idea being that if we could log on to each other's computers and have access to things that you know, in case of emergency or
+
+something like that, so given this, if,
+
+if that row still was existed, then that staff grouping would include, you know, people like Rochelle, and if something happened, and she went to my computer and logged in with her account, and in that same group, user group, this is the second set is what she could do with files, or other people or Steve or john or somebody in that role logged in And so on this particular file, we'll look at module or directory, module five, it's saying that as the owner, I could read it right and in run programs on it, but somebody in the staff group can, or my any other user group, I'm part of can read it, they can execute it, but they can't change it. So they could log in to look at it, and maybe get information from it, or run programs, but they can't make changes. So again, that's something that's gonna affect you more, and in a workplace type environment.
+
+So the 30s
+
+sorry, I'm sorry,
+
+do these have defaults?
+
+They?
+
+Yes, they do. Depending on the directory it's in for most, you can see that most of these set up in my user directory as the user has read, write and execute, the group has. You can see they're almost all the same. So that for directories and files in the user folder. That's the general default. That is the default for your other folders can be set to have their own defaults. files created take on the disk by default take on whatever the permissions are set for the folder they're in.
+
+Oh, gotcha.
+
+So they kind of inherit. So it's more of an inheritance thing type of idea, from their folders are part of.
+
+So the third verbing
+
+is the same thing, read, write and execute. And it's for guests. So somebody's logged into the computer, my computer, they have an account and they don't have they're not part of my user group. So not really connected to me, they just have an account on my computer, then that's what they could do.
+
+So in your going back to the staff example, if I
+
+if one of you came to my computer and logged in with your account and it was Then that would be what you could do not being in the same user group. So, in this case, a guest login to the computer. Now they stopped to have an account on the computer. But if they do, and they are not part of the same user group, and they're not me, then they can read the file. They can't change it, and they can execute the file.
+
+So those three groupings are
+
+who can do what with the file, the one we really care about for the court, and the one you'll care about, almost, in almost all cases, are those first three. Those are the ones that are usually going to affect us. So I'm not sure I can see your question. How do we read this in short notation, I'm not sure what that means, or what you're asking.
+
+The way that you can just like to like LS slash a and then like s the display the show words you for this kind of stuff.
+
+So LS dash a will show all the
+
+files, display the shorts I'm not. It's not something I'm familiar with. Okay. So they're they're made may be there's all kinds of commands and other ways from the lake system that I
+
+that yeah
+
+and there's all kinds of Archie's a lot of other file permissions and stuff that existed. Other, more detailed settings that I'll be honest, I'm not familiar with. I've never been into the system admin side of things. I don't know enough to do what I need to do. So
+
+right? Yes.
+
+So who determines their permission for these files? Is it possible we modify permission, boughs out, or somebody else can be terminated.
+
+So, in your own system,
+
+you are in your files you own, you could modify the permissions, there's a command called ch mode. So it's CH, Mo D, that can change these permissions.
+
+So
+
+for your files, the ones that you own, you can, you can
+
+change those.
+
+There's also the idea of what's called a system administrator who on a network, so I can work network would have access to change them and set them as well. So most companies understand this as a like a security for the file. That's exactly what it is. It's Yeah, that it is exactly security for the file. So most places I've worked, you don't, you can change things on, you can change these first three, four files that you've created in your user directory. But you can't change anything else, you have to go ask what's called an administrator to do that for you. So they keep everything locked down. So that you can't change other people's files, you can't change. But you can change your own because you have to be able to create files to work, right. So they will often have directories that even in your own user forter that they've given you that they've blocked, so they can a system administrator can make decisions like who can change this and what they set to what the defaults are, and what commands you can run. And
+
+so, other questions
+
+So again, the reason we're talking about this today even is that it's possible but very unlikely that you could run into a problem with
+
+the right
+
+settings, it's possible as we get through the cohort, you could run into some problems with the execute, you'll get an error that says you don't have access to execute it or to write it. And this is how you can check to see if you do the other two groupings, you won't run into this code or even on your personal machine, those are more something you'd run into in a workplace. Alright, so now we have a common knowledge of the file modes.
+
+And I should
+
+also show you one more thing before we start talking about them for each of these also, for Mac OS
+
+if I can find it
+
+Get, we can get information on the file
+
+and
+
+the very bottom,
+
+we can see,
+
+it'll tell you, you can read and write the file. So it'll tell you what your permissions are in a more readable way. And then it'll show you the three groups. So the three groups for this is the user. The second three is the user group, staff user group. The third is everyone else. So the guests, you know, tell you a little more readable manner, what those permissions are in the Mac OS, and Windows actually has something somewhere to help for to make it so you don't have to know the command line commands. To see them
+
+you can also view them there.
+
+Alright. So the next
+
+portion, I'm going to go to lecture code and for
+
+both that
+
+I guess I might have missed it, but what is like permission to execute mean? So when we
+
+it means to run files as a program. So all programs are files. So we click on like your icon for Eclipse. What that icon is doing is it's has a link has a tells the location Can I Can a bookmark, actually, it's the same idea. A bookmark in a browser tells you the location of a website, right that you can save and go back to you click an icon it shows the location of a file. That is that program on the computer. So it's like a bookmark to it. And when that file if it needs to have the execute permission for it to run. So if I went and found the eclipse, the file that runs eclipse the file that actually contains it, that starts it, and I changed this execute permission to not have it for me. Then when I tried to run Eclipse, instead of running, I would get an error that says that I don't have permission to run this file, or execute this file. So it means to run it as a program. Does that answer your question? Yep.
+
+So there's three files in the lecture code, the one that I'm going to be in first, this is called lecture. And we're going to start by continuing looking at that file object. So we looked at yesterday, we could create we created Links to files by using that Java IO file, class. And we'd pass it the path to the file. And then we had a file stream that we could pass to scanner. And we looked at, we could ask that file objects and questions like, does this file exist? Or is it a file compared to a directory? So
+
+let's look at some more other things that file object can do.
+
+So I'm actually going to put a
+
+breakpoint on line 23 here.
+
+So debug.
+
+So here this application is just going to get the name path The path of a file or directory and then allows us to have some operations with the file object that we can look at.
+
+Somebody started
+
+step so we can ask the question, I'm gonna go find a file we can look at. So let's look at
+
+this Alison, she's in Wonderland file since it's here.
+
+Know where I'm at.
+
+Home Directory, okay? So I'm going to go to users
+
+stepping Okay, so now it has the, just that path that I sent it in and Going to create the file object. So that's what we had done yesterday. And now he's going to do some operations with the file. So the first thing is going to do is going to say, f exist. So this will say whether the true or false whether the file or directory exists. So here, another command name, we'll get the name of the file. See here, it gets the file, the name of the file directory. So the what's called the short name, the actual name of it. And then it's going to ask is this a directory? If remember, yesterday we looked at is a file. And this is going to return false because it's not a directory, it's a file. Then you could also ask is it a file?
+
+And
+
+it's going to return true because it is a file file, and then some other things you can get things like length, which you tell us how many bytes the files currently taking out. So size file size, there's a lot more they can do as well. So I'm actually so there's notes on this, the ones we've just looked at
+
+for a file or directory,
+
+we can do
+
+this. So this is the file or directory
+
+exists at that path.
+
+Other ones that both
+
+will be interesting to us, it will be
+
+get name, which returns a
+
+short name
+
+of the file directory. And that means that it returns just the name so Return Alison, which is a wonderland compared to another one, which we'll use more likely, more commonly get absolute path that we just saw.
+
+And get absolute path is going to return the full path and name including both of those and kind of the important ones.
+
+The important
+
+methods available because there's a distinct difference between them. And they use different cases, if we want to display to a user, this is the file you're looking at get name would be what we want to use. But if we want to, like say, display to the user, this file doesn't exist, or we want to pass it to something else to be used like what we'll do later today, then get absolute path as full location on the desk. So that's the Absolutely directory. So the difference being the short name, Allison, which is a wonderland compared to the absolute path, which you know is slash users slash well obviously, it's a wonderland, the absolute path on the desk.
+
+So let's
+
+do that. I'm going to
+
+top this and run it again.
+
+And for this one,
+
+I'm going to set it to not
+
+breakfast I'll set it to my user folder, because I know that exists.
+
+So now for a folder
+
+it'll look the same as we get on through
+
+Most of this stuff something
+
+I did. Let me try that again, we can see that what happens when the exists returns false.
+
+So
+
+let's move this breakpoint down here.
+
+Users.
+
+Now it does exist. But when I show the name of get name is going to return just the final directory name. So it does return the full path for a directory and then absolute path gets the entire directory name. Having seen directories true. And sized does not end up being the size of the all the contents of the directory. So it's not what's called recursive. It doesn't include the content So you end up with this really small size for most directories.
+
+So that's some things we can views. But there's many more things we can look at, as far as just asking questions about the file. So if we look at our file, some other methods can execute can read can write. So those are the three permissions we just looked at, right? So we can use the file object to ask it can can we read to this file? Can we write to it? Can we execute it? So when our programs run, they run as a user? They run us by default. So it's asking can the user this program is running as right now, can it can it execute this file for this directory can it read it can it write it does have those permissions? So something happens in network environments are work type of place and type environments is programs are often not run as you They're running their own users. So they have a user account on your computer just like you do for any programs running the programs you're writing. So the ones that are run for like customer use. And so we can ask you this user. I'm currently running us can it do this with a file?
+
+And there's some other information as well. Things like get free space to find out if we can write to a directory if there's enough space. And so there's multiple other things we can ask pretty much anything that we can ask. In terminal, we can get that same information from the file object.
+
+So let's look at something
+
+more we can do with it.
+
+So we can not only ask information about An object but we can also
+
+use it to manipulate the file system. Again,
+
+but something in just to get past the first question
+
+and now
+
+a point. So now I'm gonna enter path to a new directory. So I know my user folder exists, so I'll put it there. And I'll call this Gord 11 tests because I'm sure there's plenty of other test folders on there. So entering that, and I create creates the file objects. Notice the file objects being created with something that doesn't exist yet. There is no quarter 11 test on my system. A directory file doesn't exist. At least not in fact directory without location. So the file object can be created with a path even if the path doesn't exist because part of its job is a part of what we will use it is to find out if things do exist into. If they don't, we can use it to create them.
+
+So here, we're going
+
+to find out if exist. If it would exist, it's going to sort of say it already exists, but it does.
+
+So make directory can create a new directory
+
+by go
+
+to finder
+
+here in this folder, it's probably gonna be hard to see because I have so much junk in the folder but
+
+when I run the command make directory.
+
+You can see now there's the coert 11 test folder that was just created. So we can manipulate the file system using the file object.
+
+So we put
+
+man make directory.
+
+So the next thing we can do is we can
+
+also use this to create files.
+
+So we can create an empty file. So here
+
+we give it a new file name, so let's call it let's call it test file.
+
+Now when it creates the file object, the file name in the directory can be passed into pieces. So in this case, the new directory is the directory. We just called created that we entered above, so it's in one variable. And then the file name is the one that was entered. So it's the test file. So the new directory variable contains this. The test file is this, we can concatenate it together and pass it to the file object, we can pass it in separate pieces, the directory in the file, which is what's happening here. So it's overload on the constructor.
+
+So he called this method create new file. If I go back to it just happened. And you see there's now a test file in the directory. And it's a text file like we were reading yesterday, but it's empty. There's nothing in there.
+
+So we can call them ethic create new file, no create an empty file
+
+at the specified location,
+
+So now we can see we can get named, it'll show us a test file, we can immediately call get absolute path. And we can see the, the full working directory, the full path where we are absolute path to where we the file was just created. And we get like, we're going to see this zero because nothing is that it's just an empty file. Alright, so before we move on to the next part, which is actually putting something in the file, which is writing to the file.
+
+What questions do you have about
+
+what we've looked at so far?
+
+So, just just had a curiosity. You know, because we've been doing this out of terminal. would we ever would it be more useful to do this, like this, this happen on a common or regular basis. It's not the same as
+
+it is, is doing the same thing as
+
+that. So in fact, terminals are program ridic written using commands similar to this. And I'm sure it's written in C, but or some other language besides Java. But the fact that no, it's written in C, but it's doing the same, same thing that we're just looking at here. So there's a couple questions that are, I think, one is, should we be using this over terminal? And the answer to that is, it depends on what we who we want to be doing this action. If we're doing the stuff we've been doing all cowork where you're going in, you're making files for you to use not your program, then you should be doing it in Terminal. Because otherwise, you're going to write a program that run the program to do something you just write. There's already a program exists to do it for you. And that's the program in the terminal. All those commands you run are just little programs running so So everything you've been doing so far, you want to keep doing a terminal. Yeah. But if your program needs to do it,
+
+then
+
+for instance, if you you want to write, you got to ask the user for their contact information, you want to write it into a file, then this is what you would need to do to create the file for that to use. Or if you want to emulate your own version of terminal in your program. So you want to have the user the ability to select, you know, a directory, or to create a file for you to use, or to look at the file permissions, then this is how you could do it in your program for for those purposes. But you wouldn't write it. If you want to write it create a new file, because you want to know put some text in it or you want to put a comment or a new Java source code file. You would still do it the same the same way.
+
+Does that answer your question? Yeah,
+
+his file finder, or is that what it's called on Mac finder? Is that like doing this stuff? Like when you click Rename and stuff like that, or
+
+it is yes. Okay. They're probably doing it at a much lower level there, they probably aren't calling the terminal commands, but they're doing something similar to what we're doing with their own library. Or what this is doing. Gotcha. Yeah, everything we use in everything we use in the OS is just a program somebody wrote the interacts the same, same things we can write, we can write extensions to that. We can write, you know, our own versions of them using this file object and there's other objects as well that a little more advanced around file systems. You could emulate finder, you can build your own if you don't like there's back. There's other ones you can go download on the people adult
+
+Some of them are fairly useful.
+
+Actually, I get to make that claim in the back. I'm not sure. But windows are some really good replacements that have a lot of information, especially for programmers give you a lot more stuff.
+
+So Other questions? All right. So
+
+all right. So the next thing would be, now that we have a file, how can we write to it? But that's going to open up a whole topic, main topic of today. So let's go and take a break. So it's been a little over an hour, and we'll come back at 1017 and take a look at writing files.
+
+So what questions have you come up with our camera If you have a break,
+
+just out of curiosity, can we use this to like, explore let's say somebody else's computer and steal information
+
+if you could get them to run the application on their machine with proper permission, just but
+
+yeah, so
+
+but the fair there'd be much more efficient ways to do it, that we'll look at later modules. So,
+
+alright. So any other questions?
+
+I think we just need to derail and just talk about Mystery Science Theater.
+
+Since apparently you have some people who don't know about that,
+
+what?
+
+I have no idea what's going on.
+
+I'd be seriously priorities people. So
+
+all right, if there's no other questions and let's keep going.
+
+So let's uh
+
+so now we have our file. Let's take a look at how we can put something in it.
+
+So I'm going to
+
+put something in the file. So we're going to give it a message.
+
+And we'll just type that in. Something like
+
+that goes in the file.
+
+And now we're at the part where we're actually going to write to the file. So, yesterday we use scanner to write to, or to read from the file. We'll use a similar library called print writer to write to the file. And there's multiple print writers, Java has probably, I don't know the exact count, but five to guess it's someplace between 10 and 20 of them. different ones that do different things, or file writers things that can write out two files in different ways. So we can use provider just one of the more simple ones, because it's going to look a lot like system out has a lot of the same commands. So with print writer, it works. So by the way, what scanner we're going to use try with resource if remember, try with resource is going to make it so it's going to close the resource for us. So We won't have to worry about cleaning up just like the scanner with a file with
+
+printwriter
+
+it will
+
+we have to close the file at the end it's going to open the file and how old the connection to it providers actually going to lock the file we said sometimes scanner would for read but with writing it's always going to lock the file and then so no one else is going to have access to do anything to it. So we need we have to make sure we close at the end so try with resource remember will do that for us takes takes away that extra step pointless. So we're going to create the print writer and try with resource we're going to pass the file so this really looks just like we saw yesterday with scanner. The only difference is that we're using the print writer instead of the scanner. And now print writer The reason or the reasons of using it is commands look like system out So it has print line it has print f it has printed all the commands we're used to. So we're gonna call on the print writer print line message. And that's the message contains what I just typed in there.
+
+And continue.
+
+Now if we go to our test file, and we open it with
+
+Visual Studio code,
+
+we can see that it has a content. So it has the file content.
+
+So now we can go down through and get the same things we looked at, get the file name, test file, get the path and the length. So writing to a file is really that easy. It's opening a printwriter with try private resource and calling currently or print out for print just like we do a system out to put the content in the file. This is a writing to a text to a file, which is what we're going to work with text files, writing content more detailed than texts or writing out, you know, graphic to a file like an image or writing out. You know, if you're writing out wave form for an mp3 file or something like that, there's, you would need libraries to do that that's much more complex. But for text, which is what most files you actually end up working with, this is really all there is to it. Now, if there wasn't a bunch of problems this was going to bring up then, you know, this, but probably more than this lecture probably wouldn't just be called fire rating. Because there's some issues that have been come up here. Potential ones, we do something small like this, none but as we get larger, there are potential issues.
+
+So before we start looking At.
+
+But we're gonna look at another example of using using the provider we'll write it out ourselves. But what questions do you have? But
+
+if it's seeming easy, you can see me almost too easy. It really is this easy. writing to a file is not difficult. In Java, it's one of actually Java's strikes. Other languages are not quite this simple. So I'm going to go ahead and stop this. And the next thing I want to do is I'm going to just create a,
+
+I'm going to create a kind of a
+
+scratch file, so we just write one ourselves. And it was seeing the code like that it's not as quite as good as creating it. So in also writing more than one line, so let's just write a quick application. Just writes out a file and just you know puts like numbers one through 100 n or something similar to that. So I'm going to go here come the tech elevator, right click choose new class. And let's just call it print writer example. I say it's called file writing. File writing. Example.
+
+I forgot to put the static void Main in it so we can run it so I'm going to put that in it.
+
+public static, void main
+
+So we can run this and actually see it working. So the first thing we need to do, if we're going to write to a file is we need the file option. So I'm just going to hard code it. So we've already had to use system n to to ask the user. So what is our current value, so file is going to be our bow equals new file, and I have to put a path here. I'm going to import it first.
+
+And let's just call it
+
+numbers.
+
+Caught numbers dot txt, so it's easy to open.
+
+So we need some file with a path to it. When I use no path, it's going to put it right here in this directory, where this project is. So it's going to put it right in the same directory with the pom XML on the draxler dot txt that's in there now. That's because the relative directory that's where it's running at what's called the world Working Directory that we talked about yesterday. So that's what this program is running. So that's where it's going to put it. I could put a absolute path I could put, you know, my user folder or the same way we could in Terminal when removing a copying a file, but I'm just gonna use the relative path.
+
+And now we need a print writer.
+
+So I'm gonna use try.
+
+So when I try with resource because I don't want to have to close this manually,
+
+and print writer,
+
+writer equals new writer
+
+and they said there are other writers. This is not the only one. Providers works very simply. But it also is lacking some features like most notably the ability to come back and add things to a file later. So it allows us to create easily create a file, but it doesn't necessarily allow us to come back and easily make changes. So if you need to do that, there are other file writers you can look into. That will do that. And
+
+there's a good chance you may need to do that very soon. So
+
+So this has exception with it. So we have two choices, we can either add a throws declaration, or we can add a catch clause and it's going to throw a file not found exception. So I'm going to add the catch clause
+
+not found a section
+
+and we're just
+
+going to print out
+
+the message.
+
+So remembering with try with resource already try, we had a catch that means that if there's an exception thrown in this block of code that it will go here. If a file not found exception stone lock code and it'll print out the message really probably doesn't need to do that here because our small little programs just going to end anyways, it doesn't repeat. But at least we'll get a nice message if that happens. And also, we have to kind of review, catch. So
+
+now to write
+
+the simplest way
+
+would just be to write in the writer, that's the variable holding it in, you see, there's quite a few different
+
+values. So there's print, print line,
+
+and print F. So the same three that we're used to for system out all existing, they work exactly the same system out. So all the like the formatting commands and stuff that you've used for system out will work with print writer. But I want to do it in a loop. So I'm going to create a quick For loop, we're just going to count from the screen I will just count from I
+
+come from zero to 100.
+
+And then we'll just write
+
+in our writer will do a print line.
+
+And we'll write something like line plus i.
+
+So this goes through, it's going to 100 times or actually 101 times since the equals there, it's going to print line and then whatever number we're on, so kind of print line numbers through each
+
+down the file.
+
+So let's run it
+
+and it's true Because we didn't put any message that said, like we're done or anything, so it should be done. Notice that I didn't create the file, I didn't have to go out and create the file. So one of the other nice things about print writer and if you use other firefighters, they're not always like this. But print writer creates the file for doesn't already exist, if it does already exist, overwrites the file. So
+
+I come here, and I can just refresh.
+
+I can see the numbers file has been created. I could go out and look at it and find it here. But we can see it right here in Eclipse. I open it up, we can see it's written the hundred lines zero 101 line zero through 100. Now to the file.
+
+So
+
+this
+
+works well.
+
+But there's a potential
+
+problem.
+
+So
+
+when we're writing to the file,
+
+we have this issue of what happens if the disk drive or the network is it could be across the network or file could be, you know, word a dropbox folder, it could be across the internet. And arc program doesn't know that it's just a file location. But even without those things, what if the disk drive on the computer can't keep up with file being written. And that's actually a real concern is the bigger, more rewrite. And not knowing where the files located that it could be on our local computer could be on a USB drive, it could be on a drop something like Dropbox. It could be on a network drive, and there could be what's called latency so it could be slowed down during that time. What happens if the file writing can't keep up? Well, we talked about that this is the idea of streams before, that there's just this data being pushed into the stream. And it hasn't really caused us any problems before except for kind of having to understand this idea of the gate of, you know, opening and closing and getting content out of it. But now we're having information we're pushing information to the stream that's going to something that may not be able to keep up the console is going to be able to keep up but file may not. There's a lot of things involved between us and the file. Not only the network's but there's also every disk drive not we're writing to a hard drive and not into just memory. Like we weren't console. They have a speed themselves and they're different speeds. And they can be slowed down by other things doing something. So are their programs accessing the same storage can slow or slow it down to a point that may be can't keep up with ours even writing out something simple like this. That's pretty unlikely writing numbers one through hundred that we're gonna run to this. But what if we're writing out the text you know of a novel that we could run into a problem? Most likely we won't, but we could. So the problem is, is that we have our application here. And we have our file we're writing into,
+
+and we have the stream between it.
+
+So the stream
+
+that we open, when we do the slide this try, we're opening a file stream with a printwriter. And every time we write, we're putting content into the stream. Well, the way it flows into the file, is we put the content into the stream
+
+and it fills out the file
+
+And if it can't fill out the file before
+
+the stream, the space in the stream runs out, then what happens is we just start losing information falls, it doesn't go into the stream, it's kind of it overflows out of the stream.
+
+So that means we lose data.
+
+So this is a problem. That
+
+means that if the file can't keep up, we're going to end up losing part of what we're trying to write to it. Which means if we're writing the numbers one through 100, we might end up losing, you know, numbers 75 because they didn't fit into the stream. And then later, maybe we lose 91. So it looks everything looks fine, but it goes along it goes 74 and then skips to 76 and then gets the 90 and skips and 92 and we don't Know why that happened? Well, we do we know why it happened. But we don't know what happened. There's no indication to it, because the stream couldn't keep up. So this problem of this, the speed of access to the file is now a concern when we're writing. It's never concerned we're reading. But it is a concern writing. So imagine this problem, maybe a little better. So imagine you go to your grandmother's house, and your grandmother wants to has a bag of candy and they want to feed you the bag of candy. They want you to eat the entire by the candy. So they're saying you're not leaving my house to eat this bag of candy. So there's, they walk up to you and they have you sat in the chair and they have you put your head up with your mouth open and the poor the bag of candy into your mouth. It is they're pouring it. It fills her mouth up and you can't chew it fast enough so it starts spilling out of her out of your mouth. That's what's going on with the stream. Now compared to the same scenario where They want you to buy your candy but they put a bowl down and they pour the Kim to the bowl and make you get the candy out of the bowl. Now you can keep up because the bowl keeps the overflow until you're ready for it. So we need a process like that we need something to keep the overflow until we're ready for it. And that's this process called buffering.
+
+So, buffering is going to
+
+allow us to be like, have something like the bowl that we can fill up the bowl in the file can take the information they need from it as needed. And this isn't something that's just for file access. This is something that's quite common. In pretty much computer access journal, you use it every day and probably don't realize it every time you use something on a stream of video or stream audio So you sit down and listen to your favorite podcast or you go to YouTube and stream a video or you watch something on Netflix, there's buffering going on. So what they do is they don't
+
+they send you in pieces, but they have kind of this
+
+like a bowl setup. That
+
+means that if your device can't keep up, which often it can't, that you won't be interrupted, that it'll, it won't fill up the stream behind it, and cause you to lose data. And this used to be a common problem for anyone, YouTube, especially YouTube, because it was one of the first kind of videos most people use, and you would see lots of pixelation, where the videos would distort that was caused by loss of data from the streams. So all this data when they say streaming video, what they're talking about is exactly this. They're streaming the data just as fast as they can to you. And if you can can't keep up, you'll lose data without buffering. So we need to have some way of buffering. So what buffering does, it's like the bowl, but it actually works slightly different. There's no container that's going to hold information for us. And it comes from a real world problem that two cities have and I didn't I never write down where I always forget to add it, but I think they were in France, but doesn't really matter. But it was quite a while ago with this concept of these two cities. And they had a problem. And there was city one, seats, there's two of them.
+
+And everybody worked.
+
+And
+
+x and CTA.
+
+Or everybody lived in the city and everybody worked in city B. So the, in this particular area, they were about a mile or so apart. So a couple kilometers apart, they weren't far apart. So because of that ever wanted because I was completely residential on the other one had become completely commercial. And they had a single row between them
+
+at the time
+
+and what would happen is on this road
+
+okay.
+
+Each morning as people went to work, the road to fill up
+
+and it was sort enough that by the time the first drivers were getting to city B, there was basically traffic back to city a, and it would end up going out city a so that foreign people to get in line to go to city B during busy times, would have to exit the wrong direction. And I'm sure they didn't actually do that. We all know they just smashed into the middle but theoretically they would have to accept the wrong direction and get in the end of the line. So the planners of the city came up with this idea of how to I just lost all the cities
+
+of fixing this bye
+
+changing the road.
+
+So the what they did to solve the problem is they rebuilt the road
+
+to be like this.
+
+I'm sure it's exactly like that, but you get the idea. So they rebuilt the road to have curves in it to extend the length. So that rather than having, you know, a mile or so between the two cities, it was a few miles.
+
+And then what happened is
+
+as people would fill up the road There was more space for the traffic to fill up by the time that the first vehicles getting into first travelers were getting into the second city, or vice versa, so that they never had to go out the wrong direction because of that it caused the flow to be steady and not have any backups. So it sped things up, even though they had to go farther distance it sped things up. And it also guaranteed that everyone could get there without having to essentially go the wrong way. This is what buffering is, that's what example buffering. So buffering when they are sending a video from Netflix, what they're doing the buffer is they're not holding data someplace, they're extending the length of space, it has to travel for about space but of distance, so the number that it's going to have to travel for. So they're extending the length of time it takes to get from them to you by extending that, it means they can send data to faster rate than your device can handle it. And when you get though it happens less and less when you get buffering warnings, or something like YouTube, what's happened is your devices kept up. And now they have to fill the buffer again. So what they, what buffering will do, it's going to cause another problem is that as they buffer, they don't want necessarily, when you start writing the file that or streaming to your device, they don't want it to be just in time. So they await and so will, the buffering we're going to use, it'll wait to the file, this buffer gets partially full, and then it'll start writing to the file. That way, there's always plenty in the buffer. So the goal is to have the buffer partially full and have plenty of room extended room to be able to put things into it.
+
+So
+
+the goal being again, not Not to lose any data. Now if the buffer fills up, we'll still lose data from both buffering, it becomes really unlikely. Because there still is a set size, just like with the cities, if enough traffic had built up to fill the road, then the same problem would occur. So just like with the candy bowl with the bag of candy was large enough and being poured fast enough, eventually, the bowl would overflow. So the buffers can overflow and we can still lose data, but it becomes much less likely. It's much rare. So we need a buffer in our code. We need a way to handle this and it's built into Java as well. There's a library that can do this for us. So before we look at how we're going to solve the problem, I hope we have a good sense of what the problem is. But um, what questions do you have?
+
+Right, are those two separate approaches or do they combine them
+
+would you say
+
+When you're talking about in, for instance, that candy in the mouth versus the longer road,
+
+there are two separate purchase will combine. So right now with printwriter, we're pouring candy in the mouth, we're having the file to say open up, we're going to give you our data as fast as we can give it. If they keep the file can't consume it fast enough, we're going to lose data. So in this case, counting one to 100, the file is going to build to keep up. Now, it's possible that it couldn't if I'm running some program on here, that's using a lot doing a lot of stuff a file. Other files in the system, lots of hard drives, so it is possible even something small, you could lose data but unlikely. But if we expand that office, something much larger, like a considerable size file that has a lot of data that's being sent to it constantly, then it becomes much more likely. So it's two approaches. And we have to choose which one we want to use. We're always can use print writer that's not or another some kind of file writer don't have to be print writer. There's also other ones I mentioned. But we can choose to buffer.
+
+And let's look at doing that now.
+
+So we have the same code
+
+and I'm going to put want to keep them separate. So I'm going to do I'm going to put these out to the Create a quick method, private static to make it static because this rubber to call from the static, main, static void
+
+write file without buffer.
+
+I could have it and then we'll make another one
+
+and open it up here.
+
+Just coming out so it can be destroyed. And we'll make a second one down here. private data, actually, you can just copy it. I'll just copy it change the name,
+
+right file with buffer,
+
+that's buffering.
+
+Up here, so we can call them out from appear. And so to run. Alright, so we have the same code. If we want to add buffering, we need a second writer called the buffered writer. So there's a object built in a class built into Java. That will do buffering for any writing stream for any file stream. So to do that, we're going to add it in our try with resource. So try with resource can actually take multiple lines of code, the what, what it can do, the only thing we can do is we can instantiate multiple objects. That is odd to be something They can be what's called disposed, they have to be something that can be cleaned up. Not every object can be cleaned up by trying to resource but the writers can. So we can have multiple writers here. To do that, we're just going to put a semicolon. So we're going to end the line of code and create a second line of code. And we're going to use buffered
+
+writer.
+
+So we'll call it
+
+buffered writer, equals new
+
+buffered writer.
+
+And buffered writer doesn't take a File Stream, what it takes is an existing printwriter. It doesn't actually know how to write to the file. All it knows is how to buffer. So it's going to be the extension that's going to allow us to the file to keep up or as to keep up if the file can't. So I'm going to import it.
+
+So instead of creating the
+
+Passing the file to we're going to pass the print writer. So the right actually just change this to writer. And I'll change this variable to print writer so it's more clear.
+
+And now
+
+we can actually still use the print writer here if we want. Well,
+
+there's another exception. So for this one I'm glad to throw as decoration. So if you remember doing that this is going to throw an IO exception. When a handled differently, so it can we can refresh the two options. So one, we can add it to the catch. So we got another catch for IO exception. Or we can add to our method throws i o exception, which is going to be an error. I have to import it probably Which is gonna cause another error because now that's a checked exception. So one that has to be caught. So, if you remember we now appear we either have to add a try catch at throws, some add to throws. So what if we get an error what is throw out to the JVM or the hammering this program is going to be done anyways. So here, I can still use the print writer if I want to, but I don't I want to use buffered writer now.
+
+So buffered writer doesn't
+
+have
+
+same methods, unfortunately.
+
+So buffered writer
+
+as
+
+really not a lot has new line.
+
+So creates a new line. It has
+
+Write, and append. And that's really it.
+
+So, now we lost printf, which does formatting. But we can use string format to do that. Anyways, so we have to manually format our strings before we write them. We've lost the difference between print and print line. Everything's like print. There's never Alliant carriage return printed. So now we have to do that manually. Or we can ask buffered writer to add a new line method to write a new line. But so we've lost some convenience, which is why sometimes you may choose to use printwriter. You may choose to say, you know what, I'm only writing one line of text. If you're writing something out, that's kind of, you know, one quick line, no permite is going to work, you're not gonna have to worry about buffering. If you're writing more, or you're doing something constant, like putting output there over and over again, then you're going to want to choose buffering So it's an option. It's not a requirement for when you're writing a file. So I would I usually default to using buffer, because then you it doesn't hurt anything and you won't ever run into problems. But I could see times when you might not be worth it. So with this we're going to use right. And then we can write the same thing. So we're going to give it our string, right? So
+
+this line goes away.
+
+And I'm going to change his name. So let's change this name to numbers.
+
+buffered.
+
+All right, that's even worse.
+
+So if I run this,
+
+again, just terminates because we didn't put any status that says we're done. But if I refresh here, We should have numbers buffered. We do if you look at it, they're all together because there's no character term between them. So we with this, we have to do that manually. So I have two choices. I could either concatenate on plus character turn, that would work. But that's not system specific or we could do buffered
+
+writer newline
+
+now run it again
+
+and open this and now they have the newline characters between them. So I did notice also that when I called this the first time, and numbers buffered existed, or actually where I called the file object groups with print writer that actually created the file and end up doing the final No printing. But it created this file numbers buffered. And then we've looked at it, it didn't have carriage returns. And then I ran the code again. And numbers buffered still here, but we look at it does have carriage returns. What had happened in the background is, is it wiped out the contents of the file.
+
+So
+
+didn't replace what did replace it didn't add to the file.
+
+So it removed everything from the file and put it its own contents in. So when we so by default, the default behavior for print writer is to what's called overwrite the file. So as you start writing to it, it puts its own content and recreates the file fresh and gets rid of everything that already was there. So it means if you run into a problem where you need to add to the file, you need to put things on to the end of it. You'd have to look into a writer besides print writer. All right. So questions about how would you solve the buffering problem or anything else?
+
+So now we have another problem.
+
+So buffering is introduced another problem to us.
+
+So
+
+let's, I'm going to go to this code flushing example. And if you're following along, I would encourage you not to run this code. And we'll, we'll see why. So I'm going to uncomment this have it commented out so I don't actually run, run the wrong thing.
+
+I did the opposite. I'll just stop manually.
+
+So,
+
+comment. So what this code is going to do
+
+is it's going to write to the file with a buffered write to this file called flush example. And it's going to put this line of code does, you don't need to really worry about it, I just wanna explain what's happening, it's going to pause for 500 milliseconds for half a second. So it's going to write to the file twice a second. And the only reason I'm doing that is that this is an infinite loop. And write actually happens really fast. So by the time if it not not doing that, by the time, I can get to look at the file manually or do anything with it, it's going to do two things. It's going to write a huge amount to the file. into it's going to start slowing things down rather quickly, which has happened to me before and then it can be hard to stop. So Just to that line is just a delay. So if you're wondering what it's there, it's just for the example purposes.
+
+So I'm going to start running this now.
+
+And it's writing to the file, it's we're just gonna write this test line to the file.
+
+Over and over again, it's happening right now.
+
+So I'm going to go out to actually, I'll do it from finder for this. finder, and we're in today's lecture code here. So
+
+and we should see if there's the flesh example. So
+
+I see
+
+someone opened it up. Bye. Open with
+
+your city your code.
+
+And you can see there's nothing in it.
+
+It's writing, I guarantee it's writing.
+
+So it's empty.
+
+So what's happening right now is that it's putting stuff into the file stream in the file streams filling up.
+
+And
+
+it's not getting to the file, because it's filling up that buffer. And this is gonna happen
+
+for a while, so we're not gonna wait on it
+
+a very long while because I'm just writing a very small amount. So let's save that. I'm going to stop this. And so the problem that's going on is with the stream Not the problem, it's the behavior because it's the way it's supposed to work. So we had that File Stream out here, we're writing to
+
+in that buffer.
+
+And it's making the stream longer. And our data is filling up here. And remember when we had the system and we had to use next line, and next and to get the next value off the stream, right? Because it had basically was holding was closed. And that's what's happening right now. The streams filling up, it's saying, You know what, I want to get enough stuff into the stream before I start putting out the file and then I'm gonna put out big chunks because that's more efficient.
+
+So if I'm writing now, and I stopped, like I just did, so I just stopped the code.
+
+And I go back out to the file after we stopped the code. Actually, it's it's refreshing to see it here now.
+
+We would think, well,
+
+it's gonna be there, right? The code stopped.
+
+And it's not because nothing ever cleared the stream. So when we're writing to a stream, we often have to do this thing called buffer are called flushing. So flushing,
+
+you can think of it as
+
+basically having something behind here, like a shovel type thing that's just shoving everything out. So it's pushing everything out of the stream. It's saying, you know what, you're not ready for it. But here's everything your take you. So bust through the gate and push it in. So that's called flushing the stream.
+
+And
+
+we need to flush the stream
+
+we didn't have to wait Worry about this when we were doing system out because it does it for us, we'd have to worry about it when we're reading files because we're taking the input as fat. We're in charge of the input. So but when we're writing files, especially with a buffer, though copy that way, we often have to flush the stream. So we have to do it manually. So we have to make a decision. I want this to be in the file now.
+
+Now, so I'm going to go and
+
+uncomment. The flush command. So doing is just on the buffered writer, which is called the command flush, or the method flush, and that's good and dude plus the stream. And then I run it and it's going to start writing again. So right now it's writing see it's not terminated. I'll go out to file again. And now open it with just Studio code.
+
+nx C, it has content. And if we scroll down through, you can see it's growing right here at a rate of
+
+two lines for proximity lines per second.
+
+So that's because every
+
+time through
+
+the while loop, it does that flush on the stream. So it's taking basically go ahead and write this out to the file. Now don't wait.
+
+So let me stop this before I end up filling up.
+
+All right. So we need the reason we bring up flushing is because there are two times when we could really run into problems with it. One if we're reading a lot of data to a file, and we want to make sure that it's preserved as we write it. The other time is was system out. In system n, we haven't read into it yet. But you may very soon in the next couple days, they also sometimes need to be flushed, especially system out. So right now, it's always worked, we always get it to the console, okay, but if there's multiple methods, say writing to the console, you can actually get to a point where it will start buffering the commands and not immediately print, you say, no print line, and it doesn't really print out, you have to flush the stream. So there's a couple things around this one is that we often don't worry about it because of tribal resource. So one of the things try with resource does is automatically flush the stream for us. So when this code ends, if this wasn't an infinite loop, when it exited this block and the tribe with resource, the stream would be flushed automatically. I wouldn't have to tell it to do that. But if I want to guarantee that it gets there,
+
+if even if there's a problem,
+
+then you may have to, you may have to flush the stream in the middle of
+
+in the block. And there are times we might want to do that is if we're writing something out and there is a possibility, an exception if there's an exception thrown, then it's going to exit the block and not necessarily complete the flushing, but if it exits the block naturally, if the truth resource then it's handled for us. So it's something we have to be aware of, but not necessarily something we have to do every time.
+
+So questions about that?
+
+So could we flush in the
+
+catch portion we
+
+No, no, but this code because the catch portion won't have access to the writers.
+
+Okay, gotcha. So, and we can't flush outside of the while loop.
+
+We could, we could flush at the end outside the wallet.
+
+So if you did that, then if you ended your code, would it flush it? And with all the stuff that wasn't therapy, there are no,
+
+if it ended the code, then yes, it ends the code, and it gets past this line, so it exits the try. Then it'll write everything out to file. Now, to go back to your question about the catch, you actually don't need to flush in the catch because if we had a catch here or not, we are throwing the exceptions without a catch. But if we caught right here
+
+and
+
+continue continued, then it's going to exit with exits. The catch is going to be exiting the trailer And it will flush the stream. Okay, gotcha, clean up for us. So the problem would be when we don't have a catch that handles the exception. Okay? So we really don't have to worry about a lot of the times, you're most likely to run into problems with needing to flush the stream is when your time's up writing a lot of information, like I was just doing on repeat. So you're writing out a bunch of lines to file relatively fast, and you needed to update more real time, or for your current situation or current things you're going to be working on. If you're working with a more complex menu, we are asking the users lots of questions and system out, you may have to flush the stream before the data shows up. So you can start seeing system out with enough behavior with enough uses of it where you know, you ask the user what your input and then you ask them they'll say give an error like your inputs not valid please try again and you call system out print line in nothing shows up. It's because the stream has to be flushed. So it does happen with system out. Which is more why we're focusing on it than files because the try with resource is going to handle it for us for the files in almost all cases.
+
+How are we going to look at an example of using that with system out?
+
+We can. Let's write one. Let's see.
+
+Let's go back here.
+
+And since we can do Oh, actually, the next thing we're going to do is going to evolve that so we'll we'll do that then. Actually, we do it now.
+
+We have enough time.
+
+Alright, so let's look at another example of
+
+working with all this together. So there's another sent another lecture couldn't hear called color writer example. It's called Because it's writes out red, blue or green based on if it's modules five, module seven or modules of nine. And it just counts numbers between one and this upper limit 200. And it puts it into this colors dot txt.
+
+So right now it does it to system out.
+
+And if we run it, we'll see that what it prints out is exactly that. So it's, it's kind of like fizzbuzz, right? It's the same idea. Only it's using three different conditions of different modules, whether it's just three and five. It's a different things in using red, blue and green instead of fizz and buzz.
+
+So
+
+here's the system out if we wanted to make sure this always got printed, and it's going to because this isn't going to cause actually, the situation is there's no no example I can come up with or I've tried multiple times where I can guarantee what system I was gonna have the problem. It's It's more of an issue of kind of a perfect storm of the way memory is being handled at the moment that causes it rather than a set, do these steps and you'll get this problem. But if we want to guarantee that these always made it to a system out, then here, we just say system, dot out flush.
+
+And if you ran again, it's gonna run the same way.
+
+And nothing's changed. It's just now it's guaranteed to always make it immediately. So as we write each number or word, it's going to immediately get to determinant. So if there would if we wouldn't be in that condition where it wouldn't.
+
+So does that answer your what you?
+
+Yeah, that's perfect. I just didn't really know the syntax of how I would do that. So that's perfect. Thank you.
+
+And for any stream you're working with, whether it be Ernie the writers which are the streams, then this flush commands exist in pretty much all of them.
+
+command this method. All right.
+
+So what I wanted to do for that, I should say there any other questions?
+
+Yeah, I have a question.
+
+So what is the best practice to use that flush?
+
+Not all the time, just about all the time.
+
+Yes, you'll want to use a commonly. So it can be almost a choice of how much do I care about this immediately being displayed, because eventually it's going to get displayed, or immediately go into the file. If you care about it being there right away. Like for instance, you're asking the user a question on the terminal. Then, to guarantee it gets there, you'll want to use flash. But if you don't care if maybe you're giving some maybe you're getting an error message and you don't really care if it doesn't happen to the next time. You're asking Here's your question because that's, you know, the next thing thing is going to occur, then you can skip it, it's going to occur with it the next time anyways, when it's full. So you can kind of make choices around that. But I would if I was writing like a menu system, I would use flash off every system out. Or maybe not every system out, I would probably write if I had methods that were had, you know, maybe five or six different system ounces, I asked users different questions and then put flesh at the bottom. So after all of them, type of thing.
+
+So if I was writing a file, I might
+
+have it so that it doesn't flush. Everything if I was writing infinite file, like I was just doing, I believe, not flush with every line, maybe I would flush every hundred lines or something like that.
+
+Because otherwise you lose
+
+the performance enhancements of the buffer, so you don't want to lose that either. So so it's really not something you're into worrying about that much. Except for maybe the next couple of days, system out specifically,
+
+if, if you wanted, like in the previous example that we were working on if you wanted it to print the next line for the next one, like move to the next line, which you do flush first and then next line, it doesn't matter. You think it probably matters, right?
+
+Oh, this one? No, it won't matter. So if you want to make sure the new lines there, you would probably do it at the end.
+
+But, so you'd probably do it here.
+
+So that wouldn't flush on the new line if it got the new earth.
+
+No, it doesn't flush when you see the new line of work that works with system ends or scanner sorry methods are scanners methods. scanners next line method works by pulling data By the new line, but there's nothing in the stream itself that has a character. It's a new line. It's just another character to it.
+
+Gotcha. So
+
+I'll take out some
+
+other questions.
+
+So, for
+
+this color writer example, what I wanted to do with it is just convert it to write to a file. main purpose is to demonstrate that what you've been doing is almost the same thing. It's not going to change much at all. So the problems you've already been solving the wave and solving problems that go to the screen doesn't have a big change to get to a file.
+
+To do that, we're going to
+
+need to add a file so We create the file object we already have, we have a file name. So file objects. So let's call this our color file equals new file, and we're gonna pass it
+
+the name we want, which is already here.
+
+So file dot name.
+
+That can be any string to any path that's valid on the system.
+
+And then using that, we're going to create
+
+the try with resource print writer. writer
+
+was new
+
+print writer.
+
+I'm going to pass it the file.
+
+And if I was solving this problem, I probably wouldn't use a buffer for this. We're printing out 100 lines so file. It's not going to be a problem. We're not going to lose There's the chance of added so we're so small that it's probably not worth the writing of the code. But I'm gonna write the code because so we have an example of it. Now, if I was writing it, and it was had to be there, so if it was something like, you know, our clients gonna lose a bunch of money. If this doesn't make it to the file, then I would use the buffer, no matter how small it was, but I don't think Yeah, one of these numbers is going to matter. So let's use the buffered writer. So in the same try, we use the buffered writer
+
+and let's call this buffered equals new.
+
+And we'll pass it the writer.
+
+And then our block of code is going to be around our for loop.
+
+So now we have to do the import. So we're gonna have to handle the exceptions. But I'm going to handle them both just by using add throws declaration. So when you're handling exceptions, if you don't have something you want to do with the exception here, if you don't want to handle it, you don't know what to do with it, or you don't have some way to deal with it. Then you just want to use it, throw it, let it throw up the call stack to the next thing. What we're gonna do notice a change to IO exception because IO x file not found is a subclass of IO exception.
+
+So
+
+now we have our writers and we have the exceptions handled the change from
+
+the way we're using the writers to
+
+Or the way we're using system out to using the writers is not much at all. We can't use print line, we could if we've used the print writer, so we were using print writer, it would be the small, we'd be done. Because we're using the buffered writer, we just have to change it to the right method.
+
+And now just like when we use print, we'd have to add the new line.
+
+Or we could concatenate a new line into the text either one would work. So now if we run it, so not a lot of changes, the biggest changes around the try with adding the try three source and the exceptions. The problem code is really not changed much would change by one word. If we use didn't use to buffer.
+
+So now
+
+and we get the done message because we printed one at the end, same, we're done. And now if I refresh my project of the colors text on it, you can see now it's printed here into the system out. And we could have done both too, we could have printed system out into the file that was in that same loop. Alright.
+
+So
+
+so the next thing I want to do as an exercise with all of this, when I actually write an application that deals with all these concepts, file reading and file writing that actually write something that takes a file name and a set lines of code, and we'll split it into pieces. So before we do that, what questions do you have about what we looked at today? so far?
+
+So just for my own clarification on the flushing example, we had to flush because we were putting ourselves inside that infinite while loop. And it was just gonna be so much data that it wasn't going to. Okay.
+
+Yeah, exactly. The Wildlife was causing the issue. Okay, got it.
+
+So because normally, when the wildlife exit, we would have exited the try with resource and that would have flushed for us.
+
+Other questions?
+
+All right. All right. So let's take a break. Then. We'll come back at 1131 and we'll write write something.
+
+Ryan Can I see the pilot writing example class?
+
+Yes.
+
+So you can see. Okay.
+
+Can you just keep it? Sorry?
+
+Can you keep that on the screen?
+
+Yeah, I can. Yeah.
+
+All right. So from lack of questions that is file writing then making sense.
+
+Or is it
+
+Okay, so let's do something with this then. Now that we have file writing and file reading, we can do something more interesting with the files. So, what I want to do is create a application that splits files. So they can take in, take a file, give it input to take a file, and it can then break that file into pieces and write out these individual pieces. So for instance, if we gave it the text, Dracula text, and we told it, we want it in 500 line pieces it would break it into, I think it would be 32 files, if I remember right, from just doing it other times. So however we files would be each one be 500 lines long. So that's what I want to write, but I don't want to do it. So most stuff. Most stuff we've done so far has been in these kind of small little pieces, piecemeal examples where we have just a system or main method. And we work with that. So I want to do it also with classes. The way actually should be designed with proper classes, meaning that each one has one job it does, and that it's a specialist of that job. And it has a few public methods that the other classes used to call it when it needs to do that work. So I want to start with designing what this classes would be if we're going to build a spile. splitter. So its functionality will be inside the take a file name, we'll get that from the user to split the file into pieces, based on the user input of the name and how many lines for each file
+
+will open up
+
+a quick UML design tool, which class design tool, or more of a drawing tool that we can use for class design?
+
+Maybe it's gonna pull up
+
+and let's design so before we build any application and this is something you'll want to know when you get To tomorrow and kind of Facebook the first your first larger application or larger application. This will be where you want to start figuring out what client what jobs exist in the file, what classes we need. So if you're building a, we haven't really looked much at this. So if you are building an application like this, this file splitter, what classes can you think that we may need? What jobs exist?
+
+Get the user input? Yeah, we need something get user input. So might have a class for
+
+user input.
+
+What other things might we need to do?
+
+Let's go ahead
+
+You got
+
+assembling the user input into like a
+
+printer.
+
+Okay, so something to communicate between the user input and the file printer. Is that where you're? Yes. Okay. So something, maybe we can expand that to something that maybe can control the flow workflow, right? Which I think is kind of what you were. I might be wrong. But so that's the way I would think about we get the user input, and then we say we need to do we need to do this work. So some kind of workflow.
+
+So what other jobs exist on if we're gonna
+
+take user input and we're going to split a file into multiple new files.
+
+Something that checks to see if the file exists and if not, creates a new file, maybe.
+
+Okay. So
+
+I have a job of
+
+creating a new file
+
+we would have to split the file they want based off of whatever parameters were splendid on.
+
+Okay. So we need to split the file.
+
+Whether it has to we have
+
+say that it's done.
+
+Say it's done. Make sense. So we need to
+
+maybe communicate
+
+status.
+
+need to write the split files to the new files.
+
+Yeah. We need to write write files. Right to file
+
+Yeah, we can think of, I think we're missing one really big one right now.
+
+The input stream of the flow
+
+may need to read the file. Yeah, the input stream. So we'd have to read a file.
+
+So we have these tasks. And I think that's a good set. There's, we might come across to others as we go, and that's okay. And there's an awfully there's smaller ones that still exist here, but I think we can start with this. So now we need to break this into what, who's gonna have what job. So these are the tasks that doesn't necessarily mean we're going to have one class per task, because some of them could go together. For instance, communicate cat status might be Part of workflow that may be just a step in workflow or creating a new file, we can might be able to think of it as a step and writing a file. So those are just examples. I'm not saying that's what we would do. So what classes can we build out of this?
+
+So we take this, these are these
+
+kind of tasks.
+
+Let me organize these maybe a little better.
+
+Now let's design this into classes.
+
+So with classes, we want workers that are going to be doing these tasks, not necessarily set up b 1141. If we had to, in a real world example if we had to move the wiring move wiring in Move a water pipe and we also had to install a new ceiling lamp. That would may be that's three tasks but we may need to to the sink workers electrician or plumber to do the work. So deciding what classes we need ours like deciding what we need the electrician, a plumber from her but we need to start with the tasks we need, which we recap
+
+feel like the the workflow and the communicating status can almost be like an over working class. Okay.
+
+And then start by getting the user input.
+
+Okay, so maybe a class that handles the overall workflow.
+
+That's not doing what I want. I
+
+guess I should have practiced with the site. For more than two minutes last night
+
+and communicate status we said it least tasks here. And maybe we can name this class something. So. So if this is going to communicate workflow, it's probably should be where now we start things right. So it's the, it's probably the main project. So let's call it something like file splitter.
+
+It'd be a, c li. It's a command line interface.
+
+Yeah, maybe. Okay.
+
+So what other tasks either would go in here or need their own class?
+
+I was gonna say, user input probably goes
+
+with that plus,
+
+okay. So I'm actually going to disagree on this one. Because user inputs going to require us to use system and and system out. So it's, that's a whole different job than control a workflow. It has x number of dependencies in it, communicating with users its own job. So I think it should be in something like a menu. A class that's hold only job is to communicate with the user does nothing else doesn't have any logic. It just asks user questions and gets values back from them. And then once we have that, that should be the only place that communicates with the user.
+
+So let's, I agree with you.
+
+Let's build a menu class.
+
+Okay, Ben.
+
+And let's put the user input there. Maybe
+
+what's happened user input, but
+
+I don't know how to fix that. But okay, we'll put the user input there. So our menu will be the job of communicate with user, you don't have system and system out. And it should be the only place then that has that. So every time we need to communicate with the user wants the menu to do it. We want to control workflow wants the CLR to do it.
+
+So quick question, because I'm a little what do you what do you what is communicates that?
+
+I don't know. We, I was thinking of it as something needs to say we're done.
+
+Right? So wouldn't that be in many
+
+cases to the user?
+
+I would argue that no, that it could be I think this is actually it could be, it could go either place. So we can think of the menu as it just communicate. With the user, so it doesn't need to know about what the status is. It doesn't care what the status is and shouldn't know, we're done. And it should just know, I have to send the string to the user. Or we could think of it as the menu has options like tell the user we're done. And it's the one that so we could in that case, go, I think either place. But the fact that we're done that there is a status to communicate has to come from the workflow. The menu won't know where we're at in the process, or shouldn't know. It a lot of these there's no perfect answer, it's a matter of designing is not a looking at it and saying, this is the way it has to be. It's, this is the choices we're going to make and we're going to stick with it. As we design now, we may change I say stick with it. I don't mean we're going to be inflexible about it because we often realize that we were wrong in our designs that we have to change things as we go that's common and fine.
+
+So what else might we need?
+
+Like our file manipulation with that being considered all one giant class?
+
+Maybe? And again, I took a choice
+
+to give him a five minute placing class. Okay.
+
+Maybe a file.
+
+It was called file class. Actually.
+
+File manipulator. All right.
+
+Another option might be to have a reading class and a writing class, but I can see the argument for having one.
+
+Well, I actually I'm really interested in hearing loss If you would actually separate those because, like when I think about it, I think of interacting with the file as one giant operation, but I see what you're saying as well. So if you don't mind just expanding on that
+
+No, no.
+
+So I don't think it's wrong. First Think of it like that is one giant operation, I think that's fine. And a lot of classes on is how you think of it how you want to model it. I personally think of it, we think of it as two because reading to me is different than writing. And part of it is also reusability. If I have a file reader, I may not want the same file writer is always attached to it.
+
+So another a lot of sense. Another option not to get to
+
+that you can do is have a five manipulated class that encapsulates two other classes, file reader and file writer, but I'm going to stop at that sentence for that. We'll save that for the next couple modules as we get more complex.
+
+So that would put reading the file here.
+
+And it would also have to have created a file will probably go in the same manipulation.
+
+I would argue splitting a file, I still can't
+
+I don't know what's going on with that user input, I can't change it.
+
+I would say splitting a file is probably not Fahmy inflation, right? We're not reading and writing to a file, then we're splitting apart text. So then the other, so we probably need something for that. It's only one task left. So I'm going to argue we probably need another task for that are not another class class. So maybe something like,
+
+yes, when you say split a file, what does that mean?
+
+We're going to take the file and read it in as at some point we're going to say, we want to take like the number we're gonna split on is 500. Then we'll take the first 500 lines and we'll build a new file that has those 500 lines and then we'll take Lines 501 through 1000 and put them in the next second file. We'll take 1001 through 500 1500, put them a third file and so on. We're done.
+
+Okay, gotcha.
+
+So maybe something like a file splitter class,
+
+it's going to split the file.
+
+At this point, I'm going to move these back up here. So we get more of the classes.
+
+So these are the classes we end up with.
+
+I think that's a pretty good set. I think we've we're going to run into some decisions we have to make with these probably are not going to fit perfectly when we start to code this, but that's okay. So the next thing where you need to know with part of class design is we should have an idea of what public methods they should have. So file splitter I'll give an example using that. If I can use the text.
+
+Maybe there's not a text, okay?
+
+No, nope. All right.
+
+I wouldn't use this.
+
+So we maybe have we're identifier main method here, maybe. And the run method, that method called like run, it's going to start things. That's probably all we need for public methods here. I'm going to give you a second hit for menu. We probably don't we'll probably need to find those as we go. We probably don't have a good sense of what our menu is going to look like yet. That's okay. Because this can change as we go. So for file splitter, what kind of public methods do you think a classic file splitter should have
+
+Mmm, I feel like it's going to need to need to be able to create a new file.
+
+So, but that's going to be the job or the job to the file manipulator.
+
+Just need to loop through the file until it's not really empty but until it runs out of lines.
+
+Yeah, we are. But what methods does this class need sort of, because the something's gonna have to call this class to make it work. Our main methods gonna be in file splitter COI. So file splitter COI is controlling the workflow. It's going to be making choices about I've asked the menu user this, and I'm going to delegate the work to file splitter.
+
+Are we just gonna have a split file method?
+
+Yeah, that sounds good.
+
+And again, I don't know how
+
+Here. So maybe we need a method like split.
+
+file, or to split. We already know it's a file splitter from the class name.
+
+So
+
+what about
+
+our font manipulator?
+
+What public methods would it need? Or does file splitter need anymore? That's question two.
+
+I don't think file splitter needs more. Because we want each thing to do one thing, right?
+
+What it's like to be in charge of one job. It doesn't mean there can't be multiple, multiple requests. We can make you think about string string classes in charge of everything string related, but there's a bunch of different actions and behaviors that can exist around that.
+
+So could we do it an override for like to string or something to show what you just printed to your file.
+
+We could the file splitter probably won't have any content. What? If it's a file? It's gonna be writing it someplace else.
+
+Mm hmm. Okay. So
+
+So what kind of methods would a file manipulator need?
+
+create a new file,
+
+create a file.
+
+So we might need to create file method. So maybe create what we know it's five minutes later. So create
+
+what other methods right? So right. You think
+
+maybe we need to Have something to generate names.
+
+Okay. Should that be the job of a file? Maybe later though? Maybe?
+
+I would argue it's not it's probably the job of the file splitter. Why is the file manipulator care what the file name is?
+
+I don't think
+
+maybe don't don't just you don't have to take just what I say is just that's the way it is.
+
+and exercise like this.
+
+We want to get new file names from the user.
+
+Possibly.
+
+So but but that'd be the job of something that's been the plates File menu. Yeah, should be in the menu.
+
+Or it may have other other way of getting it. So we're missing one big method I think. I think starts on Wednesday at what did we read? Yeah, we have to do the read the file Okay, so that's a pretty good sense of, I think methods. And I think that's a good starting point. There are probably others. I'm not saying that this is it. So if you're thinking, Oh no, we need other things. That's, it's possible we will. It's possible we won't need all these or that we're going to find another way. We want to split the classes up as we go. This is a good starting point. There's one last thing we need when we're designing classes, and that's we have to figure out who's going to communicate with who what we don't want to have happen is we don't want the COI communicate with the menu in the menu communicate with the file splitter and the menu communicate with the manipulators also communicate with the file splitter we want clear defined lines of responsibility. So who should be able to communicate with menu
+
+in your opinion,
+
+users
+
+can The user that will be given input, which of these other classes have access to media?
+
+Probably just file manipulator.
+
+Okay, so why does the omnipod later need access to video?
+
+Because the menu is the one getting the user input right? Now, okay, but um, so that you can read the file that they chose. But
+
+you do want to read the file they chose, but why would the file manipulator want to talk to the user
+
+can see what's going on in it like,
+
+I put it in words, but
+
+it's going to need some kind of it's your right Finally, it's going to need to communicate some kind of status back.
+
+But should it do it by accessing the menu
+
+Oh wait is split gonna be the thing that takes the like the user input like of the file that it wants. So when splits gonna use the other methods, that's probably, so really just not sure what's going on to hear too much, okay.
+
+That's why we're doing it. So. So let's walk through how I think they should be. Because this is harder, this is actually harder than figuring out the jobs who should communicate with you. So let's start with the COI. So it has the main method, that's where everything starts. That's where the program is going to start running and that's where it's going to go from. So it's it's also remember its job was to control workflow workflow is how the program is going to run it the steps. This is going to be the one part of the program that's running basically sequentially, like everything else we've been working on. So when you think about the COI like All the program's pretty much you've been writing so far. We write in the main method and you write down, you know, one, one line, it goes through the main two, it's done. That's not changing. Now, instead of you calling just the string class and other things that do this work for you, now you have to build some of your own classes to do some of the work. So it's going to call them the same way. So it should be in charge. It should be you can think of it like a foreman on a jobsite or a manager at a store. It's the one in charge of everything, but it's not going to really do a lot of work itself. Its job is not to to do the work Its job is to stand there and direct others to do the work.
+
+So I would argue that
+
+file splitter
+
+should
+
+should use menu.
+
+And they should be the only one has access to menu. If somebody needs something from menu they should ask the file splitter. So it's the same Think about this. As you were, if you go into a print shop, and you order something, or actually let's put it something a little more general, you go to a restaurant and you sit down and you order something you don't directly communicate with the cooks do. You can communicate with the server. And if you need something from the cooks, he communicated through the server, it's the same idea. The file splitter is going to operate as the kind of go between the user and the actual functionality. So just like in that case, if we need to talk To the cook, or they need to speak to us, we're going to do it there. We're both going to do it by tasking the server to relay the message. And that's what FileMaker is going to be doing is going to be controlling the workforce can make each one the whole process just like the server when the restaurant they come out, they take your order, they get your information, and then they take them back to the cooking, it's that they're they're done with their job, they delegate the cooking to the cook. And when the chef started, then they say I'm done. And then the server gets that information and takes it back to the user, which has menu. So they're gonna act the same way. Which means that they're going to end up using the file splitter. As the file splitter is the one that's actually going to how to split a file up. Why should they just like the server doesn't know how to
+
+use it. They only have that if we have completely isolated jobs. The server doesn't know How to Cook the dishes on their menu. That is how to ask for it. So the same way splitter see Li the command line interface has no business knowing how to actually split a file up. So what are the delegates the style splitter do it? So it puts in the order.
+
+So we have the file manipulator down there.
+
+Who should use it?
+
+The files put it right.
+
+Yeah, I would argue the file splitter should be that's to be encapsulated by the file splitter. Nobody asked needs to know the family planter exists. The file splitter does. It's the one using it.
+
+So I think that gives us a fairly good starting classes on
+
+so before we move on, cuz I know that's a lot. I know. I see the chat people are saying this. This is hard. This is one of the hardest parts but Unlike your other code where you can actually have code that doesn't solve the problem, part of what you want to focus on is you want to get things broken up, but you want to solve the problem. You don't want to have everything in one class for anything larger than what we've been doing so far. You're probably there's probably a problem, you probably need to break it up more. But so far, we haven't given you any exercises that are big enough to really be broken up. Really, this file splitter is not really that big, probably doesn't need to be broken up like this. But we're going to do it because tomorrow we are going to be coming your project that's big enough to be broken up. projects that size take more than a few hours they take a couple days, which is why your first one kind of shows up out of the blue suddenly.
+
+Alright, so
+
+questions before we move on
+
+So let's code this now. Now that we have four classes we're going to build.
+
+And let's see how it, how it works out how close we end up with a design truly common when you design. So all software projects start with design. They should always start on paper or whiteboard or a tool like this. You just sit down and start coding, you'll almost always end up rewriting things over and over again. So with this, we want to, but it should be fluid too. It's common to run into problems you didn't expect or realize that maybe things don't break up as easy as you hope they did. Now, that being said, most workplaces by the time they get done with design, it does become fairly rigid that they've often you would go out and say, You know what, I don't know if this is going to work. Let's go build a proof of concept to see if it works. And kind of figure out that before you made your final decision. But design should end up being the classes being built, starting from the tasks, the classes you need, what job they're going to do, and good idea what the public methods are going to be. So with this, let's go back out to code and I'm going to create a new. Let's start with the file splitter. See Li has the main method. So to run anything, that's where we need to start. So we'll start there.
+
+So right new, right new class
+
+splitter, Li.
+
+And we'll put it in the package. Let's put it in the package file, splitter.
+
+Let's finish
+
+I forgot to click the main button. I do that every time.
+
+Static void main
+
+string arcs.
+
+So we know we have two methods we wanted here main, we also want run somebody to create a run method, I'm gonna call it public, it's gonna be void in this be run. The whole purpose of this method is when we write an application with multiple classes, the thing we want to do as fast as possible is get out of this main method. This main method should only start the application and do nothing else, which I want to get into away from static as quickly as possible as well. So I can start working with objects. So to do that, I'm going to create a file splitter, ccli object.
+
+So an instance of this object and call the run method which gets me out of static contexts. So remember, static is longs to the class, right? So static has the class and we're starting it. And the JVM is going to call static on the class. And then it's going to, what we're going to do is we're going to stand shade an object based on the class, the foster c li, and then call the run method. So now we're working on an object instead of the static context. And if that doesn't make a whole lot of sense, right now, that's okay. Don't focus too heavily on that. You can this is one of the things you can kind of follow almost like a pattern of when you have something like this in the static main, it should look pretty similar to this Stan shape class and call run method execute something that starts legs.
+
+And I'm just going to put that down there out of the way.
+
+Alright, so now
+
+what should be the first thing we do?
+
+prompt the user.
+
+Yeah, I need to ask the user. So let's figure out what we need to do. So first, we need to ask the user for the file name.
+
+And the line count
+
+the numbers we want to spot on. What's the next step we need to do?
+
+And probably want to
+
+go to the file name. Yeah.
+
+So go to the file name and spell it. So split the file.
+
+Last we want to do
+
+anything else
+
+the tree rises.
+
+Get it right, the new files.
+
+Right? You files.
+
+Anything else?
+
+say that it's done?
+
+Yeah, I think, Jeff tell the user
+
+it's done.
+
+So we have four tasks doesn't mean that we're going to necessarily do all these four tasks right here. But for tasks, we want to complete in the workflow, kind of four steps. So the first one asked the user for the file name and the line count.
+
+whose job Does that sound like? It is?
+
+The menu. Yeah, so let's create a menu class.
+
+So I'm going to create over here,
+
+class.
+
+And I'm going to put it actually in a new package. I'm gonna put it in a view package because it
+
+is really a different concept, two different kind of whole block at work, like the file split of the file manipulator, both route files, but this is around the menu. So I'm going to separate it into a new package. I don't really have to, but I think it's a good practice. Now we have a menu. And we know we need to ask the user those two questions, right? So that we have two choices with the menu. Now, we can either make it generic, and we can have it so it doesn't know what questions it's asking the user. It just says, you know, you send me a string and I'll ask the user that string and I'll get or, and I'll give you back an answer as a string, or I'll give you back as an answer as an integer or something like that. Or we can make them in you know, what the questions are, we can have so we can even have a method like ask us a question or we can have a method like get file name from user. Both are five Just depending how much what we consider the menus job.
+
+So anybody have any preference? I
+
+mean, I would say, it would probably be a lot more reader friendly to do methods. So you said like it, because I knew it'd just be easier to call them.
+
+classes. That makes sense to me. So let's create a method we need, we know we need two things we need to get. So method we're going to get a file name.
+
+So
+
+somebody might get file name, or something. Namely, it's a file path, right? file path from user. And this is where we do the system and its system out. So you system out, print line,
+
+path to file
+
+I'm going to use just print just because that's my preference.
+
+Now, and then
+
+file path equals, and now we have system in. So we only want one copy of system and for this whole class, we don't want to keep recreating system. And if we do that, we're going to run into problems. So we should have it at the top, we can make it private
+
+scanner.
+
+Input equals new scanner, system dot n.
+
+So we want one of them. That's what we have for system out to its its static context. So we always have the same one. But with system and we want one scanner for it. If we keep that we keep recreating it, we will run into problems. So this week is our input. And now next line
+
+And then we'll just return about input.
+
+This is where if we wanted to make sure that path, the file always gets printed, we could use system out dot flush. Let's put that in to be sure we're not going to need it but just in case. Alright, so we have our first method. So come up here, we can say string. file path, equals, we need a menu. So let's create a menu. And again, we don't need multiple menus. Let's create one.
+
+And now we'll use it.
+
+So that's going to give us our file path. So we can test it real quick if we want to run it. to file and we input something. So the next thing we probably need is we need to validate this is an actual file, right?
+
+We need to make sure it works.
+
+So let's do that as a private method. This will be a worker method inside of this kind of see Li, we could put in the menu too. I could see arguments for that as well. I think it could fit neither one. But let's do
+
+private, maybe return a file object.
+
+Maybe just get file or get input file.
+
+And it'll create a new file object.
+
+Let's start it off. And the reason is, we're going to want to have the user be able to
+
+resolve any conflicts they run into.
+
+So I want to ask this question. Hear as many times as I need to, for the user to give me a valid file. So I'm going to copy this line of code down to my private method. And we'll create a while loop. And let's just say wow, file equals null. Then we'll ask this question. And then we'll create a file object. So file equals new file, our file path.
+
+It How can we check if the file is valid?
+
+Because he's
+
+just an if statement. So if a file exists, so it's the case that file does not exist. Or we can still make sure it's not a directory, or
+
+file is file
+
+So if it's not a file or does not exist, then we'll set the file object back to normal. Otherwise, we'll return the file object. And by sending it back to na, the loop is going to continue. If it's not in all it's going to exit in return. So then we'll call this up here. So now we have file, our input file
+
+equals get input file.
+
+And why we do that? Let's run it to see it.
+
+We get the first file, and I give it to some something that doesn't exist. And it asked me again, I could put an error message or something that would probably be nice. But, um, so now I give it that I give it a directory. I know exist, and it still asked me cuz it's not a file that I get a file that it can find. And it continues. You didn't ask me again. So That's the point of putting a while loop menu in a while loop is so that we can repeat the menu as needed.
+
+Right. So now we have the file. So if I
+
+question
+
+Why did this not go on the menu? Just say, I'm just curious to hear the
+
+rationale behind it, it could go in the menu, I would I would agree with it being there. So the rationale, putting it here, and not the menu was that this private method, purpose is to help the run method, get the input file object. So it's completely just to eliminate the need for the menu to know about a file object.
+
+putting this on the menu would be fine.
+
+And I could see if I can see a complete argument for doing that. I think it could be the way
+
+So we also now need a number, right? So number of the user inputs. So we probably need another menu method.
+
+Something like public at get split,
+
+line count to split
+
+from user.
+
+And we need something somewhere System dot out dot
+
+print line. And let's do that here. We just talked about, let's make sure we get valid input here. So let's do it like this. Let's say, Wow,
+
+Peru, so it's gonna be an infinite loop until I break it.
+
+If we're gonna return something out of that, we're gonna need our energy here because we don't ever want to return in the middle of the loop. That's, we should never do that. So we'll say our at our line count. So that equals zero. And we'll return Line count. It's give me an error because it's saying you've never can get out of that loop. So you're never going to be able to return. But it'll, that'll be fixed as we go. So here, we might want to say, okay, so system out, print on. So each time we get up this loop will ask the user number of lines to split. And then we'll get that out input. So let's get it as a string. user input equals in.or input, sorry.
+
+Next line.
+
+Now I'm going to try to parse it, but if something goes wrong, I'm going to know about it. So I'm going to parse it with integer, sorry. So my line count, it's gonna equal to integer dot parse int, and I'm gonna pass it to you input. But it's possible that could fail. If it does, it's going to result in a number format exception. So I'm going to put a try here around it. Because if it fails, I want to know I don't want it to break. I want it to how to handle it. And I'm going to do a catch of only the number format exception. I
+
+think it's number format exception. Yeah.
+
+And then if that happens, I'm going to continue so we'll continue the loop. If we get an exception, so we can't parse to an integer. Otherwise, we'll break the loop. Which means maybe we should do something like this to system dot out print line.
+
+Not a valid number.
+
+Try again,
+
+there's some kind of input. And the way this looks when it runs then is we get the path to file we have to give it a valid one. And oh, we forgot to actually use the method. So that's important. So now we have this, let me split this, we can see both files. In our file splitter, we're going to get int wine count equals, get wine counter, sorry.
+
+We're gonna call menu dot card method,
+
+or delegated to the menu, we're saying go ask the user, the line count, get it for us,
+
+to run it to test it,
+
+tracking text,
+
+and we'll give it a line count. So let's give it 500. And we don't get any errors, but if I would have
+
+let's say, I get Letter A tells me try again until I do give it about line count. So now we have those two pieces. So now we need to split the file. So we need that file splitter class, we go back to remember our design, we're going to have this file splitter with the split method. So let's call let's create it
+
+and I'll just put it right in the main package. And this will be called file splitter.
+
+And we know it's going to have a
+
+split method. So a big void split. And we can always fill in arguments as we need them.
+
+Fast Li over here. So,
+
+we're going to need in the splitter, we're going to need two things at least right, we need this user input, we need the file, and we need the line count. So let's make that as arguments.
+
+Split and line count, count split.
+
+And then over here,
+
+we can create a new file splitter. And this time, I just need it to exist here. So I'm going to create a new object. So as I use these objects, in fourth thing, the CLR, it's not doing all the work instead, it needs something from an object, instantiate the object, and then it calls the methods that we built. So it's communicating with them. It's delegating and asking them to do work. Let's just call this the splitter was a new file splitter and then being called split method, do anything Yep, still, we'll call it, it's gonna be the input file
+
+and
+
+the line count.
+
+So now over here, we need to
+
+figure out what steps we need to do.
+
+So the split the file, what steps do we need to take?
+
+We're gonna have to create a variable to hold the line number that we're on. Okay, so we're gonna have to
+
+track line number.
+
+And then we'll need a loop to
+
+write each
+
+line of that file,
+
+to the new file that we want it to be in. Okay.
+
+Anything else we need to do?
+
+We need the loop to stop at the user inputted line count that they want it to be up. Okay?
+
+So right to the file
+
+until one count.
+
+So we missing anything.
+
+Do we want to create our files as we go or create them based off of the number of lines we're going to split.
+
+So, probably create them as we go. We don't need to pre create them that would be extra. There's no reason to do extra work. That would be an extra step. So we can just say
+
+so that'd be in our loop. We would create a file
+
+Read files.
+
+Flick, we're missing something big.
+
+designate the file that we want to be looping through. And also, well, how do you keep splitting the file? Like, is this going to like split files multiple times? And is it going to change the file?
+
+So I'm going to change the original file, it's going to create new files. Okay. So let's say we split Dracula on 500 lines. If I remember right, I think that creates 36 new files. Each one has five, you know, sequentially 500 lines of the text.
+
+Okay, okay. I'm understanding what we're doing now. So do
+
+do we need to like Make it so that the loop can start again. At the one that we stopped at.
+
+Yeah, we need to repeat the loop. So great files.
+
+Repeat for next
+
+segment.
+
+So I think we're missing something really big.
+
+You we need to set up the buffer writer.
+
+So yeah, we might need to write with buffer. So create files. Right?
+
+buffered.
+
+What do we need to flash?
+
+We probably are going to flush the stream right buffered. And
+
+we will but if we use try with resource, we should be okay there. Yes, you're right. We will need to flush the stream but we haven't do it. So we're missing. We're not reading the file.
+
+You have to read the file. So
+
+Read the file and then read to break it into parts in some way. So I think we're going to run into a problem here. The problem is with is not really with the design, it's more that this problem is not that large for something we want to do. We could read the file, and we could read it into pieces. And then ask our file manipulator or file reader to read the parts. And then the next time we do it, though, we're gonna have to ask it to read. So line zero through 500, and then 500 through 1000. It'd be a lot easier if we could do the writing in the middle of the reading. So I think our class designs limiting us so this is a place where we can say, Well, I think we could Do a better than what we originally thought.
+
+And the way I think we could can do it better is if we took this and kept it
+
+and got rid of everything maybe, but right here to let the file splitter do the reading wouldn't be wrong to put the file. In fact, I would prefer to put the file reading into something like this, something that separates it. But I don't think it would be more efficient in that for this problem not to do that. So I think if we maybe change this to something like a file writer,
+
+and got rid of crate,
+
+got rid of everything but right,
+
+we're gonna have a lot easier time coding it.
+
+And we're still gonna end up with a good separation. We define our split our file splitter as being the job of splitting the file, and part of this job will be to get the input from the file.
+
+That's a fine line.
+
+But I think we're gonna have a lot easier time if we do it that way.
+
+Otherwise, we're going to end up having to write something that's kind of does what's called cursory through the file. So we have to keep track of where we last read, skip ahead to those lines and read the next line, which means we have to keep opening the file over and over again, there's no reason to do that when we can just read it in one pass in, or we can read the entire file in the memory and then split up the strings afterwards, that could work. But that seems kind of inefficient to like, hold the entire file in memory. That's gonna work great for Dragon Ball dot txt, but what if they give us a file that you know a gig in size, we weren't able to put that as well. In fact that they're splitting it that's probably more realistic.
+
+So that means for this,
+
+we could read the file.
+
+And so basically everything we just said here. We'll just put Maybe
+
+right here, actually for the whole time
+
+we'll open up our scanner three the file file scanner equals new scanner and our input file is going to be our file to split
+
+and what to import that
+
+and now
+
+our track our numbers
+
+think I went live number I think we really need is to track something like the segments we're on.
+
+And now we would need to read the file. So the reader file
+
+we need a while loop right gonna read really long Wrong. So we're going to read it with our file scanner. dot has next line.
+
+And now we can see this one. So we have the scanner with the while loop has next line, it's important, we have to make sure there is a next line. And then we can take and get a string from it. And let's create a string array so we can hold our lines. So a hold of segment lines and then we'll call the file writer to write this segment lines. And then we'll reset the array list each time.
+
+And now we'll need something to keep track of how many lines we've actually use. So let's do it in reverse, because that'll be easier if we have five other lines. We'll start at 500 and count down to zero Rather than counting up to 500
+
+I don't know if it's really easier, it seems easier to me so
+
+well, but I don't want to affect the original because we need it again. So let's do a count to split.
+
+And now
+
+we need another second loop. So the first loop is going to go as long as there's next lines, but it's actually not going to read anything that's going to allow us to continue to the end of the file, even if there's not 500 lines left. So there's your two lines up at the end, we'll get those and put them into the final file. So this one, I have a second while loop, where we do check two things. First, we check the count is greater than zero. And we'll check that the file scanner still has a line
+
+and that will keep us from going too far. If
+
+we don't have enough lines left and stop. When the count is zero, so we've done 500, or thousand, or whatever the users ask us, and it will just add those to this list. And we'll just use the file scanner. Now we'll actually get the line from the file.
+
+And then we'll do count, minus minus.
+
+So that's our looper loop our files, and repeat for next segments can actually be handled pretty much, almost all of that right there.
+
+We have to handle the exception.
+
+So
+
+let's just handle it by throwing out the throws declaration. What over here handle it over here.
+
+Let's add a try, catch.
+
+And I'm going to add, see where it says to do right here.
+
+We can create those ourselves. So I create a comment what to do
+
+and say
+
+properly handle found not found.
+
+Now as we add these might find this useful if I go up to I can't see because of the
+
+the menu that I can't. That's
+
+too over from project I can't remember what it's called I can't see it because my zoom controls are in the way when but what Thank you window if you go there under Show View
+
+and we go to other
+
+choose tasks
+
+on task list, I think Yeah, task list. I know what Merlin it's just tasks is tasks.
+
+Open that
+
+right there. As always By all these two new comments, get put in this task list and I see the ones for file splitter down here. So you can come back later, click on them, it'll take you right to that comment. So you can kind of create a task list using the to do and comments without tasks thing if you if you find it useful. I use it a lot of times for things I want to come back to. Like I don't want to handle this error right now I just want the compiler just want to compile we'll come back to it.
+
+So now
+
+over here,
+
+we need to next thing we need to do, we need to write the file to file writer. So we're gonna need to call the file writer. So it's time to create that.
+
+So this is actually where we should be using interface
+
+and let's use One
+
+because now we have an external resource anytime anytime I have an external resource like a file read or file reader, we get the database stuff. next module. I put it behind the interface. So I can swap it out with other implementations. What if I don't always want to write to a file? What if I want to write to a database in the future next module? interface allows us to do that. So I'm going to create an interface called file writer.
+
+And it's going to have our write method of it.
+
+So right, we already talked about community to take a list of strings. That'd be the lines in the file and it's going to take an integer which is going to be the segment number.
+
+Well let it worry about how to use them.
+
+How to import
+
+What have I done wrong?
+
+I'll return to
+
+It will return
+
+need to return anything does it so it'll be void.
+
+And now once we have the interface, I'm going to create a new class.
+
+And we'll call it our text file writer.
+
+Now what fire writers not a good name.
+
+This is more than a fire writers, it actually writes file segments. So I'm going to refactor this, right click on it. Choose refactor to rename. And let's call it file. Save segment writer in which I usually refactor option when I press enter, it renames. This renames the file and if I've used anywhere my code, it'll go rename that as well. So it kind of renames everything it needs to be renamed to make a change like that.
+
+And now here, now we'll create a new class
+
+called the text File segment writer.
+
+And it's going to implement
+
+a file segment writer interface. And again, the point of that is to, we have these extra resources, it's a good idea to have them separated by the interface so that we can swap them out later. And we'll actually do that swapping out later. next module. But
+
+so now this is where our code to actually write the segments go.
+
+So we need here
+
+we need to create the file name.
+
+And we need to create the file and we need to write it so all the stuff we just done.
+
+So let's create the file.
+
+So we Need a filename going? I probably want the same file name that I always have. How can we pass? So I don't want my interface to have a filename involved. Because if I go to something like a database or a web resource in the future, I don't want to I want to have a file name. So how can I pass this class file name?
+
+Without having without filing the interface? We're adding it to the interface. overload it.
+
+So overload white, which portion would be a constructor? Yeah, we could write a constructor overload, or just a constructor in this case that requires this implementation to have a file name.
+
+So we could say,
+
+create a private variable for it string, file name and make our constructor for the text. File segment. Writer string file Name and a set this dot file name equals to the file name.
+
+And then down here, now we can create a file,
+
+segment equals new file and pass it that whatever that file name was for the segment writer. Actually, we went the segment probably involved too. So let's concatenate on something like dash plus the segment number. So to create, like, if we break drag club, it'll create bracket 1234. So one through all the segments. And now we just want to write those lines to the file. So this is where we're going to do do what we've already done today. So try with resource, we're going to use a print writer.
+
+And that's going to be the print writer
+
+equals new printwriter. And we're going to pass it the sake of the segment because that's what we're gonna write to. Actually that's a bad name. Call that segment file.
+
+And now
+
+here, we're going to take
+
+and create a buffered writer
+
+just caused the writer equals new
+
+buffered writer and pass it the print writer.
+
+And to try with resource and create our block, actually have an extra character here. And I think I missed Yeah, spelling difference here to get rid of that. And now we're going to have to handle the exception. So the exception is going to get it's going to be
+
+Java IO exception
+
+actually Their
+
+print writer is the type. Thank you. Alright,
+
+so one is going to be a file not found exception.
+
+I forgot to import it.
+
+And one's going to be a file not found exception. And the other one is going to be an IO exception. So file not found exception IO exception, if I go to look it up, which I'm not going to because it's getting so late, but I'll just tell you, the file not found exception is a subclass of IO exception. So they're both the same. So let's do a catch for IO exception.
+
+And
+
+this is really dangerous to leave this like this, because it's bearing the exception, so I want to do something with it. What I'd really like is that when I call this write method, if there is an IO exception, or file not found exception, it throws the exception back to The color of this method. But if I have something besides a file writer, since I have an interface, it's not going to have a file IO exception. So I want to handle this with something else. So I'm going to quickly create a new class and the salt call it something by segment, right exception.
+
+And I'm gonna extend
+
+exception. I'm just going to create my gonna put anything in it besides a constructor that calls the superclass of exception and passes through
+
+the other exception.
+
+And this is gonna allow me to have a generic exception that's for a segment writer without having to tie it to the file. So called Super with the exception, and we're done with this class. So now over here, we can say throw, new segment, right? exception and pass the exception we had. And now we can add that to a throws declaration.
+
+And now we can add that to our interface.
+
+And now
+
+we can just write the file. Now we can finally write the file.
+
+So to do that,
+
+we'll just need it say, for our writer, somebody had a for each loop. So for string line, in line, so for each line, let's just call writer dot write and pass it the line. And then we'll call writer dot next line
+
+down the line.
+
+So that's all we need for the text segment writer. And I know we're going kind of fast right now, I'm aware of that. But I also know that everybody looks like they're pretty much done.
+
+We need to complete this.
+
+We're almost done. We're actually almost there. So
+
+all right. So now in our split, we just add one final, one thing here. We will have our segment number.
+
+Now we need our
+
+segment writer, and we just need one of them. So we'll create it up here outside of our try. So a segment right here, but it's actually going to be our
+
+segment
+
+right?
+
+File segment writer.
+
+Segment writer equals our text file CIG lead writer, which will allow it to pass our file name. And we have that as input file now file to split.
+
+And we'll call get absolute path.
+
+And we have to handle the exception in some way. dope.
+
+Did I do wrong?
+
+Oh, I forgot to do.
+
+So now here we'll call our singer writer. So we'll call segment, writer dot
+
+write
+
+We'll pass it the lines, we'll pass it the segment number.
+
+No, we have to handle the air. I'm going to handle it by adding a throws declaration, and just let it go out to the main method. So Bower see this method, I was throwing two errors found I found the segment writer exception. And the last thing we have to do to get this to work is forgot to reset that ArrayList each time. So we'll set lines equal to new ArrayList type string
+
+to get the next segment. All right.
+
+So we really are at the end now we have working code, we should have working code. We haven't tried it yet. But we just need to handle this final thing is handle the exception out here in the COI. So let's handle it this way. Let's handle it for file not found exception. Let's change this exception. So we'll just get any exception that occurs because we're in the final method work out at the end, we'll get any exceptions occurs. And we'll do a System dot out dot print line
+
+and say an unexpected
+
+error occurred.
+
+let the user know. And then let's do this, we'll throw new runtime exception. And we'll pass the so we're going to change it from a checked exception to a runtime exception and just throw it out to the JVM to crash the app and ugly it will spit out the ugly, fast stack trace to the user but at least we'll be told there was an unexpected error that occurred and what was the problem I just have right there. What I just do wrong.
+
+Did you just bury the exception?
+
+No. I threw it away. Again, I've handled it.
+
+So, system out should not be in this class, it should only be in the menu. So we need to go over here. And let's create a quick kind of delegate class. for that. We'll say public void.
+
+Display
+
+user message.
+
+Let's build a classic and display any message we want the user all to do is to a system out print line of the message. So we're going to delegate we're going to wrap and encapsulate the system out behind the menu. And then to be sure what it was just about not flush. Now over here in the file splitter, we won't call this we'll call our menu, display user message.
+
+And we're going to do the same tell the users done
+
+Save Menu displays your message.
+
+And
+
+files file has been split.
+
+So let's run it and see if it works.
+
+So we'll give it our Dracula dot txt.
+
+Give it maybe 500.
+
+The file has been split. So if I refresh this I now get Yeah, it worked. So there's the 32.
+
+Yeah, so we got to the end, so that's good.
+
+The last 500 lines should be 500 less lines. So 473 is the last segment. This is pick one random one in the middle.
+
+And it's
+
+500 lines long.
+
+So it split it in 500. So we have a file splitter, now it's working.
+
+I'm gonna get rid of all these
+
+here, so we don't end up with them.
+
+So that was a lot, I know, at the end there,
+
+but it's recorded right so you can rewatch it
+
+and slow it down.
+
+So
+
+the takeaways that I wanted to get from us is one that you need to start with design. And we'll talk about that again tomorrow morning. When we kick off the cap, the first Capstone, but two that you want to build in separate classes, each one doing small piece of work in methods and those classes that do one small task for that class. And then you call between the classes to pass information back and forth by using those methods. So, if the CLR needs the menu, it calls the menu object in a method inside that it needs to use. If that gets a response back, it stores in the variable to be used. If the CLR needs to split a file, it creates an instance of the SP file splitter, and it calls it and then that handles the file splitting. But if it needs to write a file, it creates the segment writer in calls it so it's about them communicating using methods and methods the public enough to remember their behaviors. That's how they communicate. A class ask another class to do work by calling the method and it gets a response back in stores in the variable that's the return type. So that's how parts of a project communicate with each other.
+
+And you haven't done much of that yet. You will my next couple days.
+
+But if you keep that in mind that it's just asking a question and getting a response back return types of response you store in a variable and then do something with it, you ask question by calling a method, and you get parameters to that method is parts of asking your question. So if you think about, you know, walking in the restaurant example, you're going in, in the arguments you're giving to the method, or to the method is the same as telling the waiter you know, I want item 10 off the menu. It's that's the input you're giving them so they can fulfill your request. And then they may be going off and having somebody else do the work. So they go ask the cook and say, hey, what item 10 are translated to what that means for the cook to do the work, that's communication between separate classes, and also the fact that you don't ever talk to the cook. That's encapsulation, which we have which is what we did with Keeping the file writer behind the file splitter, the CLR doesn't need to know about it.
+
+Alright, so what questions do you have?
+
+So the thing that you created, is that how the inheritance graph would look like the design thing? Is that how the inheritance works?
+
+In this case, we have inheritance working, actually not in this design at all. This is a more of a flowchart. It's a, it's a, it's a flow chart between the classes. Okay. So this class communicates with menu includes file splitter, you're actually should be a back arrow for each one too. But okay, gotcha is a return return a response? It looks
+
+at showing the coupling.
+
+Exactly. That's exactly what is showing. In fact, I think I can save this. You see, I'll do that after We're, we're done. And I'll check it in. So.
+
+So Other questions? Okay.
+
+All right. So for
+
+your exercises, today, they're pero may again, there are also extra exercises. So I encourage you to look at those. If you have time, there's extra exercises for individual style ones you can go through. One of them is actually file splitter, which is what we just did was actually one of the original individual exercises. So encourage you to try it again without looking at what we just did. That can be a good
+
+experience.
+
+So
+
+there's two things we need to go over with the x with these exercises
+
+and
+
+the first I'm gonna put on
+
+river right now, either your your pair or both are going to have to go into your exercises your pair folder, this week's pair folder in Terminal and
+
+you're going to need to
+
+add upstream to your pair for so you can get the new exercises for me. You'll need it tomorrow as well. This is the only one of you really need to do it is because that person can push the origin and then if the pair partner can pull from origin to get their copy, but you both can do it. It won't hurt anything if you do.
+
+Sorry, I'm logging into river because I had
+
+Was takes me at least four or five attempts before I get my password right
+
+and
+
+then you'll pull to pull from upstream to get the new exercises you only do that once. Once you're done with that you just go back to working with origin like you happen. So
+
+so the command that they get remote add upstream command is in or in river you can just cut and paste that in the terminal inside of your pair folder. So this week's pair for the one is called like team one week four pairs to get the new pair work. What are we doing is a file, Find and Replace. So, you open up read the File analysis, which is one man's been given, but you should ask the user what file they want to do it with. You'll ask the user a word they want to replace and what they want to replace it with. And you shouldn't change the existing file. Instead, you should create a new file with the changes. And if it already exists, you just have an overwrite the existing one, which is what print writer already does for you.
+
+So that's what you'll be working on. So
+
+questions there.
+
+And then
+
+see some other stuff I was going to talk about. We'll talk about it in the morning, cuz it's
+
+late. So a couple of important things for today.
+
+While the open review, four to five, bring any questions you have. I'll talk about anything you want. During that time period, so just be here in this link again.
+
+And
+
+that's, I don't think there's any pathway events or anything today. So we'll meet tomorrow, regular time to just 9am like regular, and we'll start tomorrow with what's called the capstone kickoff. So we'll go through what the capstone is, we'll go through some other stuff as well, some details around it. answering the question of usually takes about an hour or so. And then you'll start your capstone project with your pair. And we won't meet on Friday. So you'll spend the rest day tomorrow after the kickoff and Friday working on the capstone, and then probably the weekend as well, but that'd be up to you and your team and how well things go. We'll talk about that tomorrow.
+
+All right, so any other questions today
+
+So I know it's really late. So everyone looks real happy right now.
+
+My guy, we got to be able to classes here
+
+we do our instructor. The other classes are like,
+
+oh, we're dying. Are you gonna be like Java blue? They were super excited. You're like, yeah.
+
+buffering stuff and they were excited. ate it up, preview the report.
+
+So that now we can I can honestly say everyone was smiling at the end. So just leave out the part of why. All right,
+
+so. Right.
+
+So if there's nothing else, then I'll leave you to it. Thanks for
+
+listening for so long. And
+
+I don't get all right. So good luck. And I'll talk to you later this afternoon or not then in the morning.
+
+guy yeah
+
+Transcribed by https://otter.ai

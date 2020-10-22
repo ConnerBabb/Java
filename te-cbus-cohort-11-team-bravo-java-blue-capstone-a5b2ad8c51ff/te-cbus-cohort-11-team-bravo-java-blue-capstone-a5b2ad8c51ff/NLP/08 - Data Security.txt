@@ -1,0 +1,744 @@
+Zoom
+https://techelevator.zoom.us/rec/share/ydB-ArT5pnFLbI2TxW6OA61xBrS0eaa8hygc8_cFnx0VTcr-eyEzWna_6iR7IQMY?startTime=1592400040000
+https://drive.google.com/file/d/1jT56KqNVxzltuxX39L81O_9EA3VpdwrW/view?usp=sharing
+https://docs.google.com/presentation/d/1hyjZ3FWTfOBmAp0KfQp7Ckd4rNV3If0DYWWxsiKgWPE/edit?usp=sharing
+
+All right. So today we're going to talk about data security.
+
+And we're going to
+
+Sorry, I logged out on my.
+
+Alright. So it's the topic today is
+
+one that there's really no code for, we're going to look at some code examples. But there's nothing to cut along with. There's really nothing to do. It's more of a informational type lecture. And really, there is code for but we already seen the code. We've already done the code. So a lot of it is going to be talking about for the first part While some of that code we talked about important in demonstrating that, and then for the second part, talking about some other things that we want to understand. So we're going to look at a few things. Today, we're going to start with this idea called SQL injection, which is a common attack. And we're going to look at that, what it is, how it works, and then how to stop it, how to prevent it. And then we're going to look at this concept called hashing. And as part of that, we'll look at salting and then we'll look at how hirings used with passwords. So as part of managing passwords in a computer system, so we'll look at those and how that works. And then we're going to take a look at encryption and specifically two types of encryption. One, what encryption is, and then encryption of data at rest. So data on your computer and the data in transit data going across the internet. And then that'll lead us to another session. exploitable security exploit called the man in the middle attack that we'll look at. So that's what we're going to be looking at. And the reason we're going to look at it and focus on we have a few different times we focus on exploits, is that we hear about exploits and attacks or hacks in the news on occasion, right?
+
+The big ones seem to make the news but
+
+it's up and up this page. So Alright.
+
+So this page and I'll send you the link to it because it's just kind of interesting to look at. And it's been modified to a point that they've actually limited to only large x, large attacks. Maybe it's not working. There it goes. But the show's over since 2018 major exploits or losses of data that have occurred from various companies and systems. This is only ones of I think where they've lost has the honor somewhere, they've lost greater than 30,000 Records. Until recently until about a few months ago, it listed all of them that were known. And there was so many bubbles you couldn't read, it became unusable. So they limit it to only the larger ones only 30,000 records are above. So security concerns in development, especially in web development is is really large, and see just from the ones that are 30,000 or above the last year alone, there was quite a few different losses of data. This Loss of data ranges from somebody getting username a password, or maybe not your password. But we'll talk about what that mean what that can mean. And, or know somebody getting credit card information, or no banking information that can be can be used more directly. So this is a major concern. And one of the main, most dangerous hacks and one of the ones that we lose that is responsible for probably more loss of data than anything else is SQL injection. And it's also the easiest to prevent. And but we'll talk about how we prevent it and then some background and why maybe ideas of why it's not always prevented. So, we're going to look at what that SQL injection is to try to impress on you the importance of doing one small thing in your code. That will secure against it there's actually an absolute security measure against it unlike a lot of the tax will look at over the cohort SQL injection has one absolute can stop it but it's still the most devastating of the common attacks the one responsible for losses of millions of records of data. Only this up and often think that address because each of those bubbles if you go to this site
+
+can't get back to it. If you actually click on these, they take you to articles about what happened. So it can be interesting to pics to see what they actually lost or a lot The articles will explain in more detail about what actually occurred. So it's an interesting thing to look through.
+
+Let me get logged into wherever here
+
+this URL for you.
+
+And the reason I would suggest you do it just outside of just it's interesting is to impress on you the importance of
+
+security.
+
+Alright, so that's why we're going to look at today's topics, mainly the first one, actually all of them. And, as a disclaimer, I have to give a disclaimer for the first part. So, so Some of what we're gonna look at, in the first part of the lecture is illegal. It's not illegal to do it here on my local machine. So legal to play with your machine, there are places on the internet where it's open for security testing. And it's not illegal to do it there. But if you go to Facebook or Amazon or Twitter and you try these techniques, they have processes called logging in, it actually is illegal to do it there and can result in fines or even jail time for even attempting it against a site. So don't take what you I'm going to show to you and then go running off and say, I'm going to see if I can hack my friend's Facebook account. Even if you don't succeed, and you won't, because it takes much more sophisticated attacks to attack the most modern sites, especially if they've already lost data from these ones in the past. Being unsuccessful, you've still quitted the attack against them. So I just have to give that disclaimer, but there are places And I'll still share a video at the end that has, we won't watch it, but I'll share the link to it that has talks about one particular site, you can go practice this.
+
+So SQL injection.
+
+We'll start by just demonstrating it working. So I have this site. This is a web application that we have for its internal built web application.
+
+That is for security.
+
+It's the most insecure site you could imagine it was built with every exploit we can think of open it so that we could demonstrate things. So it has a full login system, not a secure one. So I can you can log in, and this is there in your folder though, you'll have to set your eclipses and setup to run it as it is. So it's, it's air in the lecture code. If you want to know You have to figure how to run a server. We won't be doing that this court. But it's, it's still there if you were looking at the code. So I'm going to demonstrate with this system for each of these names, which, you know, Bill Gates, Larry Ellison's did was cause the act they their passwords or their first name. So I'm going to first demonstrate that login works. So login.
+
+Hey, what's the login is?
+
+No, no wrong way. Gates, and Bill
+
+and login, they have private messages. And they can send private messages. They have private messages they've sent they can change their password. So it has kind of a form system built in for each of their accounts. So I'm gonna log out now. I'm going to create a new account and if we weren't personally And what I would do is have one of you come up and like a magic trick. Have you created an account by my back, but I can't figure out how to do that remotely. So I'm going to create an account and just realize there's no no reason for me to trick you on this portion. So I'm going to create a count let's call it something like user one. And user one's password will be password. 123 Actually, no, yeah, I want to get a login one's gonna be password 1231 of the most common passwords. But that won't matter anyways, create, create the user and I can immediately use your one password. So right now I'm passing one two, password 123 login
+
+and logout. And then again, he's one
+
+and I'm just gonna type Some random characters and login
+
+you can see that I can't log in without with an invalid password. So
+
+I'm going to now log in in a different way.
+
+So user one, I'm going to use SQL injection to bypass the login system. We get a little more interesting when somebody besides me to set the password, but to demonstrate that I can use this attack to get past it
+
+as long as I type it, right. So
+
+so I'll talk I'll tell you what I typed there and show you why it works. But
+
+I typed in basically some SQL
+
+and I remember logging into the system using SQL So what I typed
+
+was this.
+
+The second time I logged in, I logged in with this password.
+
+So which is part of a SQL command.
+
+So the reason it's working
+
+is that this is the query that that application uses. So it's not a well built application as far as security wise. And one of the ways it does login, which is something you will see in actual systems is it checks a database table to see if the user ID and password match what's on the database table. So it concatenates the values from the user into the SQL. So the users I typed into the box. So they will be doing a module for it takes those and concatenate And then to the SQL in the do. So it takes the username concatenated into the string. So when I typed in that user, which was user one, so I gave it a valid username, I guess it's all uppercase, but
+
+the query created was this
+
+with my password being concatenated into this, so there was originally a single quote. So the first part of what I typed in did the single quote. And then the second part, or one equals one is always true. So no matter what that's going to be true, right? And then this comments out the rest of the query. So the, the remaining quote in this case, or if there was more gets commented out. So what happens is now instead of saying with the username and password, equals the username and password, it says with the username equals, and I still got that wrong, that was user one. And password equals nothing or one equals one. So this is a boy and condition that either one can be true. And when because one's always true. So the condition is always true no matter what password actually is.
+
+Which means it passes the security system and logs in.
+
+So SQL injection is
+
+changing queries that are in a system, the ones we have in Java, like the JDBC that we have in those strings
+
+by modifying them in some way.
+
+And there's three types of that that can occur. So the first is a modification attack, which is what I just did. So I modified the query, I it usually involves so always These take, you don't just go to a system that's new and just go try it and get it right the first time it takes experimentation with the system. I've tried to figure out what query they're using. And I'll show you a way that it is poorly designed to actually help you with that. But the once you have that you end what they're doing. You change your query to change the query using chain by changing the Boolean condition, which is easily done with or, or, and whatever condition we need. And then you remove the rest of the query by commenting it out. So this same thing can be used here in another place in here. I can get you back here. And I'm going to log out user one doesn't have messages. So I'm going to log in now as the gates user because Bill Gates has private messages.
+
+So here, so here I'm seeing
+
+latest messages from Bill Gates from set messages. And there's also a parameter up here, and what's called the query string in the URL.
+
+And using the same thing,
+
+I can see everybody's messages on the system. So all the private messages, not just Bill Gates his private messages, because it's doing the same thing. So notice that the URLs changed it. This is called your own coding, certain symbols can't be sent across the internet. So spaces can't be sent across the internet. So what they do is It changes spaces to present time 20. And for simple things, Chrome helps me out and does it for me for more complex things off to do something more. So I can see all the messages in the system using a query changed by changing the query. A second type of attack is called a union attack. And we looked at unions, and I made the comment that a DBA that I worked with once said that if you're using unions, if you're using a union, it's because you don't understand joins. And I made the comment that the only time that's not been my experience, that's not true. That funnel forget DBA was correct is for SQL injection. SQL injection has a great use case for unions. So if we have a query with a union attack, we take the query the results coming back, and union on results from another table. So here we have messages coming back into display. in a particular way. So if we take a look at this site, or most sites, we can often figure out from the HTML and the JavaScript, the stuff, we can see what likely names are in the sequel tables. But just playing with it, we can also figure out a lot about the attack. So in this one, Chrome will build the code encode, do that encoding for those characters, it can't pass on the URL.
+
+So I'm going to go to
+
+a website.
+
+That'll do it for me. So this is a URL decoder encoder. And this isn't something that's done just for attacks. So the site's not a malicious site. It's something that's done for anything we send across the internet. If you want to send you know a message that Has strings or spaces in it that you know you're sending to somebody it has to be encoded to. So everything has to be encoded. We'll talk a lot more about later this module, or later this cohort.
+
+But I'm going to encode some SQL.
+
+And what it's going to do is it's going to do the same thing. It's going to end the current string that I'm on, then it's going to do a union with another select, that selects the same values. But now it's going to select the username and password from the app user table, which is the table has usernames, passwords, and then it's going to comment out the rest of the query anything else that that original query supposed to do? So I'm going to coat it and I can take this and actually it's going to I have an extra space I think, no, no, I have an extra character turn Shouldn't with those two dashes. Go back to our Instagram application, change the username
+
+and run it.
+
+And I can see everyone's username and password, including the one that we just created. I said the username one, and I was going to set the password 123. So we get a list of everyone's username and password. So imagine we could also do the same if there was credit card numbers or something else in this system that we could retrieve. So we can essentially get any data from any table if we can figure out the table name and the data called names, which is surprisingly easily to do. So a third attack, and probably one of the most devastating is called stock query attack. in SQL, we can end any query with semi colon, and then we can start a new query immediately, you know, run them together. So we see that dbvisualizer that's why we have to have semi colons. Before you run the next query, if you're using like command period, is because it has to be able to see the end of the beginning of queries. And we can if we put so if we give it multiple queries per wet by semicolons, it'll run them all separately. So what if I took, I mean, I need to go back to my coder.
+
+And
+
+I know app user from this query is the user table. And I did some I did this. So I do the dash or the single quote. So I end the current string,
+
+semi colons.
+
+And then don't run your space there. drop table, app, user,
+
+semi colon, and then comment out the rest of it.
+
+So now I've inserted a drop table in the middle of My query. So let's try that.
+
+I'm gonna code it. I'm gonna take my query here
+
+and run it. And I get an error, says can't,
+
+can't drop the table because other things are dependent on it. So I won't allow it. I look down through all SQL. So giving error messages like this gives me a lot of information. So applications, one of the things we'll want to learn will learn is that we want to hide error messages from users. We don't want to ever show users the real error messages, we want to trade them and we'll look at that we get to web development a lot more. But when we start working with users outside of our CLS, we don't want to give them our exceptions we want to give them other versions of it. If you go to a website and you see something like this website's really insecure because somebody can take advantage of those errors to find out things about the database. So it tells me exactly what's wrong with my query. So but if I look at this, not only does it tell me that there's a dependency, which means I have the right table name, but it tells me hit use cascade use drop cascade to drop the dependent objects to. So even tells me how to fix it. Because it's trying to be helpful. It's for developers, it's not for public consumption. So let's, let's listen to SQL SQL probably knows what it's talking about. So I'm going to go back to use cascade and actually get back to
+
+C gates.
+
+Let's go back and I'll decode this and said okay, drop table, cascade. Got it?
+
+Come back in
+
+Change this, I get another error. This time it says okay, there's enough there returned results. I don't know what that means. But
+
+let's go back to gates. Everything looks fine. I log out and log in
+
+and log in to scates password bill
+
+and log in and have an error that app user does not exist, the drop table command worked. So I was able to now change the database using stock query. So well using a stock where we can run any query we want to get to the database to get results back or to change things prop prop tables or make other changes. So before we look at the fix for this, any questions so far or comments
+
+Alright, so let's look at how we can solve this, I'm not going to show you solving the web application, because looking at the web application code probably won't be too useful to you right now, the same code. It's just a demo, but it's still buried inside of this, all this other code is going on. So I'm going to open up, she's going to stop the web application.
+
+And I'm going to come back in a second settle actually carried code data security lecture. And this is a CLR application that has the same problem can do quite as much with it. So one of the things we can do with it.
+
+If we look at it,
+
+Run as Java application
+
+it has.
+
+We can add a user
+
+to user let's add our same user user one, better steam, super secure password, password 123.
+
+And now we can log in
+
+our user one,
+
+password 123.
+
+And now we were logged in, we can do things like show the users, there's only one,
+
+maybe add another user.
+
+So test user to
+
+the second one of the most second most common passwords. A one B two, C, three. I'm logged in already, I believe. So I can show users so we can see there's not two users. And then we can quit. And I want to log in again. So this has an insecurity around the username. So for my username, I'm going to pipe the single quote into last query, then a semicolon to end it. And we'll use a stock query, and do delete from users, which is the user table. And then in the query, and then the double dashes to come and everything out.
+
+And I don't care what my password is.
+
+And now I get a login with my test user user one and password 123
+
+So things didn't work.
+
+Let me try again.
+
+Were you supposed to do that in the password? So the username
+
+now for this one it's I believe the username has the feature
+
+they tried to get I might have mistyped it
+
+lead from users.
+
+Okay, now log me
+
+What if I gave you the version that's fixed?
+
+that could have happened.
+
+It's
+
+Yeah, I gave you the version is fixed. We break it again.
+
+Now for login
+
+Okay, that's what should be getting. So we get the same error,
+
+quote. But if we run it
+
+now we should get an error that the user doesn't exist. Yeah,
+
+the user doesn't exist. So.
+
+So the fix for this. So the cause of this.
+
+We essentially dropped everyone from the user table doing that.
+
+So, the fix is what we started. It's a simple
+
+We already saw that it didn't work before.
+
+those parameters said we need to use. This is what they prevent. Once it's parameterised, at least for job application, it is a complete
+
+validation against
+
+validation with a complete stopping of SQL injection. So it's a complete protection against it. That's simple using parameters. Yeah, I also need to have a bunch of data flowing in the background and scripts that make no sense printing out, I should have for next cohort, so that's great idea. So
+
+that simple, simple thing. Completely stops sequence action. But it's the most
+
+the most devastating attack as far as data loss.
+
+Sorry.
+
+So Brian, just doing that will stop all three types of attacks
+
+it with the subsequent action all together. So the reason is is here's the difference. So going back to this original slide, this is the sequel we created without parameters, right? So if parameters The first part is going to be the same, but what it'll end up creating is this is what we created without parameters we concatenated. But with parameters, this is our original query.
+
+What we end up creating is this
+
+or actually might be easier to see as This though it will actually have escaped characters like I started the type. But it's going to treat that as a string, it's going to treat that as just characters in the data not part of the query.
+
+So
+
+that means that it can't ever be ran as part of the query. So the danger of SQL injection is comes from the fact that SQL being a declarative language, we're giving it the string that it's going to interpret for us. That is going to tell us how to run it we're building as strings. And can we concatenate our pieces together as we need as we've done, when they're hard coded, there's no risk there. But when value comes from someplace outside of our method, it becomes untrusted. And if we concatenate it in SQL can't tell the difference between this and this by default, so by default, it treats it as this because we're just part of the strength we get when we concatenate when we use a parameter, it escapes it and turns it into a string and tell sequel, hey, this is just data, this isn't part of your command, which means there's no way to run a command through it. So that simple. Change parameterization stops SQL injection complete.
+
+There's some other
+
+things against it. So if we consistently parameterised SQL, we don't have to worry about it. But the other things is input validation, meaning that we can also verify our input
+
+on
+
+as someone's typing so we can make sure they're not typing SQL commands. And if they're, you know, putting in the fill, we could put something on like the password or username field that says, you know, this is a SQL command that can be hard with a password. When we talk about passwords more in detail, next module will Want to we'll talk about the fact we don't want to necessarily prevent them from using those characters. And then also, another important piece of this is something we brought up last week, this idea of the the principle of least privilege, meaning that the web application, if it connects to the database, why does that web application have the ability to delete a drop a table, it shouldn't be dropping tables, it has no reason to drop tables. So it shouldn't be allowed to, it should have a user that can only do what it needs to do, which is read, add to the table, insert and select, maybe update. So it shouldn't be able to drop things from the database. So giving us fewest permissions as possible. So the reason that SQL injection exists is a few different reasons not every language is easy to deal with SQL injection, as it is in Java,
+
+or modern languages, I should say. And
+
+also,
+
+older languages or older versions of languages, older applications often didn't have as good pronunciation or didn't had it all. So had to be done manually. So it's easier to have exploits ended up getting into the code by accident. So there's a lot of that old code out there that still has security exploits on it. And there's lots of code out there written by developers who are just don't know that they need to use parameters don't understand what they do, so they skip them, or are just lazy and concatenate the strings together. The last one is probably the most likely in a modern environment, because actually putting that question mark in and putting in the parameter list is easier and less confusing once you get used to it then concatenating strings, but it requires you to learn something new. So
+
+That's SQL injection, you know,
+
+this.
+
+So there's some resources. So the first one is there are three links you could just follow if you're interested in more information. And the first one, oh wasp, which is the open web security application, Application Security project, this is their page on SQL injection. Oh, wasp is kind of the I'll say it's the source of modern attacks, and how to solve them. So it's it open developer community, that security community that tracks modern attacks, and it documents one how to do them. So it has detailed information of how this attack works, and then what current steps exist to solve that attack or from code. When possible, though, we'll talk about one major day that we can't solve from code. So I would suggest getting familiar with a wasp, at least their page, they exist. Because that's when we get to web development or when you get into web development or other type of development for users in the future, that'll be an important resource. The second one is a site called tax planning. If you're not seeing exploits, it's a great site. They have two tiers of free and paid tier, but the free tier is great by itself. It has these little interactive videos for all these exploits where you actually do them, it actually will save like type this and it'll show you what's going on the back end of how the exploits working. And then it walks through after it shows it working and how you kind of interactively do the exploit it walks through how to fix it, how to how things could have been different in the code to fix it, so they're actually really informative. And then the last one is a video that a past student suggested that sent me that discussion on SQL injection, I'm doing it and it's more about doing it safely, if you want to practice it, and they give a site in the description and talk about how to use it, in the video have a site that's set up for developers to practice SQL injection. The idea being that if we know how to do it, we can prevent it, we understand it. That's the whole reason we talk about exploits or how they work is not to teach you actually how to go no hack a website. It's to if you understand the risk and how it works, you can prevent it take action and prevent it. Alright, so before we continue there any questions, comments? I see there are lots and lots of comments. I didn't get to read them all to go back through them after class. And the comment, I see that already answered it but the special character limitation in a password system
+
+that That may be why I agree with Matt possibly.
+
+But that goes against everything about good passwords to limit characters. We want to expand characters, and we'll talk about that not today. We'll talk a little bit about passwords. They will go in more detail with passwords next module when they're more relevant, or might be a module for now. But later this quarter, we'll talk more about passwords. So yeah, that that flies in the face of all good policy. fact there's talk about lighten delete and backspace in our passwords, not taking characters out. Alright,
+
+so the next thing I want to talk about
+
+is hashing.
+
+So hashing is a
+
+Not only for security, but it's a security feature of being able to take data and put it through an algorithm one way that transforms it into another form that is consistent. So it's always the same form but cannot be reversed. So once hashed, we have a final value of the hash, we can't reverse it back into the original data.
+
+So the reason
+
+we worry about hashing is for mainly for passwords. That's one of the main uses. But it also can be used for security of account numbers and some other piece of information. Which brings up the question if we can't reverse it, why would we use it for passwords? Well, a good system won't know your password. If you ever get an email that says, hey, your old password was you lost your password. You say, you know, tell me my old password and they actually can tell you your old password. That's a huge problem. That means they're storing your password. And we're going to talk about today with hashing. They know a good design well design system doesn't store your password. They just have a way using hashing or being able to determine if you know your password or not what it is.
+
+So
+
+hashing is comes from this idea, that exact idea of why should we be storing user's password, it's theirs. We don't care that the user made their password one, password 123 what we care about is when the user comes back, and they type their password, did they type password 123? Do they have the same password? Do they know it? That's what we care about. So hashing and the use we're going to look at it mainly comes about from that exact question of why do we Why should we be storing passwords and that's because We need to be able to verify, but we shouldn't be able to recover. And that we want this because if a user if a system administrator shouldn't be able to go to the user table and be able to see all the users passwords, a hacker who steals the database, using something like SQL injection, shouldn't get users passwords, they should just be able to get these hashes that we can use to verify users passwords. But we'll talk about a problem with that.
+
+So
+
+the way hashing works
+
+is this is a mt five hash. And there's several different hashing algorithms and D fives one that's considered insecure, but it's still heavily used for transport what's called transport validation. And that means that if you go to like download Eclipse, or you download other tools, and you'll sometimes see Oh, They've added ads. That's That's great. This site did you stop ads? That's why I chose it but probably see that a bunch of people are using it every 14 weeks and decided to capitalize on it.
+
+But Wow, they had a lot of ads. That's not just one that's a lot. So
+
+if I started someone have a
+
+Okay, that's what was asking your question. And
+
+oh, dear, I see your question of Weiner. Yeah, my personal machine. Yes, but here, I just avoid size fads. I really don't have to go to them. So 75 cut, commonly used when you like download Eclipse, they'll take a hash of the entire project, the entire thing you're going to download, and you can get the hash and then your side you can hash it and make sure that it's the exact file you downloaded to make sure of a couple things, one that someone didn't maliciously send you the wrong file. And more importantly, in probably the more common use to make sure it completed download. We talked about networking stuff, when we get to more internet technologies. We'll talk about the protocols and some or you'll read about them I should say, and how data loss can occur. So if what a hash though, the idea works the same, so no matter what I type in here, with our type password 123 I can type it
+
+generates a hash
+
+and it generates this so this is a hash a password 123 This is a consistent length. So I'm going to come down here and just grab all of their texts.
+
+And if I put that in
+
+it'll generate
+
+a hash of all of this. If I took every if I took my all of the clips, and all the source, not the source code, but the actual binary files that are being run, and I put them through an Indy five hash, I would get a string that looks like this. So high stakes, whatever data we put into it and generates a value that is unique to that data being inputted. So to go back to password 123
+
+and there's the hasher password 123. I'm gonna copy it here and see, come up here, the store it
+
+and now we're going to hash again.
+
+And this to password On this type of password 123, without the D
+
+and a small change,
+
+you would a single character change and a large file of millions of thought or thousands or millions of characters will generate a very different hash. So there's no way with the web with a good hash power, there's no way to, to specify exactly which way we're going to get a single character change doesn't change it in a predictable manner. It actually does an Indy five, which is part of the reason it's considered insecure. But, but that's okay for me five because the way it's being used. So now I'm going to password 123 again and generate the same thing. So the same value, you grab this hash again, come out here, but if I put the same value in the exact same value, I get back the same hash. So while it's not predictable from the letters That I put in, it is predictable, that if I put in the same value, I always get the same hash. So with the password system, what we'll do is we'll store this hash, not the password. Then when the user comes back, we'll rehash the past we'll rehash there, they say type in your password, they type in password 123. We don't know it's password 123, we hash it, immediately throw out what they typed, and then compare the new hash against the hash we have stored in the database. It as long as it's exact. Well, it'll be the same hash. If there's even a small change. Like, let's just do it all lowercase, now.
+
+We get
+
+a completely different hash. So even going from a capital letter to a lowercase letter changes the hash considerably. So that's how we can store passwords.
+
+But there's a problem.
+
+Actually, this worked great for quite a while, and then there became a problem. Well, we have these hashes stored, they can't be reversed, that has not changed. But there's also a limited number of hashing algorithms.
+
+There's only a few.
+
+And so they're stored. If there's a SQL injection attack, instead of like, we got the Secret Doctrine attack and we saw the passwords, they get these hashes, which don't look that useful on the surface. Until you remember that. If the same password is enter the same values entered, then
+
+I can tell what it was.
+
+So if I'm trying to figure out what this this is, and I go to my calculator and I keep not manually Of course, I keep checking things. Is it password?
+
+124 say, well,
+
+that's not in my list.
+
+That's 123 is actually the most commonly used password.
+
+At least as of the chart I saw from a couple years ago, I believe it's still probably is the case. But now I see password 123 generates this hash. And I have this table I generated I downloaded I got from see something like SQL injection. I can say okay, this is the same hash. I know this hash was generated from password 123. So every time I download a user database, and I see this hash, since there's only a limited number of hashing algorithms. And I know they're using CMD five. And I know an MP five password 123 is this hash. If I downloaded a bunch of users passwords, hashes, and that's their hash, I know it's password 123.
+
+So that I built a table that looks like this. It just says like simple. Okay?
+
+no password.
+
+123 is equal to that.
+
+And I just start generating
+
+passwords.
+
+Password 124
+
+I store them in a database,
+
+or a spreadsheet or something. And I just keep doing that with every combination of characters I can. And I get all my friends to start doing the same thing. And we share this information. And what we end up creating is this thing called a rainbow table. So we end up with this Giant table have all the passwords and all the hashes for a particular algorithm. And then that can be used to when I get a list of users passwords, I just don't check what their password is. I write a program that goes through that database, that information that came out looking for particular hashes, and then say, okay, they have this hash. Their password is password 12349 or their password.
+
+So that became a problem. I'm assuming a problem.
+
+And this is made even worse by the fact that
+
+being able to figure out even without a rainbow table, being able to find the appropriate high from the fact that the QWERTY keyboard has only so many passwords, it can build. It's so I there's 500 trillion possible eight character passwords around there. I'm rounding but right around 500 trillion. That's a lot sounds like a lot until we think about Okay, well, standard home computer. Solo one like world working on right now can guess around 60,000 passwords per second. And that's actually numbers pretty low, that's a lot higher than from the article got that from its last I read, it's actually around the 200,000 range. So twice that but that's okay. Because that's going to take about 74 years to figure out the on average number that's kind of a big O type notation. It's a worst case scenario. So the worst case is it's going to take about 74 years for an average computer, starting, you know, going a eight characters A B through every character to find all the combinations to find your password. But B take it to a supercomputer array. So you can go to Amazon, and you can rent time on a supercomputer array, which is just you know, they're giant arrays of computers. You're not suited for Microsoft from IBM, multiple different companies have it. So, and I'm sure it's probably cheaper now. But you could rent approximately enough computers to do as a couple years ago. And actually, somebody did this for the article that I got this from. They rented enough computers to run 100 billion passwords per second for about $300 an hour. And I'm sure that's a lot cheaper now from a from Amazon's AWS. And now, if you're going to brute force, figure out someone's password hash, it's about 23 minutes on for $300. So it's, that's an hour, so $150. And that's a lot cheaper, because AWS has lowered their price considerably and got faster. So it's both got faster time is cheaper price or time and that's not even the worst That's a worst case scenario. So might I take a minute? That's brute force. And that's without the rainbow tables of all the passwords. So that's if somebody that would be somebody targeting you, not just general, they know they say, I want to find out your particular password in your head from your, your hash. So it will talk about we talk about passwords more said later. A lot more about that. So hi, she's don't work because of these tables. And these dictionary attacks, these attacks that use these tables. And these tables are pretty easy to find. You can you know, you have to go to someplace on the back end of the internet to find them. You can actually find them just sort of simple Google search. And all the stuff we talked about that involves This is not stuff that's the various either it's all stuff we need just for regular everyday usage, right. There's Amazon AWS arrays are needed for research. There. Used to medical and scientific research and business businesses use them all the time. In fact, that's the same arrays that Netflix runs on, they run on Amazon's AWS arrays. So we can't limit it. I mean, limiting it to all nobody can rent these except for particular people mean we're limiting, you know, entrepreneurs from actually trying their ideas. So that's not the solution. But there's another solution called salting. And so before we talk about solving how we're going to fix this, let's take a break. So we'll come back at 10 actually, but um, this is short, they will come but let's come back at 1030. And, yeah, I know three extra minutes. So and it will continue
+
+So does anybody have any questions coming back from the break?
+
+So, MD five hash is better than obviously storing the password in plain text, but it's still not as secure as we're going to get into it sounds like
+
+so we wouldn't use MD five hash in a modern system for passwords. The hashes are going to work the same. There's another set of hashes called ssha hashes. So there is a J, and then a number. So 128 bit currently, I think the standard is used at SSA. So three years ago, last time I worked for a company. When I had to write a password or work with security, it was 1024 by 2000. Something now I think they're they went up again But those are what are commonly used for password hashing.
+
+And there is, I'm sorry, are those increasing to obviously, they're increasing with the computer power that's available.
+
+They are they get larger as they go. Okay. And they get harder to generate. And there's some things built into them that we won't talk about today we'll talk about, we have a whole whole day on authentication, which is passwords and logins. And we'll talk about in detail about some of the stuff that goes into into those to prevent generating them easily. Or at least mass amounts of them. But yeah, so Indy five, it works exactly the same way. md five, you can just find easy generators on the web. You can't necessarily could write one and I'm sure they exist, but
+
+so I just chose mt five is just the example. So
+
+I had a question about I love we can generate passwords into hash. But can we do the same thing for usernames or emails that are used to login to the system?
+
+We could, we could use any. We can type anything we want. If we don't need to know it ourselves. We often want their username or email because we want to display it or we want to use it as a key. Or in their email, we want to email them, right. So if we have it as a hash, we can't email them because we can't get their email. We don't know it. But we can hash anything. It but the requirement is we can't reverse it. So if we need the data for our uses, as well as theirs, then crashing is not a good solution. The next thing we'll look at encryption is the solution for that. But if we don't need that the value or don't want to know the value of the keystore password then or sometimes the credit card number, though not always it depends on what we're doing with it. Then If we don't want to know their username, then yeah, we can.
+
+Okay, um, I look, somebody in chat mentioned this I have open ponds or whatever. website to check to see if your email has been compromised or whatever. Yes. Is it not common practice to just like, have them generate a username, login to the site and then have a different some fields for like the email or whatever, when they're actually creating their accounts and then just login with the username versus the
+
+email. A lot of sites do that. But I you see just as many that do email, so they're when they're like that sites not talking about is your email itself limited because your email is public information, right? You give that out. So using that as a username wouldn't be concerned and secure. What that site is talking about is that there's a table out there and these are getting free, pretty freely available that looks like this. So For my email,
+
+and it would look
+
+something like that by email and a hash. And that means that if somebody can figure out what this hash is, then they know my password. And since most users use the same password across multiple systems, then usually if you know one, you know it a bunch of places. So this doesn't matter if it's your email, or if it's, you know, a username. It's the same problem. There's no no security risk on that side of it. Thank you. And the reason systems I won't go one step farther, the reason somebody system G's email is a login is one, they get to collect your email, they get the guarantee they get to collect your email, that's one, but also, you don't have to worry about checking if it's unique because other system's already done that for you. So you can actually kind of get a free uniqueness check. And you get to collect their email for marketing purposes. So that's why so many places places use it. It's just convenient for the developer. Plus people remember it right? If you tell them put their email and they'll get it right, if you don't put their username in half your users will forget it. And I'm being kind of generous there to say only half you'll have to have a whole system of recovering your username just like you do free recovering your password. I'm not being mean, I forgot my username. I don't know how many sites and had to use such features. So because they didn't use my email. So I'm like, I don't know what I called myself when I joined this site, or whatever, you remember that.
+
+Alright, so other questions before we move forward? All right.
+
+So just to clarify the what the only thing stopping somebody from just creating a table where they've hashed, every single possible password there could be is computed.
+
+Oh, no, those tables exist.
+
+Those tables completely exist pretty easily to get Gallo SQL database of them pretty freely. But what's going to stop them and make them not work is what we're going to talk about next. So this worked great until those tables came about. So what the computing power stops is if I get your password and I don't have one, and I want to get your password, not every password, I just have your hash because I'm targeting you. I can crack your password in 23 minutes without having to go to one of those tables. Probably quicker than to do that. Then it would be to download everybody's passwords. But if I have a you know, collection of every password, From a bank, then one of those tables allowed me to crack it pretty quick if they're still using just straight hashing.
+
+So let's
+
+talk about how we fix this because this worked great until now, these rainbow tables exist to everything we need. And we can just do this attack, the users can do it pretty easy attack. So we need something more. What we need to do is really make sure that every user's password is always unique to them. So that if two people put in password 123, the hash is unique, but we still know they put in password 123.
+
+And that's what this process called salting does.
+
+So salting the hash means to generate a random value. And we say cryptography strong. What we're just really mean is long.
+
+That's a fancy way of saying a long value.
+
+And there's some little more to it than that. But really for Pat solid and good just means long. And we're going to add it to the password. And then we're going to hash the combination of that value in the password. And then we're going to store the hash and the salt, the salts, that value we're going to generate, and then when they come back, we'll get the salt, put it together with their password, how should it compare the hashes. And that completely stops dictionary attacks, because now every time someone's put in password 123, it's different. Because everyone has an individual salt. It doesn't mean they can't break an individual password. Now they have to focus one at a time. So now as they go through, they can't break everyone's password at once they have to go one user then go to the next and go to the next, taking time for each one.
+
+So what that means is,
+
+if we look at password salting, when they go password creation, they're going to put in their plain Text password. And I'm also going to bring up the same time dbvisualizer because the user manager database does this,
+
+of course, I think I dropped tables at night.
+
+I have to reload the database.
+
+Okay. Oh, that's right. Okay.
+
+That's right, we had problems with it. So here is example of exactly that. So this user came to create like user one when we create this password. So the plaintext password we don't want to store so we
+
+take it and we generate a salt. This is a salt.
+
+So it's a long value of just random characters.
+
+And then we put it together. So you put the plaintext password they type remember a password for us one was password 123 gather with this string.
+
+So now we end up with plus this
+
+is what we hash.
+
+It's too long even to go across the whole screen. So that really long value. And then we hash that together. And then we store the salt in that resulting hash.
+
+So now when the user comes back,
+
+isn't the same. They type in their password, so password 123. In this case, we retrieve this salt. We put it together with what they typed. We hash it, and then we compare the result against Bob stored
+
+and if it matches, that means they typed the same password.
+
+And every salt every user salt is generated when they change their password or create their password, either one. So we're trying to create a password, we create a salt, we just randomly generate this giant string of numbers. And then we are characters. And then we concatenate together, literally concatenate two strings together, salt it, or hash it, and store that, that, that resulting hash. So what it means is, is that when a user if somebody gets this table, they can still get our salt, right? But now they're trying to figure out your passwords 123 they have to close the site, they have to try, you know, a plus the salt to find out what the hash is a B plus the salt through every character to try to find that your password happens to be password 123 And when they find that, all they can tell from that is that your password was password 123 other people, the other hundreds of people that use password 123, they can't tell, because their heist is different because the salts different. So it limits so that attack has to be done one account at a time. Those big dictionary tables that broke all the password hashes quickly. Now limit to every time they attacker gets a database, they have to spend time breaking it which we said, No supercomputer it takes 23 minutes, a couple years ago. It's much faster now. In fact, we'll we'll talk about that it's actually sub second now. Now, about 2020 some seconds now, not sub second with this. So which means that if they have a user a Bade database of I'm sorry, not sub second. It's it's In a few minutes,
+
+I'm thinking something else we'll talk about. But
+
+which means that they have a database of 10,000 users or 100,000 users, they have to do each one at a time. And if each one takes five minutes, then it means over a few months, and it costs money, so they have to keep putting money into it. over a few months, they might have cracked, you know, 10% of the accounts. And so that's the idea. It slows it down. So when you hear about a giant data breach if it's been properly salted and hashed, that doesn't mean they have everyone's password that day. It means now they have the database they can start working on. So it might be a few weeks before they get the first one. After a few months, they may have all of it or they may have 10% of it cracked. So it makes it slower. It doesn't stop it. It just makes it slower. It makes it less profitable if the effort unless the information behind it is valuable. So which goes into banking information gets attacked and things like social media gets attacked because that information is really valuable to be sold. So the information itself not that can be gotten from accounts.
+
+So that's salt. That's how it works.
+
+So questions on
+
+that?
+
+Is it true that using a longer hashing algorithm, like say you every
+
+increase in the house hashing algorithm makes it twice as hard to break?
+
+It's close to that. Yes. Yeah, increasing the ID. There's also things built into modern hash algorithms called work factors that can greatly increase it. So I don't know if it's exactly twice as hard. It's close. I don't know the exact, exact number but I that's what I am not. Do you have to know how much he's at home security? But
+
+no, I you guys have worked for banks. I work at small organizations.
+
+Okay. Yeah. So each each
+
+each change to it. I think it's due I heard is if you double the bit, you, if you double the bit, you get an exponential increase in security. So that comes out to about twice for twice the value or doubling it once or twice doubles the security. So 100% increase gives you 20% of the security because that's how I've always heard it, but I'd have to verify that
+
+it would take twice the can computing power to generate the hash.
+
+Yes. So hashes do have two things. One, the longer they get, the longer they take the Generate. And they also build in this thing called work factor, which means that they still them down. So when a user comes back to your site, one thing we'll talk about a lot with web development is that users will wait for about three seconds before they get frustrated at a website. That's about how long you have to get something happening for them to see and start interacting with. But the one thing though, they've been kind of trained to wait on longer as login, notice when you go to login, the site takes a lot longer. It doesn't. It's just as fast as everything else. But there's all these slowdowns there for security. There's a few we'll talk about about just naturally slowing down the process. But there's also hashing. So if we slow the hashing down, so it takes three seconds to hash, that would be a really long time. It's usually 500 milliseconds or one and a half seconds, and the user will wait 10 seconds to login because that's what they're used to. Then they're not going to notice, but that also means now if it takes three seconds to hash that that Second crack time becomes three seconds plus the sub second crack time, or the go each. So we increase each attempt by three seconds, that's a huge increase, it wouldn't normally be that large, which means that if they're trying to make 60 billion attempts are right now, the last I heard it was about 100 and 50 billion attempts per second on a supercomputer array. That doesn't work. When each attempt each individual, those hundred and 50 billion attempts take three seconds themselves. So now instead of 150 billion attempts per second, they can do 100 50 billion attempts every three seconds. That's three times the increase. And then if the hashing as the hashing increases that time as well. So it's the discrepancy between as we get longer as the bits, the bits of the algorithm gets longer and we increase the work factor which is an artificial delay.
+
+Then
+
+you we can
+
+artificially make, or the, we can increase the time it takes to do the hashing and users won't care for login. Because they're used to login taking a little longer, so it doesn't matter. And we can greatly slow down how fast something can be cracked, which is why we're talking about these minutes and 23 minutes This is in a perfect situation. In reality, it's actually much longer than that for usually per account. But the computer is actually getting much, much faster thanks to things like that. expands because this is all done on graphic cards. It's not done on the regular CPUs on the GPUs, which are the what the graphic engines so as it is also what drives things like Bitcoin coin mining. So there's huge advancements to these technologies for things like Bitcoin mining, which also make password hash cracking much faster, because they use the same technology in the same ideas. But so good. Well, I'll get a lot more detail about that later. I keep saying that I really Module Three, slightly different this cohort. So I really hope we still have that day now to keep claiming that it's there. I think we do it. If not, maybe we'll do an afternoon session on it because it's important information. All right.
+
+So any other
+
+questions?
+
+All right. So this gives us a way to put passwords, but we can't reverse it. So what if we need the data? There's a lot of data we need. So hashing is one way but we need it two ways. We need what's called encryption. So encryption is a similar idea, but it's reversible. So encryption is we take data and we turn it into some other form. It's not going to be a consistent line, click hash, so it's going to be length, you know the size relative to the size of whatever we're, we encrypt. And then we'll have a key like a password to get into it to unencrypted so we can see it. So we use encryption all the time. Now we don't know it, it happens a lot of devices like phones, most phones, encrypt them automatically. So if you don't have the passcode, you can't just plug them in and get access to the data. If you hear about things like, well, the iPhone, if you don't have the passcode, you can't get the data. That's because that passcode actually decrypts the data, everything's encrypted in a way it can't be read into the past records put in. That's the way most phones actually work. It's also the way OS like Windows or Mac can work. They don't by default, though, if you turn that on, if you go to work at a large bank or other company, I guarantee your one at work will be encrypted. You can encrypt your home one as well and they You know the password, it just decrypts data for you. So they can do that automatically users don't even know it. If you've ever used Excel or Word and had someone's giving you a password protected document. That's what's going on, it's encrypted. So you can't open it up. If you do it. This looks like a bunch of just garbage characters. But when you put it in the password, now it transforms into the actual characters. So encryption is used for data to to protect data, so only the user of the data can access it. And there's two types of encryption. for two purposes. though technically either one can be used for either purpose. But there's two types I should say that are used more commonly for each purpose. So first is encrypting data at rest. And to do that, we generally use what's called symmetric encryption. symmetric encryption means there's a single key that's what we're pretty much used to that's what a phone uses as a passkey. And anyone Has that passkey can both encrypt and decrypt the data. So if, which means you have to share the key.
+
+So if we had
+
+Bob, you want to send a message to his friend Alice and he makes a message Hello Alice and encrypts it ends up with something like this. He says to Alice, and he has a secret key that he used to encrypt it. So like a password, but it's not an encryption. It's called a key rather than a password, but it's the same idea. And then he sends the key to his friend Alice, who types it in to get the decryption message of Hello Alice back. So both parties have to have the same key. The same key does the encryption the same key does the decryption and this is exactly why if you know if you have worked with some Excel or Microsoft Office, or products where they have a password protected document and someone send you the document and then they have to say here's the password for that document. That's what's happening. It's the same reason that, you know, if you wanted to have someone unlock your phone, you would give them your passcode to unlock it. So it's commonly used for data at rest didn't rest means data that's not moving. It's not transporting between two places that don't mean we can't email it someplace. But it means it's the setting on our computer. It's setting on our device. You know, the thing, the information on your phones at rest, yeah, it's moving around in your pocket or have you're carrying your phone, but it's at rest on the system on the phone itself. It doesn't believe it can. But you have to choose to do that. That's data at rest, so everything on your computer is considered at rest. And that's the common way of encrypting values. So that was not, to me, that was pretty intuitive, right? We've seen this used over and over again, we use it on a daily basis don't even know it. We use both types of encryption actually on a daily basis and don't know it. But if we do, it's intuitive because there's some says here's the password for a file. And we know exactly what that means. So there's also data in transit data in motion. And that's things like the internet, we're moving data around on a constant basis. So internet traffic data, or just local network traffic, means we're taking data, we're going from point A to point B. That's data in transit, and we need to encrypt it as well. And we can encrypt it with symmetric key encryption. But if we do, we have to tell everybody what the key is. And as soon as they know what the key is, they can decrypt everything we sent. So we have to be very careful who we actually send it to who we can train who we can communicate with. So when it's used for transfer between institutions, so in time when I know if encryption is used for data in transit, a single key encryption. When banks transfer files, they generally use that because then they can share a shared password. With some of the other process, we're going to talk about some involved, there's nothing public, it's more secure for them to both both sides have the shared key that if one side changes if the other side has to change it, and then they can transfer the file encrypted. Julian was sometimes a stronger format. In that way. That's one time it usually is used emotion, but most the time, we don't want to do that. So what we need is another way we need what's called asymmetric encryption. asymmetric encryption uses a public and a private key. And the private key can encrypt it. Or sorry, the public key can encrypt it, so he can take it and they can encrypt the file so nobody else can read it. But it can't decrypt it. It can only go one way. The private key then can decrypt it. But it can't encrypt it. So one key encrypts it in one key decrypts it, which means you have a key you can give out to anybody that's public because they can't use it for anything but to encrypt a message that only you can read with your private key. So using the same example, if Bob wanted to send his message to Alice, Alice would send him a her public key. He would encrypt the message, and then send it to her. And then using her private key that only Alice has she could decrypt the message. But after this encryption occurs this Alice's public key even what you used to encrypt, it can't decrypt it again. Which means we can give the public key up to everybody. You can give it to anyone you can put in your you'll see him an email signatures occasionally and Everyone can use it.
+
+So this whole ideas taking advantage. And I'm not going to go into a lot of detail on this. But if you're interested in the details of what I'm going to kind of gloss over, especially if you're in the mathematics, there's a link here to an article about it. That's pretty interesting to read, even though I forgot to read like 10 times before I even kind of figured out what it was talking about, because it's, it's very detailed on how the algorithms work. And when I say kind of, I mean to enough to do this really high level explanation and I bought the gift. So the way this works is based on these audit, not oddities, but these features of prime numbers in the fact that so if you imagine like this, if I asked you what number is both the prime 151 and 113, a factor of you could probably pretty easily figure out it's 17,063 that's pretty simple to do. You might need a calculator, but you could probably do it, you know, just with a sheet of paper. But if I said, Okay, here's the prime number are the number 70,063. What are two prime factors of it? With some time, most of you could probably figure that out as well. And if I did, I told you okay, I want the prime factor that goes with 151. It doesn't take much time to figure out of 113. So that's pretty simple. But now let's apply the same but 17,063 is a four byte number. That's how long much it takes to store that number. So encryption goes up to about 2048 bytes right now and actually had to get it higher than at the moment. 128 bytes is the problem. Standard. So
+
+take
+
+17,000 number of that length, and basically multiply what it can be stored by what a factor of well over. So, yeah, it's gonna be 124 bytes larger, four bytes can store no 70,000. That's a large number. It's a large number number, we can't type into a calculator, you know, average calculator, we're going to actually start going beyond we're going to go beyond the length of long can hold, we're going to get to very large, crazy large numbers. If I give you that number, and I say, okay, what's the prime factors of it? You probably can't solve it. Neither can most neither can a modern computer. At least not in a reasonable amount of time. We're talking years for sometimes centuries, for its solid, even a supercomputer array. As it when we get to, we go expand larger to like, two Thousand 48, then it could be centuries sometimes calculated before they could solve it. But then if I took them the same thing I said, Okay, here's this 2048 bit number by number, this giant number. And here's one of the prime factors of it, I want to know the matching prime factor, then you could take the computer could solve it. So it takes advantage of these two prime factors of knowing the number and the one of the factors to solve the other one, where one is used to solve it for encryption, the other one then reverses it back to its original state. And there's a lot more to it than that. It's a lot more details. I said, read the article, if you're interested. If you're not just knowing, really, you don't even need to know that its prime factors involved. You can go your whole career not know that. But that's how it what it's doing. If you're into mathematics, it's because of These features of primes and these giant numbers like unimaginably large numbers. I say that because I know I can't imagine a number 2000 characters in length or not 2000 characters 2000 bytes in length. That's, that's a crazy large number. So that's all key encryption works, which means there's only a very few encryption techniques, there's only a few algorithms, and they're all completely open source. Because the code is not that complicated. The code is actually fairly easy. It's fairly easy, just a few lines of code. Currently, we're on and if I write down the name, I can write the name of the current thing but it was it was originally found the last one came about in the I think was the 90s and write it down. But sometime in the 90s, the 2000s, the mid 2000s, so not mid 2000s like 2005 back mid 2000s. by a contest after years of searching for one, so this whole idea came about, and I'll tell you the story cuz it's interesting and it might help you to meet up in town. So in early 90s, this person named Phil Zimmerman came up with this idea called pretty good privacy. And it was this exam this this idea. And it wasn't original, I mean, security agencies like government. state agencies have been using this type of encryption for a while, but the public had no access to it. So we come up with an algorithm is own the PGP algorithm that could
+
+do not talk called the PGP. It's called
+
+I can't remember but it's not important. still use but he came up with this algorithm anyways, that could do exactly this. It was 40 bits, not bytes bits, so I'm pretty small. But it went crazy. See, people loved it. So for a while, in the mid 90s, if you were a developer, or you were a hobbyist, all your friends would send you their public keys. And I don't how many people demanded, like, you're gonna send me a message, you have to encrypt it. But my public key, you know, if you want to plan what time we're going to meet for lunch, you have to encrypt it with my public key because I know when it can find that. So it became a really popular thing. Everyone wanted to do it, everyone was passing around their public keys and having their private keys. It was actually really kind of irritating, but it was popular. So then, the reason I'm telling you the story is is because of the next part. So it was 40 bits, which happened to be the same size that the time was considered by the US government ammunition. So that means that a 40 bit encryption algorithm that they couldn't crack actually was put alongside of no bombs and planes. Some other things, which means that if it transported out of the us it was illegal. So it couldn't cross international lines, which the internet was pretty popular that everyone was sending the spec for internet. So of course, it immediately transported across international lines before they even declared that it shouldn't. And so he was arrested. And there was a huge case about it. And it became a, so he published the source code in a book. But it was ruled that the source code was protected. It could go anywhere, it could transfer across internationalize, because that was protected by the First Amendment rights, where it was not a mission because only the implementation of it was a mission. So at the time, you'll still see these older developers around and I want to tell you the story. So if you see them, you can ask questions about it. The code is not that long. It's just a little block of code, the whole Pope algorithm. And I don't know how many developers that time period in the mid 90s had it tattooed on them. So I still see them. On occasion, I also run into older developers, you'll see p PGP source code tattooed on their arm. Or there's one guy going around town that has tied to the side of his neck. And they did that because then it was part of kind of a protest against the, this idea that the source code is not illegal. There's also was t shirts, there was all kinds of stuff. But the tattoos are still around. So if you see somebody with code tattooed on them, and that's the reason I'm telling you to meet up, because a few students have found it ran into them. Ask them they'll love to tell you about it. That was it. So that's a great icebreaker is that PGP your tattooed on you? And so that's happened in the end of the story was that
+
+by the time things all ended up
+
+40 bit was too small to be secure anymore, and it went up to 120. So it all ended on a good note after years anyways, but so watch for those watching. They're older developers, they'll be people my age or older. That with tattoos of code, because I was pretty young when that was going on, but
+
+it was, it's always fun to see. Alright.
+
+So
+
+in PGP is open source. So you can actually go find implementations of if you're interested, though a company bought it. So it's actually hard to find nowadays. And it's been expanded to 128. It's now 128 bit encryption is what is the limit of what encryption can be before it becomes a mission that's all actually still is in place. Which brings us to how do we actually use this? We use asymmetric encryption pretty much every day. We just don't know it.
+
+It's used in a few ways.
+
+The main one is used for communication across networks. And it has these things called digital certificates. These are normally paid for so you go to a company like them. I can't remember the names of any of the companies but Verizon It used to be one I'm not sure if they still exist. But you go to these companies and you pay for a certificate, and then they have a catalog of your certificate. And when someone comes to your site, or someone uses it login, they verified that, yes, they sold it to you that that's actually the certificate. So what they're giving you actually as a key that they're, that you're encrypting data with, and they can verify that you're correctly encrypting it. This is used all the time internally in networks for logins. So if you get if you go work at a financial institution or insurance company or something, you'll probably have a digital certificate assigned to you that is put on your desktop and they'll walk you through how you can set it up to login to computers without typing a password. So this used for that. And it's there's this whole movement right now called Open SSL. That is, the certificate should be free. So it's a free certificate organization. going on. And this last point should be under the next port. Not up here, let me move. That's part two of web. So these certificates then are used on web. So web security uses this thing called secure socket layer used to be called secure socket layer still is by just about everybody. But the official name now has changed to Transport Layer Security. So if you're SSL, that's an outdated term that everybody still uses. I don't know anyone that has changed. But documentation will say TLS. Same thing. And if you've heard of HTTPS, or you've seen that, and addresses on the internet, that is the secure version of the internet that's using asymmetric encryption with these digital certificates to transfer data. So what happens is that when you go to a website, you go to your browser, so each individual browser, you have to go to Chrome and you go to your bank's website, you Your browser has a public key. And the bank has a public key. So when they start communicating, they change public keys and what's called when they first open up. So your browser says, you know, I'm coming. I have a user has a request for you. And here's my public key and the bank responds, okay, I'll answer your user. Here's my public key. And then they encrypt all of the data they send back and forth with each other's public key. So your browser encrypts it. When it's sending information to your bank, your bank encrypts with the browser's public key, and it's sending information back to the browser. And then they both decrypt it with their private key, which means that your browser in the bank can read each other's messages. But in between across the internet, it's encrypted. It's currently, HTTPS is currently using 128 bit encryption, so it's actually right now uncrackable.
+
+At least in a reasonable amount of time.
+
+So
+
+the
+
+That's how secure security works in the internet. That's how it happens transparent. And if you look at the difference. So here, the dashboard was first created was HTTP only HTTP is the protocol, https and HTTP are the protocol, the language that is spoken across the internet, by websites, specifically by websites. And we'll talk more about HTTP when we need it very soon, a week or two. So if we go to that one HTTP dashboard calm. You see, Chrome is telling me this is not secure. Okay, good. And it's saying okay, you're on unsecure connection. So anytime you are a regular connection using HTTP, that's insecure. You're going to see this. It's not secure.
+
+If I go to the same site
+
+HTTPS version.
+
+Well, it's forced me to log in because they're actually treated very differently. But notice the information. Now there's a voc here, telling me that it's secure. So Chrome's getting indication of whether I'm on a secure site or non secure site. So in this first site, if I send my password
+
+it's actually sent completely in plain text.
+
+It's pretty easy to find.
+
+So, so easy that you can go out to
+
+anyway website
+
+and get a toll. Like Wireshark. This isn't gonna be as impressive because I'm on my home network. There's not a lot going on here, though. Maybe my daughter will send an email unencrypted that we can read it or something, but No, I won't do that, but and capture all the packets. So we can see everything going on. This is my home networks, there's actually a lot going on. But I'm sure there's at least right now least, probably a game going on somehow, and probably at least one YouTube video. And maybe something else, maybe maybe two copies of both going on, or audible. And then what I'm doing, right, so this gives every piece of information travels across my own network. It's more impressive and read one because we can see everybody's information going around. And if we capture something, I can see some information. Most of this is encrypted.
+
+Let's see if we can find
+
+so make it like a YouTube URL. And my daughter's always watching YouTube. There's no way she's not but
+
+stop
+
+Oh, but this information can be
+
+read.
+
+Okay, we're not getting anything good. But anyways, if there was unencrypted if I.
+
+If I sent my password right now, on that unencrypted site and I captured that this was called packet information about it, my password would be there in plain text in that block. If I wouldn't email and I sent it from Gmail or Senate using unencrypted connection, the entire text of the email would be in that block. And it's that easy to get. You can go download this, this is a legitimate tool. This isn't a hacking tool. It's a network admin tool. So it's freely available because if you're working with a network like a company, you need to Be able to monitor so if I use this tool at home, if I if things get really slow, sometimes it can tell me where the problem is like a computer that's been left connected to a minecraft server for three days straight,
+
+which is an actual thing I found
+
+and then turned off then the screen turned off, but so we can find. So it's a legitimate tools we don't again, it goes into the same thing if we can't stop users from having it. We don't want to because we need it. But if things are unencrypted across the internet, everything is just open. So mean really the contents of everything you type on the internet, or they go into a form where it's going to an email doesn't matter what it is if it leaves your computer going across the internet on HTTP, the non encrypted version, it is in plain text. There is no other way and it's easy to retrieve. Easy enough to download a tool find the right line and click on it and see the text of exactly what it was.
+
+But with HTTPS, which is what
+
+it's gonna look a lot more like this and be completely useless.
+
+And it can't be decrypted
+
+without the private key, which means that a tool like Wireshark can show me where data is where it's transferring to and from, but it can't tell me what the data actually is. So with HTTPS, it changes
+
+what a user can see. my slides go
+
+from everything to just where they're going.
+
+So
+
+that was like the sources that were listed are those like the devices in your house?
+
+Yeah,
+
+yes. Because my brother, we had terrible Wi Fi as kids. And like, he would want to be playing League of Legends. And it would be like super, super bad for him like with lag. And at one point, he blocked all of our devices on the network, so that we couldn't use it so that he could play a game of League without being bothered. Yeah. And like, we didn't know how he did that. It was very bad.
+
+Yeah, using a combination of the router and I told like that to figure out which ones which, but yeah, exactly. That's what you were seeing all the devices and there's amazing a lot of devices in modern homes. I mean, every phone including old ones, are connected to the Wi Fi so there's, you know, both every one of my family's phones and then I'm sure there's I'm positive there are phones and drawers that are turned on that are like five years old that are still connected to my Wi Fi that are doing things. I'm sure that and then there's you know Things like television, modern televisions, smart TVs, they connect. They're connected all the time always updates. If you have gaming consoles, they're always connected. If you have while computers, of course, always connected, and then they often make multiple connections, a lot of like, if you have a modern refrigerator, it's connected modern security systems. So everything now is connected to the internet with IoT devices. You know, there are toasters that connect to the internet now, I don't understand why I cannot figure that out. But I don't know what you need your toaster to connect to internet for, but they exist. I, I made jokes about that. And it's somebody at one point, it's like, no, that's real. It's. So with IoT, everything's connecting. So all those connections are going on. And that's exactly what you have to do sometimes is figure out which ones you can isolate. And that's why things get slow. So you have your brother was doing something exactly like that, and then
+
+limiting it.
+
+So it's just like at first While he would just be in his room, and he would be like, lag, lag, and he would just be yelling that and we're like, yeah, we can't do anything about that. And then so he took it into into his own hands.
+
+Yeah, I know. I know that that's what my house sounds like about midnight every night. As I'm trying to go to bed. My daughter's yelling the word lag. And this is going slow. So, right. Right. So this is so that's how we're using it every day. And the internet is probably secure with it. very insecure without it. There's a project right now could HTTPS Everywhere or anywhere? That is this movement of everything. Why are we not having everything just HTTPS by default, we have some process. And so there's a movement right now to move the entire internet to encrypted. So what this does in encrypt as we'll talk about, some we get to web development is it As an encrypted URL, which is why they can if you go to Amazon and you have all the information in your URL, your you can stick and someone can still see what product you viewed. They just can't see what you did once you got there, they can still go see what pages you went to, because that's an address like a phone number. We can't encrypt that. We'll talk about that more and we go more in depth in these protocols with web development. So it's a bunch of stuff in the channel If name or questions or not.
+
+Now it looks like
+
+question on keyloggers from Zack, okay.
+
+Exactly ever is.
+
+So is there a way to prevent keyloggers or maybe encrypt user inputs or something like that?
+
+besides just completely avoiding sketchy downloads, so
+
+the for system wide, we still have to because the way actual computer does keys, we can't encrypt it in a way that software can't see it. Otherwise software wouldn't know that work. So the only way to actually avoid the two things, one, keep it from being downloaded or figure out when it's communicating or block its communication. So software, without going too deep into it, when you press a key in the keyboard, what happens is is basically the computer screaming out, you know, the letter T was pressed, and all the software is interested in the letter T does something and we can't stop that because that's how fundamentally how a computer works, or no, modern OSS work are actually all losses, I think, all together work, but we'll actually take that an advantage your own code and we get to, again, to you eyes, like web you eyes. So there's no way to stop a keylogger from viewing that. That's some
+
+So the the answer would be don't go to don't get a keylogger to begin with.
+
+Yeah, I think uh, maybe like the YouTube video I watched a while ago but um, there's like a push for maybe, like, McAfee security. I don't know who actually uses that are
+
+other security
+
+programs that people are selling is like where you whitelist connections and then everything else is just blacklisted. So that the another way that you could prevent this,
+
+it is yes. So having a loud disallowed list is a way of but then that means every time you want to go to a new website, you have to move it from it to put on the allowed list. So disavow list have been used for quite a while. So site, those are commonly used for a lot of plugins and Chrome extensions, things like that. So it'll block that if it's a known malicious site allowed us to use it in company If you go to work enough someplace like Chase, you'll have an allowed list of what you're allowed to connect to. So if you go try it, where in fact, we run into it all the time when working with interviews and stuff, as they can't access Google hang ups, they can't access zoom. They can't access this other communication to what camera which one it is. So it's a constant. You can't send them a Google document. So when you're working back in, because they have it all disallowed, for security reasons, but doing that in a home environment, is going to take a lot of work. Most users probably don't want to put that much work into it.
+
+But yeah, that would, would work.
+
+And is that how like adblock works?
+
+It is? Yes, it's um, it's a list of a constant update of sites of like disallowed sites that are known to be serving ads, which is why some get through sometimes, and then they'll just disallow Thank you.
+
+All right, so
+
+see. Alright, so that's how
+
+we're using this in a day to day basis. There is a Java library called bouncy castle that's available for this. And this is one of the features. This asymmetric encryption is not built into the Java language by default. symmetric encryption actually is. But there's a, the common. The go to project for it is this project built with this group called the Legion of the bouncy castle, which is an open source group that builds this cryptography library that provides a symmetric
+
+encryption in Java.
+
+So, if you're interested, that's where you can get it. It's not It's not the easiest tool to use, by far, but it's kind of the standard Right now for doing it.
+
+Alright. So before we look at
+
+now, we don't know how this is all working
+
+at least a high level. Are there any questions before we look at an exploit for this?
+
+Right. So this encryption works great on the internet. It blocks anyone from seeing anything but the URL we're going to, but there is an attack against it. And it's an attack that we can't prevent. A user can prevent, but we as developers can't prevent. And it's a really common attack. It's called the man in the middle attack. The middle middle attack works by somebody going into something like a coffee shop, or hotel, or someplace where people are airport someplace where people are commonly connecting to public Wi Fi. And they set up their own version of the public Wi Fi So there are actually devices that are small enough to be attached under the table of a coffee shop that can collect thousands of user records. over a few hours this men come in, they can attach it, they can walk out, come back later and retrieve it. They don't have to be there. There's devices that do this that can run on your phone. So someone could walk around with this device in their pocket. So these are small devices, they're not full computers anymore. They used to be to be someone with a laptop. It's not like that now, but a man in the middle attack works by putting up Wi Fi that is publicly available in a public space. And it's common to do it with you know, if you're going to put it in Starbucks and their Starbucks, their Wi Fi is called like Starbucks customer Wi Fi. There, the free one might be called Starbucks free Wi Fi, or something like that. So it's a name that sounds familiar. Often, attackers will even do things like cover the signs on the walls of businesses with the new Name. And then, you know, so you go to your staying at Marriott and you look and you say oh, there's me I got free Wi Fi and you connect to it and it's not Marriott or it's not Starbucks Wi Fi, it's this attackers Wi Fi. And they provide you access to it, they're gonna give you full access. They're gonna let you do anything you want. They're not going to stop you from what you're doing, because that's not what they want. So you go and you decide you want to go to your bank, and you're going to check your balance on this public Wi Fi and you go to connect and what happens is Tulsa can draw here, you make the connection to the Wi Fi which is on the victim machine, the victim machine. From here, to here. This is encrypted. So here, it's safe between you seen, you're trying to go to your bank. So the victim's machine says, okay, you want to go to your bank, I'll make a connection to your bank. So they exchange keys. And they make the connection here. And this is HTTPS.
+
+So these portions
+
+from here, to here and here to here are both completely secure. Your bank can't tell whether it's you, whether it's your device or their device. They don't know if you got a new device, which is why you're starting to see a lot of places that are starting to do a loud list with devices. When you're when you're asked to connect, and they say is this a new device and they want to send the code the verify the device. This is one of the ways that can help prevent these kinds of attacks. And that's what they're looking for. They don't actually care that you're using your phone and you're normally you're using your computer to access them. What They're trying to ask is, are you actually using a new device? Because if you're using your phone every time and suddenly you get that warning, that's a indication that this could be going on doesn't mean it is because there's legitimate times that could happen, but it's indication it could be. So if you say, yeah, I'm using the same device, and they are saying, No, you're not, then that's a problem. But they send you that code. And the code then will get missed sometimes, but this next part, so it doesn't even that doesn't stop this completely. It just helps. Because the problem is
+
+that hear
+
+from here to here, on the attackers device, that's unencrypted. Which means the attacker can log everything you're doing everything. So every type, every key, you type, everything you send, so they can get there. There's nothing that you can do about it. You don't even know you've connected through the wrong device. If they say That code that the banks asked you to send in, the attacker is not specifically looking for that code, then they'll disconnect the other side, because the attacker won't know to use it. And so that when you send it along, it gets disconnected. So that can help. But a lot of these tools use to do this, we're actually smart enough now to actually intercept those users. And often there's a person saying, this has to be a very localized attack, right? This is a local area physical area where this has to be done. You can't do this across the entire internet you have to be you have to get the person's device or computer to physically connect to your not physically but to connect to your Wi Fi. So everything here is unencrypted, which means they can get access to everything. You don't know that's even happened because you've connected as far as your device is concerned to between the victim the web server, they don't you don't know that man in the middle of exist. I needed just the other side. So sometimes the browser's get suspicious about certificates. So we all you probably everyone, I'm guessing, has seen a thing that says something like the certificate expired for the site, or there's a certificate sub problem for the site. Or if it's really bad, you might see a warning that says you should back away from the site.
+
+So
+
+how many people have seen that and ignored it?
+
+You can be safe. I've done it many times. Just about everybody. So those warnings that pop up just about every user ignores them. Because they pop up so much, and so often there, it's because the certificate did expire. Those certificates when we have to pay for their it's a subscription. And if your subscription runs out here accompany them for a few days or expired but everything's fine. So users because of the way the certificates have worked for all this stuff. They're kind of used to the idea of Hey, there's probably Not a problem, so they just ignore it. So those might pop up. But in most cases, they'll be nothing. And if they are, they'll be ignored. So the man in the middle attack the only defense against it. The only real defenses Yeah, absolutely defense against that there are some, as Matt was pointing out, there's things you can do with IP addresses but that's only if you know, I said I p address where it's coming from this how banks make sure their banking systems don't fall for this. So there is some ways to have it or people saying flagging them. So if you see I've changed suddenly. But you know, my IP address in my house changes on a pretty regular basis because my cable company changes it constantly. And because I reset my router costly because it's old and needs to be reset, and every time that happens, it gets a new IP address. So there are ways to help But there's no prevention. The only prevention is not connecting here to make sure that when you're in public not to connect to get users not to connect to unknown Wi Fi sources. And when they do connect to it to do nothing. risky. You know, if you go and you read the news, oh, they found out what news articles you've read, and they've got the text of those news articles. That's not harmful. If you send a message that says, you know, what? What do you want to meet for lunch from email from your phone where the password isn't actually transmitted all the time, then that's not harmful. If you go to your bank and type in your password or website on their website, that can be harmful, because they have the password. And yes, exactly. You can verify the MAC address of the device but you have to know the MAC address of the device beforehand and people changed devices all the time. So you're doing it before You and your own devices, then you can actually do that. But if your user and that's part of what the question of, you know, is this your device, if them say noticing something's changed. But you have to trust the user when they say, yes, something's changed. This is my device. And they send that code in, it can still be caught up in the attack. So this is a frustrating one because there's no there's no nice Hey, we can vent like this. SQL injections like hey, just put a question mark in and everything is great. This one is no
+
+you can't really stop this one. You just have to be careful.
+
+But that's the attack against HD arrogance certificates. Is this this attack So any questions on the other questions?
+
+had a question about the general like password encryption and Things like that. Like, what layer of the application?
+
+Is that baked into?
+
+That would be in the middle tier. It's on the server tier. Okay. Perfect. Thank you.
+
+And so the tier, we're going to start looking at next week.
+
+So anything else? Alright,
+
+so I want to show you one thing. There'll be real quick. This time, it will be quick. It's just to demonstrate encryption. So you can see it in action. And then I'm going to show you this code exists, but we're not going to walk through it in detail at all. And then that'll be so I know we're overdue for a break. But I guess I'll take advantage of the fact I gave you a longer break last time to give you no break in the second half.
+
+So there's another project that's in the lecture, final code today. That is cut the encryption lecture. And there's code in here that uses and I'm not going to walk through it but there's a D crypto an in crypto crap file. And it has code that decrypts and encrypts the message using bouncy castle using and using a public and private key.
+
+And if you're interested, you can go through it.
+
+It's not really easy code by any stretch. I think it took me when I decided I was going to write this I think for this it took me I think a couple days to figure out and make work. I'm not sure I could explain it right now without look spending some time looking at it. Because it's not bouncy castle is not the simplest tool to use.
+
+So, let's
+
+so what I want to do with it though, is run it.
+
+I'm gonna bring up a terminal.
+
+So I have a built as a jar file, because I want to demonstrate what encryption looks like.
+
+So to get into the right,
+
+it's right here. Okay, yeah. So first I'm going to generate keys. So I need two keys. If I'm, I need a public key and a private key. So first, I'm going to use open SSL, which is the tool that I talked about. That's the open available certificate tool. So open, I have it installed. You can go download it, you don't want to have it installed on your computer so you won't know the follow up, follow along with this portion but If you want to install it, you're welcome to play with it. Somebody open SSL. And I want an RSA key, which is the type of encryption that HTTP uses. And private. And we'll put it I want my day my Qi to go into this private pm file. And out form when in the form of a pm file, which is a key file, which is just really a text file, but, and my public. I know that's all I'm, I'm going too far. And then I want it to be 2048. So I'm going to put it 2048 bit encryption. So pretty much this higher than the standard for the web right now but
+
+what I do wrong, and then something wrong.
+
+I have two commands mixed up. Sorry,
+
+I want to generate RSA key.
+
+My outfile is going to be private PM, my encryption will be 2048
+
+it's going to generate a key.
+
+So this is going to be my private key. And it was generated here in this file, private pm. So I'm gonna code it, so we can see it. So this is a private key 2048 bit private key. So I need to keep this secret. So now I'm going to generate a public key from that. So I'm going to generate the pair Now that said it was two sides to the same algorithm to the same thing about these prime numbers. So now I need the other piece that can calculate from the other way. So to do that, I'm gonna use open SSL again. So it's gonna be now this is where I'll say I have an RSA key, my n was private. So when I use my private key,
+
+I want
+
+out the form of pm file.
+
+My public key out and out file will be public
+
+wrote the key. And again now I have this one called public p. m, so I'm going to code it so we can see it. Now I have my public key. So I can put this in my signature, my email, I can send it to my friends, I can do anything I want with this. This is completely safe. This key can encode decrypt things that this key can decrypt. But this key can't decrypt it truly encrypted. This key can't encrypt, it can only decrypt it, but they work together. So the tool that is here that the codes for is actually
+
+Does that encryption.
+
+So there is a message text? Let's open up that message text. And I think it's going to say, Yeah, for cohort 11. Let's change it to this a private message for card 11. There is a size limitation on the way I haven't implemented, it can only work for up to, I think 1000 characters. So we can't go too large. But that's because of my implementation in the code, not because of the technologies. And to be honest, I don't know why it's limited to that. I can't I have, I gave up trying to figure it out. Because it wasn't really that worth it to me. So
+
+something I some bug in my code.
+
+So if you have code that you write that you're not sure why it works, but it just does. You're not alone. We're kind of looking at some of mine right now.
+
+So
+
+so I'm going to run it just Have a tool. It's the encryption tool jar. I want to run comm tech elevator option, tools library, I'm going to go to the public key. message text is what we just wrote. And now I want it out as encrypted was called encrypted text. So it's encrypting it.
+
+So now we have our encrypted text. So let's look at it.
+
+So let me word rapid so we can see it better.
+
+So this is the encrypted message.
+
+So this message is encrypted, have that one it said encrypted message. So message for private message record 11. Please encrypt it. This is what that looks like encrypted with our public key. Now let's decrypt it. So we decrypt it. What it's going to do is going to take this message this text file is going to decrypt it using the private key, and it will just print it to the screen.
+
+So let's do that.
+
+So it's got almost the same. Let's go back to that long command line, we now
+
+want to use the decryption tool
+
+and give it the private key.
+
+And then the file we just generated encrypted text and decrypt it. And we'll see a print this a private message credit 11. So that's how encryption works. That's how it's working every time that we're
+
+going back and forth from
+
+when you're using something internet, that's what's going on in the background. You say your private message we saw it looks like encrypted that's what actually gets transformed. And then on the other side, it gets deleted. With the private key,
+
+so many questions.
+
+And the whole point of that last demonstration was not, this is how you do it, it was so you can see the keys and see the encrypted message and see what they all look like. They kind of have it. I think it's easier to visualize, we can kind of imagine what these pieces look like.
+
+Alright, so any
+
+thing else?
+
+And no, you can't use that response to your Capstone review. And see, I'll allow you to use that response in about 10 years of experience. Right. I think that's about fair, the I don't know how this works. So let's just go with it. All right.
+
+The fair I would not if it was a project, I actually wanted to do something more than just demonstrate that way. If I would actually spend time figuring it out, but, you know, I don't really have a need to.
+
+Alright, so there's no other questions.
+
+Hey, there's a few things going on.
+
+So
+
+there's an optional the socialist social justice discussion, I think at 2pm. It's optional. That pathway event, there's also the pure resume review at three. I don't know if that's optional or not. Whatever, whatever, Vinny and Ben told you about what it is. But even if it is optional, you should take advantage of anytime you get your resume reviewed. So I would just that so let's see.
+
+So I figure this out. Don't need
+
+to stop that.
+
+Transcribed by https://otter.ai

@@ -1,0 +1,24 @@
+Book
+https://book.techelevator.com/content/file-io-ool.html#reading-from-one-file-while-writing-to-another
+
+Reading from one file while writing to another
+Sometimes you need to read from one file and write to another file. This can happen when doing any kind of manipulation of text files, like search and replace.
+
+All files being opened should be opened in the try-with-resources block, and you can do that by separating the files with a semicolon:
+
+try (
+    Scanner dataInput = new Scanner(inputFile);
+    PrintWriter dataOutput = new PrintWriter(outputFile)
+) {
+    while(dataInput.hasNext()) {
+        String lineOfInput = dataInput.nextLine();
+        dataOutput.println(lineOfInput.replace("mobile", "cellphone"));
+    }
+} catch (FileNotFoundException ex) {
+    System.err.println("Can not open the file for writing.");
+}
+Never Read and Write to the Same File
+
+It might not be obvious, but reading and writing to the same file is a bad idea. While the language might allow you to do it, doing this can cause all sorts of problems and is discouraged.
+
+If you want to change a file directly, say, finding a word and replacing it in the same file, you should instead read from the original file, write to a new empty file and, when you're done and everything is successful, move the copy to the original's location to overwrite the original file.

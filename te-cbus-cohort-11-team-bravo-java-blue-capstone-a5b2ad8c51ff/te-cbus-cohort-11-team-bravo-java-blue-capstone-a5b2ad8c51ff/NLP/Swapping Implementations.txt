@@ -1,0 +1,7 @@
+Book
+https://book.techelevator.com/content/dependency-injection.html#swapping-implementations
+
+Swapping implementations
+Another reason to use dependency injection is if you ever need to change a component—for example, switching database platforms—you can simplify your changes and testing.
+
+If you design the system with dependency injection in mind, you can create a new DAO class that inherits from the same interface. Since your existing code uses the interface methods and not the class methods, the only code you'd need to change is the class that's provided by the injection

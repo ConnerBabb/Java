@@ -1,0 +1,1195 @@
+Zoom
+https://techelevator.zoom.us/rec/share/4O9EI-HipmVIUJXv9W3AUagcXYDZT6a81yAX-6BeyExd8cnFWUgkt_oy6tcuCp-5?startTime=1595424456000
+https://drive.google.com/file/d/1rwZpHsm8TvKgGdMjLc35rIIXHWRXE6S_/view?usp=sharing
+https://docs.google.com/presentation/d/1i9xYZ3TwCAi1_ZsfbZulRTmR_01KoqmpzqOky3XtsdU/edit?usp=sharing
+So today we're going to be talking about, we're going to continue talking about view, then we're going to looking at event handling and view. So the same type of event handling we did in vanilla JavaScript, we're going to talk about how, how we handle that in view. And as part of that will also encounter a couple other topics. So the first thing we're going to encounter, that's going to kind of flow from what where we ended on Monday, where we ended by talking about binding a form to an object. So
+
+we'll talk about binding a form to an object and with our V model.
+
+But we done that to an existing object. So we're going to look at we're going to start today by looking at How we can bind the form to not an existing object or not, but to a new object. So that we could do something like add a new new review, where there's to our list, and continue doing that repeatedly. So we're gonna look at that. And then that's going to lead us into fairly quickly need to talk about methods and view. They're in a lot about why they do why they're different than computed properties and how those work together. So we'll talk about methods and as part of then we'll look at then handling, and we'll look at how to add event handling and then these things called modifiers. And of inactions, different ways to handle the event, handle the event. With view we have a couple options and JavaScript we always have this anonymous method with view of two ways we can do it. And then we'll look at the event object itself, and how it, it's the same object, but how it differs in view how we get access to it. So
+
+let's start
+
+by going, I'm actually going to start by going to the lecture code is so we're going to run into these problems kind of as we build out a, starting with what we started ended with on Monday, we add some interactivity to it. So I'm going to go to the lecture code, and I'm gonna make sure I'm in the folder with the package dot Jason and the first thing we're going to do is run npm install. I probably should have done that before I talked to the introduction. Because it does take a few minutes or if not few minutes to install but so this project, why we're going to look take a look at what's in it is almost say With one exception is the same as what we ended with on Monday. So if you remember it added reviews, and after it installs, we'll run it and take a look at it. So is the same thing we looked at with the knowledge JavaScript as well. So if you remember, with the regular JavaScript version, one of the things we did was had a form that we could expand and modify. So we would add the same type of functionality here so we could add new reviews. And we're starting with where we ended ended on Monday. The differ only differences is that there was a slight change in the method for the average rating, where it added, this has been added we did not this the two fixed, which all that does is just force the result of that into a decimal point A to precision, decimal, or scale to so that it doesn't work. We end up with problems with double with floating point, math, you know, not problems really, when you end up with higher precision, when they go out to eight decimals, it rounds off to two, or truncates, actually, or two. But other than that, it's what we ended ended with. It has the rave reviews start out with it.
+
+And
+
+the numbers that we added, it's almost done. And what we're going to add to it first is the ability to add a new review, and then we'll add what's called filtering to it. And we'll talk about what that means as well. So we can filter the reviews by clicking on those numbers and get like just the one star reviews, just the three star reviews. And then we'll add, we'll also take a look at how we can add some really basic validation to it at the end. Not nothing complicated, nothing like we did for the server side. We're just there. glimpse of how that could work a bit client side and a manual manner. So now that's installed. I'm gonna run NPM run serve
+
+to start it
+
+staking
+
+start browser here.
+
+So this is where we ended with the favorite stove working
+
+and these fields so the first thing I want to do is add the ability to have a form Right here, between the the swells and the reviews to add a new review. So let's
+
+talk about how we can do that. Because what I want to do
+
+look at the data object in
+
+the script of the view and the model of the view. It has this reviews array. And the reviews array is made up of reviews object. And if you remember those, these reviews are what we use to create each of these reviews being displayed from these objects.
+
+So I want to create
+
+a new object to place in here
+
+and put it out into this array.
+
+So to do that, we're going to need empty object. And we'll create it here, there's already been one put here a new review. So we're going to bind to this empty object. So we're going to create a form that binds to this empty object. And then on our event, what we'll do is take the deed now not empty object and add it to this array view being reactive, then we'll update the page for us at that point. So that's our goal for this first, for this first piece of functionality. So the first thing we're going to need is a form to update this page.
+
+So we're going to go up to enter the template.
+
+And we'll put the form here between
+
+these number displays in this first review, so it'll be right here.
+
+And
+
+it's little bits of code. Not a lot of code but quite a bit of code, but let's fill out the form by hand. So we can kind of review the mot the two way modeling, or the two way binding.
+
+As we go, I'm going to create a new form.
+
+And since we're going to be using it completely just inside of view, with JavaScript, we don't need to worry about the action or the method views going to actually handle most of that for us. And we're actually all of it when we add events and stuff to it. So it's not going to submit like a regular form would, we're still going to have to prevent default on it submitting. But once we do that, we have to worry about having an action or a method associated with it. So we'll just leave it like that. And then for each of these fields, I'm going to create it. I'm gonna put it inside of a div that shortcut div And there is a class that's already a CSS class that already exists. In this, it's been added as well. form element, the world CLI, it's just going to give it a consistent look and feel. I mean, not CSS has already been pre created in this.
+
+So here, if we want to put an input.
+
+And so the first thing I want to capture,
+
+remember there, these objects are reviewer title, review and rating in favorited. So I want to capture the reviewers name.
+
+So into reviewer.
+
+So put input, let's give it an ID of reviewer. That ID matching really is not that important, but it'll make it easier to work with so we'll keep it much text and this is the part that's going to actually we're going to connect it to the object To the model. So v model does the two way binding between a form field and a data element or a variable or in the data. So v model and equals and we're going to put it in that new.
+
+We view object.
+
+And we want to in reviewer
+
+spell it right.
+
+That's the element we wanted.
+
+And then let's put a
+
+label for this. Remember the label for we just attach it to same ID. And that'll give us that ability to get focused by clicking on the label as well. Alright, so we have our reviewer, but This new review objects and empty object, it has no keys. So let's talk about how that's gonna work, we're gonna have to complete the form and add an event before we can see it working. But so we know why we're doing this before we go through all that. So the way view is going to handle this two way binding with an object. So we bind to new review, and then the field reviewer. So the new review has to exist here in the data. So it has to be the empty object has to be here. And we have to have it defined, it's empty, or it doesn't have to be empty could have other keys if we want it to, but it has to be already an object to find in the data for the store. Because the first part, the new review, the variable has, it has to find that. But JavaScript has this ability with its objects. So in Java objects, we're used to this idea that, you know, we create these fields, these properties and then that's what we have. The only way we change the properties is to rewrite the code and rebuild everything and restart everything. JavaScript not like that. JavaScript objects can change dynamically, because they're actually much closer to just a map with key value pairs than they are to the anything like the idea of objects that we have. When we look when we talk about objects in Java, so they can we can change the properties they have at runtime while the code is running. So what view is going to do when we say okay, for this object, we want the key reviewer views going to say okay, you don't have a key reviewer in the new review object because it's empty. So let's add it. So it's going to add the key reviewer and then add the users answers to the data that goes with it. So we don't have to have the key we don't have the object to get the phone But we variable for that have it an object type, but we don't have to have the key predefined to use it to buy into it. Because if it doesn't exist view will create it for us and this new object, and we're going to see that working so but we have to have it set up with an event before we can actually see that happen. But that's what's going to happen. So
+
+again, for
+
+kind of, maybe a more visual representation of we have an object in our code that looks like this. So that's in our data object. And we write a V model like this. So this has to exist. And so this has to be here. But then, when it runs this portion, it's not here. And so if it's needs it, if it's not there, it's going to take whatever this portion is the product of the dot and create it inside of Have the object and then take the value of the input, and that'll become this value. So it means that we don't have to pre define an object for our form for when we have new data, we can just say, here's an empty object, and define what we're going to build as we do the binding from the form which is going to lead to some really easy ways of working with us. As we keep going as we want to do things like reset the form or reset the filter after we've added it. It's going to make that actually very easy to work with. So there's more to this function either just the convenience of not having to find it. It's that we consider the form an empty we can consider the form an empty and empty object. Now we could bind to one that has no first name, last name, everything in it already That would work as well. But we don't have to. And often we will want to because of some other things we'll see today. So that's what we're doing, or how this is going to work. So let's keep them continue with the other three fields. So we also have the title to bind to, if we remember in the object that we need to build in the end is this object. So title.
+
+So I'm just going to grab here see all these elements because they're going to be pretty much the same, right? We're going to change a few keys. So form element and again, it's gonna be label for title. We'll change the ID to title and then the new review to title and then we need the rating. Grady's gonna be a little different. So make it
+
+form element class.
+
+The reason ratings can be a little different as it's going to be, we'll make it a select box instead of a text field.
+
+So we still need the label for
+
+rating.
+
+And then we'll create a select. So we're creating a filter like a select the ID, we know the ID goes on the Select itself, and that's the same place the the binding goes. So I'm going to have to, to this object, I want this rating to be a number. Not the user selected from text. But
+
+I'm going I want this to end up being a number, not a string here. The object.
+
+So what I'm going to do here is in the V model, I can tell it if I want a number data type, and there's some modified, there's some other modifiers for cat four v model, we're gonna look at just two of them today. But there, there are some others. But I can say number, so I can use the modifier number, it is going to put this in as an number type, so an integer or floating point instead of string, which means that if it's can't convert it, we have to make sure the user can only enter a number for that to happen, which we can do with the select box, we can we can control what the user is going to enter the same way we might want to use a number field instead of an input instead of a type text type number if we had an input field. So we're going to find this new review and we've seen it was rating Now in the Select and then we'll need some options and this is where we can control that's a number. So option was at the value of the first option to one.
+
+And we'll say one star.
+
+And we'll set the value to the second option as two stars. And the third option will set to three stars.
+
+Same way for
+
+four and five stars.
+
+Give us a slack box. And then the last thing we want to populate
+
+down here in our object past it is the review itself. So we'll need probably something larger than an input field for that. So we can use a text area, I was just going to work very so MUCH and unfulfilled was a little bit different syntax in HTML. And the text era does give us a larger area to work with. So
+
+come here and create a new div for that.
+
+And apply the class form element the same way
+
+and close the div
+
+and let's add text area, actually white label for it first before it and this will be the review
+
+now The text area tag, Id will equal
+
+review.
+
+And the V model binding will be again to new review object inside of that the key review.
+
+And then text area requires a closing tag.
+
+So it's not self closing, we start to believe it is. So now we have our reforms. So now let's create a couple input fill or buttons for the user to use and we see our forms created here. And that stylings applied to it in that manner.
+
+We have our drop down box, our name
+
+looks like we need to change name here on the title And here we'll create two buttons. First input type submit
+
+mid our form.
+
+Let's give it a value save.
+
+And then we'll create an input type button. And let's get a value cancel. Because it's possible the user could excellent get to this form and not want to continue. So now we have this, the saving Cancel button. So let's take a look at how this form this bindings working.
+
+I expect it and I'm going to go to the View, Dev Tools.
+
+The tabs when you get a view
+
+Looking app, which is remember our parent, what we used is our parent view. inside of that the component working in his product review, so select that. And we can see all of our data, including this new review object, it's empty. So let's populate a review. So we'll give it a name. We'll just type it out. We use john because I always do. You see, as I type what's happening over in the data object,
+
+it created the reviewer.
+
+And it populated the name.
+
+As I change this now, the reviewer key is going to remain, but the data object is going to the data will now update. So what it didn't exist, it created it, but as I change it,
+
+it
+
+changed to something else. Then it's going to
+
+update it, just the value.
+
+So let's give it a title.
+
+The same way a second I started typing the title key was created in the new review object. And now go to rating, I'm going to select a rating. And as soon as I select a rating, if you watch this object here and see it created the rating, and it's a number that it's added to it. And then finally with the review, it created the review. So now we have this new review object that looks
+
+like one of these objects.
+
+And we didn't have to pre define it, which is a really useful feature, right? Because, you know, in Java, we would have to pre define an object, we would have to connect it and we'd kind of be stuck with what we Started with in. In view, we don't, we just have to have an empty object and then we tell it what keys we want and it'll take care of building it for us. Now there's some good and bad to this. It's good because it's easy to work with. But the bad The downside is
+
+it if up here
+
+is I know I'm trying to do if I made a typo,
+
+and I go to add it.
+
+It nothing warns me nothing. There's no error, nothing's Nothing is going to happen. It's just not going to work. Which means that we have to be more diligent about making sure that we're typing things correctly, that we don't introduce errors for things like typos. Because when we do instead of getting an error having problem, what it's going to do is create something new with that name. And it's we're never going to see an error, we're just going to see things not working. Because it's working the way it's supposed to. We've told it, we didn't want it previous previous public that we didn't want the in it. And view says, Okay, let's, let's build that, let's go with it.
+
+Where
+
+Java, or even a lot of stuff in JavaScript, and vanilla JavaScript would not work. It's going to work here. So it's kind of a it's a great feature that makes things really easy to work with. But it means we have to be much more careful about our own code, when working with it, and just be aware that the problems that we can cause with things like typos now, often are not going to cause errors. So we could, you know, hopefully see this in an object that is not what we're matching up. The problem is going to come when we try to add to this array, it's going to work too, because the array doesn't care if all the objects are the same in JavaScript. But now, the review names not going to show up. So just got to be more aware of tracing back seeing something not work the way we expect, and tracing back through the things that could cause the problems without guidance from there's.
+
+So let me fix that before.
+
+I'll save it.
+
+Refresh, so we get
+
+fresh object.
+
+All right. So now, let's put this back in here.
+
+The other thing I might want.
+
+users tend to type things like this. I don't know why would I Or this and this space is going to be there because they may know this legitimate space legitimate character, right. But we may not want that. And we looked at this already a little bit on Friday, or Monday. So if we want that the other modifier we can add to V model is we can trim it, we can remove trailing in leading spaces. So let's do that to the title in the name. You know our review, we probably want to maintain the spaces but we pride out once around the title in the name. To do that after v model, we add dot trim. And once we add that and add the spaces before the name, it will just ignore them. It won't ignore spaces in the middle, only hit the beginning and end. So the trim modifier allows us to clean up the data a little bit, which don't forget to put in a database or something We can pick and choose which fields we care about. I probably don't care if this is the case, I probably want to review as is, but their name now it's unlikely someone's name begins with the space. So I probably don't want that in my database. So when we eventually get this into a database
+
+so we can use that modifier
+
+so before we continue because the next thing will be to actually add this
+
+is start adding hooking up
+
+at event for this or to get this into
+
+to start adding this to these reviews. Are there questions? What questions do you have?
+
+Brian Do you mind going back down to when you created the original empty
+
+object Yes.
+
+So it's just literally an empty. Okay.
+
+Okay, cool. We have to have the key here that we do need that. And we have to define it as an object.
+
+We don't have to give it any value to that object. Thank you.
+
+And order order doesn't matter, right? Are you gonna put that new review empty object anywhere as long as it's inside it or return for the data?
+
+That's correct. Yes. Yeah, the order of these keys does not matter.
+
+Other questions before.
+
+So the next piece, before we add an event, what we want our event eventually to do is when we click the Save button.
+
+We want to take this object.
+
+So this object that we just created, or viewed is created for us here.
+
+And we want to put it in this array here.
+
+I mean, we're added to the array.
+
+And then we want to remove this object and start it again. Because now it's going to have data. So that that means because of its two way bound, if we change something here
+
+in the object,
+
+it changes in the form. So we don't want to have data remaining there because the next time somebody comes and looks at this form, it's going to have the old data if we do so those are the two things we want to do before are have ready to work before we have we had the event. So let's do this first one. First. So we're going to take again, this key, which now has data. And we want to put it the object in this array. And it's going to become one of these arrays. So there's, we've need something different to do that. So computer properties, they look a lot like functions, but they're reactive, meaning that there's something that view calls. as things change, every time this review was changed. So every time we use something in a computed property that's up here in the data, and the return object of the data, so name description, the review reviews, then these get re evaluated. They they rerun and they say did this change and if it did change and updates the template, so they're not something we call we use them we use the output of them, we say we want the output Have this to be, you know, displayed here. But we bind to it, just like we do data. So those those are, like the derived properties in Java. But unlike the derived properties in Java, which we can then call kind of on demand, in this case, we bind to them just like their variables. And then but so they they get treated the same but computed property does. But the difference being there's code there, that's going to be re evaluated as data changes. Given that the data is inside the state object, it's outside of this data object, then it's not re evaluated. And what that means is that though none of nothing, but this reviews could change comes from outside of this method, but if it did, if this changes, this review changes that reevaluates but if some changes, it doesn't, or if there's some other variable from JavaScript that changes it does not. It's only the stuff from the data and that's what the reactivity is. Some music reevaluate and then updates. If there's a change, it updates the value. So computer properties are really work like just variables that have a function associated with them.
+
+Or should say that have.
+
+So let's say instead of a function that have variable value associated with them, so they're variable that has a calculated value associated. So what we need is some code that we can call that we can call like we would a method or function in Java. I'm orange JavaScript. So we need a proof function. And view has that ability as well. So I'm going to add a new section
+
+after computed, so wish they could
+
+see let's, I'm gonna make make this text pretty small. I know it's gonna be hard to see but I want to point out how these are coming together and it's there's so much here.
+
+So in this export default, it has three keys right now
+
+has the name, then it has the data key.
+
+And then it has the computed key right now.
+
+Scrolling wasn't a good idea. So
+
+the things inside of here
+
+are
+
+part of this data.
+
+The things inside of here are part of the computed. So what we need to do is add another one of these kind of high top level keys to the to the export default to what's called the view model. So well, so we can call it that. That's what's what It's actually called this model that's being export as this data is called the view model. So we need to add another main key to the view model. So we're going to do that after the computed key. So here, and I'm gonna go back to
+
+text we could actually read.
+
+So add a comma here. And the new key we're going to add is methods. And methods are going to allow us to write functions or methods in this
+
+in the code, so
+
+methods are going to look a lot like computed properties, because anything, really. But there's going to be some two major differences, or three major differences really. So one is with computed properties, we bind to them. With methods, we're going to call them, we're going to call them Like we're used to calling methods, so there's not. So the computer properties are the ones that are different methods are just what we're already used to. Methods computed properties don't take arguments. Because they're wrapped because they're bound to there's nothing there. We can't pass things to them. methods can take arguments. They're just like, they're just func JavaScript functions as all the methods are. And we can, so we can call them when we want. We can pass them arguments. But the trade off is they're not reactive.
+
+So they get reevaluated only when we call them
+
+not when the data changes, computed properties get reevaluated when the data changes. So that means that we have to manually manage how when they're used. But the purpose of them is for to make reusable code. If we're going to do something multiple times or we're going to do something like have a few lines of code we want to run when an event happens, then that's what effect For when the event happens, we call the method just like we would we did in regular JavaScript, we pass in an anonymous function for it to call. In this case, we're going to create one here and methods and then call it by name. And the same way in Java, if we had something happen, we called call a method to make it to provide functionality. So that's what the methods do is they allow us to provide reasonable functionality, like we're used to with functions in Java, and JavaScript. But they're not reactive. And that's the important distinction is that we're not we have to do it, we have to manage them. So let's create a method that
+
+can
+
+handle adding the review to the array.
+
+So before we do that, are there questions are
+
+Yeah, so
+
+within our script that we have right now we have our we have our data, our computed and we have our methods. That's what we're only dealing with ratings right now, or reviews right now. But if we had other things that were going to be computed or other data entries that were going to be in data, would we be creating three more data? computed methods? Or would they all be combined within these, these threes that we've just created?
+
+So for this component, this is the only methods The only computer The only data, everything goes in these three. And well, as we go, we'll learn there's more than these three sections but but every method has to go in this methods, every component every computer has to meet here for this component. So one of the things we're going to look at tomorrow is that this component is probably too big. We're going to break it into multiple components, we need to talk about something something quite large thing called view x and state machines before we can really look at that. So that's tomorrow. But in each component, there's one method section, there's one computer section, there's one data section, everything for that component has to go in that column.
+
+Does that answer your question? Yeah, definitely. I didn't know if that was if it was just because we were dealing with reviews that we only had an individual one. And then if we were dealing with a different set of data that we would go ahead and create more, but you answered it perfectly.
+
+So other questions before we okay.
+
+So let's build a method.
+
+So the reason I was pausing there, I'll put out if you're feeling a little confused right now. That's okay. I find the difference in the use cases of when you use methods versus computer properties be one of the more challenging aspects of view. Because there's a fine line between what they how they work, but that it's a fine line and how they work and when you use them, but the differences is really large, which threat with the activity.
+
+So let's build a method again that we'll have to call.
+
+And it's gonna look the same, we just give it a name, had the review.
+
+And then we do do something. So what I want to do is I'm going to take this object, which now is going to be populated at this point, with the time I call this method I expect to be populated because the user should have fill out the form. And I want to add it to this reviews array. So I can access things in data are actually things in the view model anything from the export default With this keyword, I shouldn't say anything because this name gets excluded. If I access this name, what I'll get is this because it's the one and data. So also everything out with that first exception. So the data. And I can't call computer directly, but if I could the computed, and then the methods themselves, I can access everything in this model from this keyword, which we did, and computed properties as well. So to get to the data, we'll say this, and we'll use the reviews. At this point, all we're doing is just writing JavaScript. So there's nothing really special here except for that this key word to refer to other things in this component. And put it at the top so let's call on shift, tree if you remember on shift is like push only push puts at the bottom of the array at the end of the array on ship, it's at the top of the ray. That way our new review will show will show first we can do it either way, but it'll be easier just to kind of see it working with openshift plus to make sense of the newest reviews on top right, so that's, and then we're going to add to it is this new review that object because that arrays an array of objects.
+
+So now
+
+we'll come back to clearing the form. Let's add the now we have enough finally to create the event, not to create event but actually make the event work.
+
+So to create an event in
+
+view, let's create this first one and see it working. And it will come back and talk through all the things we can do with events. And then we'll add some more.
+
+So to create an event,
+
+we're going to add an event listener. Much like we didn't JavaScript. So in JavaScript, we would select the DOM element. And then we would add, call add eventlistener, right, and we would pick the event we wanted and pass it an anonymous function, all these parts are going to be here. The difference is that in view, we don't have to, we don't select the DOM element, what we do is we find the element in the template. And we add the code directly in the template just like we did when we do binding, so in dollar JavaScript to bind this new review title, we would have to select you know this by ID by get on by ID or something like that, get the value and then set it equal to new review title, not versa, your title equal to its value. So in view, we select the DOM element just by finding it in the HTML code in the template code and adding attributes to it to make the changes to the DOM elements and in the background. So something that always keep in mind with all this With view, is it in the background? Yeah, we're using this kind of easy shortcut in the templates, we don't have to select the DOM elements, we just use them. But it's generating the same Java code, we would have written written, it's still doing a document, get element by ID. It's not using our IDs. When we look at view running, it has all these data elements on it that it keeps track of individual fields with So it uses its own internal IDs. But in the end, you we can create data elements look like this and use them to these are called. These are custom data on HTML, anything with data, dash is a data field. And we can create those and use those. We didn't really look at them. We talked about HTML. But they have uses in frameworks like this or when you have data you need to store with a tag. So it's, in the end all view is doing is creating JavaScript just like we would So it's not that we're actually selecting the DOM elements here. We're telling view, we want to select this input element, we want to get its value. And we want to put it in this variable. And the reason that I put that distinction is important is not for writing view, it's for troubleshooting it, in the end, is just JavaScript. It also, if you know that you can start talking about view and interviews, that's an important point, too, is that it's just JavaScript in the end. So what we're going to do is find the DOM element we want the event on. And we're going to tell view using an attribute, just like we did with V model that we wanted event listener added here. So if I'm want to capture this form being submitted, when I click the Save button, what DOM element Should I add the event to
+
+So yeah, we need to submit
+
+the submit button. So that could work if we had an unclick. But we probably don't want it when the button clicks. So in the other that that could be made to work. But for form, there's probably a better, I just kind of gave it away. So we probably added to the form. Because the form has a submit event. And we want to when we working with forms, we don't want to capture the button click, we want to capture the form submission, because we're going to have to prevent it. So we're still working with just JavaScript in the background. So we still have to do things like prevent default view won't do that for us because there's legitimate times we may want this form to submit. For instance, we may want it to we may want to do some things we're checking values on it or doing something with it and then allowed to submit normally So it doesn't do things like prevent default by default, we have to still do that. So, so we, if we prevent default on the button, the submit button, then it's going to prevent the button from working, which is going to prevent the form from submitting. If we capture the form submit event, then we have control of the actual time when the form is getting ready to go. And that's where we probably want to have our form actions to take place. So we're going to so to do that added to the form, we would add it to the form tag because that's the DOM element we want selected when gets created that element that gets associated with this form. And to add an event, we're going to add v on and then a colon and then there's keywords in view for all the events. So I want to submit event so add
+
+submit civilian Submit.
+
+And now, I need the
+
+I do need this form, not the sum actually submit. I want to handle the form completely internally. So I want to prevent default. So there's also modifiers. And events, I will look through. Some of these are most of them. So they come after the event. So if the event has a modifier, like the ability to prevent default, it's another dot. And then you can see here's the modifiers available. I want prevent, which is going to set it to prevent default.
+
+So onsubmit
+
+will prevent default.
+
+And then
+
+we're going to equals and in the
+
+quotes, we're going to tell it a method to call and The method we want to call is the one we built down here. And it needs to be a method, it can't be a computed property. Or we'll learn that it can't be a very simple line of code, but we'll talk about that later. So we want to call this add new review method.
+
+So the call the method
+
+add new review.
+
+I can do this.
+
+This is also valid. If I want to make it stand out as a method. If I have arguments, I could pass them here, but this method doesn't have arguments. So if it doesn't have arguments, I can in view, we can also skip the pregnancies. But if you do add the parentheses, that's fine. It's it'll work either way.
+
+So we add new review.
+
+So I'm gonna save it.
+
+So Brian It's just it's preventing the default action on Submit. And then instead, it's going ahead and doing the add a review.
+
+Exactly.
+
+If Yeah, if this was JavaScript code, what it's going to create in the background is something like this document, see would be a query selector. Only it would be on some tag some element of the form that's more than just form. But that's not important. Add event listener for Submit. And let's see we need the event object. And then it would be event what prevent
+
+default, add new review. So that's basically what we told it to build.
+
+for basic JavaScript, but we got all this code
+
+from that.
+
+And we want to figure out the query selector portion. We say whatever this form ends up being in the in the DOM, attach an event to it. That does this. So this after you get used to it, this is a lot easier to work with. And it allows us to work with the HTML, instead of worrying about the DOM. So the other big advantage is that we talked about the DOM and ran into a lot that we did summer tables, then the DOM, it adds another element. Sometimes there's these other nodes out there that causes problems. We don't have that issue here, who's going to say whatever this tag ends up actually being attach an event to it. If it adds a bunch of other stuff around it, it doesn't matter. It's going to attach it to what that ends up being.
+
+So let's save it
+
+Come out here. And I'm gonna go back to the view
+
+properties so we can see the object.
+
+And let's fill out a review.
+
+We'll select some values
+
+for star rating, and let's put some text in here. And we'll press Save, which is going to cause that event to
+
+call the add new review.
+
+And there it is.
+
+So it added immediately to the screen. That wasn't a lot of code to make that happen. So let's walk through how this got here because we didn't do anything. All we did was we took this one function. It took us a while to do it because we were talking through it slowly but no, the actual amount of code was this and that. Few one submit two lines of code. So let's walk through how that just worked. Because that's actually the core feature view why we're using view. So when we call this method it takes
+
+we took this and we add it to the reviews. But this reviews is what's being used.
+
+See everything in these is what's being used up here.
+
+If I get rid of some spacing here,
+
+So we took
+
+this, we've added it to this, but this
+
+this reviews is what's being used up here
+
+to build
+
+this div, which is one of these.
+
+So it loops through, if you remember three views array.
+
+And for each review in the reviews, it builds one of these builds a div that has all these values in it using the review. So what's happened when we take this our method takes this new review and adds two reviews? Is that since views reactive, what it means to be reactive is when this changes, it re evaluates this v4.
+
+It goes through and says, okay, what's different
+
+And it says, Okay, there used to be four of them. Now there's five of them. And there's a new one at the top, there's a new review that's right here at the top. So we'll build a new div. Because this these reviews is being used to build a new div. And we'll insert it right here to make the page update to match the data. So once we have that reactivity going, we don't have to do anything extra to change the page, we just have to update the data is going to react, actively update, wherever we have a bound. Now a bunch of other stuff just happened. That's not here. So the other thing that happened is that said the same review again, if you watch the four star reviews in the average rating,
+
+they also updated so this guy added
+
+and this updated in this updated. So the other thing that just occurred
+
+is that this reviews
+
+is also being used
+
+down here in the computer properties. So it's here and when it's being used in a computed property and it changes then these all get re evaluated. So with this change, average rating said did it do I change to my value change and if it did it updated it
+
+and then
+
+it goes down and says Okay, number one stars that's using reviews do my value change and it didn't so if nothing happens to it, and it continues to two star, three star each thing that uses this reviews got reevaluated and no forestar it did change So it updates the DOM element, the DOM for it to show its value until it gets through all the computed properties. Now, methods down here uses this reviews, it did not reevaluate, because it's a method. So when we change reviews, everything in the computed properties, and everything that's bound to it up here, like in the case of this V four, gets reevaluated in the page gets updated to reflect the change. So we change the data to add to the page. And that's what rack tivity means is that it'll update the page based on the data not
+
+based on us telling it to update the page.
+
+So this is the reason we use view or Angular react because this if you think about how much work we would have had we had to do to make this happen in vanilla, Java. There was a considerable amount of work. We had like five methods and a couple of them are quite long. Here we don't we just have two lines of code, and it happened.
+
+So before we, actually to their questions.
+
+So I guess it's getting kind of late. So let's take a break. So we'll come back at 1036 and continue.
+
+So what questions do you have before we continue?
+
+So we use the unshipped in our method to go ahead and put the array we just added to the top right Yes,
+
+yeah. Okay. Got
+
+Yeah, we can just easily use push button or some other method or just
+
+other questions.
+
+Okay. So then let's continue.
+
+So now we have our review being added to our, our page. But I would like to clear this how this form cleared when we're done to the users can't, you know
+
+actually add the review multiple times.
+
+So let's add another method to do that. It's only gonna be sign it'd be a lot of code declare that review, but it's something we might want to do. At least two different places, right, we hit save, we want to clear the review, we hit cancel, we'll pregnant want to clear the review as well. So
+
+let's add it as a method.
+
+So add a new method in something like reset form.
+
+So how can we reset this form?
+
+Any suggestions?
+
+loop over the new array and remove
+
+everything in there for each or something. Okay, yeah, we could loop through it remove everything that would work in the other thoughts. There's a few ways we could do it.
+
+You could just set the values that you set previously to empty strings, because you're going to be using it the same way again,
+
+that would work as well. Any other ideas?
+
+Is there some super easy, like clears JavaScript method?
+
+Some super easy way but not clear. See maybe even easier than not clears. We just
+
+remove the new array, or this new array, just remove that entirely.
+
+So that's on the right. Right? The array. Yeah, exactly, let's just set it to an empty object again, let's just put it back to empty. That's where we started. It's going to recreate everything when we reuse it. So this new review equals empty, and then we'll call it from adding the review. So to call another method, from a method, we have to use this keyword to. So everything we use that's inside this view model that's farthest from the data from the methods or from any any piece of it. We have to use it with this keyword from the methods. So this reset form which we'll call this other method.
+
+And now
+
+We go ahead and we add our review.
+
+We hit save, and it clears the form. And it clears the form because of the two way binding. When
+
+we reset
+
+the object back to just an empty array, there's no value for any of these. So this clears, the values get removed from the form here. reactively says, okay, they're not there. There's nothing there to show. So those form fields shall be empty. So working with this, in this manner allows us to work with these objects and just treat the form. Almost like an object. We want the form clear, we clear the form, we clear the object. The other ways we talked about that was suggested Of course, looping through the elements, and either removing the attributes or looping through them and setting up with both work. But there are a lot more work. There's a lot more code involved. We can just clear out the reset back to the starting point. And we'll have the same, the same effect. It didn't change the one that's in the array, because we've already taken the new review and put it into the reviews. And then we changed new review back to an empty object, the old values that old object now is in reviews. So Alright, so does that make sense? Or there are questions on that before we
+
+where did you call the reset form again,
+
+I caught it right here from the add new reviews method. So at the end of that it calls reset for us has to use the this keyword to call another method.
+
+Okay, I see.
+
+So now when we add the reviews, we take the new review which has been populated by The data, we put it into the reviews array, and then we call reset form. To reset this back to an empty object, we put it into a reset form method. Because this is one line of code wrapped in a method, right, we could just put that one line of code here. But we're going to want to reset form and we click Cancel to. So that so even though it's still one line of code, and we could just put the one line of code in two places, having it in the method gives us one source of truth for how to reset a form. There's one place we go to reset a form, whether it be one line of code, or whether we decide later is going to be 10 lines of code, it won't matter. Every place it needs to reset a form calls this method does it so it's more just about future proofing, resetting the form the method than anything else. Right.
+
+So Now that we have reset form we probably want. Next thing would be to make the Cancel button reset the form. So if I'm typing filling out my form, and I think I made a mistake, and I want to cancel, I'd like to cancel and have the form clear, just like it does when we hit save.
+
+So we need another that.
+
+So where should we? Which template element? Should we put the event on? The cancel? button? Yeah, the Cancel button. So we want Viane in what event would this be?
+
+Click a bit.
+
+So click.
+
+And we want to prevent default, because we don't want the default behavior of a button. Remember buttons have a default behavior. And so we want to avoid that. So it's going to be dot prevent.
+
+And we'll call reset form.
+
+And now we come back here and we click our Cancel button. And the form clears. And it puts the review back. So as we're typing things in, hit cancel. It just goes back to an empty object and clears out the form. Now we've had two events we've created, we created a click, and we created a summit. We use prevent default on both. But let's talk more about events. Let's just talk about events. And then we'll do some more. So we've already seen that we add the event listener with the V on we add it to the DOM out to the side template, HTML tag. Were that we want attached to where it becomes a dot o DOM element. We talked about this just going to create an event listener in the background for us that listens for that event. And we define the event by
+
+a keyword that goes with VR. So
+
+they're listed here, there's a link to the Vue JS documentation on events.
+
+I guess that's more for the
+
+guess that's more for the fence. But from this documentation, you should be able to find the list of all the event types. So all the event types we're used to in JavaScript all exist and they're almost there pretty much with a couple exceptions. Whatever the keyword is that you use in a string in JavaScript is going to be what it is in view. There are a few exceptions of ones not working. Look up for Better than isn't view. So the syntax is vo on column the event equals, and then what our action is. So this takes the place of the anonymous method. So you can alias it, as well, we haven't talked about aliases. kind of left them out. Just word on purpose. But uh, you can't alias an event, meaning that so typing v on, you can type just the symbol. So at click, notice the whole v on colons gets replaced with the at symbol. So these are equivalent. And then we'll come back to this actions can be a single line of JavaScript or method call, we'll talk so we can talk about why you'd want both or either one, but it can't be either one. So the event that's how we define the event, but we also know there's more there's this modifier.
+
+So the modifiers are
+
+things they that changed the way that that behave. There's several of them, but ones that we'll use commonly is stop, stops propagation. Prevent prevents default behavior. So that's like calling stop obligation and prevent default on the event object. There's also once. So once, that means the event triggers once and then it dereferences the event. So if you had a button, like our Cancel button, when you clicked it, and you had once, let's actually put once on the Cancel button, and we can also chain these so if we want to have them we just add next one along the chain, and they happen in order.
+
+So
+
+it's going to do the quick then prevent default, and then apply once. So in some cases, order may matter and these two it's not really going to matter. So what that means is fine go in here and I use this, add some text and click Cancel it works. But then I add some more text now cancel doesn't work. So it works one time was what once does. So allows you to have a button that maybe likes loads data on the page, but only happens you don't want to occur more than once because after it's happened, it's done.
+
+Just take once off there.
+
+And there are some other ones as well that are not used quite as commonly around the event in the way like capturing using the capture phase instead of the bubble. And some of the things like that are available as well from those modifiers but those are the three you use most the time you can chain them. Again order matters, because it applies them in this order whatever order you chain them in. But often for like stop preventing once those spins the order doesn't matter. But if some of the other ones If you look into them, actually, we can look up that documentation. They show you example here, some of the other ones like prevent capture. We've looked at stop providers capture, self impassive
+
+what those actually are,
+
+are more
+
+or less commonly to need to be used. So
+
+So for instance, passive is the opposite of prevent default. It doesn't. It tells it we want the default to happen. We want the event to happen. And no matter what Alice has been told we want the normal behavior as well. It's because on all the browsers, we're running on it they They allow the normal, they have default behaviors. But there are some browsers, mobile development that actually prevent default by default. They expect you to always provide behavior and passive tells it we want your normal behavior. So there's some things like that that are more specialist. So they exists. So you're interested in looking at this. So there's other some other keywords we can apply to the event on top of these modifiers. There's modifiers around particular event types. So for instance, the keyboard and mouse events that we worked on, we work with
+
+that had
+
+things like the keys.
+
+We
+
+can add those as a modifier as well. So v on key up, dot page down will capture the page down key
+
+and for each Each of these codes
+
+you can take the regular JavaScript
+
+key values. So like our graph, caps, locks, or any of these values
+
+and you turn them into from the camel case they're into or the Pascal case or into the lower kebab case. So lowercase with dashes comic we did already with some other things in JavaScript, and view and that becomes the modifier we can add. So this will capture the capture page down if we wanted to capture you know, the arrow down, it'd be arrow dice down or it would show up to capture that event. And then we could put, continue chaining prevent default and other things on to it as well. Mouse the mouse events have the same thing. So mouse events like click You can specify only the left button or the right button or the middle button in the same way if you need those behaviors, so if you need like a right click menu, it becomes very easy in view a little more difficult in JavaScript, not by much, but we can decide these modifiers.
+
+So before we look at the objects quickly, are there questions on the modifiers?
+
+Alright, so the event object or the event,
+
+I'll come back to that. The event object awesome exist. So we know in a regular event, we have our event listener or add event listener. There, we have the event.
+
+And then we have our anonymous method
+
+that we have the option of either leaving this empty or we can add a variable to get the event object. And then arms will be passed to us. If we add a variable it's always passed to be captured if we add the variable, if not, we just ignore it. And then we can do things with the event object. Like there's extra details about the event on there, if we need the event object or from view and one thing we can do with you, we can do in JavaScript as well. But some of the more advanced uses of view is to create our own your own events and actually push data or move data around between pieces by events. But we'll talk more about that later. And not today, but another time. So you often need that event object for that extra data. Or if you did want to do something more like the mouse events contain more information, just the buttons, then you can get the event object in view in two ways. If your method you're calling, because events are going to call a method, if, in most cases, if the method you're calling doesn't have any arguments, like here, if I just add, so just like with our regular event listener, if I decide event to it, it'll capture the event object. So in a methods called from view from event handler, it automatically passes the event object. And if we want it just like we did with our listeners, nonnamous method, we just add a variable to capture it or hold it and we'll have it as long but our methods can have multiple arguments. So if let's say this had To arguments this method doesn't. But let's say this event one had takes a number, and then we wanted the event object.
+
+If we have to, then in our event handler,
+
+we have to explicitly pass the event object. So where's our so if we were passing a number, and then we wanted to tell it send the event object, because it's now with multiple arguments is not explicit, we could access it in the template with dollar sign event. So we'll start seeing the dollar sign show up more and more the next few days. The dollar sign refers to this component or the view instance itself. So it's saying get the current event and pass it here as far as to it. So we have two ways of getting the event. We only need a second one if we are calling a method that has multiple arguments. Otherwise we treat it just like we Did in regular JavaScript and just add the argument to the method.
+
+Hey, Brian,
+
+yes. for that. You added it to reset form
+
+and then added it up top on add new review. Was that on purpose? Or was it supposed to be the same? It was supposed to be the same. I just added it to the wrong place in one of the two. So sorry.
+
+You're fine. I just got lost.
+
+No, it should have been the same method.
+
+So for this yet, if you you're just calling about that, like we were just doing. We just had the variable and we can capture it and get it. So this is a way if we wanted to get the event target. That would be a common use of this. We're doing something like event delegation, which we can still do in view. But it's often not as needed, because it'll do a lot of that for us. But if we need to do something more advanced It can provide, then we could we just add the argument, if we do have a method that has multiple, then we have to explicitly send it using the dollar sign. And if we do want to access the event first in some way in the template, we can access it with $1 sign of VIP, but it's only gonna be available in this one section of code, because that's where the event handlers are being handled. And the last part of that this dollar sign refers to the view instance. So refers to view itself. So in this case, our component, and we'll talk more about that the next couple days, who will start using it a lot more tomorrow on Monday.
+
+And well, after tomorrow, we'll start using a lot more.
+
+So Other questions?
+
+So let's
+
+now we have Have that form then here, let's make it. Let's put a link here so we can show or hide the form.
+
+So I'm going to go
+
+back to the form and just above the form I'm going to put a link in.
+
+So we could put a button here we could do, no.
+
+There's multiple things we could add, but I'm going to add it as just an anchor tag. And I'm going to set its href. It has to have an href. It's required for an anchor tag, I can't not have it, it will get an error. I'll get it. It'll be invalid HTML. I'm just going to set it to the pound sign. So sticking into the pound sign says to this page, so nothing's going to happen when I click it. But we're going to fix that anyways. Even it was something there. And we'll just put something like add new view
+
+Tag. And we'll save it. And we'll have our
+
+cake here. And now I want to hide the form by default. So I'm going to come down to my data, I'm going to create a new element in it. And it doesn't matter where we create it was put here afternoon review, called show form. And we created a default boolean value for it for false. So what we're going to do is we're going to bind this form to this show form, we're gonna conditionally bind it with Vf. And then, when it's true, it'll show the form it's false. It will hide the form. And then we're going to create an event on this link, that when we click it, it changes show form to true and shows the form and then we'll add a Then we'll also add a Vf to the link that when the form is being shown that it hides the link. And then we'll add to our reset form. method, a value that hides the form by setting it, but it's all going to be based on the show form being true or false.
+
+So I'm gonna go back up to the form.
+
+And here, I'm going to start with a V, if
+
+equals show form. So show forms true. Show the form.
+
+And the form is gone. So just to kind of we looked at Vf on Monday, we just kind of recap. So that was the end. And I know by the end of Monday, there was probably not a lot of information being retained, because it was a long day before matchmaking. So let's look at Vf.
+
+So what Vf does
+
+is
+
+Come here
+
+says the true.
+
+If I look at the elements,
+
+I can find this form.
+
+Here it is.
+
+So when it's true, it's here in the DOM. That's back to the view and said false.
+
+And when it's false,
+
+it's completely removed from the document object model. It's completely gone. So it's been removed. So Vf, when it's true, adds it to the document logic model. When it's false, it removes it from the document object model.
+
+The other option would be V shadow,
+
+which from the user's point of view works the same.
+
+But with the show, we can see what it's false forms here in the document object model. It's just hidden. So it hides the form and actually set it to display none of us added to it. And if we change it to true, which is going to help form the show, we go back to the elements, we can see that the form still here and the display none has been removed. So it hides the form, the show hides or displays the form using the display none property or CSS property. But everything remains the Document Object Model v if removes or adds it to the document object model. So the difference is really, if we're doing other things with JavaScript, or because we can have other JavaScript in our view, besides just what we're doing to make view work, then we often need the form in the document object model that remain there at all times. If we don't care, then it doesn't matter which one we use. So we have a choice from the user's point of view, it works exactly the same. They don't see a difference. So I'm going to leave this at a, let's leave it at V show. That's fine. I think last time we looked at the Vf, so it'll have.
+
+So that'll show or hide our form.
+
+And our default value
+
+is hiding the form because the starting value is false. So now what we'll do is write the event. And when we click, add, new review is going to switch show form to true, which, since that's in the data element, and it's being used, up here in the V show, their activity is going to reevaluate v show and when it's true, it's going to show the form. So it's going to remove the display none. So when that value changes to true, it's going to auto manually update the form element to display. If we were using Vf, it would add the whole thing to the document object model. And then if it changed false, it'll do the opposite. So as this changes, the V show will make this form bound. Its display or inclusion in the object model down to this Boolean variable, which means here,
+
+we can add
+
+a V on
+
+white it to click, because that's really the only thing we're going to probably want to do here. And we're going to want to prevent default, because otherwise, when we click a link, it's going to refresh the page. So even if it goes back to the same page, so we don't want that to happen, so I'm going to prevent default.
+
+And we'll do
+
+show form equals true
+
+So now we have this will click,
+
+and we get the form. So here I wrote, I didn't call a method.
+
+This is just a simple line of code.
+
+So we can actually have a single line of code is our event listener here, or we can call a method. But there's some rules about when you should do both. So the only time you should really have a single line of code here is if you're setting a single variable to a new value, like we're doing here, and it only happens in this one time. So we're never going to set the only time we set show form to true is when we click this link, so there's no need for a method to do that. We could write one wouldn't be wrong to write one. But if it's simple like this, we can just put it right here in the the handler. If If we're doing anything more complicated than calling a single variable, or we have to do it from multiple places it should be in a function should be a method. And the reason is, if we need more than one line of code, we can't put it here because there's only one line of code. So if we need to do more than one thing, which often we will, in an event, there has to be a function. If assuming something more complicated than setting a variable, that it should be in a function just for readability. And if it's setting this variable from multiple places, even though show form equals true is really simple. If we're calling that in three different places, we should have a function doing it. Because of this idea that we're we've talked about Java, this idea of having a single place a single source of truth for how this happens. So I've used that term a few times. I don't think we've talked about it because it's something comes up a lot more in JavaScript and also in product management, but the idea of a single source of truth meaning that there's one place that you go to do something There's one place you trust. If some, if it happens in three places, you pick the one you're going to trust. And the other two may be doing it, but you don't trust them. And that's what when you hear that term or that phrase, single source of truth, that's what they're referring to. You heard a lot of testing a lot in product management. And you've seen a lot of JavaScript documentation, which is why I've started saying it now. So the idea being that there's one place, that is the way to show the form. If we have to show the form in three places, we call that one place to show the form. If that means wrapping one line of code in the function, we do it. If there's only one place to do it, we can have the code just here in the event handler
+
+or the event action.
+
+So we have that here.
+
+So before we move on to the questions on
+
+So let's now
+
+two things. One, when the form is showing, I'm going to get rid of the link. So we'll do the same thing here. Let's do a V. Show equals not show form.
+
+So when
+
+show form is true, it's going to be shown and I could have made this equals, you know, I could this could be like this as well, or triple equals, but she's back since the boy. So in show form is true. The link is hidden. When show form is false, we don't have a way to set it back to false right now, but we want a second, then the link is shown and the form is hidden. So they just kind of swap places. So now let's go down to our Cancel button or Our reset form function. And what is add this show form equals false. So let's go back and refresh the page, we can add a new review. And we add a review, and we hit save. And it goes back shows it now and goes back, we add another review. It's still empty because we cleared it out. We start adding a review, and we decide we want to cancel and it goes back. Now we have the functionality swapping back and forth for the review. And again, that those are swapping back and forth because as we change show form,
+
+as we change this variable,
+
+show form it's being used Those two elements, the form itself,
+
+and the
+
+attributes. So every time show form changes, it's going to reevaluate whether the form in the anchor tag should be displayed. So we change it to true or false doesn't matter, which will you change as we change show form from any source, then it's going to reevaluate this line in this line of code, and say, okay, is it still is the condition that I should be showing this value still true. And if it's now true, and the case when show forms true here, it'll show the form if and then hide it here. And if it's false, it'll hide this and show this. So we can, and we looked at that hiding elements on Monday. But now we can click events, we can swap it, we can change the value in habit. display or hide whole sections of the page just based on one box. In condition, or 1.5 value that we can just change to true or false.
+
+So questions on
+
+Does that make sense?
+
+to everybody? So,
+
+alright. So I know that seems simple, but I'm stopping and asking there because something that confuses me every cohort is that this show form seems to be more confusing than everything else
+
+in view. So that's why I've focusing on it. I don't know why I don't.
+
+So if
+
+but it's the same idea. It's just, we change if you remember every time we change anything in here.
+
+Anything here sorry.
+
+That everything using the things in here in view change We evaluate and change what they're doing.
+
+That's really the whole reason we're using this.
+
+Alright, so let's move on to do something different. Well, so God events, but we have our form working, what I would like to do is be able to
+
+actually, let's look at one more thing before we do that.
+
+So this is object zero. So we have our functionality here. So when I click the filter that we added on Monday, notice it to
+
+added itself to the
+
+favorited added to self to the object at that point,
+
+which is actually kind of a
+
+kind of a really interesting side effect that
+
+so we can build the objects as we go. That's another thing that we can take advantage of And that's what we kind of did. We added the objects from the form filled dynamically as we were adding them. And then it got put into the list favorited. It wasn't there. So when favorites is not there,
+
+let's get something in there.
+
+And
+
+it's not there, it's not going to show up because it's just like if it's true or false it because of the truth, nature JavaScript, that means it's false. And then when we actually need to change the value, it adds it to the object. And now it's now it's there. So, so that functionality we built Last time, we didn't have to do anything extra to keep it working with our new new values because of the nature of the truth nature JavaScript combined with this, the way he treats objects.
+
+So let's look at these numbers up here. So one thing I think would be really nice feature and review site, if we click like four star reviews, we can see the four star reviews. And it's always nice when I look at a product, I want to see the one star reviews to see what people didn't like in the middle, you know, each of the different levels of reviews isolated, so let's make that happen. So that's gonna be called filter, it's going to be, we're going to filter the reviews based on their score. So what I would like to have this do is that if we click on each one of these, it will filter the list of reviews based on what score it is. And then if we click on the average, it'll put them all back they'll go back to all the reviews.
+
+So we need a way to limit
+
+the reviews being displayed right away, but I don't want to change the array because if I change the original array If that means I'm going to have to keep reloading data, I don't wanna have to reload all the reviews every time somebody changes what reviews are looking at, I want to just change their view of the reviews.
+
+So to do that, we need a way of
+
+changing what this display here is using.
+
+So what we can do is we'll create a computed property that filters the reviews based on just the number
+
+and then we'll change out
+
+the v4 that's creating these to use that computed property.
+
+And as part of that, we'll create a filter value.
+
+That's just a value in data that we can change that the computed property will use to update which reviews from the array are being displayed. So That's the steps we can take to make this make this work. So the first thing I want to do is make, let's just make it work with all the reviews. And we'll make it work manually, then we'll add in the events and pieces to make it happen. Without more from the clicks, so after someplace in here, don't get me ordered as a matter of I'm going to actually share form, let's add a filter, I'm going to set it to start at zero. So it's zero to show all reviews, wanted to show one star reviews to two star so on through each the number of review ratings. So let's start at zero and just get it working with all the reviews. So that's going to be our data that everything is going to be bound on again, the data here is what everything is going to be reactive on. And that really determines what we want to put here is we either data we want to show to the user or data that we want to react with What goes into the data object, which is going to be usually all the data.
+
+So I'm going to come down here. And let's create a new
+
+computed property. And again in order to these does not matter.
+
+So filtered reviews.
+
+These are comma delimited.
+
+And
+
+because I have to return something, so computer properties have to return a value, otherwise they wouldn't make much sense, which is less what it's talking about. So you have to return something because you have to bind to this. So what I'll do is we'll return this reviews. So that array of reviews and we'll use the filter method. So if you remember the filter method in java script, allows us to write an anonymous function will loop through each of the things in an array and then we can return true or false Whether we want to keep the thing in the array, and if we return true, it'll add it to a new array. And if we return false, it'll ignore it. And it'll return to us the new the new array. So what we're going to return here is the final new array that we filter. So each time through, it'll be a one review, we'll pass it to our anonymous method. And then we'll return true or false. We want to say is we're going to return this filter
+
+if filters equal to zero.
+
+So if filters equal to zero,
+
+we want to and we could write this out into an if statement. Actually, let's write it on if statement.
+
+So we'll say if
+
+filter is equal to zero
+
+Then return true.
+
+Because what that means is if
+
+so here
+
+used to be this keyword.
+
+And that's saying I'm not using it yet.
+
+So footer equals zero, we returned true no matter what, because we weren't all of the reviews. So the else of this is going to be really another if statement. So we'll just put it as if.
+
+Or actually it should be else.
+
+Return.
+
+return the result of if this filter
+
+is equal to the review rating. So the filter set the to match, triple equals and If it's not photos not set to zero, it filters set to two in the review, rating set return return true which will include it in the new array. If they're not equal than return false and it will not include the new array. So we'll end up with is we sent this to to wind up of all the reviews in our new array that have the review rating of 2% to four, we'll get all the reviews and have a review rating of four. We set to zero we'll get all the reviews because there'll be short circuited here. And of course, we could write this much shorter and return which is what I started with, but I think the Stephens probably more clear this, if it's true, true. This filter equals your
+
+reading
+
+would be equivalent. And let's stick this commented out so we can both
+
+see how we have our footer reviews computed property.
+
+So now we're going to replace actually before that other questions on how that's working before we use it.
+
+So now, we're listing these reviews instead of using
+
+reviews. The rate directly, let's change our computer property filtered reviews. And federal reviews is going to reactively reevaluate every time the filter changes, or we're using two things and photo reviews now. So in photo reviews, unlike the other ones we're using always just reviews here we have two things from the data object we're using. So anytime this reviews changes, it's going to reevaluate this Not this computed property. But also anytime this filter changes, it's going to reevaluate this computed property. So for computer property, anytime any of the values in the data change that we're using in the computed property, no matter how many there are,
+
+it reevaluate that computed property.
+
+So that means that will re evaluate and give us the list the list of reviews, not the original array reviews, but the filtered one, the one that's created from the erase filter,
+
+which when it's zero like it is by default.
+
+It's going to be all of them.
+
+And that's what we see. They're still working. Let's see if it works. So we'll come here to the view tools, and I'm going to ask you to change the filter. Let's try it. See there's a single one star review. So let's try that change to one and we get the one star review. We didn't have to do anything to change this working because when that filtered reviews, we change filter Computer, the computer property photo reviews up rapidly updates, which changes the VI for which the loop that re evaluates what it should be displaying. And now only shows the one star review because that's all it's in the new list, a new array, we change this to, say a two star review. We get nothing. We change it to a three star review.
+
+We get the two three star reviews.
+
+We add a new review.
+
+Let's add a new review. And let's add it as a five star review. We don't have any of those. And we'll save it. It's not here in the three star reviews. Let's change the filter now to five and it's there. So we'd have to do anything to make that work. We just have to sort of use the filter method on The object, then rebind to our computed property. But now we just need to put event handlers to make it work from clicks instead of changing the view object.
+
+Before we do that other questions on how that's working?
+
+making sense?
+
+Yeah, this is absolutely insane.
+
+Yeah, fuse amazing view and react. Actually, all these rachio frameworks are just the thing that made me actually start liking JavaScript again, or not, again, at all.
+
+So could you could you do what you just did by going into view and the dev tools and change it to five and then talk through how that works?
+
+Yes, yeah. So thank you.
+
+So let's change it. How
+
+would you choose inside of Visual Studio code I guess.
+
+So let's change it to five five review
+
+or five star reviews gone. So, so we can talk about it. Let's, let's change it to one we have that that's okay or did you have something specific about the five? Okay, so let's change it to two. In what happens visually is we get about three, three star reviews. I change it to the to portion of it three, and we get the three star reviews. There's two of them. So what's happening here
+
+is that we're updating
+
+this filter
+
+and this filter
+
+is
+
+set to it.
+
+So, this filter is being used
+
+down here in this computer property.
+
+So when this filter update, so it updates to to it reevaluates
+
+this it says reevaluate this computer property, which means that it reruns filter on the list of reviews. So it goes through each review and it says, Okay, if filters equals zero, it's not it's equal to two now, then that's not true. So use this part of the code, says it filter, which is to is equal to the review rating. So in the first case, the review ratings three, sorry, filters equal to three. I keep getting best up by this two here. Three, then including the new array, so this one gets included a new array that goes to the next one, it says is filter the three is equal to the rating, which is four included. It's four, so it's not included. The next one, it looks at it and says that the filter, which is three is equal to the review rating, which is one. That's false, so don't include it. And then the last one, the filters equal to three, the ratings equal to three. So that's true to include this one. So we end up with a new array that has this index zero, this is index one. And that's the output of filtered reviews. So that's changed when filters change, but then a second reaction occurs.
+
+And I don't think I'd get these both on the screen.
+
+Just you could collapse these like, Oh, wait, can it Oh, that's much better.
+
+I could do that. That changes everything. So
+
+So we have a second reaction here
+
+that this
+
+is here. So now this has changed because filters changed. So we changed filter. It react this we acted because of this being used here. It's created a new list of reviews with the new with just the two reviews. So now this has changed, which causes this v4 here to react because it's using the filtered reviews. So it re evaluates which divs it should be building. And it says, Okay, now I only have two divs. So it rebuilds the divs and all their content for the new list of filtered reviews, because that's changed, which ends up with the two displayed on the page. So it's a it's a chain of reactions, where we change filter, filter reviews, reaction Because it's using filter, because computer properties, if this was a method, it wouldn't work. But because it's a computer property it reacts in filter reviews is being actively used in the bound to the v4. So the v4 reacts in reevaluates, which div should be displayed, which is based on now, the filtered list of reviews, which is only two of them. Does that make sense?
+
+Yeah, thank you that hits home the difference of competed and methods also.
+
+Good. That's right.
+
+That's one of the questions before we move on.
+
+Okay, so let's add events now to make things while you click on these boxes to make that
+
+data occur instead of us doing it manually.
+
+Can we break before we Step into that. Maybe we can.
+
+Yeah. Yeah. So we'll come back at 1141. Thank you.
+
+So before we continue, what questions do you have? Okay.
+
+So now we have this
+
+folder value here that we can change to filter the list of arrays. So we're, what we'll do is we'll add events, their handlers to each of these numbers. So as we click on them, we changes that footer value we've already seen Changing that filter values all we need to do to change the list. So the way we have it set up now, if we just change this right event handlers to change this, that's all I have to do. So with that, we'll come up to each of these fields each of these values and are these spans said the first one. So here on the span
+
+we'll add a
+
+V on
+
+and click into we need to prevent prevent default on this or not. Yeah.
+
+So we need so
+
+we need to prevent Why do we need a friend default
+
+on on this particular
+
+I'm gonna go with reload the page.
+
+Okay, so that's a good, good answer. But, and that's kind of what I wanted to point out is we actually don't need one here. So we needed one on the anchor tag, because the anchor tag has a default action. The default action anchor tag is to reload the source of the page to a new page. So we need to stop that a form has a default action, its default actions, the submit button has a default action, which is to take action on any form it's part of, but a span tag has no default action. So we only need to prevent default when the element has a default action. So in this case, we don't need it.
+
+And
+
+so we're set filter
+
+and we'll set it equal to one. We could write a method for this but this is comes to you. The same thing we talked About as the only place we're going to set a filter equal to one is here. So we can just have that line of code here. And let's also add it to the span tag for the average rating. So excited to be on again, click and filter equal to zero. Let's try those two before we continue. So now we click. It's already I already had it filtered to one. So let's click on average rating, and it filters to all of them. We'll click on the one star review the first one, and you can't tell you can do anything but we'll fix that before we're done. Let's just get the events working and then we'll worry about the way it looks. So now let's put aside it for 234 and five star.
+
+So it's gonna be the same thing for each of these only just changing the number
+
+and we could write a method
+
+Maybe we should write a methods we have an example of a method with an argument.
+
+mean now
+
+now I think that's
+
+might mess up space So which of these was good at it two
+
+three.
+
+Keep replacing the wrong thing
+
+and add it to four
+
+and the span tag for five
+
+we already tested the first ones that are working ready to film is going to work so, five star reviews four star review two star review, three star review, two star review one star review our reviews, we add a new review
+
+That's gonna be that's not added 375 star. And we get
+
+five star reviews.
+
+So add one more reviewed, add another one star review.
+
+And one star reviews, we get both of them. So the photos are working
+
+from just changing that filter object and using the activity.
+
+This isn't really a flow, about the events. But let's make this so these the user can actually tell what's going on up here. Because that's not a very good user experience. That's gonna take a quick CSS class. Let's add a CSS class to make this more usable. So Let's see, how can we select these? Actually, these are the span tags with the class amount. They're inside the divs. Well, which ones I will display them. I think there's already there might already be a element for those.
+
+Let's see span tags that are called a mount.
+
+Maybe there's not, no there. Give me a while. Okay, this is it. So, I want to create a hover event or not a hover event, but a hover CSS class using the pseudo selector. And if it's hover, let's just change the text color to something else. Links often turn blue, so we'll make them blue. And let's change the cursor to the pointer, which is the traditional, this is a link cursor. Now when they click over and they get a little better experience, they can tell they're clickable Again, not nothing to do with the events just make our page more usable. Okay.
+
+So questions before we move on to
+
+a couple more things.
+
+All right. So on Monday, we wrote this computed properties. And these computed properties have this code duplicated five times. And I mentioned on Monday that we could make that better, we could make it so the code is not duplicated, but we needed methods. So let's refactor this. So it's actually written the way it probably should be written.
+
+So let's add a new method.
+
+And let's just call it something like number of reviews. And we'll call it number of stars. Give it a value, a variable number of stars or an argument. And then we'll just take one of these. They're all the same with the exception that number and that's the number we're going to do. Our variable is going to represent our variable become just that number. Because the only difference between these is that number
+
+seven, we'll just go for each of these in return
+
+number
+
+of reviews.
+
+And we'll pass it the number of stars This is the five star reviews.
+
+So what am I missing there any ideas?
+
+If,
+
+yes, I'm missing this keyword, because they're referred to anything inside of the view model, the methods or the or any other or the data after using This second like this line of code,
+
+and I'll change it to four.
+
+We'll change it to
+
+three,
+
+two and one favorite.
+
+And we have them still working. Let's add a new review to make sure it still works. Just the one star review and it works. So we know it's still working. But now this codes a lot cleaner. So there's a couple things going on here. That's I want to Point out. So first, why do we still need these computer properties? Why can we just use this method directly?
+
+Because the computer
+
+something that you're using in like a bind thing can't take a parameter?
+
+Well, that's part of it. Yes, that is part of it is true, it cannot take a parameter. So that would be Devon difficulty. But are there any other reasons? So that's actually one of the reasons that some methods aren't reactive well, computed properties that are exactly. So it's not going to be active. We have the method we use the method directly. But it is also true that for this method, we couldn't call it for the binding because we can't pass an argument. So both those state those, both those things are true. So there's something else going on here. What is reactive, we All these are still reactive, they're still updating. But methods aren't reactive. We know that. So why is why is this working?
+
+Any guesses of how it's working?
+
+Even a guest says, This is fun
+
+because it's being used in the computer part of it.
+
+Exactly. So views actually smart enough to say you're calling this method number reviews, that methods not reactive, but it has elements in it that you need this computed property needs to react to. It so in this case, when this changes, even though the methods not working Active review changes, this gets reevaluated. So it's actually smart enough to see that that's there's a connection allowing us to call methods from inside our computer properties and get reactivity. The methods still not reactive, the computer properties still where their activity is, the activity occurs by it view being smart to say, Okay, this has changed. And this is data we react to this computer property is calling a method is using it. So reevaluate this computed property, which calls the method with one hand gets the answer back from it. So, it's really just comes down to from that because that's, that's a lot better. That if you're smart enough to say, we're calling a method that uses reviews, and this is a computed property, so it needs to react it needs to be re evaluated when that changes So now we have this refactor to something that's more readable, or more not real readable. I would argue more readable, but also, now there's one place where this is happening where before there was five. So we got rid of the code duplication through a method. So methods are used not only to respond to events, but they're also used just to remove duplicate code like they are in any other. language like they are regular, right? They're regularly used in JavaScript or Java. And if we use them inside of computed properties, we don't lose reactivity by getting rid of the duplication. Because view is actually smart enough to, to realize that.
+
+So questions on
+
+that so far.
+
+So one more thing or one more problem that I want to solve With this form before we were done.
+
+So if we add a new review, and I hit save,
+
+we've kind of broken things, right? This now is not a number, probably not what a user wants to see. And now we have this empty review. You know, I can keep doing it and keep getting more of them. And these don't break because they're looking specifically for 123 and four, you know, and so
+
+reviews.
+
+So, yes, in fact, the answer is yes, you could decide required, but I want to do something different. I want to do it through view. We could you add required HTML, which will block it from, which would give a user nice input, but bimber JavaScript, so that's going to stop the form submission, but We're handling all that through view. So let's, let's handle it through just what I want to do, I'm not gonna do anything, I don't want to go so far as giving putting error messages on the page, I just want to make it until you thought the review, save button doesn't work. You just can't, there's only four fields. So until you fill up all out, the Save button doesn't work. And the point of this is not to do some detailed verification on the form just a quick, here's a quick kind of way we could take advantage of events to handle not only events, even more activity to handle things like form submissions. So what I'm going to do to make this work is I'm going to create a new computed property. So the computed property we're going to create is called inniswood. Credit is form valid. inside of there, I'm just going to check to make sure that All these fields have value. So these are being held in the new review, right? There's four of them new review, reviewer title, review and rating.
+
+So we're going to say if
+
+we don't even need it for like, because we can take advantage of Java's truthy nature. In this return, if this new review dot reviewer is equal to true, that means it has a value, right? Because if it's empty, it's gonna be false because of the truth of JavaScript. And this new review, dot title is equal to true. And just for clarity, I'll put it on the next line. This
+
+new review
+
+dot rating
+
+is equal to true and this
+
+New review dot review is equal to true. So they're all equal to true. That means that this will return true. If any of those are equal to false, then it'll return false. The reason they're equal to true or false is because of the truthiness of JavaScript.
+
+If these fields are,
+
+don't have value, then they're going to be false, because that's what it means to be false in JavaScript are one of the means to be falsy. in JavaScript, if these have any value, then they're going to be true. So it's it's not a really great validation. But we can use it to stop the form being submitted to everything at least has value. We could do a lot more here. We could do you know, checks of is this the right number or if this anything we wanted, like if we wanted to make sure your phone numbers in the right format, we could do that. We could also add things like to apply CSS and stuff like that the fildes we're not going to do that. I'm just going to use the simply,
+
+can you just like Could you do like dot trim on title and review and see if those are truthy, just in case somebody just put in a bunch of spaces there.
+
+So I don't know.
+
+I don't think they have that trauma available. Yeah.
+
+That's pretty bad.
+
+So
+
+this is going to update a time the new review updates any of these fields.
+
+And actually, I put that term in the wrong place.
+
+It's a it's a function though, right? Yeah.
+
+We're not inside of the view.
+
+Okay, that's where it should be. Sorry, I was thinking like it was we're stopping them from the tags where we add the dot trim to the V model. But we have to call the method on the string here. So yeah, that should work.
+
+So now, we have this
+
+computed value is for value, this can return true when all these have a value and false if any of them do not. And since it's computed every time these change, it's going to reevaluate.
+
+So up here on our button,
+
+our Submit button, we can aside
+
+we combined remember, we can bind to any attribute, one of the attributes a button has is this attribute disabled. So we'll bind to that and will bind not is form. Valid, because when disables equal to true the buttons disabled so when is forms valid is equal to true, we want it to be false. So the button gets disabled gets enabled. When it's for invalid is false. That means we don't want to submit we want disabled to be true. So we set to the opposite wherever form is form valid is.
+
+And we'll save that and
+
+let's refresh our page. It didn't refresh for some reason.
+
+And I must have an error somewhere
+
+because it does not like this at all
+
+like the console, I do
+
+Up to try my best not be available that that place.
+
+Can I read property trap?
+
+preview
+
+next year
+
+it's probably Oh, I know what's going on.
+
+So this will work if we created a new review, and we put the key reviewer, the title, the rating, and the review and the review in the new review object. But since the objects empty, what's happening is that when the page tries to load, it's doing their activity and it's saying, Okay, how do these work but these are all No, these are Are undefined. So now it can't find there's no trim method, they're not stringent. So this would work well, we'd have to write either some if statements to make sure they existed at this point or start the object with values. So I'm just going to take them out for what I want to achieve. today. That's a good idea to put them in there. But that illustrates, though, that we can do more than what we're doing here, we're doing the absolute simplest thing to make the form, not submit.
+
+Now, the Save buttons, grayed out, we put some values in it. And as soon as we add the last value, it is available. We take any value out and it disables again. So it's only enabled, as long as there's all the fields at least have value. Doesn't matter what they have. They have no single value. It's going to focus this is the most basic, basic type of validation you could do or not validation, but verification of the form you could do. But it will keep now no matter what they put in, because if they even had a single value on each thing,
+
+even if this is a space, it's still allowing it.
+
+It doesn't break our form doesn't break. It doesn't look great here, but it doesn't break things, things still work. Everything still functions, because that's enough for perform the function. So at least we don't break the page. Even if we get maybe a review. That's not not great.
+
+So questions on
+
+any how that's working?
+
+So Zack had a question or sorry, sorry. It's called my brother Zack.
+
+Like that, so using the required because view has a, right so you can do forms with the required thing. So what, what's the advantage of going this route?
+
+So html5 has a required tag we could use, that would stop the form from submitting. But that happens when the form submits. So you could use that, in fact, you probably would use it in combination of the two. In this case, we're, but the required tag wouldn't allow us we're giving a visual reference with the Save button and when they're done, when everything's there. So the example is really not more about form validation, then about another example of the activity through a single flag to change the way the pages working. So, so the answer is you probably would just add required or not just I probably do both. And there's validation frameworks and stuff to that will help with Front End JavaScript and I think view has won. Not I might be wrong on that. But there's JavaScript frameworks that would help with this as well. But
+
+so are there questions? Right.
+
+So while this is making sense
+
+I definitely get the gist of it, but I feel like I need to work with it a little bit more myself to figure out where I'm going wrong or where my questions are.
+
+It's a lot view is not a knotted a.
+
+The learning curve view is kind of steep.
+
+It's, it's but I will give you a head on learning it.
+
+The key all the key every view is a view is understanding that reactivity
+
+Thinking is learning to think in kind of fractions. It's which is something we don't do in any other programming paradigm. It's this idea of thinking about how view is going to react and how things are going to reevaluate as data changes. That's the key to view. That's not an easy thing to kind of. I don't want to say, I don't know how to say that's not that's not an easy thing just to grasp. That's definitely a hard concept. To fully grasp, especially, it's not. I'll bet the first time I, I encountered viewers here, because but I was working. I was, we didn't use things like JavaScript, the front end. So we use JavaScript, but our main front end was in C sharp. So we didn't use any racket frameworks. I encountered it teaching it here in the first like two cohorts. I taught it I didn't quite get it. I could, I could make it work. But but then that's what Once that click that it was all about the activity. And if you follow the activity that it became, it's everything else kind of falls into place. because everything's really around that. So it's not a, it's definitely not a simple thing to, to learn.
+
+But once you learn it, it's really powerful.
+
+Once you once that happens, once you get that kind of change in the way you think about how to write the code, it's, I can see how powerful this I mean, we're doing very little getting a lot of functionality for almost nothing.
+
+So other questions before?
+
+If you have vanilla JavaScript already written out, and you decide, hey, I think I want to add some few stuff too. Is that easily done?
+
+It actually is.
+
+That's part of the reason that views becoming so popular. Compared to react and Angular, and part of the reason why we chose it, is because it's what's called incrementally adoptable, which means that you can replace just pieces of your page with view. You don't have to do it all at once. And you can also have a page that is a mix of view and JavaScript. So you can choose which pieces you want to be even if you're building from starting, there may be some some parts of your page that views overkill for. So you don't use you for us. But you can do that with you. So the way we're using view right now use single page applications. It doesn't lend itself to that it does lend itself to having to be all view. But there's You can also build these components in in native JavaScript. And just vanilla JavaScript and they become things you load in. So there is a different style of using view you can do that with yes
+
+So, to confirm you're saying that you can use part of this, but keep your thing not your project, not a.
+
+I don't want my thing to be an SPI.
+
+Okay, exactly. So you can use view. Thank you can you write an example, let's say you had a weight. Let's say you had a on your page, you had like a calendar. So you had a widget, that's a calendar widget being something on a web page that is reusable. It's kind of like a plug in of I want a calendar here. I want a clock here. If you think about, I want this particular form, like an email collection form. Each of those things would be a widget that you just kind of drop on a page. So you have a calendar, it's specialized to your company, or your use, and you want it to display on, you have 10 pages you want every page you could build that just that calendar and view and import that component into each of the regular pages and have an interaction With the JavaScript most pages, and have the rest of the site be not componentized. And not in view, but not, not I started out with the vcli, like we did. If you when you start with the vcli, you're creating a single page application that everything is has to be view.
+
+So I was having like, I was having trouble yesterday, where I couldn't get views. I couldn't get my view files to show up in in like the browser, and I realized it was because I wasn't doing run serve. But before I realized that I spent about an hour and a half digging, and there's like a build something like swear it has a whole different folder is that when you would do that you had more JavaScript,
+
+that's where you would do that before you like so view doesn't run anywhere. You can't put view on a server and have it run. So what happens when you do Run servers it doesn't build First, it does as part of that in the build, what it's going to do, it's going to take, it's going to first compile, or try to compile all the view to JavaScript, as you're writing it, a lot of us in ESX, so it's going to transpile, that into es five, or five, as needed. And then it's going to be it's going to go through as it goes through Babel, it's going to do that transpile. And also, it's going to put in the polyfills for older browsers. And that's going to result in these JavaScript files. And that's what the build files are. And that's what you actually deploy to like Heroku or your web host. You don't play these dot view files. So when you run, do run, serve in the background, it doesn't build and it goes through Babel. It does all that stuff talking about and then it starts the MPM web server. And then it puts the JavaScript files out there for it to run. And then it connects them. So if you make changes, it automatically updates them. Kinda like Eclipse does with the servers, the server component stuff So when you do a build, the view build is when you're not going to run it for testing. You're getting it ready to go to be released to build those files.
+
+Does that answer your?
+
+Yeah, definitely.
+
+Whether, yep.
+
+Yesterday I got, I was asked by a center for a view framework question. He asked me about to give me explanation on what a component is. Give me an answer for that.
+
+Yes, so a component is an encapsulated
+
+either page, or widget that encapsulates the template HTML, the jot the script, the JavaScript, the data and the CSS in one. One thing in one reusable piece
+
+Does that answer?
+
+That's enough. So you got a few questions from?
+
+Yes, I was I was surprised because as that we get all the news yesterday. Yeah, yeah,
+
+that's
+
+Yeah. Especially since they would have been told just right before they interviewed you, when they went through the kind of orientation exactly where we were in the cohort and what you should know. So, but maybe they're seeing what you didn't know and see if you're going to be. A lot of times when interviewers ask questions they sometimes ask the ones they don't think you will know, if you do it great. If not, it doesn't hurt. So
+
+on your resumes, isn't there like a template that you guys are following? Have you guys added in that view stuff on your resumes? Yes, I have a view on my resume. You do. Have you
+
+done anything else?
+
+So for your exercises today,
+
+let's take a look at what you'll be doing. It's pretty similar to what you've been doing.
+
+Let me load them up.
+
+folder.
+
+Let me try again.
+
+Cut the wrong. Sorry, I think I selected the wrong thing. I did
+
+Alright, so
+
+let's take a look at the readme.
+
+So again, you'll start out by running, doing NPM.
+
+Run serve will be stopped by collection code from running
+
+or not run served out to start with an npm install, just like you've had the last couple days, there are tests, that NPM run test unit.
+
+And it'll walk us through
+
+how, how that's how to use the test. So the unit tests will walk, but you know, you're completing each of the requirements. So you actually don't need to ever really do you can but you don't actually need to do NPM run serve on us never look at it. And you can do that. So way you can do that and run the test at the same time. You could have two terminals open to the same folder and run tests in one and run the server and the other.
+
+So for instance, I could run
+
+by MPM install running, but I could be running the server from here. And then I could open up just a Mac terminal and go to the same folder.
+
+Maybe I can get to the same folder if I can.
+
+And in here, I could run my NPM
+
+run test unit. And then here, the MPM Run surf or opposite and seek out both going in same time. And that'll work if you want to run it so you can see it. But you don't actually actually run these, this project, you can just rely on the test that's up to you if you want to see it working or not. Which I know when I develop, I tend to like to see things actually working. But so you can use two terminals to do that. But you don't have to you can. So the tests are what you should follow for making sure you're complete. It walks you through each step and which tests should pass.
+
+And
+
+there are, it gives you properties to use names. So it has names of things like show form, save user method, new user object flip status, you need to follow the naming Exactly. For the test for law, the test to pass. So so be careful about that. It needs to match the naming because they looking for those IDs that are going to be created. And those elements are going to be created methods and stuff that are Created in the test on they have to do that by name. So pay close attention when it says to add something like selected user IDs property that what you call it is selected user IDs to just avoid frustration, because what you end up working is your page, your work is fine, but the test will fail. In since you're writing and that's actually valid, though, because you're writing to specifications you need to write to the specifications. If the same thing was happening, if you were doing TDD with two teams, where a team is writing your test cases and handing off the specifications for you to write code, that's exactly how it would work in the workplace. So
+
+so questions on really what you'll be doing
+
+is as I've told you, how you've how to do it and what
+
+so mentioned jQuery, sorry if you held the chat, but Oliver mentioned he mentioned jQuery in the interview. So something you have to be very careful of is exactly that. If you don't want to talk about it, don't say it. Any anything you say will be
+
+used against you in an interview.
+
+In fact, when I interview people, when I interviewed people, if they said something, and I was pretty sure they were just trying to use words, just be impressive with what they knew. And I happen to know that topic, even if I didn't, sometimes I would then focus on that topic, even though it had nothing to do with the job, just to see so.
+
+So be careful about that. That's, that's kind of funny that happened to so
+
+alright, then for today, or tomorrow, we'll look at nested components and that's going to add a whole new giant piece called view X to this. This thing is called state machines. That is a whole whole nother new concept. So there's a tutorial out there for it and you probably a good day to do the reading as well, because of UX. It's, it's a lot. Not a lot of material, but more of a lot of concepts. So there's a meeting halfway vet at three o'clock today. So don't forget that matchmaking. What's next today what to do next. And then I want to say, you know, next week, we're going to be changing the curriculum schedule slightly, very slightly. So on Monday, it'll be the same through Monday to be the same review on Friday, we'll do the routers on Monday. On Tuesday, we're going to do both the API days is one lecture. And then we're going to do a two day review project for the whole cohort at the end. which I think will be more exciting than one final moment of Hey, and here's what a full app full stack application looks like. We can actually spend some time on it before your capstones. So yeah and when you see I don't think the calendar be updated so when you see the calendar that's
+
+those two days are going to be combined.
+
+So any other questions for anyone for about anything?
+
+Right now not Thank you pin then good luck
+
+Transcribed by https://otter.ai

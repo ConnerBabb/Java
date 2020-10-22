@@ -1,0 +1,30 @@
+Book
+https://book.techelevator.com/content/variables-and-datatypes-javascript.html#miscellaneous
+
+Miscellaneous
+#Linting
+Just as coding styles vary from shop to shop, so does their enforcement. Depending upon a given development environment, you may, or may not find certain suggested coding guidelines are more-or-less enforced.
+
+Tech Elevator uses a tool named ESLint to enforce many of the standard JavaScript coding practices. If you have any questions regarding these coding standards, ask an instructor. :::
+
+#Template literals
+Template literals are strings delimited by back-tick (`)(grave accent) characters rather than single or double quotation marks. In addition to regular strings, templates literals can contain placeholders, indicated by a dollar sign and curly braces (${ }).
+
+When properly used, template literals can make your code more readable than concatenating strings:
+
+const firstName = 'Bernice';
+const middleInitial = "B";
+const lastName = "BillingsBottom";
+
+// Display the fullname using concatenation
+console.log("LASTNAME: " + lastName + ", FIRSTNAME: " + firstName + " M.I.: " + middleInitial);
+
+// Display the fullname using template literals
+console.log(`LASTNAME: ${lastName}, FIRSTNAME: ${firstName} M.I.: ${middleInitial}`);
+You can even embed arithmetic and other functionality within a template.
+
+console.log(`Total Purchases: ${1.98 + 2.35 + 4.00 + 7.21 + 19.38 + 3.25 + 3.25 + 8.50}`);
+console.log(`Half of Infinity is ${Number.POSITIVE_INFINITY / 2}.`);
+Note the use of Number.POSITIVE_INFINITY. The standard built-in Number object was briefly introduced in the Number datatype section earlier in the chapter.
+
+More information on template literals can be found at the always helpful Mozilla Developer Network.

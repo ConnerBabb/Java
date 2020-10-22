@@ -1,0 +1,67 @@
+Pathway
+https://docs.google.com/document/d/1lVFOYiCWYQs41wjUXerxeZGEMho7y-7KqZGjmIXSXvo/edit?usp=sharing
+
+Edit your headline:
+
+Make sure to add ‘Java Student at Tech Elevator’ or ‘.NET Student at Tech Elevator’ as your headline...OR get creative!
+
+How to edit your Headline
+
+ADD TECH ELEVATOR TO YOUR LINKEDIN EXPERIENCE SECTION 
+
+Log in to your LinkedIn profile
+Click ‘edit profile’
+Locate your ‘Experience’ section > click the plus sign (+) to add experience
+Add the following:
+
+Title: Java Development Bootcamp Student or .NET Development Bootcamp Student
+
+Company: Tech Elevator (make sure you select TE from the drop down menu so the logo shows up next to the company name)
+Add “Tech Elevator” into your professional experience section (make sure you select the company with the TE logo).
+Add in the following in the description:
+“Currently enrolled as a Java/.NET bootcamp student at Tech Elevator.  Below is a list of projects I’ve completed during my time here (wait to add this until you’ve completed your first capstone):
+Add your projects here as you complete them
+All capstone projects and personal projects can be added here  
+3.  Once you accept your first technical role, you should remove Technical  Experience from this section and add in your new job.  
+4.  When adding a company or school, make sure you are linking the company to your profile by selecting it from the drop-down menu once you start typing the first few letters/words.  This will automatically pull the company/school logo into the profile.  
+
+Location: Your campus location 
+
+Time Period: Add your dates
+*Select ‘I currently work there’ and add the month and year you started attending Tech Elevator
+
+Media: Consider adding uploading projects, link to Github, etc. 
+
+
+
+ADD TECH ELEVATOR TO YOUR LINKEDIN EDUCATION SECTION 
+
+Log in to your LinkedIn profile
+Click ‘edit profile’
+Locate your ‘Education’ section > click the plus sign (+) to add education
+Add the following:
+
+School: Tech Elevator (should auto-populate with logo)
+
+Dates attended: Year - Present
+
+Field of Study: Java Web Application Development Bootcamp OR .NET Web Application Development Bootcamp
+
+Java Description:
+
+Currently attending a 14-week Java coding bootcamp to learn how to develop dynamic web-based software systems using the Java programming language and platform including:
+
+- Object-Oriented Programming: Java
+- Web Application Development: HTML, CSS, JavaScript, Spring Boot, Tomcat, Vue.js
+- Database Programming: JDBC, Table Design, SQL, PostgreSQL, E/R diagrams
+- Development tools and techniques: Agile, Unit Testing (JUnit), Integration Testing, TDD, Unix Command Line navigation, Git, Eclipse
+
+.NET Description:
+
+
+Currently attending a 14-week .NET coding bootcamp to learn how to develop dynamic web-based software systems using the .NET programming language and platform including:
+
+- Object-Oriented Programming: C#, .NET
+- Web Application Development: HTML, CSS, JavaScript, Vue.js, ASP.NET Web API
+- Database Programming: ADO.NET, Table Design, SQL, MS SQL, E/R diagrams
+- Development tools and techniques: Agile, Unit Testing (MS Test), Integration Testing, TDD, Unix Command Line navigation, Git, Visual Studio 2019

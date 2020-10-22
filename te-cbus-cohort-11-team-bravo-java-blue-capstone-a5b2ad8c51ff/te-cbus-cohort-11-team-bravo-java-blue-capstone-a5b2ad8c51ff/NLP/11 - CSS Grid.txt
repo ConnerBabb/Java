@@ -1,0 +1,1263 @@
+Zoom
+https://techelevator.zoom.us/rec/share/xsxID57yyWlJWqPX8Gb6Z6AmNaP3T6a8gyga_qFfmBpRcN8al-0Nfj23IX-6ZLQI?startTime=1594214388000
+https://drive.google.com/file/d/1HIS0RIdgi5Fv6PWiwKU7TfGzQ7PAN2Qv/view?usp=sharing
+https://docs.google.com/presentation/d/1YYJ7Qas4pky0RR8Vzc7rNqHUIPrs6Kotkm1p4rPLmoA/edit?usp=sharing
+So today we're gonna continue with CSS. And we're going to specifically take a look at,
+
+mainly focus on the CSS Grid. And we're gonna look at a couple other things as part of that as well. So we're going to start by quickly taking a look at CSS variables, just because they're really useful. Sweet. It's a way of prioritizing values in CSS, we'll take a look at how those work and how to use them. And then we'll take a look at the CSS Grid, which is a layout set of layout decorators in CSS. And then, as part of that, we'll look at this concept called responsive design, and some other another CSS tag concept called media query. So let's start by taking a look at variables. So CSS variables work a lot like variables and Java or any other language, they're just a way of storing information or storing data.
+
+So it can be reused later. So
+
+with CSS variables, we define them in the CSS file, in what's called the root of the document, which makes them available throughout the entire CSS file or the loaded CSS. And then we can find a name for them with a double dash. And a name and a name that we'll use later has a variable name, and then the value they're going to represent. And then to use them in the CSS, it's instead of using the value, we use the var method and pass it the variable name that we wanted to replace it with. And what this allows us to do is a We have put up the CSS. This is today's lecture code. And there's a folder in here called CSS variables. And that's what I'm looking at what up in the index HTML. And
+
+web server, which has this
+
+page in it.
+
+And if we wanted to go through and change, like the text color of all the elements in this page, or all maybe the content elements. To do that, now we would have to go through
+
+and change for instance,
+
+each one of them. If you wanted to change them to all to say just to standard text, you'd have to go through each one and find them using variables. If we set a variable for that. We have places where it's going to be reused. So we can start at the root element which we identify with a colon root and then
+
+and it's
+
+Scope we can put names. So like
+
+someone like content,
+
+text color
+
+code and the value we want this to represent. So let's make it represent black text and then use it in the place we want to use that information now, we can set it to var and then that variable name.
+
+This this also would be content type. And the div
+
+text color.
+
+What this allows us then
+
+is they all take on that same
+
+value. And now we can change it to one place. In all the places where the variables collide. Change. It doesn't just have to be something like the color value, it can be any value we can apply on the right side of to the CSS. So we could also set maybe these have a repeated with a few places. So we can say something like, content with and these names are arbitrary. They're just like variable names in Java. Something that we create, so we remember what what it represents. Except with the 75 to be h.
+
+And again how we use it
+
+bar
+
+content with the EULA.
+
+And now again, one change in one place
+
+as nothing because I messed something up
+
+called vhi wh
+
+changes it
+
+for everything where it's applied.
+
+So that's that's all really variables do but they make it so since CSS with CSS, we have to select things with selectors, and there's often multiple things. We often have to select each Individually because of multiple styles, like in this case, most of these are applying other styles as well. We could have a selector that, you know, mass electronics, all of them and separates it out variables allows us to have reusable pieces, or reasonable values that we can change in one place that affect many things. also allows for designers to do things like give you a sheet of here's our, you know, the colors that we use for our company's color scheme. Here's all the variables for them with hardy defined and that type of thing as well. It's commonly used for, but there's not they're not required to use they're just useful.
+
+So questions about
+
+variables before, actually.
+
+Would you always put them as a root or would you could you put it as like a section if you want to use it just in one section,
+
+the variables are always defined at the root
+
+In order for the var define them, they need to be defined the root element.
+
+I know that there's some frameworks like sass, and I see SCSS. They can do other things with variables, but those require additions to the standard CSS
+
+questions.
+
+All right. So let's take a look at grid.
+
+And solar grid is
+
+it's a two dimensional layout system, meaning you can handle both columns. And rows. And which is something that was pretty, it was something that was not available in CSS really HTML easily outside of all tables, which are not meant for content, they're meant for tabular data are not meant for layout, I'm sorry. It was added later by a common framework called bootstrap that added its own version of grid. And then in CSS three was added as part of CSS a different, the concept was added as part of CSS as part of CSS Grid. I mean, it actually makes layout much easier than working with divs and sections and floating them and setting them in line. But it because it allows us to set up our content and divide it into essentially rows and columns, and then assign pieces to those rows and columns. So what that means is we're going to take like bring up like, just some
+
+Take a website
+
+if it loads,
+
+loads quicker.
+
+And we're going to break it up by
+
+by dividing it into first columns.
+
+So
+
+this might be something like
+
+and then we divide those
+
+into rows
+
+and then we'll see
+
+The idea of what's called sections or areas. And we'll say that contents going to take up particular errors inside of our kind of 2d display. So this actual grid, actually probably would look more would have more to it than probably what is true. But one more line.
+
+And then we'll say that there's areas and that maybe this is an area.
+
+This might be an image area, search control area,
+
+controller or this might actually be
+
+header area.
+
+And then
+
+footer area
+
+and some blank areas.
+
+So to find out like this in the areas and then we'll assign content will take and say that for each of these pieces that this image goes in this area that this set of controls goes in this area that all of this is a header goes into that area, so assigned to areas. And we're going to do that by naming them almost like variable names for each of the areas. Which means we have to think about, well think about our layout in a bunch of columns and rows, so a bunch of boxes. So that's what grids gonna allow us to do. And it allows for really easy layouts of websites in ways that traditionally has been very difficult, but very desirable.
+
+So That's what grid is going to
+
+allow us to do, we're going to apply, we're going to build what's kind of container containing elements, just the element that holds information like an article or section or div, anything could hold other elements. And then we're going to call the container. We can call it whatever name we want, but it'll be the grid container and inside of that, then every direct Child Element will become a grid item. So that's something that we can assign and then their children. So the descendants will become content that that actually gets assigned. So, before we can kind of talk, look at the code grid, look talk about grid we need to have a few concepts that define so so just some basic terminology. So first container, a grid container is the element That it's being defined to set means that if we have
+
+I should have kept
+
+good go back up.
+
+So we had our
+
+page like we had laid out before.
+
+Then.
+
+And we had our grid laid out before then the whatever element is containing all of this is going to be our grid. It's going to be a section or main or div or even the body can be any anything that contains others and it can be, it doesn't have to be the outermost one either. It can also be if we just wanted to have a grid laying out this portion, a div or a section that's contained that could become the grid. container. So when we talked about grid container, we're talking about the outer element that everything else is inside of, and for that. So let me put that back. So we had a smaller grid on the page. That was there. That would be our grid container. The grid items are the citizen side of it. So these elements
+
+like this image,
+
+and this textbox, and these buttons.
+
+These have become the grid children.
+
+So they're going to be things we can assign into the grid. And also if there was other divs, or sections, or articles or anything like that, that's, that's being used for semantics. There's also become grid children, but it's only the direct descendants, so only the direct children of this outer container will be what we prefer. Two is the grid items. And then grid lines are a little more self explanatory. If we had this grid broken up into something like this,
+
+these lines that are forming the
+
+grid is what we refer to the grid lines, the column, the the, they form the columns and the rows. And those are going to become slightly important. The way we talk about them because we're going to
+
+use them in one way.
+
+And then when we talk about a grid cell,
+
+we're referring to
+
+one block inside the grid.
+
+So each of these would be a grid cell
+
+and we're going to assign areas or contact To the cells, but first we're going to find something else to them called areas. A grid area is going to be
+
+any grouping of these cells that we assign
+
+a name to. So grid area could be like this,
+
+this this way or use that color, you find a different one.
+
+Could be like, it could be something like that. It's hard to see.
+
+Sorry, let me fix this.
+
+So we may put a section
+
+Like this thing called an area, it may be
+
+any shape made of these grid cells, we can define as an area. And then these areas, we're going to give them names. But we'll get back to that. And then the final thing grid track. When we've talked about a grid track, it's talking about a column or a row. So in grid documentation, we refer to tracks they're just talking about a column or row. So it's one
+
+kind of wind through
+
+the grid, either this way or this way.
+
+So those are the terms we're going to use when referring to talking about the grid. They're going to be important for a couple reasons. One, they're going to become some of the CSS tags that we'll use. So no way I know that when we're talking about a cell or a area, what it's going to be referred to in the tag, but to also was if you look into more advanced uses of the grid, or any documentation or discussion of it, it's the terminology that will be used.
+
+So
+
+before we move on to how we're going to apply this to our, our code, our HTML, how do you have any questions?
+
+Yeah.
+
+First question is, can you have more than one grid container?
+
+You can
+
+have an example of that at the end.
+
+And then this might come up later, but like, the grid lines, how are those determined like do we determined that or are they already preset
+
+that We do determine it. We don't deter it by saying we want to line here, we're going to determine it by defining cells. And we're actually defining columns. It'll allow us to then it'll then build what to find sells them within those columns, which will end up building the rows. So that will come up, but we won't ever directly say we want to live here. It's
+
+cool. Thank you.
+
+So the other questions before.
+
+Okay. All right. So let's
+
+look at then the CSS pieces before we apply it to something. So each of these this terminology gets applied to particular CSS. So the CSS will be working with the first display. So just like display inline block, or display block that we looked at yesterday in mind. grid is a display type that has two different display properties, you can use either grid, which is going to generate a block level grid, it's actually goes right into your question. Even if you have multiple grids, we can have all the any since any element that can contain other elements. I say that because there are things like an h2 or an image, they can't contain other things. But also all the container elements can be a grid, including ones that are also children of a grid can be a grid themselves. So, we can just create the grid element and this display is either a grid which will be a block element, which is just to the refresher on what that is going to mean which means that If we've created two grids, or credit grids within the contents, they would lay out by default like this. And they would take up, you know, the full amount of space of the container. So we had a container
+
+like that, they would end up playing out like that
+
+inline. It's just like inline.
+
+Other inline elements, if we decided is inline grid, then they're going to lay out like this with the other content. And they're going to take up whatever space is needed not to take up all the space that's available to them, instead of going to take up the space, they're going to size themselves to their content. So just like in mine, and then my dev or other in line element, so we can make a choice which one, which one we want, how we want the grid layout with the rest of the page, because it's really common, even though The example I just showed with Google. And actually, most of the ones we're going to look at today have the whole page being laid out for a grid. It's also common just to have a portion of it be used for grids for a portion of it.
+
+Though the whole page layout is probably the most common starting point.
+
+So we're going to use the display element. And then then it's going grid has some of its own CSS tags. And we're going to walk through some of them and look at some of them. But there's actually quite a bit more than what we're going to explore today. And I'll give you some ways to place a couple places to go look at some of the more aspects of the grid at the end. So the first thing we'll do is define columns. So we're going to define columns using the grid template columns, row, and CSS. And we're going to apply this to the container. And then we're going to define a list space delimited list of the columns with a size in this sighs can be either it can be using actually any size we're used to. So, it can be you know, absolute pixels, this always should be you know 200 pixels and the next one should be 100 pixels the next must be 300 pixels or it can be percentage, but the most the kind of preferred method for a grid is it has its own unit of measurement called a fractional fractional unit, which is fr and a fractional unit is
+
+a fraction of
+
+a relative fraction of the whole grid. So,
+
+if we had the grid space for fractional units
+
+and let me
+
+Joe another box here for that. So, if we had a box for this was our grid container and we were dividing some things up by fractional units, then for instance, this one
+
+for our fr one fr two fr
+
+would mean that
+
+the middle one is going to be
+
+I'm going to reorder them. Then just because I don't know if I can subtly draw this, but
+
+if the first one was one fr
+
+so I'll type that out. So no drawing. So if we had a listing of one fr and then two fr and then four fr
+
+then
+
+we would end up with something like
+
+This
+
+something like this, where
+
+this one
+
+would be
+
+with this second one, the two fr
+
+would be relative to this one Fr. This one would be two times the size of this one.
+
+And then this one for fr
+
+relative to one fr would be four times the size or two times the size of two Fr. So they're going to relatively take up space in the grid based on the relative size by based on a fraction of the grid. So saying given that a fraction of this fraction of the grid is one to find is one, we don't have to have one to find this one. Then, but it's, we usually will, because it makes it easier. So whatever that ends up being, it's going to say split the grid up such that this one, this space is four times larger than this space. And this space is two times larger. So this space is two times larger than this one, and this one's two times larger than this one. Meaning of course, this one's four times larger than the first. So whatever that ends up being, let the browser decide that, but it means to split the grid up fractionally in that way. So they're related to each other. And that's the preferred method because of something we're going to talk about later. We're gonna run into later. This idea of responsive design and design that is works on multiple devices.
+
+So grids not limited to
+
+fractional you units, but it is preferred.
+
+But there are times when, you know maybe required that you needed toys to be, you know, 500 pixels and you need the middle row boys to be 100 pixels and the two at each side always be 400 no matter what how it's resizing. So in this column listing, like we just had it there, I had them kind of getting larger as they went, the middle column of the three would be the starting point, it would take be take up where the first column would be four times larger than the middle column, and the last column be two times larger than the middle column. So
+
+before we continue the questions on
+
+Yeah, kind of,
+
+sorry.
+
+Is there like a rule of thumb of how to set up the columns like I know you said, we should probably have one that's one as far as like is this like one fr two fr four four split kind of rule of thumb or
+
+no. Whatever you want. It is it really comes down to kind of thinking relationally How big do I want this section to be compared to the others? If you don't if you just want equal lines, then you can just make you know one fr for each of them. So if I make if I made all three of these one fr what it it seems like you're making things smaller, but you're not. Since it's relational. I would have the same box that I had with the when I had one fr two fr and Forfar the differences now one fr one fr one fr would lay out where each of the three pieces were, pretend those are equal. Each of the three pieces are equal. Rather than laying out whether one's twice the size of the other, so it's really just looking at it and thinking, Okay, I want this to be relatively four times larger than this. And then I want this to be. So the reason is starting with having a one fr, it's not required. But it gives you kind of a starting point of this is the, everything's relative to this size. And also, because if you have two fr and four fr, that's the same as having one fr and two Fr. Because if something because now you have one that's twice, that's all you have, because now you have something that's taking up two relative units and four, which is the same as to get one relative unit and two, if there's only two, two things that take up the units since their relative.
+
+Does that make sense?
+
+Yeah, and then
+
+yeah, yeah, that's good.
+
+All right. So other questions before we Alright,
+
+so that's how we're going to define the columns, the rows that are going to find, though there is actually a grid template rows tag, we're not going to look at using it today. But there is one if you want to define absolute sizing of rows. But usually we won't want to, it's most common, we're gonna want to find the columns. If we're gonna let the content define kind of the row sizing. But said, we can do it absolute. If we didn't know if we need an app, we need a grid. That's more like you would think of a traditional like graph paper grid, where things are very set in size. You could do the same thing with grid template rows to define them. But we're not going to do that instead. Normally, what we'll do is we'll then now create areas for these columns. And we'll create the areas by using this grid template areas. And for each of these columns, now I probably should have,
+
+we're going to create
+
+an area for each of these name for each of these definitions. So we have four, one and two. So we have three columns we defined, then we're going to create,
+
+we're gonna have three words that define something.
+
+And then we're going to put one line in double quotes for each of the rows we want. It there's no they're not comma delimited. In fact, if you comment actionaid comma delimited, which becomes very natural since everything we've been working with that looks like this is common delimited. As I found out last night, you'll get for free Frustrated for a very long time as your grid doesn't display
+
+because it just won't work.
+
+So
+
+you they're not delimited, but we're going to put out spacing. And what we're doing with
+
+by doing this
+
+is if we go back to our original box and we had our lines that we had, which was the
+
+see this one approximately twice the size
+
+this one, so something like this. We're saying okay, there's three rows. And by default, they're going to be equal, and then we're going to give them names. So we're saying this grid cell is going to be header,
+
+in this grid cell beside it.
+
+is also going to be named
+
+header.
+
+Alright, so even though he can't move those, so I'll move the line.
+
+And then the third one.
+
+It's also going to be named header.
+
+And then the next one
+
+is going to be named main source like this self, whatever it is, is gonna be named main. This one has a dot. And when we have a.it means it's not going to have a name. It means Leave it. Just ignore it. And then this one's going to be named sidebar and then footer and footer and copyright. So we give these names and what we're doing As renaming
+
+these cells
+
+because we already told it from that the template column definition that there's three columns. So now we're saying
+
+that
+
+we have three rows, and we're going to name the individual columns for each for that row. So this divides up as I
+
+guess that that might have been easier.
+
+So we're dividing this up as a row here, and row here. And then the columns
+
+like that. See, these pretty much go to what we
+
+know pretty much they are what we just defined here. Then what the grids going to do, what we're actually doing is to find the areas. So we define them in this way. But what we're saying is that, since these three are all named header, this is an area named header. This is main. So it's an area name main. The scenario name, sidebar, this an area name, copyright. This is an area named footer. And these can be any, any rows and columns that go together. They can't we can't have header here and here they have to be something that goes together. So we ended up creating these areas then that are going to be named areas. So what we're going to end up with with this is a grid display on the page that now we can start talking about for this one that looks
+
+More like this
+
+we have
+
+a header.
+
+And depending how we have it laid out we might have something
+
+and footer that's twice as large a layout that looks like this, where this is the header we defined here.
+
+So we've taken this area, we defined it
+
+into this. And now this one gets to find the sidebar, they become relative size wise on the columns based on the one the fraction related relationship we got, and the height is going to be up to the content.
+
+So
+
+That's the Page Layout, then we end up with this, which now we can start working with it, because the next thing we're going to do is we're going to take this child elements, the direct descendants, the grid, and we're going to assign them to these areas by name. So we're going to say, okay, we build an area called header that goes here. And we're going to put in the CSS selector for the element, we want to assign to that area. That has to be a direct child of the grid container. We're going to put grid area header, the name we gave it, and it's going to move that content that element into the grid in that position. And if it takes up space like this, it's going to put it in a space like this and give it essentially not those dimensions but allow it to take up those dimensions. And then we have a second container that we select and the fact that these are made by their main header and sidebar. just coincidence not required. So we say we have a second div that has some content in it, and we wanted to assign to the main area. So the grids going to put it into this area we created, that's going to be displayed like this on the screen. And then we again, we have another segment, we'd say footer, and it's going to take the footer and assign it to where we assign the footer. The same for the copyright in the sidebar, where we have the.is going to leave it this blank space. And that's going to allow us to build spacing between columns or rows, if we want it, but one thing that'd be really useful for us if we want the, one of the layouts everybody wants is the one we even talked at being come up yesterday, space along both sides and everything centered in the middle. So grid allows up become quite easily just by making the two outer edges smaller than the rest, and then there's making them better So they just become a relative empty space, which then centers that have a relative same size, like to one FRS on the side. And then those areas actually called gutters and design.
+
+So I've been told
+
+they end up making everything appeared centered. So before we move on to the next, actually, we'll cut it after this, but for questions do you have about
+
+Brian on your grid template areas example. You don't need to space out the words like that. No,
+
+they just have to have one space between them. You can have any amount of whitespace you just have to have one, at least one space. So I tend to space them out just for my from my own readability so they line up that is not spaced out like that, but I think that might be more of a cut and paste thing. into slides here then.
+
+Okay, I got it. I was just wondering about that. Thank you so much.
+
+Other questions before
+
+So, just going back to setting up the columns, sorry, no, you can set up as many columns as you want. Right? Yes.
+
+And then what about like, you know, you said the you know, measurement fr what's the like zero limit of how high you can go or
+
+no as you get larger and larger.
+
+Then so if you have 20 columns, and they all are one fr then they're all going to be taking up one 20th of the grid. If you have 20 columns and one of them is one fr and you know the in you have one of them, then That is 100 fr, and in 20 more that are 10 fr, you're gonna end up with it. So the larger you get, the more you get in the way to find your FRS can end up where one large column can smash everything off to the side. Now it's off to the side. But you there's no limits on how you set it up. It's more of just how do you want to layout your page. So if you have 10, in fact, it really common I will say this the originally in grid, or the original ideas and grid, and they came what came from bootstrap. It was always laid out in 12 columns.
+
+So it's still really high. It's really common to see 12 column layouts.
+
+But CSS Grid doesn't require 12 columns allows us to find the number. So if we want three columns, that's fine. If we got 24 columns, that's fine.
+
+Some other questions.
+
+All right. So let's use this to build
+
+gets the last. Yeah. Let's use this to build a grid. So this is said in the CSS Grid lecture code. And I'm going to run and live server this grid HTML.
+
+And we have this header.
+
+Main
+
+footer here. Let me get rid of and
+
+like to lay this grid out
+
+Similar to what we just looked at, with where we have a
+
+header.
+
+So we end up with a header space here.
+
+And then the main content
+
+sidebar,
+
+a copyright takes up this and then our footer, and then a copyright. Notice here
+
+so I want
+
+this so that this header went up in here. This main went up in here, the sidebar here in the footer and copyright. So let's define that. So from where to find them. grid like that,
+
+we probably would need at least
+
+three to four, at least three
+
+segments, possibly four, but three is probably good.
+
+So we would want
+
+for our sidebar over here, we probably want to align here where we could form our sidebar. And then relatively, we want the middle part probably be the smaller portion. So something like that in this is going to contain our main content, something larger so even though these are not really the way probably one thing I probably want the middle one to be the smallest one. So let's start it with the one fr And then we can say the sidebar could be in the copyright notice could be approximately twice the size, maybe the spacing.
+
+So let's make that two fr
+
+and then this, we want this to be at least four times the size twice the size of the sidebar is a minimum. So let's make this for Fr. So that's gonna be our column definition. So now that we have that, let's go back over to
+
+code and open up the grid CSS.
+
+And I'm also going to open up the
+
+grid HTML.
+
+So in the grid HTML, we can see that there is Already a div class that wraps
+
+this area here
+
+that has the class container on it. So we'll make that our container. And then there is a set of divs that are forming. They each have the different words in them. So there's a div that forms this header, one that forms main sidebar, footer and copyright. So let's, so those will become so these divs each of these will become the Child Elements of our grid.
+
+And this outer div here
+
+we'll be our grid. That'll be our grid container.
+
+So knowing that
+
+let's go back to our CSS. Actually, let me move this to the side.
+
+I'm gonna define.
+
+First,
+
+I'm going to select the container.
+
+So div
+
+container.
+
+I'm going to apply the display type grid to it.
+
+And nothing's changed so far. All it's done is change to a grid, but it doesn't know anything with this grid looks like. And now I want to start building. I want to define these columns.
+
+So I'm going to set grid
+
+template columns
+
+and we said we want the first one to be for fr space, the middle one to be one fr and the last one to be two fr say that he sees already started to move things around. So just take some guesses on what I might want in those columns. And we talked about we wanted the it to have a header.
+
+So a grid
+
+template
+
+areas.
+
+We said
+
+we wanted this to be
+
+a header here
+
+that's going to take up across the whole top part.
+
+So that's going to take up all three of the columns. So header, space header, header.
+
+And then he wanted
+
+the main content to go here.
+
+The sidebar to go here.
+
+And for this one to be empty.
+
+So do another line again without any commas or spacing, or spacing and stuff. It could either be a space or a character traits has some kind of whitespace system, no comma, and we'll define this the farthest one is main, and then.so. A dot tells us that I'm intentionally leaving this one blank. And then sidebar. So we're giving now we've named this block main. This one we've just told to ignore. This week named sidebar. We have this topic named header.
+
+So we said we wanted the last one
+
+to be laid out such that this was the footer.
+
+And this was the copyright.
+
+So on our last one, we'll name those areas, the same footer footer, because it's saying I want the footer to expand across these two rows. And then copyright, which is this last, filled, last, so right, so I'll save that. And nothing's really changed because it's still just taking a guess at what these pieces are. But now I can start moving these Child Elements into the grid areas.
+
+So to do that, the Child Elements are named.
+
+Item a, Item b, item C. So item a three And they're just an order. So I'm going to select them. So let's say I want to select div item A, which is the header.
+
+So grid area
+
+header. So what I'm saying is take
+
+the item selected
+
+by this selector, which is this div, this div
+
+and put it
+
+in this area, the area was defined by header, which we defined as taking up three blocks.
+
+So when I save this,
+
+you can see the headers down moved up to the top, and it's moved across all three blocks.
+
+So as we continue
+
+Let's define the second one, which is item B, Item b is named the main. It doesn't the order of how we define these doesn't matter. It's just about giving a selector.
+
+And what sign item B to grid area
+
+main.
+
+And it's already there. So nothing's really changed. The other ones are just kind of floating wherever the grid thinks they're appropriate. But what we've done is we said take this div and assign it to the area we named main, which is here, so to this area here, and then item C as the sidebar, so item C to
+
+item C.
+
+So let's do the grid area, and we'll put it into the sidebar. Thank you see they swap the positions because it doesn't know what to do with footer. So it's just filling out spacing. And then let's do the footer, which is an MD
+
+you know, the footers move there.
+
+The contents all the same, so it's not pushing down into my boxes, just putting it in the same order. And then finally, the copyright, isn't that taking up the empty space right now? I know he
+
+area
+
+copyright. And now it's moved into that position. So now they've moved into the positions we're interested in if we wanted to switch them, it'd be as easy as saying, You know what, I don't want to know what the header there. I want the header and the copyright in the car. Right in the header
+
+and they just switch positions.
+
+Let's put the back the way it goes.
+
+So now
+
+we have these items in the grid, the way we're building the type of layout we want. Now, if we add things to the items, like if we add things to the main
+
+like here, there's some divs in the main hall uncomment them
+
+and we'll come back to them later but
+
+it pushes it out to be something close to what we actually wanted to know. Oh, you're kind of probably imagining
+
+that wish I could take credit for that. comments.
+
+All right. Well, but
+
+So the sizing you see the sizing of this entire
+
+row here, per row here we built is dependent on the sizing of the largest item in it. So because it's still HTML, it's still dependent on the thing beside it. But if I constrained this using the grid template areas or rows, I could make that set size. But right now it's going to take up the largest size it needs, which means the sidebar is going to expand, but it is never going to take up this will never take up more than four times the size of this and twice the size of this. No matter how I size the screen
+
+or put comic content I put in
+
+so questions on That
+
+makes sense. All right.
+
+So the next thing we would want to introduce is what's called the grid, a grid gap. So right now these are all pushing together. That's not something we often don't want. So grid gap is another property we can set and it takes and it puts spacing between the columns and the rows on the lines on the gridlines. So essentially, it doesn't, you can't we can't change the color of the grid gap or do any anything with it. We can just give size to it. It's going to be blank space. But it puts us apart on the gridlines, so you can kind of think of it as moving the gridlines. But one thing it doesn't do is affect the outside of the grid. So we can, there's two ways we can apply grid gap, we can either choose the column gap and the row gap separately by grid column gap, and give it a size grid row gap, give it a size, or we can say grid gap, it will apply both to the rows and the columns equally. So then this case is going to make both the rows and columns all the gap of 20. In this case, we made them different. But it's again, not going to affect the outside or the outer edge of the grid. So let's apply that. And we apply the grid gap to the container. So it's the next CSS row in the container. I should have had some corner.
+
+So we say grid.
+
+Let's give it a column gap. First,
+
+and maybe 10 pixels.
+
+And you see the column, you can see where it pushed apart right here. There's only one column spacing really, we can see in this grid. It's right here. So the things where it expands like the header goes across multiple columns. When we create a gap
+
+here
+
+since there was a division between these two pieces of content, we were creating the gap right here. It gets created, but since this is all continuous, there's no it puts the space there but it doesn't find a blank. It doesn't put blank space there. It just pushes this out to be larger size.
+
+Now let's create a grid gap for
+
+grid
+
+row gap, make it something different, so we can see the next week at 15. So we can see now it pushes out the rows with spacing of 15 between. So now we have 15 pixel spacing between each of the rows.
+
+And we have 10
+
+pixel spacing between
+
+the columns. Remember, there's also a column right here. So we've made these spaces larger. The gaps are there for these ones that for the footer in the header, but it's they're being they're in the footer and header for those. For those pieces that go across rows or columns, there's areas that cross columns. But now there's no spacing around. Yeah side though. So any suggestions of how we might add if we wanted to the same type of thing I want, you know, a column, I have a column gap of 10. So I want that to be the same for my outside of my box.
+
+The ideas?
+
+Could we sort of container for the whole entire page.
+
+But we could, well, that could actually affect this one. We could set a container for the page and put this container inside of a grid and then set you know, spacing, blank spacing to the sides. But we can do something a lot simpler to.
+
+So what is this container?
+
+What is this container object or element in the end? Yeah, it's just a div. Being a container doesn't change the fact that it's just a development.
+
+So if you wanted spacing around the development
+
+Round the content of Magento development, what would you use?
+
+Yeah, padding. So we can add some padding, because it's just a div element that could the grid is content in this div. So now it spaces out. And this background box, please drag this a little farther. It'll look right again. That's perfect. But we'll talk about that in a minute.
+
+So now we have our content laid out
+
+in the way we want it.
+
+And we have relative gaps in the sides as needed as well. So the important part of that is to remember when you're setting the gaps, it's not going to affect the outside of the grid, only the inside of the grid. So questions on Setting up the grid so far. All right. So
+
+let's go and take a break then. And see.
+
+We'll come back at 1032 I guess.
+
+So the next thing that I want to do is apply this to something larger than just, you know divs that have words in them.
+
+So, we'll go ahead and close
+
+this project
+
+and
+
+there's a folder in here called project that has A farther along version of a project we were looking at before some open up close, this will come up
+
+this again
+
+so it's the
+
+more complete version of the
+
+project we done worked on a couple days ago that only has just the one page
+
+and you can see its layout is
+
+everything just pushing on top of each other now that more has been added to it is not great. So we can use grid to fix that. But before we do that, let's talk about a particular layout and grid. There's a grid layout, it's actually not a grid layout. It's a page layout that you'll hear about quite a lot in design, in fact, to a point that people will just say, build it using what's called the holy grail layout. It's called that because for years, everyone wanted it and nobody can make it work. Well. People can make it work, but you have to do a lot of tricks and a lot of very horrible things with CSS that were very frustrating to make it work. So everyone tried to figure out the best way grid makes it really easy. And what that layout is, there's actually
+
+you pull up the grid here. The right.
+
+The right link
+
+is this layout.
+
+It's a layout where there's a header
+
+Then it has a navigation area, main content, sidebar or ads, commonly ads, and then a footer at the bottom. I'm sure you've seen this layout all over the place. I mean, this is actually pretty much what Google's layout is. And you see it in pretty much every media type of layout as well. This layout is really difficult to do with regular CSS, because these three things need to float in a way that they float together. And that's really hard to achieve. And getting this footer to stay at the bottom of the page is really hard to achieve as well or the bottom the content. So this layout, still called the holy grail layout, because it's now really easy. Grid makes this fairly simple. So since it is such a common layout that desired and ask for, let's build this page, using it.
+
+So that means we'll take this header,
+
+and we'll move it into the header position. We'll take this menu, which is navigation, it doesn't actually go anywhere, but it will you can see it's meant to be navigation navigation, it will put into the navigation area, the main content where it will start the sandwiches, we'll put it here. The events will move into the sidebar ads, and then the footer into the footer.
+
+So we'll build
+
+a grid.
+
+So when we do this, we're going to actually use the grid a little differently than when we set up the columns, because we're trying to emulate this one particular layout and there's that Actually, at the end of the slides today, there's a link to documentation on how to build this layout and set it up in with a grid to get the structure. But we'll get when we get there, we'll point out, you'll, you'll notice the differences, we're not going to use fractional units. Because of that. So are completely because of that. So let's first define, since we already know, we find the window I'm trying to get define these sections into names. So we'll name them you know, header, maybe menu or navigation, main, something like upcoming events, and then footer. And let's define these sections into those first, where they're going to go. I'm going to inspect it.
+
+So up here, it was called how So let's, and you also here in the HTML, which we don't really need open, since we haven't inspected but those there's two style sheets being loaded there style CSS and this grid CSS. This is common, it's common, especially in large projects, a project of the size probably doesn't need this. But since CSS doesn't have much structure, or no structure at all, it's common to have CSS files that do particular things. One of the most common divisions is what we have here, which is putting the layout in one CSS file. So it'd be the grid definitions and some of the in anything that just defines where things are going to be on the screen and putting the styling the presentation styling, like you know, the font color and the size and the borders and stuff like that in a separate style sheet. So we have a divided like that so that the styles, we don't need to change. They're already been defined. A lot of these are the ones we defined when we originally looked at this page, or version of it. But we're going to work in the grid CSS, and they're both being imported. So something this is the first time we've seen two CSS files imported. When CSS gets used, what happens? It's all going to get built together. So it all gets applied as if it's one CSS file, which means that things in this file, if it has the same definition, it has the same extractor to this file, what's going to happen? What will happen in the cascade, if they both have the same selector? Want to take the bottom one? It will Yeah, so grid CSS. Get essentially override anything that's in style CSS. So the order is really important when you're, if they if they can contain the same values. But these shouldn't, because one, it's about layout. The other one's about presentation. As long as we keep that separate, they won't interfere with each other. But if we would happen to do something that is in style in the grid, we could override part of the style. Because the order of the cascade will be the order since they get built as one basically style sheet in the end, in order that they're listed here. Where everything in the bottom file is after in the cascade.
+
+Alright, so
+
+we're not going to see that today. Just a aside since it's the first time we've seen that layout. I'm going to go to the grid CSS. And I'm going to start kind of backwards of what we did before because we have sections already. We have a header, we have nav, we have main, there's two nav sections, but one is this in the header, we'll keep that in the header. There's a separate nav section. That's the menu nav. That's here. See, it's here. We have the main, we have an aside, which is events. And we have a footer. So they've already been laid out and semantically named with basically the parts of the layout we want. So because of that, let's start just by defining where they're going to go. And then we'll find a grid that fits that.
+
+So we'll say for the header.
+
+Let's put it in the grid area
+
+that we're going to call header.
+
+So for the navigation, that is has the idea of menu nav, so the navigation element
+
+an ID
+
+menu nav.
+
+And there are two navigation elements, which is why we have to be explicit with the ID. Though since there only should be one only ID on the page, that would be actually fine just to use the Content menu nav. We'll put this into a grid area and just give it the same name. And you'd have, that'll be an easy to remember.
+
+And then the main
+
+we know we want that in our main section.
+
+So let's call it the main and grid area, main. And we have this section down here that we went over in the sidebar.
+
+I get to
+
+this section, which is in the aside.
+
+So let's give us a more descriptive name. So let's put that aside, and let's put it in a grid area and name it something like upcoming events.
+
+And then the footer. What is put in the footer?
+
+copyright elements.
+
+I think it's in the footer if I remember right. Okay. Yeah, it's in the footer. So yeah, that's just the text. So those will be our sections. You see, when we save it, it's not gonna affect anything. Because that's valid CSS, but it doesn't mean anything without the grid default. So the next thing we're going to need to do is define our grid. So let's look at what where we can define our grid. So there's already a div in here too called container. expand this out. Pages large, we can see that it's filling up basically everything. It's the entire page.
+
+So let's use, we'll use that.
+
+And by the way that we keep calling the class container it, that's because it is a container. It's what No. sorts be named that, because that's what it is. But it doesn't have to be it can be anything you select and select. So let's select the container. So, div that's a container. And the first thing we'll do is make it display grid. And we see everything just kind of stacks on top of each other now, because these are all grid areas, but he doesn't know what to do with them doesn't know where they actually go.
+
+So now, I think Get this template
+
+I actually want
+
+I'm going to define it a little differently.
+
+So I want these to be consistent. And because their navigation and menu bar it also because so we can do something a little different. I'm going to find this as 200 pixels, so it's gonna be a set 200 pixels. And to make sure this stays the same, I'm going to find this as a set 200 pixels. And if I want this to take up all the rest of the space, for a column, what can I define it as?
+
+Any guesses?
+
+100, horizontal with whatever.
+
+Yes, so 100 horizontal width are
+
+horizontal. What's gonna take up all The space downward. No, you're right. Sorry, wrong thing. It's um, yeah, horizontal width, we could do that. But that technically is going to be since horizontal width is the size of the viewport 100.
+
+width is actually going to be from this line to this line.
+
+But what we learned today in grid, what would take up 100% of the space of the remaining grid? One rational, yeah, one fractional unit. So if I define this as one fractional unit, and a fractional unit is the space of the grid. And I've defined these as absolute unit, then the space of the grid. One fractional unit is the remainder of the grid.
+
+A little confusing, but
+
+that's the way it works out. So basically, we're saying because when factoring it before, picks up the whole grid until I add a second column right? So when I add my second columns, I'm not telling making them part of the grid part of a fraction of grid, I'm making them a set value. So one factual unit is going to span for everything else. So I'm going to find this these columns is 200 pX, one factoring unit 200 pX, and then we'll talk about why actually defining these this 200 pX is a really bad idea, but also do it.
+
+So let's go back to our
+
+and we'll set our grid template columns
+
+to 200 pX,
+
+one fractional unit and 200 pX and save it and nothing's really changed but you can see everything well, they did it everything got shoved into the rightmost column and then there's overflowing that's okay. So now we have our grid template areas, we already know the areas we want to find them above. So now we've had to set up and we know where we want them. Because we looked at this way what header to go across all three, the navigation the main sidebar, and then the footer to go across all three.
+
+So we know we want it to be header.
+
+header, header, header. The second one is going to be we call it menu nav, right here.
+
+Menu nav to go next.
+
+We want the middle to be the main,
+
+the right column to be upcoming events in the middle row. And then the last is going to be footer, footer,
+
+footer.
+
+And
+
+now we have it in the top layout. So
+
+let's do a couple
+
+more changes so you can see.
+
+So one thing I want is probably to make sure my grid always takes up the full size, the full
+
+vertical.
+
+So what can I define the containers to be if I wanted to always have full words be the full vertical.
+
+It's the device height and I can't remember what it's called.
+
+Because maybe it is Yeah, actually, yes. So we could say 100 v So remember, a VH is about device height is each point one to 100 is 1% of the height. So we're saying take up, always take up 100% of the height
+
+doesn't change much, but at
+
+this point, so now let's put a grid gap in. Let's give it a grid gap of maybe like 10 and see what that looks like.
+
+there so we can see the gaps got formed in the grid.
+
+Now we can play with that to see
+
+other things we might
+
+get. So Alright,
+
+so now we have it in the grid in the layout we wanted
+
+so before we move on to the next problem that we're gonna look or the problem we're gonna look at that we have now.
+
+What questions do you have?
+
+Could we have left the header and the footer out of the container? And just made them fixed?
+
+We could have Yes. Okay.
+
+Yeah, we can make any, any element in our page a container and make it a grid. So the other elements that are not in the grid that are outside of that just work like they normally would. And the grid itself interacts with the page as just a div. And this might be a good time since this hovered about the show that in the dev tools, if you hover over a container, it shows you the grid. You see how it's laid out the grid, you can see where the gaps are, where the pieces if you hover over a grid item, it shows you the pieces taking up in the grid. So you can see even though it might not be clear looking at here, what the headers actually taking up because it may not have an outline around it like this does. by hovering over the header, we can see that's where it's taking up in the grid. And then navigation, which can be really useful when you're troubleshooting grid layouts just because one of the most common problems is something like the header not taking up the space you think it should be, like maybe it's only taking up two of these instead of one. Because you made a typo in the
+
+blow. So if we wanted to
+
+put some space on the side of this
+
+what can we do here? add
+
+padding to the disk container.
+
+So yeah, we could have the difficulty that would work. So we could do padding.
+
+Left, just like 10. That's probably done small enough to 25 what that looks like.
+
+moves over.
+
+And padding.
+
+Right 25.
+
+Now we get about like that. Is there any other way we could have done it? Is there a way we could have done it with the grid?
+
+Or could do it with the grid?
+
+Could you just
+
+nevermind, that would make it too hard.
+
+What was your idea? Before
+
+it was gonna be add more columns to the side and then change how big the center one was in comparison to that, but that's like,
+
+doing a lot. So that's pretty much what I was going for. So, Oh, we don't need to change the center one, because it's always going to take up whatever's left if we make everything else set. We know we wanted the padding 25 we like that. So why not just make this 25 pX? We'll make it a five column grid. Yeah. So how can I make this down here? How can I represent
+
+just add periods before each thing
+
+after each thing? So I'd say all those 25 those two columns and 25 I want those just to be empty
+
+looks exactly the same.
+
+But so either way, it's actually fine adding the padding is a good fine solution adding the columns and the grids of find solution.
+
+But we still have
+
+we have a problem not a problem now but something else we need to consider. So before we do that is there are questions where to change switch to a different topics are there
+
+questions about building your grid
+
+Okay, so
+
+let's look at how this page performs on other devices. In the dev tools, there is two views, one, the element view, which you see here, or the viewpoint view. There's also what's called the responsive view. So I'm going to turn on the device toolbar, which gives me what's going to responsive view. The responsive view allows us to see what our page would look like at different sizes and with different devices. So the standard responsiveness is just I can drag it out the sizes, it tells me the pixel sizes, but I also can say, now what would this look like on a iPhone six, seven or eight? That's what it's going to look like. or approximate was called click. Or you know, I could say what's it gonna look like when you know galaxy s5, probably about the same. They're almost the same size. So maybe I should pick something like an iPad. So we can see different sizes. So we can see there's also well, you might not see these yet, if you don't, you don't have these bars. You can enable them by going to here and show media queries. So I think the default is not to show them. Actually, that main bar may be there. And maybe the next one, we're gonna look at the second heading, but we can look at different things like it's gonna look like a laptop. This is what's gonna click on a mobile phone. A large mobile phone so our site doesn't look too great. It looks ok it works.
+
+But let's go back to the this layout and look at it.
+
+We can see already but I opened it up and they got smaller. That, when I look at it responsivity 320.
+
+Let's look at pixel two,
+
+it looks a lot nicer. It ends up in a much better way. But if I look at it, expand out to a laptop, it has its own view. So as I change the size from Africa back to just regular display as I change the size of the viewport,
+
+it changes the way it looks.
+
+So it'd be nice if our page could do that as well.
+
+But the reason is does it's doing that it's this concept called responsive design. So responsive design is the idea that all that we build a one to four modern web application or a modern web page that we don't know who's going to be viewing on what type of device So traditionally, webpages were built for laptop screens and it was very much a we're gonna build in used to see all over the internet, you must have your resolution at 1024 by 768 or 800 by 600 to see this page properly, because the only way to really build was to pick and say most of our users probably have a screen size of 800 by 600 pixels. So we're going to build our web page to represent that.
+
+But that's because everybody using
+
+going to web pages were doing it from a computer. And they had just a few sizes. But now majority of people are going to most webpages are actually coming from devices, not from computers. But we saw people you know, large grammar coming from computers and these devices sizes are all over the place. So our every website now needs to look just as good or have at least a usable view at pretty much everything. size, or we're going to pick sizes in a lot of cases. So all the sizes we want to support, which means that we may make conscious decisions when we're developing a web page to say, you know what, if somebody comes to this on their watch, it's not going to be usable. But you know, if they come to add on a smartphone or larger, it's going to be usable. And then there was a trend, I'm sure most of you ran into, because it's still out there some of having a different version of the site. I usually starting with that. for mobile devices, or for devices compared to a computer, which works great, except for the fact that nobody ever kept them up to date. So it always was the case that one version of the slide had a bunch of features and the other version didn't have any features. And one version got all the updates and the other one didn't. Because you have to do everything twice. And we don't want to do any everything twice. Um, one thing I hope you take away from this cohort is how that most of programming is about trying to find the laziest way possible to do the work that we don't want to do. Everything wants. Responsive Design is about doing everything once with a website. And this idea that we should be building for every device at one time. So there's some rules to it or some. So let me get back to find the slides again.
+
+One of these are probably slides, slides. So
+
+So kind of what we just saw here, with with pull the grill out. One of the most common ways is to change our layout, based on what size we're looking at, and also to start hiding content. But to do this, we want to first design from mobile first. So we want to always started designs with the smallest scale possible. And the reason is because it's really easy to add things to a design, it's much more challenging to take things away from a design. So if you start with mobile first, and you get, you know this list, that's the main, that's the important. You focused on what really needs to be on your page in the smallest amount of space possible. And then adding things like or related articles or a header. That's much easier, it's easier to take this and put it into this spacing and add some images to it. And other pieces around it that is to take this and then turn it into this. Because if you built this first is a good chance this image and these are going to be linked together in a way that they are easily separated. But in this design, now you just now you have an image that's not linked to it, but it just ends up sitting beside it. So you want to design Mobile First, we're going to avoid fixed dimensions. So if we see Say that something is 200 pixels, then it's always 200 pixels. It's not relative to the device itself to the pixel size device, but it's always 20 pixels, which means if I say my image is 500 pixels wide, and we'll learn a mode most mobile applicate. This, both smartphones are around three to 400 pixels wide, it's going to do one or two things, it's either going to push off to the side, which is going to require a horizontal scrolling, which we want to almost always avoid.
+
+Sorry for you, or
+
+it's going to device is going to scale it, which means they're going to smash it in so the user can see it which means it's going to become distorted, and if it's text probably unreadable. So we're going to avoid fixed dimensions. It doesn't mean we'll, there won't be cases where we use them but we'll avoid them as much as possible. And we're going to define, we're going to pick a set of devices. And we're going to sign around those specific devices. So we're going to say, We want our site to work on a phone, a tablet and a computer. So we're going to design for those three sizes. And we're going to design in such a way that things between those sizes so it'll be it won't be only phone, it'll be between a phone and the size of a tablet. So between the smallest phone we were designed for a tablet, it's going to look like this. So if there's an IoT device, like someone's refrigerated the slightly larger the smartphone but not quite as large as a tablet, it will be in that phone design. And then if they have a tablet have a smaller laptop, like a Chromebook that is not quite the size of a regular laptop, but it's bigger than a tablet, it'll get still get the tablets design. So we'll talk about how to do that set points were designed for those devices. And we're going to prioritize content. So we're going to say, you know what, what's really important. So like in this list, what's really important is the list of whatever these people are. I'm not sure what these are, because I can't read them. But whatever these are, they're important. So we're going to prioritize that. And then as we're going to say, as it gets larger, what's the second most important thing. So maybe the second most important thing is maybe the related articles, we'll figure out how to get those into the larger size. And then as it gets larger, what's the other next most important thing, so the full size, putting in, you know, the header and the site images, maybe an important for a computer but not for a tablet. Putting in the related articles is maybe important for a tablet, but not for the phone. But what's important for everything is the actual content. So we're going to prioritize content and find it the sizes. We're going to it this goes along with the fixed dimensions, but we're going to use responsive sizings like era. REM and e m and V h and w h instead of pixels. Though there will be exceptions. I say that because there's times when we pixels really work best, and it's almost always going to be for height, almost never for width. And then we're going to have the ability in a lot of cases to set minimum with a minimum height. And some of you have probably already ran across that I think it was in the pre work as well. If not, you will have saying I want this to always be either no more, no smaller than this or no larger than this as it sizes. We're going to pick one. So our whole site we either use min and max height, or min and max width, but not both. So we'll focus on either width or height.
+
+And it's surely going to be with
+
+because we don't care if people scroll vertically, people are used to scrolling vertically. Now when you go to a site you scroll vertically, it's no It's not really you don't even think about it just don't sight scroll down. If you go to a new device and you're scrolling down your phone, it's not a, it doesn't feel weird. It feels like what the application should be doing. Scrolling to horizontally is not, it's not quite as intuitive. It's not what users are used to doing. And it also in many devices, you know, I know my phone, if you try to scroll horizontally, what usually happens is you swipe the app away. And after, bring it back. So you have to so it's harder for users devices are optimized around scrolling vertically, so we're going to heart so we're going to optimize around that as well. So that's what kind of the roles are our goals are for responsive design. And the way we're going to do it is a couple different ways. One of really three one is the dimensions which are already listed and talked about by using those but the second is the size idea called media query. So media query is CSS conditional CSS that applies itself and adds itself into the cascade based on particular roles generally sighs.
+
+So if we give
+
+some examples of media query, we're saying for a minimum width of 768.
+
+We want to apply,
+
+we want to add the CSS in this block to the cascade.
+
+When it's
+
+smaller than that, we don't want to remove it from the cascade. So when the orientation of the device is telling us its landscape, we want to add this block into the cascade. When it's saying it's not landscape we wanted out of the cascade and we're going to look today The one one we'll work with today is mainly around with, but they're quite different. There's quite a few different settings you can do for different devices and media query.
+
+And you can have multiple them.
+
+And so what we'll do is we'll set these things called breakpoints.
+
+And the breakpoints are going to define how many media queries we have, and allow us to set different CSS to add to the cascade at different sizes. It because when we add things to the cascade, we can override no other selectors means that we can write the same selector intermediate query that does things like change the size, or change the whole grid, or change other features of the page. And if it has the same selector, then the cascade will override what was default there by default. So the first thing we'll do We'll set breakpoints and that's just deciding what we're going to build for
+
+and what to find.
+
+So if we look at devices on our site, there's three common sizes that we generally want to be aware of. And that's that smartphones, a small smartphone starts at 320 pixels. A tablet starts at about 768 pixels. And computers start usually about 1024, modern computers and laptops. So we have these three sizes we want to be aware of, doesn't mean we need to develop only for these sizes. Our with our page may just be saying, you know what, we only care about the middle one. If it's a tablet or above, we get one view. If it's smaller than that we get a different view. We may care about more we may have we may care about different sizes of smartphones, and maybe We do care about somebody watched internet enabled watch or their enabled toaster or other IoT device. So we want to go down to a smaller size. Maybe we care about, you know, screens with much larger displays. So we want a different display, you know, 1900 pixels screen, then we do it at 1024 pixels screen. This is a lot of extra real estate there we can work with. So we'll pick breakpoints for our needs of our application. These three are the kind of the standards but they're not the only ones. The way the breakpoints are going to work is we're picking a minimum width for this breakpoint. So that means that when we pick a breakpoint at 1024
+
+we're saying that everything at this size
+
+and larger is going to be 1024 is going to get this CSS. If we pick a second one, then at 768. We're saying everything at this size and larger is going to get this CSS.
+
+And then
+
+if we didn't pick a third one, if we did, it would continue. For the third one. We didn't pick a third one, then we'd be saying that everything. So from zero up, we get that CSS. So if we're writing code like this, and we add this into the cascade, then it's gonna override these two. And then, as we write at this one in the cascade, it's going to write this one. So we're writing we're picking a size we're saying everything larger than us is going to be get these add the CSS out of the cascade if it's Smaller, remove it. And they're called breakpoints because of what happened exactly at that point. So exactly at 768 pixels, it's going to break. And it's going to change design, which I'm sure some of you, if you've depends if you move your browser around and resize it, like if you notice in some pages and certain sizes, it'll go from a nice fluid resizing, the really jerky movement of it looks really different now. That's because you hit a breakpoint. So breakpoints are often the one pixel break where the whole design is going to change drastically.
+
+Size. If you want, you can download a plug in that will let you see what it will look like on different sized screens. Yep.
+
+So you have a particular one you recommend.
+
+I don't know what they're called. I've seen him use but I forgot.
+
+So I've had Use them because I've always just use the one built into Chrome and Firefox. Oh, yeah. And you can download. So they probably do more if there's plugins, I'm using Windows plugins, developer plugins, it's because there's features here that some people want that. So one thing This one's missing, that I've never had a need for really, but I know some people have is that idea is that, like, one pixel on a google pixel is very different than one pixel on iPhone, which is very different than a pixel on a computer because of this thing called pixel pitch in pixel, sorry, pixel depth. And so there are no tools that allow you to change and change and say would emulate the pixel depth on the devices. So it'd be interesting to see I have to look into those. But yeah, you can download these profiles to for the building once. So like this, this is what it just comes with. If you edit them, there's a whole other list of ones available out of the box. But you can add your own and you can download groups of them to add if you get really into mobile development or responsive development
+
+or not responsive mobile or device develop, I should say
+
+right? Yes, on those media query examples, what was the only screen portion?
+
+That we only want to apply this to the
+
+See, we tried to scrap this right.
+
+What apply it to the screen portion of our design because with media so let me look up the actual definition.
+
+Wait In my notes, I'm sure I've looked that up before.
+
+Oh, that's right. I wrote that last night. Probably don't have it
+
+yet because the minimum width and the maximum width makes a lot of sense, but I get
+
+that man. It's, it's, it's, it's there for order browser support. But I can't remember trying to remember exactly what
+
+the full definition is only screen.
+
+Okay, so screen sets it.
+
+So it tells it to use the screens, basically to apply it to the screen sizing rather than CSS So it's kinda like setting it kinda like the way that VHS is respective to the size of the screen size because it's 1% of the screen the viewport rather than just being 1% of the, of what CSS will consider.
+
+So screen is telling it what it
+
+is telling it to do that. Without it, it then uses basically a set default that CSS uses, or the browser's using. So it's telling you to take the screen into effect only is actually there, according to this to confuse older browsers into not applying screen. Because when they apply the media query, and there's what there's a lot of weird things in CSS and JavaScript like that, that gets put there to make older browsers ignore them. So older browsers don't support media queries. So the only they'll support me We have a screen fondling speed query, but the only prevents older browsers do not support it from trying to apply the feature. Okay.
+
+Thank you.
+
+That was a great question because right.
+
+All right, so let's apply a media query then to our archives.
+
+So they come back to
+
+our grid.
+
+So please set our design at. Let's look at, we already have a design at 1024. That's our initial design. Let's make it change. Maybe our breakpoint at tablet looks still looks fairly good, but let's still break it at tablet. So break into 768
+
+So I'm going to say at media.
+
+And I can add those things like the screen the only screen. There's also some other options you can add for sizing. I'm not gonna worry about that. I'm just gonna set
+
+its max with
+
+just 768.
+
+So up to 768.
+
+Or I could choose minimum width, and I'd be setting something larger than 768. I'm going to set I'm going to change the container.
+
+What I want to add to the cascade is an override of two things.
+
+And that's this.
+
+So if I wanted to
+
+do a layout like this
+
+How can I do that with grid? What can I do with the grid template columns?
+
+It's just one giant column, right? Yeah, I couldn't make it one giant column.
+
+So maybe I still want my
+
+there's 25 pixel gutters. But maybe that's to me that's a little large. Now. I mean, if I'm at 768 screen 25 pixels is no, that's 50 pixels taken up. maybe want to drop it down to something like 10
+
+pixels and 10.
+
+So if I have now I need to my grid template areas, I need to reassign them. So how can I assign them? If I only have these one columns?
+
+How would you assign them
+
+just period name, period and then go down the list. in the order that you want them,
+
+that's exactly it. So let's put the menu now maybe next, which is what they've done here. So we'll just kind of emulate their the standard holy grail layout. I like we have extra dots for our gutters. And if we were doing padding with the 25 can be solved. We could achieve that either way. You could just
+
+reset the padding here as well.
+
+So for some mobile sites, often you'll get like ads in between the sections. There's like on when it actually repeats you would call it an ad like a sidebar for ads or something.
+
+Yeah, you have a div. Just get to work and I can show you how that how that works
+
+or how that could work.
+
+So now we have 768 this layout If we get larger goes to that layout. Now, even at a very small size 140 would be a really small size that would be down close to the watch size. You can see
+
+it's actually still usable site. Now.
+
+If we wanted to insert something in here, like an ad, we would have to go back to the HTML. And maybe we could. So I'll explain it because it's actually going to require a few steps. So what we could do is we could build a div. And we could put it here in HTML somewhere. And we could apply make it hidden so we can make it so it's not visible. And then when we wanted to use it, we could just put a sign in, create a new grid, a different grid area here because we don't have to have the same grid areas. Assign it. And then also in the media query, make it so it's remove its display hidden and change its display to something that's visible. That would show up.
+
+Let me know like a website is really vertically long.
+
+How do we repeat that? I guess? What do you
+
+mean repeat? So the way that probably would work for most ad networks, if you wanted to interject itself every so often or primary with JavaScript, changing the document object model, which we'll do next week, you probably wouldn't have it hard coded like this.
+
+You'd have a more dynamic
+
+because a lot of those even take into account how fast the user scrolling and other things like that, but I see Thank you.
+
+So let's
+
+As we scale it, let's look at one more. So if we get down closer to, let's put it down the mobile phone size, or the image just still look good. But somebody that scale may not want them available.
+
+So let's remove those.
+
+So we could set a second media query.
+
+Let's say media. And we'll say max width
+
+320.
+
+Let's just take all the images on the site and remove them.
+
+We also easily remove like the borders on the sides.
+
+Yeah, that's a great idea. Let's do that. So let's do div on div container While we since we done our border, this is a case where having the padding would be a lot easier because we can just do padding zero. But since we don't have the padding zero, we could take this whole segment here and say at this point, let's get rid of our borders and go to one column display.
+
+Which means we just have to go through and take out
+
+all of these
+
+empty.
+
+Let's see what am I?
+
+So we could change it to that.
+
+I think there's one more
+
+another Thank you.
+
+So now we get it the small size, we just get the content. We could also do more around you know, maybe changing This menu to look a little differently, but or, yeah, well, we need JavaScript piping to do that. But now as we get larger, so we go up to a tablet, we get this display. Now we get the borders back in, the images are back, and we go up to full display. And we get this more. We get the three column display with larger borders and all the content. So as we resize the page, you get a different experience. But we still have all the important pieces now just optimized around this sizes.
+
+So questions on any of that before.
+
+All right. So there's one more thing with responsive design is going to show you because we, you probably won't, unless you end up in IoT development, you probably won't touch it, except for the copy and pasting it in places. And then if you do an IoT development, you'll spend time learning about it so
+
+and got us I've never changed, I never had to change it.
+
+But this line here, that gets put in for you, if you do the by Visual Studio Code Anyways, this viewport line, let's talk about what this does, because this is actually important to responsive design. It needs to be there, it's generally going to be just a cut and paste of this line exactly as it is. But let's talk about what it actually means.
+
+So the viewport tag.
+
+It's a newer tag, so it's html5. And it tells the browser how to control the page in a device. So, our device browser, how to control the page, and how to properly resize and more important, most importantly, zoom the page or scale the page. So a lot of devices when they go to a page, if it's slightly too large, it'll scale it, you know, make it to, it'll basically zoom it or zoom it out. And if you know, wherever you zoom on a camera, where it's not optical zoom, it's software zoom, which is most of them. You notice this thing to zoom in or out they pixelate, right? So, and if you string something without putting an image without knowing any of the scale about the image, you lose things. But if you know some information about it, you can actually shrink things and make them look really good. So so this is what that whines about. It also is what allows browsers to do in that functionality for a device to have things like that. The pinch zoom, now you can pension bring up the size of image for that the work properly requires this line to be in the HTML. So it's used for devices to do that. And generally, you just leave it at this and what this line saying is for the viewport for the entire viewport, whatever your device width is, make it that width in that, and let's call that scale of one. So it's just a one equals one. So it's 100% scale is at the device width. That's all it says. There are other settings where you can do things like you know as you it's a device with changes, or we've always wanted to fix with or scale the device with to a particular size. So with other copies of the meta tag, the toilet, different versions of the scaling. But again, the chances of unique unless you get into IoT development, that's not something that Generally end up changing. So for most developers that comes a copy and paste this line or using Visual Studio code, it gets put in by the template, you just leave it there. But just so you know what, it's what it is. And that that's there and it is respond. It is part of responsive design. Alright, so any questions?
+
+Yeah, I have a question. Yeah.
+
+A while back, I was trying to make a website is laid out similarly to Google. But I wanted I wanted to make it so that when you zoomed out that the the search bar in the middle just shrank essentially, I wanted to have it because I thought it would be awesome if if you could zoom out and then you could like scroll to things that were off the screen originally and like the like little easter eggs and stuff. And that was kind of a big pain point for the developer. They did not want to do that. They were like, stupid. Don't do that.
+
+Would there be an easy way to do that?
+
+Easy way? No. Well, that sounds like a real. I agree with your developers. Sounds like a real pain to do. Like my first instinct. This will be to tell you no. I can think of how to do it. It requires JavaScript. There's there's no nothing and built into CSS that I'm aware of. That could do that.
+
+But yeah.
+
+Yeah. Require, yeah, require being able to manipulate the document as it's changed. Wow. As the viewport size changed. Yeah,
+
+yeah, that would actually not be the width, but that you would still have to set the initial view. At a certain point.
+
+I'll be probably not easy but much Did you like it? If it was for a mobile app? I can think how to do something like that. Fairly straightforward. But for a web page? Well, yeah, it'd be I could think I'd do it, but it would be a lot of code. It probably really buggy. Okay.
+
+The we'll talk about next week when we talk about DOM manipulation.
+
+I think that'll give you an idea of what what would be required.
+
+Because that's, that's where we get into the we're not gonna look at things like JavaScript being able to tell what this current scale is. But we'll talk about things some more things. We talk about fetch and promise that can be used for that. I'll try to remember to point it out when we get there. Okay.
+
+All right. So other
+
+All right. So there's one more thing I want to look at. It's not, no. Let's go and take a break. So it's not that long. But as many of you pointed out, that means it's pretty big. So we'll come back at 1142 and finish.
+
+So
+
+right, so the last thing I want to do is just a quick, what I think is going to be a quick
+
+example of,
+
+of doing a grid within a grid.
+
+So, and that's just so that we can see. Sometimes we talked about this idea that the grid can be any container in the page, but everything we've done has basically been the entire page. That would be one example of that I want to get back to in the lecture card
+
+in a closed This
+
+is go back to the CSS Grid, we sample we started with
+
+a live server again.
+
+Just take this main content, and let's just put it into a grid itself. So what I want to do is end up with a grid, where this main center but the main here, and then these three boxes just underneath of it like that. Well, evenly spaced out like that. But
+
+so let's
+
+look at how we could do that. We'll look at the HTML.
+
+So we could take so box item B, right now, also bring up the CSS is a grid item. But even though it's a grid item, we also can make it itself a given a grid container. So a single element can be both an item and a container. So we could turn this into the grid item. Now Maine's a problem because it's just text in the div, which is really not something we should have anyways. fact we should have text not just inside of a div, it should be in something like a paragraph.
+
+So let's fix that. First, let's put mean
+
+and the text of main into a paragraph.
+
+And that's just so we can assign it with CSS.
+
+And also, because that's really the way the HTML should have been written. So now that we have that, and we know these are called item one, two and three, easy to remember, so we shouldn't have to come back to look at this. So let's go back to here and change item B. I want to change Display
+
+into a grid.
+
+And then said we wanted three columns, and I want them all the same size. So if I wanted three columns of equal size, what should I have? Why should I make this?
+
+One fr one fr one Fr. Yeah, that that would do it. So one fr one fr one Fr. So all three equal size. And then we'll define some grid template areas. They now when I have a grid within a grid, I can't have a template area name header here, or main or sidebar. These names have to be unique for the page.
+
+So
+
+that's because when it does grid area sidebar, it's looking for these names. So if I have two of them, it's going to be ambiguous and given that it's CSS, it'll probably apply to both places. Which is not what I want. So I need to have these names be unique. So let's do something like main text. And I want the main to go clear across the top. So main text, main text, and my second row to be one, two and three. us do the same thing, main one, main two, main three.
+
+And then
+
+we just need to select those items. Remember they had class they were all Dibs with the class names one, two, and three. So it's like div one
+
+is going to go into
+
+grid area.
+
+Main one,
+
+div.
+
+Two is going to go into grid area.
+
+Main two and div three is going to go into grid area.
+
+Main three, spelling there.
+
+And now there find a period. Now I just want to get main into the proper grid area. So if I look at it, actually, let's go back to HTML, we should inspect it, but it's in a div named item B. It's a paragraph so I can select it using that information. So I'll say for div that has the class item B. I want to select its child structure, which is a paragraph.
+
+Instead, it's grid area
+
+to the main text.
+
+And now let's do something like
+
+just
+
+so there, we have the great Within a grid, so now this is an internal grid inside of this larger grid. So the point of that whole example was not doing another grid it was that we can turn any element into its a grid container, including one that's already an element item in a grid. So when you're thinking through grids, you don't have to think of it as I have one grid per page. You can have any element become one. And every since our examples have been one giant grid for the entire page, that doesn't have to work that way.
+
+Alright, so any questions?
+
+I got a couple for you. Yeah. So are the names when you're deciding the grid layout?
+
+Or template areas? Yeah, those arbitrary like you're making those names yourself?
+
+Yes. Yeah, but like variable names, okay. And then what the dashes are In between is that like best practice for naming variables? So not necessarily
+
+the CSS best practice there. I don't know if there is a standard, complete standard for CSS that I've I've never seen one every place I've worked has a different standard and how you name CSS. The reason I do that is because that's the last place I worked. That's how they did it. It's okay. It was nine years. So it's still stuck in my head. So I'm sorry, they'll tell you like, what the what the how they like it. Yeah. places will give you a standard guide. Well, I say that sometimes there's somebody sitting down with you and saying, This is how we do it, or, or, or just in your first code review. say, No, we don't do it like that. We do it like this. But the average every place has a standard and you often get it just by looking at their code. So but I could have just as easily made this camel case and it would have worked too. Okay, thank you.
+
+Alright, so Other questions?
+
+I've got some questions about the homework, but we can do that after announcements. Okay. Um, yeah.
+
+All right. Alright, so.
+
+So in these slides
+
+at the end, there's some links that you might be interested in looking at if you're interested in more for grids. That holy grail grid layout, that description of how it works in grids there.
+
+There's also some, this this particular one
+
+is really good documentation. With visual guides, please ignore the fact that a lot of the some of the images from today's slides look familiar for this page. By but it has a lot more features than grid has more features than we talked about. So it goes that goes through a lot more detail on some of those extra features this site does and it does it in a very easy to understand way. So recommend that there's also a grid garden, if you want to play with grid. This is a really, I think john posted this already in the main channel, but it's a game that actually walks you through learning grid. And then this last one, I'll show you though, do not use it for your exercises today. But it's a grid layout tool allows you to say I want to add four columns with four rows. I want a grid gap of
+
+20.
+
+I want this to be to listen to before
+
+and then
+
+So you can lay out a grid in it, and work with different sizes to kind of see a view. And then you can go through and well, I won't go through the other features, but you can name them and then it'll generate grid code for you. I will say don't use it, it does not look like the grid code I just showed you. So you know, pretty obvious if you use this for today. But it'll be really useful when you get to your capstones and going forward after today. So right? So those are there at the end of the slides. So for exercises today,
+
+you'll be
+
+so I'm doing something very similar to what you did yesterday, but slightly different page and you'll be using grid for it. So you have your one end up with this page, starting with a similar thing like yesterday, where Things are not in position. And there should be three layouts. So you should have media queries for so you can build the three different layouts. One that is 1024 I guess to sorry, and then another breakpoint at 450. So you have one that's greater than 1024, one that's between 450 and 224, one that's smaller than 450.
+
+And
+
+just like before, the sizes on the images, those aren't the size of the image, it should be those are just placeholders. So you, your margin should look like this. These medium view should look like this. And then the mobile view
+
+should look
+
+they showed scrolling there but should be a singular column column view like we just worked with.
+
+So that's what you'll be doing. They walk through
+
+details on how to do it and work through it. Bo, so one of the big questions was getting this exercise. And yesterday's exercise is can I change the HTML? The answer is no. There is no need to change HTML. That's the whole point of CSS is that you can do everything you're asked to do with just CSS with this HTML.
+
+So
+
+I'm just putting that answering that now since I know that question will come up at some point. So that's what you'll be doing exercises. So questions on a mat.
+
+Okay. So for today.
+
+So you have the mock interviews day, there's the code reviews tomorrow at 123. And then there's overflow time on one to two on Friday. If we don't use the time, I think we can get through everyone tomorrow. But if we don't, we'll overflow on the Friday. And if we do, then Friday, we'll use the time for working through some stuff for interviewing. So we'll talk more about that once we find out if we're going to do it or not. And if not, we'll we can use the extra time for that after that on Friday. So for these code reviews, sessions, everyone should plan to attend. So everyone should be there. Everyone should participate. There are a little the team orders we picked random, I have a script that just picks random numbers between zero and eight. And we'll just use that to pick the number. And it only picks each number once it with the exception of a couple of you have interviews at the beginning of the time, so your teams will be guaranteed to go after your interviews. Alright, so you should explain on 10 to 15 minutes per team, so a little shorter than last time. And these will be product demonstrations, which means that they're focused more on your product than your code. So you want to show your working project, you're going to want to walk through your API interface and your design decisions around the URLs. So why you chose to make the endpoints the way you did. And then, so your server code, we're not going to go through it in great detail, because everyone's code is gonna look very similar. There'll be different choices. But this project didn't have a lot of design decisions in the code, right? I pretty much show JDBC that goes to a controller, so that the internal code look very different. So we just walk we'll walk through that quickly, should be expected to talk about two things outside of the API interface. One, the hardest part, the most difficult thing and how you solved it, or didn't solve it if you didn't solve your most difficult problem. And then one thing that you would have, you would have done differently if you restarted the project, and then answer questions that the group has, everyone. I won't go through like last time and make everybody individually answer Ask questions because there's the 16 other people watching, but everyone will be expected to ask questions throughout the throughout the time.
+
+All right. So that's going on tomorrow.
+
+And then
+
+on Monday, and I think it'll be Monday. It'll be early next week. James came up with the idea of having a night until he was gonna be early next week that James, so you're finding out too. So I'm a side project review, kind of show off time when anyone who's working on the side projects and get together and just show off what you're working on or ask for input. So I'm going to schedule that right now. tentatively, it's going to schedule for Monday at four. It'll be optional. Of course, you can come in show off your side project, or you can just come and watch. You don't have to show off your side project. You can show it off you can ask for feedback. can ask for input. This was sort of time to see what everyone else is doing and talk about it. So that'll be on Monday. I think on Monday that they may that's tentative on Monday for baby early next week.
+
+And then Friday. So Friday's
+
+reviewed a slice project day. It's open. And there's a lot of options we could do for Friday. So I want to do the option that is most
+
+that will benefit you the most.
+
+So I'm going to send out a questionnaire later today that has the ask what you want to do, it doesn't it's not a vote, so it's not a top one wins. It's a your input into it, because it'll also go into other consideration with what the other instructors are doing, what the other classes are doing, and things like that. So, so start thinking about some of the things that we'll be asking We can just do a review of this week's material. But I'm doubting that something people really want to do. We could do a review of Module Three, or anything previous. Or we could do a sneak peek of what's coming next. So we could kind of bring this material into kind of early JavaScript without teaching it just showing it and kind of a review of CSS and HTML as we go. There's also some new material, we could do something some things in the curriculum that we could go over like jQuery, which is a JavaScript library, that even though we haven't in JavaScript, yet, the point of jQuery is to make JavaScript ease, easy to use. So the point of jQuery is not to learn JavaScript. So we could go through that because we don't need JavaScript actually use it. So we can take a look at that. We could also take a look at bootstrap, which is a CSS library. But be chumps biggest best feature was this grid and it's been really placed by CSS Grid now. So now it's more of a decorating library, but we could still look at it. There's also more testing stuff that is not the curriculum like Selenium and cucumber, which is automated testing. So it's writing code automate testing, we could go through that. Or we could create a Java application from scratch, something we haven't done, we just open Eclipse and just go through all the steps or anything else. So those are when you get the questionnaire you get, those will be the questions are asked about. That's what each one more. So I'll send that out if you can give your feedback on that.
+
+Do what's
+
+Yeah. gives you the most advantage on Friday.
+
+All right. So any other questions before
+
+when you said it's a project that you mean, like we're gonna get assigned the project to work on or you're saying that we're gonna work on a project together,
+
+we're going to work on a project together.
+
+far as I know there's no assignment on Friday.
+
+I could be wrong because I don't believe there's.
+
+So if there's no other questions, and thank you
+
+for sending out the the questionnaire, I'm sorry,
+
+sometime this afternoon, as soon as I create it
+
+is Selenium the language that aetherium is programmed in?
+
+Now Selenium se, testing framework that can drive a browser.
+
+So he can.
+
+So I don't know actually, what
+
+I think you use lynnium to create a theory in contracts as well, but I'm not sure if it's the same.
+
+I'm not positive about that to look into it. I'm not familiar with theory, said a theorem. Yeah. Yeah, I'd look into that.
+
+aetherium the cryptocurrency?
+
+Yeah, yeah, the crypto thing.
+
+Okay.
+
+Yeah, it probably is because let him get us a lot of things like that. Because it can drive web content. For I know it's used in other types of other mining and blockchain and stuff. But I'd look into for theory specifically, I don't. But if it's called selenium, it's probably the same one. It's used in pretty much every language in multiple ways.
+
+Transcribed by https://otter.ai

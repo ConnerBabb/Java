@@ -1,0 +1,1562 @@
+Zoom
+https://techelevator.zoom.us/rec/share/_ch6FIvXz0ZIG43g2HHeHYcNQLnIX6a81HUf_fsJnU1awZk8YShxz7oQjqd4lmhz?startTime=1590154136000
+https://drive.google.com/file/d/1_nsAO2-TFnPsjYKlQH_uPeMBQ2oNBMMW/view?usp=sharing
+https://docs.google.com/presentation/d/1sEMjqdWuRi4zFQu6YYj5UY27RLsDttGESyg1TP67Sww/edit?usp=sharing
+
+Okay, so today we're going to be talking about encapsulation. We already talked about some yesterday. And some of the main tools of capsulation. We already pointed out yesterday and kind of looked at, we're going to walk back through a little more detail about it. But a capsulation is actually not of the three principles, the three fundamental principles of object oriented programming calculations. Really important, but it's the easiest, easiest one by far. And it's not a lot of talking about it really needed. It said when I say easiest one, I didn't say it's easy. I said it's easier than polymorphism of inheritance. So it's putting it in that scope. So We're going to talk about it. But then we're going to, we're gonna talk about some things around it some of its goals, and why we use it. And then we're going to apply it to a project. And as we go, we're going to run into some new things. If we don't, since I'm going to have you drive a lot of the project and how we do it, then we'll just talk about some other things we need to talk about today. So what we're going to go through is first, General review of encapsulation. And then we're going to look at access modifiers. Again, we already looked at those, so that's not going to be anything new. But what this review, because access modifiers are one of the prime ways that we were able to achieve encapsulated code. So look at that. And then there's two keywords final and static. We're going to start looking at final four variables, and then static, we're gonna look at four very And then philosopher methods to see what those mean. And we'll either set those either come up naturally as we work on the project we'll be working on, or Well, if not what is taken. At the end, we'll just talk about them. So, before we talk about encapsulation, let's review where we were kind of out of classes yesterday.
+
+So, so far,
+
+we learned that we define classes and it consists of really three pieces. There's a lot of things to those pieces, but it really comes down to the state. They have the properties they have the variables, the data, the methods they have, the behaviors they have, the things they can do. And then these things called the constructors that allow us to initial initialize them and set them up to a starting state. So we learned that that's the three things that we have in
+
+our classes.
+
+And that with it, we can write these modules of code that allow us that can be self contained, and allow us to create functionality that is reusable, something we can use throughout one project and model places or even across multiple projects.
+
+So we can then share the code and make it reasonable.
+
+But this brings up some issues. So since our classes we want them to be reusable, we want them to be something that we use again in the future and other developers can use. That's not just something that we build once and then we need that same thing. We build it again. We need to keep in mind how some things about how do we make sure other developers know how to use the class One of the most difficult things of using other code or using libraries and things like that is sometimes just figuring out what arguments to send or what response they're going to send back. So it's just figuring out how to use the code to begin with. So how can we help that? And if even if we can communicate that, how do we make sure that we always do things in the right order in the right way that we give the right data? So capsulation is about these things. It's about being able to write code that somebody can use with very little effort. So the same so what we're trying to mimic is the idea of, we somebody should be able to write, use our class with the same type of effort that they would have to extend to you know, learn to drive a car, or learn more specifically to press the gas pedal in the car, that should be clear how to do it doesn't mean that there might not have to be matter not sometimes rely on something more, but it should be as clear as possible, it should be easy to use. And they shouldn't have to know any of the inner workings. That's going to be our goal from a capsulation. So we want it to be something repeatable something model that people can use, and something they don't have to really understand how it works, just what it does for them.
+
+So
+
+encapsulation is going to be defined as the packaging of data and functions. All this into a single component. It's to the purpose is to hide implementation details of a class to prevent other parties from setting the data to an invalid or inconsistent state, and also to reduce this thing called coupling and we'll talk about coupling in a minute. But we want to.
+
+And that has to do with having
+
+the code be standalone and not tied to other things is as least as possible. We want it to be something that we don't have to rely on other pieces for it for that to work. So, and we want to hide away the influence of invitation details and we want to hide how it works by just making it what it can do, not how we do it. So this also means it's going to enable classes to be what's called a highly cohesive meaning that we're going to focus on having each class have a really clear defined purpose. If the job of the class is to represent rectangle, then everything about the rectangle should be in that class, it should be the kind of the sole source of truth of what it is to be a rectangle and the actions that it can take. So having that clear sense of purpose and the class and kind of the one place that does that particular work represents that thing. That high cohesiveness allows us to more clearly and easily define relationships between classes, which we'll go back to the coupling idea before having things that are standalone and kind of pluggable. And we'll look at a little bit of why that's so important. So the way this is going to be implemented is mainly through access modifiers. The main tool of encapsulation is the public and private access modifiers and then one that we'll look at next week. Because it's going to let the compiler know which data members in which methods can be accessed and modified by others. So it's going to set up who can use what pieces.
+
+The other tool of encapsulation is going to be.
+
+Things like naming an organization. So all of the encapsulation comes strongly around how we organize our class, what methods we decided it's going to have publicly, not privately, but the public methods, what data we are going to decide it's going to have, what we're going to call those methods. If we have you know, a class that represents an image file for an image editing program or word writing, then are to save the file to disk, the class should just the method should just be called save. It should be something that when someone has that image file class that represents the image, they know, oh, I just call the same method it saves to desk And they shouldn't have to understand how it works, they should just have to know that calling Matt does does that function the same way that we're using software like this, we don't have to know any inner workings of how like zooms, doing what it's doing right now we just have to know that we go to the link and it opens up, and how to do the controls, we don't have to understand how mutes working just that we can click mute. For for is not to be heard, or how the video is working that we can just stop and start it with a button. We want that same type of behavior. That toolbar is encapsulated. That's all the toolbars in the software work with are the same way. And part of that is going to be when you say hiding behavior, it's also going to be hiding steps. So imagine and I know you can't see See the mute button, but you will have the same mute button on zoom. If to use that you had to follow through more than one step. So you have to some things that I know are going on in the background, though I don't know exactly how they saw they're doing it. But I know that there has to be at least a signal sent to the hardware to the OS hardware to tell it to stop receiving. No spying it that complicated. But they they probably essentially stop receiving from the microphone. In the application. There's probably other steps involved with that one probably happened to actually Yeah, they probably use signal noise hardware to say I want to stop receiving information about this. And then they have this tell the software that I want to stop receiving the audio information. They have to change the icon changes with the x and then the button functionality changes. So it's To going from a button, that mutes to a button unmutes. So there's at least four steps. There's probably many more. But imagine if you had to do those four steps. And you had to do them in order. So every time you went to mute your microphone, you had to go and you had to take some action, even if it's just clicking a button that sends a signal to your computer hardware, then you had to click another button that sends a signal to the zoom software, both telling them that you're, you don't want the audio information. And then you had to make a choice to change the graphics of the button. And then you finally had to remember to turn on the unmute button. So four steps, if you pardon, we'd all be using jitsi. Yeah, yes, exactly. Because it's hard, right? Because if you've done those out of order, they may not work.
+
+So a lot of steps have to go in particular Order. So,
+
+encapsulation apart is a lot of it is taking away having to do steps, even if those steps can be made really easy into for buttons that you press that take those actions for you simply, users shouldn't have to remember to press those four buttons. And so instead, they should be able to press the mute button and it works. And that's what encapsulation is. So it's a mix of hiding away the details of the implementation, but it also can be hiding away simple steps to create simple actions for the user to use of our class to take, and we're talking about the user class, we're not necessarily talking about a person sitting in a computer, we're often talking about another code or other programmers though. So. Alright.
+
+So before we
+
+set the definition in the kind of the goals encapsulation, before we move on to talk about in more detail about a couple of coupling, which is one of the major roles. Are there questions? Okay. So one of the things I mentioned as a goal was this idea to reduce coupling, let's talk about coupling is because it's an important concept in class design and class usage and one of the major goals of capsulation. So, coupling is how refers to the degree of direct knowledge or direct information that classes have among each other. So the more that they know about each other's inner workings and the more that they are intercommunicate, the higher couple they are. And that means what that means that the rope, kind of the reward is that, if you change one of them, you're going to have to make changes in multiple places if they're tightly coupled. So if you want to make a change to, you know, Class A, and Class B is heavily reliant on Class A, then you're gonna have to make changes in class B to make the change in class A. And then if Class D is highly reliant on Class B. Now, you're gonna have to make changes in class B, and D, to make changes to class A. So there's becomes a cascading effect of these things that are heavily independent, almost working as a single unit. And that's tightly coupled code. Most of the code we've been writing so far, or all the code like in your exercises is tightly coupled. And loose coupling is The opposite it's where things are standalone they have to be, they can never be decoupled cuz that means they can't work together. Things have to be able to work together usually in code has failed us on the code. But with us couple, it would say that class A has a can use Class B there uses it. Class B uses Class D, which uses Class C, but there's not a lot of independent interdependency. The dependencies are more linear and more clearly defined. Each one has a job, it does that job. And when it needs something from the other, it asks and maybe it doesn't even ask, you know, if it needs something from class C from class A, maybe don't even ask Class C, it goes through a kind of a chain of asking that question. Now, that's the goal. Code. Never the that's the goal, but the reality is always in between that is to get closest to a loose coupling system because a truly loose coupling system is our decoupled system. The lowest coupling possible like this is near impossible to still be. But having it everything intermixed, which is easy to do means that now we can update the system now we can't maintain it. So, the goal is to have each of these do some job with having the least knowledge possible about the others. They have to know they exist, they have to know what they can do for them, but the least knowledge possible. So it's the same idea that if you hired somebody to come and you have an electrical problem, you hired electrician to come in and move, move some wiring. And while they're working, they find out that some of the wires wrapped around a water pipe and they know nothing about plumbing. So they know there's a plumber they can call and they call the plumber and they come and do the work. But they can call any plumber. They can. They don't have to understand how it works, they just have to know that this plumber exists and can do this work for them and how to ask for that work to be done. That's loose coupling. If and that's our goal with one of our goals with encapsulation. So another example here from just lamps, a lamp attached to the wall that's built into the wall, and it has, you know, the wirings in the wall, the switches on the wall is tightly coupled. Because if we want to change something about it, if I'm going to replace this lamp, I have to not only change the lamp, but I have to change the wall. Right? I have to change other pieces.
+
+So because there's there not independent from each other, they're not working together. They're working in a way that
+
+modifying one requires modifying the other
+
+is a loosely coupled system like a lamp, a table lamp that just plugs into the wall, I can change the lamp at any time I can remove the lamp and I can replace it and nothing else is affected. So that's loosely coupled. It's not decoupled because I stopped to plug it in, I stopped have a connection point, I have to set it on the table. But it's not in any way affecting or changing the way those things work. They can, they're just using the features of it.
+
+So we'll talk about that concept.
+
+more as we go through the cohort. But so before we
+
+so before we go Watch out. talk a little more about encapsulation before we go on, is there
+
+any questions so far? Okay. All right.
+
+Is
+
+is tightly coupled, akin to spaghetti code.
+
+spaghetti code crates tightly coupled, but tightly coupled code must only have to be spaghetti code.
+
+So spaghetti code is code that
+
+has no no order and structure. So it's going all over the place it's calling. It's calling all interconnected inside the code itself. coupling refers to the classes so the classes can actually be properly built, they can be highly cohesive, meaning that they're properly following the rules of one thing doing one call each class doing one thing and it refers to how Those work together. So all. So it'd be true to say that all, all code that gets the name spaghetti code would be called, would be tightly coupled, it's not true to say that all tightly coupled code would have to be spaghetti code. You could have very well written piece of code that ends up tightly coupled. And it has a lot to do with things like every time we use the new keyword or stand cheat a class in another class, we're coupling those two together. So how that works, and some things we haven't talked about yet about to break that up.
+
+So I guess I had a question as well. Yeah, yes.
+
+So I'm good. adding comments or whatever. be really useful in these situations to kind of explain what This method does versus other ones.
+
+Yes, it can't be. And that's because we can't since offer all these, the goal like encapsulation is to make our code easier to work with. We can't always achieve that goal. So yes, adding comments would be like having a product where the user actually has to read the manual. And having the comments, we'll be adding that, that manual. So yeah, they are used for for that. And then that's also like the Java doc we looked at is that's its purpose as well. Don't understand how to use this code.
+
+I guess we haven't really had to worry too much about commenting or works in some pretty obvious what we were doing, I guess. Yes.
+
+Yes. Yeah. Now, when you're building single, like when you're solving just small problems like that, there's no no reason to comment. And in most places, most environment It's common and gets limited to when it's needed. One of the things will as we go move forward through these principles. At the end, we should be able to write code that gets very close to being read like natural sentences for developer who can understand the symbols. And that the goal is for that to communicate what our codes doing, but it won't always do that. So there are times that we'll talk about comments and how they, how we use those. So those environments have a role as of this is doing something that's not obvious becoming it, but if it's obvious, repeating what it's doing is now just duplicate and kind of extra noise. Thank you.
+
+Alright, so
+
+the way this is achieved is through set access modifiers way we achieve capsulation are one of the ways design is the other. But
+
+the part of the language that supports this because it gives.
+
+It's what we where we set the visibility of the class in the member variables in the methods, so everything that the user of our class can use. So we're defining really, who can see it, who can use it. And this allows us to split our functionality into functionality that is for the outside, and functionality that's internal for us. So going back to the zoo, mute button, I'm sure there are multiple methods that have to be called there are probably much many more than four steps involved for the mute button to work and to do
+
+that, there's four actions that we broke it down into.
+
+So the public method of that would be the mute button itself. That's the public method. It's the thing that somebody can interact with somebody can use. But all that internal work also is going to be would be broken down into parts. And those parts would be private methods. That would be private code that support the public method. But we can't see, we don't really care about the author of the class cares about. It's like the author, button class and the classes that are supporting it, care about those steps and what they're doing internally. We as a user don't need to care about it. So the public becomes what our users are going to see. And our roles are either going to be that our variables that are class should always be private. So our member variables is ones at the top should always be private. And we'll give access to things that need to be public using getters and setters. And we looked at that yesterday and we'll go a little more today. And then methods should only be public when they're meant for users of the class won't make conscious decisions about this one should be. This is one that somebody else wants to use. So our default will kind of be to
+
+put it in
+
+private methods until somebody wants to use it that should be come on default. And it doesn't have to start today with that, because that's can be a lot more challenging. A lot of our methods right now in the classes we'll be writing will be public because it's mostly functionality for smaller pieces of functionality where we don't need a lot of inner workings for it to work. But as you get we get larger data should be become our default. And the reason we want to do this is we want to limit code is because it makes our code more extendable meaning that it makes it in a way this goes along with the maintainability. The next point is well it allows to swap things, change things and fix things without affecting who's using it. So, again, the mute button if zoom decided they wanted to completely rewrite their mute button and change almost everything about the way it worked. They decided they don't want to send a hardware signal anymore. They just want to they still want to get the sound, but they just want to keep it from going to the other users headphones. That'd be a horrible design for me button, but it's something they could do. If they made that change. You would never know that button doesn't have to change. You wouldn't care either. Right? Because you don't care how it works. You only care that it does work. So that is extendable. They can use that functionality in other places. There's probably I don't know if there is, but I'm sure just about every feature they hear. In most applications, there's usually multiple ways to access it. And if they have two places to access it,
+
+then
+
+they don't want to have the functionality repeated twice. Instead, they just want to be able to reuse it. So that's also extensibility. So if they had, you know, on the drop down menu that appears when you're screen sharing there, if there's an option to mute there, then they want, they don't want to have to write the code twice, it should be the same code just reused. Now just with a different attached to a different public usage. So that's extendibility. maintainability means that they can swap things out, they can change it, if there's a bug, they can fix the mute button without breaking you know, the video button. They should be disconnected enough that they won't affect each other. And that's also promotes if we have things like this that are extendable, maintained. On these discrete packages, then coupling loose coupling actually becomes really easy it becomes it becomes the norm, because we become these specialists that our classes call. So an example of why private in public is choosing the right one is so important, and also kind of encapsulation. So imagine you hired someone to carry your wallet around. So for some reason, you don't want to carry your wallet any longer. So you say you, you carry my wallet. So you have this new employees going to carry a wallet, and you have a set up so that you can grab it directly anytime you want. So you want them to almost be like a living Wallet for your wallet. So you can turn around just grab it. So that's public. So there's some problems with that one, the person now has to always carry it in the same place. They always have to keep in their same pocket or the same spot in their backpack or wherever. They're putting it. Farther if you can get an anytime you want, if you can reach around and grab it from the person any time, then so can anybody because it's publicly available. In this case, this wallet is the location the wallet when the other person is not a capsulate in any way. It's public knowledge of how it's working, where it's working, the first time somebody sees it, using it, they know exactly how the inner workings of your wallet system are working. And it's also tightly coupled to the knowledge of your location because if that person changes the location, you have to change your knowledge of how the system works. If you change your knowledge of how the system works, like you decide that you forgot that they carry it in their front pocket and now you're remembering they carry it in. In their jacket, left jacket pocket, they have to change to match that to the test. Two sides have to stay in sync. They're tightly coupled together. So. So the same scenario, if you just want the system to work such that you say, Give me my wallet. And you don't know where then play carries it, you just know that any point you can ask for your wallet. And the employee can change it at any time. That's a private, that would be like private. So there's something going on, they're still doing the same work still occurring. But where the wallets being stored, whether it's in their front pocket, the left pocket their backpack or changing every day, is encapsulated away in the employees actions. And you have a public interface, which is like a getter, it's Give me my wallet, and then they, they retrieve it and get it. So that's also loosely coupled. So it's also it's encapsulated, because the inner workings now are hidden with a public interface. It's just the question or the request. But it's encapsulated. Because if you, it's no longer tied your knowledge of where the wallet is, is no longer tied to where it actually is. The person carrying it, your employee can change it every day. They can move it around to different pockets, they can do put it anywhere, as long as when you ask that question, give me my wallet, they can respond with it.
+
+So you have no coupling between your knowledge of it and where it actually is. And the same way from your knowledge where before your knowledge was tightly coupled to it. So you had to if you changed your thought and where it was, they had to actually change the magic. Now if you decided you're going to guess everyday where they're keeping it, and you're wrong, it doesn't affect anything. So your thoughts of where it is and your knowledge where it is and where it's at Located are now completely decoupled or loosely coupled. There's still a coupling because you still know the employee has the wallet and you still have asked for it. But now you've limited it to that low interaction that's using private with just a small public interface two easy to use interface.
+
+So,
+
+so questions before we start looking at class design.
+
+So let's
+
+so when we In large part of encapsulation. And it comes from the way we design our classes. So there's a lot of thought that goes into class design in large in projects, and what what things we're going to represent how we're going to represent them, what their public methods are going to be, how they're going to interact with each other. And the thought of privately how they implement how we're actually going to make that happen is often the last thing. So the first thing in any kind of design of a project is a decision on what are we going to represent with classes? And how are they going to enter, communicate? How are they going to work together? So there's some we're going to work on a project. We're going to start a project in a few minutes that's we're going to focus at the beginning on classes on that We'll focus on the code of implementing it and walk through the concepts we're using from the capsulation. Everything we just talked about as we go, but the things we're looking for is to be what? First we're gonna decide how we're going to what packages we're going to put things in. And that's going to go for a lot of some classes are going to have to be more tightly coupled together than others. And there's this idea that if we're having a class that
+
+does one specific job,
+
+it doesn't necessarily mean that everything in the system has to be have very low connection to it. If you think about going to a car since most people are familiar with it, it has the gas pedal has a steering wheel, it has the ignition system for the thing, three things we use commonly, but those have to work together. So Having a package like beak or car that had, you know, a steering wheel class, gas pedal class, ignition class might make sense. Those may be all good together. So, we're going to decide that. So kind of how we're going to lay out the project. It then it comes down to what do we need to represent in the class in our project? What things do we need to represent? often we're going to be representing physical things, real world things with classes. And when we're not representing real board things. We want to mimic how we represent real board things. Because we're used to working with those we understand innately how to work with things, we do it all the time. Now we're doing it right now as we use our computers in the house to be part of this. So we're going to model, we want to model as much as possible or objects around the same, the same ideas. You think of the string class, that's a great example of that a string is not truly a real world thing. We have sentences and we have text, right? So it's mimicking something similar to it. But and they could have mimicked that in any way. But they chose to make it appear like a sentence and look the same way we'd use a sentence of the book or writing down something on a piece of paper as much as possible. And then give us some of the actions we could do. I mean, a lot of the actions we do a string we could do on a piece of paper, we can cross letters out, we can, and it's a piece of paper is immutable as well. The letters are always there, and if we cover them up, we scratch them out. They're still there.
+
+And so
+
+they mimicked it mimic something real warlike. So we'll do the same in our classes. And that's right now, don't focus We're going to start today with mimicking real world objects. But as we go, that'll be our goal. And when I say go forward, I don't mean today, I mean for the next 14 weeks or the next for you the next 20 years or so, that's, that's not a goal that's going to come about in a few days or hours, or that's something that every everyone working object going to program works on constantly. That's not a. So part of that is there's going to be what data what state Do we need to hold. And this is where it starts breaking apart from, we're just, we want to, you know, mimic a real world thing, too. We now need to make this something abstract. So if we're mimicking, for example, a chair we make a chair class, we have to start thinking about what data does it actually mean to represent a chair for what we need. first thought, maybe well, chairs and then so that breaks down to What makes a chair and then what makes that for our code? Because that's going to be important, we're not going to mimic everything, we're only going to mimic what we need. If all we need about a chair is that it can no he painted any color and can have some number of legs that are only data will maintain is that it can be painted any color and have the number of legs it has. We won't worry about other properties of it.
+
+The same way if we were
+
+mimicking, you know, a cat, and we're building a cat class and all we care about in our code is whether it's long or short hair. That's all we'll keep track of. So for now, we can come back and add more later as we as we need it. So we have to decide what data is going to hold. Then we have to decide what behaviors to has what can I do And our first decisions will be, what can it do for the user of it? What can you do publicly? So what methods do we want to present? What data should they take in? And what data should they return? if any? So what actions are they going to take? So we're going to decide the public methods is part four, so we know what our class can do. And part of that public method that thought would be how is this going to interact? How do we want this interacting with other classes? When they use it? We use it from our other class, how do we want to use it? And then finally, finally, there's a final for these steps. Well think about do we need things we inherited like string or equals Do we need to override them or do we do we need to provide multiple overloads for the for the same type of function already. So those are the basic steps that will ask them more questions will ask us we design a class.
+
+So, the next thing I
+
+want to do is actually start looking at some class design. But I don't want to break that up. So why don't we take a break? And we'll come back spend about half an hour anyways. So we'll come back into, let's say 1019. And we'll
+
+we'll start picking Likud design classes.
+
+So what questions came up for you during the break
+
+browser say I really like the examples you gave, like really helped to solidify the concepts.
+
+More that simply better.
+
+Thank you. Okay, so other.
+
+That's good. All right, so let's try applying some of this. So what we're going to work on today
+
+is
+
+my mouse to get where I want it to
+
+a deck of cards. So we're going to work on modeling a, a deck of just individual or finding a deck of playing cards. So before we do that, we're gonna have to make some decisions around it around just kind of the requirements of what we're building, not how we're going to build it, we're gonna then break that down to that but we need a clear definition of that. So when you think of a deck of cards, what I'm referring to what we're going to build is the standard. I don't know the proper names for these things but the standard like 52 card deck right now the one that has four suits and what 13 faces for each suit 14 or how many there are
+
+14 so it's going to be standard
+
+making 52 card deck.
+
+So it's going to have the suits the standard stage for Troy diamonds,
+
+AIDS hearts and clubs.
+
+So those cards playing cards, that's what we're gonna model
+
+and I want to point that out because we will want to think about what if we wanted these to be no some other games cards. They This is what we're going to focus on modeling. So the way we're going to do this is we're going to have to design classes. And we want to be able to do few things with our deck. So, so things that we want to be able to do, we want to be able to have a deck of cards. I guess I probably should put that at the top. And we want to be able to take actions with our, our, whatever classes we come up with, that can do things that a deck of cards can do. So without we're not gonna make a whole list yet, but what some things a deck of cards can do.
+
+Not money code, but just an actual deck of cards.
+
+Shuffle.
+
+Yeah, so can shuffle them.
+
+Okay, do anything else
+
+do we can do alone? Yeah,
+
+we can do them. So there's some actions we use with the real deck of cards.
+
+That's what We want to model.
+
+So the way we're going to do this is we're going to try something that I haven't tried before, we're gonna try to break in by having the classroom where it's easy to break into groups.
+
+But we'll see how it goes.
+
+So if I can figure it out, I'm going to put you everyone randomly into breakout room. Let's see there's see we'll do rooms of there's 18 people, I think 18 of you, so like a six rooms of three and give you 10 minutes to design classes for a deck of cards. You don't have to design them perfectly. So there's also going to be no specific right answer to this. So don't get caught up in Oh, we we're not gonna have the best design. It doesn't matter. This is about just thinking about what can a deck of cards can do. Sorry.
+
+I'm sorry. I'm sorry.
+
+What I do cards can do and how you would model that with data. So what data do you need to hold about them? What classes do you need? Do you need one class to do this? Do you need five classes to do it? Or somewhere in between? You know, what, what classes do you need? And what are those actually going to model? What public methods should those have to do actions that those things should do? Be able to do? And what data should hold, for instance, you know, just to give the studies, and Boyle already said that this is going to be a 52 card deck that has, you know, with the four common suits. So like, there's data that has to be held at some point, what suit each card is. So that's what you'll be modeling. And I say modeling, just have an idea, and we'll come back and talk about what what you discovered. I want you to talk through it afterwards. Just the rules first, and then we'll talk through it isn't it With what each of your groups came up with, and then we'll build that code. So we'll cut them out. So what kind of turned into a set of requirements, and then a design that we can work from, and then we'll go code it. So in the final thing is this is not designing code. So you don't need to be in clips for this. You could write it out, someone could write it out in southern Visual Studio code or draw it on a piece of paper, or some other tool. Normally, if we were in the classroom, I would have everybody go to a whiteboard and draw it out in the whiteboard in your teams, but we don't have that here. So yeah, so something like that. It's just an idea of what this should be. So you don't have to figure out Oh, this is gonna be public void. It's just oh, there should be a method that we call to shuffle cards, that type of thing or there should be a method they can get this data. There should be a way to set this data
+
+That type of level, make sense? Maybe.
+
+Alright, so this all is course dependent on me being able to figure out breakout rooms, but because I didn't practice them or anything or ever looked at them, so let me figure that out.
+
+Brian,
+
+yes. No, like, the theory will be that they'll go into their breakout rooms and have a conversation about you know, how they want to design this and then you're just gonna end the breakout rooms and they'll be thrown back in here or do they need to leave them or what needs to
+
+happen?
+
+That's, that's a great question. I believe that there's a way to seven times and I was going to set some time for 15 or 10 minutes I saw that happen once
+
+Okay, so I'll participants
+
+okay. Seems
+
+All right. Okay.
+
+Sorry this seems fairly easy Alright.
+
+Options
+
+was clueless. Okay, so that would have set them to close automatically after 10 minutes. So go to the room, spend your time to design and or talk about it talk about the design. How how you think a deck of cards should be designed and remember, there's no you don't don't feel any pressure to come back with the perfect answer. That's okay. I mean, this is the first time you've ever looked at class design. So the expectation is that you just talk about it. Alright, and notify me. Okay, so I think this is gonna work.
+
+Oh, I think I need this one too. Oh, let's find out.
+
+appears to have worked.
+
+Okay. All right, so everyone's back now.
+
+And I didn't keep track of who was in which group. So I'll just ask you, buddy,
+
+who wants to start? Who wants to start talking about what you came up with?
+
+There's there were 16. So, okay. Yeah.
+
+All right. So
+
+I guess Kevin, you said you can do it. Who are you working with?
+
+For Ana and Mindy.
+
+Okay. So what did what did your group come up with?
+
+So, we still have one class.
+
+Okay, just color cards. All right. Let's see come up with thick cards class.
+
+And what
+
+type of data but hold
+
+so you would hold the value okay.
+
+class that holds the value data
+
+value
+
+the sweet
+
+pursue my well okay
+
+and I don't know what it's called, but like the color I know there's a specific name for it but
+
+I don't either
+
+yeah
+
+all right. See hold the value the suit in the color of cards okay. So what type of actions would the card class have
+
+and find out or
+
+sorry, who is the third person in there?
+
+menu
+
+for
+
+either one or you
+
+don't want to talk about it. Please do. What uh, what actions would you take with your cards take?
+
+A they would one of them would be deal. Okay.
+
+Shuffle yeah for our method
+
+dual shuffle
+
+and the other one is once the game is over it would
+
+we start? We
+
+collect
+
+Alright, so I got Alright, so I've got another group I know you probably have more but I think I put you in there.
+
+So who was in breakout room number two.
+
+Does it tell you what number three breakout rooms are
+
+I recall seeing a number I don't remember the number if there was one
+
+took a screenshot. Oh wait. Oh, I do have it. I let's see. So breakout room number two looks like it was Currys, Jay and Matthew
+
+Alright, so for us we
+
+also add a method where it was like drawing a card or like selecting a card.
+
+So did you also have one class or did you have multiple classes?
+
+We had one class we put our class name as deck of cards though so similar. We also had our package name is deck of cards. Okay, one class under the one package
+
+and said, what was the method? I'm sorry, I
+
+like drawing or picking a card.
+
+Okay, so draw method. So
+
+one other what data did you choose for three of you that you choose to represent and your
+
+we also had the suits, we had the color
+
+of the card.
+
+The value like if it was a number or if it was like a king queen jack, but we didn't really know what that was called. So that's fine.
+
+And we also accounted for Joker's. Okay. So there was a large one and small one in there.
+
+Okay, so I counted for Joker's
+
+to see exactly that comforter, okay.
+
+Um,
+
+yeah, ours were pretty much similar to that. And our methods were pretty similar as well aside from the drawing,
+
+right? Um, yeah.
+
+So,
+
+so do you have anything else you want to do that, you
+
+know, for our draw, we were gonna put that as like a random sequence of some sort.
+
+Okay, so you were going to rather have a shuffle you were going to randomly draw. Is that that fair? Okay, so this is this was your method draw that a randomly sequence instead of shuffle. Okay. So they would kind of shuffle as you went. Is that the idea?
+
+Um, well, I think we would keep both actually like shuffle at the beginning. And then like, as you're playing not to draw a card, it would just be like a random draw, I guess. Okay. If that makes sense. Yeah, it does.
+
+Yeah, it would, it wouldn't draw off the top of the deck, it would draw just out of the middle somewhere. Okay. randomly.
+
+Okay. So let's say break. out
+
+from document so I'm going to keep track of make sure everybody gets a chance to
+
+so let's get a room
+
+like a room three looks exactly Isha. And I know there was a
+
+third person but Oliver okay.
+
+So what what did the three of you come up with?
+
+So, um,
+
+I think one of the important methods that we're not well aren't in the document right now. It'd be like, I guess expanded cards. So cards that you can't draw again. Okay, so,
+
+is that a method or is that more data? Um, in your in your design?
+
+I didn't really think before I imagined it both. Okay to keep track of it and then you also need to actually get rid of it
+
+maybe
+
+suspended cards. Alright, so did you choose to do one class or multiple classes to represent a deck of cards?
+
+I think that we use multiple class.
+
+So you had what were the classes you had them?
+
+I guess maybe one of my
+
+partners give us this thing.
+
+They're kind of all this thing like we had. We had the same for shuffling dealing suit.
+
+What else do we have on I
+
+think I can't see. We had
+
+right Honestly I can
+
+put them like in order to put them from like the tree tree.
+
+A tree set like to put them
+
+in order,
+
+value and waste. Okay.
+
+So you had some kind of ordering of like tree ordering.
+
+Mm hmm. Okay.
+
+Um, we also
+
+thought that it would be important to use an entry set to get both the key and the values and so there's two values to each guard the suite and the number or
+
+card it is to keep track of the cards.
+
+So cards, say the cards
+
+would be something like sweet value map
+
+right. So Thank you so stuck to see room, people in room for bed and James and the method.
+
+What did you
+
+went down the same path as a lot of the other groups, but something that we have here that I haven't seen yet is the cards distributed to players. We did hands for players as data. Okay. We kind of started to get outside of the actual just the deck of cards and started working more towards the games you would use them in. Okay. So, so just defined rules for different games. We started talking about playing like blackjack or 21 or go fish. But, I mean, honestly, most of the stuff that we have written down as it's already been said,
+
+so you focused
+
+heavily on how the classes would be used, which is a fine way to focus. It's not.
+
+Yeah, I mean, we we went down the path of dealing with the suits themselves and a hashmap. District dealing the cards, shuffling them the top card or pulling it randomly. And then we started kind of thinking of how you would utilize the deck of cards in the class itself. Okay, great.
+
+All right. So
+
+those of you in room five, which is Kareena I ended I Justin.
+
+Yeah, so we actually decided that we wanted to create a deck of cards class that wouldn't necessarily be used for a standard deck of cards, okay. And like we could use it to make like an uno game or something. If we really wanted to, okay. And so we had, how many cards are in there? What different types like how many different types? How many different colors? And then we had shuffled, pick the card, discard pile. Um, we had split back like a cards missing from deck function that would print, like which cards are currently not in the deck like counting cards. And then, so Ian had said that he would want to make like a list of the cards that are all in the deck. And we like didn't know really how to assign them keys. And then I thought maybe you could like since there's 1313 So it's 13, like types or values, then you could multiply that times, like one,
+
+two
+
+for the different
+
+diamonds, hearts, clubs spades. You could either multiply by 110 100 or 1000, depending on which one it was. And then also, what was the other thing that they are? A color, no color. I don't know, I thought I had a brain blast. Maybe
+
+you focus a lot about how to get the initial sound like the initial data and the cards right? Yeah, you get them their values and sweet. That's something that they use these we'd have to figure out, right. Okay, so good. All right. So let's see who
+
+The group in room one, which is Connor, Kayla and, Michael, we've heard from you, right?
+
+How it's ready to go.
+
+Yeah, going last, I mean, they're not leaving much for us, but um, we added a cut in there is a method as well maybe across the computer dealer, so you want to cut the cards. Alright.
+
+Then also I mean we were thinking about the
+
+having the different type of players as well. So we had, you know, number of players number of cards per player in a discard pile as well so we could keep track of what's currently in the deck.
+
+I see a number of players
+
+in a discard pile, that's probably data.
+
+Alright, so you had player information about the card. Okay, so
+
+since about halfway through I was was keeping a list of checking off the rooms that we talked to and I think we missed one I stopped checking it off halfway through whoever did we talk? There's any group we did not talk to, or did not share their
+
+I'm sorry, I'm horrible keeping track of things.
+
+Okay, so we talked to every group.
+
+Alright. Thanks it. Yeah.
+
+And I understand if you're just saying quiet and thinking, Oh, we got out of this because that's exactly what I would do in your situation but Alright, so
+
+let's talk about
+
+how, let's talk about the designs now. We talked about what you came up with. And that sounds like a lot of you a lot of you done something very similar. All of you design one class for cards. And you represented a lot of the same things to begin with, and then you based out on how you were thinking about the cards. Some of you thought about it more around Game, some of you more around the players, some of you more around just the cars themselves or a deck. And it sounds like a lot of you around, how would we use this? These are all things that we should be thinking about when developing classes. But when asked some questions around
+
+so you kind of kind of consolidate design
+
+with a collection of ideas. So let's, so let me ask the question of what is a card
+
+have to do with a deck?
+
+cards?
+
+is a card in a deck of cards the same thing?
+
+Well, a deck contains cards. It does.
+
+Yeah, it's a property of a deck. But when we look at the physical, a physical deck of cards, There are a difference the way we think about it in the way we use it between the deck and the cards.
+
+Does they a single card shuffle?
+
+I see some of you shaking your head no single card doesn't shuffle
+
+does a card. No.
+
+The card is the property of the card to do itself or the property of the deck is an action the deck staking
+
+so
+
+the abstract idea of dealing is definitions removing a card from the deck to action. It's not really actually a card know anything about So there seems to be there's functionality here like shovel do
+
+That seems not to belong to a individual card.
+
+So this tab from the counter side, why? What does a deck have to do with the value or suit of a card? What does a deck have to do with a single card being a being a queen? The Queen of my mind is like queen of diamonds. What is a single card have to duck has to do with that?
+
+So yep. Jim. So
+
+I was just gonna say, I mean, at the very least, you have to make sure that there's a certain number of them.
+
+You do, you're right. It does have to do with that does have to know the tears account of them.
+
+So here we have a lot of really good functionality, but
+
+it seems to be To me, it'd be two distinct objects you know, a deck and a card, and then a deck would have cards as properties. So if we talk about it, let's split it into two two classes be split into a deck class. Now I'll put a card class first card class.
+
+What if we designed it like this instead of a single deck of cards class? What would a card do? And it's this poor What does it need to do? What data does it hold?
+
+This needs to return more card it is.
+
+So it needs to keep probably
+
+this information right?
+
+So value
+
+and see.
+
+It might, if we were going to build, depending on we want to build it, we can choose to build this way having the color would make sense as well. But that's also implied by the suit in a regular 52.
+
+card deck.
+
+First, I don't know what the word is for that standard deck. That's. So what else might a card know about itself? One of the properties might have
+
+whether it's still in play, or whether it's still in the deck.
+
+Okay. There's a card now that
+
+I guess that's more of a deck thing, isn't it?
+
+Yeah, I would argue that's knowing the cards there isn't part of the deck. is a card really care? where it's at?
+
+card wouldn't know really if it's in play?
+
+So what about would it know? Maybe if it's face up or face down? Would that be a property of a physical card? An individual card?
+
+So he probably knows is a face off.
+
+So what might a
+
+what actions might a card have
+
+moved from the deck to a player? Okay. Is that the actions of a card?
+
+turnover,
+
+turnover. So but going back to move from a deck to the player, that was the question. I'm not saying you're it's not just Is that an act but who actually does the action of moving from the deck to the card? I would say the deck. Yeah. Yeah, possibly the deck, I would actually argue it's probably the dealer, the game that actually takes that action. So the point of what so we're gonna keep going. And I see from looks on everybody's face that if you have that look of, Oh, we we done this so horribly wrong, and you didn't that's not the point. You did a great job you did really good. You designed everything you needed to do everything this stuff this needed to do. The whole idea of what we're talking about today, and actually for the next few weeks is this idea of the individual responsibility of classes, breaking things down into these pieces. It's hard. It's something that architects, software architects and senior web engineers about, you know, what should the deck do? What should the car do? What things are actually represented? So it's not so you've done a fantastic job. I'm actually really impressed by some of the things you came up with and you covered everything. Usually there's a few things missing. So yeah, yeah, going back to free soccer now Yeah, I think a method might be that it can flip something like flip over.
+
+So what about a deck? What might it do?
+
+So I actually feel that we probably covered everything in actual single card knows about itself. This suit knows its rank, it doesn't know anything about other cards. It doesn't know what game it's part of. I mean, you have a deck of cards you don't have an individual card that can only you know you can only play
+
+my complete lack of card game knowledge is now hurting me.
+
+blackjack with You can only play poker with right? It's it these cards can be used for multiple things. They don't know what game they're part of.
+
+So, what Monday deck do
+
+before I continue to do quick,
+
+going back to what you're saying. I personally, just in complete shock of how simple it's been brought back because like, I thought about it as like, should we do a card? Buy the new invention says like, that's just completely simple and kind of irrelevant. But, you know, is in a real world setting when you're working on a major project. Is this house simple. It's broken down initially to start the idea of the project.
+
+Often Yes. Yeah.
+
+On successful projects, yes.
+
+So for a project that I worked on a spouse job 10 or 15 years ago. But
+
+we
+
+designed all this called domain design where you're laying out pieces, all the little pieces down to the smallest detail that needs to be done. And designing more than just the classes but also all the databases and stuff for all your interact. We spent a good eight months just doing that. And then we probably coated it in about six to eight weeks. So that's, that's pretty normal. Getting your design right up front means that if we build this right, every time we need a deck of cards in a game, we don't have to touch it. We just say oh, here's the class is the same way. Every time you need stringer scanner, you just import it and use it. That's our goal is to build them specific enough to do what they need to do, but have a clear cut, small set of functionality that is truly their set of functionality. that's challenging. That's not easy. So, yes, in the point, you said, This seems too simple. What we're trying to do a lot in programming is find simple solutions for things. So if when you're thinking this seems too simple that often is the right answer.
+
+The complicated answer is usually not the right answer.
+
+So, but that's, it seems weird, because you know, this stuff's hard. So it seems like it can't be simple. But if you think if you think of a simple solution for something, and it works, use it. Nobody gets excited about having the most complex solution. They just wait what needs to work.
+
+Right. So
+
+what about a deck, we talked about some things that a deck can do, and we have a lot of stuff here, listed that for data and adaptive method. We're not gonna have a lot of everything there. Makes sense and one of these, so, but we also have the reality of how much we can actually code today, how much code we can get done. So let's break it down to what's the essential things a deck has to do to be part of any game, regardless of the specifics of the game.
+
+What data does a deck have to pay attention to?
+
+How many cards
+
+so it probably needs a list listing of cards. I'm saying listing because I don't want to use the word list. It might be a list, but I don't want to force that into it when we get to programming it.
+
+So that's why it's awkwardly worded.
+
+Right. So
+
+what other data might a deck need
+
+doesn't need anything else.
+
+That having some kind A collection of cards
+
+wouldn't give it
+
+what game you're playing maybe
+
+is a deckchair.
+
+I mean, it might depending on the game, like if you need to remove X, Y and Z card,
+
+but does the deck care about that it is a game care about that.
+
+I guess it wouldn't care.
+
+Wanted to be generic for any game. So if we give it the ability for a game to be able to do that, then that would be what the deck should be doing.
+
+So that's a hard distinction, especially with the game, because that means we want to build our deck so roles of any particular game don't matter to it. And it doesn't mean that we're going to play every game with our deck because there are lots of games that use non standard rules for cards. So we have to make some choices about that to what kind of Do we want this to be? And then next week we'll talk about once we have a basic one, how we can extend it for different types of games. So what else might a deck do for pretty much generically
+
+remove cards. So remove cards will probably doesn't like delete a card. That makes sense. It has to be able to remove the card. It's the same thing it's getting card from the deck and returning it from to a user. So we can use maybe a name like deal. So it is card related. So
+
+wood deck shuffle.
+
+Now is good answer
+
+because you know there'll be a story finance and there's not a that's the point is not a wrong answer. Even if we don't go that way. Or I say no, but what about this? It's not that you're wrong. It would shuffle, I would agree it would shuffle. So let's, because a deck, one of the properties of it, it would be its order, right? The order of the cards. It's probably what makes up a deck. In fact, what we call a deck is an ordering of cards. So I would agree with the shuffle.
+
+See anything else that should do?
+
+The basic level there, all this other stuff we looked at? I, we could add any of that. Should
+
+it know what it's missing?
+
+Should it
+
+or does it? When you say know what it's missing? Like?
+
+Should it know what cards are in play? Because like it can't give a card that it doesn't have.
+
+So are we is that more game? So I'll ask this question. Does a deck care in any way? What makes deck? Does it care that it has, you know, the ace of spades in it?
+
+Does that is that part of what makes a deck?
+
+i?
+
+I feel like it should but I don't know.
+
+I feel like it should care if it doesn't, it should.
+
+So I would, I would suggest that the deck should care about that it has cards, but it shouldn't care. It no any or shouldn't care. It shouldn't know anything about those cards, is you know, I have a set of cards, whether they're uno cards, or whether they're these 52 standard cards or whether they're, you know, some other gaming cards. Why Why would a deck care about that? And that, so I would argue that no, you probably shouldn't know that. A game should know that. So I think that's real that's important functionality.
+
+So going off of
+
+that, would it be relevant to return to its original listing of carts?
+
+I can't I can't hear him. I don't know if Yeah, it tells me
+
+you cut out completely Brian you're not even lagging
+
+videos ever No.
+
+Can you guys hear me?
+
+Yeah, near everyone else just fine. Yeah.
+
+It could be a trap guys just
+
+you know. Watch what you say Brian
+
+The leaders heard him ragged on the news. So he decided to
+
+just use the chat to type out the rest of classes.
+
+Add to the stress level,
+
+are they you're typing out turnaround code to mine as well.
+
+Is it your headset? Brian, can you hear us Brian?
+
+Can you hear me now? Yeah, yeah. No, I can't hear you.
+
+Okay, how about now? Yep. Okay. I have no idea what happened or how to fix that. But if you don't mind I'm gonna re Connect over here so I can see you because
+
+seeing one four of you at a time is not really
+
+okay.
+
+All right, so I get this back here so I can see the chat and stuff at the same time.
+
+Okay, so alright, so I'm trying to
+
+put things back to where I can. Okay, so
+
+I don't know what the last thing you
+
+last thing you heard But
+
+we were talking about would the deck know about the individual cards in it? And I was suggesting that I don't think a deck would know about the individual cards. I think it would No, it just has cards. It's the purpose of the card to know what type of card it is not the deck. So I'm going to suggest that the last thing the deck should do, I think there's one more action should take and that's they should be able to get the count of the cards should know that there's no 20 remaining.
+
+So something like
+
+good
+
+remaining cards. All right.
+
+So that's what I think. I think that's a good set for Cardinal deck. If I was building a card deck, that's where I would start. In fact, that's very What I would build and have a few times in the past, not just here, but for projects and stuff.
+
+If you does anybody disagree or have anything else they
+
+strongly feel should be there or not there or questions.
+
+I think it's a contained Cut, cut.
+
+Okay. So,
+
+so cut, we should be able to get that in.
+
+If you can define to me What, what that's gonna mean. But I know what it means in real real cards, but Okay, so I agree that seems like something a deck would be a property of a deck.
+
+Okay, so we have
+
+I think a good place to start with code
+
+actually includes Most of the things that we talked about that you would come back with represents all the same information and functionality. But it splits it into two places actually a third because some of it went to the game. And that's part of when you're building something like this, we want to represent each thing at its kind of what it is not
+
+what it's part of.
+
+And then we'll use that in the things that as part of that way, it becomes reusable. Now we'll have a reasonable card as we want to build different types of decks if I don't want to have the same if I want to switch this off uno cards, I'm gonna have slightly different things I'm going to need here, but I don't need to change my deck. I can just build new cards, put them my deck and there's nothing here that won't work for Uno. The same way if I want to switch out a deck that does work for a specific game. I don't know any examples of that, but I know they exist. Oh, so if I wanted to To switch out for a game like that, wherever by night game where you get the murder that only has a few cards and they have special rules around them, but from the deck, you could switch out the deck without changing the card class. So
+
+that's our goal. So
+
+so let's,
+
+let's build this, but I guess it's
+
+11. Yeah, it's been about an hour. And as I, as you point out, I don't want your union rep to get angry with me. So let's go and take a second break. We'll come back at 1128.
+
+Right. So
+
+what what questions come up for you
+
+I want to point out again that your ideas were really good. So if you would have fashion designers to build this and you built the things that each of you talked about, that would be a good solution. So the point of this exercise we just went through is not to say, Oh, you did it wrong. Instead, it was, here's another way you could look at it. And here's how we can apply this, break it into something that would be more encapsulated, that would apply these principles. And here's why. So want to make sure that that's clear that that's the goal and what we just did. So let's build code. Let's code it now. So we actually have a pretty good idea of how we can code most of this from just what we've done in the last couple weeks. So once we have this part, the code generally goes fairly fast unless we have something like a different called algorithm or problem to solve. We have one in this most It's straightforward, but we have this
+
+probably one question one thing here.
+
+I'm going to go to the lecture code for today.
+
+And
+
+we'll come back and forth because there's no screens not big enough to get a good view of the code and a good view of this at the same time.
+
+So
+
+when it come to encapsulation, capsulation lexer.
+
+And there's a cards example package. I'm going to put them in there, something we didn't talk about, is we probably would want some we didn't really discuss the package, one, one group have talked about it. We definitely would want that to be part of where we put the where we organize things. So we can just pick one of these two, and I think it makes sense to pick with card because The deck needs card to exist. So starting there will give us give us our cards so we can easier more easily build our deck. We don't have to though, but we'll talk about doing things out of order in different orders later in the card as we go.
+
+So, let's go to click on the package new class.
+
+Let's not put it in card example. Let's just change this to cards, card or cards.
+
+I'm going to call this card
+
+so we'll put it in a cards package so that we have it this grouped together.
+
+So then once I have that I'll click finish
+
+and then we can
+
+start building our card so we know we We've already talked about it needs to keep track of three things. The value, the suit, and the face up.
+
+So let's
+
+private string suit,
+
+private
+
+string, and actually, let's call it a rag. I think that's the actual official term. According to the 30 seconds, I looked at a Wikipedia article on break. So, but if anyone disagrees or that's that's fine. Somebody just said pointed out that they didn't know what to call it. I didn't either. So and then we need face up. So if we're going to keep track of if it's face up or down, what kind of data type or should we use?
+
+Boolean.
+
+Right. Make sense? Right? There's only two states. So when we'll call it is face up.
+
+And should we default it to anything?
+
+So what makes sense we have to pick one state for our car to start in. Sorry,
+
+I think setting it to false as the default would be correct.
+
+Make sense? Start spaced out. Yeah, that makes sense.
+
+That way, every time we do it, we don't have to switch it here to be that way. Alright, so the next thing we need to figure out so we have these is we want to figure out how we're going to get this data in to the deck or into the card.
+
+So what
+
+how should the suit and the rank be set? We have two options. To remind you, we have the two options. We have a setter we could use, or we could pass them in the constructor, or we can have both.
+
+But our decision needs to be
+
+is what can change about these cards and what should be Something Once set can never change.
+
+suit, your rank should never change. So I think setting it up with the key in devalue would be a good idea.
+
+Okay. So
+
+they should never change. So when they should never change we should that uses an indication we shouldn't have a setter for them, we should pass them in the constructor. Because once they're set, they'll never, never be different.
+
+So that means let's build a constructor.
+
+Public, we have no constructor has to have the same name as the class with no return type. And we can take arguments
+
+See, rank.
+
+And they will say this for this particular card said it seemed equal to the one that's passed in it for this particular card. So this rank to the one that's passed on. So when we have this, does it make sense to have a card that doesn't have a certain rank? Or should we always have those two things?
+
+For it to exist?
+
+You know, we should always have them.
+
+So when we have that when we have data that we
+
+it's not valid for our programmer for the way we want to build it, for this object to exist without that data. So like the seat and rank of the card, it's not considered not a valid card for to exist without a certain rank, then that is a signal we don't need or don't want. The no argument constructor. We want to put it in the constructor so that the card can't be built without having it. And then once it's built, it can't be changed. Well, it could be but we will need to make that decision. So that decisions actually So we need to create getters and setters for these.
+
+So
+
+I'm going to go to source, generate getters and setters.
+
+And for each of these for face up,
+
+should we
+
+have a getter for it?
+
+Is face up?
+
+I see. See most people shaking their head. Yes. So yeah, it's Yeah, we should because they need someone, the user of our card. He's got to find out if the cards face up or face down.
+
+Should we have a setter for it?
+
+Yeah. So we need to be able to change it right. But
+
+it's not that user friendly to say, set face up true set face up.
+
+False,
+
+seems much more usable if we just had a method like flip that changed the state. That way, it works like a real card, we don't look at the card in
+
+changes card
+
+is face up true or false is changing it, we just flipped it. So we can mimic that the same way in your classes yesterday, the dog had a wake up method and a sleeping method instead of changing his sleeping to true or false. It's about a cancelling the functionality into something that's usable, something that the user doesn't have to understand that we do have a face up bullion, just that they want to flip the card. And they would ask the question, is it face up or down? So I'd say no. What about four ranking suits? I think we have the same answer. So do we need to get her for them. I see most people shaking their head. Yes, definitely. We need to get her. How about the senators? So?
+
+Yeah, I was gonna say no, just because I don't think you should be able to change the rank of the suit of the car.
+
+Yeah, I agree. And we already decided we didn't want that to happen. So we don't want the value to change. We don't want to set her for it. So part of the calculation is deciding these public methods and the getters and setters are part of these public methods. So we're making decisions on what can a user change? And how can they change it? So we went getters for all these but no setters. So now we're going to create some methods. I'm going to put them above the getters and setters just because of my own personal. I like my getters and setters at the end out of the way. But there's no there's no actual standard Java standard for that. That's my
+
+first impression. organization. So
+
+we probably need we talked about flip method. So public going in flip will return a boy and so we can return the state of whether it's face up or not. So how can we change his face up to the opposite of what it is?
+
+It's got to do something with his face up.
+
+What do we sell equal to? Just not?
+
+Yeah, not as face off, the opposite of whatever it happens to be. If it's true to become false, if it's false to become true, and then we can just return
+
+his face up. Relief
+
+So is there anything else we might want in the card?
+
+probably good to start with.
+
+We need some way to test this. So we have this main program but let's make
+
+a quick
+
+class something like card demo
+
+and click public static void Main.
+
+And then I'm gonna click finish in a second. And that's so we can just right click we did yesterday with the rectangle, just something that's outside of our regular program that we can check things with. We're not gonna have much to check here. But
+
+you probably want to be able to do something like
+
+you know, we can set a credit card.
+
+Let's create an ace of spades
+
+goes new card And we need to set the order we're going to set them in his suit and the rank.
+
+So let's do that. So the suit is what we're creating a spades, so
+
+spades and the rank, what we need graph to figure out how to we're gonna represent ace. We'll talk about that in a minute. So maybe just
+
+Ace, maybe represent this
+
+as,
+
+but actually For now, we can say
+
+we can spell it out because we can change that when we look at that in a minute.
+
+All right. And then maybe we want to print it out. Out,
+
+print line, and we'll print our ace of spades.
+
+Okay, it's printing like this. So when it's printing like this, what do we we want to use it? What about the printed? What do we need to add to our class?
+
+All right.
+
+override Yes. So an override specifically for to string. So let's add, override public string to string, it has to be the exact method signature. Normally, if we're overriding something we would look up the method signature is we won't look it up with this use it because it won't be long before you'll have to string in equals memorized from just doing it so much. So we need to know we probably want to do something like return the rank plus the suit.
+
+We save that and run our program again.
+
+We get what we want.
+
+Here we can make some choices like if it's face down, this is a way to see what the card is. That's probably not something we want to have happen. So we might, we could do something like if
+
+face up,
+
+do this.
+
+Else
+
+return, something like that.
+
+says is face up. So if it's face up,
+
+this will be F. If it's his face up, return the ranking suit. If it's not just return a couple pounds on the represent the back of the card. That's seems reasonable. Because now we can use the card over in our demo. And let me get these side by side if I can.
+
+So, here in our demo class, Have this, we run it. And now we get what we'd represent the back of the cards. And we could say, you know our card, ace of spades, dot flip,
+
+and then system dot out, print line
+
+the ace of spades again
+
+and run it. And now we get it printed, it flips it, and we can see it. So that seems like the function we've kind of a generic function for the card.
+
+So I think we're done with a card.
+
+We've built all the things that we talked about. So now we need to build the deck. And the deck is gonna contain a few more choices, and also one of the
+
+the two kind of challenges here.
+
+So I'm gonna create a new class. Now we have our card card. The cards package, new class. Oh, by the way, each card game I've been trying to create here, we're not creating a any card game, we're creating a generic set of cards that can be used in multiple card games. So just like when you go to the store, if you buy a deck of cards, you get the, you know, the standard 52 card deck that can be used in, you know, hundreds of games, that's what we're trying to emulate is that card deck, not a particular game. So then we could write a program to use the card deck as part of the game.
+
+So let's call this deck
+
+and we have these cards now.
+
+So the first thing we know we want to hold is a listing of cards. Let's decide that first. So how can we hold a listing of cards
+
+What kind of collection? Should we probably use?
+
+hash map?
+
+hash map. So why hash map?
+
+Because each card has a name as well as a value.
+
+But the objects know that.
+
+Do we ever need to really look up a card by a general deck of cards? Do we need to look it up by I want a diamond diamonds and get a list of the diamonds? Or do we just need to get the next card off of top pile?
+
+So we could do the hashmap. I think hash map will actually limit us.
+
+It would work. I think lists might be better. Because if you think about how a debit card works, and what we keep trying Have the ducks keeping track of the duck doesn't really need to know anything about the card. If we have a hash map we're gonna be limited now to having to keep track of the suits and the rags. Instead I just want 52 cards in a pile that I can shuffle around or remove from. So I think a list an ArrayList would be probably the easiest option to do with these cards and also keep it the function decoupled away from the card itself. And it's just a nice bonus that it's the easiest one to work with to list is probably the easiest collection to work with. There is an if you write it correctly. So list card and was called list of cards. Equals
+
+how to get this so we can
+
+new ArrayList of type card
+
+Want to import these well alright
+
+so now when a decks created and this is where we're going to have to break a little bit away from the, the pure abstraction a little bit when index created what does it mean for duck to be created? What's it gonna mean for us
+
+cards are added to the cards are added. That's a good point. So, now something at some point has to create these cards right? Something has to actually say this particular object is the queen of hearts. This particular object is the king of clubs. Somebody has to say that so
+
+if we're creating Sorry,
+
+I was gonna say, where'd you get it from the user?
+
+You could.
+
+But I think
+
+I'm a little torn here, because I probably wouldn't put it here. But I think we can safely say that the deck should not exist without the cards. And we've agreed at the beginning, we're building the 52 card deck. So I think we could build the constructor of the deck to populate the cards. So every time we build a new deck, it's like opening the box, we get it out and has the 52 cards in it.
+
+So we're emulating that behavior.
+
+So let's
+
+build the constructor again. same name as the class, the return type.
+
+Now, how do we build a deck of cards?
+
+These are the values now how do we get create these 52 cards? How can we do that?
+
+Or you need to be adding strings.
+
+We are but how are we going to add strings to make sure we got all 14 cards for clubs and all 14 cards for diamonds all 14 cards for hearts? How are we going to do that?
+
+Maybe contains and like counting for each suit.
+
+Okay, so we're going to count for each suit.
+
+So
+
+So are you saying this having like a list of all the ranks we need and going through and creating it for each suit? Is that what you mean?
+
+It'd be easier just to like write out every single card. Have you in here?
+
+Soto lines of code? So.
+
+So what if we had an array of the seats in array of the ranks? And we think if we had an array of each of those how we might do that?
+
+might use that.
+
+Third, someone say I think Justin said the loops. Yeah, we can do a loop. Yeah, we could loop through all the suits and then for each suit, right loop through all the ranks. And then if we done that, we'll end up with cards. Commonly they come out of the box, right where each suit is together with all the ranks in order. And then we could work from start from there. So our deck would open up and kind of come out of the box like are open up and start being used kind of can we open a box that cards me what we get then.
+
+So let's build that.
+
+So the first thing we're going to need is a couple Raise.
+
+And let's make private and string and suits, back seats new string.
+
+And we'll make them a race we can build them
+
+like this. Otherwise, we're going to have to do a bunch of ads. So we can build them statically with arrays, which means we could just do something like a C for clubs. Let's do an S for spades, D for diamonds, and H for hearts.
+
+And
+
+now I'll put this on River. Or actually, wait, always forget about the chat here. I'll put it in the chat here.
+
+So you can cut and paste it since the next one's gonna be
+
+even longer.
+
+And then we do the same thing for the ranks, mostly private. We'd have to make some choices how we want to represent the ranks. But since that's not really a programming thing, that's just a data thing. Let's represent them in this way. So a for Ace mini 123456789 and let's keep them to one character. So we then we could do t
+
+was jack,
+
+King,
+
+and queen and king, right.
+
+So give us two arrays and again I'll cut and paste that because that's So now here, we can just loop through them to create our cards and add them to our lists. We have everything we need down to do this. But before we do that, I want to talk about these lists. So that's not a lot of data. But it's still data that we're going to have 52 times repeated. I really don't want that repeated 52 times. That seems like a huge waste of memory.
+
+And also,
+
+I don't even know if it isn't being repeated 42 times I can want to be able to give a hint to the JVM that this is never going to change. I'm not going to change these at any point. So we can optimize them because it's going to be used over and over again. So to do that, there's two key words we can use static and final.
+
+So let's look at those.
+
+So the final keyword
+
+is kind of like a constant, those of you are familiar with JavaScript or from your pre work
+
+the const datatype. That meant you can't change the value.
+
+It's not a it's not a true constant. But it's the same idea, we can't change the value of the variable. So it's kind of, we talked about immutable, we can change the value the object, this is you can't change the variable itself. Once we, once we assign something to, you know, x, we can never change the value of an X. So once we assign something to suits, we can ever change it. And so with the final keyword, we use it private final at x 10. Then if we try to change x to 15, we're going to get an error. We but we can do private final int, y. And then the next notice there's no assignment here. And the next line has an assignment that's allowed. But then the second At time there's an assignment. There's an error. So when we set something as final, we can assign it once. We don't have to do it in the same line, which is which is different than a lot of other languages where you define a constant, you have to define it in assign at the same time in Java, you can define a variable and then assign at one time, if it's final, and then your values what it is. So let's make this final, both of these. Because that, that will mean that the JVM can optimize them and those of it never changes. It can basically keep a copy of it and keep referring to it. So it'll be a lot faster if we're with 52 of them that's going to exist. I really don't want 52 them to exist either. I really would like the rank and suit to be something that is owned by the idea of a deck. Not each individual deck, but I want each individual deck to be able to use it. So when we have these things, Things that are owned by the idea of it. They're going to be owned by the class, not the individual instantiated objects. There's a key word for that too called static. So static comes into two kind of flavors, one for variables and one for methods. Both means that the item that we're assigning a static will be owned by the class, the idea of being your car or duck, not by the individual. Next, we create, but they'll have access to it. So we do this by setting it the static keyword. So static members belong to the class, the instant members belong to the instance of the class, and, but the static members belong to the class of the self, not the instance. And that's kind of confusing. So we do this
+
+We'll put static on both of these.
+
+What's going to happen is that when this runs, if we make 52,
+
+we make 100 ducks, then there'll be one array of seats, one away of ranks, they all share. Because it'll be part of the idea of a deck, and they can't change it. So they just share it. So it'll be one in memory. No matter how many decks we build, we share. And that's what static does for variables. So in this case, if we created another point with static since it doesn't belong to the instance, we can't use it with this keyword. So if I try to here, say this suits, I get an error because it says there is no suits. In this instance, the object is only a suit in the class. So the main thing we need to remember about static Is because it's shared by the class, it means that if one of the objects change it that all of the objects can see that change. So they share the change. And before we look at that a little more detail, there are questions about final and static so far.
+
+You won't use these a lot.
+
+So they're all utilizing the same deck. So like if you had a deck one and deck two instance, and deck one, you know the cards were distributed. Those cards would also be distributed on the deck to instance,
+
+not know not the same cards being distributed. But as they choose the cards as they loop through this array. They're both going to have the same set of cards. If we made a this list here, started Then they would all share the same actual cards
+
+that be pricey. So we're still creating a new list of cards. Okay, I guess.
+
+So these things that are static are not shared. So we only have one of them because we don't need a bunch of these right when we need one. We don't need the values repeated, but we do the cards do need to be individual so it's not static. So with static, the way to think about for a static variable is, think of it like a store. So a store is inside of it has multiple cash registers, right, multiple checkout lines. And if no, register one has a total of 10 register, two has a total of 40. And these two are completely unrelated.
+
+Register uses should have been three.
+
+How has a total of 15 that's unrelated to 40 and 10. We can it would be true to say that each of these has their individual mounts. So the 10, the 40, and the 15. But the store has 55. So they have the total of them. The story the the static, so the stores total amount will be the static were their individual total amounts would be non static. So that means that if we changed there's a second sale. And this goes up by 20 by 10. So somebody had to tend to this register, register two doesn't change, but the objects don't change. But
+
+the store now has 65.
+
+So it's shared, it's the shared property among them. Every time they register makes money, the store also makes money and that's what static is. Static is not the is not there's no automated process that does that. But we update a static variable like the store amount, each of these singular objects that updated it, when they say, what is the current value of the store amount, they're all going to get the same answer. And if they all add to the value of a storm out, it's going to add for all of them. So static is shared.
+
+For variables.
+
+You don't, you generally use static fight with final for variables. When you're doing things like this, I have something I don't want to change. And I want it. I don't want it to be per instance. So usually for this kind of data. The naming convention then, is not it can be used like this, but it's also commonly used by I think it's called upper snake case. I think that's what it's called. It's generally used as a naming convention like this suit of cards, compared to
+
+should have cards.
+
+So all uppercase With underscores, but that's going to be up to your workplace. I've worked a lot of places where they didn't have special didn't use the special naming for static. But the Java standard says statics can't be named like that. So I'm going to change them to ranks and suit. We don't have to, again,
+
+the Java standard loss for either, but it's common to see it. So
+
+the important thing, this need of having one value that updates for all of them is pretty rare. We don't run into that a lot. But the idea of having a value that's just held that shared among many classes is more common.
+
+So
+
+questions before we look at static
+
+methods.
+
+So static methods exist to
+
+there's static methods exist? And they work really well when you have a method that is truly like a mathematical function where you give input and you always get the same output and nothing else changes. So they're commonly used for libraries like that, like the math library. And when we set a method to static, so we have the static keyword to a method, then that method then is called not by the extension in the class and using the variable like we have been for other methods. Instead, it's just the class name. So if we would have made get area and our rectangle static, then instead of creating a new rectangle, then on the object we created calling get area on the rectangle class itself. We call get area because the math static method belongs to the class, not to the instances. So some examples of that you've seen is math dot ABS or math dot random, spring Java string join and string value of Double parse integer, there's wrapper classes parsing methods, there's things we didn't have to use the new keyword, you just typed out a class name and then dot and there was methods available. Those are static methods, they don't belong to the instances, they don't change the instances. So string value of doesn't change an individual string. Instead, it belongs to the idea of strength. So another place we've seen it, private static, void main. In the main class, of every job application, it's static, because we have to be able to call the main method the JVM has to be able to call the main method without a stanchion yet, because the program hasn't started to start establishing objects yet. So allows it to call whatever our classes dot main without a stance eating an object and start the program. And you won't write a lot of static methods Their specialized use case. If you were in the dotnet class right now, which has the same concept, and they're just as john will be telling you, as he does every cohort that you should never write a static method. He's a has a strong hatred of static methods, I will tell you that they, they follow a particular use case. And if you have that use case, you might you might run into the need to use one. It's more importantly to know that when you're seeing something like this, that's what's going on. All right. So questions on that before we get back to now using these in our code.
+
+Alright, so now we can build our deck. So let's say we do a for loop, we already said we're going to loop through it, and we can loop each for each suite or suit and guess I should have made this plural because it's a list of them.
+
+And then for each one of those, we can do another for loop where
+
+each rank in ranks.
+
+And then we can create a card. So current card equals new card, seats suit and rank.
+
+And then we can add it to our list.
+
+So at that point, we should end up with a deck of cards, because it's going to go through each suit created for each of the ranks and build them out one at a time until we get off 52.
+
+So that should construct our deck.
+
+So the first thing I want to do, then probably is be able to view this deck. So let's do it. So how can we make it so we could print the deck. What do we need to add? overwrite? Yeah, overwrite a two string again. So let's do that. Let's do the override. And then we can use that to test with our demo class. So public string to string.
+
+Let's say
+
+we're gonna have to have something like
+
+a string and call it string representation.
+
+We'll make that equal to deck
+
+cards equal, and then we'll take advantage of something that ArrayList already has. We've already set up a two string method in our cards class and because of that, ArrayList has two string method goes through every We think it has caused the to string method each individual item. So it'll car cards to string. So that means we can just put the list of cards here.
+
+And maybe close it off like that.
+
+You know, we have to return it.
+
+And now let's go to our card demo
+
+deck over here.
+
+So now here, we can create a deck deck. That is called deck equals new deck.
+
+And we have to import it because it's in a different package.
+
+And then we should be able to print it.
+
+So since we have a two string of arrivals to this and see the deck
+
+Alright, let's run it.
+
+So, well we have a bunch of cards printing out, but they're all showing, they're all facedown, right? In our to string method, a card prints the cards as facedown. So there's a couple things we could do, we could change the one, the print method cards, but I really don't want to do that. Because this makes sense to me in a game, I don't want to have to keep calling to string or show card or something, I want to be able to just use card in a print line and have it work.
+
+Or
+
+we could write it out a loop that goes through and calls the getters on those into a manually for to string, but that means I have to do a loop instead of taking advantage of arrays are way less built in functionality, which is nice. Or we could just build a private method that flips all the cards. Then have this method, get the strength and then flip them back over. So be kinda like a magician where you see them when they put all the cards out, and then they quickly flip them back, it'd be that same idea to show us the duck.
+
+And then we'll also have a private method, something we haven't built before.
+
+So for doing that here in deck, see private doesn't need to return anything. It's called flip.
+
+And how could I flip all the cards?
+
+What can I do with them
+
+do a for loop through the list
+
+and like a for each loop, and then set a is facedown to false.
+
+So we'll do a for loop for each card. In our we caught list of cards. No, actually, that's later. So each card and our list of cards
+
+are card, we can just call the flip method, right?
+
+It's gonna put them in the opposite state they are, but
+
+I think we don't really have, maybe we could get through and check each one. But let's just flip them over. When we have a new deck, that'll give us what we want. So now we have a private method to use a private method, we just call it from where we want it. So we'll say flip. We couldn't call up for this, but we don't need to. And then, so we'll flip and then we'll flip them again.
+
+And let's run it.
+
+So now we see our deck. We can see that we have all these clubs, or the ACE through the king of clubs they do the King of Spades the ACE through
+
+The King of Diamonds nice through the king of hearts.
+
+So we're almost there.
+
+So we had to have a few of the things we wanted our deck to do, we wanted to shuffle, get remaini cards, cut, and do.
+
+So now we have a representation of the cards, we can do that.
+
+So
+
+well the size is fairly easy, right, we just need to return the size of the list. If we're going to remove things to the list is we do which is probably what we want to do, like a real deck because we remove a card the deck shrinks, we can just return the size of the list. So when we have that because of encapsulation, we don't want to expose that we have a list. So instead, we want to make it so the user of our deck to says what's your current size. So maybe something like public int size Because that's what we're used to asking for right? On a collection. And that's kind of what our deck is doing is building our own collection type. So we might want to say, well, we'll return our list of cards, dot size. So we do this we wrap it existing method with a method of the same name for capsulation purposes, so that the user of our deck doesn't have to care where we're getting our size and know about our list. This is called delegation. So this is called a delegate method. And that is delegation method. Because we're getting the request from the user. For encapsulation. We're making it easy for them. And then we're delegating the request to our internal to our internal usage. So to our list. So the next day we might want to do.
+
+So how can we do a card?
+
+What are we going to return from a method that deals a card?
+
+string? string
+
+to anything else you might want to return for getting a card and giving it to something else is using a
+
+debit card. Yeah, we returned a card.
+
+Exactly. So we're going to get a card out of the list and return it. We'll give it to whoever called it now. So that'll be our dual method. And people because there's no arguments. So how do we get a card out of the list and we want to do two steps. We want to give out the list and we want to remove it from the list.
+
+Do we know anything that does that? Or how do we do that?
+
+gene pool
+
+So dark pools going to work on
+
+either stock or cure I camera which one pool goes to.
+
+But let's have something somewhere. So with list, we can return and we looked at it. So
+
+we list of cards, I would
+
+look down through, if we look at remove, says remove the index at a specified index, it shifts the other elements around. And it returns the element that was previously there at index in that index. So we could say remove and if we always want to get the top card for an index, would we
+
+use zero?
+
+So there might be a problem here. What happens if we're out of cards? What's that gonna do? For you
+
+a no pointer exception. So
+
+Close, it's going to give us the array out of bounds exception, the index out of bounds exception, because zero index won't exist, just see my similar ideally, it's an empty array instead of the empty object so we can protect against that. So we'd say if our, we can use our own size method if our size is not equal to zero.
+
+Or maybe we could say if it's greater than zero.
+
+Either way,
+
+we'll return the card. Otherwise, maybe we can just return null. We probably want to make that more robust we could do something like create a whole new deck or something reset the deck or something like that. But for now, for today, what is returned all especially given fits.
+
+Right, so our other methods
+
+next will be shuffled.
+
+So we're never gonna have a shuffle method.
+
+has to do something. So we have the cards like this. So how can we shuffle them? Any ideas? I was gonna I was going to break you up into groups again to figure out shuffle, but when it's getting late, let's figure it out as a group.
+
+Just push it to the list.
+
+Okay, so we'll need to push it to another list. But what do we do with it? How do we
+
+get us a stack or a set? So that the order would just be random?
+
+That's it. I've heard that idea before. Yeah, we could use a stack but it's also guaranteed to be random though, either.
+
+So it's, oh, sorry. No,
+
+no. Um, so I think he would take size and you would figure out what size equals and then you would figure out a random number between like bat value and zero are wild that value minus one and then zero, and then you would have it pulled that indexed.
+
+Okay? So, um, and then we're going to put it into another list,
+
+put it into another list and then the size would go down when you removed it. And so then you would get another random number between that and sighs Okay,
+
+that would work. So we could.
+
+So we get
+
+a random number between
+
+zero and size minus one, so we get the index, right. Get a card at that index, and we'd want to remove it so not get we want to remove the card,
+
+card, add
+
+index and add it to another list. And then we'll just continue to zero. That could work. That's one shuffling routine.
+
+Any other ideas?
+
+Isn't there at option two is
+
+a math option?
+
+Isn't there like a dot math
+
+for that?
+
+So
+
+Exactly.
+
+Matt, that's Matt. That's random.
+
+Random, okay that they'll give us a random number. So that would give us our random number between zero and size minus one.
+
+But it won't change the the list.
+
+You're not because just to get a random number. Yeah, I don't think it can do anything else. Nothing else at the math library can. So
+
+any other ideas?
+
+shuffling is a huge topic. So there's all kinds of shuffle algorithms.
+
+Some better than others.
+
+And lots of discussion on how
+
+things should shuffle.
+
+Maybe similar to human where you just cut the deck in half, and then you add it to like, a new
+
+list or whatever,
+
+because we just keep cutting back and half multiple times
+
+I guess and then maybe do it again just to be safe.
+
+So we could keep
+
+keep, we couldn't cut it in half, we'd have to cut it at a random position for that to work. Otherwise, we just keep cutting in half and plop flipping the house because there's 50 g cards even So
+
+okay, but keep cutting
+
+at a random position
+
+actually could work my take. Wow. So another really common algorithm is to
+
+loop through cards for each pick
+
+a random number
+
+between
+
+preach to me put that down so we can see it better.
+
+For each pick a random number between
+
+zero and 51
+
+and then swap
+
+the card,
+
+the card with that location in the array. So you just pick a number and you just swap them to location. Statistically, it goes through all 51. Not all cards move, but enough will move. It'll be in a random order.
+
+So there's three ways to work. There's many more.
+
+The last one I put in, I'm only putting it there because that's kind of the classic random solution. The one the other two that were suggested are also Very common solutions. So but so there's three solutions. If you look it up, you'll find one of those three, almost for sure. Right away.
+
+I think we can go easier.
+
+So, if I was doing this, I would do a quick search on how to shuffle cards and how to shuffle a list in Java. And I'd be led pretty quickly to
+
+this class called collection. collections.
+
+Collections is free. Remember, we looked at collections we talked about it had, just like we looked at the array class that helps with arrays collections is a helper class for collections, or like string so it has a bunch of methods built into it, including some static methods. Let's look at what it has. So it has some search methods, some list methods, sorting methods, some copy
+
+Min and Max, place shuffle.
+
+So there's a shuffle methods built in to the collections object. So we could use that rather than within writing around, especially since it's almost 1230.
+
+And this isn't a top the top, not shuffling. So sorry,
+
+not saying that the collection says shuffle method.
+
+Yeah, has one built in Java has it in the bus. The thing you should take away from here is when you want to do something that you know other people have done, you know, is something that other half someone else has to do to search for it. There's a good chance it's built into one of the libraries. I get no guarantee they may not work the way exactly how you want. There's a good chance. So this case there is so let's use shuffle and it will just pass it our list of cards. And we're done. With our shuffle will delegate it off To the collections object to do the work. doing any of those other options would have been just fine. That'd be sort of write more code to do it. So now let's go here. Now we can call our deck. We can say deck.
+
+Shuffle.
+
+And then let's print it out again. And
+
+it's in a different order shoveled.
+
+Again, yeah, different for each time. So we have shuffled deck now.
+
+So at this point, the only method we haven't done is cut. So let's do that.
+
+This one's gonna be actually probably a little more challenging.
+
+Not really. But do we need a couple loops for it?
+
+So
+
+what we need to do is get half of the array, we need to split the array are the list into two, right? And then we need to bring it back together in the opposite order. That's the definition of a cut correct. If I'm wrong, please correct me because
+
+that's how I understand it. Right? So
+
+the, usually like a user would pick how many cards to cut.
+
+Okay, so random is not good enough. We want the user to be able to say,
+
+I mean, if you don't want to do it, we could just skip the whole cut thing. It's not really that important. It's already random anyways, it's just more fun.
+
+No, I don't mind doing it. I just I'm trying to get the specifications on it. So you want to use her to say like, I want to cut 10 cards. Have those swipe from the top to the bottom? Is that correct? Yeah, that actually seems like an easier problem what I've where I was going, because now we can just remove 10 cards into a new list and then add it using at all to the bottom of the list. So so let's get integer, and number of cards. And if we want to get 10 cards off the list, we're gonna need something to hold them in, right. So we're gonna need another list. Let's build a list of cards. And we'll say cut cards equals new ArrayList of type card.
+
+And now we have a number we want to get.
+
+So actually
+
+wonder if we can get let's look at
+
+list of cards. Okay,
+
+I was checking to see if there might be a
+
+like get so many but I don't think there is there's not okay. That's all right. So because we can then do a four and i equals zero, i is less than the number of cards. So the number of cards we're going to cut, i plus plus. And now we could say cut cards dot add list of cards, dot remove. at index zero. We're always going to move at index zero because we always want the top card. Otherwise, as we go down through we'll get you know i number of cards away from the top. So we're not going to remove it I just can use it to count because removes going to change the list. Now at the end, we're going to have our cards. So then we should be able to say list of cards, dot add all cards. And that will add all the cards, we took off the top of the list and put them onto the bottom of the list. So Oh, well, I've done that much harder than it need to be. Here's a much easier way to do it. Let's refactor it. We don't need this. And we don't need this. We don't need this. We do need his card. Card equals, we move it from the list. And then if we list of card dot add, because they're going to stay in the same order, right when you cut you take the whole group and put them down at the bottom in the same order. Correct?
+
+Oh, yeah.
+
+Typically, yeah, that's how it happens.
+
+So pragmatically For some code, if we take one at a time and just put them down to the users can have the same effect. Remember, no one's going to use as a cheat This is code. So we want to get the same effect. So if user did that, if you told someone to cut the cards, they start taking them one at a time, that would be a huge problem. But for the computer to say, I'm going to mimic you cutting a car and and give you the same effect by moving them one at a time. That's fine, as long as they end up in the same order. So I'm verifying that they're okay, so list of cards because we do list of cards dot add our cut card, that's what's going to happen. It's going to take each card, move it to the bottom, through the numbers that are removed from the top and then add will put it on the bottom. So if we weren't 10 cards would be the same effect as if we put them on an array first and added in all the only thing we've done the other way is waste memory by creating an extra array.
+
+We have the same, the same effect. All right.
+
+Now we have a cut method, it was actually easier than I thought it was going to be. And there were built a cut method before. So
+
+do you need to set cut? Like, do you need to create cut card? Or could you just have done a list of cards dot add a list of cards dot remove zero,
+
+I could just put the list of cards remove zero. I was just trying to make it more explicit.
+
+Gotcha.
+
+So let's see if this works.
+
+We're going to print that again. But first we'll do deck dot cut and what cut 10 cards to see how it works. And if we run it, we should see three lists. Now the first one where this set of cards, it's five should just collect to think it's right might be one off is now
+
+down here.
+
+TD JD three C. td. JD three C. Yeah, so they're there.
+
+Yeah, so our cup works.
+
+And we can see before it is the end. So, right. Now we have a full working deck of cards.
+
+So now that we have this
+
+before we use it for something that already exists,
+
+are there questions?
+
+So the point of this was one a lot around the design of these classes, but also why we made decisions like instead of having just having a getter to get the list of cards, we built our own size method to encapsulate it why we chose to put particular functionality each One and hideaway things like his face up by having a flip method. That's what I hope you will take away from working on the project, not how to build a deck of cards. Right, so let's, there's another program in here there's two, but the main programs
+
+the original main program that came with it,
+
+pretty much does what we just did over here.
+
+But also put this thing in here, which is a game.
+
+And if we
+
+think we made the right choices to, we might not have
+
+uncomment it
+
+and import our card
+
+and we'll need to import our deck
+
+I think
+
+this leads into next week. So we built that deck of cards. And the only choice that you didn't make, that I kind of pushed you into was changing the name from value to rank. Because I knew that I called it rank when I built this program.
+
+But I didn't have to know
+
+how we were going to implement the deck of cards to write a game using it. I had my own deck of cards, I actually use the ones from last quarter, and they were they were different. The one thing that was the same is that they had methods like shuffle, because every deck of cards is going to shuffle unless you like do that return the card because that's what's going to happen. So I had to know the methods, the public methods that were going to be there. And I may, there may be some wrong but there's no error. So I think we got them all the same. But I didn't have to know how any of it was going to work. I didn't have to know that there might be extra stuff. So if we run it, and we may get an error, because I haven't tested it with the code we just wrote, because we just wrote it.
+
+It should
+
+end up being a
+
+simple
+
+game now, where it's just a simple 21 counting game. But still, the point of that is not the game. I could take this and drop the deck of cards we just wrote into a web application, and it would just work as long as the names are the same fact That naming that public naming is where we're going to go next week with interfaces. This idea that we're going to work start working from knowing these public methods to abstracting to a point that the people using them don't even have to know anything about them on them with the public methods are.
+
+So questions on
+
+let me look at Are we done?
+
+Okay, that was tough
+
+stuff. So Which part? Cuz that's,
+
+uh, the concept honestly just incorporating both of them remembering to call your card class that you created just
+
+just digesting it. Yeah,
+
+it is. It's it's not a easy, the whole thing is not an easy question. So that's why we're spending five days on it all together. And, but it's not going to be easier at the end of this five days for a while. Yeah. So, and there's a lot of new stuff. This is a whole new way of looking. We talked, we started out you started a week and a half of programming in one way. And then suddenly, we're going, Oh, that's not the way we really do it. Here's how we really do it. But you can't write these little pieces. Right there that go. These little pieces here without we'll be doing the first week and a half and that's what you're starting with.
+
+So
+
+it'll get easier. Most students find that this portion really clicks during the first Capstone when you have to build something bigger with it for the first time.
+
+Other questions?
+
+Comments,
+
+complaints, any All right? So let's look at your exercises then.
+
+Close this.
+
+And
+
+so import those.
+
+We need exercises. So they're almost the same as what you did yesterday only now they're gonna focus more around encapsulation.
+
+So
+
+you bring up the readme
+
+you're given. You have test cases for them
+
+and
+
+There are classes to work with.
+
+So airplane, elevator, Employee Free tree, homework assignment and television. There are a set of test cases for each one of those just like we did before. And let's look through the requirements. So the challenge that you're going to went from from yesterday, we were kind of following through directions right of build this write this code like this, not maybe write this code, but make it do this explicit thing. That's still going to be the same, but there's a definite the set is definitely more challenging in the way you have to think about them.
+
+So I'm getting to the readme so we can review it
+
+because they require more thought in how data and state work together. And that's really the challenge of the all these these. This particular set of exercises is exhausting. It's around how does data and state work together? And
+
+so, let's look at a few of them the directions or kind of talk through how would I would go about solving them? Or how you could go about solving them. We won't code one. But it's a homework assignment. It has attributes like you did yesterday. So properties, member variables, total marks, possible marks submitters name, and, and string letter grade derived. So what is derived mean? Okay.
+
+derive is one of the many things we looked at yesterday.
+
+Does it mean that you don't necessarily need to make a data member called letter grade? It's derived from doing math with two other ones.
+
+Exactly. Exactly. If you don't make a, it's going to have a getter get letter grade, but the B no actual variable for it, you'll calculate it every time. Like we did the area for the rectangle yesterday. So when you see it arrived, you should not have a private variable at the top of your class, you should, instead of a get letter grade or get whatever that dry property is that's calculating it from the other data in the class. In this case, it's going to calculate it from this set of rules right here. So notice for each of these, it has getters and setters, some have both, some only have one.
+
+letter grade is going to
+
+derive from finding out if there's a 90% of the score was 90% or greater. Return the letter A down through return F. So it's going to grade it. From total marks impossible marks you got to figure out the percentage So notice they're integers. So think about, there's already a hint for it there. But think about what's going to happen. What could happen with an integer if you're dividing it, some of the problems that may occur and how you can solve those gives you a constructor, so that some of these actually have most of these, I think have an explicit constructor. So when you have to give it to set an argument, this accepts possible marks. So when it gets the possible marks, you're going to want to set the possible marks in the member variable. So you can use it later when you do the letter grade. So when someone calls get letter grade, it should calculate the percentage and then determine which letter to return, but it should not store the grade. That should be done each time letter grades can be requested.
+
+Alright, so fruit tree
+
+is becoming a little more abstract. So you're mimicking a fruit tree in this problem, a fruit tree want to has two real properties about it. It has, what kind of fruits on the tree? Is it a pear tree is an apple tree? And how many of them are on the tree? Does it have, you know, 10 apples if it's on 20 apples. So that's the data. And that's going to be represented by a string and an integer with a getter for each. The constructor sets both. So you're going to pass this type of fruit and the starting piece of fruit to set these. So starting pieces of fruit is how many the tree has when it gets instantiated. pieces of fruit is how many it has now. So that means that this should start out by setting this to a value. And then things like pick fruit are gonna have some rules about can you pick fruit so abstractly, if you went up to the tree, if you visualize it if you went to the tree and I wanted to pick five apples from an apple tree, and there was four apples left, can I pick five apples? No, I can only I can't, I can't really pick four. So it gives you rules about what to do, whether you return true or false. And then if I picked, if there was five apples on the tree, let's say I wanted to pick three and there was five apples on the tree. And I picked three, there's two apples left on the tree, right? So that has to be represented in your class. So on the pick fruit method, if I want to pick three, then this has to change by removing three from it. Just like it wasn't a real tree. Make sense?
+
+Kind of. So
+
+employees somewhere so we'll skip over that one because it's similar to those other two. But I want to look at let's see airplane. So airplane. without going through all the details of all the data, you see it has a lot of data here. Two pieces of it are derived available First Class seats and available coach seats. And that's because if you were actually keeping track of how many people could fly in your airplane, you would keep track of how many people could be there, the total number of people could be on the plane, you might keep track of you would keep track of how many people are booked to be on the plane, right. But you don't need to keep track of how many seats are billable. Because as long as you know the total number, and the number that's been booked, you can calculate the number that's available. The same way that if you wanted to go the other way, you could keep track of the total number in the numbers available and calculate number book. But since you care about the booking more than anything else, it makes more sense. You think about having you know a sheet of paper with all the seats and as they're booked gets crossed off. So if anyone's ever worked in a restaurant with tables, and they have the tables, they cross off as hostess cross off as they're filling up, they can tell how many are still available by the ones that are not crossed off. It's the same idea and code for this. So the derived properties, that's what they're going to do.
+
+The
+
+there's also a method to reserve a seat. So even thinking through your mind how a seat reservation would work. When you call this reserved seat method, it's going to ask is it for first class or not so true or false? So first class or coach, which means you're going to use different sets of data between first class and coach. And then you're gonna have to determine if the reservation can be made or not. So if I want to reserve you know, 10 seats, there has to be 10 seats left in that grouping. So if I want to reserve 10 Code seats, there has to be 10 available code seats when that derived property is called. And if there is, then you return true, you also have to change the number of book seats, because now there's 10 less book seats. So, again, thinking about how you would do this outside of code is how you want to do it here. Right? And then let's look at through one more of them. So television, you want to imagine how an actual television works, how the channels work, and how with the roles that they give you.
+
+An elevator is similar to television.
+
+For this one, you're gonna have the current floor, the number of floors and this is true or false if the doors open or false. So current floor is going to tell you where the elevator is. So think of that, like the, you know, digital war. Log display that shows you what floor the elevator currently is on. Number fours is the how tall the building is. So it's going to be between zero and you can assume no baseman here so zero and some number that's going to be given in the constructor. And that's the height of the building. So door open is true or false is the floor is the door opener false. So for each of these then from methods open and closed door are going to change this variable just like you did for we did it for dog waking and sleeping or for the card flipped today. For is face up or face down. Go up and go down to desired floor gonna have some rolls. So think about how for a real elevator if you tell it to go up if you're on floor one, and you tell it to go up to floor 10 and the building's only five floors tall
+
+does would it work?
+
+I can't go to the 10th floor of a five storey building, it doesn't exist. So in the real world, we would do that because we just wouldn't have the button to push. But here in code, we have to say, Is this possible. And if it's not, then it returns false and nothing happens. It is possible if I'm on floor one, and I press I want to get to four, three and a five story building. Then the elevator moves for three, which means you have to update the state update the current floor. If I'm in the elevator, and I press for three, I can't the elevator can't move why the doors open. So it's the same role here. Now the code has to check that the door is open. So it's going to say you want to you want to move the elevator? Is the door open? Does this floor even exist? If you're going down? Are you trying to go below zero? If you're going up or down, and you're in for four and I choose to go to floor four, again, I'm not going anywhere. So nothing happens. So think about how you'd be requesting a row elevator to work. It's, and then what the roles are quicker, more abstract around things like the number of floors in the building. That's the way television works as well. And actually, for all of these, they all build on each other for the same type of ideas and abstract representation of these real world things. So now the questions that are answered by just being limited in the real world, or by things like a piece of paper and a checkbox, we have to represent encode now, or by the fact that the fruit just disappeared from the tree in the world. Well, now we have to keep track of it. So that's what you'll be doing for exercises.
+
+So questions?
+
+Yeah. So for like, the elevator and the floor like you wouldn't go up to the floor that you specified if it didn't exist, but if you wanted to pick five apps And there were only four would you still want to pick the four apples that were there?
+
+So in this, you might on some fruit trees, but this particular classes directions tells you
+
+that all specify that but I believe they want it to be true or false whether it was possible so it's more just basic of if you want five apples there has to be five apples. I would say you could go ahead and do that because that would be reasonable, but you have the power cost test cases will probably fail. They're gonna expect new new change.
+
+So go the simple route for that. Okay, cool, thanks.
+
+The questions
+
+so everyone feels good that they can
+
+complete these exercises or work on these exercises and no one knows what to do.
+
+Between now and Wednesday, Yeah,
+
+yep. I'm
+
+not saying they're gonna be easy, just that you know where to start. That's the go, Okay. All right. So some things, it's good to bring up. Some downs protect things. So there's an elevator pitch workshop at three today in a pathway, there's the virtual happy hour at four. Then I'm supposed to let you know that on 527, which I think is next, sometime next week,
+
+next Wednesday,
+
+next Wednesday.
+
+There's already been an announcement out this but I'm sure they'll be asked to tell you multiple times and it'll be posted multiple times, that the CEO and the Chief Technical our chief academic officer or doing a live address at 4pm that day, that they'd like everyone to attend. They're going to announce the plans for the rest of the cohort. how it's going to work. I'll we we will be hearing them at the same time you are. So I have no idea why I haven't guessed. But that's just the same guy she would have been put the same information you have. So I can't tell anything more about that because I don't know. We all get surprised together.
+
+So, also now remember some
+
+nice to remember, there's no class Monday, it's Memorial Day. So a little harder to remember when we're not going anywhere. But there's so there's no class Monday, will resume on Tuesday, like normal. So this affects the exercises and the Monday's holiday is just like a weekend. So stuff that was assigned yesterday is due Tuesday instead of Monday and stuff that was assigned today was due
+
+Wednesday. That right Michelle, did I mess that up?
+
+She's shaking your head. Yes. So we'll start.
+
+Right? I think so.
+
+So just use Saturday to it
+
+for the extra weekend for the extra day. And then for if you need help over that time, I'll be on river here in there. Don't wait on it to turn green. Just send me a message and I'll get back just like the weekend. We've only had like, one weekend though. Such diff this cohort, but during the weekend, send a message whether you don't wait don't see us online to send a message and we'll get to answer you as soon as we can. no guarantee any particular timeframe of the weekend but it's usually not too long. So Alright. So other questions, anything to bring up from? Okay. All right, then thank you. Let you go and have a greater great weekend. I'll see you again Saturday with the happy everything and today
+
+I've got one guys
+
+you guys
+
+Transcribed by https://otter.ai

@@ -1,0 +1,38 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#creating-a-git-repository
+
+Creating a Git repository
+To begin working with an existing repository, a developer needs the remote URL so that the repository can be cloned to the computer as a local repository. A remote URL is git's way of identifying "a place where code is stored."
+
+This URL may reference a location on GitHub, BitBucket, or another server. On GitHub, it's usually found on the home screen of the repository and in the format of https://github.com/username/repository-name.git. The URL always ends with .git.
+
+With this URL, you run the command git clone from the command line to download a copy of the repository:
+
+git clone <remote-url>
+Once a remote repository has been cloned, a developer has the entire code base and is free to begin making changes.
+
+Clone Location
+
+When you use the git clone command, git automatically creates a folder for you in the location of your current working directory. Be careful not to perform this command inside of an existing git repository.
+
+Staging changes
+Git has three main states that a file can exist in:
+
+Modified - the file has been changed but not saved to your local database yet
+Staged - the file is marked in its current version to go into the next commit
+Committed - the data is safely stored in your local database
+The git status command checks the status of all modified and staged files within the repository. As a developer, it becomes second nature to use the git status command to continually see which files have been staged or modified.
+
+The git add command can be used to stage a modified file.
+
+#Stage explicit files
+git add <file-name> [<file-name>, ...]
+This version supports explicit file names to be identified when staging files. Multiple files can be staged at the same time by separating the names with spaces. The command git add foo.txt bar.txt stages two files: foo.txt and bar.txt.
+
+#Stage explicit directory
+git add <directory-name> [<directory-name>, ...]
+This version allows you to specify a directory to have its contents staged. Git is intelligent enough to detect which files inside the directory have been recently modified.
+
+#Stage all changes
+git add .
+This version allows developers to stage the contents of this directory and all directories beneath it. It can save time from the other more tedious git add commands.

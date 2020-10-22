@@ -1,0 +1,16 @@
+Book
+https://book.techelevator.com/content/css-selectors-box-model.html#cascading-of-stylesheets-and-specificity
+
+Cascading of Stylesheets and Specificity
+When setting up all these rules for elements, it's important to understand that if multiple rules apply to a single element, the browser has special rules to figure out which styles should be applied. These special rules are called specificity.
+
+The first thing to know is that the browser loads rules in the order that it sees them. This means that a rule that is loaded last takes precedence over a rule that is loaded earlier. The later styles override the earlier styles. This is called cascading.
+
+But the selectors used in the rules can also matter. The more specific a rule is, the higher priority it has over other rules, no matter where or when they were defined. Each selector has a priority assigned to it, and they are listed in the order of least specific to most specific below:
+
+Type selectors are the least specific
+Class selectors, attribute selectors and pseudo-classes
+ID selectors are the most specific
+So, if you write a CSS rule and it doesn't apply the way you expected it to, check to make sure you don't have a more specific rule written elsewhere that overrides it. The easiest way to do that is to check your browser's development tools, which show you all the applied and overridden rules for any element that you select.
+
+You can read more about specificity on MDN

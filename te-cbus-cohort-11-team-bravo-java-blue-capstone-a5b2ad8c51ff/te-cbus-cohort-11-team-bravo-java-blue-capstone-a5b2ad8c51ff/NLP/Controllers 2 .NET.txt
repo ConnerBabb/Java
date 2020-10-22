@@ -1,0 +1,141 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-dotnet.html#controllers-2
+
+Controllers
+As mentioned earlier, you can think of controllers as mediators between models and views. As a go-between, controllers know what model to call to retrieve the data that's needed by the view.
+
+This is what a basic controller class looks like using ASP.NET Core MVC:
+
+namespace Todos.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class TodosController : ControllerBase
+    {
+        private readonly IList<string> todos;
+
+        public TodosController()
+        {
+            todos = new List<string>
+            {
+                "Wake up",
+                "Shower",
+                "Drive to work"
+            };
+        }
+
+        [HttpGet]
+        public IList<string> List()
+        {
+            return todos;
+        }
+
+        [HttpPost]
+        public void Create(string todo)
+        {
+            if (todos != null)
+            {
+                todos.Add(todo);
+            }
+        }
+    }
+}
+Hopefully, most of this looks familiar to you as there are classes, instance variables, constructors, and methods. What might not be familiar is the code in [] above the class and method declarations. These are called attributes.
+
+What is an attribute?
+
+An attribute is a tag that's used to associate metadata with code blocks such as classes, methods, and properties. The compiler and runtime use this metadata to apply certain properties and features to the code block the attribute is used on. When an attribute is applied to a code block, the code is said to be "decorated" with the attribute.
+
+You can apply one or more attributes to nearly any block of code, but some attributes can only be applied to certain blocks—for example, you can only use the [ApiController] attribute on a class. Attributes can accept arguments in the same way as methods and properties do, like the [Route] attribute in the example code above.
+
+The following sections describe the different parts that make up the controller code above.
+
+#Naming conventions
+By convention, your controllers are stored in the folder Controllers. Although you can create the controller anywhere, convention says it's a good idea to store them together in the same folder and namespace so that other developers can immediately understand what this code does.
+
+Now that you know where your controllers live, what should you name them?
+
+The name of the controller class above is TodosController. This is because you want the todo controller to be available on the /todos route.
+
+The [Route] attribute defines the base route for the controller. You can use a string to define the path, or use the dynamic variable [controller] which takes everything before the word "controller" in the class name, and makes that the route. You can also combine the [controller] variable with a string—for example, [Route("api/[controller]")] resolves to api/todos for TodosController.
+
+Because the route is ("[controller]") and the controller is named TodosController, the route is /todos:
+
+namespace Todos.Controllers
+{
+  [Route("[controller]")]
+  [ApiController]
+  public class TodosController : ControllerBase
+  {
+
+  }
+}
+The name of the class represents the resource it manages, such as Users, Projects, or Todos. It should also contain the word "Controller" at the end. Here are good names for controllers:
+
+UsersController.cs
+ProjectsController.cs
+TodosController.cs
+#Inheriting ControllerBase
+In general, ASP.NET Core MVC controllers are derived from ControllerBase. ControllerBase provides the properties and methods that are common to building out a web API, like the HTTP request and response.
+
+public class TodosController : ControllerBase
+{
+
+}
+Note
+
+In this example, TodosController inherits from ControllerBase. As you start to build out your controller methods—also called actions—you'll need the functionality that this base class provides. It's considered a best practice to always extend your controller from ControllerBase.
+
+#APIController attribute
+The [ApiController] attribute indicates that a class and all derived subclasses serve HTTP API responses. Controllers decorated with this attribute are configured with features and behavior targeted at improving the developer experience for building APIs. More details regarding the [ApiController] can be found here.
+
+You typically use the attribute as shown below, accepting all defaults:
+
+[ApiController]
+public class TodosController : ControllerBase
+{
+
+}
+With the [ApiController] and [Route] attributes in place, this class can receive incoming web requests.
+
+#Controller actions
+Controller methods are called actions. There are two actions in this controller: one that returns a list of todos, and one that adds a new todo:
+
+[HttpGet]
+public IList<string> List()
+{
+    return todos;
+}
+
+[HttpPost]
+public void Create(string todo)
+{
+    todos.Add(todo);
+}
+#HTTP action verb attributes
+You can define the controller action you want to run when responding to a specific HTTP request method on the controller's route.
+
+#HTTP GET
+The [HttpGet] attribute defines the controller action that runs when a GET request is received on the controller's route. The following code maps the List() method to a GET request for /todos:
+
+[HttpGet]
+public IList<string> List()
+{
+    return todos;
+}
+The List() method returns the list of todos in JSON format:
+
+['Wake up', 'Shower', 'Drive to work'];
+#HTTP POST
+As with [HttpGet], the [HttpPost] attribute defines the controller action that runs when a POST request is received on the controller's route. In this example, the Create() method is mapped to a POST request for /todos:
+
+[HttpPost]
+public void Create(string todo)
+{
+    todos.Add(todo);
+}
+#Routing
+Both HttpGet and HttpPost can receive parameters that cause the controller action to respond to a different route. For example, the following method runs for a GET request to /todos/show:
+
+[HttpGet("show")]
+public IList<string> List()

@@ -1,0 +1,1387 @@
+Zoom
+https://techelevator.zoom.us/rec/share/15dIHZP1_G9OGM_3s1DFVaA7Pbjheaa81XBMqPIPyUvFC--cCLc8vKrlZB5-y8g2?startTime=1594645789000
+https://drive.google.com/file/d/1I-lrSU18ZuNj_HX0-wFz3OxiDcphAqSJ/view?usp=sharing
+https://docs.google.com/presentation/d/1knMeX0_4bYAmxvoGUiuiTG2hHBTI8j4QJUGKoUqBQ1k/edit?usp=sharing
+Let's start again today we're going to start talking about the JavaScript language. Today, specifically, we're going to kind of do an overview of the basics of the language.
+
+And then
+
+in kind of what it is in, we're going to learn most of the basic syntax and the, the, the ideas behind the language itself today, mainly by comparing it against what we know about Java. So a lot of it will be, well, this is the way it was in Java. This is how it's different in JavaScript, because we'll find that in a lot of places, they're very similar. So we're going to walk through that which will lead us into being able to look at some of the more JavaScript specific features starting tomorrow. So we're going to start by looking at, well, a brief history of JavaScript, a really brief one and then clients this idea called client side scripting And then we'll take a look at the JavaScript language and go review of the language. And then one of the things that we'll look at as we go is looking at chrome console and debugging. So how we, how we work with JavaScript and a lot of the tools, the some of the tools, we're going to work with MailChimp inside the Chrome browser. And then, at the end, we'll take a look at running JavaScript unit tests.
+
+So client side scripting,
+
+we talked about last, or last module, this idea between the client and the server. So where last module is all about building up the server, this is about the client. So client side scripting is script scripting on on the clients application. So mainly scripting the browser. So it's executing code inside the user's browser that's gonna allow that code that's executing the exe to interact With the rendered HTML and the CSS. So this is where we do this for a few reasons. One, it's going to create less stress on the server, meaning that not everything that the user does has to go back to the server to get a new response. Instead, we'll write code that the user can execute locally. And then it can respond to them more interactively, which means it's going to be a more engaging user experience it's going to fill our goal is going to be to make it feel more and more like a desktop application rather than,
+
+like a web page. So
+
+this is going to be really useful for things like responding to the users these things called events that will look at like when a user clicks on something or move something to resize is something it's gonna allow us to interact with the world. API's we built last module to get more data as the user moves to a page four takes action. So we can go back and get the data, just some data to update the page rather than having to go and get the entire web page again. And we'll look at what that means as we go through the next three weeks. And it's gonna allow us to manipulate the web, the page itself, HTML, and the CSS and the look and feel of the page without refreshing the browser. And that's going to be an important distinction. We'll get to it next week, especially when we get to view this idea that every time the browser refreshes, it means that
+
+there's kind of a
+
+break in the user experience. They see the kind of a flash on the screen and they see it. There's an obvious wait time. So we're going to get rid of that with using JavaScript or client side scripting. So it fits into the kind of egos system of a web application by three kind of separations of concerns, where HTML we start looking at last week provides just the structure. And we know that there are still leftover pieces of HTML that provide more than that. But in it, but our goal will be to have HTML, giving the structure to the page without any presentation or behavior. And CSS is not going to give us presentation. And the JavaScript is going to add behavior to that, so that it can be more dynamic. And then the idea that they all work together, they often know about each other. But we have this three pieces that are fighting something different to the page and kind of become interchangeable. So this JavaScript is going to give us this. Finally, an ability like our pages last week, the webpages you work with were static, they didn't do anything. We'll say a static page, it means it has nothing. It really changes On it nothing that
+
+is evolving. So you look at the page, and
+
+you looked at like the was a student with a student resume or whatever was the last one you did. And you look at that. And it's always that there's nothing if you click around on the page, nothing happens. That's static. And there's lots of static web pages. And there's lots of need for them. Because much information is just static information. But there's also other types of web applications or web pages that we want to be able to do more with. When the user clicks something. We want to be able to change what they're seeing, or what about to provide a full application like experience like we have here with Google Slides. That's a complete in, in browser web application. So JavaScript is going to give us that's the behavior it's going to give us those abilities
+
+are client side scripting, I should say but
+
+So
+
+before we get to that forget to actually looking at JavaScript, because I think it's always good to have kind of a idea of where a language came from, and the problems that we're solving. And kind of how it got to where it's at, especially with JavaScript, because we're going to see a lot of interesting decisions, and the way it works and the way it handles things. And that are drastically different than a lot of other languages. Well, I guess a lot of modern language is now barred from JavaScript. So that's becoming less and less true. But compared to like Java, we're going to see some big differences. So let's talk briefly about the history of where this language came from, and how it got to where it is now. So it's in the early web meisei. We have been talking about the World Wide Web, which was, you know, the visual portion of the internet that just about everybody is called the internet now and is familiar with that When it started in the early 90s, everything was static. Like the pages she built last week, there was no nothing to name about them. And they were still amazing cuz they had images on them. And that was an amazing, kind of amazing feat images and text mixed together compared to the other protocols, which were just text. And then in in the mid 90s. This browser came around Netscape. We heard about Netscape, already talking about Java, and that'll kind of process again today. But they released I think it was a 994. I think it doesn't matter but around that time period, and they changed a lot of the way the web worked by adding some interactivity to it. They added the ability to
+
+have
+
+some ability to respond to the user and they've done it through this script called Live script that they added embedded in the browser. They added a bunch of other things like the ability to play horrible a bit music committee files and the ability to have dancing hamsters and things like that. And everyone was pretty excited about it. And then about a year later should say this live script came from this from language was inspired by C and Java, which was new at the time too. And these other languages called schema itself, so took these four languages and kind of combined them and took the best ideas of each of them and use them to give this scripting to the browser. And then about a year after that Microsoft released Internet Explorer, and not only released it, but they embedded it into the windows 95 operating system. And it started gaining huge market share really fast against Netscape, which had been kind of the standard of the web browser. In this life script and Netscape adult, they made it open so other browsers could use it. They didn't want to be the only one that's already have it. So of course, Microsoft took it embedded in their browser started changing it. And so there was no real reason to stay with Netscape. So they responded by standardizing their scripting tool into something a little more powerful called mocha. And at the same time, there was another company sun, which merged with Java that was struggling to compete against Microsoft in the server world. And so Netscape and sun partnered to try to help each other against in that kind of, to both stay stay relevant. And as part of that, that was the time when we talked about before that they renamed jot live skip the JavaScript because of the marketing deal opening Java in the browser, which gave Netscape which gave made Java popular and gave Netscape a kind of a, something that might that Internet Explorer didn't have and kept them relevant for quite a few years, the Java applets. So at that time, when JavaScript was renamed, or mocha was renamed JavaScript in the app was cut out at the same time. There was a huge misunderstanding that what JavaScript was, and everyone thought it had to do with these Java applets. So everybody hated it. Yeah, I mean, everybody hated it. It was a language that used to control Java applets. nobody really knew what what they could do. So wasn't really used for what it was purpose was until the 2000s, which Another early 2000s I'm not sure that's a one or two or so. This other technology came about JSON, which we looked at last module in one of the hardest things to do with Any web application was doing API calls, uses this technology called Ajax and you have to actually send these really complicated messaging schemes, you had to get HTML back to put it in place with your It was really difficult
+
+and really
+
+time consuming to do something really simple. But JSON changed that. It made it noise simple. It made the messaging format, simple. I made it these Ajax calls, these web service calls, really easy to use, easy to use. And it led to a rediscovery of JavaScript because there was now a need or desire to use this JSON to make these API calls from inside the browser. So it's about several years later, when JavaScript got kind of rediscovered and started taking off. Again, not that important, but that history is going to have some saw some leftovers in the language from that history. So with that, it's now it's grown since then it's got more and more popular. It's what the multiple versions. So right now we're on version six of the language ECM a six. And it's not fully supported by every browser yet. So most of what we're going to look at is ECM a five. But we'll look at some six features. And it will talk about when we get to view a lot more what all that means. It's also while it's still still the basic core language, it's now not just a front end language, it's not like client side, it's also being used back end. So using node j s, it's being used to write servers server code as well as front end code. Though it's still it's definitely not the like most commonly used, it's it's heavily used, but it's not still hasn't got
+
+As
+
+it still hasn't overtaken languages like Java or C sharp is several languages for a variety of reasons. Dealing with dealing with the way languages are written and what they're suited for. But it's it's available. It's also a desktop language now with meaning that running on computer desktops with a program that we won't look at, but we'll talk some about as we go code electron. So if you've used well reverse an electron app, or if you Slack, or Spotify, those are some of the big electron apps that are all written in JavaScript. They run basically all those apps, since you've all used River. The app I know it's, it's it Oh, actually Visual Studio code and electron app. I always forget that. They actually are running in a, what's essentially is a browser
+
+that's bundled inside of them, but they're written in JavaScript.
+
+And then with the coming of the reactive framework, works like Angular and react, and view and Riot and many others. Now JavaScript is a default front end language for the web. So it's kind of the default go to for writing web applications at the moment. So that's not that useful information. But I think it gives context to what said, what we'll be looking at with the language and why maybe some things are the way they are. So we're going to be focusing on said, JavaScript is a client side and server side language. Now, we're going to focus on the client side version, and which is the version that runs in the browser. So the client side version is going to have its syntax based on C. So it's gonna look very similar to Java. In fact, you can almost take the syntax of Java when you want to do something, and try it out in JavaScript. And we'll be back Close if not the same, which is why a lot of what we'll do is we won't have to look at if statements again, because they're identical, we won't have to look at the for loops because they work the same. Not until we look at something different tomorrow. So which is why we can kind of look at the differences to still learn JavaScript once we know Java.
+
+But some of the big differences that we're going to find
+
+is that is driven by kind of the history of it. Is that why Java is what's called a compiled language. So actually, it's called a it's a it's a quite a runtime language. But that's a little different. But it's compiled, it compiles to bytecode. And it runs on the JVM to turn the machine code. But where JavaScript is what's called an interpreted language. So interpreter, that language means that there's nothing like the JVM that runs it. There's no it doesn't it never JavaScript itself never becomes machine code, or bytecode. JavaScript is said is running load into what's called an engine, the runtime engine, which is similar to the Java Runtime and not not quite the same. And the runtime engine takes the text, the JavaScript file we actually write. And it, the JavaScript file directs that runtime engine, how to actually run the machine code level code. In our case for the client, our runtime engine will be the browser, which means that a lot of it not fully, we got to understand some rules about it. But it's pretty much going to run sequentially. So it's going to run from top to bottom through files, so things like file order, and the order rewrite code is going to be much more important in JavaScript than it is in Java, and some rules around that. And that's because it is interpreted. Now it is all loaded first and optimized before it's run. But that's what it means to be in a interpreted language, so there's going to be some differences in the language caused by that being compiled versus interpreted. It's also, one of the big things we're going to run into right away is that it's what's called a dynamically typed language. Java is a statically typed language, and that's going to be probably the biggest starting difference. And actually one of the biggest difference that's going to lead to quite a few other differences is this difference in typing. And what that means is that Java statically typed in a statically typed language is one that enforces data types wants to declared so we say x, we declare a variable x, then x is always an integer. We can never assign a string to it we can ever assign, you know the word hello to it. In for the tire life of x, it's an integer. We know that we have we know that we can save Always use x is an integer, we know it always will be an integer. And that can never change. So in a statically typed language the developer defined declares the type of the variable. And the language enforces that typing. In a dynamically typed language, like JavaScript. The data type is inferred by the data itself. So we create a variable x, we don't tell it what type it is, we just say we want a variable x. And then the type that x is, is inferred by JavaScript by what we put at it. So if we put a 10 in it, it's treated as an integer. If we put the word hello in it, it's treated as a string. If we put 3.14 in it, now it's treated as a floating point. If we put an object in it, now it's treated as an object. So we don't have to Tell it in advance what our variable is going to be. Because it's going to infer that from what the data is. It also means that if we have a variable x, we can put 10 in it, and then we can change it to the word hello. in JavaScript don't care, it'll be the fact not care. But it'll that's allowed. Because the variable and the data type are completely separate the variables a container, an empty box, where anything can be put in it. So in so going back to back to week one, or day two, we talked about variables were like taking a box and labeling them. So that we could only now put no plates in our box. JavaScript variables are like getting a box and not labeling it. And what's in the box is determined by what we put in the box at that time. And if we take out the plates, we can now put in, you know, a bunch of papers So we can switch things in and out. Oh,
+
+like sticky note,
+
+like a sticky note.
+
+Yeah, like, like, you put it in, and it is that tight. But it can be anything else. So you can take off the sticky note and just slap on a new one.
+
+Yeah, that'd be a good way to look at it would be, yeah.
+
+But the stickiness inside the box, so we have to open the box to to see what it says.
+
+So
+
+so that's one of the biggest differences that's going to drive are the two big differences that's going to drive a lot of the differences we see is the difference between this interpreted versus Run, run compiled language. And this static versus dynamic typing into static versus dynamic typing is one of the big things that you'll run into quite quickly internet people arguing about which is better To enter so you there's a language of TypeScript that compiles into or compiles transpiled into JavaScript. It's written by Microsoft, it's really popular right now. And it's big changes that it's like JavaScript. Oh, it's statically typed. It's dynamic statically typed. So dynamically typed. So allows you to write JavaScript with typing. And you actually can, if you it, we'll look at some more advanced uses later in the module or later, as we look at JavaScript, where this can actually be set to a string or to a particular type, but it's not something we do often.
+
+So before we
+
+move on, is there other questions on
+
+so let's look at
+
+The tools we're going to use for JavaScript, and we already have used most of them last week. So already fairly familiar with them. But there's some extra things we need to know are kind of going on in the background with with these tools. So our main development environment will be Visual Studio code. And our main debugging device, it will be Chrome, or Firefox if you wish, it doesn't really matter which one. But this needs to be one of the browsers with that has a rich JavaScript environment. Those two are very, pretty much interchangeable as far as our environment. But I'll be doing demonstrations and Chrome. And that's going to give us two things. The browser gives us the runtime engine. So the JavaScript we're going to be writing is meant to run inside of a browser.
+
+So it runs
+
+so everything will be driven by HTML. pages that load JavaScript and the JavaScript because they load the structure and part of their structure will be saying there's JavaScript parts part of this.
+
+And then
+
+the runtime engine that does the interpreting of the JavaScript and actually runs something with it will be the browser.
+
+So
+
+we'll be
+
+using Chrome inside of VS code, there's some plugins that are installed and
+
+see your extensions is quite
+
+installed share the same set is now I have a bunch installed. So you won't have quite as many isn't installed. But
+
+where did you go to buy Can you
+
+it's this right here. Oh, but
+
+but this is just Something we're going to look at you don't really have to go change here. Change this unless you want to add more. I was just showing you
+
+I don't have that icon.
+
+Yeah. I'm not sure why.
+
+It looks a little different on ours. It looks like a square with like a. I don't know what those things are called. But it's still a square. It's just not the same as Brian's. Okay. With the square inside of it.
+
+That's interesting. Yeah. Yeah. I must have not updated to I must have clicked no on one of those updates or something.
+
+It's Yeah, it should auto update and be in the same.
+
+Thank you.
+
+So um, but the two that we really care about existing, you want to know exist is and you probably don't have Three installed, maybe four is es lint. Yes, lint is going to as you save JavaScript files, it's going to give you basically, it's going to check your code for syntax similar to eclipse. So we're going to have similar to eclipse behavior in here. Eclipse or Visual Studio Code also has JavaScript IntelliSense built in. So it'll, so unlike when you saw you work in Java without plugins in Visual Studio code, and you don't get a lot of you'll get anything extra snowpack with JavaScript and the plugins. It's with the ES lint plugin
+
+in the IntelliSense, it's going to
+
+give an experience that is much more like an ID search for like Eclipse.
+
+So that's the main toolset. We're going to be working with
+
+And
+
+then I'm going to go ahead and open today's lecture code here. Again, just like we did last week, you want to always open things in Visual Studio code, especially with JavaScript as full projects. So the full folder, not just individual files, if you do open individual files, you can work with them, but you won't be able to run them. So I'm gonna open the folder and go to today's lecture code. Just to the JavaScript. I'm just gonna open the entire lecture code folder,
+
+which has a couple different projects inside of it.
+
+I'll skip that since you've already done that last week.
+
+So the way a JavaScript client side JavaScript project works is that
+
+it's driven off of HTML files. So HTML is still going to be the starting point. So everything we learned last week is still going to be involved with what we're using going forward. Because JavaScript client side is going to be used to manipulate the stuff we were using last week. And since it's these three pieces, with HTML, providing the structure, the browser for JavaScript to run with, in our browser, we're gonna have to provide an HTML file that tells the browser to load the JavaScript and run it. It will look at away in the console that we can in the deep, the chrome console today that we can actually run JavaScript outside of that, but in order to have it actually run in the browser and not just be kind of a one off Command click, we can edit CSS and the chrome tools But it doesn't really save, we'll learn we can do that with JavaScript. But to run it
+
+fully, we'll need to have any in an HTML file.
+
+So all these JavaScript projects are going to involve us opening an HTML file in a browser, and that HTML file directing the browser which pieces to get for JavaScript. And there's a few different ways we can load that information, that JavaScript code. In fact,
+
+let's look through some of those.
+
+So there's a project here, including JavaScript, we'll expand that. And I'm going to
+
+double click the HTML and
+
+the J s file. So dot j. s files are external JavaScript files, like CSS where we were at a lot of our CSS externally and in CSS files, we'll write a lot of our JavaScript and external j. s files, which will allow us to pull it into multiple pages for it to be reusable, and also allows us to do some organization with it until we get to view and then we shove it all back together with the HTML. We'll talk about that then, and why that's done. So
+
+to run it, I'm going to run
+
+the including JavaScript HTML file by right clicking on it, and choosing open five server. So just what we've done our last week, so there's nothing new here. Load up the page, and nothing's going to happen. So actually, a bunch of stuff did happen. But we can't see it yet. Because this particular HTML file runs doesn't have any. We look at the HTML itself, the body has no content. Well, the thing is this HTML file Has is JavaScript.
+
+So I'm actually going to so
+
+so I'm going to bring up the dev tools,
+
+going to inspect. And there's two other ways to get there. But that's how I got there. And this matter, I pull this off to the side. And what I'm going to be interested in is the console. So the console inside these Dev Tools is the Java is the JavaScript console. This is where all the errors are going to be. This is where a lot of the outputs going to be. So when you're working with JavaScript, even though you're writing code here, you could be running it in the browser. So this console is going to be your main way of seeing what happened. So writing for most part, right working with JavaScript is going to require this console has to be open because we're going to Want to see any output is worth developing should say, once it's done. The idea being we close it in, the user doesn't have to see it.
+
+We can see there's
+
+a few lines that have been added here to the console, these were added by the JavaScript we're gonna look at.
+
+So I'm going to take,
+
+I just want to see the order here.
+
+And move this one to the right.
+
+So we can look at the two,
+
+two files kind of side by side.
+
+So let's look at the ways we can include JavaScript. And then we'll talk about how the order of how it's being included and how it's working is important and what it means. So we can include, we include JavaScript using this tag Script, we include that in HTML. And we can include it in two ways, we can either include it as a full tag, and then we can write JavaScript inside the tag. Or we can include it as an empty tag. And using source. We can point it to the source attribute, we can point it to an external script. So this is including JavaScript. If you look at the files, we can see that's the name of the project here, just like we did with external CSS files in the in the href in the link, that's the same thing here with script and source.
+
+So a note on the script tag, that's
+
+is that script is not self closing. So you must have an ending full ending tag. And what that means is you can't close script like this. You notice it's actually turning red telling me that that's invalid. So
+
+so we can include it by using the source attribute on the script to bring in another file. We can include it by adding script to the head of the page, onto the head of the document, which will kind of create global JavaScript or not create. Or we can actually add script, any place in the body. So we can add the script tag with JavaScript inside of it, or an import of a file using the source attribute anywhere in the head or the body of the page. Now the load order is going to where it's loaded is going to change how it's loading or when it's loading and how that's going to affect how things are working.
+
+So since JavaScript is interpreted,
+
+everything has to the order that it loads is important. Because until something loads, it's not available to be used. So like Java, but in a compiled language, everything's pre built. And so all the classes are there. And they're kind of setting off to the side, like a library, and it's things running can go and pull those pieces in. But with JavaScript, it's going to be much more sequential. So we're going to pay a lot more attention to, okay, I broke this function. And now I'm going to call the function compared to I'm going to call the function and I'll write the function at the bottom because I want it
+
+because I'd prefer that order like we could do in Java.
+
+But we'll talk about there's some extra rules around that. But so let's let's look at the load order of these pieces. So the first thing is it starts rendering. So HTML is also rendered sequentially. So it starts as it renders into the browser, even as the HTML and it renders the head tag and it's going to go sequentially From start to the bottom of the file, and it doesn't go to the next line until this line is complete.
+
+And then it continues, and then they're run to the next line. And when this line is complete, we'll go to the next line, which is also going to change make us have to think about how we are loading pieces as well. So
+
+the first thing that happens is the script file gets loaded.
+
+The script files loaded until it's done and complete, it's not going to go to the next line. The first thing in the script line is this script file, which is here is it loads Hello from the script file. We can see that's the first line that gets written out in the console. And then it builds a function so hello, code So in JavaScript code that is declared outside of a function is run as the files loaded. So as the browser loads this file, this console dot log gets run, because it's not inside of a function. And it's allows us to write code that we weren't run executed when the page is being rendered more at the end of the render, which is something that we'll use to our advantage later this week to start manipulating the page. But if we write it in a function, then it's like a function in Java, it's saved for later Later, it doesn't execute, it just kind of builds a library of those functions, we can use them later. So in this case, hello from the script files run. And then it creates this function which could say hello from the script file function, which won't happen until we run it until we call that function. So all of this occurs, and then back to the HTML after that is off. That's finished to the next line, it starts working through this script. So in this, this script tag in the head, it has some actual JavaScript in it. The first thing it does is console dot log. So console dot log we haven't talked about, it's kind of glossed over. But what that does is say write a message to this console. So it's kind of like a system out print line. Only, instead of going to the terminal, it's going to go to the development console in the browser. So the user is not going to see it, but developers will.
+
+The next, the first line that this line then executes, so console log, hello from the head script file script tag, you can see that's the second line that got printed. So JavaScript comments, you can see them here in two different ways. They look just like Java comments. So nothing, nothing new there. And then it declares another function. Hello, which is Hello from the head function. And but this creates a function and it doesn't run. Because it's funds it's waiting to be run later. And then this line, the next line calls the method show Hello that was loaded and that script file. So now we see that Hello from the script file function, which is what is here is the third thing that runs because of this function call. So when we call our we call functions can use code that exists. We can call code that's in the script file from outside of the script file from other files. What matters is the load order. So if this happened before this script file was loaded, it wouldn't work. But since this script file was loaded first, then it's available for us to call Then it's going to continue and start loading finish the script and finish the head and start loading the body. So the script tag can also be included in the body. And anywhere in the body, we can pretty much well as long as it's in not wrapped inside of the content tag.
+
+So
+
+here
+
+we have Hello from the body script tag, which is the fourth one, like we would expect. And now it calls Hello, which was the method that was created up here. So now we get Hello from the head function call.
+
+But this last one
+
+is probably one of the more interesting ones right as the minus one. So this method calls Hello.
+
+Which is up here
+
+which prints out this variable message
+
+Which is declared
+
+down here.
+
+So, and that's allowed.
+
+And it's for this in this case, it's this slides actually executed before.
+
+This was called. But there's also this idea called hoisting we're going to look at with variables and functions. But before we do that, let's finish the last part of looking at this file. So now they've all run. So the order these ran in is dependent on the order of the load of the actual running of the, either the code when it was not in the function or the calls to the functions, and the functions had to exist before those calls could happen. So It's common, or sorry, I should stop there there questions on the load order before.
+
+So even though you ended the script tag, and then reopened a new script in your body, you can still go ahead and reference that function created in the earlier script tag. And even with a variable that's made down below here, and you don't actually have to pass the variable,
+
+yes. function. That's, that's, that's correct.
+
+Are we allowed to imagine that they were just like squished together and they're actually just one JavaScript file? Only
+
+you're allowed to imagine? That's what I'm going to tell you is going to happen. Oh, so that's, that's what we're going to talk about next. Why this all works like this. And that's exactly it. You get it exactly. It's not running as separate JavaScript files, all the JavaScript getting loaded. gets pushed not, you could say squished together. But it gets pulled together. And it gets optimized. And then as the interpreter runs it, as the runtime engine runs it, it runs it as a whole, not as pieces. So this script tag, this script tag in this script file, all one JavaScript are running as one JavaScript. When they get run, or one scripts, they get run, or executed. So but of course, we all these pieces are replaceable, right? We can add new script files on or we can add new script tags in so the JavaScript language since it's interpreted, is much more. With with Java, it's very strict of this is the application. And there's pieces we can have libraries that we can use, like we pulled in mini library And we weren't some of our own. But JavaScript is much more flexible, and pulling in different pieces and pulling pieces together. It will see, that's some advantages and disadvantages to that, especially when we get to node. And we realized that use something small in JavaScript for pulling down thousands and thousands of JavaScript files and little chunks.
+
+And we don't use 90% of them.
+
+But we'll look at that when we get to node and NPM. But for today, it's we have these pieces that are being pulled together. In this concept, there's there's a little more to it that it's being pulled together. It's also optimizing them through this process called hoisting. So the load order matters. So we can think of it it's we have these files and we have Let's say we're importing. Well, we have three different pieces of JavaScript, here's just like importing three JavaScript files. The this JavaScript load order is going to take the first part. And that's essentially going to be the top of the script. And then the order they're loaded in, it's going to build it out sequentially. So this was loaded first, that would be the top, this was loaded second, this is going to be the middle. And then this was loaded third. So that's going to be the bottom of the script as it runs. And then it does this process called hoisting, and hoisting means it's going to take the variables and it's going to move them in the functions too, and it's going to move them to the top. So it's going to take all the variables and all the functions and move them to the top. And we're just going to make them available to be used before they're declared
+
+many cases so
+
+but There's some caveats with this. And a reason why we're not going to want to rely on it in many cases is that it moves these things to the top. When they say it moves the variables to the top. It moves the variable declarations to the top, not the variable assignment. So this variable when the script runs gets moved to the top. Well, here's a better example of it. So we have this far. hoist so we have a code like this. So that's a console log for hoist voices this has been hoisted. After wasting what actually runs is the var hoist so we don't get an error here. Instead, we get output of undefined we'll talk about undefined means in a moment because the variable declaration has been hoisted, but the variable assignment is still in place. So it splits them and moves them. So it can doesn't always give the behavior breaks back when people hear that variables have been hoisted, they think that this whole line has been hoisted. But it's not it's only this portion of it, which makes the variables available for use, but not necessarily the device we want them to have are in place. So we want to, even though this happened in JavaScript, and our functions are wasted, too, as well or as well, so that we can technically write us a function before we clear it. We don't want to rely on much or only when we really need or understand the behavior because it's not Julia's expects. We want to write things what's called lexicographically. So that we write and we declare a variable as we need it. So writing this
+
+and Using an here
+
+is actually not something we would want to do.
+
+But there are times when libraries expressions and frameworks will take advantage of this. And times we may even take advantage of it. But generally we would want to pass the variable into as a parameter. Even though it's hoisted, that hoisting works, because it's not always as we expect, or we can make it the way we expect, we have to have a kind of a pretty solid understanding of what's happening. When we're dealing, we're more relying on hoisting.
+
+But we didn't know it's there. Because once one of the most common
+
+causes both things the work that we don't think well, or maybe when they shouldn't, and it also causes problems when we think things should be working and don't understand why they're not. So we need to understand this process is there.
+
+So before we
+
+move on,
+
+questions on that?
+
+Yeah, to solidify this for me, can you write it how it's supposed to be written? Instead of having the message down there? Are you saying message should just be in line? 29?
+
+Yeah. So instead of this, I should have
+
+this
+
+passing an argument to the function.
+
+That'd be the safer way to do it. And it's not saying that the other way is actually wrong. It's just that there's more roles and more things that could go wrong. So generally, we will take the safer route. And unlike in Java, where there's a lot of this is the wrong way to do it. Because it's going to break these things or cause these problems we're going to find with JavaScript, there's a lot of there's five ways we could do it. Here's why we're going to do it this way this time. So there's there's some more options on This case actually both are completely fine. We just need to understand why we're making each choice. And the hoisting one is definitely the rescue one. So, does that answer your question? Or that?
+
+Yeah, that does.
+
+So, before we. So
+
+if we don't want to deal as much with with that with being able to do use a variable before it's declared, if we can, and we want to be forced into, essentially declaring our variables before we use them in our code, now, when it runs, there is a way you can enable that. Enable some other things as well. And I'm not going to tell you to use it. In fact, I think for some of the exercises, you probably don't want to use it because I think that some of the test cases and stuff violates or not violate But take advantage of some of this features. But if you see in a file use strict at the top, either with single or double quotes. Then variables have to be declared before they can be used lexicographic practically meaning that in the code and order the code they have to be declared. So given that this would not be allowed the gift this was you strict, this would get an error, not here, this would get an error because message doesn't exist. So it does that it also does some other things. Like it makes some errors. So one thing we're going to run into a lot that some people love about JavaScript and some people hate about JavaScript, but everybody's frustrated by about JavaScript is that JavaScript is very much a no what you told me to try this. I'm going to give it a try. If it doesn't work, oh, well, let's keep going. I'm not going to tell you it didn't work, I'm just going to keep going. And yeah, that's, that's fine. Because JavaScript is a client side line, which it's about protecting the client, it's about making sure we get the best user experience. And if that means the developer doesn't get an error to deal with and just gets a weird experience, that's the way it's going to go. So you strict also makes it start throwing more errors. When it tries to run. It fixes some other mistakes, some problems that are common. So basically a lot of things that are overlooked and just allow it to happen. You strict forces JavaScript to stop and give an error for but if so, if you see that that's what it's doing. If you end up working in code that has that, that's what it's there. Again, we won't force you to use it here in it most of our exercises Step one habit. I don't think any of them do. But it's know that you'll see it a lot. And that's what it's referring to. We're actually going to use linting and tool to do something very similar. And learning is just code format checking. That's what that is, like I pointed out was there it's going to do a lot of that for us. Alright. So I'm going to switch projects here. I'm going to close both these. I'm going to go to the next project I'm going to open is the one that is called index HTML and has a script.js that goes with it. So I'm gonna open this in index HTML live server.
+
+Get rid of the
+
+get go. Everything we're going to see today is going to be in the console. So I'm going to inspect it, I'm not going to see anything happening in the browser itself. That'll be for later this week. First, we have to get control the language today and tomorrow, and then on Wednesday, we'll start integrating it with HTML. So I'm going to go to the console here, we don't need quite that much space. Then I would open the script dot j s. And that's where we're going to be working. We're not gonna have anything, the only thing that's in the index HTML that's JavaScript related. It's already there. There is a script script tag that has the source that points to the script js file.
+
+I'm going to close it because we won't need it.
+
+So we loaded the HTML file in the browser, have the script file here, and they're connected through a script tag. In the HTML and this is where we'll be working as we work through some of these pieces.
+
+So let's start talking about
+
+the next thing was we'll start looking at the language itself. So before we do that, what questions do you have kind of the ideas behind it? Okay.
+
+So let's look at
+
+Brian. Yes. Before we do that, can we take a break since we didn't? We've been going for. Oh, that's a good idea. Yeah. We got a sick of break.
+
+So yeah, we'll come back at like 1015 and keep going. Thank you.
+
+So what questions come up for you during the break?
+
+I imagine that we're, we might cover this, but um, when you pull up the GS file, I solo are using the dollar sign curly brackets. I just forgot the tournament. I was hoping you could remind you of those cold.
+
+Ah, yes, commas, temporary literal.
+
+We were going to talk about
+
+Okay, so the next thing then let's walk through some of the semantics of the language. So just the syntax and some of the other rules around around it. So first, there's two different ways of actually, it's Three ways of recording in JavaScript. So the preferred way is use a single quote. But JavaScript will actually allow double quotes as well. It takes them pretty much interchangeably as long as you use the same quote to begin and terminate with, with and that means we can use one type of quote inside the other type of quotes in JavaScript quite easily, and switch back and forth depending on which we need. But there's also a third type of quote in JavaScript called ticks. ticks are the quote so the mark that is under the Tilda on the keyboard swept by the one
+
+in ticks, create a string that is
+
+basically processed before it is used. So it parses the string for these things called what actually what we're just talking about these things called template literals. And a template literal is
+
+instead of concatenating
+
+And we'll look at using the same code but we can concatenate with, just like we do in. This is right here. So we can concatenate strings in JavaScript. So what name
+
+equals something like?
+
+Let's say, name equals, and then our single quote and we'll come back to what that means in a moment. But we give it a name. So, john, and then we could have a Latin
+
+Hello equals
+
+Hello
+
+plus our variable
+
+or the temporal literal
+
+using the text, we can could actually use the same variable.
+
+Right the same thing like this using $1 sign, and then curly braces, we can put any variable inside of it, and it will work like concatenation. So it'll work as replacements. So wherever this is, it replaced the value inside of it with that in the string. So our preference should be single quotes, we can also use
+
+double quotes interchangeably.
+
+And then texts when we have a temporal data we want to use, we shouldn't use ticks all the time, because it does mean this is used as is meaning that it just takes these letters and assigns them to the variable. This has to be parsed first, so it has to look for the literals inside of it. So if we put the ticks around this, it means it'll look for a little inside of it before it assigns it. So it's slightly slower. And to the point that it's really, we're talking about nanoseconds. So it's not really a big deal if you don't, if you would use ticks all the time, but it's generally discouraged.
+
+So we have those three ways of quoting.
+
+So before we like, move on, since we kind of do something new there with a template literal.
+
+Their questions?
+
+Are those so are those ticks or single quotes around john? I'm sorry.
+
+Those are single quotes. Okay, you can tell Visual Studio if you look, there's a very, let's put them side by side, single quote,
+
+because there's no ticks on line six.
+
+The only ticks are on line seven. Okay. If we look here, these two characters, the first one's a single quote, The second one's a tick. You can actually there is a visual differences just very slight. So yeah, the only the only ticks are here on this line.
+
+So they're questions for.
+
+Okay. All right. So variable declaration occurs using the keyword since we don't have to give a data type, we just declare the variable. And we do it using
+
+let, or const and const is a constant.
+
+Lead is something that can change.
+
+So our default should be the default in JavaScript is used constant for everything you can. And if you do have to change the value, then change it to a lot. So your default your default variable type should be const. You'll find that it's very common not to change the actual value of a variable. And we'll look at that doesn't mean you can't change an array or something, but actually change. You know, if it's been assigned a 10. It's common never have to make it something else. So both assign a variable one that can be changed one cannot. Unlike in Java. In Java, we had the idea of the same similar idea concept, but the final write something that cannot be changed. But in Java, we could write final x and then x seek or final x and x, and then x equals 10. On two lines, in JavaScript, we can't with const, it has to be assigned at the same time it's been declared. So const x, x equals 10. Actually won't work. It'll get an error at runtime. We need it needs to be
+
+assigned, created the same time.
+
+Let works the same doesn't have to be assigned let can be declared and then
+
+defined separately.
+
+There is a third that you'll see
+
+often var so far.
+
+Actually, I'm going to
+
+change this to why because
+
+otherwise it's gonna get an error. She's dizzy.
+
+So var is older syntax. That was you'll still see a lot of a lot of code a lot of ideas online, but it's been replaced by let concepts rather than using var, and you should avoid very much have a very specific reason to use it unless you understand why you're using it and you have a reason you know, the purpose of use of when you need it, you should not use it. So the problem with var is that it
+
+doesn't obey
+
+scope. So that means that this
+
+so just like in Java, if
+
+I come down here, and I create a new variable, let x equals 30. Now I have a new variable x and we see I get this error X has already been declared on line 28.
+
+But if I say var z
+
+Don't get an error. Because var since it doesn't ignores most scope, what happens is it can be re declared in the same scope. Which means it's really easy to accidentally reuse the wrong variable name. And that can lead to a lot of problems. So
+
+since var ignores scope, then
+
+you should avoid using it
+
+should always be letting constant modern JavaScript that is the only those are the two that are used. There is some specific reason to use var where you need to do you endorse scope. But those are mainly around frameworks. A lot of frameworks are using them so that you can actually override their variables. But unless you're doing something like that, there's no reason to be using bar. And when you see it in documentation online, like examples on documentation or examples or things like Stack Overflow, realize that lead and var are fairly new. So even just a few years ago, Letting Constantine var was still the primary example. So there's still a lot of code out there, you can just change the word var to let it'll work the same way. Only now. Well, as long as they're not taking advantage of the scope prop not scope problem, but the scope usage of var
+
+which they probably are not.
+
+So there are three types, wave declaring variables, let, or const to be your default, but you can't change the value afterwards. Let if you need to change the value after it's been assigned. And Varsha should always be avoided unless you have a very specific case of scope. And you have a reason to be using that case. Which is really rare.
+
+So any
+
+questions there? Okay. So the roles of variables, see this continue over here? We can assign different data types of the same variable. So I have my x here, this is fine.
+
+I can change data types, just by changing the assignment. Here, why is the integer or a number here? Why is the string variable names follow the same rules as Java, the father use camel casing, and they should be explicit, like they are in Java. So the very way you named variables shouldn't change.
+
+So variables themselves then have
+
+in Java, we have either it's assigned or it's an All right, that's that's the only default. Java scripts a little different. It has four conditions that variable can have depending on the type that are not assignments. So the first is undefined. So undefined is actually similar to Java as null. It means that the variable has been declared, but no values been defined. So
+
+I can't use
+
+that W at this point is undefined.
+
+So this is undefined is the default value of a variable. And we can set a variable to it. So y equals undefined is allowed.
+
+See this,
+
+but so it means that it puts into a state of having no definition. That's exactly what job is knowledge right job is no is that there's no value, the stock value. It's the same the same idea here. There's no value compared to no Which also means that the variable has no value, but no must be explicitly assigned.
+
+So
+
+the default is undefined.
+
+But we can assign no and it's it has a similar meaning and that means it has no value. So, what this allows is something that it is the difference between saying in this case y or
+
+w my beezer.
+
+So here W is undefined it has not been assigned a value. Here W is not, which means that it has no value but it had to be explicitly told not have a value. So once the default so undefined allows us to check is often used to check has this How is it ever been defined? We're no allows us to say it once had a value, but we've removed the value we told it to be no. So it creates a slightly different state of being able to check compared to this isn't still in its default state versus we told it to be this. So the other so before we continue on that there are questions on
+
+So, let and const are only used on declaration.
+
+Will you actually like initializing the variable?
+
+there? Yeah, yes there. The what we used to declare for declaration of a variable, okay.
+
+So there's two more that have to do with numbers.
+
+So numbers can take on.
+
+If we do a operation like zero divided by Zero. In Java, we get an exception. in JavaScript, what will happen is the variable will be assigned in a n, not a number.
+
+We can see we can actually assign
+
+that ourselves as well.
+
+So
+
+we can assign any and it's not a number. So it's when an operation occurs. That is not a number that resolved in something it's not a number. It's also can occur when we try to do something like
+
+set a
+
+value or do something, add a string to a number or something similar to that. It also can come from that. So anytime we have a numeric operation and we Have a we ended up with a result that is not numeric.
+
+We can get not a number.
+
+Or in and there's also infinity, which is if we get unlike in Java where we we get just an error, not an error, but we get weird behavior on some of the variables. infinity means some fact we're getting an infinite answer. So a numeric variable can, after some operations, like if we just tried to divide one by zero, which is valid, because that's the answer to that is infinity, JavaScript will actually give the result of infinity as the variable type. In fact, we can see it. I say one, w equals one divided by zero. And we'll console dot log of W.
+
+We can see it actually is the word infinity.
+
+Compared to
+
+let's do the same thing
+
+here.
+
+Well I assigned it but let's do zero divided by zero.
+
+And we'll see the same thing we get the DNA in the nano number.
+
+So this creates
+
+not a number.
+
+And again
+
+this results in better
+
+results in and results.
+
+So questions on any of those before we look at, actually look at creating some variables.
+
+Alright, so let's go back over here and bring up the console user can see it. And there is a function called variables here. And let's write some variables in here. So declare a variable with a value cannot be changed. So what will we use for that if we don't want the value to ever change?
+
+Have a be declared
+
+with it?
+
+Yes, exactly. So we can say const script variable, something like days of weeks, we give it a name in camel case, and we assign a value. All right. So we want to do something somewhere. Sure, let's print it out so we can see it, some console dot log, and the print it. I could concatenate it, or how many ticks. And then we can say there are dollar sign, and then the curly braces, days of week, days in the week and save it. And we can see it prints out as nothing yet. So the reason is, is that a very, it's in a function. So functions don't do anything into they're called. So in the console, I can actually write JavaScript, including calling my functions. So I can call variables. There it will print out there are seven days in the week. And undefined we see is because this function is not returning anything. So it's showing me the return of the function was nothing. We talked about functions, we'll talk about why It has to do that. Alright. So if we wanted to declare a variable with a value can be changed, what would we use? Let say let days per month 30. And let's do the same thing with the console dot log. I'll use, actually this one. I'll use single quotes. And we can't use we're using single quotes. We can't
+
+use the template literal. So we have to concatenate.
+
+Save it. Come back over to the console here and run
+
+the variables function again.
+
+It prints out the same, but this is actually a lot more code, right? A lot more code, but it's a lot. This is much easier to write and read.
+
+So you can either both work though they both function the same.
+
+Hey, Brian, how are you running that variables function over in the,
+
+so I just just run the name of the function. So it's variables.
+
+And then
+
+just run it like you would by Java code, actually, just the name of the function with the parentheses.
+
+Okay, perfect. That's awesome. Thank you.
+
+So let's create an array. And we'll come back and look at arrays in more detail, but let's just create one here. So
+
+I'm going to create const
+
+weekdays
+
+because this isn't puts on weekdays. So maybe Monday,
+
+Tuesday
+
+Wednesday. So as I created the re defining an array in
+
+JavaScript
+
+comes, actually, yeah, comes two week days
+
+can be done like this that defines an empty array.
+
+And I'm gonna come up with that one as well. So the next one, we can also define it with values. So in this case, it's defining where you put it up here so we can see it's
+
+defining values in the array.
+
+So Wednesday, let's go ahead and finish it. Monday, Tuesday, Wednesday, Thursday,
+
+Friday, and let's use whitespace to maybe make it easier to read.
+
+Just like we could in java using whitespace. To make things a little easier. There's a and the things in the array are comma delimited. But this is actually pretty close to the way we do things. In Java only we're used just putting it in the brackets instead of putting it in.
+
+Sorry, the braces afterwards.
+
+So you have an array.
+
+And now we can work with that. We can print that array Let's use first. So we're going to come back and look at the arrays in more detail. But first, let's take a look at it by printing it
+
+with the way we have them using the console log,
+
+come out here and run variables.
+
+And we can see it prints out the array.
+
+We can expand it and see the whole array. And I'm also going to print it out in a different way. For a raise and later we'll look at objects console. table. And now when I run the method variables, it prints out in this nice table format as well in the log, which can be really useful for debugging purposes.
+
+So we'll come back to some other details about arrays, but for now I want to look at really
+
+using them
+
+in this way.
+
+So
+
+let's take a look
+
+at functions and the way they add the basics of how they work
+
+in JavaScript,
+
+So functions in JavaScript are defined with the keyword function. They do not define the return type. All JavaScript functions may or may not return something. They don't have to declare if they're going to, if they want to, they can just return something. If they choose not to, then they can just not return anything. Which is why we got saw that undefined in the console when we were using it is because it didn't know whether or not that it was going to return something, or should return something. Parameters then are defined. So the name is the same, it's going to be using camelcase. And it should be descriptive. So like Java functions, the parameters then are defined by just a list of variables. But since there's no data types involved, we don't have to say the letter constantly like that with it. We just give names to them. And then we can use them inside of the function.
+
+So in this case, this function
+
+is called parameters. And it takes two parameters, two arguments, parameter one and parameter two. Now, we don't know anything about these parameters, right? So I'm a large part of JavaScript requires documentation. This dynamic typing, when it makes it easy to write, it makes it harder often to use the code. In Java, we can look at it and say, Well, if we want these to be numbers, like this documentation indicates it wants it to be then, you know, it would say end perm one impromptu, we would know we need to seem to integers. in JavaScript, we don't, we just know we need to send two parameters of any type of any data type and it won't matter. But if the method requires a particular data type, we have to refer to documentation. So unlike in Java, where it kind of self documents a lot from its data types, JavaScript very much a, we have to go read comments or documents that tell us what's expected. So there's no access modifiers. They're all available everywhere, globally available. And I say that we're going to see some exceptions later in the week. But in general, for just writing like this, they're all globally available. So there's not this idea of private and public and protected. There's just functions. And so let's call this print parameter function, which is going to log out the t values.
+
+We could do that over here.
+
+I'm actually going to clear the console or wait, wrong line, which
+
+this is the right click. So
+
+let's call the prep parameters. I'll pass it two numbers. So one, two, they prints out the value one value two. But let's do that slightly different. let's print it as strengths. So prints out one and two, because it doesn't care what the parameters are.
+
+So let's call it again.
+
+Print parameters, let's call it with
+
+a, and b.
+
+That works as well. So print parameters
+
+one, NV
+
+and that works. It doesn't care about the data type of the parameters less there's something in the code that is restricting it, like it's doing some action that requires it to be an integer requires it to be a string. There's nothing in the The language that restricts it from just from calling a function.
+
+So the next part of this is that that also has some interesting things around the way it works with the parameters themselves, because there's nothing in JavaScript that enforces the parameters. How many parameters are actually sent to a method? So in Java, there's the idea if we have two parameters for parameter one and parameter two, we have to send both of them, right. There's no option not to, not to do that.
+
+But in
+
+JavaScript, we can actually send any number of parameters in it won't matter. So let's To print parameters, let's send one parameter. The first parameter now is one, and the second one is undefined. So now listen, no parameters. Now they're both undefined. So if we don't send a parameter to a method, it doesn't error. Like we would might expect. It doesn't give us any indication that there should, should have to. All it does is just make the values undefined. So
+
+we can also
+
+print parameters. Let's put in 12345.
+
+Anyone want to take a guess what's going to happen?
+
+It's just gonna take the first two.
+
+That's a good guy are miked up? Yes, but that's exactly what it's gonna do. So it's going to take and say, Okay, I parameter one, I have parameter two, you sent me, three, four, and five. I don't need those. So I'm just gonna ignore them. I'll just pretend like they didn't exist. And
+
+I won't use them. I'll just
+
+continue on with them or continue one.
+
+without
+
+actually any references at all, no error, no feedback, it's just that they're now ignored. So with JavaScript, we can send any number of parameters to a function nothing. Even though we'd say we want parameters. We have parameters, we need them. Nothing restricts it. Nothing enforces the number of parameters set or the data type. percent. So documentation becomes really important on how this method needs to be used. And when we look at functions in more detail, later this week, we'll look at actually, the documentation methods around making sure that happens, and making sure that we get good documentation around it.
+
+So that'll be a lot more important in
+
+JavaScript than it was in Java. And Java, it kind of self documented from the fact that we had had these certain values or these certain parameters, and there were certain data types. If we tried to send three parameters, it would error if we try to send one parameter with error. We had to match the parameters, but that's not going to be the case for JavaScript.
+
+So questions before we
+
+do you dislike JavaScript? Do I dislike
+
+it? It has its place it has
+
+as a client side
+
+scripting language. It's there's nothing I mean, it's not only it's the best choice and only choice
+
+sets, all the rest of them have faded out.
+
+It's, yeah. Is it coming across as me just liking JavaScript?
+
+I haven't heard you say anything that's good about it.
+
+I didn't say this is bad. This is just the rules of how it works. I like some of its features. I, I actually will use it when it matches what I need.
+
+Brian. So if you pass in like the one in two string values, like you did on your second print parameters there, can JavaScript still add them together if it wanted to, or do they need to be
+
+like an integer? If that even exists?
+
+It does it well integer software. Doesn't it? Yeah, it does. Actually, we'll look at that. But um,
+
+you know, it'll concatenate them.
+
+Okay, that's what I was wondering.
+
+If there Yeah, you have two string involved, that gets concatenated. Which there's actually a joke of a JavaScript joke of when is one, one plus one equals 11. Because of it, you can end up with two variables, add them together, both with one in it and get 11. From one on one big one I'm happens to be what's called coerced into a string, meaning JavaScript believes it's a string.
+
+So that's actually leads into a perfect. Next thing. That's data types. So data, JavaScript has five basic data types that can hold data. And then there's some other variations. So there's kind of kind of sub data types for some of these, especially objects that we'll look at when we get to objects in more detail later in the week.
+
+But
+
+what so the five data types JavaScript has is string number
+
+four, object and function.
+
+So that which might sound kind of strange but function as we'll learn.
+
+I think tomorrow is a data type in Java.
+
+So
+
+we don't know we have a variable what particular data type anything's going to be. Because the variable could be can hold any any particular variable hold any of these things. There's nothing that restricts you know, in any way to which one has to hold at any given time. So we need a way of checking of doing two things, one checking which datatype something is. But also, we often want to force a data type. We want to say we want this variable to be this particular data type of this time. So we can check the data type, using the type of operator. So the type of operator allows us to say, allows us to look at a variable, and it'll tell us what data type it is. And we're going to run it here in a minute, but you can see here, x is type of x. So it's literally the word type of with x with the value after and it will say which one of these five data types it is. We can also so the way JavaScript works with data types is That it stores everything in the smallest possible data type that it can for that data. So a string, of course, is always going to be a string. But with numbers in some of the other types, this, that means that it can it'll store that in ways that we might not expect. Or we will expect if we think about it, but it's not always intuitive. So, we often want to need to force it into a particular data type for an operation. So that these what we just talked about one plus one, if we have two variables, and we know they both are gonna have a number in them, but we need to make sure that the number is it is treated as a number, that when we do one plus one, we don't get 11 we get two. There are some methods like parse int, which allows us to so parse int With a number will return the integer. So one plus one is going to return two
+
+instead of 11.
+
+There's also parsefloat, which does the same thing for floating point. If we went more generic number than number, we'll do the same for numbers. And I'll just turn it into just a generic number because it though Java doesn't know JavaScript don't really have the idea of float versus integer. So it just puts it into this standard number string we'll do we'll take a number and turn it into a string.
+
+And there's actually there's a link here
+
+and I'm not going to go through it in detail. I just want to open it up and share this there. It goes through
+
+some more of this But if we look down through here,
+
+it gives through
+
+the type conversions, all the different methods that are available for converting to forcing and converting between types. So there's quite a few of them. So we can with JavaScript, even though we don't declare particular types, and most of the time, we won't care, we'll let JavaScript handle what the type is. If we need to force it into a particular type for use, we can do so using one of these methods. So it's definitely something that can be done well, we want to make sure that we end up with no math that works properly. Or we want to make sure we're using a number as a string. So things can numbers concatenate instead of add or get the boolean value of something from a string, the same type of thing we do of parsing and and Java Also just here in JavaScript. So there's quite a few different methods for them. And it has also a table here of, if you start with this and you convert it to a number string, what you're going to get for each of the different different types, so that links here in the, in the slides
+
+if you're interested in learning a little more about it or exploring them.
+
+So the way this really is going to affect us is not much is often with equality. So one of the other ways that we're going to see some big difference in Java versus JavaScript is around equality in the language, the language so
+
+and JavaScript has to has a set of comparison operators, we're gonna be interested in has all the comparison operators we're used to, greater than or greater than or equal to less than. But if the quality operators work a little different that's that there's two types. There's one that is called loose equality. So loose equality uses two
+
+equal signs.
+
+And loose equality is it checks the type the data, but not the data type. So, one in a string of one will be true, because they both contain a one false, Boolean false and the word false will be true with loose equality because they both are false. Strict equality uses three equal signs, and it compares both the value and the datatype. So one, and a string of ones will not be equal. Because they buy they both contain one one's a string and one's a number. So they're not the same. So we have both those types of quality. Let's look at this working in a few different ways. So there's a fat method here called equality, that allows us to run both the double equal sign in the triple equal sign together so we can see the different results. And also is going to show type up with it so we can see the type of values.
+
+So I'm going to run it with just a few different variables. And let's see what we get
+
+with a different few different data types.
+
+Alright, so
+
+So here, let's run,
+
+equality.
+
+And let's start with something that we know is going to be equal. So like one in one can see here what x is a number, y is a number. So both of these are numbers from the type of. So the output of type of is the word of the data type. So it actually prints out the string number, the string string, or the string object. And then it shows us with the double equal sign that they're equal because they both have the value of one. And with triple equals, they're also equal because they both have they both are numbers.
+
+So in this case, they're
+
+equal four in all, all cases. Let's run it again now with equality must be one. And one of them is a string.
+
+So now, x is a number and y is a string.
+
+And x w equals y is true, because they both contain a one, their value is both one. But triple equals. It's false, because they are two different data types. So once a string wants an integer, so they're not equal. So triple equality is actually pretty close to what we you are used to using in Java. Actually, I'm pretty close it is what we're used to using Java. Double or loose equality with a double, double equal signs is just values. So it's a little not as strict as what we're used to in Java.
+
+So let's look at a few more.
+
+So actually,
+
+when talking about equality in Java scripts, do you see us like double equals versus triple equals instead of like true and truthy or something like that. So
+
+it depends on what you're checking.
+
+So double equals, or triple equals if we were to find out if they both contain a one. truthiness, which we're going to talk about in a minute, didn't tell us that information. So we we need if we want to find out what the values are, and what value it is and what it's equal to, then we would use generally we should, our default should kind of be triple equals because we really want to make sure they're exactly the same. And let but if we know that we want to only check value, because sometimes we will often we will only care about the value, then we should use double equals.
+
+Does that answer your question? All right.
+
+So let's um
+
+look at actually, what we're just talking about the exact product idea of truthiness. So, truthiness is another aspect of languages and JavaScript was called a truthy language. What truthy, truthy language means is that everything in the language can be evaluated as either true or false. So everything, there's nothing that can, that means you can just put anything in an if statement, I'll tell you if it's true or false. So everything in the language gets up broken up into two things. Things that are considered truthy and things are considered false II and truthy things and the truth, the language is pretty much everything with the exception of false zero, empty string known undefined. Those are the falsie things in JavaScript, which means that if we put anything in the language in an if statement, unless it's one of those five things, we'll get a true.
+
+And if it's one of those five things, we'll get a false,
+
+which allows it very easy to do things to check, like, does a value exists, we don't have to write is our value equal to an identified usually unless we care it's explicitly identified? Because we can just say, is it doesn't exist? Is it true? And know that if it's true, it has a value that's not one of those five things. So we can very easily check for string. You know, it is not empty and not at all. Just by saying if and that string
+
+So let's
+
+look at how that works.
+
+So there's a line, there's a
+
+method in here called falsi. That tells will tell us how to state if x whatever value send it, it will tell us whether it's true or false. But the truth is, so if we say, you call the falsey method, and we send it a one, it returns it as true. So because it has a value, we do the same thing with string. It's still true.
+
+If we do the same thing with
+
+the word true, it comes back true.
+
+If Of course if we use false we'd expect that to be false.
+
+But also if we change it to a z It's false.
+
+If we put it to an empty string, it's false. If we put it to undefined, it's false. Or if we put it to No, it's false. So we can put anything in an if statement in JavaScript and say, No, Is this true? And no, if it's not zero, not false, not empty string, not No, not undefined. Which makes doing things like checking if a user's entered a value very easy. We don't have to write an extra a lot of extra code like we do in Java for it, because because of the truth, the nature of the language,
+
+but it also leads to
+
+some things we don't always expect. So
+
+let's go back to the quality now that we know about truthiness and I'm going to compare
+
+zero
+
+empty string.
+
+So, zero double equals so elusive quality. Zero and equals string, according to JavaScript are equal. They're not different things. And there's for two reasons for this one is because by the truthiness of the language, they're both false. But to since JavaScript always stores things in the smallest, it's a large portion of it's the way it handles variables to store things in the smallest possible way or method. What's happening is that empty string and zero both being represented to zero. The same way, if we do a quality with zero, and the word false, it's called says those are both true that that's those are both equal. The same way was an empty string and false. It says those Cool. However it does not say it does see a difference in between na and an empty string. With with loose equality with strict equality, they're all coming back. They all come back this different
+
+the same way with an identified
+
+it comes back as false for loose equality as well. And if we compare Nall and identified now you can see that with loose equality, the double equals it says they're both the same. Because as far as JavaScript is concerned, they're both just black. They both just don't have a value. With strong strict equality, they still remain as false, but loose equality they're seen as the same thing.
+
+So questions
+
+Before we continue,
+
+could you just repeat again? Why zero and an empty string? evaluate to true? I'm sorry.
+
+No, that's fine. It's a it's a weird concept. So the reason is, is because they're both store to zero. They're both stored. Because that's the smallest thing it can Strava script can store. So it says, okay, you're a string, it's already keeping track of what data type is there. So then when it stores the value into stores to zero, but then representing it as space or an emptiness. So when it does loose equality, they both come out the same, it because they're both truth. And because of truthiness, they're both false. That means that they're both zero. They're both false. They're the same thing loosely.
+
+Okay, that makes sense. So,
+
+so that this combination Have the loose equality especially doesn't always the point of that doesn't always get the results we, it gets the results that if we understand the roles we expect, but it's not always an intuitive result, especially with the things that are false or bossy meaning that they're always false.
+
+So Other questions?
+
+Alright, so let's look at scope then. So JavaScript scope works a little differently than Java. Actually. It has just more scope than javas has more different different scopes. So let's take a look at those because it's going to affect us and how some of our
+
+functions and methods of work. Hey, Brian, yes, should we break before we go into the New topic?
+
+Or is it short?
+
+Yeah, this is probably a good place.
+
+Oh, that's been an hour. Yeah.
+
+I know. You just have so much fun. You just. Yeah, I just yeah.
+
+This seems like just seconds. Yes.
+
+1121 Thank you for.
+
+So what questions come up for you? Okay.
+
+So let's continue with talking about scope.
+
+So, scope, JavaScript has some different scopes. Then some familiar scopes are also some extra scopes that we didn't have in Java. So, first, JavaScript has the idea of global scope, which is something we didn't Java Doesn't have in global scope is that variables defined like this one is outside of a function or outside of a block are available globally. They're available everywhere in JavaScript. So they're available in this script. They're also available in other scripts or other things that may be on this page. Because of hoisting. They're going to be available to anything that got loaded from HTML.
+
+So they're not limited to any particular scope. So
+
+block scope
+
+is variables are limited to a block of code. So this is what we're familiar with in Java, right? The idea is limited to a particular block. So block scope works just like it does in Java. But there's also this idea of function scope, which is something we're also familiar with a variable declared in a function is available in that function and only in that function, so it takes on block scope for the function. So, letting constant Bay block scope in function scope. So we can only and we can only have one variable declaration per scope. So var ignores block scope, but it does have a function scope. But it doesn't really matter because it can be declared at any time set. So this idea of var ignore scope except for is one of the reasons that we are the main reason we
+
+we avoid it.
+
+So we have these
+
+These four scopes, but really what it's going to come down to when we use it letting constants, it's going to work pretty much just like Java, like what we're used to only we're going to have this extra scope of global scope.
+
+So questions on that before we.
+
+Okay. So let's look a little more to raise.
+
+So arrays work are pretty the same idea as they were in Java, they use the square brackets as syntax. Actually, let me get out here after falsey. And let's build a new function
+
+called a race.
+
+So that we can write some stuff in the array. So I can write I can declare right? Let me clear this console again
+
+by creating a variable
+
+and setting it to
+
+brackets.
+
+Sorry, what
+
+my array equals.
+
+And once we have an array declared, we can then add to it in a few different ways. So we can, or two different ways we can add.
+
+We can use push, we can push a value into the array.
+
+So now if I do, so I do that when it's returned, that one is returned.
+
+We do array push again.
+
+The value being returned is not the value that I put in. So let's put another one In, it's the current length of the array.
+
+So arrays
+
+have length.
+
+You can see as I'm typing my array, it's showing here what the array currently looks like. It's like the three divisor one to one.
+
+We can also
+
+console dot table. Way to see the value.
+
+You see in the console here, as I'm writing JavaScript, it's it's cumulative. So works like a script. So I created a variable i can work right with it and write pretty much any JavaScript I want. Here in the console, though, it's going to go away when I refresh the page, or go to a different or close it. So for these, we can create an array. Actually, we can create an array as a consequence. A better way to do it. So my array even though I've created as a constant, the constant means I can't reassign my array but I can change the value the the array that's been assigned.
+
+So my array dot
+
+push, I can put some values in it.
+
+Arrays can also hold
+
+different data types.
+
+Let's do a console
+
+table.
+
+So most arrays
+
+so we can hold different data types. here has a Boolean string and a number in a number. And this is a
+
+effect of the fact that the
+
+the variables themselves are dynamically typed that there's not a limitation of having the same data type because they're just variables being held in the array. So it can be any type each. There's push to put things on the array. We can
+
+re use pop to remove things from the re
+
+see we've moved the last one. And here's the last thing. So kind of push them pop when we looked at them with some of the constructs in Java or some of the things data structures like stack and queue works very similar. So we also can add to the beginning of an array in a very similar manner using unshifted. So if we unshifted, the array, my array.on shift, and let's put in
+
+15.
+
+And I forgot to print it again.
+
+We can see that at 15 to the beginning.
+
+So unlike Java with push, we only had pushed out to the end. Here we can shift towards the beginning or pushed out to the end. There's methods like concatenate, we said we can actually concatenate arrays and put two arrays together. arrays are also not a fixed size. Notice I've been changing it as I went, I can add,
+
+I can use
+
+actually just use it over here.
+
+I know if I have an array
+
+what constant numbers, domes equal was put in 123 I can get the value of particular I am console log nums add one, their index the same we'd expect so we get the middle one. So their index zero and zero index just like arrays are in Java. I can also change a particular index just like I can in Java by using that index and then setting assigning a value to it.
+
+so we can write
+
+nums at
+
+one equals, let's put that equal to five instead of two.
+
+And if I press that we can see now it's five. If I do a console,
+
+log of the whole array gnomes
+
+I can see that printed out. So, so race work very similar to what they do in Java
+
+until they don't. And that's
+
+let's do something that we can't do in Java. So
+
+if I console
+
+log, say my array
+
+I say index 75
+
+What would happen in Java if you did that?
+
+index out of bounds?
+
+Yeah. So JavaScript, we just get undefined back. It's just not there, which is fine. We can check for that. But now let's do, I don't want to make it quite so large. So we know that right now our array has
+
+index 01 and two in it.
+
+So let's take our nums array, and maybe let's set index of 10
+
+equal to 10.
+
+Again, in Java, we we get an index out of bounds.
+
+Now it says that the array has a length of 10.
+
+So let's take a look at the array.
+
+Not Oh, I console log the wrong thing.
+
+So now the array, especially the length of 11, is what it really is. Now it has 123 index 101 to 10. And then it skips to index 10. And you can see it says there's empty seven here. So 10 is an index 10. But for indexes three through 10 are empty, they don't exist. So there's actually four items in the array. It says it's size 11. Because so the size gives you the last index, one larger than last index. But really, there's now there's only four items. But there's these empty items in between. So we can set to any index in the array. So nums, let's put something in index 100.
+
+And we'll put in
+
+ABC
+
+and then log it in Now we have everybody that's 101 in length
+
+that has index 01 210 and 100.
+
+So
+
+we can, if we use the index is too large in JavaScript, we don't get an error, it just adds it. And if it adds it in the wrong place, it just goes with it. A lot of said with JavaScript is, I'll give this a try. And if I can make it work, well, we'll just go with whatever happens, rather than give an error back or say, No, you can't do this. Now, this behavior actually can be really useful. So there's actually some really good use cases we can have at this. But we have to be aware that unlike in Java, where we can depend on the language to say you're within the realm of the array that you wanted, in JavaScript, we can't depend on that. We have to be very explicit, very careful to make sure that we're using the index as we expect And we also have to be careful with length. Because if I'm looping through this, I'm doing some work with this, I would expect this to have 101 items in it. It really has five. Now the rest are going to tell me undefined. So I'm not going to get there, but it's probably not what I expect.
+
+So questions on that before we continue? On? I don't
+
+have a question on this, specifically, but I was kind of wondering about the scope a little bit more. And when we did our Hello example, at the very beginning, yes. What was the scope of that Hello variable that we created and then pass back to the function
+
+or that is in the function that isn't the very beginning of the very beginning.
+
+You mean, back Yeah, yeah. So so to make sure I answered properly Let me go look at remind myself What was that? So the variable here was in global scope. Okay? Because it's outside of a function, it's outside of a block. Okay, that makes sense. So anything that's not if I put it just in this
+
+now it'd be scoped into that block.
+
+And it would now error if I tried to use it unless this was var then it would work because far ignores block scope. Okay,
+
+that makes total sense. Thank you.
+
+So let's see.
+
+Some other questions before we. All right.
+
+So the next thing we might be interested in is objects. So objects work very differently in JavaScript. This is one of the biggest places where they diverge because JavaScript is not a pure object oriented language. Actually, it's not an object or any language at all. Yeah, some aspects of it has some places where mimikatz it in, especially in modern JavaScript. But objects in JavaScript are more like closer to maps in Java than they are to objects. So JSON, the JSON format we looked at was Object Notation, because it's based on JavaScript objects, their key value pairs. So object literals in JavaScript are defined like this. And they look almost exactly like JSON, only the differences. The keys don't have quotes around them. That's really the only difference. Jason quotes, the keys. JavaScript is not defined by cones and this is One way of doing objects, there's other ways we're going to look at as we go through the week. But object, these are called object literals. So they're objects we build in place. So in this case, it builds a variable to hold the object equals the object literals are defined in curly braces. Then there's a set of key value pairs with a key colon, the value in there, comma delimited. So each of these variables can be any thing, any of those five data types. So it can be a string, a number of Boolean, an object or function for each of these, so in this case, it's an array. We'll learn arrays is one of the things data types an object can be so so here's an array of employees. Here's a number it's a string. So let's look at using The objects, so we use the object by just referring to the object name, the variable name dot. The key is one way. So first this is look at the object is being logged. So this is a person. So I'm going to console dot log and send it person. Let's save that. I'm gonna come over here and run objects method.
+
+We can see that logs out the object.
+
+We can look at the array that's inside the object gosho console dot table. I can't do that here, because I don't have the object here.
+
+The same way we can use a table
+
+we can see it printing out from the log first and then we get a table it looks like this. So we can see the values the keys and the values here we can See the value and then all the array values printed out.
+
+So to access
+
+maybe just the first and last name.
+
+I'm going to put ticks here so we can use
+
+literals we access them by using the variable name. So person, dot the key name, first name. And then inside of here, we just put our second temporary letter wherever we want it. Person dot, and then the key, last name.
+
+Make some more space here.
+
+So now
+
+we can see it's pronounced the full full name
+
+for the object, which is these two values.
+
+We can also console dot log,
+
+do this.
+
+Let's type it.
+
+Maybe you need to put employees instead of first name.
+
+Hmm.
+
+We'll come back to that.
+
+But we can. There's another way we can access the, the keys. Oh,
+
+I have the syntax wrong. So don't write it down.
+
+Yeah, so there, I can put in quotes put in quotes. So we can give the key and square brackets within a string and it will find it for us and product.
+
+So if I wanted to go through each of the employees, I can write a for loop for loops work just like they do in JavaScript or Java. Only now instead of entities let select i equals zero.
+
+I, person dot employees,
+
+i plus plus.
+
+And then we can do something with each one. So let's do console.
+
+log.
+
+person.
+
+Actually, let's do it like this.
+
+See employee,
+
+i plus one, so it's one through, you know,
+
+four instead of zero through three
+
+is person dot.
+
+Again, using template literals for the string, concatenate it, but it's just much easier.
+
+And then the index.
+
+So that looks about like we would expect in Java, right? We run it again
+
+is a bit going through the atmosphere. Something like that.
+
+Does it have to be length?
+
+Or no? It does. Thank you.
+
+Yeah, he's be like, great catch. But that's a great that actually brings up something really great. Because what didn't happen?
+
+It didn't air
+
+didn't air exactly, it just didn't work. So you get used to that with JavaScript, you get you feel fortunate when you get an error because things just don't work. Instead of giving an error. It didn't work. But now it does. And it prints out each of the values. So the loops work pretty much the same. We also could go up here, I'm going to add a method, call it to string, so something we're familiar with, add a new key, and I can build a function. It will come back and we're going to talk about this in detail tomorrow. Or the gift borrow function here
+
+and let's have the function Return
+
+Oh stemper little itself will say
+
+this last name.
+
+This last name, maybe
+
+the first name.
+
+So this keyword is something we're familiar with, right? It's working the same way it's saying for right now. It's saying this object.
+
+return that. And now we can come down here
+
+and console log in call person
+
+to strength
+
+Let's run that
+
+it prints out the function.
+
+This is the function I wrote, right?
+
+Let's rewrite this
+
+console log person to string in our parentheses to talk to run it as a function.
+
+So this prints
+
+the code, the source code
+
+of the function
+
+executes
+
+the function.
+
+We can see now it prints out the name,
+
+last name, first name and age by calling this method.
+
+We're going to come back to that tomorrow, so don't spend too much. If that's really confusing, that's okay. But the thing I want to take away from today is that object literals can have functions The functions themselves
+
+can be assigned to variables
+
+that they are datatype.
+
+So everything we talked about everything in Java is a data type in JavaScript, where not everything is but functions are. So that's going to be really important. That's going to become my said, than the message yesterday that starting the second day will diverge into new territory. That's going to be what takes starts taking us there is this concept of functions that are data types. So those are object literals. I'm going to come back to objects this week, later this week, but other questions.
+
+So even though to string is the key, and the function is the value, you still need the the parentheses on the string to actually execute the function.
+
+Yes. So we, we call the key if we just call it we just get the value, which is the function printed out. If we put parentheses on it, it's saying execute this
+
+run this, this function. So
+
+I guess I should before I move on if there are other questions before
+
+Can you hear me?
+
+Yes. Okay, cool. It was not working, um, with the the strict thing that we talked about earlier. If that was enabled and you did the forgot the dot length, what would you do? up, like how important is it to understand that?
+
+To understand the strict or
+
+strict like, is that something that is used? Often? I know you don't think it is, but
+
+you see it?
+
+I it's used a lot, I wouldn't say it's used predominantly. You'll see a lot of code has you strict on it? Because it does, it causes more errors, it limits some of the functionalities, some of the want to say fungi, some of the kind of tricks you can do with the language and limits some of those, so a lot of people won't use it. But it avoids some of those problems. Actually, I'm not sure what to do with length, let's find out. I'm not sure what its gonna do with this whole file, actually. So there may be other problems. We can't even get the length. But let's, let's see, I think since most of it's in a function, it won't matter. You strict until we call that function. Okay, yeah, good. It's all in the function solid, any of the stuff that would cause problems. Now, if we come down here, and we remove the length
+
+and now let's call this was called objects.
+
+Nothing. That's not one of the rules is checking for.
+
+Oh, I know why.
+
+I don't want to go too far into it.
+
+Well, I mean, my question was more like, Where is that error gonna show up and how to how to read it.
+
+Oh, it'll be here in the console. Okay, and
+
+it's kind of obvious what it what it's saying.
+
+Oh, as obvious as any are in any languages.
+
+JavaScript errors when you get them are. Let's see. Let's we can create one right here without even use strict
+
+By redefining why
+
+there's an error uncaught syntax error identifier Why?
+
+Me? That's fairly? Yeah. Okay. At least something you can look up and figure out what it means there. They're, I would say not as descriptive as exceptions, but easier to read because they don't have all the kind of a rounded stack trace involved.
+
+When you're making a function inside that object, you're basically like saying, this keys value is a function. Yes. Okay. So when you add tack on the parentheses, it's just like okay, now use that function that we created. Yes.
+
+All right, so
+
+let's look at the idea of function overloading or function. So overloading overriding exists in Java JavaScript overloading does not. So the reason overloading doesn't exist is because of if we do this, what happens is it gets overwritten because the last function of the same name wins.
+
+So let's prove that. Let's actually
+
+debug it. So I'm going to go to source and we can debug code. But if we go to source, we can see the script file here. You can see it loaded for me on Mac, because there's only one. I can see all the code from this script we've been working on. I'm going to go and I'm going to put a breakpoint we put a breakpoint just by clicking Just like we would in Java. And now when I run it from the console, I run ad run numbers, one, two and three stops at the breakpoint, and C goes to the second one. The reason it goes to the second one is not because I had numbers one, two, and three. And because it's a different signature, it's because it's the last one in the script. So the last one loaded is the one used has nothing to do with the signature. So it overrides it. The last thing load it overrides the other one with the same name. But it doesn't matter. It won't choose based on the signature so I can resume here. Let's go back to the console and now run an ad with just two variables. So the signature of the first one and it still goes to this one that has all three because the last one in the script Again with the same name as the one that gets called regardless of parameters, because we're JavaScript doesn't care if I send one parameter or 20 parameters, it just picks out the ones it needs and uses them. So that too, as far as it's concerned, these are called both the same way. But now I see threes undefined, so I'm going to get not a number as a result, just what I get. So methods can be ever written in Java, or JavaScript by just adding a new method of the same name.
+
+So if I add a function, add
+
+return tests, so something that's very different.
+
+And I call add now
+
+two and three, you see it returns my function. Now no matter what I sent, it will call my version of the function.
+
+So it doesn't matter what the parameters are all commented out.
+
+So questions on that for reverting writing and overloading?
+
+If you were to,
+
+in your second add function, if you were to change those two numbers and like cast them as numbers, would that make anything that wasn't sent zero? Um,
+
+no, but we're going to learn tomorrow how we can default them. Okay. I'll leave that we're going to go into functions a lot more detail tomorrow. And there is a way to deal with this problem.
+
+But I'll leave that for them.
+
+Other questions before?
+
+Okay. So then the last thing we'll look at is
+
+some built in
+
+libraries that are in JavaScript. So it Math in string based libraries much like Java does.
+
+So I'm just going to call the math functions.
+
+And we can see that it has, has a math library built in, it starts to uppercase math. It has things like pi, which will give you the value of pi out to the size of a floating point.
+
+Same for log of 10. To me,
+
+it has absolute value for selling random. So random will give you a random number between 01 just like Java is random in math, and has a lot more stuff you can do as well. So if we look at all the different math methods, there's quite a few things. So just like Java's math library, it exists in JavaScript. There's also a set of strings For our string functions, I guess for these, so let's call us. And we'll look at a couple of these a little more detail. So let's give it a value like hello world.
+
+I need to put that in quotes.
+
+And we'll call the string function, we can see it tells length on a string. valued length will tell us the length of the string. ends with starts with index of, those are all things we're not familiar with, right? They're things that work about like, very similar to Java. There's also a split, which splits a string into an array like Java does want to value. There's two lowercase to uppercase trim, and there's two versions of substring.
+
+So let's look at
+
+There's two versions. Let's look at the difference. So I'm going to go console dot log, and let's add dot sub str 123
+
+and value
+
+value dot sub stuckart 123.
+
+Let's do the same thing
+
+only with the full substring
+
+substring
+
+call string,
+
+actually hello world. So the first one gets yellow the second goods do So we said hello world. So we would expect the first one we get Ll because the substring
+
+is
+
+starting index.
+
+So str is starting index, and then number of characters. So it says started index one, get the next three characters. so different than Java's. Strangely that's not strangely but that's exactly the way dotnet does it. So it starts at character one E and it gets the next three characters so 123 or gets three characters.
+
+substring spot out.
+
+substring is starting index
+
+actually Inclusive
+
+ending index exculsive
+
+so just like Java's so it starts at one and index three, so it gets zero or 123 in index three but excludes does he get he'll? So substring spot out is just like Java substring sub str is slightly different we just give the number of characters you want instead of the full mouth let's give it a short string, listen to the string
+
+just the letter A
+
+and see what happens.
+
+So here we get the substring
+
+one through three. So one there is no index one. There is no value for to get but when we get the sub To String one through three, we did and either way, we just get empty strings back. So if they can't, if the index doesn't exist, it just gives us back an empty string. Let's give it a one that is larger. So ABC, actually a B. So now the index one will exist. You see, it just gives us what it can. So it can't give us three characters. So it gives us one the same way can't get to the last index, because it's too far. So this gives us what's available. So we don't get errors. If we use the wrong indexes and substrings. We just get back whatever it can give us.
+
+All right. And there's a link here to other string methods that exist, there's quite a few other ones, kind of their words wasn't Java.
+
+So something I do want to
+
+Another method I want to show you up in the math functions, I guess, because that's the best place to put it. That can be really useful. So there is a method. Let's put it up here called is not a number is in a n.
+
+Sorry. So console dot log
+
+is
+
+one, not a number.
+
+Plus is an an.
+
+We'll send out a one.
+
+And we'll call the math functions method.
+
+We can see is one not a number, and it's false. The same way if we give it to something that is not a number, like
+
+is zero divided by zero, not a number.
+
+That's also false because it's infinity. Let's give it another one.
+
+Now some that is not.
+
+So one divided by zero, which we know should be the bottom number. I didn't know.
+
+Cuz I'm not changing it over here.
+
+I was gonna say that's crazy. Yeah. So
+
+he doesn't do
+
+we get zero divided by zero is not a number like we would expect. One. Not so let's do one more.
+
+And maybe the letter A.
+
+Once again.
+
+It's not a number just tells us true or false is this not a number can be really Useful with dynamic types, I want to point out that it exists.
+
+Right? So questions on any of the syntax.
+
+Okay. All right. So
+
+when we're working, we already been really using console the entire time. So you want to always be working, have your console open when you're working with JavaScript. That's where all the feedback is going to come from. If there is feedback. We'll have test cases we're gonna look at today in your exercises, but all your errors will be in the console.
+
+So there's also
+
+we looked at it slightly, quickly, but
+
+on the sources tab,
+
+it brings up the source code you're currently working with If you have breakpoints set, which you set the same way you do in Java by just double clicking off to the left of the of the line numbers, or you can right click and add breakpoint, you can when you hit that line of code, when running it through the console, or by this just the page loading or from any way it hits that line of code, when that wind code goes to run, it'll stop that breakpoint and take you there. And then you can step the same way you do in Java. It has stepped over, which is normally what you want to use, step into and step out of just like Java does. And then the Resume button instead of the pause button when it's running. So you can debug the same way use the debugger and Java here in Chrome using the sources tab.
+
+So
+
+last thing, then, it
+
+is working with test cases. So your exercises today will have test cases. And there's an example here of tests, the way tests are going to work, the way you're going to work in your exercises is going to be laid out exactly like this. This is here, there's going to be three files for every set of exercises. One is you're going to have an index HTML. And that's what you're going to run in live server or the browser. So open that with live server, the index HTML.
+
+And I'm gonna want to open the console.
+
+Because even though I have tests, you have test cases, you never want to work with JavaScript without the console open. That's, even though it feels kind of weird to have to do that. Not having the console open. It's like writing If you were writing Java in Notepad, those of you who've done white whiteboarding type exercises, I think just about everybody now. And you had to write a notepad, that's what you're doing without console open. So in order to get the full advantage of all the feedback from the ID, you have to have it open. But then there's test cases that work. The ones that are called test you're just going to ignore, those are just like test files in Java. Right? You when you started out, you ignored the Java source test, or source test Java files and you just worked in the source main Java. The ones that say test j s, you just can ignore those for now.
+
+The ones that are exercises j s is where your work.
+
+So in this case, I'm going to change this to see something like two. So we can see the test case failing. We see the test cases failed. It gives them assertion error similar to what we're used to. That means the same thing. Expected one but God The other one.
+
+So put it back and they'll pass.
+
+Notice as I make changes, if that index HTML is running in live server, they'll just update automatically as I make changes live server update. If you don't have it running a live server, you can refresh manually, but you can end up in
+
+an extra step.
+
+So that's how you run test cases to their questions. With that,
+
+I'll walk you out again with your actual actual exercises here them.
+
+So before we look at the exercises for today, is there questions about anything we looked at today?
+
+All right, so I'm going to
+
+back.
+
+I'm gonna go back in.
+
+Code, I'm gonna open Add a folder to my workspace. And I'm going to add, you would add the student exercises structure folder,
+
+which is the exercise.
+
+Then there's here's the file. So half there's a readme
+
+that walks through
+
+the requirements. And you can view a formatted this version of this in that bucket like you normally would. Or if you click this button, there goes, it'll give you Visual Studio code can rendered as well with the directions, but these exercises actually have the directions and comments like week one exercises to for Java except for the challenge exercise you'll probably want to pay. You want to read the readme for it because it gives more detail
+
+close that.
+
+So to run need to work on the exercises,
+
+there is test dot html. That's what you're running live server.
+
+And I'm on live server, it's gonna bring up a
+
+set of unit tests to run.
+
+And I'm also gonna open up the console.
+
+So if there's any errors that are not unit test, don't pick up I can see them. And then where you're going to work is going to be an exercises j s goes with test. So the ones that don't have challenges go together.
+
+And for each of these, there's a comment on what you're going to create.
+
+And unlike with the Java ones, where you're given signatures, you're going to write your own, you're going to be writing your own signatures, and they're given to you right here. So this is saying, this method should be called Haustein. And if it's not Call exactly that you'll get an error that says like, here's some double is not defined. That means there's no method without name. So if there's a spelling error, or other problem, you'll see it as being not defined. This is telling you there should be three parameters. Now if you put the wrong number of parameters, you're not going to get an error, just not going to work, it's just not going to pass the test case.
+
+So let's do the first one. So it's gonna be function.
+
+Some double, I need three parameters. This is column x and y. So now you're gonna write some code. So JavaScript methods don't have to return anything, but you need to have this method. So we might want to do something like const the sum
+
+equals x plus y.
+
+And then we say if x
+
+is equal to y
+
+return some to Else return some. So that looks pretty close to Java code, right? I didn't go through the logic or walk through with it because that's what you were doing in week one. So the problem with these exercises, in fact, while these are week one job exercises, let's save it
+
+and see the test cases have passed now. And
+
+so these test cases work just like the Java test cases, you'll want to get them all passing and that's
+
+how they're scored.
+
+And then to just get down through each of these, I think all of these are
+
+all of these are most of these are
+
+problems you've already solved. So now it's about solving it in Java Script syntax. So it's going to be very so you can see it's very close to what you would do just the changes we looked at today. There's also a second set of exercises Challenge exercises, and I'm almost positive that they are, you should do the challenge exercises, I don't believe they count in your score, if you don't know,
+
+they don't thank you.
+
+So, but that doesn't mean you shouldn't do them. It just means they're a little more difficult exercises that we don't want to kind of against you if you can't solve them, but you should try to solve them that we're trying to solve. To run those, you'd run the challenge exercises HTML,
+
+which is going to open it up.
+
+Give me the test cases for those.
+
+And then you would work inside the challenge out there. Challenge exercises such as to do the same thing only with the little more difficult problems. And I think for both of these, they're problems you haven't solved before.
+
+So that's the, what you'll be doing questions on. on that.
+
+So there's also a tutorial for tomorrow, we'll be looking at functions tomorrow in more detail. So I would suggest you go through that and go through the reading of everything in the JavaScript section, I'm stressed up to up to the title, the section title of the DOM or document object model, which will be Wednesday.
+
+So then, today,
+
+the only thing that was there was a
+
+side project review in this kind of discussion scheduled for for today. It's been rescheduled due to the pathway of it being rescheduled to the same time today. So later, that'll be it's later this week. I think it was Thursday. I can't whatever day is on it's On their calendar, but
+
+so any other questions or anything else for today?
+
+Okay. Oh, thank you. Good luck
+
+Thank you
+
+Transcribed by https://otter.ai

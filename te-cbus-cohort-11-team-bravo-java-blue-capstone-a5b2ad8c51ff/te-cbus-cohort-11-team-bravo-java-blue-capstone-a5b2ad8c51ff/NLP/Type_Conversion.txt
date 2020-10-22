@@ -1,0 +1,37 @@
+Book
+https://book.techelevator.com/content/introduction-to-programming-ool.html#type-conversion
+
+Type conversion
+When you move a value from one type to another, the compiler becomes interested in what you're doing. It worries about whether or not the operation being performed might result in a loss of data. Each conversion operation is considered in terms of widening (smaller data type to larger data type) and narrowing (larger data type to smaller data type) of value ranges.
+
+As an example, converting from an int into a long can take place implicitly and requires no additional code. When a value is narrowed, like double to int, you must explicitly indicate this in your code.
+
+The code block below shows how to perform type conversion. In this example, the code block doesn't compile because it lacks an explicit type conversion:
+
+double calculatedScore = 87.6;
+int finalGrade = calculatedScore;
+The syntax for a type conversion is:
+
+datatype identifier = (dataType)valueToConvert;
+
+double calculatedScore = 87.6;
+int finalGrade = (int)calculatedScore;
+Inferring Data Types
+
+Realistically, you'll run into type conversions the most when you're trying to perform arithmetic between two data types. As a rule, the runtime tries its best to be efficient despite what data type you use on the left-hand side of the statement.
+
+int score1 = 85;
+int score2 = 93;
+int score3 = 75;
+
+// (score1 + score2 + score3) / 3;    yields the integer 84
+// (score1 + score2 + score3) / 3.0;  yields the double 84.33333
+
+double averageScore = (score1 + score2 + score3) / 3;   //84
+double averageScore = (score1 + score2 + score3) / 3.0; //84.33339
+Literal suffixes
+Java and C# can identify which data type is used during an assignment operation. However, there are some scenarios where the compiler becomes stuck and isn't sure what to do. This normally happens when you're working with floating point numbers. The example below shows code that doesn't compile:
+
+//float f = 3.26;       //won't compile, compiler assumes 3.26 is a double and wants an explicit conversion
+float f = 3.26F;        //adding 'F' tells the compiler this is a literal float value
+For a reference to other literal suffixes used in Java and C#, see Numeric Literals in Java and in C#.

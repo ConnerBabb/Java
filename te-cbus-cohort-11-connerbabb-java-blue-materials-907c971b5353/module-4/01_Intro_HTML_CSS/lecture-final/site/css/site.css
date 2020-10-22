@@ -1,0 +1,25 @@
+html {
+    background-color: rgba(50, 50, 50, .2)
+}
+img {
+    height: 200px;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 50px;
+    color: rgba(228, 74, 74, 0.479);
+}
+
+div {
+    margin-top: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+

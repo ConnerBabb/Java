@@ -1,0 +1,221 @@
+Book
+https://book.techelevator.com/content/relational-database-design.html#process-for-designing-and-implementing-a-database
+
+Process for designing and implementing a database
+Here are the primary activities a developer typically takes to design and implement a database:
+
+Data Modeling: the process of clearly and precisely defining the data items to store. Both their purpose and use must be defined. This develops a relational data model.
+
+Logical Design: the process of creating a design that follows the rules of the relational data model.
+
+Physical Design: the process of adjusting the logical design to meet requirements related to performance, ease of use, and hardware and software relational database management system (RDBMS) limitations. This includes defining the data types for the columns and how much room to use to store the data.
+
+Physical Implementation: the process of creating tables and supporting objects such as sequences, indexes, views and aliases, and granting user access on the tables or columns.
+
+There are additional activities that have to do with the long-term administration of a running database. These lie outside the scope of this chapter, but should at least be mentioned. These activities include monitoring access, performing periodic backups, performance enhancements such as reorgs and validity checking, adjusting and creating indexes, and granting and revoking privileges in the database. These activities are generally assigned to a Database Administrator.
+
+#Creating a data model
+To create a proper and effective relational database design, you’d start with a model of the data items to be stored and the business rules applicable to them. A list of the data items and a brief summary of what they mean and how they’re used is enough to start. You don't need to be exhaustive. Designing and implementing a database is an iterative process. You may find yourself switching between the various activities listed above.
+
+Based upon your conversation with Tach Escalator, you create the following list of the data items to be stored and some information for each:
+
+Data Item	Use and Business Rules
+Student Name	Full name of student
+Student Address	Full address of student, Street, City, State, Zip Code
+Student Status	Current status (Enrolled, Interviewing, Graduated, Applying, Rejected, Other)
+Notes	Any notes a staff member may have regarding the student
+Course Name	Name of a course
+Course Duration	Duration of the course
+Location City	City name where the course is located
+Location State	Standard USPS state code
+Location Open Date	mm/dd/yyyy format
+Instructor First Name	First name of the course instructor
+Instructor Last Name	Last name of the course instructor
+Instructor Middle Name	Middle name of the course instructor
+Home Location of Instructor	Where the instructor is located
+Cohort Start Date	mm/dd/yyyy format
+Cohort Graduation Date	mm/dd/yyyy format
+#Identifying main entities
+Once you have reasonable data model, you’d need to identify the “things” that the data represents. What “things” does the data above describe?
+
+Each “thing” is an entity, and each entity is represented as a table. Don’t think of all the entities/tables you might need—just start with a few. You’ll see that the process helps to identify other entities/tables as you move through it. Once again, the process is iterative.
+
+A good question to ask is: What do you want to keep track of?
+
+For this sample application, the data falls into the following categories:
+
+
+Image - Entities
+#Identifying primary keys
+You should recall from your previous work, in the relational model, a table can’t contain multiple rows that represent the same object. To ensure uniqueness, each table must have a column, or set of columns, called a Primary Key. A Primary Key uniquely identifies entries in the table. A Primary Key may be called a simple key if it’s a single column, or a composite key if it consists of several columns.
+
+The required characteristics of a Primary Key are:
+
+The values of Primary Key must be unique across rows.
+The Primary Key must always have a value. In other words, it can't be NULL.
+Some desirable characteristics of a Primary Key are:
+
+The Primary Key should be simple and familiar—for example, employeeID for the employees table, or accountNumber for a customers table.
+The value of the Primary Key shouldn’t change. The Primary Key may be referenced by other tables. If the value of a Primary Key changes, all references must also be changed.
+Primary key values are often integers or numeric, but they could also be other types, like text or string.
+Primary keys may be generated values. Most RDBMSs support some form of auto-incrementing values that may be used as a Primary Key.
+These are the Primary Keys for the sample application:
+
+
+Image - Primary Keys on the tables
+#Identifying relationships between entities
+A fundamental characteristic of an RDBMS is that the tables can be related to each other. The relationships that may exist between tables include:
+
+One-to-one: where each entry in one table links to exactly one matching entry in another table. It's not unusual in a one-to-one relationship for the tables involved to have the same Primary Key.
+One-to-many: where each entry in one table (parent) may link to many matching entries in another table (dependent).
+Many-to-many: where each entry in one table may link to many matching entries in another table.
+Parent and dependent tables
+
+Parent Table: A table whose Primary Key is matched by Foreign Keys in one or more other tables.
+
+Dependent Table: A table whose rows are dependent on an existing row in another table. The Foreign Key of a dependent matches the entire Primary Key of its parent.
+
+Here’s how you’d handle each relationship at this point in the design:
+
+Relationship	What to do
+One-to-one	Combine tables into one table
+One-to-many	Do nothing—this is the goal
+Many-to-many	Break the relationship into a pair of one-to-many relationships by creating a new entity (relator) with a composite Primary Key containing the Primary Keys of the two entities
+For the Tach Escalator application, this is what you'd do:
+
+Step 1: Identify initial relationships
+
+
+Image - Table relations
+Step 2: Handle many-to-many relationships by creating a new entity, giving it the Primary Keys of the original entities and establishing the one-to-many relationships with the original entities:
+
+
+Image - Conversion to one-to-many relationships
+Note
+
+More meaningful names for the relator entities may become apparent after the Normalization process.
+
+#Cardinality and ordinality
+Cardinality refers to the maximum number of times an instance in one entity can relate to instances of another entity.
+
+Ordinality is the minimum number of times an instance in one entity can be associated with an instance in the related entity.
+
+Cardinality and Ordinality are shown by the styling of a line and its endpoint:
+
+
+Image - Cardinality Notation
+#Logical design normalization
+Logical Design is the process of creating a design that adheres to the rules of the relational data model. Normalization is a logical database design technique which organizes tables in a manner that reduces redundancy and dependency of data. It generally produces a number of smaller tables and links them using relationships.
+
+E.F. Codd, author of the seminal, A Relational Model of Data for Large Shared Data Banks, created the theory of data placed in normal forms (NF). He originally devised three normal forms which have since grown to six or seven. The goal of normalization in relational database design is to achieve Third Normal Form (3NF).
+
+Each data item in a table is considered an atomic, standalone fact:
+
+First Normal Form (1NF): For each entity, create a separate entity for repeating data groups. No fact may repeat in a table.
+Second Normal Form (2NF): For each entity, create a separate entity for data elements that are based on a portion of the Primary Key. Each data item must be based on the entire Primary Key of the table.
+Third Normal Form (3NF): For each entity, create a separate entity for data elements that are based on some other data element. Each data item must be based on only the Primary Key.
+The normal forms are cumulative. You must be 1NF to be in 2NF, and you must be in 2NF to be in 3NF.
+
+To determine if you're in 3NF, place a data item in a table and ask yourself two questions:
+
+Is the fact/data element already in the table? If the answer is no, you're in 1NF.
+Is it a fact about the key, the whole key and nothing but the key? If the answer is yes, you're in 3NF.
+Note about the key
+
+The whole key checks 2NF; nothing but the key checks 3NF.
+
+If either of the questions results in the "wrong" answer, you must:
+
+Look for an existing table where the data item does fit, OR
+Create a new table to hold the data item.
+Note
+
+When you create the new table, you must also follow the subsequent steps in the process—designating Primary Keys and establishing relationships—before continuing to another data item.
+
+Students attend courses, so the Courses table seems like the place for Student information:
+
+
+Image - Student data in the courses table
+The repeating Student information violates First Normal Form (1NF).
+
+Since there's no existing table to place Student information, it must be created, establish its relationship to existing tables (shown later), be assigned a Primary Key, and have the Student information placed there:
+
+
+Image - Student data in its own table
+The Cohort information should go in the Locations table since Locations host Cohorts:
+
+
+Image - Cohort information in locations
+Including Cohort information in the Locations table violates Second Normal Form (2NF), as the CohortNumber, CourseId, and InstructorId for a Cohort aren't a fact about the Primary Key (LocationID) of the Locations table. A location can have many Cohorts with varying combinations of courses and instructors. The CohortNumber, CourseID and InstructorID don't depend on the Location.
+
+As there's no existing table in which to place Cohort information, you'd create a new table, assign it a Primary Key, establish its relationship to the existing tables, and place the Cohort information there:
+
+
+Image - Separating out cohort from location
+Since the InstructorId isn't required to uniquely identify a cohort, it's not part of the Primary Key for the Cohorts table. InstructorID is a Foreign Key to the Instructors table and establishes the relationship between Cohorts and Instructors.
+
+The new Cohorts table seems like a good place for Duration:
+
+
+Image - Adding duration to the cohort
+Placing the course Duration in the Cohorts table violates Third Normal Form (3NF). However, each Course taught during a Cohort at a Location does have a Duration, which makes duration a fact about the Primary Key. Duration is a fact about a Course regardless of the Cohort or location. So, it's fact-based on only part of the primary Key and not the entire Primary Key.
+
+There's a table already defined to hold information related to a Course, so you'd move Duration to the Courses table where it's a fact about the key, the whole key and nothing but the key.
+
+#Verifying Integrity
+Integrity Rules must be applied to verify the validity of your design.
+
+Entity Integrity Rule: The Primary Key can't contain NULL. Otherwise, it can't uniquely identify the row. For a composite key made up of several columns, none of the columns can contain NULL. Most of the RDBMSs check and enforce this rule.
+
+Referential Integrity Rule: Each Foreign Key value must be matched to an entire Primary Key value in the table referenced (Parent table).
+
+You can insert a row with a Foreign Key in the Dependent table only if the value exists in the Parent table. If the value of the Primary Key changes in the Parent table—meaning that the Primary Key value is updated or row is deleted—all rows with the matching Foreign Key in the Dependent tables must be considered or handled accordingly. Your options include:
+
+Disallow the change to the Primary Key (most common).
+
+Cascade the change to the Primary Key by changing all the matching Foreign Keys in all dependents.
+
+Delete the matching dependent rows.
+
+Set the Foreign Key value in the matching Dependent Tables rows to NULL. This can be done only if the Foreign Key isn't part of the Primary Key of the Dependent table (see Entity Integrity Rule).
+
+Most RDBMSs can be set up to perform the check and ensure the referential integrity in the specified manner.
+
+Business Logic Integrity: There could be integrity (validation) pertaining to the business logic. Some examples include:
+
+Zip code must be five digits within a certain range
+
+Delivery date and time must fall within business hours
+
+Quantity ordered must be equal or less than quantity in stock
+
+These could be carried out in RDBMS-managed validation rules for the specific column or programming logic.
+
+#Final design
+
+Image - Final table structure
+Here are some notes regarding the final design:
+
+All tables are in Third Normal Form and are in one-to-many relationships.
+The Instructor/Location relator table became the Cohorts table after consideration of the columns belonging in it.
+The Instructor/Course relator was discarded as the relationship it supported is handled by the Cohorts table.
+The Number of enrollments and number of students graduating for a course in particular cohort at a specific location wasn't stored, as these values can be easily derived from the Students table.
+Business Logic rules/constraints weren't considered.
+#Conclusion
+Relational Data is widely used in today's world. A proper and correct design of the Database is critical to the effectiveness of a Relational Database system.
+
+The Relational Database Design process is sometimes ignored because many believe that it's far easier to simply create tables and hope for the best. It's not uncommon to see a disorganized set of unrelated tables in a supposedly Relational Database.
+
+Relational Database Management Systems (RDBMS) allow the definition of Databases that don't follow the rules of the Relational Model. Databases implemented outside the Relational Model work in an RDBMS, but performance and ease of use generally suffer.
+
+The benefits of implementing a good design far outweigh the time that's thought to be saved by not doing it. Developers spend more time attempting to rectify any issues that result from implementing a database with a bad or nonexistent design.
+
+#Summary
+In this chapter, you've learned about:
+
+Creating a data model
+Identifying entities in a data model
+Best practices for identifying primary keys
+The different types of relationships between entities: one-to-one, one-to-many, and many-to-many
+Normal forms
+How to verify the validity of your design

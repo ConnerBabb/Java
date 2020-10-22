@@ -1,0 +1,141 @@
+Book
+https://book.techelevator.com/content/functions-javascript.html#documentation
+
+Documentation
+One of the core responsibilities of a programmer is writing documentation for the code they create. Documentation is more than just comments on the code and there are a lot of comments that are considered bad practice.
+
+#Line Comments
+Look at the following example:
+
+// Set number of phones we have to one
+let number = 1;
+This is the first bad comment example. It's a comment that just describes what the code is obviously doing. It's redundant and doesn't even need to be there.
+
+You might say that it gives you more information than the code does and that would be correct. The code doesn't really say what number is, but the comment clearly states that the variable holds the number of phones. But that's a problem with the code and the selection of the variable name than it is a virtue of the comment. Better would be to rewrite the variable name:
+
+// Set number of phones we have to one
+let numberOfOwnedPhones = 1;
+Now the comment is extra redundant. What happens when, in the future, this needs to change the the programmer updating the code forgets to update the comment?
+
+// Set number of phones we have to one
+let numberOfOwnedPhones = 3;
+As dumb as this sounds, this happens all the time. Better is to never have the comment there in the first place.
+
+let numberOfOwnedPhones = 3;
+This is called having Self-Documenting Code and it's an important skill to get in the habit of. This is why we emphasize good naming conventions so much.
+
+So if you don't want to comment about what the code is doing, when should you write comments? You should write comments to explain the purpose of code rather than explain what it's doing.
+
+// We'll need the number of phones in order to later build the display table
+let numberOfOwnedPhones = 3;
+#Function Comments
+Comments on functions are typically integrated into the IDE and are used to create documentation of your code for other programmers to use. They follow a standard format, called JSDoc and Visual Studio Code will even help you write them.
+
+
+Image - Documenting multiplyBy
+This sort of comment will now show up in your IDE's intellisense.
+
+
+Image - Showing Intellisense
+JSDoc is so powerful and helpful that you will be writing it for any function--and other things--that you'll be writing in JavaScript from now on.
+
+#Writing JSDoc
+Going through certain steps will make writing JSDoc much easier. Feel free to follow along in your IDE with the example below.
+
+First, write your function like you normally would. Having the function signature in place first will help your IDE fill in a lot of your JSDoc for you.
+
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+Then, in the line right above the function, type a /** and hit enter.
+
+/**
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+That will expand into this:
+
+/**
+ *
+ * @param multiplicand
+ * @param multiplier
+ */
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+The @param lines that just appeared mean that they are specific comments for your parameters and will be listed on their own lines and in the order that your parameters are listed in your function.
+
+All of your parameters are ready to be documented! Your cursor will start after the first parameter. Just type in what that parameter is. When you're done, go to the next parameter and add documentation for that as well.
+
+/**
+ *
+ * @param multiplicand a number to multiply
+ * @param multiplier a number to multiply by
+ */
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+You can then describe what the function does in the space above the parameters. This is where you list out what the function is for and any assumptions that you are making on the parameters coming in and what should be expected from the return value that the function will give back.
+
+/**
+ * Takes two numbers and returns the product of
+ * those two numbers.
+ *
+ * Will return NaN if exactly two numbers are not
+ * given.
+ *
+ * @param multiplicand a number to multiply
+ * @param multiplier a number to multiply by
+ */
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+You could be done here, but a couple of added documentation pieces can really help a lot. First, under the @param lines, add another line that uses @returns to describe the return value.
+
+/**
+ * Takes two numbers and returns the product of
+ * those two numbers.
+ *
+ * Will return NaN if exactly two numbers are not
+ * given.
+ *
+ * @param multiplicand a number to multiply
+ * @param multiplier a number to multiply by
+ * @returns product of the two parameters
+ */
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+You can also, if wanted, describe the data types of the parameters and return value. In JavaScript, you can't enforce that your function is getting the correct data types, but you can clearly say what types you expect in these comments. Then a programmer will know that their code may not work correctly if they give you a different type.
+
+You can add those to @param and @returns by adding data types after those keywords in curly brackets.
+
+/**
+ * Takes two numbers and returns the product of
+ * those two numbers.
+ *
+ * Will return NaN if exactly two numbers are not
+ * given.
+ *
+ * @param {number} multiplicand a number to multiply
+ * @param {number} multiplier a number to multiply by
+ * @returns {number} product of the two parameters
+ */
+function multiplyBy(multiplicand, multiplier) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+And that's it. Your IDE will instantly pick up these comments and use them as documentation in the intellisense system

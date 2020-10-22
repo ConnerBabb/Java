@@ -1,0 +1,49 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#exception-handling
+
+Handling Program Errors
+Eventually, you'll have to come to terms with two things:
+
+Your users will type "two" when you ask for a number, "yes" when you ask for a boolean, and anything else that you can't anticipate.
+You'll make a mistake in your own code that you didn't expect.
+Thanks to the compiler, the second one is less likely. When it comes to syntax errors or a data type mismatch, the IDE indicates that something is wrong with your code. Fortunately, your users never see these. These are called compiler errors.
+
+Runtime errors are different. They occur when the code runs. The IDE and the compiler won't detect logical errors ahead of time for you. Runtime errors happen for any number of reasons:
+
+You go out of bounds when working with an array
+The input can't be parsed into a valid data type
+The email address already exists in the database
+The server is offline or overloaded
+The file you try to open doesn't exist
+Some of these can be limited through defensive programming but as a programmer, it's your job to make sure that the ones that can't be prevented don't negatively affect your users' experience.
+
+The last thing that you want your users to see is this error message. They may think something malicious has happened to them:
+
+Unhandled Exception: System.FormatException: Input string was not in a correct format.
+at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number,
+NumberFormatInfo info, Boolean parseDecimal)
+at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+at BobsProgram.Main(String[] args)
+In this section you'll learn:
+
+How to handle exceptions with try, catch, and finally
+What's revealed within a stack trace and how it helps you troubleshoot your code
+Throwing built-in and custom exceptions
+Guarding against exceptions through defensive programming
+#Exception handling
+Java includes the capability to help you deal with any unexpected or exceptional situations while your program runs. The practice of anticipating these anomalies and addressing them is called exception handling.
+
+When users interact with applications, you should expect them to make mistakes. If you don't, you're in for a surprise. In their defense, they expect your application to indicate that something went wrong, not display a cryptic error message.
+
+When applications implement exception handling, they allow you:
+
+The ability to display specific error messages
+To notify other programmers that your code didn't finish execution
+Without proper exception handling, exceptions go uncaught and can potentially reveal information about your program that you don't want your users to see.
+
+There are a few terms to know when it comes to working with exception handling:
+
+Exceptions are raised or thrown.
+Control of the program stops abruptly, and the exception bubbles up until it's caught.
+A caught exception handles the error and displays the message to the user or logs it.
+The next section describes some approaches to implementing exception handling in your programs.

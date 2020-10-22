@@ -1,0 +1,1179 @@
+Zoom
+https://techelevator.zoom.us/rec/share/-9clAp_U-0hOXonqt0OFGas7PYmmaaa8g3MX8qcNy0qVvc_gRFcgpKVDM2AmtCzc?startTime=1591623753000
+https://drive.google.com/file/d/1Lkj8MjqNr6WhLgjMV3f7E1eoy6REJPGZ/view?usp=sharing
+https://docs.google.com/presentation/d/1J5RIKay5FffpuE7kZAli3xwGAU2VJ8PLjiWC7QFeMaU/edit?usp=sharing
+
+
+So um, so I'm going to give each of the three each of these part pieces of
+
+kind of introductory to what databases are, instead of them. And with the first portion of the SQL language SELECT statement. One of the things we'll find this week with the SQL language is it's much more intuitive and a little bit easier to use than Java. So it's something that we can definitely learn in a week.
+
+And so let's take a look at
+
+what it means to be a database. So a database is an organized collection of data that we can access and can be managed and updated. So it's all around storage of just record. So data, it's about not only storing them, but how we access them and how we can get that data Back, it's meant to be able to hold large amounts of data, and then be able to retrieve them very quickly. And so there's a different few different ways they can work. a relational database, which is what we're going to be spending most of our time on. And definitely the most common database and usage is a particular type of database that has what's called relational models, when rather than storing all of its data together, it stores data in pieces, and then it relates to them. And we'll learn how that works throughout the week. But then, the reason it does that is then it can use these relations to determine answer questions that the author of the database when they were putting the data in, didn't even know they had. So in also to minimize the amount something stored. For instance, in any address, no multiple people can live at that address. So if there's six people living in address, Should we store the address six times? And then if it's relational, it's not the people in the address are only connected or separate but connected, then we can start looking at things like who lived at that address at a particular time frame, or when another particular person look there. So it gives us a way to kind of expand our question that way when to use the data as we move forward, even if we don't know upfront what that may look like.
+
+So DNA relational database is going to be
+
+accessed and reassembled in many different ways without having to reorganize the data. We want to be able to do all this. And part of what it's going to do is going to be organized such that if we when we want to answer these questions, when we want to determine you know how many People purchase how many people in hire purchase this product, then we need to be able to do it without having to reorganize things. And that's what a query language is going to do for us, it's gonna allow us to ask the questions without actually organizing the data in a different way. So we're going to find that in a relational database entities will have to refer to as the data are going to be stored in tables. And we'll come back to all these terms. And then these tables are going to have columns that are attributes. And that's basically we're going to define what's being stored on the table. And then we're gonna have rows that represent records. So if any of you have seen or worked with spreadsheets, that's exactly the type of data structure we're talking about just on a much larger scale. And this whole idea of having relational database and this relational model and this problem is not new. The idea of relational database and SQL databases that actually came about 1971. In a developer named er EF cod came up with this idea of modeling data in this way. So it's not a new idea. And it's been so successful, but it's persisted. I won't say unchanged, but the ideas been unchanged. The implementation has changed since since then, so you for quite a while. But something developed 50 years ago that's still in use in any in the computer world is that's a pretty amazing longevity. So what we're going to focus on is these relational databases, because they're the most common ones in use, but they're not the only ones in use. So databases themselves are defined by these things called relational database management systems or our DB MSX and RDBMS is relational database management system. So a database has kind of an overloaded term, it's a term we use the mean multiple things. When most people are talking about a database there, they're talking about both talk about, you know, it's Oracle, the one that most people know about, even if they're not in the development world, because it's the one that has takes out television commercials and other advertisements. They're talking about that product, that piece of software. But that's the DBMS. That's the database management system, which is an application piece of software that is designed to manage the database. The database is actually the structure inside of that there can be multiple of them and multiple of them in any DBMS system. As we're going to see, starting today, we'll add one and then we'll add more as we go throughout the class. Actually the rest of the cohort In the DBMS, the management system has really four functionality for responsibilities for things it's going to do. It's going to define how the data is being stored. And what it is. It's going to store the data. So it's actually going to be the piece of software that manages the storage of this data. It's going to allow us to retrieve it in some way. And it's going to allow us to do administration, meaning we're going to be able to add users like we talked about last week, with files on the file system, database data, and tables and other pieces inside of it are going to have users involved in other ways that can be administered. So it's going to give us it's software that gives us the ability to do these things with our databases. But it's when people talk about it. When they talk about a database may that's usually what they're referring to, is the DBMS. So when you hear Oracle or post SQL, or MySQL or Microsoft SQL Server, that's what they're referring to the DBMS system. Alright. So the reason we use these DBMS systems because there are smaller solutions for databases is that it's going to allow us to store very large number of records. And we're talking about large number of records, the size of some databases is something that
+
+is often much larger than we think. It's thought of, we say large, many people think, you know, maybe a few hundred thousand, but the definition of a large database so when it transforms from being a regular database to these things called Big Data databases, is a little over 4 billion records of data and a single single record of data. So that it's They get quite large, actually, I'm sorry, 4 trillion records the data. They get quite large very quickly, I worked with databases where they were adding over a million records per day. So the size of the data storage we're talking about is can be huge. If you think about, you know, sites like Amazon, or if we started with a sample on Amazon or Netflix, or Google search, where they keep analytics about all the searches done. And how many people are using those products on a regular basis, or how many products in users they have just to keep track of. And on top of that, keeping track of everything the users are doing all the, you know, every users cart on a site like Amazon, or every search that's happening on Google. That's all stored in databases. Or if you take it to social media sites like Facebook or Twitter and the constant messages that they're millions of users are generating, those are all stored in databases. So the data sets that we're talking about, can be small, but they also can be quite large. And that's what these DBMS systems are built to manage. So it's also give us central storage. So by having this database system that our applications can connect to and use, it gives us the ability to have everything centralized. So if you think about, again, like social media, if you would log into your Twitter or Facebook or whatever other social media account you're using, and your friend logged on, and they sent a message, and you couldn't see it because it was not centralized. That would be a problem. All right, that would, that would not work the whole system would fall apart. Same way, if you were doing a banking transaction and you made a change, you deposited money into your account, and then you went to another business, and it wasn't there, because the data wasn't centralized, it had to wait on some kind of movement for to move between the different systems, that would be a problem. So databases give us that centralization. It gives us a, a single place where massive amounts of data can be stored for all of our users to share. It's also then going to give us the ability to query this data, to ask questions about it to come back to it and say, you know, what, what do we what are we interested in about this data? And how can we find out that information, and then it's going to also enforce integrity. verted and we'll talk more about data integrity later this week. But means that it, our data stays in the state that we want it to be that if we have a user that should have a phone number that they always have a phone number. And then finally that those guarantee our data types, so called like Java does with our strict data types, we say this is going to be an integer, and then we're guaranteed always be an integer. A DBMS system does that as well. It gives us the ability to set data to being particular data types, and then having it always be those data types. So there's two major types of DBMS systems. There's already amount of our DBMS, the relational database, and these are commonly called SQL databases or SQL databases. And that's what we're going to be spending our next couple weeks on. These are the databases you hear about quite a bit like Oracle and Microsoft SQL Server, db, two, MySQL, the one we're going to be working on With a post, post SQL. So they're the ones that are the most common. They're the ones that most people, even people outside of the programming world are, are often familiar with.
+
+They, they work in this relational model, and they work very well with large sets of data and not having to know up front how we want to use it just we want to store the data. So by far the most common and because they use a kind of standard that we'll look at, as we go, once you know how to work with one of them, you effectively can work with all of them, at least for the for the basic usage, but they're not the only type of database out there. There's also another set of databases that are called no SQL databases that don't use the relational structure and they offer a different level. flexibility and no SQL, you hear that quite a bit. If you start looking through databases is that kind of umbrella term that encompasses any database that's not relational. And these databases are specialists, they solve a particular problem. So they hold their data in a way that solves their problem with their structure to use it. So they get around the with a relational database with everything being broken apart, sometimes it that's not desirable. Sometimes we want things to be organized in different ways, so that we can access it more quickly for the needs of our application. And that's what no SQL databases provide ways databases that provide those types of solutions. So some of the popular ones and we're, this is this next couple minutes will be all we'll talk about no SQL, since they are specialist
+
+that you hear about.
+
+Maybe not quite a bit, but your encounter fairly early. is mine. Go dB, which is an open source database that's available that, um, at least I think it's open source, it's at least free, free to use. I believe it's open source, though, that provides what's called page data, which is if you think about like a recipe card, recipe cards where everything is contained on a single card, where a relational database would have the ingredients in one part, and then maybe the amount that you're going to use each ingredient, another part. And then recipes that use the each ingredients would be another relation, they would all relate together. They keep them separate so that it can be reused. With Mongo, you have kind of the whole card the entire recipe together in a page. There's Cassandra, which is Facebook's database, which is also available for public use. At least in some forums, that does the same type of idea. It's this page development so that they do I maintain the speed that they are able to update their posts with millions of posts happening at the same time. And wanting to show them and their algorithms, they determine what's going to be displayed to Cassandra allows them to keep that feed updated without having to have it relational. So it keeps each individual user works kind of like a page in it, where they add connections between them. I don't actually know all the details of how it works. But it's specifically around their problem of that newsfeed. They're trying to keep updated. There's big table which was developed by Google that used in their analytics. So they actually use relational database for their searches, at least they used to I haven't kept up to date in the last five or six years. So what they've they've changed that but as far as I know, they still are doing that but Cassandra but big tables used for their analytics and it works through these key value pair sets, much like a Java map. And then there's h base, which is Google took their proprietary database they didn't want anyone else to use. And they made a version of it. They open sourced it that's commonly used to solve the same type of problem that they have a search of connecting, or search analytics connecting the user to all these different kind of web of things. And it's commonly used by LinkedIn. That's what drives LinkedIn right now. And also, if you use things like Spotify, the user portion, the user management portion of Facebook is using it. So these are problems that are solving these, each of these problems we talked about. There's different kind of large companies, those are special problems. These databases were built to solve their problems. Amazon has one called Zeno dB, that I'm not really familiar with how it works, but it solves their problem with their search engines. It's also really big Through their web server, their web services, their Amazon Web Service service. And then one that most of you probably will encounter fairly quickly is called Firebase, which is an open file. It's a service based, or cloud based database that is provided by Google. And you strongly heavily in mobile development, because mobile development often doesn't need a lot of the relational type features. So each of these solves a different problem. So you, you pick a no SQL database based on your problem. If you don't have a special problem, then most place companies will use a SQL database. In fact, most companies, all the companies that is listed that have these special was databases, they all have SQL databases as well. So it's not a competition between them. It's which one solves the problem which total solves the problem you have. So There is no like, there's no competition between programming languages have no job is better than C sharp and pythons better than them all. Yeah. But in the database world, there is no no sequels better than SQL because they're solving doing different things. They work together commonly. So before stuff kind of a crash course on what a databases database management system is. So the next thing would be to start looking more at the database we're going to be using and how it works it a little closer at SQL databases. So what questions do you have before we
+
+get more detailed?
+
+Okay. All right. So,
+
+so specifically, the database we're going to be working with this cohort is one called PostgreSQL. And it's realized I didn't With a new slide, we're waiting to see it. I shouldn't see it here. your toe, Bart's the elephant. That's up in the corner is the Postgres app.
+
+You see that? It's full name. Here.
+
+Postgres, PostgreSQL. Nobody actually calls it that everyone calls it Postgres. pronounciation of Postgres is up for debate. past students told me that they went to a beat up meeting where they went to dinner afterwards with a bunch of programmers who were working, actually database developers, and that there's like seven or eight of them there. And they each had a different way. They pronounced it so you'll hear different versions. But Postgres is the database we'll be working with. It's an open source database that is really common, especially in the Java world. It's probably compared to like Oracle, Microsoft SQL Server where you have to purchase them and they're quite expensive. No, Oracle for most companies is a million dollar or more expensive, hundreds of thousands to a million dollars, I guess. Last place it was it was a little bit large. So probably not a good scale, but it's a very expensive application. Postgres is not, it's free, and it can keep up with the same, the same level of performance it just has. It lacks some of the extended features that most commercial databases do. So there's two, two major ones that fit this world, Postgres and MySQL. They're both commonly used. So we're going to use Postgres and it's our DMS system can be accessed through the elephant icon. I'm gonna open it up.
+
+And yours will look quite like mine. You'll have
+
+one that has your name, and I think one that says
+
+Postgres on it. Maybe Postgres SQL, so two or three, maybe a few of them, but they won't look like mine. By the end of the cohort, yours look a lot more like mine. So Postgres is the, our DBMS. Our DBMS is the database management system. The database themselves are represented which databases we have in this tool by these icons. And the databases are collections of like data. So you know, here, there's an address book, data that ran a campground application dating around a catering system application, and data around a DVD store that we'll be looking at later this week. So each one is a set group of data. So we won't use this application a lot. But before we move on, I would encourage everyone to go to their the elephant and just open it to Make sure that you see these. If you don't, or doesn't say running, then we'll want to get that fixed. Now, before we move on too much farther, because we will be.
+
+So we won't actually use it this way a lot, we'll get back to how we're going to use it. But that's the database we're going to be working with. It is a SQL database, relational database. So what that means and a little more detail
+
+is that
+
+inside each of these data, there's databases there's the set of things called tables. And a table is going to define data elements and structure usually like data that are go together. So if we had if I had an address book database, some tables and it might be there may be a table that holds an address, physical address, there may be a table that holds the phone number there Maybe a table that holds the person's name, and maybe some demographics about them, there may be a table that holds their email address, and then those will all be connected to relationships. So we'll have a relationship between, you know, the person and the email address and the phone number in the address. But each of these tables, then we broken down into columns, and the columns will be the Set number. So each table has a set number of columns, that defines what is being stored. So an address table book table, or sorry, the address table may have something like we're going to store information about the street address. So maybe it has line one of the street address and line two of the street address. And then maybe it takes has us It stores the city and then zip code and maybe the country code and the state so the different pieces of the address each broken up into a column. The person may store know their first name, their last name, maybe their date of birth, or a definition of how you how you know them, you know, their work contact or personal contact. But this columns are set, we'll define them as we set up the data. So they're going to give structure to the data. And also gonna have data types, they're going to say this is going to be a string, this is going to be an integer, you know, this will make decisions around, we're going to store a zip code. So we'll store it as character data, or we'll stored as an integer. We're going to store an amount. So it's a lot of the same things we've done around variables in Java. That's what the columns will define. And then tables also have rows in rows are the data being stored. So in you know, an address table, if line one might be The column and the data, one of the rows in it may be, you know, 123 some street. And the city is the column and the row in it is Columbus. So it's the actual data. And there's unlimited number of rows. And it says there can be zero rows to as many rows as the, really the computer is running on can handle, which they can get quite large. I said they they have this breaking point in the in the trillions where they go to what's called large data sets. And they go much bigger than that. But at that point, they they start slowing way down. And there's a whole group called Big Data, or hope portion of developers called Big Data developers who focus on this problem of how do we work with datasets that are so large that they're almost unimaginable, and they they do specialize things around it. So there's a number of rows and then In the columns and rows intersect, and those are what's called cells, we'll call those cells. And that's how we're going to refer to a particular piece of data we're interested in is by the cell. So all those are just vocabulary words, really, at this point, I was looking at how that actually looks in a database database table.
+
+So here
+
+is actually a visual representation of a database table that we'll look at later today in an actual database, called the world database. And it just has this particular one it has cities in for each country, so as cities of the world or the country they're in and some information like the district aren, and population and that's some other information we'll see. But it's just the parsh portion I grabbed when I cut and pasted it off. So the columns would be ID name, country code district, public population, something it's not shown here is each of those would have a definition of this is an integer. This is character data. This is character data that can only be three, length of three. This is character data. This is integer, there's also we can say floating point. So the columns define the data and bear the, we can think of them as the kind of the vertical. Just like we look at columns on a spreadsheet, right? If you're for those you who are familiar with spreadsheets or worked with them. So rows are the data themselves. You know, they're the actual information that saying this row has an ID three. It has an array that has the country code of AFGE. This row has ID of five it has the name of Amsterdam has a country could have NLD and then we can refer to it then we can start with To what we're interested in by the cell, which is the intersection. So the intersection of this row. So the row, maybe that has ID three, and the country code contains AMG. So we can start saying I'm interested in the row where the column is ID, and it has the data value of five, or three, I guess. And then look at the data for start pointing in particular records in the row. Or I'm interested in the country code, the intersection of the data, the rows that contain the value in rd, and the column. This is country code, which would allow us to start talking about not only one one set of data, but a grouping of data. So it's organized in this way, and we'll use succumbs to define what it is there'll be a set number. rows will be the data themselves. There'll be an unlimited number of rows. And then we'll talk about the data by the intersection of the columns and the rows. So, before we continue are there What questions do you have?
+
+Okay.
+
+Columns also infinite.
+
+Technically, yes, this has to be defined in advance.
+
+Okay. So they're, they're defined when we will learn. On Friday when we learned how to define the structure of databases, the structure of a database, the table saying, we're going to hold country information or city city information, we have to define we want to, so it's kind of setting up variables in advance is the same idea. We can create as many as we want, but we have to define what they are.
+
+Thanks
+
+Other questions?
+
+Okay. All right. So the way we're going to work with all this data, first, let's focus on these data types. We're not going to learn today, how we define them, we're actually saved that for Friday, we'll talk about why in a minute when we talk about the struct struct, this thing called Structured Query Language. But before we can really talk about that, we need to talk about just how data types working in SQL. So before that, even, let's talk about what SQL is I keep saying this, it stands for SQL stands for Structured Query Language. And it's a language that's going to let us access and manipulate databases. And SQL, like the word database itself is an overloaded term SQL actually refers to the language, but it's used just to refer to any relational database So people talk about Oracle being a SQL database, or they'll say, I work with SQL, they're referring usually to the database in the language of the same time. But Structured Query Language refers to the language and that language is going to allow us to not only access the data and make these relationships will also define the database itself and how it's going to be structured, how it's going to work. So part of is going to be setting up these columns with data types. And only setting up the columns kind of in Java, we can we need data types to create the variable. But we also have to understand the data types to work with a variable, right? If we're changing something about a variable, we have to understand if it's an integer and what that means to be an integer. So the same is going to be true for working with SQL. We're gonna have to understand the data types. So what we're going to look at is specifically called anti SQL or ANSI SQL. And it's a standard that databases must follow to be considered a SQL database. So it's kind of like being compliant with a set of given of set of rules of you have to, you have to support this blank part of the language, this base set of commands in order to be called a SQL database. And we're going to focus mostly on anti SQL, we're going to focus on the anti SQL data types. We're going to focus on anti SQL commands, clauses as we go through the next week. But sometimes we're going to have to break and look at Postgres specific ones, because anti SQL defines this set of things that a database must do a set of commands, it must have be available, they must work pretty much the same. So but then, each database has its own variation, where they take the base and that doesn't change but they extend it. So they say, Okay, here's, you know, the basic 10 or 10 commands or so that we can use in different ways we can use it, but we're going to add another 10. On top of it, that we're actually it's more like we're gonna add another hundred on top of that do more. And those extended commands are different between databases, but the anti sequel is the same. Which means once we know how to write a, what's called a query, which is a way of accessing the data or manipulating the data in the database, once we know how to write a command to do that, we can write it across any SQL database. And it will work if we don't use things that expand into that databases own extension of the language, which means that once we learn how to use Word in SQL database, we essentially learn how to use all of them at once, just not their extended features. So we're going to focus on anti SQL everywhere we can, there are some times where Anssi says you must have this ability in some way, but they don't say exactly how it has to exist. And then we'll get those points. And I'll point them out when we get to them and we see them, then we have to look at the Postgres specific way, since that's the database we're going to be working with. But so the ante language is something that's not proprietary. It's something that's open to, or required by all super databases. And then they all each have their own proprietary version of the language as well. that's specific to them. So let's look at the data types. And again, we're going to focus on the NC ones. It's I guess, I
+
+just have a quick question. It might be a dumb one is a no SQL database still considered a SQL database?
+
+It is not No, they have they may not many of them actually borrow heavily from the SQL command set. But they have their own command set because their data is stored a lot of the way the SQL command set the problems are solving. They're solving it because the sequel relation ship That relationship. So the relational mappings that all the SQL language is based around didn't work for their problem. So they have their own command sets. All right. Thank you, Brian.
+
+Yes. Would it be weird if we took a break right now, just so that we can get like, excited and juiced up ready to grasp the fancy sequel stuff? Oh, no, nothing, I guess at this time, isn't it? So thank you, actually overdue.
+
+So let's take a break, we'll come back at a but 1028 and take a look at this.
+
+resumed the recording. Alright, so then the next thing we'll talk about is said these data types. Let's take a look at some of the anti SQL data types. What we're going to look walk through is not every data type available even just an even an NC sequel. going to take a look at the basic ones for each that we may encounter. And there's also definitely other ones inside of Postgres that we won't look at today, even though we'll probably encounter them throughout the week, especially around numbers. So the first would be the character data types. Character data types hold data like string does in Java, I don't characters. And there's three. There's car, ch, AR and var car, which stands for varying character. Both of them are defined by a particular length, I would say that the majority of data in a database that's text based, ends up being defined as var car. So they both hold text, they both have a predefined length. So though, it's becoming less important, defining the size of the data saying this data, you know, can only hold 38 characters this build is much more important than it is in Java, because it is permanently held in memory it's permanently stored. And no, if you have millions of records, and this is your holding, you know, everyone's address the size of wasted space to make something too large actually adds up. And can can have more of an impact in a database than it does in modern languages like Java. Just because computer memories you know, it's they're temporary. And that type remember, he's getting rather cheap at me it's even cheaper actually, for the hard drives that servers need, but it's permanent. So if you're taking up space, it's currently taking up the space. So most data in a database has a set size. Most text data is going to be var car bearing character. Though cars used for if you have no flight you weren't held by 100 correct. We like that it's always three characters. So define it as such. So the difference is that if we had a card defined at 12 characters, and we put these three terms on Python, HTML schema.org, this is what it would look like. So HTML would store the HTML, and then it would store eight blanks. So it's always going to be taking up 12. No matter what. You know, if we put Python in it, taking up six characters, then we're going to store six blanks. So if we put in the letter A, we're going to end up storing 11 blanks. It's always going to be 12 in size, varying character of our car, given the same values, if we store HTML in it, it takes up four. So it varies to the size cars a set size, it's if we say it's going to be 12. It will always be 12. No matter what. We're varying character is a dynamic size. If we say it's going to be 12, then we only put four characters and then we use up four spaces and it resizes down to 12. So becomes up to 12. So those are the car. Those kind of replace what we would work with bus like string and in a language like Java. And when we get to kind of database design later this week, we'll talk about why we would choose one versus the other. So most data is going to have been very big character because often we don't know how large can we know the MAX SIZE it may be there's all these definitions we'll look at later this week. around you know, the maximum size we should allow for somebody's name versus somebody's address versus cities. There's so
+
+yeah, yeah. I mean, it's if you're cashing it
+
+in something that makes it smaller than
+
+Yes, but since most hash codes are not reversible,
+
+then there may be some limited, limited use to that. Okay, so thank you. Yeah. So what is storing characters? So what we decided to put in there, and we will look at storing hashes. Next week, we'll actually have a security day we'll we'll talk about specifically hashing hashing.
+
+But so date one question I was answering for those who don't know it's in the tech isn't chat question about storing hash codes. So we have these two then there's a newer one. So I also should point out that the MAX SIZE of traditional MAX SIZE of car and var cars 255. So think about a bytes can store between zero as we talked about in Java. It's not just Java it's every language a byte can store maximum of 256. So it's the size sorry, Mac size is 256. It's the size of one byte is the normal storage amount for var car and car. Modern database engines, including Postgres can go much larger than that. But traditionally, that's been the MAX SIZE. So then text is a is kind of Java string, it's unlimited as well, limited by the memory in size. So you know, we can start a time novel and text. But the problem is that when it's empty, it takes up a lot of space. So generally, we don't use unless we're trying to start a novel for storing something that is quite large, that's going to be even a short story. And we know it's going to take up more space than we can fit into a VAR car 255 in text, maybe would be what we would use. So you actually don't See it used a lot because it does take up so much space when empty. And because most data you'll find, doesn't actually need to be that large.
+
+Especially when it's divided up into parts.
+
+So those are the three character data types. So questions about those before we move on?
+
+I got one for you.
+
+Yeah. So if you use barcodes well, and then try to store something that was greater than 12. Is it just up to? It is up to them? Yes. Okay.
+
+Yeah. Yeah, you get an error that you can't store something that size. Sounds good. Thanks.
+
+So now let's look at the numeric data types are a few of them. I said, we're looking at just the empty ones. And we're only looking at just a small grouping of them. They kind of give us what we had in Java, so there are more. But so there's int or integer, it can be spelled out or just I Empty either way, that is similar to Java set. So that should be pretty familiar to us. There's also big end. or big integer though I in most database systems, you can't spell it out you have to say big end as big empty, like it's here. that's similar to Java as long so it's double the size of an integer. So that's there's often no familiar coming from other languages because we have those in those languages. The decimal is a floating point number, so it'd be similar to double, although it doesn't have the precision problems and some of the other problems so it's more maybe similar to big decimal, and Java. And it's defined in big int are not defined with size because they're they themselves to find a size just like integer and long do in Java. decimals defined with two numbers. So we said character is defined with the length or var cars defined with length decimals defined with precision. comma, scale. And it sets, the precision sets the total number of digits being stored. The scale sets the number to the right of the decimal place. So those of you anyone coming from a math program, math, backgrounds, heads probably are throbbing right now, because that's reversed of how we often use those terms. But so if we had a number like this 1234567, this would have a precision of seven. If we had the same number, this would have a scale of three. So we won't be defining these aside until later this week. But being able to read them today can be important. So look at when we're working with decimal data, it'll tell us by its precision scale, how large it can be, and how many characters to the right of the decimal point So before we look at the next set of data types, is there
+
+questions about
+
+the numeric data types?
+
+Is there a limit
+
+to the position?
+
+There is for each database. I don't know what it is off top, my head from for Postgres, but each database system will have its own on limitations on what that's going to be. So there's no standard limit. No. But there is one Yes.
+
+Is precision has to be predefined?
+
+It does. Yes. So it's taking up so it's like with a car and var car we said this can take up you know, 12 characters. In this case, we're saying this number can be 12. We're gonna hold 12 numbers. And then the scale says we're gonna hold 12 numbers and we're going to put the decimal point in the third position. So, so yeah, it is it is predefined the size of the number
+
+of questions.
+
+Instead, there are other data types each. Most databases including Postgres hasn't their own floating point data type. Postgres has modes called numeric. That make gets rid of some of that need to do things like predefined size and stuff like that. But this is the anti standard. Right? So then a few other data types, dancy standard states, there must be a boolean data type joke true or false like Java, but it doesn't state how it should be has to be implemented. So each database implemented in a slightly different way. For instance, MySQL are implemented as tiny and We're not using MySQL, so don't need to worry about that. Postgres and Oracle both implemented as bullion. So what we're used to, so we'll just use boreum. MS SQL, Microsoft SQL, what they're using in dotnet class they implemented as bit. So they just think there has to be a true or false data type that matches boy, I'm not how into SQL in the state of how it's has to be implemented. But what we're going to be using will just be Boolean, so we won't have any need to keep that in mind we just use we're familiar with. And then there are three anti single NC SQL date, definitions, big data types. There's date, which has a format of year, month and day, time, which has hour minute and second and also can take depending on the limitation to the database management system can often take milliseconds or nanoseconds. I believe a Postgres goes down to the nanosecond, I believe, but At a minimum, we'll have to take this and then there's timestamp or date time. It's actually date time is the standard. But every database I've worked in, has timestamp that treated the same way that is a date and time together. And again, each individual database may have greater precision than just second, which is what the anti SQL sets. I said, I'm pretty sure Postgres has out to the nanosecond. But you can pick just to choose second, or millisecond, as needed. So these are the three date formats we have. It will learn how to work with this a little more as we go this week. For all of these, there's also the idea of they can hold time in the whole time and work with it in a 24 or 12 hour clock. And they also have the idea of time zones. So that's also included with that if we don't include it, it just takes on the information. For never the server's using
+
+but if we do
+
+then it has that ability they all have that ability right
+
+so other
+
+so what questions you have about any of the data types because we're going to move on next to actually setting up our first database and our tools to work with it.
+
+Does it actually store the timezone?
+
+It does Yes. If we tell the story timezone it does. If we don't then it takes the server's timezone
+
+Okay, which is the computer running on its timezone.
+
+Though I believe in all cases, it stores the actual time and GMT and then are actually no Universal Time UCT and then stores what timezone to translate it to. But that's internal. We don't
+
+will necessarily really care about that as long as it gives us the right answer. Right.
+
+So Other questions?
+
+Okay, so
+
+now we have the data types defined, we can actually start working with something.
+
+So hopefully we'll get a little more interesting.
+
+So let's set up our first database.
+
+So we're going to work Postgres. We already have the database management system all installed. But what we're going to do is install a database in the now or set up one. And to do that, we're gonna have to get a terminal and everyone should follow along with us and if you don't get it working as we go, please speak up because if you don't have this working You won't be able to do the exercises tonight or tomorrow. So we definitely want to get it working now. So in Terminal, we're going to want to go to C into your, your name, Java, blue material folder, and then into the module to folder. And then to the 01, Introduction to the database. And I should actually switch to the next slide because it has this written out on there. So we're going to this folder. So your name Java material, module two, introduction, database, student lecture database. Sure, I'm going to go to a lecture lecture for this won't hurt anything
+
+to remember the change back
+
+and then if we do an ls in this folder, you should see this world SQL file. So we need to be In the folder that has that file before we can proceed, so I'll give everybody a moment to get there.
+
+I'm sorry. So once we get to Module Two, what do you want us to do?
+
+We're going to continue on to 01 introduction to database, student lecture and database so you wouldn't be at this directory. This lesson here.
+
+So is there anybody not in the structure now. So for everybody if you type ls, and press enter, you get you see world dot SQL.
+
+So we're going to come back to what this file is later this week. I'm gonna open it don't you don't need to open it. I'm just going to show show you what it is before we run it. So created though, right? No, you shouldn't have to create it should already be there. Can you do LS, you should see it.
+
+Okay.
+
+So I'm going to code.
+
+Again, you don't have to do the card portion.
+
+But what this file is, is what's called a
+
+schema file. And we'll learn how to build these on Friday. You can see it gets, it's quite large. And it's just SQL that creates sets up and creates a database and puts data. So it defines a database defined structure. The top you can see some of the stuff like the cart character var car, we just talked about, including some other ones, like small until we didn't talk about the numeric data type I mentioned. So it has, defines that there's gonna be a country table, a country language table, a city table, and then it defines data
+
+for these tables.
+
+So that's what this file is. So I'm going to close it now. Because we don't need to actually look into it to use it. I just want you to know what it was. Because we're going to encounter these throughout the week and actually throughout the rest of the cohort, a lot of your exercises will be given these files to load a database to work with.
+
+And we'll learn to write them on Friday.
+
+So now we have to do two things. One, we have to create the database. So we have to create one of these input in the Postgres database management system. And to do that, on terminal command, it's going to be crate it's this command right here. So crate dB, always one word, space dash u, uppercase U. And that's telling it that we're going to set to a particular user. And the user we're going to set it to is Postgres and all lowercase, and then space, and then we're going to tell it the name of the database that we want to create. We're going to create this world. So Cray DB is a command that's installed with
+
+SQL that allows us to create a database.
+
+So you can press enter, when you get to there, it should just go to the next line with no feedback if it worked.
+
+So when I press enter Now
+
+and say, just go to the next line is created the database. And now in your list of databases, so you don't have to check this if it got to, if it didn't, there have an error, everything went fine. But it's to show you what it did is now in the list of
+
+databases I should have
+
+somewhere in here, so I have quite a few of them.
+
+Now world database created, so it's empty right now, but it's a container that's going to contain information that I'm going to refer to by the name world. Alright, so the second line is that fire We just looked at, that has all that information about how the database needs to be set up, what structures to have, what table it should have, and data that's going to go in and just kind of as the start it, we need to load that into the database. The command to do that, it's going to be P SQL is this next command here, space, dash uppercase U. So we're getting we're defining a user we're going to work as and lowercase Postgres and then space, dash lowercase D, which is for database and then world. So this database we created here, that name is what we have to use here. And then a space and then dash lowercase F, and a space. And then world dot SQL, SQL that file that's in this directory. And then you can go and press Enter when you get there. You'll see a bunch of stuff happen. It takes a minute or so. No.
+
+So I'm gonna press enter now and we'll see it start to see this. It's gonna go for a while.
+
+Guys, it was super weird if everybody's okay at this point. Normally we have a couple people who aren't tracking right now. So is it possible that some people aren't doing the same things that he's doing right now? Or can I get thumbs up from everybody that you really are? super good. I'm seeing head nods. Okay.
+
+Wow, that's crazy.
+
+Yeah. Okay.
+
+Just want to check. Make sure everything's good.
+
+All right, so is everybody to where thou says you should see the otter table commit as the last line and back to the man from
+
+the show, right? This is a first.
+
+It's Yeah.
+
+This is usually quite a long involved process of getting everybody through it. So. Okay. So if you're not, please speak up because you will not be able to do the exercises if you don't have the set. So if you do thinking I am not okay, but I off fix it later. Don't wait to fix it later.
+
+Okay, all right. So great. Then,
+
+okay, so now we have a database loaded.
+
+So now on to the next step. Now, we have all this data out there now we have to connect to it. So we need a tool to do that. So the way it RDM or DBMS system works is this this piece of data, this piece of software running on our machine. It's actually been running there all court, you didn't know it, it starts with your machine, Postgres DBMS database management system does. Now we have a database in it called world. But to connect to it is sort of like how, you know, there's no, a website out there called Google. And if you don't use a browser or something to connect to it, it's, it doesn't matter, right? It's out there running, it's always there. But you have to connect to it with your browser. The same thing is true for a database management system. It's there, it's running on our machine, but until we connect to it with something, we can't really do anything with it. And this is the idea of centralization. This is how they centralizes they take connections just like websites do. But we aren't going to connect to it with our browser, but a character with a specialist tool that's going to allow us to access to it.
+
+So the tool we're going to use is called DB visualizer.
+
+And it's the one on your toolbar that looks like this.
+
+So that kind of symbol of that drum like symbol that is kind of the universal symbol of a database. Not universal, but it's the, what's called UML
+
+Modeling Language symbol for a database.
+
+So we're going to click that. And yours will take probably a moment to come up and it might ask you, I think it asked you a couple questions
+
+about it, but
+
+eventually you should get to, I think it's not permanent, probably not look like this. Want to get to a screen that has this Databases tab and the connection which is the default screen once you get through a couple Questions. And again, you want to follow along with this, because if you don't get this set up, you will not be able to do the exercises.
+
+So Brian, I just opened this for the first time, and it prompted me with a new connection wizard, or am I just closing that?
+
+Yeah, you can just close it for now. That's actually going to end up going back to but I want to show you how to do it. So you can do it next time. So is everybody to where you can see this again, your portion here might look like that. I think it'll look more like this. Okay. So what we're going to do now is create a connection. So this is kind of like what we'd have to do.
+
+We go to a
+
+website, we have to go to a URL in our browser, right? And tell it to go to a particular website. It's the same idea. We're going to create a connection to it. So a bookmark essentially, get back to it.
+
+Do that. I'm still waiting for this to come back up. After I exited out of the create the alias. I close out of that. And now I'm just waiting. Like I'm clicking on it, but it's not coming back.
+
+For which
+
+for the dbvisualizer
+
+Okay.
+
+So you don't have the screenshot coming up at all.
+
+All right, can you go ahead and share your screen? I'll be unsure. So we can. There it is. came up.
+
+Yeah. And where did you go?
+
+We haven't went anywhere yet. We just got worst on the first screen.
+
+So what we're going to do next is
+
+upwards his database. So there's two ways to get here. Going to database create database connection. Also where it says connections if you right click you can create create database connection you can go to either one
+
+it's going to ask you if you want to use the wizard or no wizard, I would suggest using no wizard the no wizard version. They both will work they'll give you the same place but I think it's actually easier to use the wizard for this particular tool.
+
+I'm going to select No wizard.
+
+If you do end up selecting wizard, it's not a huge deal, although mean is that this next part is broken into steps instead of all on one screen. You can still follow along you just have to do it in steps and keep clicking the Next button.
+
+So is everybody at this screen? Yes
+
+So I should ask, Is there anybody not at the screen?
+
+What do you click for the database again, I didn't follow that. Yeah. So um, if you go to the top menu bar where it says database, and then choose Create database connection about halfway down
+
+and then select No wizard
+
+options. So everybody is to this.
+
+So let me get to the guide here.
+
+So this is where we're going to configure the connection that connects the settings to connect. So like a URL that we go to a website, but it's a little more complicated. There's a few more pieces to it. So the first thing is we're going to set the name and this is like a variable name. So this is kind of arbitrary. This is just how we remember where this goes. So if I double click here, I'm gonna name it world. This I can remember this goes to my wall database.
+
+So the second field notes we're doing they just leave as it is, was leaving defaults really hasn't affected anything if you change it, it's notes to you about what the database contains.
+
+So the next portion we want to leave
+
+setting format and database type these two axes, we don't want to change those. But driver, which is JDBC. And we're going to learn a lot about JDBC later because dbvisualizer is a Java tool. So JDBC is the way Java connects to a database.
+
+If I say Java two, I mean it's written in Java.
+
+So here we want to select this and it's going to list out a bunch of what databases you see this A lot of different databases, these are all different ones that supports. We're going to look down the list and find PostgreSQL and then select that. And this is on the driver JDBC field, not the database type field, the database type should be left at auto detect.
+
+When we click that, we're gonna have three new fields show up.
+
+So is everybody at this point?
+
+Is there anybody not at this point?
+
+I'm not at this point, right? Okay.
+
+Postgres, I can just find Postgres SQL,
+
+get post should be PostgreSQL.
+
+So this is what you'll find in the list right here.
+
+Yeah, PostgreSQL has the actual name, full name of the database engine.
+
+Okay. Mmm Did you find it? When I find it, what do I do to it? Just click on it and then you should see these three new fields show up database server database port and database.
+
+I don't see that.
+
+So are you selecting in the driver JDBC or the database type? The driver Okay, and when you select PostgreSQL what happens?
+
+Double click on it. You should just yeah, just I'll be I'll open it up and then
+
+she's single clicking on it should Know the pros and the driver sitting in the driver JDBC filled.
+
+That's not working.
+
+Just left click don't right click.
+
+I don't know what I'm doing okay, but you wouldn't I'll stop sharing and you share your screen so we can fix it.
+
+Okay, so go ahead and
+
+close that looks like you're in the driver not not done okay? So go over to where it says world again
+
+and right click there
+
+and
+
+see think it's under she double click on it I think well so double click on where it says world
+
+and open object
+
+okay so where it says driver JDBC click they're not there but over in the field
+
+and then okay
+
+yeah
+
+okay, there's where you should be right now.
+
+Yeah that was a dumb sorry.
+
+No you're fine. Okay, good share my screen again
+
+Okay, so now, the database server we're gonna leave it localhost. We'll talk about this more. Next couple modules, but localhost refers to this computer. It's kind of a shortcut. I mean, this computer, we're gonna leave the Port 5432. We'll talk about what ports are next module. And then where's this database and this is actually the most important field. If this is Postgres, you're going to run into problems. We have to change this to the name of the database we created which was world. So if you don't get this change to world, you will run into problems. This is the most common kind of the most common gotcha is not changing the database name and creating connections. So this field is what can tells it that when we use this, we want to connect to the database we created out in Terminal. So we have to use the same name. And then where it says database user ID, we're going to set that to Postgres, all in lowercase. And though you won't be able to see it when I type it, I'm going to type in for the database password.
+
+It's going to be Postgres
+
+one
+
+I typed it up in the notes field so you can see it but
+
+and then once you get that if you want to test it, you can select ping server. You don't have to you can use auto select Connect.
+
+Now pause for a moment for one.
+
+Catch up and again for the password fill. This is what it is and here
+
+Hey, Brian, is the user ID and password something you guys already configured?
+
+That's the default for Postgres.
+
+Okay,
+
+we're gonna keep it there because lots of things are gonna use it for the record, if you were to. So it's common to have it often defaults for development. If you were putting this out to on the internet, you would change that to something more secure. Or actually, it's not common to really have it Fenton development, I'll take that back. It's common when you're using it locally like this on your own machine. But a lot of places will talk when we talk about testing, we'll have kind of a unified testing machine to and then it Different or develop machines, systems and your passwords but yeah, we just left it at the default, comically you install your router, leave it just admin. So
+
+okay, so is everybody okay for me to press Connect.
+
+So I'll take out my note, nothing that matters. So press Connect, and you should see it connecting. If you probably already have, and then you should just go here and you should see world with a green checkbox beside it.
+
+You see that green checkbox.
+
+Or if you didn't get an error, either one.
+
+Then we're connected to your database.
+
+So let's look at
+
+now if you don't connect you get a that's it. getting his build error on there
+
+and your Java code
+
+so refusing to connect this nada
+
+Alright, so now over here world
+
+when you expand it, which you probably did for you, you should see world if you see Postgres right here and not world, we need to fix it. So you'll run into all kinds of problems.
+
+So
+
+now we'll expand world and we're going to see a bunch of stuff that we're not going to we're going to come back to later this week itself, we won't come back to you really at all. But because some of it's more for, we'll talk about these descriptive VB code database administrators, so much more for them to talk about that is later though and
+
+Then go to
+
+public. So public is where our database structure just got loaded at.
+
+And there's a bunch of stuff in here the good, we'll come back to some of it, not all of it. But what we're going to care about today is where it says table. I'm going to expand that. You should see city, country and country language. These are the tables in the database.
+
+Am I going close that you don't have to, I'm just going to because they don't need it.
+
+If we click on one, double click on one, I'm just gonna pick one click city.
+
+And you'll see this where it gives some information about it.
+
+And there's some tabs here. The one we're going to care about today, the two we're actually going to care about today, one columns. We click on that. Actually, we won't really care about this much today, but it tells us the data type. So it tells us the bar Car BP car is actually a car character. And four is just an integer. Those are some of internal Postgres data types. But the columns tells us information about what columns are here. There's one name, ID name, country code, district and population, but we're really going to care about today is this data tab. So if we click it, it shows us the data in the table. So it shows us the first thousand rows. But you can change that if you really want to by changing this to negative one, but thousand roses really are usually need to only see the beginning of them. So we can see the data in the table. And we can do that for each of these. So we can see the country data and the country language data. We don't have to do anything with it yet we can see it. So that's what the scripts just loaded created this database out of these three tables, and it put this data in So we can now manipulate it using the SQL language that we're gonna look at start looking at. So before we move on to SQL language, what questions do you have?
+
+I actually don't have my tables, my data in the table.
+
+Okay, so what do you see when you
+
+expand that? It doesn't. There's nothing in the sub menu of that.
+
+There's nothing there's nothing in table.
+
+Correct.
+
+Okay, so
+
+there's two places that could have went wrong. So one up here on the sub menu does it say world?
+
+No, it doesn't say Postgres.
+
+Yes.
+
+Okay. So double click on the top. world
+
+You should go back to this screen.
+
+Okay, and then press the disconnect button
+
+which will allow you to edit it.
+
+And then where it says, database right here, change that to world
+
+and then you can connect again.
+
+That's the first time that you'll get to do that. And repeat that over and over and over again.
+
+When you like, my database isn't working. It's caught me I don't know how many times
+
+so now when you connect, do you see? See everything?
+
+Ah, yeah, everything's there. Okay. So
+
+Alright, so now we have that let's talk about the language. Should we do a break first? Okay, yeah, I guess you're gonna go Brian. I mean, you're
+
+sorry, this database was? Yeah,
+
+I can't I can't control myself.
+
+All right, so let's take a break, then we'll come back at 1127.
+
+So what questions came up
+
+any questions that come up for you during the break?
+
+Okay. The next thing we're going to do is start looking at the SQL language, which is gonna allow us now to start using this data and start query what's called querying it to start asking questions about it. So let's talk about what that means before we start looking at it. So SQL stands for Structured Query Language. Instead, it refers to actually the language we're going to use. It's what's called declarative programming language. So it's a little bit different than what we've been writing in like Java.
+
+So the programming language you've been using so far,
+
+is
+
+not declarative, it actually means that it command tells the computer how to do things. It tells it, we want it to do this calculation how to do the calculation, we want to, you know, take these steps in exactly what steps you want to take. So a declarative language is one where we don't go to that detail. Instead, we tell it what actions we want performed, but not how we want to perform. So we give it the high level details of what we want to happen. And then it goes and does the workforce. So declarative languages like SQL are generally fairly intuitive. in sequence, there's a lot of non developers who use SQL on a daily basis. And it's designed that way. So it reads much more naturally than a language like Java. It only has a few commands that are based around what were what needs to be done. And the language itself is broken into three kind of sub languages. So there's one DDL or data Definition Language, that defines the structure of the database that says what tables are going to be, what columns, those tables are going to have, what data types of columns are going to have. And so that file, we looked at that world file that was DDL, we're going to learn all of DDL on Friday. So it's a pretty small language, there's just a few commands. There's also skipping down to three there's dcl, or data control language, which is about the administration of the database. So it's What users can do, what users have access to what users can connect to our database? What table what tables Can they see once they do connect? So what kind of permit what's called permissions Do they have, how much space is our database, a lot of the take up, things like that things that are more administrative. It's a language around that. We'll spend on Thursday about maybe 20 minutes talking about dcl. Just looking at what as a developer, not as a database developer, but just a Java developer, we need to know about it. Then what we're going to focus most of our time on, is this language called DML, or data manipulation language. Now, nobody calls it DML. I actually didn't even know it was called that until I got here. I knew about DDL and dcl because people do refer to them that way. But generally, when people are talking about writing SQL, they're talking about DML That's the database data manipulation language. It's what allows us to write commands to query the database to ask questions of it. And to add data to the database and update it. It's made up of really four commands, one to add data, one to read data, one to update data, one to delete data. And we're going to spend all week on it, we're going to spend almost the entire time, the next three days or we're going to spend on just how to read data because that's the most that's the complicated part. And then we'll spend one day on the rest of it. So those it's broken into these three sub languages. Said, I heard working, I heard people talking about DDL we use that actually is called a DDL a lot on dcl as well. You'd hear people talking to you about that. I've never heard DML so these are almost more interview terminology, but knowing that it's broken into three pieces, and what he's does does is important knowing their exact names Not as much outside of interviews.
+
+So we're going to look at DML database manipulation language.
+
+And we're specifically going to start with how to read data from the database. And these languages are written in what's called queries. And queries are just small statements or clauses of a command that we're going to send the database, database engine, and it's going to respond by taking some action for us, we're not going to tell how we want it done, we're going to tell what we want it to do. And the first command we're going to look at or clause is going to be called select. Select allows us to read data from the database. So the Select cause indicates it's broken into two pieces, actually, we'll see really three pieces but we're going to start with two. So two required pieces. One, the Select portion of the clause indicates what columns that you want to get from a database table.
+
+So they slowly clause limits the columns.
+
+And then there's a FROM clause that says what table or tables we want to retrieve data from.
+
+So if we come over here,
+
+I'm actually going to go. Now I'm going to open
+
+today's lecture code. And I'm going to do it by going to back to dB visualizer. That way, we can start writing some of these select cloud select queries, and a DB visualizer. I'm going to go to File
+
+Open.
+
+And then I'm going to go to my user folder
+
+and development.
+
+And to you'll want to go to your name, Java blue material. Module Two introduction to databases. You'll want to go to student lectures just like you've been opening the lecture code, all for the last four weeks. Only now it's going to be in Module Two. I'm going to get a lecture final. And what we want to open up is this file, collect your queries. I'm going to select that and then choose Open. And it's going to open it dbvisualizer
+
+How did you get there? He went to file open.
+
+Here, we want to go to the same path you go we've been using for Eclipse. So give
+
+me a drop down like my file is empty.
+
+And under it, there's not a drop down.
+
+Okay, so then I go to my username,
+
+your username and then develop it.
+
+And then your username Java Materials
+
+watching
+
+module two, Mm hmm. And then introduction to databases, then you'll want to go to student lecture. Okay. And then lecture queries, select that and choose Open. Okay, thank you. Let me back up one to get election final, so don't conflict with yours. And when it opens, it's going to open and look like this.
+
+So this
+
+box here, this field is called the sequel commander. There's an option for it up here. But we can only have one in the free version of dbvisualizer. There's a paid version, commercial or pro version that has more features. But we'll talk about why we chose dbvisualizer. Later when we especially we get to DDL has a really actually not even then as we get to more complicated selects as a really great thing. feature build on that? No, no, no other free ones half. But it does limit to one single commander. So that's what we're going to write queries. That's where we can write code that we can send to the database. And it'll send it for us. So
+
+if we're going to look at select,
+
+let's look at
+
+Let's start with the city table.
+
+Actually, that starts out so select the name of our country. So let's start with that. So we can look at the country table. I'm going to just open it up and choose data. Nope, it gives a way to have these side by side. But and I can see that has these columns, code name, continent, region, service. So if I want to select the name, which is what it's asking for the name column, so I'm going to limit it to just the name column.
+
+Start to work towards select
+
+the columns I'm interested in, we'll start with just the Once a name
+
+and then from, and you can do it in one line as well. I put it into just for readability, it's kind of Java whitespace can be used for readability, it's SQL. So from and then the table name. So from this table, so we're saying select name from country. So it's actually pretty understandable without even knowing what it does, right. So if there's a couple ways you can run it, when there's only one command in here, we can just click here.
+
+We'll run it and we'll see
+
+all the names from all the country table. But other ways we can run it. Since we're gonna have multiple clans in a moment, you can select it, and then press the Run button or run only the code that was selected. Or, if you're at the end of it, you can press the Command key and period will run it as well. run the command line and then the SQL command is going to end with us. My call so like Java, and we will want to it's not required in with a semicolon in SQL but we will want to end up with semicolon to break up the commands otherwise you can run into errors that's how it knows that where command stop and start it since this field is good visually gonna have multiple commands in it. We want to separate them
+
+mine didn't give me the list of the countries it just says finish failed.
+
+Like it didn't give me how yours at the bottom next to log into the country that didn't do that.
+
+So up here are a couple things to look at 100 database connection does this a world it does? And check that this select name from country. Mm hmm. Okay. So click after it.
+
+Okay, and press Command periods.
+
+Same thing. Okay.
+
+So let's take a look at it. Let me go ahead and stop sharing and I'll share a screen because I'm not
+
+sure what you're seeing.
+
+Okay?
+
+So this down here you have
+
+a misspelling in control. I'm missing the arc.
+
+And then you say command period.
+
+Yeah, command period when you're selected at the end. They're gonna do that
+
+for you. Oh, that's
+
+okay. So
+
+some things we can do with it. Oh, Before we do that, so the next one select the name and population of all countries. So we can also select multiple columns. So here we look at the country table again, we have name, and there's a column for population. So the SELECT clause again limits what columns I want to select. So I'm going to select and I saw the comment, and Michelle's already answered it. But just to reinforce the idea. This the commands the SQL commands themselves are not case sensitive. As Rachelle pointed out the data these column names are, but Postgres puts everything in lowercase. So that makes it easy. The data, however, is case sensitive. And we'll get to what that means. So that means that this is fine. So select name, to blob, multiple columns, we can do, comma and then the second column we're interested in. And we could put it in one line from country I personally write my SQL like this. And I'm going to change it because it bugs me. Because then it makes it to me easy to read the difference between the command and the, the portions around the table. But if I'm gonna get command period in this line, and we'll get now both columns back
+
+so
+
+we can also do C. Other tables like if I wanted to get everything from city. There's a city table here.
+
+We could
+
+look at it has ID name, country code, district and population.
+
+So to select all those, I can start out with select
+
+Any name. But that's we don't have to talk about every column all the time. So if I want to select every column from a table, you can do it with an asterisk. So from city will select every column from the city table, my command period, so I get everything. So that's the same view that we see when we look at the table data is when we use a star, the asterisk. So let's look at a couple other options. Other things we can do. So on the city table, there's a country code just like there's an A country table. Actually district might be more interesting. So there's a district and we can see the district somewhat sometimes repeats, right? So if I wanted to get a unique list, a distinct list of all the districts, so you know that there's only one of each Trying to see what the actual unique values are on the table. With our select, we can use the distinct keyword. So we say select distinct. And again, it's not case sensitive for that portion, district.
+
+From city
+
+they'll get me a distinct list. So just all the unique values off the table. The only thing we can do is we can change the name of a column using what's called aliases with the as keyword. So you say select name from city, and I'm going to run that see what it is and see its name. I can call it as
+
+city name
+
+and actually, I think
+
+Yeah, sorry.
+
+City mec made it all lowercase, because Postgres actually stores its columns in all lowercase at all times. So we can change the name. So we could do this might be better. So the escape keyword can alias a column into another column name.
+
+That's going to be more useful to us as we keep going throughout the week, but just nobody can do it. Now, it'll be a really useful tool as we get we integrate this for Java. So a couple options we have with that and I should take out the quotes here.
+
+So but this limits so far, we can limit
+
+the
+
+columns coming back That's a little interesting. But what we really would care about is limiting the rows coming back. So that's the data. Right? That's the part. That's interesting. That's the part that we want to be able to ask questions about and see, you know, which cities are in a particular country code, which cities are in a particular district, which cities have a certain population size, those are more interesting questions about our data. So we need something more for that, we need to build a limit the rows. So right now with the SELECT clause, we're limiting the columns, but we need to be able to limit it for the rows and say we only want a particular set of this data back.
+
+So to do that with our
+
+SELECT clause,
+
+we can limit the rows using a where clause that takes a conditional statement, so like a Boolean expression that says, what is true when this is true about the data on this row is true for the statement. Then return it. If it's not, then don't include it in our data set and then return set. So for instance, select name of population from country with a population is greater than 100 million, we return only the name of population of countries where the population is that size or larger hundred million a larger, so the ones that have smaller populations won't be returned. So WHERE clause allows us to start building conditions click we do for if statements in Java around what data we want back. And there's just like, for conditionals, we used to there are multiple operators that we can use with this. So the operators we have equal so we're familiar with that. So we're particularly the equals something. So if I come back over here,
+
+so let's select
+
+were cities of Ohio. So I'm going to select star From city, we know we're working with cities around the city table. So if we look down through it, we'll find out that we can determine the US states from a district. That's what they're being stored at. So I want all the cities in Ohio, I can say, I'm going to break it up into three parts. Where district equals Ohio. It is case this data is case sensitive. And notice it's in single quotes. So character data strings and SQL use single quotes. double quotes won't work. It's not like JavaScript where you can actually use either
+
+SQL a single quote.
+
+So now I'll run this command. And we'll see we can get just the cities or in our database for a while.
+
+I could say not equal.
+
+That's going to give me everything back. But if we went down through Here, we would find that it has everything but the cities that are in Ohio. So I'm gonna change it back to equal. So equality and sequels a single equal sign
+
+grant all the ones I just had
+
+selected. So you can see when I hit just the Run button with nothing selected, it ran everything in order in this whole file. So that's not what I wanted. That's great, but I only can see the results of the last one ran. So, to limit it, you either click on the last line of the query with the command period or select the query and then before you press the Run button
+
+Alright. So
+
+so some other operators we can have is we have not equals to not equals takes two forms. The anti SQL standard is actually this So to say not in Ohio, we would say like this not equals Ohio. But all modern DBMS systems now support this, including Postgres, I should say, shouldn't say all, there may be some, I'm not aware of all the ones I'm aware of support that, but you can see there's a huge list of various databases. So it's possible some don't, but the anti sequel stance is the, the symbol. But
+
+you can use this like we do in Java,
+
+then it supports greater than, less than and greater than less than or equal to the same. Those work just like we do in Java and math. So we won't spend, we'll use them but we won't spend much time on them. And then we'll come back to the rest. Let's do a couple of rest of these, so select countries to gain independence in the year 1776. So if we do that, we would say select I would say select star from country I would start this by running a query to select what I'm looking for. And then we can figure out how we find out the independence here. So as a column independent year
+
+from
+
+Andy, and the year equals the value, they want 1776.
+
+And this should be where.
+
+So again, it's another equals.
+
+So select countries not in Asia. So again, we can say select star from country. I'm going to run it to see what is there. I can tell what whether they're in Asia or not based on the continent, see the continent surpluses. So I could say, where continent is not equal to Asia. And it will get back all of the countries, four continents not in Asia, the same, I could have also written this us
+
+that it will work exactly the same way.
+
+There's no difference between the two.
+
+All right. So
+
+there's also the idea of na in SQL, na is a little different than it is in Java. It's not about the memory address, like it is in Java. It's about just not having a value set at all in the column. So similar idea just a little different in the back end, but we can check if something is null or not. But with the operator is known is not null and the are spelled out like that. So if I want to select countries that do not have an independent here, let's figure out how we could find that out. So select star from country Run it and then see one's dominant his pen this year having a year of na. So I could say ones that do not have one. I could say where independence year is no. If we run that we'll get all the one countries that have no independence here. And some more if I wanted the same thing. The opposite of that is not No. It's like Star from country where Andy and this year is not enough I would select all the countries but now with only select countries where there is a value value in Independence year. So then all ones will not be part of the data set returned. So, in this case, the keywords are spot out, we'll see that with a few other keywords.
+
+Hey, Brian,
+
+yes? Is command period why it's not loading every single SQL search for you? Because every time I do a search, it goes through processes. Oh,
+
+yes. So if you just run it from the field, then it runs them all, you have two ways to limit it to just one of these queries. One, if you run if you do command period, it runs the line, the SQL query that you're on there. So if I'm on this line, and I run this query, if I'm here, it'll run this query. So it runs the query hope currently selected, or you can select it, highlight it, and then press a button to get just one of them. But if you do it without doing one of these, you'll get everything. Perfect. So here, I have a population greater than 5 million, so we know there's a population column here. So let me say select star because I'm going to select all the columns. If I give them my limit the columns, I would limit it there.
+
+And
+
+then we'll say from country
+
+where population, we can use the greater than, or greater than equal to, let's use that. Five guesses as greater than, not greater than or equal to, so I don't wanna give a bad example. So 5 million.
+
+So now it gets all the fields, all the columns or rows sorry, that have that as being true. So we can use these operators will come back to between unlike the moment to limit the columns coming back, and these operators can work with and ignore, just like we do kind of like we do in Java only we actually use the words and in the words or spelled out, and we can also set precedents with parentheses like we do in Java. So there are a lot like Boolean expressions in Java. So same idea. Only now it's going to be applied to each row in the data to determine true or false whether it should be included in the return. So that knowledge, if we select cities in Ohio with population greater than 40,000, we know we can select
+
+cities in Ohio.
+
+Select
+
+bike
+
+cities
+
+from city where
+
+district is equal to Ohio. We know we can select all the cities in Ohio in that manner. Because we did it before. So then we could say, and population is greater than 400,000. And now we get just the cities where both are true. So we can use and, or, or so we could say, let's say we wanted to change this, and I want to change the original. But let's get
+
+all the cities in Ohio or
+
+district equals,
+
+say New York.
+
+So now we get both. But if we want to set precedents so that we want to select district before we apply the rule for Ohio, just like we did
+
+in Java, we could do that.
+
+Or for when to get all the cities in Ohio,
+
+or ones that are in New York that have a population greater than 40,000 40,000. You see, now that's not applying the population rule to a higher because it's now part of this clause. So we can say that's just like we do in Java. We can set precedents with parentheses.
+
+broken down on three lines versus just one for readability like I do, yes. Okay.
+
+I'm sorry, wait, it'll still?
+
+Yeah, it doesn't matter how the whitespace is use. You can use whitespace for readability, colloquia Java the same way we can. And I've been doing that, because if I to make it more readable between the three pieces, but that's actually how I write most of my queries, I find I find it more readable to have kind of broken into three pieces and easier to see what's going on. So select names of countries on the continent, North or South America. So we say select.
+
+See, we only want the names
+
+from a country where the continent
+
+equals North America
+
+or
+
+the continent equals South America
+
+on equal sign.
+
+So these are all just the countries that are uncommon in North or South America. There's a couple of ways we could do this. So there's a operator called in the losses luck where values in a list. So we could say select
+
+name from country where
+
+continent continents, in
+
+North America, comma, South America
+
+that would give us the exact same list because this one's saying, if this is true or this is true, and this one saying if whatever the value is for cotton in the row, if it's North America or South America, so a list as many values as we need, then return it. Or we could say not in. So if cotton is not in the list. So we're on this one, we'll get all the countries Is that the opposite that are not in North or South America? Oh no. Another thing we could do is there's this command like.
+
+So let's do some things around. Like.
+
+Let's put a comment here, like, so we could do the same thing to say select name from country, where continent. Like, what like does as long as the define a pattern, so we say the thing we're interested in, and then for the other parts, we put what's called a wildcard. So a character that could be anything. And for SQL, the wildcard is the pound sign. Not sorry, not the pound sign, the percentage sign. So we can say like and Both of these we have some difference in characters. So for North hackers character we say where they're like the pound sign, so any character, America will get both North and South America. So that's the so this one, the end and this are all returned the same data set. Some other examples for like, let's select skip
+
+all cities that start
+
+with the name starts with a
+
+so we could say select and we'll get everything from city where name like the letter A in this case sensitive because it is the data and then any other characters
+
+so we get all the cities to start with a
+
+maybe we want to do this Same thing but now we want to get
+
+all cities where the name ends with a
+
+select star from city
+
+where name like and again we're setting a pattern for say any number of characters and then the letter A.
+
+So now it's all the cities that end with the letter A.
+
+And then maybe all the cities
+
+where the name contains the letter A.
+
+So we can say select star from city where name Alright, let's make a little more interesting say letter a case insensitive. So an insensitive case insensitive search with a name. I like Which is a case insensitive like saying any, any characters at all a, any other characters we can see we get ones that have the letter A anywhere inside of their name.
+
+So we could do
+
+let's make it one more that's maybe a little more complicated. We can say all cities with a name contains
+
+a letter A
+
+and followed by
+
+a comma
+
+a letter M.
+
+Say Select star from city or name we'll make a case insensitive I like and we say okay when any number of characters letter A, any other number of characters And any other number of characters. So it just contains these two. This is getting wild Brian. Yeah, yeah, going too far, I guess. But this would be the last example this show that we can do more advanced patterns.
+
+I think that was your shells way of saying this is too much. So
+
+no, it's again me being because you were like, this is a somewhat wild card. And I was like, Oh, you could write you know, bright Monterey.
+
+So, we can, yes. So going
+
+back to value or like for n, you can put more than two values right. You can put a
+
+Does that make sense? When you get to vac
+
+sorry. So like, in
+
+Yeah, for me like okay,
+
+yeah, you As many as you want. Okay, it's an unlimited list. Yes. Okay. Yeah.
+
+All right. So, question other questions before we, I got one for you. Yeah. Can you run back the
+
+like the process of using or because I get the same like return when I use the parentheses for like the districts of Ohio or New York
+
+and the South Asian is 40,000. So or
+
+works like Java's or so it sets. So, it says this
+
+has to be true or this has to be true. Okay, parentheses sets precedence. So this evaluates first.
+
+So in this case, it would saying this has to be true or this entire statement has to be true. Okay. Then if you remove those parentheses, is it supposed to return? The New York's places that have a population of greater than 40,000? And the Ohio places? Yes. So actually, in this case, it's going to end up being either a higher or New York in a population greater 40,000. So you're gonna end up it's not really doing much. Okay, that's what I was getting. I just wanted to be sure that I had the right mindset. So you would, it might be a better example, I think it would get different results like this. Yeah, that's a better example. Probably. Yeah, that's what I was looking for. Okay, cool, because in this case, it this evaluates first and then the end after that.
+
+Awesome, thank you.
+
+So the questions.
+
+A brand for large numbers can can use comma or underscore for anything,
+
+you cannot know.
+
+There's just all together okay. Okay. So
+
+we can also do
+
+basic arithmetic and
+
+SQL query.
+
+So let's,
+
+if we want to do something like select the population, the life expectancy in the population per area. So what should be the population density of countries? If we look at, I'm going to start by selecting star from country. And you see we have the surface area to work with. And we have the population to work with, but together we can use that to calculate the density. So let's select that. So let's select we want the name
+
+says Select the name,
+
+the population. It doesn't say to select the name, but we will. So we can see what country the data goes with population life expectancy, but I will say when you're doing your exercises, if they don't say to select the name, don't don't select the name. Follow the columns listed. And then if I want to do, I can do the population
+
+divided by the surface area.
+
+And we can see I get this here. So I get the density. But it's not kind of hard to tell what that is. So I can take a calculation, I can put it in parentheses to group it together. That's not going to change it yet. So get the same thing. But then I can alias the result as well just like I did columns, and this is where it makes sense. So as density Now I get back this column that's calculated. So we can do any of the basic mathematical operations we're used to, in SQL in our query, either with the columns, or if I really wanted to do select one plus one. Now I can do that. I want to do that. I'm not sure but I can. So we do that or with hard coded numbers, we can select it. Did you ever
+
+Yeah. Can we cast the different types? So can we just like make this integer for the above? calculation? So you can Yes, how but that's for another day.
+
+We're gonna learn to cast actually, tomorrow, we're gonna learn to cast. But
+
+yeah, thank you. All right. So
+
+And then we can put this together. If we wanted to add a where clause, we could, for instance, we want to get this information unlimited. Now, only two cities that were on the continent
+
+of Asia.
+
+Or we could do that. Maybe
+
+I've got an extra semicolon here.
+
+So after we have the Select team, we have the calculations, we can still apply where clauses, the where clause is going to get applied first. So that's actually not really important today will be tomorrow. But the order of how these applied but just knowing the where clause limits the data, and then we limit the columns afterwards. We do the math afterwards.
+
+All right, so questions on
+
+what we've looked at
+
+Brian, like terms of when you're working with the data, I guess I always assumed that databases would be more about storing the data and you would make the calls to the database and then manipulate the data.
+
+So when you go ahead and start doing like population divided by surface area, I guess when would you want to make that division of you're working with data in the app versus working with the data in your SQL calls?
+
+We will talk a lot more about that when we get to Java and putting integrating this with Java. But the answer the kind of the quick answer is going to be if we can get SQL to do it for us, we're gonna have it do it for us. Because it's an expert at manipulating its data, and we're not they can almost always do it more efficiently, faster and better than we can do it.
+
+Okay, thank you.
+
+And on top of that, even outside of Java, the father into that question A large portion of what people do in a database is manipulating the data. So I apologize I need to step away for just one second. Right back.
+
+Are you applauding him stepping away James?
+
+It kinda ended up being that way.
+
+Sorry about that. Sorry.
+
+My daughter's both came into the room and that's never happened before. So, I had to find out what was whether there was an emergency or
+
+what was going on.
+
+No emergency. So
+
+Alright, so other questions you may have
+
+Right, can you go We're sorry.
+
+You cut out? Fine.
+
+All right. Can you hear me? Okay?
+
+Can we just go over the data but variables again, like we've selected name, population life expectancy, and we're dividing population by surface area, but we didn't call surface I mean, we didn't put surface area on the on the column, I think I just got a little confused. So we don't, we don't have to. So we can use in our select in our WHERE clause as well. Just like we got the where clause with continent and it's not in our list of columns. In our query, I'm gonna just do a quick select one country, we can use any column that's on the tables we're working with. So we're using country we can use any of these columns in any of these port while in the Select or the where or calculations in We don't have to actually display the individual columns.
+
+Does that make sense?
+
+A brand new. One awful numbers is now like surface area. If we have no information for the surface area of a specific country, do we get an error? You will.
+
+So one of the problems it's common to run into is if you were doing a calculation and you're doing division and one of the numbers might be zero, which will cause a divide by zero error and or the number that's going to be your denominator is going to zero, then it causes divide by zero and SQL, because it can't handle infinity. So if that happens, you would have to put a where clause it says where the number is not null or where the number is greater than zero.
+
+So to be safe, we could do something like this where
+
+Sorry, and surface area is greater than zero.
+
+We're gonna get the same result because there's always a surface area in this database in this data set, but it's true that sometimes it might not be.
+
+So Other questions? Okay. So
+
+there's another set of
+
+Yes. So there's another set of kind of exercises or exercises but some kind of just extra problems to go through using what we had. So something I'm going to point out is that an eclipse many of you are used to not saving your work and letting Eclipse do it for you. When you run the test when you run, run things saves dbvisualizer does not do that. So, and we have every car, we have somebody who loses their work because they didn't press the Save button. So you need to press the Save button, I would recommend doing it or press can Command S to save. So you have to save your work. Yeah, it db visualisers error message if you try to close dbvisualizer when you have unsaved work is confusing, so it makes it it's not very intuitive. It doesn't just say like, Hey, you have unsaved work, do you want to save it, it gives this message that I can read what it says but every time I have to stop and think about what it's trying to tell me. If you'd make the wrong choice, it won't save your work. So you need to get in the habit of pressing the Save button or pressing Command S in dbvisualizer. Otherwise you will lose what you're working with. So, I'm going to open up the second file that's in today's lecture folder. So I'm going to go to File Open
+
+and go to additional queries.
+
+And it's going to replace the other one because we can only have one copy at a time. I will tell you that
+
+when you did file open, where are we going after that?
+
+So you want to go to the same location as before. So I'm going to file open. And we were at lecture queries, we want to select additional queries now.
+
+Okay, thank you.
+
+So you can open these SQL files like the one we just created in Visual Studio code. So I'm going to go out quickly to show you what I mean because you're probably want to use this today. So we're in this, I'm going to back up one. And there's the lakshya queries folder we just worked with. So if I code, lecture queries,
+
+it'll come up and I can,
+
+oh, I'm in the wrong folder.
+
+I'm in the wrong. Okay, I brought him in for I'm sorry, I'm in the wrong place. So I'm going to go to lecture final. Now curved lecture queries.
+
+So you can see all the stuff we just wrote, including highlighting so you can use it to look at existing code side by side with stuff you're working on. So let's look through these, these queries here and work through at least Have them to get a sense of how your work today. So for each of these, and these are set up, essentially how your exercises will be set up for today. So the name of population of all cities in the USA with a population of greater than 1 million people. So if I was doing this problem, there's a couple things you want to kind of look at. One is cities. And these problems tell you that you're going to be working with the city table. So I would start by once I've found that Select star from
+
+city. Now
+
+the second part with a population of greater than 1 million people. So that tells us what our were causes needs to be you need to have a where clause. This looks for the population greater than 1 million people. So taking that looking at the columns, then you have to figure out well how do I determine that? Well, I have a population here with a number in it, right? So that's In this need to say where that number is greater than 1 million. So that's the where clause.
+
+So where
+
+population is greater than 1
+
+million just happened there.
+
+And now I run it.
+
+Okay, so now I have the population greater than 1 million.
+
+And the next part is the name and population. So limit the rows being returned. Then that's what we put in the SELECT clause.
+
+So named
+
+population
+
+and now I have the answer to the problem which has been asked.
+
+So I'm going to save it.
+
+I think you missed in the USA.
+
+I was in the USA. I did. Get Thank you.
+
+So city limits the city table here. It also has country code. So I'll say population and country code. It's not country code. It's country code all one word equals USA. Okay.
+
+So there's what it should have been.
+
+So let's do the next one. Name a population of all cities in China with a population greater than 1 million people. So again, it's going to start out the same way. He tells me, I'm working with city. And this is the same problem, isn't it? There's no difference. I just need the different country code. But what if I don't know the country code for China? How can I find it? in this database?
+
+If you were trying this, what would you try?
+
+I would try going To congee.
+
+Yeah, so we can select star from country. And that gives us all the country codes. And we could just sort through the list if we wanted to. Or
+
+we could say where name equals
+
+China.
+
+And there's our country code.
+
+So this is the same query only with that country code. So ch n. And we'll get rid of that now. And that gives us our answer. think we'll learn how to combine those later this week. So that we don't have to go do a second query and look it up and we can make it more automated. But
+
+for today, you must go look at the other table to find the data you need.
+
+And for your exercises, if you use that, make sure you do delete out that extra SELECT statement, because we have tests that run, and they will fail with those extra selects in there. Good. Thank you.
+
+So glad to hear that. I was helping people. I'd be like, Oh, yeah, leave those in there. They won't hurt anything. They're just selects. So I'm glad you said that. I wonder how many people I've got low scores in the past now.
+
+Which extra selects Do we need them out there.
+
+So you just need to make sure that when they ask the question, that you just have this slack that answers that question. Like we just did the extra
+
+slot. We had several under one.
+
+What we had, we just were to select to look for the country code of China on the country table. Let's delete that. Select that extra one.
+
+So let's do
+
+because most of these are similar What we've already done and not think. Let's do one that's a little more.
+
+A couple that's a little more complicated.
+
+Let's do this. Let's get crazy.
+
+So let's go.
+
+Let's go to the last two. I think they're a little more interesting. So I'm going to move these so we can see it better. So comments in SQL are two dashes. So doing that, oh, comment out code or allow you to put comments in so the name and average life expectancy of all countries and southern reasons for which the average life expectancy has been provided. So there's a few things we have to kind of unpack there. One, what table we're working with.
+
+Well, it's a Petris.
+
+Yeah. So if I was doing this, I would start by Select star from country. So personally, I always start by selecting from the table that way I can see what I'm working with, I could go over here and click on it. But then I have two displays, and you can't put them side by side with dbvisualizer, or at least the free version. So to me, it's easier to see it. And now we have two things we have to limit we have to limit the rows, which is our WHERE clause, and we have to limit the columns, which is the SELECT clause. I prefer personally limit the columns last That way, I can see all the data I'm working with to the last minute. So now we're going to start working on our WHERE clause. So it says where all countries in the southern regions for which a life expectancy has been provided. So there's two clauses here, right? We want all the countries in the southern region, so there's a region here. So that have 13 southern regions and where life expectancy exists so we kind of look down through here we can see that life expectancy can be null. So how could I say life expectancy? How can I make sure it exists?
+
+would be the operator
+
+is not Yeah, so it's gonna be is not No, this
+
+will not work
+
+we have to use the is not no operator.
+
+So now I want to say and and I want all the regions
+
+that are Southern.
+
+So there's Southern Europe, southern and central Asia.
+
+So there's
+
+we probably want to include the southern Africa So we'd have to make a choice here. Really whether we want to click ones that also have the word south, which makes sense to me. Right? If there's southern region, we definitely would consider the region South America be a southern region. So I think it'd be anything with the word south in it. So how could we, or maybe eliminate to the things that start with South which I think would be all many ways? How can we find all the regions down there Southern
+
+and region was it ignore case like
+
+percent signs on both sides of the word self? Okay. That'll find every any case where South is in the
+
+someplace in the name
+
+so this is all the regions that have south and we could have done it just with South and a percent sign afterwards. We probably in this case, we would have picked the forward Southern it probably would have been fine as well. But that's how we can limit it. But now we're not done. Now we limited the rows, but now we need to limit it to the name and average life expectancy, which are the columns. So that's gonna be name, the column name and life expectancy. But
+
+and that's our final answer then.
+
+So this last one.
+
+So the name and connett, GNP and average life expectancy of all countries in Asia, Africa, or Asia, has an average life expectancy of at least seven years old in the GNP between 1 billion and
+
+100 billion dollars.
+
+So there's a couple ways we can do this one. First, we need to determine what table we're working with. So it's about countries. So in this case, it's the country table. That's what we looked at before. So I'm going to start the same way.
+
+Start from
+
+from country.
+
+So now, we have to limit the rows. So countries in Africa, Asia, average life expectancy at least 70 years old and Ajay, its GNP between one and 100 billion dollars. So we have three conditions, right?
+
+So how can we find out if it's
+
+if they're in the continent or on the continent of Africa and Asia?
+
+How can we write that in our Where?
+
+Okay, where it's gonna be continent.
+
+We know that just from the data, Africa, Asia, we see our continents. How can we check if it's in one or one or the other one
+
+Putting the name putting name.
+
+And then is it the maybe where the name has?
+
+I don't know. Sorry.
+
+You're good.
+
+Yeah, and we probably the easiest way we could also string together some more statements like we would in Java, but and will allow us to say if in Africa, comma, Asia, so for as many values we need.
+
+Now our second part is and
+
+life expectancy needs to be at least 70 years old 70 years. So, if you look at the data in life expectancy, it's that's pretty much what we use for Java, right? So it's going to be greater than or equal to seven. It sounds not too interesting. This last one, the GNP is between one and 100 billion dollars, where the GNP is expressed in millions of dollars. Something if we would have read the call the comments about this table we would have learned but so how can I find out? So we need we know it needs to be between 100 billions can be represented, or one billions could be representative 1000. And 100. Billions can be representative 100,000. Because it's representative millions. How can I find out if it's between those two numbers.
+
+Looking in the background at that slide, it looks like there's a between about one and about two.
+
+That'll work. We also could just do it like we would in Java and say GNP greater than, you know, 1000 injuries can be less than 100,000, but sequel to Have a GNP between 1000 and
+
+900,000.
+
+So it'll give us so we could do it either way. So two of those cases, the end, and this one, there were two ways to do it the long way. And these were the shortcuts that made it a little easier to work with. Either ones fine framing, you write it, whatever makes sense to you.
+
+All right. So questions about anything from say?
+
+I feel like there's a lot of chances for me to misspell stuff, are there any tricks or shortcuts to make sure that doesn't happen as much? So it's
+
+not really a trick or shortcut to make sure didn't happen, but something to help you when it does happen. So when you see this error uship does not exist. That means that whatever is here, the table or the column, that it doesn't exist in the database, which is what happens when you misspell it, right? So that error relationship does not exist means this doesn't exist in the database. So then you can take whatever's here, look at it in your code. And, you know, if it's a table in the front clause, make sure it's spelled properly, but it still can point to what's misspelled. But there's no like in Java, like, type in and cut and paste it or tulsans types it out for you. There's nothing like that.
+
+Okay, I got a question. Yes. I think what I'm what we are doing here is not breaking the original file this correct.
+
+You are in column do we add a new column to the original file and messed up
+
+and we're changing the original secret file. We're not Changing the database in any way.
+
+Okay, that sort of thing. So it's not breaking the original.
+
+No, we did the select statement reads from the database, it does make makes no changes to it. So we'll talk about that later this week, we talked about the other update, delete, add or insert, we do change the database with them. But select doesn't harm anything. It's kinda like when you go to search in Google, if you search, it doesn't change the website you found it just shows them to you.
+
+Question to kind of piggyback off into that, when you do as in like, give it an alias. That alias is just to present the data at that point in time, like you don't create a new column or anything like that, right?
+
+That's correct. And change does not change the database in any way. The as changes how it's going to display in the results. It's to make your results readable in some cases, more usable, as we'll learn later this week and next week, but
+
+as soon as zero way to save that, as I like to continue to use it. Without this planet,
+
+it's not possible at all. Not past that query. Everything in sequels about single queries.
+
+Now, these queries can get quite large.
+
+I've seen queries that are no 15 pages or more long printed out.
+
+queries are not small.
+
+They're not all that hard. I didn't write that query. I could, I probably couldn't write that query. But there are people who are specialists in database development that do write these amazingly giant complex queries. So I don't want to scare you and make you think you're gonna have to do that. But by the end of the week, your queries will be much larger too. They're not going to be a few lines like this. There'll be several lines Maybe 15 or 20 lines instead of pages, but still quite large.
+
+Other questions?
+
+All right. So let's look at what you'll be doing for exercise today. So for exercises, you're going to be working inside of the SQL file, you're gonna be working in this world database. So it's going to be just what we just did in dbvisualizer. To open your exercises, you'll want to go to File Open. So I want to point something out, you can drag and drop the file into dbvisualizer. If you do that, it will not save back into the original file. So go to file open with open your exercises. dbvisualizer has some really weird behaviors.
+
+That's one of them.
+
+Why it does that, I don't know. It will add it to the file that's already open. If there is not one open, it'll add it to No file. Just Those look like everything's fine. But when you hit save, it will not save to where you think it's going. So we people have lost work from that. So go to File Open, you won't have run into the problem. In your course you want to go to your today's folder. So you open and just like how you did with Eclipse when you're going to be working with the SQL file. So you'll go to your student exercise, I'm going to go to instructor and the file name is entered in databases exercise dot SQL. Click that. So be the only SQL file in the folder and then click Open. And if you might, what I would suggest if you find yourself getting this file open any other way then that file open dialog into dbvisualizer. If it gets there some other way, no matter how it got there. Don't trust it. That's that's what I would recommend.
+
+reopen it and because
+
+that gets me that's got me out how many times I've lost him. How much work to that. behavior because every other application you can drag and drop, and it does what you expect, but this one does not. And it does in Windows, which is even more confusing, so
+
+but not in Mac.
+
+So there's some things at the top. So it says these queries, we use the world database, that's the only one you have right? Now, that's shouldn't be a problem. So you want to make sure it's the worst is database connection, it says world, but that should be the only one you have. So you should have some notes, the GNP, so the column GNP is expressed in millions of US dollars, just like we just looked at. And then the evaluate, there's a number after each one of these problems, and it tells you how many rows so there's no test cases because you're writing to something it's querying the data, but it'll tell you how many rows you get back. And I'll show you how to do that. So let's do this first one, so we can see that working. So the name of population of all cities and our Ontario, Canada. So what table? Are you working with?
+
+The city? Yeah. So
+
+I would start by Select star from city. Run it. So we have ID name, country code district and population that work with. So we have two sets, we have one, this is the columns, we're going to need to get back I personally I save that for the last again because that way I can see all the data to work with. And I want to get Ontario and Canada. So I need to limit it by two things right? by country and by district. Or if I look through these, I would discover this country and district right. But from what we know about the table already. So a lot of working with SQL isn't knowing the data in the table or what it wraps results. So we know district is going to represent something like Ontario, and the country codes from the represent Canada.
+
+So that's the where clause.
+
+So how can I limit this to just Canada?
+
+country code equals?
+
+Yeah,
+
+yep. I could look that up in the country table if I didn't know it.
+
+And it has a second portion. So how can I limit this to just Ontario?
+
+district equals Ontario? Yeah.
+
+I can run it. And we can see. It should return 27 rows. If you see down the corner here, it says 27. All right. Here 27 showing how many rows returned. So when you get 27 rows, that means you have the right number of results. So for all these, you get the right number results, you have that portion correct. You also have the right number of columns. So now we have the right number of rows just from the number are reasonably sure we do. So how can I limit this to what columns I need to limit this to and how do I do that?
+
+Name and population.
+
+So then that gets what goes in the select statement, the SELECT clause, so name, comma, population, for as many columns that need limited, run it. Now said name and population I've named population 27 rows, I have 27 rows. I've done, the problem has been solved. It's and then we save it and make sure you save it. That's how you go through each one of these. Right?
+
+So any questions on
+
+what should we doing? Make sure to put a couple things make sure you put a semicolon at the end of each one. So each one should end with a semicolon. Be careful about either selecting each one or putting your cursor beside it and pressing Command period, or the somebody pointed out that's just pointed out there. You can this will do the same thing. Actually, never use that button. So I just learned that too. So and let's see, I think that's talking about dragging not don't drag and drop them.
+
+Yeah. Okay.
+
+So any other questions about today or what should be doing
+
+Just Just out of curiosity,
+
+do weird attorneys then we just hit save and that's it.
+
+No, you have to push from get the same way. Okay.
+
+But you do have to hit save, or you'll end up pushing a blank file until you hit Save the file itself will not be changed if you push up the lecture dot SQL files so they can see that up and you'll see it up a bit bucket. So it will have, you know, the commented out code and then your SQL queries will all be up in Bitbucket.
+
+Not sure how I pull down run.
+
+That's a great, thank you. So let me
+
+do that.
+
+Can you repeat that ratio? Can you repeat what you just said?
+
+So Brian, did you want to clarify that or? Yeah, I'm
+
+actually doing it right now. So let's step through it. So once you're done, you want to go back to your your Java blue material folder, just like He would for any other exercise to turn it in. So you need to make sure you saved it on the visualizer. And then you'll just push it. So get add, commit, and lecture code and then push it.
+
+And
+
+now I'm going to go out to Bitbucket
+
+and in Bitbucket, what you'll see and to see what Rachelle is going to see when she grades it so that you know what you turned in.
+
+For to verify what you've your work.
+
+Maybe we'll get to the bucket
+
+and you'll get to your folder.
+
+And then minds are going to the lecture. So lucky To final. And then there's the files that we work with the sequel files. So in your exercise will be your SQL file. If you open it up, you'll see the code that you wrote the SQL queries along with the comments. So you can see the SQL query and then we're show grades that she'll pull this out. And there's a script that runs it against her copy of the database, which is the same as yours, the same world file and will remain the same until Thursday when we learn ways we can break it. So that's how you'll turn it in how you can verify it. So it's pretty much the turning in the process of turning it in and verifying it's actually the same as it was for jobs for the last four weeks. That hasn't changed. The big change of turning it in is making sure you hit the Save button or Command S saving in some way. That's the big change.
+
+Alright, so any other questions for today?
+
+So, let's see today three, you have the networking presentation and peer review, resume review. So don't forget about that. I think that's an a different Vinny sent something out, listen to whatever you said. I'm supposed to tell you. It's in some different locations, but I don't know the details on that. So I'll just how you read his message, don't go to the elevate space, there's a different networking space and Coco you're supposed to go to. So
+
+then
+
+the code reviews your capstans you should be receiving. Sorry.
+
+invitations, your email, probably this evening for code reviews later this week. So
+
+it's nice. So anything else?
+
+Beautiful day, go get some SQL queries out on the Just being like, I'm not doing my capstone right now. This is great.
+
+Alright, so Nelson, thank you. Good luck.
+
+Okay, fine. Thank you.
+
+You guys
+
+do
+
+Transcribed by https://otter.ai

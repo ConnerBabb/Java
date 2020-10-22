@@ -1,0 +1,103 @@
+Book
+https://book.techelevator.com/content/command-line-programs.html#converting-kilometers-to-miles
+
+Converting kilometers to miles
+The last part—printing out each of the conversion values—goes back to what you've learned this week: writing simple arithmetic logic. Writing repetitive statements and incrementing by the same amount until a value is reached sounds like a for loop.
+
+Remember the structure of the for loop:
+
+for(init; condition; increment/decrement) {
+    statement or block of code to run when condition is true
+}
+Given all of your recent array practice, it might be burned into your brain that you can only write for loops that start at the beginning of an array and go until the end of it, incrementing one at a time:
+
+for(int i = 0; i < length; i++) {
+    statement or block of code to run when condition is true
+}
+For loops start wherever and they can increase, or decrease, by however much necessary. With this conversion program, you can write a for loop that goes from your start to finish variables:
+
+for (int i = kilometerStart; i <= kilometerEnd; i += incrementBy) {
+    statement or block of code to run
+}
+This for loop starts the variable i at whatever value kilometerStart holds. It runs as long as i < kilometerEnd. After each iteration, i increments by whatever value incrementBy holds.
+
+If you plug this into the program, you can prompt the user for input and display calculated output.
+
+public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+
+    //greet the user and prompt them to enter a start from, end with, and increment value
+    System.out.print("Enter a kilometer value to start at: ");
+    String value = input.nextLine();
+    int kilometerStart = Integer.parseInt(value);
+
+    System.out.print("Enter a kilometer value to end with: ");
+    value = input.nextLine();
+    int kilometerEnd = Integer.parseInt(value);
+
+    System.out.print("How many should it increment by: ");
+    value = input.nextLine();
+    int incrementBy = Integer.parseInt(value);
+
+    System.out.println("Going from " + kilometerStart + "km to " + kilometerEnd +
+        "km in increments of " + incrementBy + "km.");
+
+    //print out each value converted into miles from start from to end with
+    for (int i = kilometerStart; i <= kilometerEnd; i += incrementBy) {
+        System.out.println(i + "km is " + i * 0.621371 + "mi.");
+    }
+}
+If this makes sense so far - great! You have a fully functioning program now.
+
+#Putting it together
+You may wonder how some of the methods you've written in the last few days fits into this. Take a look at the code below. It's the same program, but with a few things changed towards the end to rely on a method that converts kilometers to miles:
+
+public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+
+    //greet the user and prompt them to enter a start from, end with, and increment value
+    System.out.print("Enter a kilometer value to start at: ");
+    String value = input.nextLine();
+    int kilometerStart = Integer.parseInt(value);
+
+    System.out.print("Enter a kilometer value to end with: ");
+    value = input.nextLine();
+    int kilometerEnd = Integer.parseInt(value);
+
+    System.out.print("How many should it increment by: ");
+    value = input.nextLine();
+    int incrementBy = Integer.parseInt(value);
+
+    System.out.println("Going from " + kilometerStart + "km to " + kilometerEnd +
+        "km in increments of " + incrementBy + "km.");
+
+    //print out each value converted into miles from start from to end with
+    for (int i = kilometerStart; i <= kilometerEnd; i += incrementBy) {
+        double miles = kilometersToMiles(i);
+        System.out.println(i + "km is " + miles + "mi.");
+    }
+}
+
+static public double kilometersToMiles(int kilometers) {
+    double miles = kilometers * 0.621371;
+    return miles;
+}
+All week long you've been implementing the bodies of methods. You took one of those methods and added it to your program. Now, you can call it as often as you want. Notice the inside of the for loop calls the kilometersToMiles() method using the loop variable i.
+
+It may seem like more work, but practicing an approach like this encourages good coding habits and can make less work for you later on. Some of the benefits are:
+
+Testable code - Isolating code into small methods makes it easy to write tests that validate that the formula calculates correctly.
+Readable code - Over time, code becomes easier to read when it does less work. The for loop doesn't have to do much with i except call a function that converts it into miles.
+You've heard this several times now, but you'll learn more about this in the coming weeks as you continue to write your own methods.
+
+#Next steps
+Programming becomes fun when you can create things to do for yourself. This program was just a start.
+
+If you want to enhance the program's functionality and continue with experimenting and adding features, consider trying these challenges:
+
+Run the program infinitely until the user indicates they want to exit.
+Add other conversion units, like miles to kilometers, feet to inches, or kilometers to yards.
+Validate user input, ensuring they enter positive numbers and that it goes from small to large.
+What happens if the user enters something that isn't a number?

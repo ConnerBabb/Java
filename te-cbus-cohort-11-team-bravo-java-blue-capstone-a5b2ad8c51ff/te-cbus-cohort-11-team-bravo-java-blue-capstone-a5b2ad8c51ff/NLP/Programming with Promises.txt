@@ -1,0 +1,24 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#programming-with-promises
+
+Programming with promises
+A Promise object allows you to specify what to do when the result of an asynchronous operation has completed by passing a handler function to the .then(...) method.
+
+For example, if the calculateSalesTax(...) method in the example above was asynchronous, it might return a Promise that contains the results of the sales tax calculation as illustrated below:
+
+checkoutService.calculateSalesTax(orderSubTotal)
+    .then( (response) => {
+        const orderTotal = orderSubTotal + response.data.salesTaxDue;
+        ... // some other code that does something useful with orderTotal
+    });
+In plain English, this code says, "Call the calculateSalesTax method of the checkoutService, when the response is ready, then use the salesTaxDue returned to calculate the orderTotal."
+
+#Promises and axios.get()
+Here's how you'd use Promise objects with axios.get(), using the previous Axios example:
+
+axios.get('/users')                  // sends an HTTP request to '/users' and returns a Promise
+    .then( (users) => {              // here you're dealing with the Promise returned by get(), and 'users' is the JSON data that was returned by the backend
+
+        ... // some code that deals with the JSON data
+    });
+What this says is that when the Promise returned by get() resolves, users contains the information from the response, and the code in the arrow function now has access to do what it needs with it

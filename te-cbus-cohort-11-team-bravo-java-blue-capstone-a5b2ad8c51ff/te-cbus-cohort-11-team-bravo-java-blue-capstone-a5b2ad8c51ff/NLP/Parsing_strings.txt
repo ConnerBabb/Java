@@ -1,0 +1,56 @@
+Book
+https://book.techelevator.com/content/command-line-programs.html#parsing-strings
+
+Parsing strings
+You're probably thinking, "Great—now I've got a string, but I wanted a number." Unfortunately, you can't tell the framework to only accept numbers, but you can parse the characters your users type and try to turn it into a number.
+
+Fortunately, all of the primitive data types offer a Parse() method which accepts a string argument and converts it into the desired data type.
+
+
+Image - Integer.parseInt()
+The Intellisense for this one looks a bit different than the nextLine() method used earlier on. There are two things you should notice:
+
+Return Type - The return type indicates that this method returns an int.
+Arguments - The Intellisense shown indicates that the argument provided must be a string. Using anything which can't be implicitly converted into a string results in a data mismatch.
+Argument Values
+
+The Intellisense indicates that you need to pass in a string for the program to compile correctly. This means you can pass in:
+
+a literal string, like "5"
+a string variable
+a method expression which returns a string, like input.nextLine()
+You should also see that in the list of available methods, there are a couple of other methods that are called parseInt on the Integer class. These are called overloads. Overloads are methods that have the same name but take different arguments, so you can use a different one depending on your needs.
+
+
+Image - java-overloads
+#Now, back to the program
+Now, you'll add in the code that prompts the user for the start from, end with, and increment values:
+
+public static void main(String[] args) {
+
+    Scanner input = new Scanner(System.in);
+
+    //greet the user and prompt them to enter a start from, end with, and increment value
+    System.out.print("Enter a kilometer value to start at: ");
+    String value = input.nextLine();
+    int kilometerStart = Integer.parseInt(value);
+
+    System.out.print("Enter a kilometer value to end with: ");
+    value = input.nextLine();
+    int kilometerEnd = Integer.parseInt(value);
+
+    System.out.print("How many should it increment by: ");
+    value = input.nextLine();
+    int incrementBy = Integer.parseInt(value);
+
+    System.out.println("Going from " + kilometerStart + "km to " + kilometerEnd +
+        "km in increments of " + incrementBy + "km.");
+
+    //print out each value converted into miles from start from to end with
+}
+If you run the program, this is what it looks like:
+
+Enter a kilometer value to start at: 0
+Enter a kilometer value to end with: 20
+How many should it increment by: 5
+Going from 0km to 20km in increments of 5km.

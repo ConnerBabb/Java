@@ -1,0 +1,62 @@
+Book
+https://book.techelevator.com/content/introduction-to-SQL.html#select-statements
+
+Select Statements
+First, you'll learn how to select data from a database. This is one of the main types of statements you'll use when developing web applications.
+
+For these examples, assume that you have a database table that looks like this:
+
+
+Image - Our cities table
+In this database, the table would have a name. Here, it's called the countries table. If you want to get the names of all the countries in the countries table, you could run the following statement:
+
+SELECT name FROM countries;
+Result:
+
+name
+Cayman Islands
+Chile
+Cook Islands
+Costa Rica
+Djibouti
+Dominica
+Dominican Republic
+Ecuador
+...
+This is a SELECT statement. All SELECT statements start with the keyword SELECT followed by the name of the column from which data is retrieved. After that is the FROM keyword, which specifies the table you want the data from. This tells the database to give you the name of every row in the countries table. These are called the SELECT clause and the FROM clause of the the SELECT statement.
+
+Clause Order
+
+You'd think that you'd need to specify the table before specifying which columns to select. But SQL is a declarative language and the pieces of the statement aren't written in the order that they run, but in an order that reads more like English. Be sure to remember what order the clauses need to be run in.
+
+You can select more than one column from the table by separating each column name with a comma, as shown below:
+
+SELECT name, continent FROM countries;
+Result:
+
+name	continent
+Cayman Islands	North America
+Chile	South America
+Cook Islands	Oceania
+Costa Rica	North America
+Djibouti	Africa
+Dominica	North America
+Dominican Republic	North America
+Ecuador	South America
+...	...
+There is also a shortcut for selecting all the columns of a table. That shortcut is to use the * symbol, which means all:
+
+SELECT * FROM countries;
+Result:
+
+code	name	continent	region
+CYM	Cayman Islands	North America	Caribbean
+CHL	Chile	South America	South America
+COK	Cook Islands	Oceania	Polynesia
+CRI	Costa Rica	North America	Central America
+DJI	Djibouti	Africa	Eastern Africa
+DMA	Dominica	North America	Caribbean
+DOM	Dominican Republic	North America	Caribbean
+ECU	Ecuador	South America	South America
+...	...	...	...
+These two clauses allow you to specify the data you want to select from the database. The FROM clause lets you specify what table you want to select from; the SELECT clause lets you specify what columns you want to select from that table.

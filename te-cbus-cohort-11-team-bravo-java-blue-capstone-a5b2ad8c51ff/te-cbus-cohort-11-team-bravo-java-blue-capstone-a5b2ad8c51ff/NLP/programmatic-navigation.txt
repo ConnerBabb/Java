@@ -1,0 +1,50 @@
+Book
+https://book.techelevator.com/content/vue-router.html#programmatic-navigation
+
+Programmatic navigation
+You've already learned how to use <router-link> to provide declarative navigation, but there are times when you need to do this programmatically. Imagine that you're in a method, and after you save a new user, you'd like to redirect them back to the list of users:
+
+methods: {
+    saveUser() {
+        // save user logic
+
+        // redirect user to /users
+    }
+}
+You can't use the Router Link component in a method, so Vue provides access to the same logic programmatically using one of the following methods:
+
+router.push(location, onComplete?, onAbort?)
+router.replace(location, onComplete?, onAbort?)
+router.go(n)
+router.back()
+router.forward()
+You can go through the Vue Router Documentation to learn more about them, but you'll see an example of router.push() now.
+
+Inside of a Vue instance, you have access to the router instance as $router, so you can call this.$router.push. This is the method called internally when you click a <router-link>, so clicking <router-link v-bind:to="..."> is the equivalent of calling router.push(...).
+
+The argument can be a string path or a location descriptor object. Here are some examples:
+
+// literal string path
+this.$router.push("/");
+
+// object
+this.$router.push({ path: "/" });
+
+// named route
+this.$router.push({ name: "home" });
+
+// named route with params
+this.$router.push({ name: "user", params: { username: "dan" } });
+
+// with query, resulting in /register?plan=private
+this.$router.push({ path: "register", query: { plan: "private" } });
+Going back to the example above, if you wanted to redirect to the list of users after a save, you could do the following:
+
+methods: {
+    saveUser() {
+        // save user logic
+
+        // redirect user to /users
+        this.$router.push({ name: "users" });
+    }
+}

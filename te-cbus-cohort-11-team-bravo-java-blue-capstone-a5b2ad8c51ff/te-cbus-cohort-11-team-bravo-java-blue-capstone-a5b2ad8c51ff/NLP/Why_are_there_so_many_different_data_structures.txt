@@ -1,0 +1,84 @@
+Book
+https://book.techelevator.com/content/non-linear-data-structures-ool.html#why-are-there-so-many-different-data-structures
+
+Why are there so many different data structures?
+Your choice of data structure depends directly on the type of data you are working with. However, there is something else you must consider: what you're trying to do with the data.
+
+With all of the collections, you may find yourself performing one of the four following operations:
+
+Adding or inserting items in a particular spot
+Removing or deleting an item from the collection
+Searching for a particular value
+Updating the value
+Each data structure performs these operations more or less efficiently than the other. For example, the queue always inserts items at the end and removes them from the front. It doesn't matter if the queue has 1 item or 100,000 items—it takes the same amount of time.
+
+As a programmer, your goal is to write code generically without hard-coding it to fixed collection sizes. Sometimes your solution takes 1 second to execute with 1 item; sometimes it takes 10 seconds to run with 100 items. You may not mean to, but the code you write can inadvertently create a new problem that causes the algorithm time to go up by a factor of n, n², or 2ⁿ. This is important so that you can identify a worst-case scenario when looking at your program's algorithms.
+
+This way of measuring algorithm complexity is called Big-O Notation.
+
+Disclaimer: This next section covers an advanced computer science topic that's often brought up casually during an interview. The intent of the discussion is to challenge the candidate to realize the efficiency of the solution and look for alternative ways of writing the same code.
+
+Before you dive in, it's important to remember one thing as you begin your journey as a coder: Premature optimization is the root of all evil. Learn more about this here.
+
+
+Image - Premature Optimization is the root of all evil.
+When it comes to working on a problem, whether for yourself or an interviewer, focus first on creating the working solution. Once it works, look for ways to optimize.
+
+#O(1) - Constant Time
+Suppose you were asked to get the first number in an array—a list could work—and say if it was even. The code might look something like this:
+
+public boolean isFirstElementEven(int[] array) {
+    return array[0] % 2 == 0;
+}
+This algorithm takes the same amount of time to run whether the size of the array is length 1 or length 100,000. The Big O notation, O(1), describes an algorithm that always takes the same time.
+
+#O(N) - Linear Time
+Below is the code for a search algorithm that looks through an array seeking a specified value.
+
+public boolean containsValue(int[] array, int someValue) {
+    for(int i = 0; i < array.length; i++) {
+        if (array[i] == someValue) {
+            return true;
+        }
+    }
+
+    return false;
+}
+This algorithm searches every element in the array to see if it matches someValue. In a worst-case scenario, it doesn't exist, but you don't discover this until the end. In a best-case scenario, the first element in the array is what you need.
+
+Because Big O notation always refers to the upper limit or worst-case performance, this algorithm could be described as O(N). Its performance is linearly proportional to the size of the input data set.
+
+#O(N²) - Quadratic Time
+Look at another type of algorithm that checks to see if an array contains duplicates:
+
+public boolean containsDuplicates(int[] array) {
+    for (int outer = 0; outer < array.length; outer++) {
+        for (int inner = 0; inner < array.length; inner++) {
+            // Don't compare with self;
+            if (outer == inner) {
+                continue;
+            }
+
+            if (array[outer] == array[inner]) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+This algorithm starts with the first element in the array and searches the remaining elements looking for the same value. If no duplicate is found, the algorithm moves on to the second element and searches the array again.
+
+In a best-case scenario, your duplicate values are the first two elements in the array, and the inner-most part of the for loop runs once or twice. Unfortunately, things don't always work out the way you planned. To be sure, you need to check every value.
+
+You might think an array length of 10 is small. If you run this algorithm against an array of that size with no duplicates, the inner-most part of the for loop runs 100 times. An array of size 100 searches the array 1,000,000 times.
+
+This algorithm would be O(N²). This is common with nested loops. If you were to nest another for loop, the algorithm would then be O(N³) and so on.
+
+#Please, make it stop!
+This material can be interesting—or boring—depending on what motivates you. At this point, it is important for you to realize, but not dwell on, that there are consequences for the code that you write. These consequences can be mitigated by choosing the correct data structure.
+
+For your viewing pleasure, through the magic of the Internet and GitHub, here is a poster that demonstrates some Big-O Complexities. The full version can be found here.
+
+
+Image - A poster of common algorithms used in Computer Science.

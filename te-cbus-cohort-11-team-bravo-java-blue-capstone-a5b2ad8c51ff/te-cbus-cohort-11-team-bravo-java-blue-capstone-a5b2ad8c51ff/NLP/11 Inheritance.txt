@@ -1,0 +1,1080 @@
+Zoom
+https://techelevator.zoom.us/rec/share/1Jctf47C-k9JfavT7ALyZKF9OqvKeaa8gCUe8_NcyE0A50e1KO6IsdySkz-ylja4?startTime=1590500384000
+https://drive.google.com/file/d/1cPuA6f7a19_TriEqM1k2-fWSUu6-Vs5z/view?usp=sharing
+https://docs.google.com/presentation/d/1xpkfiC1O6EiXZZEDQ8lpmMMqwF8I5IzDn5mZNNlDV2Y/edit?usp=sharing
+
+So last week, we started talking about the principles of object oriented programming. And we started that with
+
+encapsulation the end of last week.
+
+And this week, we're going to continue with that for the next couple days. We're going to talk about inheritance today one of the other three fundamental principles. And we'll talk about polymorphism. Tomorrow, the third of the principles in so let's, and then we'll explore the day after that we'll explore some other using both those principles, some other methods of doing the same things. And then finally, on Friday, we'll start diving into writing our own test cases. So today we're going to talk about inheritance. So we're going to start by defining first what inheritances. And then we're going to talk about this idea of specialization and is a. And then we'll look at how we implement inheritance in Java. And at the end, we'll look at polymorphism with inheritance. So kind of leading into tomorrow, we'll look, take a brief look at that. And as we go, we're going to run into for one of the examples, this data type called Big decimal, so we'll take just a moment to look at that and how it works.
+
+Alright, so for inheritance.
+
+What inheritance is enables a class to take on the properties and methods that are defined in another class allows them to pass on the characteristics. So we're going to divide this into two relationships for classes. So classes That we would think of as like a parent, the one that are passing on traits to other classes we're going to call super classes. And the classes that are receiving these traits that are inheriting things that we could think of as child classes, we'll call sub classes. So a subclass is going to derive or acquire properties from a superclass or superclass is going to have parts of it that it are available for it to pass on, to things that inherit from it. So in everything in Java, the whole language every class, which is every reference type, so everything with those eight primitives, you know, and boy in long double those, those eight that we looked at in week one, everything starts from this class Java util object, we'll look at a little bit so everything inherits from object and that's it. We'll see that's part of the why we have common things that we keep seeing show up in every Reference Type like to string equals. And some other methods you probably noticed are in everything. And we're going to see today why. So, inheritance itself is a subclass is going to inherit all visible, non private properties and behaviors, or methods from the superclass. And this concept of passing thing on inheritance in programming is not different than natural inheritance, this idea passing on traits, so we see it outside of programming all of in many places. So, we're going to mimic it and our own development. So we're going to everything that's non private. So for today, everything that's public the later this week, we'll learn that there's some other things besides just private and public, so everything that's not private Get will be passed on. That includes variables that are at the class level. So the ones at the top of the class and methods, they'll both be passed on. Anything that's private would not be, it'll still only be
+
+visible inside of that individual Class
+
+A.
+
+The other thing that won't be passed on is constructors. We looked at constructors at the end of last week, those will not be passed on. And that's because the superclass still has to be constructed. So the difference of how a child class is constructed, will be different than the parent class. And we'll look at what that means. And when we start looking at some code, but so the constructors won't be passed on. And then, not only with these trades be passed on to a single subclass, but we're going to look at how this creates hierarchy. So that we'll have subclasses that are heading for Super classes that have super classes their own, and kind of a tree structure. And everything in their hierarchy from the class that provides something that's public or something, it's not private, down through the children and all of their ancestors, that trait, or that method or variable will be passed on. So inheritance we'll, we'll talk about is transitive, means that it happens through multiple generations.
+
+And then in Java,
+
+Java is what's called single inheritance. So, why the subclass can have a superclass. A parent class can have multiple children classes, or subclasses. Each subclass can only have one superclass only one parent class. So that's kind of a summary of inheritance. We're going to go through all of that in a lot more in more detail, and what that means actually for using it
+
+So let's look at
+
+what
+
+when they say a hierarchical structure of inheritance, what that might mean. I'm going to try to make this a little larger, hard to read on this. Alright? So that would mean that if we had a set of classes here, so each one so the starting class will be some object. But everything in Java starts with object. It's also the only class and object that itself does not have a superclass. It's the root class. So it's the only thing without a parent class in Java.
+
+And then if we had a class animal, so
+
+animal would inherit the to string equals method from object itself may have some public methods or properties like model Sally, clear reproduce move. And it might have children subclasses that like reptile or fish or mammal. So as we go down this hierarchy, the subclasses become more and more specific. And we're going to talk about that relationship in more detail but it it starts general and becomes more specific as we go. So for these, each one of these, reptile fish, a mammal all inherit the three multicellular reproducing move, public items that are coming from animal but they also inherit to string and equals which is coming from object. And if we follow one or this one, you can see the mammal now adds warm blood has hair and vocalize. And it has two subclasses are two child classes canine and feline and now they're inheriting warm blooded has Heron vocalize for mammals that means that they can just use those they don't have to write any extra code for them. But they're inherently multicellular reproduce and move from animal because that's in their hierarchy. And then there are still getting to string in equals from object. So they've inherited all of that. So then feline continues going down so it has retractable claws. So that's that property. And then we get to something like house cat that's per and vertical pupils. It's now inherited retractable claws from feline warm blooded has her and vocalize from mammal multicellular, reproduce a move from animal to string, and equals from objects when we get the house cat. It's total. methods that are available the public methods that are properties that can be used, used by somebody using housecat includes not only these, but all of these, but the only code it has to write are these to the rest of them it is passed on to it. And we will see that we were talking about passing on this code, we mean it, they have full access to it, they could use it like it's their own. We don't have to rewrite the code. We don't have to do anything to make changes to these. They're just available to it. So from somebody using housecat, they would see that class have the method pervert for pupils to string equals multicellular reproduced, move, and so on. And they wouldn't have to do anything extra, they wouldn't have to. Sorry, they wouldn't have they wouldn't have to know where those are coming from. to them. Those are just the public methods and properties that the house cat class has. So in this also, let's look at we talked about hierarchy.
+
+We talked about something being the hierarchy we mean directly not in the parent child or ancestral relationship for in this in a tree structure like this. Meaning that if we start here, we're rather housecat. That feline is in this hierarchy, mammals and its hierarchy, animals that is hierarchy and object is in the hierarchy. So that set
+
+of these classes try to
+
+would be the hierarchy of housecat. Kind of a bad there but
+
+notice that lion or canine, or fish, all the things that are beside them that are not directly connected to housecat. They're not part of the hierarchy. We talked about things being treated. transitive through the hierarchy, we're talking about the direct Parent Child relationships and descendants. So not was we'll learn later this court we're looking at tree structures a little more, not what's called siblings, not things that are beside them that are have a shared parent, but the things that are their parent class, the parent of that class, and the parent of that class threw up the object. So before we look at the next part, which has takes this and turns it into kind of more like the code would look like,
+
+what questions do you have?
+
+it make sense.
+
+It makes sense. Um, could you give that similar demonstration but with constructors, how that wouldn't pass on?
+
+Yes. So none of the constructors pass on. So what would happen is that if there was a non No no argument constructor. So house cat would have to have its own constructor. And a feline had a no argument constructor or non no argument constructor argument that took constructor that took arguments, then house cats constructor would have to call the feline constructor. And the same if Malmo had a constructive arguments and feel I'm gonna have to have a constructor, the call the mammals constructor and so on. So constructors are passed on because they, they're specific to an individual class. And we'll, we'll talk about how we do that. But it means that if something through this hierarchy has a constructor that takes arguments, then something has to call that so that children have it. Its subclasses have to call its constructor and provide those arguments. We're going to spend more time on constructors specifically As we go, but does that answer your question for? Yep. Okay.
+
+So let's
+
+take this now and move it to something
+
+that has switch with code.
+
+So given this, these three classes,
+
+a calculator, a scientific calculator and a trigger moment calculator that are all in a hierarchy together. So with calculator being the parent, the sub the subclass, the first one in the hierarchy, scientific calculator, being subclass, a calculator and the trigonometric calculator being a subclasses scientific calculator. So we're going to go over more specifically some of the syntax later but if this
+
+if the calculator class
+
+It had
+
+constructor
+
+that takes a double. So starting total, and then it has five public methods. So add, subtract, multiply, divide, and get total. So, scientific calculator is a subclass of calculator. But we'll look at this syntax in more detail in a minute. But using the extends keyword tells us that we want this class to be a subclass of the other.
+
+And it inherits.
+
+add, subtract, multiply, divide, and this also, it also would inherit, get total.
+
+But it does not inherit
+
+this constructor. But this constructor has it's not no argument takes an argument So in order to build a calculator,
+
+you have to provide a value.
+
+So
+
+here, scientific calculator now has to provide a constructor constructor that provides a value to for the this calculators constructor. And it's doing that here through the super keyword that will take a more detailed look at
+
+and it's setting the value.
+
+It adds two new methods, add exponent and log
+
+that are public of its own.
+
+So, but notice its constructor is no argument. So it doesn't take any arguments to construct the scientific calculator.
+
+So then trick anomic calculator
+
+is a child of or subclass of scientific calculator and It inherits, add, subtract, multiply and divide and get total. So the five original methods and harriss, which means that when we're using trigonometry calculate and call add, subtract, multiply and divide it it doesn't have to provide any extra code to use those. It can just by extending that it is has access to those the code that was written for calculator. So the same code is written here in this class is available in scientific calculator in economic calculator without any changes. It also inherits an exponent and log from its direct parent scientific calculator. Because of those, those are its public methods. And then it adds sine, cosine and tangent as its own public methods. So if we use the calculator class, we would have add, subtract, multiply, divide and get total. If we use a scientific calculator feed instantiating One of those, it would have an exponent log, add, subtract, multiply, divide and get total. The same if we use trigonometry calculator, then in that class now, the methods available to it would be sine, cosine, tangent, add exponent, log, add, subtract, multiply, divide and get total. But the only code we have to write here is for sine, cosine and tangent.
+
+And these don't have the code in the methods but we're going to explore that
+
+with actual code.
+
+So this relationship,
+
+the way we can define it, the what we decide is going to be a subclass, or child of the other class is not an arbitrary decision. It's not a decision that we can make any two things. subclass of each other and have it worked out correctly, it really depends on their actual relationship with each other.
+
+And we define this relationship through
+
+what's called an is a relationship and there's a test that goes along with it kind of a verbal test. So it is a relationship is how we can determine if a subclass is appropriate for superclass if it probably fits in the hierarchy. If it doesn't fit in the hierarchy, what happens is we end up passing on trades that don't make sense for the child class, which means that the class very quickly becomes unusable and they're difficult to manage. So it is a relationship is a test of specialization. Every child should have should be more specialized. version of its parent class. So we can say, a graphing calculator is a more specific type of calculator that's a true statement. If saying, you know, trig anomic calculator is a calculator is true, there's no error every aspect of calculator exist in the trigonometry of the scientific calculator. But saying calculator is a scientific calculator is false because there are aspects of a scientific calculator that does not exist in calculator. So that so there is a relationship helps us define both what is the parent? And what is the child as we see specialization and also is kind of a general test of Is this true? Is the statement true? So, some other examples would be you know, Honda Accord is a mortal specific type of car. If that's a true statement, then it would make sense for me to have a Honda Accord inside the hierarchy of car. If it doesn't have that that's not a true statement, a completely true statement, if there's any part of it's false, no matter how small, but it doesn't make sense to have it in the hierarchy. It belongs someplace else. So to get more, as we get more specific cars, or more specific type of land, vehicle, and land vehicles or more specific type of vehicle. And for each of those, it becomes more general. So the subclasses will always be more specific, is we go down the hierarchy, we should get to something we should start very general, or as general as we need for our application and become a specific as we need, like back in the hierarchy. A couple slides back. Well, I guess it's fine here. Each one of these housecat is a feline. It's a more specific type of feline felines is a mammal, it's a more specific type of mammal. A mammal is an animal, it's a more specific type of animal. And for Java, an animal is an object. That's a more specific type of object. But to say a snake is a mammal is false, which is why it's in its own hierarchy.
+
+It also is true that each thing in the hierarchy needs to meet this relationship for all of its ancestors. So for long lion, we said it's true that lion is a feline that is true, but it also must be true that lion is a mammal. And that is true so belongs in the hierarchy. And it also must be true to be able to say lion is a animal. So it must match the realest relationship for everything inside of itself. visual hierarchy to be valid. And the reason we care about this is it's not only about passing on code. So one of the big benefits of inheritance is that we do pass on code, we don't have to write code as much. And we'll talk about we can specialize then on what makes an individual class kind of special and what it does. But for that to work in a way that won't, that we can maintain. And that won't quickly become a bunch of methods when we're not sure what they do and if they should, what they work or not. It has to be that everything inherited makes sense for that class, which is why the specialization needs to occur. And we're also trying to, for all of us were the point, one of the main purposes is to try to model code off of the real world. So There's a relationship exists in the real world. I mean, everything we'd looked at with the animal, we could say about, you know, a real line. It's true that it's a mammal, it's true that it's an animal. So we're modeling that relationship, because modeling that makes our code easier to work with. And we'll often find that modeling. The real world like we do with object oriented programming makes the code easier to work with, but it often solves problems for us, especially around an organization that already kind of solved around us
+
+that we're just mimicking.
+
+So
+
+before we get moved to the next one, what questions do you have about that?
+
+Brian does inheritance mate more tightly coupled code?
+
+Yes, it does for its hierarchy. So, without getting too far there's there's two concepts with around coupling. There's this concept of tightly coupling, where we want modules to, or code or classes to work completely individually as possible and not to know about each other as much as possible. There's also this concept called cohesion, which is this idea that having single classes always work together or be completely standalone means we're gonna have to duplicate a lot of code. So inheritance increases cohesion, because cohesion says, well, instead of having single classes, we can have modules we can have things that are like, and they can work together, and there'll be tightly coupled because they'll be a single unit and then we'll decouple from those that so inheritance in Kurt increases cohesion. But yes, it does couple it's it's hierarchy. Okay. Got it.
+
+Hey, Ron, good question. Yes. So
+
+even though we don't have the appearance, I can still use the method function to
+
+use the method in the calculator. I mean, in the parent class, why do I need to use the inheritance, I mean, I can still use the method function to get it. I don't need to use inheritance.
+
+You can, you can go back to. So in this case, if you had a calculator and all you needed was add and subtract and divide. There's no reason not just to create a calculator or standard data calculator and use it directly here. But what if you need cosign that functionality? So then you have to use a trigger on the calculator, just the one that has cosine But a trigonometry calculator is also going to need to add, subtract and divide. If you have to have them meet, you're gonna have to manually pass the values back and forth. It'd be like getting, you know, an old small calculator that your bank used to send you for free. And a scientific calculator you bought for school in deciding, you're only going to do all your add addition, subtraction, multiplication on this one, you're going to do all your trigonometric functions of scientific functions and the other one. And every time you have to combine them every time you have to plus the Add button, you're going to take the number from this one and put it in the other one, do the addition then you're going to move it back over. That would quickly but it'd be very difficult to work with the same thing was going to happen here. So with inheritance, it means that we get the functionality of add, subtract, multiply and divide in the trigonometry calculator, the scientific calculator without having to rewrite code. So it's a way of power On code, because if this is turned on a calculator is a calculator, then it has, it's going to have to have the ability to add, subtract, multiply and divide, because that's part of what it means to be a calculator. So you're right, we could just use the calculator class, as long as we don't need the more specific methods that are available on the other one.
+
+Does that answer your question?
+
+All right. So other questions before we
+
+Okay, so, um,
+
+so in Java, it supports three types of inheritance. And they all really are related but you in first a single inheritance mean we can have any class inheriting from a single parent with nothing In the hierarchy, every class in Java, if we just have a standard class, so everything we've written so far, has been single inheritance because it's always inheriting from object.
+
+There's also multi level inheritance, which
+
+would be one,
+
+one parent class with one sub class and that sub class has one sub class. In this case, we can say that class C is a Class B, we could also say Class C is a Class A. So we looked at the higher, the higher.
+
+The third type,
+
+that's a graphic should be three there but is hierarchical, which is what we just looked at. So that's where Class A class can have multiple subclasses. So we can have either a single subclass itself is not a superclass, we can have any class can have a subclass, which itself is also a superclass of other classes, or for any class, they can have any number of sub classes, but one superclass, so one parent, each class can have multiple children to one parent. So there's other types of higher there's other types of inheritance and some other programming languages. So if you run into them, Java does not support multiple inheritance, which meaning having two parent classes, it also does not support what's called hybrid inheritance. In fact, the whole reason one of the main reasons it doesn't support multiple inheritance is because of a hybrid inheritance, which get is very confusing and difficult to work with. So Java supports only singular inheritance is really the takeaway from that. So one sub superclass, one parent class, and each one of those then can have multiple subclasses
+
+And then
+
+we talked about object already, but so everything derives from object. This is the root superclass. So it's the only class that does not have a parent class itself. It's kind of like the route, we looked at file systems, the root folder. It's the starting point. So everything in Java comes from java. lang object, which means that every reference type in Java has some particular methods that are available to it without writing extra code. So sometimes we'll look at today why you have to write extra code we already ran into some. So to string equals and hashCode of the three that will use this cohort, the lot that derive from objects and we all have our ops get have access to them without us making changes, unless we need different behavior, but we'll look at that a lot more tomorrow. Little bit today. So the only things that are not a descended object. So what are the primitives? Long int, double borjan is one of those. There's eight data types that we started with that are all in lowercase. So So before we move, I guess kind of a change away from just describing it to a little bit more of usage. Is there any questions?
+
+All right, so let's go and take our first break. Then we'll come back at 1021 and
+
+look at look at that.
+
+Okay, so
+
+So what questions came up for you during the break?
+
+So let's talk about
+
+some other aspects, some more specific aspects of how we can use this.
+
+And then we'll, we'll code some of it. But
+
+so these data, so classes, and each of the classes are creating data types. And these are creating like data types. They're creating data types that are related to each other. So just like when we have data types, like if you look at even though they're not reference types, but if you look at like Long integer, those are like data types, right? They're both whole numbers. And we know that we can cast between them, we can use them, we can transform one into the other. So, we can use it as that particular type. With inheritance and hierarchy of inheritance, we can do the same thing. And this aspect is actually become very important, especially tomorrow when we get to polymorphism. So,
+
+when
+
+So, for every superclass or every subclass, we can cast it to its its superclass, and use it as its superclass. So, when we do this is called up casting
+
+or this should be up casting classing.
+
+So I just did it all over the place.
+
+So up casting is widening. So it's explicit or it's widening, because it's going from something specific to something more generic. So as becomes more generic, we know that everything that a sub superclass can do, the subclass can also do because it's a more specific version of it. So it has all the abilities of the superclass. So for instance, that with calculator, a calculator, a scientific calculator can do everything a science calculator can do. There's nothing that a calculator has no properties that it has, or methods can do, that. Scientific Calculator also can't do. Therefore, it's widening. It's going from something more specific and more general and That is implicit, we don't have to do anything extra to have it happen, we can just use that class in that way. So for instance, if we have a scientific calculator object instantiated to a variable SC,
+
+we can then just use it as
+
+a calculator, we can assign it to a calculator and then or we can assign it to an object. And we don't have to do anything extra. Because a scientific calculator is a calculator, and a cat in both it also is an object. So that means that every property or every method of object is also true a scientific calculator. And the same for calculator. So in one of the things to be aware of when we're casting in this way, when we're up casting or when looking down casting is that we're not actually changing the object. So when we change Here, the scientific calculator to a calculator, we're not changing it to a calculator, what we're doing is we're changing the way we use it, we're changing the way we view it. So it's we're treating it as something different, but we haven't actually changed it. So imagine if you hired an electrician. And this electrician was also they also doubled as a more general handy person. So, but you've hired him as electrician, and they come to your house and they're fixing your wiring. And they discover when that happens that they're gonna have to rebuild part of the wall. So they can take on the role of the more general handy person to fix the wall. But they, it doesn't change the fact they're still an electrician. That has not changed. Just the way the actions are taking the role they're playing has changed. But what they are, is not changed.
+
+And that's the same one we're casting.
+
+We're not changing the class. Instead, we're changing the way we're viewing it. We're changing the robots currently playing for us. And we'll learn why that's important data today. And we'll spend all day tomorrow because why that's important is the principle of polymorphism. So, up casting means that we can use we can assign and use any class as one of the parent software, the super classes in its hierarchy. If we're going the other way, if we're going down, it's called down casting. So an object that's been that is being used as a superclass can be cast back to subtype which is called down casting. But it must be that it already is that internally that subtype. So down casting because of this is narrowing because we're going from something more general to something more specific. So if we go back to this chart, if we're up casting, we can cast some housecat the feline because our mascot is a feline. We're down casting. If we're down casting from feline, we can downcast a house cat if the object was already a housecat. We could downcast the lion if the object was already alive.
+
+So
+
+so we had a scientific calculator and we put it in a variable SC, and then we assign it to another variable, which is the calculator Then we can cast it back to a scientific calculator explicitly. And that's because it's narrowing. If remember from we looked in there in the first time, you have to be explicit with narrowing, you have to, you know, put the word double or in, in parentheses and the same as here, we have to tell it that even though this is a calculator, we know it's going to be a scientific calculator. So we wanted to use it in that way. And if it's not, internally, that subclass already, it's gonna result in a class cast cast exception error, so a runtime error. So in this case, if we had a scientific calculator, a calculator, not a scientific calculator, we tried to cast it as a scientific calculator. We get a class cast exception. Similar if we created an a new object. That was a scanner, because everything can be an object. And we tried to cast as a string, we get a class cast exception So for this Excuse me. So this imagine for Doncaster, imagine the same kind of scenario.
+
+But it's
+
+reversed. So you hire, you have a broken we have a wall that needs repaired, and you hire a general handy person to fix the wall. And while she's fixing the wall, she discovers that wiring must be moved. So it's going to require an electrician. And this particular handy person happens to be an electrician, they can take on that role. And they can take them on the more specific role to fix the wall to fix the wiring. But if they're not an electrician, if they're not also an electrician, something you didn't know when you hired them
+
+Then they can't take on that role.
+
+So when they can't take on that role when you have the handy person to fix the wall and say I need to move the wiring or they need to move the wiring, and they can't because they're not electrician, that would be a class cast exception, if they can, that would be a down casting going from a more general role to something more specific to take on
+
+to take on usually a more specific need. So
+
+when this object is down casting or up casting to another class hierarchy, it's only we'll have access to the properties and methods that are available to the type of this casto So if we cast our scientific calculator to object, the top of the hierarchy, then it's going to have available to to string, it's going to have a bill, it's going to have equals available, but it's not going to have add, subtract, multiply, divide.
+
+available.
+
+If we cast our
+
+scientific calculator to calculator, it's gonna have add, subtract, multiply, divide those available, but it's not going to have
+
+methods like add exponent available.
+
+Because that's part of the scientific calculators as we cast things, they're going to have only available what is available to Wow, we're treating it.
+
+So, and again, it changes
+
+is we can see the hierarchy is changing how we're treating it is changing how we're viewing and how we're using it, but it doesn't treat change what it is. So
+
+we have a new scientific calculator.
+
+And we assign it to a calculator. So we upcast it.
+
+When it's in this variable, being treated as a calculator, it's not going to have access to its add exponent or log methods, only gonna have access to the calculator methods. But internally, it's still a scientific calculator. We just saw then if we assigned it to an object, data type, now it's gonna have access to, it's gonna lose access to what made it a calculator, add, subtract, multiply, divide, it's gonna have access only to to string and equals and some other there's other basic object methods. But it's still going to be a scientific calculator. It's just we viewing it a different way. So it's the same idea from the analogy with the Handy person electrician. If electricians working and may take on a role more general as a handy person to fix the wall, it doesn't change the fact their electrician or what they can do, the actions they can take as electrician. But this changes the role they're taking on at the moment. It's changing the way we treat them. The same way if a quarter of house cats ran past, and you said look at all those animals. That's a true statement, but you're treating them in that way. But it doesn't change the fact they're still house cats. So when we're casting, we're changing, we're trading, changing the way that we treat things. We're not changing the thing. I mean, that's going to be really important. Especially tomorrow, and going forward, because we're going to take advantage of that. So when
+
+forecasting.
+
+There's actually an operator, we're down casting, it means that we're always at risk of having an error. Right? Why is it risk of throwing this class cast exception? So often we'll know, we'll know what's there because we wrote the code that we know we're changing from one data type to another. But sometimes we won't, we won't know what actual data type is being sent to us. We won't know what it actually is, we'll only know what maybe a higher what part of a higher level in the hierarchy is. So in the difference between that you've already seen, is when you work with an array, and you you build your array in your own code, and you're using it right there, you know exactly what's in the array. You know, it has five elements in it, you know, what those elements are, compared to when you're working on your exercises, and there's a race and she was a method, an argument to a method. You don't know anything about the array, right? You know, it's in a And that's the same thing we're gonna we can run into with objects. So we ran into it actually last week, if you remember when we done two equals, there was part of the signature of two equals was just the data type object. And I made a comment of if somebody sends us something besides
+
+the object we're comparing this to,
+
+it's going to cause an error, but we can't do anything about that right now. So there's an operator instance of, that allows us to actually check and say ask the question of any object can you be Is it true that you are this other thing or can you be cast to this thing?
+
+So if we, for every
+
+class, if we say that class is an instance of object, it will always be true because everything can be an object. So for the instance, op operators, a little different than the operators that we're used to because it actually is the word instance of an all lowercase for the full operator doesn't have a symbol like the other operators. And we use it by saying we could say, if we had a method, and somebody sends us a calculator, and our bets argument, our method, and we want to know if we can use it as a scientific calculator. To do that, we're gonna have to cap cast it to a scientific calculator. So, arts are downcast into a scientific calculator. so here we can say calculator, the variable instance of the data type scientific calculator, and that would be true if internally it was, it could be a scientific calculator. That'd be true if it's the scientific calculator or its subclass, economic calculator because it also can be cast as badly as a scientific calculator. Then we can do the cast and then do something else if it's false. So instance of allows us to check when we don't know what internal if a object can be cast to another object type, or another class type.
+
+However, with that being said, we,
+
+we often don't need for instance of, there's a cut one case, we really do in the rest, we don't. So some of the times when we say you never need it when I'm casting, if we're going to a superclass, or any of the superclass in the hierarchy, we never need an instance of because that's always valid.
+
+If we know what the data is, so for instance, back in
+
+this example, if you had code like this, where you created a scientific calculator, then cast as a calculator, you know, what's that code is right, you know, at this point, that might be better here. You know, at this point, that the variable See, has something it's a scientific calculator because you wrote code just wrote code that does that. So when we have that kind of case where we know what's in the object, we don't need instance of, we can just do the casting. But in this case, where there's a method call, and somebody's passing as of object that we don't know for sure. When it's going to be whether it can be an instance of is this a calculator? Or is this one of the subclasses of scientific calculator? then that's when we want to use instance of, and I said, because it becomes tempting to every time we cast to use it. And when you're using it, the question should be, do I know what's in this class right now? Do I reasonably know from code? What's here? And if the answer is yes, I know, then you probably don't need it. Or if you're up casting, you never need it. But the answer is Don't know what this is kind of like when a rating passed here, we don't know the size, then you use the you can use it to determine if the operation is valid before you do it. So you can avoid the getting the runtime error. Alright, so the next step would be looking at how we're going to do this in code. So before we do that, what questions do you have?
+
+Right, so
+
+let's look at how we'd actually implement this in encode. So we implement inheritance actually just using one operator the extends keyword or keyword extends keyword. So in our class definition, we add to our class extends and then the superclass for going to want to extend. That's really outside of then having to possibly deal with the constructors or change the behavior of some of the methods which are the constructors, not optional, but the others are, then that's all it is. Once we do that, feline has all the public functionality of mammal or all the non private I should say, functionality of mammal just by adding extends mammal. And in some cases
+
+we'll give you done.
+
+I will mention that you'll see a lot of examples where it's common to name the classes, a subclass by the subclass name superclass name. So for instance, this class will be named feline mammal to show the hierarchy relationship that's only convention It's not a standard convention, it means something that is compared to a standard standard or something that is more required convention, something more that this people do. But that's becoming less common. But if you see that that's, you'll see in a lot of the example some of the example code, some of the exercises, and other things that we go through an awful lot of sites. That's why that's a common convention, but not required. So the initial implementation of it is that simple. Then there's a couple things we have to be aware of.
+
+The first is the constructor.
+
+So constructors are not inherited. So it's because of because of the superclass has a constructor, it needs to be constructed, as well. And also, as we're talking about these, it's easy to imagine that when we have like, more building like The feline with a mammal, extending the mammal that we're ending up with a feline object inside of a mammal object. That's not what's happening. Remember, classes are blueprints, we're combining the blueprints to build something bigger. That can represent multiple things. It can represent a feline and can represent a mammal. We're not building multiple objects. It's one object that can represent that have all the features of both.
+
+So if
+
+one of them if the superclass require has a constructor requires some data, something has to provide that since the subclass is what's going to be the thing that's being instantiated, or could be a standard ated. And it's now using the blueprints from the superclass to help do that. Then it has to be able to provide that information. So for example, if we had a class coin and it's Sub its constructor takes an int, it just gives it a value. So it makes sense a coin class would need to have a value to be valid. So it's in its constructor doesn't it doesn't have a new argument constructor is the only way to construct it. And then
+
+you create a class quarter that extends coin.
+
+Then it's going to have to have a constructor, because it has to call coins constructor to pass it information. So it can have its arguments, or it could be no argument doesn't matter. And to do that, it'll use this keyword super.
+
+So the super keyword,
+
+by itself with just parentheses beside it calls the constructor of the superclass. So here it's a super value 25, which would call this constructor and set the value in the superclass to 25 the value that's been added to our classes. From the superclass. So we can call a super classes constructor using the word super with parentheses. So just like this refers to this object, super refers to this direct superclass. And we can only reference one one level hierarchy.
+
+So we can't call objects from here.
+
+We can only call our, the single class we extend.
+
+Um, if,
+
+if there's like, let's say three, and the first one has arguments, could you call super in the one and then have super in the other and it would plug it in there? And then it would go to the one above that or no,
+
+you could, I think make sure I mean, if you had something like C public, these being their constructors, and has one annex Then the second public class B
+
+could do something like this.
+
+Super
+
+x the pass from here into here, and then you talk to me in a public class c. x could do this, and then it would if it called Super,
+
+then
+
+this would pass it.
+
+So I understand what you're what you're asking. I didn't Yes, you can. So this would when you instantiate a Class C, and you passed this, the call first called a super code superclass, which will be here, which is going to pass it into here, but that's going to call it superclass, which is here. So it's going to set it up here. Yes. Yep. And I will point out, since this is there, that at any point we can also stop. kind of stopped Beaver. So here, we don't have to pass in something. If there's something that's defined, we could do something, we're gonna pass a 10. And that'll pass a 10 up through. And then if we want one more level, public Class D, here, we don't have to call superduo. Because there's no argument constructor. So I'm expanding beyond what your question is, because it's written out now.
+
+Yes, thank you, we can pass it.
+
+So
+
+all right. So we're also going to see this super keyword come back in a moment when we actually code some of us because one of the other things we can do with it is we can call methods on the superclass as well. And so before we move on to that, is there any other questions about the constructor?
+
+Right. So
+
+we already seen method overriding. But it's going to become more important as we're using our own are now creating our own classes. So as we create this hierarchy, it we're passing on these this functionality. It's not uncommon for the subclass to want to provide its own version of something it's inheriting. So and that's overriding, if we provide, if we put in the same method into our subclass as our superclass. If we give it the Danakil method signature then the version of our subclass will be used, just like we did with to string and equals last week. We overrode the ones that were in object so that the version will be used if you remember in our card, wherever to string. So it would print out the back of the card or the value that we could do that with any thing we inherit, we can override it. And then we can give it our own our own twist on the functionality, or we can choose to leave it as is and just use it as it comes from the superclass. We don't have to do anything. So for instance, in this example, there's an account class, and it has a method deposit. And so a signatures public void, deposit an amount, and there's a checking account class and I should have extends account.
+
+I guess that's
+
+the commission there. So now, if it wanted to change the behavior, so maybe our checking account adds a deposit fee. The regular account doesn't, but it adds something more to it. So it adds an override. And he uses the exact same method signature. And just like we've talked about last week, the override annotation is not required. But it's strongly encouraged because it makes your code much more readable. There actually is talk of requiring in the future, but it's one of the not newer, but newish Java features. And then it can do something different. So here, deposit just adds the bow the amount to a balance. And the balance would be in some variable or some other code, that's
+
+your, so in this in the override,
+
+it wants out a fee. So it adds to the positive fee to the amount so it adds a fee to it. But then it wants to do exactly the same thing already been done in the superclass. So we can call the super classes version of this method from the override. So in our override, we can say super dot whatever that method is, and we can call it. And we're looking at doing this in a moment. So what what it means is that we can now have a deposit here, that's general to what it means to be an account. And our deposit override here doesn't have to recreate everything. All it has to do is focus on the part that makes it different. The part that is specific to being a checking account versus an account. And then when it gets that part complete, it has the option of calling the more generic version, the superclasses version saying, okay, I done my specific portion, you take care of the less specific portion, the portion that I'm inherited, so we can override but still inherit functionality inherit most of the functionality from the super keyword. So the super keyword works just like it works in two ways. One with the constructors we use with parentheses, but If we use it with the dot operator, it gives us access to everything we would have in the superclass. Just like if we were using it in a variable, that we instantiate that class and we're using it, it gives us all the gives us access to it, which means we can use it to call methods that are the superclass specific versions. If we don't have an override, we don't need it. If we called if we had a second method here like get balance and we called get balance in here, but no override it always call the superclass. But if we do have override, we can use it to specify we want from one from the superclass to the parent class. So
+
+Alright, so what's
+
+so before I guess, there are questions there before
+
+Yeah. So on the on the method over Right, they're using the super. So you've got a mt plus equals deposit fee. And then are you just going ahead and doing initiating the balance plus equals amount when you call the super dot deposit?
+
+Yes. So okay, here, it's. So this is really basic code means one line of code and each right, but it's realistic that a general account deposit may have more actions that needs to take may have a bunch of stuff or it needs to do validation around the accounts or, you know, security features and stuff like that. So what we're saying is here in the checking account, the only thing that makes a difference is we have a fee. So we add the fee, and then we let the account do the stuff that's not specific to our checking account. That's, that is something that we would want to hurt.
+
+Okay.
+
+So what it allows us to do is break as we get more and more specific to have the right to vote. Writing the specific versions of the classes, focusing on what makes them specific, what makes them there,
+
+their version of that thing I see, so we overrode it. Because when we're dealing with the checking account account, we have a deposit fee. But otherwise, we want to go ahead and use the deposit class as it's defined in the account of the deposit method. Okay, got it. Yeah.
+
+All right. So let's
+
+see, let's take a look at this actually, in code. We're gonna look at it a couple different ways today. I'm gonna bring up the lecture code here. First, we're just gonna walk through it. So there's this auction code that's here. We're gonna walk through then we'll write our own version of it. And then we'll, we'll come back as we go, and I imported the cards that we wrote on Friday. And we'll use those to show. Since we wrote that code together, we use those with the inheritance as well, or at least one of them. And we'll talk about some things around that. But let's look at this auction code. So for this, there's really the code we're really interested in is auction by an auction reserve auction bid is just a data type to represent a bid data to be passed in. So it's being used like something like string or you know long now, it's just uses data type. And if we look at it just to see what it is
+
+that opens maybe
+
+it is has a string that represents the better and in the represents the amount. So what we care about here is this auction class to start with. So the auction class has a constructor that takes an item for sale.
+
+It has
+
+a method place bid that
+
+determines if they're winning it determines if is the highest bid and start to this though. adds it to the bids. Last list of bids. And there's a good high bid get all bins and some getters for each of these things.
+
+So there's two. So we look out.
+
+There's two subclasses by an auction reserve auction. So a buyout auction, it extends auction, and that's where it inherits everything from auction.
+
+So for its code, it has
+
+a different constructor. So string item for sale, with buyout price
+
+and then it has an override a place bid.
+
+And we'll look through it in a moment. And then it has its own public method. Get buy out price. So I'm going to make a new class here, just a demo class. So we can actually run this code, whether just look at it. Look, create a new class. I call it auction demo. It's like public static void Main, which will allow us to instantiate these objects and run them and look at them to debug. So
+
+So first I'm going to create
+
+an auction class was called auction, close new auction. And it takes an item for sale. So what a sell a buck
+
+And then
+
+auction
+
+we use called place bid.
+
+And we'll place a bid of
+
+$10
+
+does it take a string? Let's see. Oh, it takes a bit. So we need to do a new bid
+
+a bid, see john will bid $10. All right. So now I'm going to create a second class. I'm gonna create a buyout auction. So this will be the buyout auction. We're gonna do the same thing.
+
+New auction, and maybe it's selling
+
+record
+
+And new buyout auction.
+
+The buyer auction takes its constructor takes a buyout price to right. So, price of 10. And then for the bond auction
+
+Let's place a bid and new bid and
+
+buy it for 50.
+
+And then finally, for reserve auction
+
+we're going to create it as a reserve auction and look at its constructor
+
+item for sale reserve price.
+
+So for this we'll say fork and
+
+then we'll place a bid with it and then we're going to step through them so we can see the difference between each of these subtypes working
+
+and how they work with auction.
+
+So please bid and we'll say new bid in
+
+Toronto by bid oh five on that fork. Alright, so
+
+now you I'm going to go to each of these. I'm going to pull auction
+
+over here
+
+and let's get okay. should work.
+
+auctions over here. So an auction I'm going to put a breakpoint on line indicative They break playing on place bid because that's really what we're going to focus on. So, the same for buyout auction, I'm going to put a breakpoint its constructor, a breakpoint in its place bid, reserve auction would do the same. Alright. So now we have each of these three classes being used we have the superclass being used by itself, because every superclass can be used as what it is. And then we have the two subclasses that are being used. So let me debug this.
+
+I should have put a breakpoint here.
+
+Here. I'm a fast fast enough to that's okay.
+
+So it wasn't so the first
+
+so we're here
+
+So it's creating a new auction just as an auction class or in this class. So it's calling it with the item for sale
+
+to the constructor
+
+establishing everything, then continuing. Now it's going to place bid. So it's doing exactly what we would expect for we seen with every other class at this point.
+
+So it starts into that then.
+
+And it offered ads the bid to the list, find out if it's if it's currently a winning bid. And then returns true or false if it's the winning bid.
+
+So now we're going to buy out auction.
+
+So buyout auction is going to start with
+
+us we can see both these better.
+
+It's going to call new bought auctions, so we're going to expect to see it its constructor so it goes into constructor, and it's been passing item for sale, the string and the buyout price. So the first thing it does is call the super item for sale, they pass it the value item for sale, because auction has a constructor that requires a string item for sale. So see now when the auction class, so we're the code that was came from auction. Now remember, this is two different classes, but it's a single object. It's not two objects in memory. It's a single one. Does the class building this object? So it does everything that we did. We saw last time, everything the auction class does and this constructor and now returns back to the constructor, constructor and buyout auction. It continues which is going to set the buyout price to this private variable that's specific to subclass, a buyout, auction. Then it continues Then the next thing it's going to do is place the bid. So now it's going to place the bid. And notice we're in buyout auction. And it has its own. It has some things it checks First, the first thing it does, it needs to find out if the buyout auction, the bid is less than the buyout price,
+
+if it is that it allowed to continue,
+
+and then it's going to find out if it's greater. And that's so it's doing stuff. It's about being specific to a buyout auction things around. What makes it different than a regular auction, so around this buyout price, but hasn't done anything about actually placing the bid yet, it's just checking the specific code.
+
+And now
+
+it's gonna cost super place bid. So it's done. This code is all specific to what it means to A buyout auction. It's checking, is it gonna allow this or not? Now at this point, it's going to call the superclass. And when we step, we'll see it's now over here in the code for auction. And now it does the work around what an auction does around placing the bid.
+
+So that more general
+
+work. So it's going to go through,
+
+determine if it's a valid bid, and then place it. So the work of the more general auction, then returns back to place bid bond auction to do the final return. So we could check something here if we wanted with current winning bid, but by law auction doesn't need to do that. So it just returns a value.
+
+So we get to reserve auction.
+
+That's going to be this segment of code.
+
+So when we call the constructor for reserve auction it again passes item for sound reserve price. The first thing it does is called the super. So one thing to note here notice supers always the first thing that happens actually is required. The first before the subclass can be constructed, the superclass has to finish finished being constructed the code that's been inherited. So super has to be the first call on a subclasses constructor, if it's calling super. So now when we step here, we're going to step over to the constructor we see an auction. And we see this like before it's setting up the need for sale.
+
+It's going to return back to the reserve auction class.
+
+Which set the reserve price which is the part that's specific to it.
+
+And then it's going to place
+
+the bid
+
+so now for this one, for reasons Now we're reserve auction. And what it's doing is just stuff that is specific to being a reserve auction. So it's checking if the reserve price has been met. If it has, it's gonna allow it to place the bid otherwise it's going to return just return false. So it does the portion that's specific to being reserve auction, which is here. But then when it's done with that, it calls the superclass to complete the work.
+
+So now here,
+
+the superclass actually does the placing of the bid,
+
+and it returns back. And
+
+now we're done.
+
+So see for each one, each of the two options are doing the subclasses doing what makes them specific, what makes them special and different than auction. And they're relying on auctions to do the part that is specific to auction. Now, some have some things here. In an override, you don't have to call super. If everything you're doing there is specific to that subclass, then that's optional. That's just something that's available. But if you're doing something that is general, in your override, then you should be calling super to take advantage of the fact that you don't have to write the same functionality multiple places. The other thing to point out, let's look at reserve auction. It has one method, place bid, that's his only method. But if we look at the reserve auction, here,
+
+get all bids get high bids get item for sale,
+
+place bids the one has. So even though it has
+
+only has one method, it actually has all the other methods that are inherited from auction as part of it. So they can be used. Those are available to be used and fully functional without any additional code. In the same if we look at biotoxin, if remember it did have one extra method get by price. So public it buyout auction, it does get all bids, get buy out price. So it has its own method. But it also has get all bids get high bids get item for sale that came from superclass and again, it's only methods it has here is placed bid the override of that and get out price. But all the others methods are available. When you look here in the IntelliSense, you can see it actually tells us some information about where it's coming from. So we can say get all bids is coming from the class auction. It's coming from a superclass get buyout price is coming from buyout auction. equals is coming from object. So it identifies where in the hierarchy We're getting methods are coming from but really, from just using the method, we generally don't care. We just want to use it. It's only when we start troubleshooting our own code that starts becoming important.
+
+All right. So
+
+questions? What questions do you have this point?
+
+So let me I'm sorry, Mike. I just got signed out of everything in
+
+trying to get back in so I can
+
+but the slide is signed up to you. No, that's weird.
+
+So, let me ask at this point.
+
+Is it that this is all making sense?
+
+did that last portion, lose you to a point that you're not sure what to ask? Okay,
+
+I get the concepts. It's like the specifics of what you're writing the code is I'm very behind.
+
+Okay, that's fair, that's expected,
+
+I suppose would definitely help.
+
+We're gonna do some more. We're going to write code of our own. We step through that code as kind of a beginning point, and then we're going to write it. Something's very similar. That does the same, the same thing I could adjust to, but not that good. Okay. The reason is asking is normally there's a lot of questions about inheritance. And, and it's concerning that
+
+things have been so quiet
+
+that makes me worried that because often that's not That can be a good sign of everybody's getting it and it's great. It could be a bad sign of things are going horrible. And
+
+I felt really, really good going through the notes. I was like, yeah, I'm getting all this. And then like, as soon as you pulled out the code, it was like, it's hard to jump back and forth between the different like pages. And like, especially when you don't know exactly, like you're learning what the methods are doing as you're looking at it, you know? Yeah. So that's, that's pretty much where it lost me. But in the notes, I felt really good.
+
+Okay, good. That's fair. It's a completely different way of looking at code. So we changed that last week. And we're changing it again. Now. Now we went from very linear to broken up. And now we took those broken up pieces and breaking them up farther. We broke them up with just different methods before in different objects, but now we're saying here objects can be in multiple places. is a multiple pieces.
+
+So that's step
+
+four. So let's try to write something similar to this auction classes.
+
+I get rid of all these breakpoints, we don't end up stopping at a bunch of them.
+
+So let's write something that similar idea.
+
+But let's write code that represents tickets. Tickets have
+
+are something that there's definitely a base idea of a ticket, right? And then there's multiple types of tickets. There's VIP tickets, there's we'll call tickets. There's tickets for underage, for minors, or other age, not minors, but underage people wondering there's all kinds of different ones that can exist. And they each have their own special roles. But they're all still tickets. So
+
+let's
+
+create
+
+those and we'll use inheritance to do kind of what auction was doing to apply the roles that are specific to each type of ticket to those types, and then take advantage of the more general tickets ticket functionality. So let's see from the chat, Is it wrong to think here's kind of, it's kind of similar to scope.
+
+Never thought of it like that. I'm thinking if that's so
+
+I'm gonna have to say
+
+It's slightly similar, but it's very different. Right? It's slightly similar in the idea that its limits, scope limits where we can see variables, right? It limits the life of a variable and where we can use it. Inheritance does have the idea of limiting where we where functionality exists, but not necessarily where we use it. It's more of where we write it. So I'm hesitant to say it is kind of similar, I agree. But I think not in the way that actually in the code runs more in the one comparing how it actually runs a code compared to the other one of how we actually write it, if that makes sense. So I'm a little hesitant just to say yeah, that's good. I also feel like I'm missing. Probably something I haven't thought of there. So I will leave the answer there in a very confusing half answer state.
+
+So, yeah. All right.
+
+So let's right.
+
+Take it I'm gonna create a new class. I'm gonna go to combitech. elevator, go to new. And then class. I Right, right. clicked on comms, check out later to get the menu.
+
+I'm going to change its package what comes out tech elevator. And let's call this tickets ticket. That way we can keep it separate from the auction classes. I'm just going to name the class ticket. This will be our superclass. And then number to click Finish when I'm done. We don't want the public static void Main. We'll do something with a demo class like we did for the auction at the end or as we go, maybe but For ticket, we just want that someone to click finish now.
+
+So we talked about Friday that there's a lot of classes on. So these classes are pre designed, right? So we'll talk about what's in them where they're at. So we don't have to, so we can focus on the inheritance. So tickets are going to have a couple pieces of functionality it's going to have, it's going to have to hold a price, right? That's one of the things about every ticker, it's gonna have a price. It's then going to have some kind of fee. I've never seen a ticket without some kind of fee. So we'll include that as part of the base for ticket. And then it's going to have some way of getting the total price. And I'm sure there's many more things a ticket can have, but this is what our tickets gonna have. So we're going to need for application
+
+So let's talk about
+
+what's its constructor. So it's gonna have a constructor, because it'd be invalid to have a ticket without some kind of price. I mean, the whole idea of a ticket is exchanging money for the opportunity to go to some event, right? So even if it's free, it's still zero, it's still a price. So
+
+make a double
+
+price. And
+
+now we need some variable here,
+
+like double
+
+price, and then we would set it this dot
+
+price equals price.
+
+Not that I want to make things more confusing, but we all know the double has some problems with currency right? Now has some position problems.
+
+So I'm going to Very quickly, at just tell you that there is a better what the right
+
+data type is for handling things like currency or high precision. And we'll look at it really briefly and then we'll just use it. And later today or this week are going forward. If you choose to use it for something, I would encourage you to explore it. But, so there's a better data type than double. And it's a good one called Big decimal. If we look at it, to do the import, it comes from Java dot math. So a set of math libraries built into Java. So big decimal. I'm gonna go back to the slides real quick. Just to talk quickly about the guessable is this class from Java util map and there is documentation about it. Here. If you want to go there at some point, it doesn't have the route problems like float, float and double. It doesn't truncate like an integer. So all these problems ran into all these primitive data types with math, it gets rid of. So it's really commonly used with currency and other calculations like scientific calculations that require really high precision. It's not used everywhere because it can be kind of a pain to work with. We get we don't have the precision problems, but it's a little harder to work with. Two point I mentioned that in most financial institutions I work with I've worked in for its, we use integer for representing currency. But the ones that didn't we use big decimal and Java. So the things we need to know about it to use it to start using it is one it has. It requires a value to constructor you have to Give it a number, it can be a double or an integer or float, some number could actually even be a string. That is going to be the value of bigdecimal. The second thing is, there are no operators like plus minus modulus. Even, no less than, greater than, they all exist. But they're all methods now so.ad compared to that, subtract, multiply. The third thing and most important about big decimal in the thing that makes it challenging, usually to use it first is that it's immutable. So if you remember string is immutable. Meaning that you can't change the original one. Once a big decimals been created. It's always that big decimal. Which means that if you're going to add two big decimals, you have to create the two big decimals called the Add method to create them together. And then they're going to output a third big decimal, that's going to be your answer. If you don't include this, then just like the string, like you saw in the quiz today with substring, the value just gets lost. So we have to store in a variable. So that was a really fast crash course in bigdecimal. But really, it has nothing really new in it that we haven't used before. It's just different methods and a different way of representing numbers. So that should be enough for us to use it. Whether you choose to use it, when you're representing things like price and stuff will depend on your need, or amounts will depend on your individual need. This will also give you an example of it. And also is what I would use if I was actually modeling a ticket. So here instead of price I'm going to say new, big decimal like crazy. Big decimal, and I'll pass it the price. So I'm going to abstract away. So this is part of encapsulation. Good abstract away the idea that I'm holding this as a big decimal. So for the user in my class that does deal with double, or integer they won't deal with or they won't deal with big decimal. I'll deal with it internally so I don't lose precision.
+
+Alright, so we need a couple other methods.
+
+So create public, and I'm going to return I might take the kind of ways without big decimal price. So return the price, even though I just said we're not going to do that. And then we'll do public big decimal. We'll get a fee and maybe our fee. Our base fee will say of all tickets, just so we have to Something to work with multiply. So I call the multiply method on the big decimal, and I pass it a new big decimal that is equal to point 20. So we'll say it's a 20% base fee. And then finally, public decimal, get total price. And we'll just take to create a new big decimal to hold the total will equal the price
+
+dot add, and we'll call our own get feed method.
+
+And then we'll take the total cost another reason we use big decimals this now we could take the total cost and set scale to rounding mode half up and I'll explain what that does. So one of the other reasons we might choose to use bigdecimal is that it has the set scale method which returns any big decimal because it's immutable, it can't actually change the original big decimal. So set scale says, I want to set it to be two decimal points. But unlike integers, or other things we've been using, where we just end up truncating, we can tell it how we want to round rounding mode half up is like grade school rounding. So we're saying, you know, if it's five or above, it goes up. If it's below five, it goes down to the next, the next hole. So around that way to two decimal points, it's going to now this since it's immutable, won't change the original. Instead, we have to store it in a variable, so we pass it back to the original variable to be stored. And then we'll just return that.
+
+So we have our ticket class.
+
+So
+
+I think the next part is going to actually get back into the inheritance. So Let's go and take our second break. And we'll come back at 1136 and write the hood. Two subclasses of us.
+
+So coming out of the break, what questions do you have?
+
+Okay. So let's continue reading this. So so far we haven't really done anything new We have it. But the next thing I want to do is create another ticket we'll create it will call ticket, which will have different fees.
+
+So
+
+and so what I don't want to have to do is I don't want to have to recreate all of this code because it's shared it's like it's going to be the same thing. So I want to be able to create this I want to be able to inherit this functionality and then just provide the functionality the specific to
+
+the world Kartik It
+
+seems to me that I'm going to create another new class.
+
+So new class.
+
+Okay, you get the same package as ticket. I'm going to call it just will call ticket. And again, I'm calling you will call ticket Because it makes sense. That's what it is mentioned there is a kind of convention of calling it the subclass with the super classes name. That's actually not what I'm doing here. But it appears that might be somewhat way to go ahead and finish it. So I want to inherit all the functionality of ticket. So I'm going to extend, use the extends keyword, ticket. And the first thing I'm going to get is an error because the one thing I have to do is have a constructor. So if I look at ticket, I should have split ticket side by side here. I can get it. If I look at ticket has this constructor that takes a price a double I for a price. So the minimum I have to have something That can set that price per ticket. So I'm going to create a constructor will call ticket.
+
+And wabbit pass the price.
+
+And now I need to call this constructor here
+
+in tickets, so to do that I'll call super.
+
+And that will call the constructor and then I'll pass the argument of price. And we'll pause it. So I'm going to stop here before we do anything farther and actually explore what we have. So I'm going to create a demo class, we can do that. So this is going to create one combat tech elevator ticket new class. Doesn't really matter what the name is. We'll call it something like Ticket Ticket demo. And I'm going to check the public static void Main. The only reason this class exists is so we can instantiate it. Look at the ticket and we'll call ticket the way they are now. At least write the codes we can see what's available to us.
+
+I'll click Finish.
+
+And I think I want this over here.
+
+So let's create a new will call ticket.
+
+And let's call it
+
+new. Will call ticket and we'll give it a price. Give it a price 20.
+
+Now, WC TV, you can see we have get fee get price, get total price. It's all available to us right now. If we run it, let's get the total price. Remember, there's a fee built into ticket already.
+
+This weekend. See it
+
+So I'll run it, and we'll get output
+
+with the fee. So I've done nothing and tick will call ticket and I have a fully functioning class because I've inherited all that functionality from ticket. It's just there. I can stop at this point. In fact, we will stop at this point for a lot of times for reasons we'll look at tomorrow, or actually touch on later him after this today, but I've already inherited all the functionality if I don't need to change anything. Where I don't I don't need to, I can stop but I do need to change things Mike will call ticket needs to do a little more and do something differently than my regular ticket. So one thing I will call ticket requires a name attached to it, because it has to have some kind of way to be picked up. So let's add that. So why the scribe string something like ticket holder name. And now we need to add it to the constructor, it doesn't make sense to have to will call ticket without a ticket holder name. But this is nothing new works. This is what we've done the last few days. So I'll just call this ticket holder name equals the ticket holder name was passed in. This happens after the call to Super. So again, this called a super for the constructor has to be first because the super the code in the superclass is going to be built before the code in the subclass because splitting the crop cross extends it. It's right in that word that we're using to for inherit this class. It extends it. So it's like taking a blueprint and extending it with some extra fonts, extra pieces.
+
+So so we're also now probably want to get her for
+
+string to get ticketholder. Name, we return that. But now the thing that we want to do differently, the will talk cost ticket will have maybe a different fee. Maybe it only has a 10% fee instead of a 20 since there's less involved as far as shipping.
+
+So to do that,
+
+if I go back to ticket
+
+the get fee has automatically does 20%.
+
+So I want to change the functionality of
+
+the
+
+good fee. So when I want to change the functionality from this one, I'll use override
+
+and then we'll do public
+
+big decimal
+
+fee
+
+So I'm going to match this method signature. Exactly.
+
+Okay, import bigdecimal from Java math over here.
+
+Now I'm going to provide the functionality ID. So what I want to do is I want to do this code here.
+
+But if I call price here,
+
+I get an error that says price is not visible. So why is price not visible? If I'm inheriting ticket prices a ticket?
+
+It's private. Yes. Price is private.
+
+But how can I access them? The ideas? Super, super. Allow me to access price. If I look at super prices, not there. Could you call it a good refer price? Exactly. So the good and the public access getter is what how we're going to access it from our subclasses as well. So we're going to call get price. On super, super good price. And then we can
+
+complete the rest of what we had on the other one do bigdecimal.
+
+And
+
+done, and we need to return this. So here we're doing what we were doing with auction, maybe a little simpler, what we're doing, we're taking advantage of there is already code here for price. So we're using the superclass to take advantage of that code. I will say in this case, since I'm not calling get fee, I can actually leave super off it's kind of like this key word, it can be there but if it's not ambiguous, it will use the superclass But anyways, if it exists in both and is an override, always use the override without the Super keyboard. So now, when we call this it's going to call override. So here in ticket demo, I'm not going to change anything except for, I have to have a name. So sell the ticket to Steve.
+
+And
+
+I could change that for the constructor. But if I just run it
+
+we'll see the fee is different because now with no changes, it's called my override. And it's got the price that was passed to the auction or the ticket and it's used got the price from the super to whatever wherever time this gets called on will call tech it will call the override get fee instead of the original one.
+
+So before we go to the next one,
+
+yeah, I was just gonna ask so when you're using so in your ticket demo you're going ahead and calling get total price. But because we're using the will call ticket class, it overrides the get fee that is within the ticket. Get total price.
+
+Yes, that's a great question. So let's look at that.
+
+So we'll need get fi here. Put a breakpoint here. Because you're right, the call to get fee is not in the ticket demo is it? It's in the ticket class.
+
+So let's debug it.
+
+So we're in the ticket classes calling get to the fights, it's gonna call get fi in the ticket class. But no matter where we call it from, if there's an override, it's going to use the override. So if caused the override in the will call ticket, even, even if we call They get fee method now from the ticket class. For this particular object, this object that happens to be a will call object. If we still create a ticket object directly, it'll call the one that's here and ticket and returns here to complete the total cost
+
+and
+
+return. So an override
+
+is kind of a permanent, it's hiding the original method in a way that no matter how we use it, even from the code we're inheriting from, it's going to use the override. The only way around that is in our override, if we call or in our class we're inheriting if we call super get fee from this class, then that's the only way access we have to the tickets original, get fee
+
+So Other questions?
+
+All right, so let's look at this credit another one, let's create a VIP ticket. That will add. It's very similar. It will change the fee again. But it'll also change the constructor in another way, actually a very similar way.
+
+So let's add another ticket.
+
+And
+
+let's call this one again. I'm in ticket, a new class. Let's call this one VIP ticket. And I'm going to move it over here with roll call so we can have it side by side per ticket. So the first thing I want to do, I want to extend
+
+ticket So I'm going to become a sub subclass of ticket.
+
+And then I want to, I need to override I need to create a constructor, since there's a argument in the constructor for ticket. So I'll create my VIP ticket constructor, which is going to take a double price. And then it's also going to add a second double of charge. And then I'll call the super. So this constructor and pass it the price. Now I'm going to create a private variable. The private member variable will make a big decimal since that's what we're using for these classes. They handle the upcharge the VIP up charge, and then the set up charge equal to new big decimal upcharge. And I need the this keyword since it's ambiguous You
+
+got too many of them?
+
+Go right, let me try it again.
+
+Okay. So again,
+
+take the double end just like we did with price to encapsulate away how we're handling it. The VIP ticket is going to take two things this constructor is going to call the super of the ticket has to anything that extends ticket has to call this constructor with some value. And the way I want this to work is it's going to have it's gonna have the same fee, but it's going to add additional charge. So I want it to
+
+Whenever I add something different, I don't want to override get fee this time I want to override get total price.
+
+So I'm going to override
+
+to get total price.
+
+Public
+
+decimal, they get, it's gonna be this exact method signature. If there are arguments in that not the signature, we would have to write this as well.
+
+Price.
+
+And now
+
+I want to first get the original price of the ticket. So it's gonna big decimal. And I want to get that from the superclass, cuz I don't want to change that functionality, so called Super, get total price. So just like we did in the auction class, we're going to call the superclass to do its work. So it's going to get the total price and then we'll take The new price action will just return it. And we'll return the original. And we'll add the upcharge. So now we're doing the part that makes it specific to a VIP ticket. So really the only code we've actually written that's outside of the has any
+
+anything really
+
+other kind of boilerplate code is
+
+a getter.
+
+A Oh, sorry, a setter, basically through the constructor in one line here. Everything else we've just called to the superclass to do the work. But it gives a completely different experience. Now we use it, we get to take a demo.
+
+Now let's create a VIP ticket called IP equals new
+
+VIP ticket, and we'll have to give it two things the price so we'll do it. Our price is 20. And let's give an upcharge of 50
+
+Now if we call system out,
+
+print mine
+
+IP get total price.
+
+And let me put a breakpoint here
+
+and make sure there's still a breakpoint. There's not a break over here.
+
+So I'm going to debug it and then switch to here's the ticket. And
+
+we're up here we need to be down to the VIP ticket. So let me get past we'll call Okay, so now we're at the VIP ticket. And when it calls, creates the ticket and when it calls VIP get total price. It's going to go to the override of get total price in VIP ticket and not the one in ticket
+
+and now it's going to call super get total price to get that This value
+
+and that a return the total. And now it's going to do the work that's specific to VIP ticket attic, the upcharge
+
+and return So it uses the code from both to
+
+do the work. So the part that's specific to ticket it, let's take it to the part that is specific to being a VIP ticket. It does. So I'm going to one more. I know it's getting late but I think one more example we need
+
+and that's let's add a free ticket.
+
+This one would be actually pretty, really easy to add.
+
+So go new class
+
+and we'll name it free ticket
+
+and click Finish.
+
+I'm going to extend ticket and we have to add a constructor. And that's all I'm going to need.
+
+So extends
+
+ticket.
+
+Then we have to have a constructor because ticket requires a constructor. So if now if we extend free ticket, we won't need a constructor in our in our subclasses. Because there's now no argument constructor. So I can pass things in or I can call the superclass constructor just with a hard coded value. free tickets always zero. So I'll just call the superclass the bat value.
+
+Now back in our ticket demo,
+
+we can say
+
+free ticket
+
+Equals
+
+what's new, free ticket.
+
+And now we can just print out system out. print line,
+
+T, get total price.
+
+If we just run it now we'll see it's gonna print out zero.
+
+still calling all this stuff in the ticket subclass, but I don't have to do anything more, because that's all that makes free ticket different is that it has a price of zero. But the thing I really want to point out here, and the reason I wanted to create it is that this line, the call to the constructor is required. Where this value comes from, doesn't matter. It can be something you have passing in, or it can be something you've hard coded like we're doing here.
+
+Alright, right. So questions
+
+So I want to
+
+go back to Friday, we built these card classes.
+
+And these two examples are pretty similar. But
+
+let's talk about
+
+another way of using inheritance. It's still not another way, it's just another reason. So we have this card has the suit rank in his face up from that's how we decided on Friday. But this will meet the definition of, of playing cards. But I may want to use what if I wanted to do something more with it? So what if I wanted to build a card that could work with a particular game? Like for instance, there's a game called golf I'll be honest, I don't know how to play it. I read about it Wikipedia added Taz point systems based on the cards, I found, I was looking for one data point system based on a card. And what if we want to represent a golf card for with this card, so we'd have a couple things we might have to do. One is, we could write the golf game to do a bunch of if statements around the cards. Or we could create a whole new card only object for it.
+
+So
+
+the way I would do it is we could extend card, keep all the functionality we already have and just add the extra feature for golf. And this type of thing is actually one of the probably more realistic use cases to kind of real world use cases. of inheritance. So, if I was doing that I created here in cards.
+
+Got a new, another class.
+
+And
+
+we'll call it golf card.
+
+Again, because that's what it is not because of the naming convention is a card for the game golf.
+
+And then I'll extend
+
+card.
+
+And now I have to have a constructor because our card had a constructor didn't have a new argument constructor. So I have to provide it. And I want the same experience that I had for an existing card. So I'm just going to kind of do a pass through in the constructor. actually easy way to do that. If I go to golf cart, I can add on the error. The question Fix is gonna be the added constructor with the two strings. And actually pretty much did the work I wanted to do if I want to do a pastor, it's going to do that for me. Because I want to be able to pass the suit and Rankin The only thing that's really special about a golf cart, the game golf is it has a different these different values for the card. A lot of games have this we could create, you know, two different depending on the game we're using, we could create different cards or there's other ways we can handle it as well. But this is one way we could do it. So now I might want to create a method
+
+that gets value.
+
+So it's going to tell me the value current value of this card as being represented as a golf card.
+
+That's going to require some if statements. So in the game,
+
+we could say if
+
+now I need to get the rank right.
+
+So if I look at super
+
+I can get rank.
+
+I can say equals
+
+And if it's an ace, which we represent for members and a, then let's put an int value instead of zero so we can have something to work with. Let's add value equal to, I think it's one.
+
+And then
+
+the roles are that if it's a two, you get minus two points. So now I don't need a super to call get reg, I can do this. And it's going to work the same way.
+
+So now you go to minus two.
+
+And the reason is, is that if I was calling get get ranked from a get rank method here, I would have to use Uber because it's ambiguous the same way with this where we had what I used by use this variable and had one up here like we did in action card. I have to use this because This exists twice, right in two different places. The same thing is going on here, if it's not ambiguous, if get rank is just being inherited, and I don't have an override of it, I don't have to use the super keyword. I can know if I want to be explicit. So I'm going to leave it both ways in here. And we want to complete the roles we'd say if elsif get rank. And the other roles are if it equals a jack or get rank. It equals a queen I think, or we have to do a 10 because we baited a letter t
+
+equals t then it's going to be a value of 10.
+
+And
+
+then there's two more just so we have a full working on. So equals King is going to be a value of zero value equals zero. Actually, we don't. Yeah, we do. And then, else if it's anything else, the value will be equal to integer, parse and get reg will be equal to the face value. So the three through nine, it will be equal to whatever that number is. And we those numbers in the string, we know they are there. So Oh, and then we have to return value. So now we have a card for the game golf that can return its value specific to that. So it's a more specific version of card. We don't have to use all of this code is given to us, including the override to string. So if I create a really quick class, the demo the card should have moved the demo class I guess in here from Friday as well. public static main void
+
+and we create
+
+A
+
+golf card and score card equals new
+
+golf cart. We have to get that suit and rank so we'll give it I don't know a, I think we had those lowercase clubs and we'll give it a rank of
+
+T which should be 10
+
+Alpha system out online. All right.
+
+We can see that without changes
+
+our system, our system, our override or to string override from card is inherited as well. So it's passed on. So we override a method, our override gets passed on to the subclasses, our own subclasses all the functionality of the car original card, like flip is there.
+
+So they're in our to string again. So that's there. And our new functionality.
+
+good value. Is there, why we're using it. So
+
+it allowed us to build the golf card from our car be run on Friday, just by focusing on what made it different. What makes it more specialized version and inheriting everything else. So this type of behavior, this type of usages, pretty realistic to a lot of the way vitamin hertz is done. The other one will your herring fees and moving them around as if you're working on a banking app or ticketing app, it's gonna that's gonna be like that. It's realistic, but it's really common just to have to create a hierarchy so we can say, Okay, we have a card. Now we have a more specific one, and you could go for that. If you want to take this card and create, you know, a, I think they're called battle card games like magic, the gathering type thing with a anyone's familiar with those type of games that have a bunch of attributes, a bunch of them around the cards and descriptions, you could do that. You could start with this base card and expand it out to any other system you want any other card game you wanted, by inheriting the base functionality and just adding to it. So So before we look at the last couple things, questions.
+
+Yeah. So
+
+by doing this,
+
+will this be considered loose coupling.
+
+So by doing this, this goes into when we extend something, we're coupling to it. But what we're doing is we're building a module of kind of code that goes together that works together to do something So no, this the cart in the golf cart are not loosely coupled. But this goes into this other concept called cohesion. But don't worry about that right now. It's this more of idea of it's unrealistic to have a card and the golf cart to be separated, right. But the same thing, they're part of a hierarchy. So this idea of creating modules that work together, that do things together is one in decoupling those from each other. Rather than so we started with single classes. We looked at it last week, but now is now we have inheritance and then polymorphism tomorrow actually inherits mainly what does it it will moving this idea to decoupling hierarchies from each other rather than single classes. Because hierarchies work together to do a singular thing. And they have to be coupled because a card golf card is a card. So it is really the same thing. thing it's just an extension of it. Does that make sense? Yeah.
+
+All right. So, um
+
+so the last two things one, first we look at our deck. And these next few things are leading you more into tomorrow. introducing some ideas. So look at deck. There's no easy way we wanted a different deck. To extend this into use it answers. Its constructor creates this particular deck of cards, right? Its methods rely on this private list are all of them do? And we can't. There's no public gift. For the list, so we couldn't get it in our subclass to override any of these methods. So if we extended deck, we wouldn't, we could build a new deck and we could build more methods. If we wanted to add more things to it.
+
+We make sense to extend deck.
+
+But if we wanted to
+
+build a new deck that was completely different, that had multiple pieces of functionality, then inheritance alone won't be enough. So we can't extend that to be a whole new game for where we have it right now we could with a very easy change, we added a public getter, good list of cards, then we can easily extend it and make all the changes we wanted. So this limitation comes from this list of cards not having a public getter. But encapsulations would tell us we shouldn't have a public good or for it unless we need it, and we don't need it. So what we need is more Have a way to
+
+represent what a deck of cards is going to be.
+
+And then be able to build to that representation. So we need something like a contract. This is a deck of cards. If it's a deck of cards, it's going to have a flip method. Alright, that's private Sorry, it's going to have a size method, it's going to have a deal method, it's going to have a shuffle method. It's going to have a cut method, but not ties to this particular implementation, this code. So the expand this, we need something else. And that's what we're gonna look at tomorrow. Part of what we're gonna look at tomorrow. I should spend a lot of time tomorrow this idea called interfaces, which are going to be a way of saying, to be a deck of card to have this is a relationship. Sometimes there is no code to inherit. Sometimes we just need to say this is what that looks like. This is a guarantee of these things will exist. So we'll look at how we can expand the data Tomorrow.
+
+But more importantly for today is that not every class is suitable to be a superclass. There are many classes that it doesn't make sense, or also for us to make sense to become a superclass. And we'll look at those some of those over the next couple days as well. Every class can be a superclass, this is more of a doesn't make sense for it to be. And there are cases where the deck may make sense if we just wanted to, if we were adding functionality where all of this functionality was needed, we weren't going to change anything to add to it. But if we wanted to change something like which cards were in the deck, or how many
+
+we need something more.
+
+It probably doesn't make sense to be a superclass. Alright, so
+
+let's look at
+
+before we move, kind of Next step beyond inheritance,
+
+what questions you have about anything we looked at today?
+
+So making sense.
+
+Everyone feels like they can code it.
+
+With guidance, of course not.
+
+Okay, good.
+
+All right. So let's look at one last thing that's gonna lead into tomorrow. And that's polymorphism with inheritance. So we have these super classes now. We've already kind of defined polymorphism. So the way I want to look at this is more for today to demonstrate it. And then tomorrow, we'll look at it. We'll go into detail, because one of the things that can be hard to imagine with all of this is why do we want to do this? I said that we need a contract for the duck. Why do we want to do that? Why did we want these tickets outside of just
+
+If I have these ready to go,
+
+if I have these tickets and I, there's four of them.
+
+Why do
+
+I really care if I extend off of them? Why does it matter? I mean, that free tech and I could have easily wrote that only needs one method get total price.
+
+I could have just as easily wrote it without extending it.
+
+So, the reason we care about what these hierarchies is polymorphism and we're going to polymorphism is the ability for us to treat a subclass as their superclass. And while treating it as our superclass, to still get the specific results for that subclass. So we're going to go through that in detail tomorrow. that we went through inheritance today. But I want to show it because one of there's three ways to create kind of a polymorphic set of classes. One of them is through inheritance through extending super classes. Because once we have this, what we can do is we have these tickets. Now I can make a list of type ticket, the superclass will say tickets equals new ArrayList. ticket. And I'll need to import lists. So I'm treating these these are just tickets. The superclass ticket and I have three other tickets up here.
+
+And now let's add them.
+
+So why the world called ticket
+
+Have the VIP ticket
+
+tickets, add
+
+the free ticket. So these are three different data types, we'll call ticket VIP ticket free ticket, I just add them to a list. Something that we've been learning for the last two weeks, we can't do, right we have to have a single data type in the list. And with polymorphism, it allows us to do exactly that in a hierarchy, because way we can do it is we can define the list to hold the superclass. And then we can put any of the sub classes in that list anything that instance of will say true, can go in the list. So when you subclass and they can go there because they can they're up casting and that's implicit. So that's widening so they all can fit in a ticket because they all are Meet the relationship is a ticket. So you're gonna be added to the list. And now I have three different data types will call ticket VIP ticket and free ticket in my list. But I don't have to pay any attention to
+
+really what their type is long as they're all tickets.
+
+So that's the kind of interesting part. But now they're really kind of part that makes object oriented languages. So the power of object query language is really comes from this next part.
+
+So let's do a loop
+
+for each ticket. Let's say t in our list tickets.
+
+So a variable for ticket
+
+if I look at this, we know that this could be a will call ticket, a VIP ticket or free ticket. And you can see that we had some extra methods like the get ticket holder name, they're not here. They're not in the list right now. Because ticket no matter which object it is in that list, when it goes to this loop, it could be treated as a ticket, we only have access to the methods and ticket what I really want to do system out dot print line I want to print their price so get total price and we know they're going to have three different total prices. And I'm going to take system out print mine above here and just print a line so we can see the difference between the original output what we're calling them each individually and the polymorphic output from the list. So they're each going to be treated as a ticket and he's gonna call get to the price. We know when we call get total price on will call ticket VIP ticket and free ticket we got three different answers right? Because the fees were different. There was upcharge on one and one was just zero.
+
+So let's run this now.
+
+So even though they're all tickets,
+
+when it calls get total price uses the override the specific version for what they actually are for the will call ticket, the VIP ticket and for the free ticket. So we were able to treat them generically, to treat them as a grouping to say these things are like, these are tickets for all the tickets I have, I want to know find out what their price are. But as it runs through the code is it runs, still treating them generically. They get their specific answer. That ability to trim generically and get a specific answer is polymorphism. And that's what we're going to spend all day on tomorrow. But here we can see it's working already with just from inheritance. In fact, that's how we will almost always get it is from inheriting something big go together and the reason we want we care so much about inheritance is this ability, because without this ability, without having a polymorphic ability, if you think about, if you go to a shop at amazon, and you go to purchase put things in our shopping cart, they can't, right? They could, but it would, they would have to maintain it constantly, they'd have to probably hundreds of people maintaining it constantly, to make it to every product, they had to go in their shopping cart. But if they can treat it polymorphically just have everything be a product. And they have the shopping cart just take products and then have that as products have certain things that are guaranteed like that, you could ask them to price their name, regardless of anything else about them. Then they can write it once and everything of the millions of products they have can be used with it. So that's why we care about this, not just the getting code because it's gonna allow us to expand the way we write code and treat data in code. A way from single things to entire hierarchies of things. And to build those hierarchies in a way that make our mean that may give in a way that make it so we can write our code once and have it reused across all of them. Which is our final goal. If you noticed, the whole goal of programming is to be as lazy as possible to get the most amount of done with the least amount of work. And that's polymorphism and inheritance are a huge part of that goal. All right, so questions on anything we talked about today. I know that in part, you're not going to be doing that today. That's more of a preview for tomorrow, that we can start thinking about it. Because polymorphism is really the heart, one of the three subjects that
+
+to kind of wrap your head around
+
+Questions done. Okay.
+
+All right. So let's look at what you'll be doing tomorrow or for today then.
+
+So let me bring up
+
+I can find a clip here.
+
+Oh there is right in front of me.
+
+Let me bring up the exercises for today.
+
+Just gonna be really similar to what you've worked on the last couple days and last couple exercises.
+
+I'm gonna go to that bucket and
+
+find the
+
+readme cuz I think it's a lot easier to read in the bucket than it is
+
+in Visual Studio code or Eclipse.
+
+So starting with,
+
+well, nothing is just a placeholder and some test cases.
+
+So three sets of test cases.
+
+We following directions to free to them to build classes gives you here two different constructors. So if it gets two different constructors, what does that mean? That's something you haven't seen before.
+
+What do you have to have them
+
+It's as simple as that might seem obvious
+
+to constructors, right? Exactly,
+
+you have an overload. So there's two constructors overloaded, you don't have to do anything special for that, you have to just build two of them. They're both going to do very similar things, only one has an extra value. So notice, some of these are gonna have multiple constructors. It's gonna have attributes with just getters. It's kind of deposits. So notice that these deposits and withdraw these methods return integers, that's going to be important a minute. And then you're going to commit to more classes, checking account and savings account, where you're going to an extend bank account. And there's withdrawal that has some extra fees. There's some rules around it. So if you think about how the tickets worked, or how the auction work, you want to you can apply these fees These rules, and then call the superclass of this, sorry, the super class method withdraw, to actually do the withdrawal from the balance. Same way for savings account, it has some rules around it, right with fro. So that's what you'll be building. And then you should be able to build a demo class type program that works like this. But there's also test cases for each of the classes. So the test cases are what's actually used to score your work. So you should be using those. So notice that it says that it says that you, it challenges you to use big decimal instead of integer. And I would challenge you to do that too. I think that'd be a great thing to do. But you need to accomplish a list keep it encapsulated, which means that for these methods that return integer, they need to still return integer, the big decimal will be an internal representation. So you do all your math in big decimal, then you would get an integer value to return. So that's actually pretty real, pretty standard to how real applications commonly work. It practices encapsulation on top of just inheritance. And most importantly, if you don't return integers, the test cases are going to fail. And Rachelle runs them and your score go down, because the requirement is to return the integers. So if you do take the if you do challenge yourself to use big decimal, again, I strongly encourage you to, you have to keep it encapsulated. But that is the reward usage. That's how you normally would often use big decimal. And that's kind of what we did on the tickets. When we started out, we let the user send us a double and easy data type to work with and then done the more difficult work internally. So that's the same thing here.
+
+So questions are what you'll be doing
+
+it question earlier and he kind of brought it up with having two constructors how Do you call it was super? How do you pick which one?
+
+So, you depends on which one. When you call them a super, it's going to call the one that with the same number of arguments. So if you call super with a string, two strings, we'll call this the constructor. you vote for this. If you call it with two strings and an integer, it'll call the constructor you vote for this.
+
+Does that make sense? Yeah.
+
+Yeah. So constructor overload is just like the method overloads. I know we just looked at this briefly, but it's the same idea. The JVM will decide which one to call based on the arguments. But it also means that you're going to need multiple constructors inside of your subclasses.
+
+So the questions
+
+so everyone feels like they, they know where to start with us and what to do.
+
+Could you actually go to like a like the will call ticket and show how you're converting it from a big decimal to a double? Yes. Yeah.
+
+So, actually to convert it
+
+Oh, it's in the
+
+Oh, it's just in ticket. So to convert it you just pass it pass any of the numeric types in the constructor of big decimal and it converts it to big decimal for. So you call new big decimal with the type with the double. And the resulting big decimal that gets instantiated will be set to that value. She got with the integer double float any of the numeric types. Actually you can do with a string to long's it can be parsed to a numeric type.
+
+That answer your question.
+
+Yeah, it does. And so then when you go to well call and you're making the new constructor you just use double pricing. Again.
+
+Yes, exactly. Oh, yeah, I'm sorry. Here. I see what you're asking now. Yeah, so it has double price here and passes the double through to ticket which is where the big decimal gets encapsulated, converted. And if I done encapsulation properly, which I didn't In this quick example, then this get fee and get total price and all those shouldn't be returning bigdecimal they should be returning a double or integer or some other value. Probably a double in this case, but so in your exercises your return integer from these lessons they ask for, even if you decide to use big decimal internally.
+
+Does that make sense?
+
+No. So converting
+
+back to like a double from
+
+here get fee would return like double and off big decimal.
+
+There's Double value method. Don't give me the double buy.
+
+Does that help?
+
+So it automatically converts.
+
+If you call, not automatically you have to call double value, or integer value or whatever value you want a big decimal that returns gets the double value which a return should be off here. So this method call is what converts it.
+
+Does that make sense?
+
+So I would if, if I was doing these exercises, encourage you to do the exercises with the editor. And then once you're done, go back and convert them to big double or big decimal. That way you don't don't spend time trying to figure out big decimal at the expense of getting behind a new exercise. Because it's a challenge. It's not a requirement. there's just not a lot of places through the code unfortunately, use big decimal so how about encourage you to do it so you can practice with it. But if you don't, it's not it's not really that future dough. No one's not gonna hire you because you don't have it used bigdecimal
+
+you put this back so it doesn't hurt now, oh, I see what I did.
+
+And also, since I keep forgetting to do it
+
+right now, for even move forward.
+
+I'll commit the lecture code. Everything we just wrote in class today. So you it's there. And if you pull prop string Master, you'll have everything that we just work today. I'll be doing that every day. But I usually forget until later in the day, trying to get better at it. So feel free to remind me
+
+Alright, so any other questions?
+
+Okay, so a few things, announce or talk about. not talk about but a couple things. So you have your resume your pathway, resume presentation with three today. So don't forget about that. Also, we have our weekly staff meeting for today. So we'll disappear for an hour, but we'll be back. Just let you know when all staff disappears. That's what we're doing. And then also starting, I think it's gonna be tomorrow back I'm pretty sure it is. They're going to start doing a cross campus. They're piloting an idea of a cross campus review at 8am every morning. So before class every morning, there's going to be a one hour, two of them one for dotnet one for Java, where you'll be, they're going to send out information later today. You're welcome to join them. They're going to go over the previous day's material like so for tomorrow. They'll go through everything. We just talked about and answer any of your questions.
+
+It'll be a different instructor from a different campus every day doing it.
+
+So they're going to
+
+start out tomorrow, and they're going to continue, at least to the end of module one, it's a pilot program is to see how it goes and who's interested in if there's any value to it. So, so watch for the information, I think they said they were gonna send that out around two o'clock or So today, and they're gonna add it to the calendar, if you're interested in that. There'll be every morning at eight. So,
+
+all right. So that's all I have for today. Anything else anybody has?
+
+I have one last. It's not about what we learned today. So if anyone has anything relevant to that they can chime in.
+
+But I in my package explorer, the source main java file is empty of the exercises, but I have all the test cases and everything.
+
+You're gonna create the classes yourself. Yep, yep. As soon as I said it out loud, I knew it. So.
+
+So anything else?
+
+And with that, just make sure they're named exactly the way it says in the readme, the names of your methods and your classes and everything.
+
+The tests are very specific.
+
+Alright, well, there's nothing else then. Thank you and good luck in
+
+your grind. I have one question about not today's
+
+Transcribed by https://otter.ai

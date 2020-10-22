@@ -1,0 +1,57 @@
+Book
+https://book.techelevator.com/content/inserts-updates-deletes.html#constraints-on-table-columns
+
+Constraints on Table Columns
+You've learned about keys and how those keys can create links between the rows in your tables. You can then join your tables together via those links and create relations between the tables.
+
+But those links also perform another function. They act as a constraint on your data and how you're allowed to interact with it.
+
+Constraints constrain what you're allowed to do with the data in the database. Whenever you update, insert, or delete rows in the database, the DBMS checks that data against constraints that are defined in the tables and rejects any changes that conflict with those constraints.
+
+Think back to the example from the chapter about primary and foreign keys:
+
+#countries
+id	name
+1	Canada
+2	Mexico
+3	Cuba
+4	France
+5	Spain
+6	Italy
+7	China
+#cities
+id	country_id	name
+1	6	Milan
+2	6	Rome
+3	7	Beijing
+4	4	Nice
+5	4	Paris
+6	1	Toronto
+7	5	Seville
+These two tables both have Primary Keys called id, but the cities table also has a Foreign Key called country_id that links to the countries table. On the database, that looks something like this:
+
+ALTER TABLE cities ADD FOREIGN KEY (country_id) REFERENCES countries(id);
+If you had this data in my database and you wanted to delete Mexico:
+
+DELETE FROM countries WHERE id=2;
+That would be perfectly fine. You can delete that country because nothing else relies on it. There are no cities for Mexico in the database and nothing preventing Mexico from being deleted.
+
+However, if you tried to delete Canada with the statement below:
+
+DELETE FROM countries WHERE id=1;
+You'd get an error:
+
+ERROR: update or delete on table "countries" violates foreign key constraint "fk_countryid" on table "cities"
+  Detail: Key (id)=(1) is still referenced from table "cities".
+That didn't work because you have a constraint on the cities table called a Foreign Key Constraint. If any row in the cities table points to another row in the countries table, that country row is not allowed to be deleted.
+
+These constraints help you keep your data consistent and prevents you from having data that points to something that doesn't exist.
+
+#Other types of constraints
+There are other types of constraints that you can put on columns in your database as well. One example is the data type that is defined on a column. But there are a few more that can help you design your database tables to make sure they never contain data that you don't want them to contain.
+
+Constraint Name	Description
+UNIQUE	Verifies the value in this column is unique among all the rows in this table. Good for usernames and email address columns
+NOT NULL	Verifies that all rows in this table have a value for this column and the column is never set to NULL
+DEFAULT value	If a row is entered and this column isn't given a value, it gets the set default value
+CHECK	Verifies that the value in this column meets a programmer defined condition, like (AGE >= 18)

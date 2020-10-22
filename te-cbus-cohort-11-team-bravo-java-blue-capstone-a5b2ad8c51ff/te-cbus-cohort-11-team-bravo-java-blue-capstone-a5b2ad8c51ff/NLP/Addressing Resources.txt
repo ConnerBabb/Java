@@ -1,0 +1,12 @@
+Book
+https://book.techelevator.com/content/server-side-api-2.html#addressing-resources
+
+Addressing resources
+Once you've identified the resources, you can build URLs to them. URLs address certain resources. You access resources through URLs and, depending on which HTTP method you use, retrieve and modify them.
+
+For example, if you wanted to work with your e-commerce site's products, you'd use the URL https://www.omozan.com/products. From there, you can look for a specific product, get all reviews for that product, or get a specific review for that product, as the table below shows:
+
+Goal	URL
+Access a single resource	/products/342333
+Access a resource that belongs to another resource	/products/342333/reviews
+Access a particular review for a given resource	/products/342333/reviews/5674

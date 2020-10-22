@@ -1,0 +1,61 @@
+Book
+https://book.techelevator.com/content/logical-branching-javascript.html#conditional-code
+
+Conditional code
+There are many different choices available to programmers who want their code to take various paths based on a true or false condition.
+
+The most common approach developers use to allow their code to take various paths is if, if/else, or if/else if/else.
+
+With each of the following examples, any usage of the word condition can be replaced by a boolean expression that can consist of a simple boolean variable or a more complex one evaluated from comparison and logical operators.
+
+#Single Conditions with if
+The format for an if condition follows:
+
+if (condition) {
+    // code that executes if condition is true
+}
+#Two Paths with if/else
+The format for an if/else condition follows:
+
+if (condition) {
+    // code that executes if condition is true
+} else {
+    // code that executes if condition is not true
+}
+Don't add conditions for else
+
+Notice that there's no condition after the else keyword. You don't need to add a condition because else always executes if the condition in the if section is false.
+
+#Multiple Paths using if/else if/else
+If you need to provide more than two paths for the code to take, you can use an if/else if code branch. With the if/else if, each time you write if, you need to supply an additional condition that indicates if the following code block should execute:
+
+if (condition) {
+    // code that executes if condition is true
+} else if (secondCondition) {
+    // code that executes if the first condition is false and secondCondition is true
+} else if (thirdCondition) {
+    // code that executes if condition and secondCondition are false and thirdCondition is true
+} else {
+    // code that executes if all the above conditions are false
+}
+Final else not required
+
+You only need the final else if you want a default option if all the conditions before it are false.
+
+Prioritize your conditional checks
+
+When chaining multiple if/else if blocks, make sure to put your most exclusive option first. Programs stop at the first condition they find to be true.
+
+If there are less exclusive options first, then there is a risk that the code block you thought would run does not. Consider the classic FizzBuzz problem which has programmers return 'Fizz' if a number is divisible by 3, 'Buzz' if the number is divisible by 5, and 'FizzBuzz' if the number is divisible by 3 and 5.
+
+let n = 15;
+
+if (n % 5 == 0) {
+  // Fizz
+} else if (n % 3 == 0) {
+  // Buzz
+} else if (n % 3 == 0 && n % 5 == 0) {
+  // FizzBuzz
+}
+The program will never find FizzBuzz. As soon as 15 % 5 == 0 is evaluated and true, the remaining conditions are never evaluated and the result will be Fizz.
+

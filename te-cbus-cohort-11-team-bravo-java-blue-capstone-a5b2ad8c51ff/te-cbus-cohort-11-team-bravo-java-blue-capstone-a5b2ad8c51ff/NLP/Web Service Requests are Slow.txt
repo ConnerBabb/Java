@@ -1,0 +1,25 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#web-service-requests-are-slow
+
+#Web service requests are slow
+It isn't unusual for a web service request over the Internet to take 50-100ms to make a round trip from your web browser to the server and back. Now, .1 seconds may not seem like much time to you, but in computing time, it's an eternity.
+
+Modern CPUs can process hundreds of millions of instructions in that amount of time. It would be incredibly inefficient if the code on a web page made a web service call and then waited around for the response before executing any more code on the page. If the page makes enough web service requests, or if those requests are slow enough, it could even lead to the web UI being sluggish and unresponsive to the user.
+
+To make programming with web services efficient, there are features built into JavaScript to allow you to use asynchronous programming techniques. Transitioning from synchronous programming to asynchronous programming can be a challenging mental shift, even for experienced programmers, but it's an important concept to master to write modern web application interfaces in JavaScript.
+
+#Asynchronous versus synchronous
+When you perform some task like sending an email, calling a database, or calling another service, you have two ways to perform that task. When you perform a task synchronously, you wait for it to finish before moving on to another task. When you communicate asynchronously, you can move on to another task before it finishes.
+
+Look at some pseudo code and see how it differs between the two paradigms. Each letter below represents a task you must complete to register a new user in the system:
+
+A. User fills out registration form
+B. User registration form is validated and saved
+C. Send new user registration email notification to user
+D. Send new user registration email notification to admin
+E. Display new user registration success page.
+#Synchronous programming
+In synchronous programming, you have to finish each step before moving on to the next. The user must wait for both email notifications to be sent, one after the other, before seeing a success page. The diagram below depicts this process:
+
+
+Image - Synchronous Request

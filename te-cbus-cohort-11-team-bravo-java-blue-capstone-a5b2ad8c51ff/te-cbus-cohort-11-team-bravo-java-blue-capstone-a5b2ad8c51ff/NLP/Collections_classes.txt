@@ -1,0 +1,33 @@
+Book
+https://book.techelevator.com/content/linear-data-structures-ool.html#collections-classes
+
+Collections classes
+Remember that classes are a grouping of variables and methods in a source code file that you can generate objects from. A class definition exists for each data type that you explore. These definitions are the template that you'll use to create new objects. You can use a common type, the list to create as many lists as your program requires. Each list contains its own separate values and has methods that make it easy to add, remove, or clear the contents.
+
+In all, the Java environment contains over 4000 classes, and many more can be loaded as third party libraries. You probably won't use them all on the job; in fact, most programmers never see a fraction of them in their whole careers. Still, it's good to know that if you ever run into a problem, there's probably a class that can fix it.
+
+In a few chapters, you'll see that you can create your own classes when you need something more specific. Between the framework, creating your own classes, and including classes from other software projects, it can be difficult to manage all of them unless there's a way to organize them. Thankfully, you can use namespaces.
+
+#Namespaces
+Namespaces are heavily used within Java programs in two ways. The Standard Library classes use namespaces to organize its many classes. Additionally, declaring your own namespaces helps to control the scope of a class and its methods within larger programming projects.
+
+Most Java class files begin with import statements. These statements list the namespaces, or packages that the file uses, saving the programmer from specifying a fully qualified name every time a method contained within is used.
+
+By including the following line:
+
+import java.util.Scanner;
+You can write code like this:
+
+Scanner input = new Scanner(System.in);
+Instead of:
+
+java.util.Scanner input = new java.util.Scanner(System.in);
+The second way to use packages is to help you to stay organized. The package keyword creates a scope that helps the project organize the classes you create. It also ensures that your new data type's name doesn't conflict with classes created by other programmers.
+
+#Creating generic collections
+The java.util package contains the different classes and interfaces that you can use to create generic collections. Anytime you want to create a list, a queue, or any of the other collections classes, you'll need to add an import statement in your code to this package.
+
+import java.util.*;
+Ordinarily, you don't need to type this in yourself. If you type ⌘-Shift-O on a Mac, or Ctrl+Shift+O on Windows, Eclipse organizes your imports for you.
+
+This link provides full coverage for what the java.util package includes

@@ -1,0 +1,22 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#catching-multiple-exceptions
+
+Catching multiple exceptions
+You should anticipate that a number of different exceptions could occur with your code. The syntax for a try-catch statement allows one or more catch blocks.
+
+Doing this allows you to address each of the exceptions in different ways:
+
+try {
+    // Perform some work (e.g. open a file and read all of the text)
+} catch(FileNotFoundException e) {
+    // A File not found exception would be handled here.
+} catch(IOException e) {
+
+}
+When the exception occurs from within the try block, it immediately stops and looks for the nearest catch block that matches the exception type. If you define the more generic exception instead of a specific exception first, you risk losing the ability to execute exception-specific code.
+
+In sum:
+
+It's best practice to catch a specific type of exception.
+Place your catch blocks in order of most specific to least specific.
+Avoid catching the base Exception class

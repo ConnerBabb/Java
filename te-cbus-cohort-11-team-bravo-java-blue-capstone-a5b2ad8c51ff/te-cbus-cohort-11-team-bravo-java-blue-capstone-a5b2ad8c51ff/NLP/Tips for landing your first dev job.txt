@@ -1,0 +1,39 @@
+Pathway
+https://docs.google.com/document/d/1WVbZ5c5qpRLdug80C5iYH4pVybDJLXKVdpnIzK_33yw/edit?usp=sharing
+
+Tips for landing your first dev job
+
+Why Coding is like Ballet
+(and other unexpected tips for landing your first dev job)
+
+By: BRIANA WEST
+
+I began my job search this spring with mixed feelings. Sure, I felt great about all the work I did while at Launch Academy. I had just spent 18 weeks neck-deep in code and I was delighted at the progress I made, but what would actual employers think? Would they think less of me because I was a bootcamp grad? Would they even give me the time of day?
+
+Leading up to the first week of the job hunt, I was lucky enough to receive preparation on how to approach landing a job. Members of my cohort and I had practiced our elevator pitches, practiced mock interviews where we answered technical questions and even solved whiteboard problems, but would I really be able to impress a seasoned developer?
+
+A few weeks into my search, and I had been through enough phone screens and in-person interviews to learn a few key things that I’ll take with me long into the rest of my career as a developer.
+
+One thing I could always be sure of is that the more I interviewed, the better I’d get at it. There were many questions I’d hear repeatedly, and over time I was able to reflect on these questions. I got better at identifying an approach to responding to them in a way that best conveyed what I wanted out of a programming career, and why I believed I’d even be good at it.
+
+“What got you into programming? What do you enjoy about it?” I realized early on that, while it may be true, responding with “I love problem-solving! :D” wouldn’t tell a prospective manager or coworker much about me as a person or as a problem-solver. Enjoying challenges is almost implied in this field, so I had to think more specifically about what hobbies, interest and life experiences led me here. I began to weave together parallels between my years of dance training with what it’s like to code.
+
+In contemporary ballet, there are very specific technical requirements in posture, placement and movement execution. Unless you’re born with a body naturally capable of great strength, precision and an incredible range of motion, actually accomplishing these things is notoriously difficult. However, when combining these things to create choreography, the rules are much less strict. How a piece comes together is up to you.
+
+Programming is very similar.
+
+You have these syntactic conventions, methods and data types with predefined behaviors. These things all have a considerable learning curve as well, but once you have a grasp on them, the sky’s the limit on what you can build. Dancers have a reputation of seeming superhuman to people outside of their world. To developers and non-developers alike, programming can seem a lot like magic. With this comparison, I was able to illustrate that the challenge and reward cycle of programming and dance, coupled with the freedom of creativity they both offer is what drew me to transition into a career in tech.
+
+When interviewers continually asked me about how I felt about pairing, or whether I felt strongly about mentorship, I realized these questions were an opportunity to be deliberate about the kind of work environment in which I wanted to hone my skills as a beginner. If the company had a strong emphasis on pairing, I could be confident in the possibility of learning best practices and proper techniques early on from someone who had more experience. If the company didn’t have much time or resources in the way of mentorship, I could possibly use it as an opportunity to prove I can thoroughly investigate blockers and pick things up quickly without much guidance.
+
+During my job search, the ultimate takeaways were things I saw echoed across many a Reddit thread and tech article: If someone is interested enough to interview you, the most important qualities, aside from whether you can write code, are how well you can communicate your thought process when working with others, how willing you are to admit when you need help, and what kinds of questions you ask when you do seek help. Programming is an incredibly collaborative field, and while it’s crucial that you can investigate issues independently, how you interact with others during the problem-solving process can make or break how well you fit into a team.
+
+By the time I learned all of this, it was Philly Tech Week. I was excited to meet new companies and had gotten much more comfortable with the interview process. Instead of seeing it as an interaction where I’d likely be met with great scrutiny, I saw it as an opportunity to share the story of my adventures in programming while also learning about the kinds of companies Philly’s tech scene had to offer.
+
+A shift in perspective definitely took some of the pressure off, which I’m sure helped my next interviews feel more like a casual conversation that just so happened to have a job offer weighing in the balance. On Day 4 of #ptw17, I ran into some fellow Launchers who were grabbing cookies in front of Power Home Remodeling’s booth. After saying hello to my friends, I turned around and began to have a nice conversation with a gentleman at said booth, whom I’d soon go on to refer to as my boss.
+
+My advice for getting into tech is to first have a personal stake in your profession. Find how this field speaks to you on a personal level. Once you’re invested and excited about your own reasons for loving what you do, and once you’re convinced that you can do it, no one will be able to tell you otherwise.
+
+
+
+Briana West is currently a Developer at Power Home Remodeling Group. She studied Health Sciences at Boston University, and worked at a medical credentialing NGO before plunging into the programming world. While she no longer performs regularly, she loves dance, and continues to practice ballet and modern techniques for both exercise and fun. Also, pasta is her favorite. You can find her on Instagram at @_briwest.

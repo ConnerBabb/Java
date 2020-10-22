@@ -1,0 +1,139 @@
+Book
+https://book.techelevator.com/content/css-grid.html#box-alignment-in-css-grid-layout
+
+Box alignment in CSS Grid Layout
+Until now, the grid items took up all of the available space. But this won't always be the case, and when it isn't, you need a way to align grid items in your layout. When working with grid layouts, there are two axes you can align items against: the block axis (column) and the inline (row) axis.
+
+
+Image - Block Alignment
+These properties are defined on the grid container and define how all of the grid items are aligned:
+
+align-items: Aligns grid items along the block (column) axis
+justify-items: Aligns grid items along the inline (row) axis
+#Column Alignment
+The property align-items controls the alignment on the block axis (column). There are many different values you can use with align-items, and you can view them on the MDN web docs. Here are the most common ones:
+
+stretch: Fills the whole height of the cell (default)
+start: Aligns items to be flush with the start edge of their cell
+end: Aligns items to be flush with the end edge of their cell
+center: Aligns items in the center of their cell
+In the following example, there are twelve boxes, and the images below show the different values for align-items:
+
+<div class="container">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box">4</div>
+  <div class="box">5</div>
+  <div class="box">6</div>
+  <div class="box">7</div>
+  <div class="box">8</div>
+  <div class="box">9</div>
+  <div class="box">10</div>
+  <div class="box">11</div>
+  <div class="box">12</div>
+</div>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: stretch; /* this is the default */
+}
+
+.box {
+  padding: 40px;
+  background-color: rgb(111, 158, 202);
+}
+align-items: stretch: This is the default value, and because it's also the default value for justify-items (row), the content stretches to fill the available space on both axes:
+
+
+Image - Align Items Stretch
+align-items: start
+
+
+Image - Align Items Start
+align-items: center
+
+
+Image - Align Items Center
+align-items: end
+
+
+Image - Align Items End
+#Row Alignment
+The property justify-items controls the alignment on the inline axis (row). There are many different values you can use with justify-items, and you can view them on the MDN web docs. Here are the most common ones:
+
+stretch: Fills the whole height of the cell (default)
+start: Aligns items to be flush with the start edge of their cell
+end: Aligns items to be flush with the end edge of their cell
+center: Aligns items in the center of their cell
+In the following example, there are twelve boxes, and the images below show the different values for justify-items:
+
+<div class="container">
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+  <div class="box">4</div>
+  <div class="box">5</div>
+  <div class="box">6</div>
+  <div class="box">7</div>
+  <div class="box">8</div>
+  <div class="box">9</div>
+  <div class="box">10</div>
+  <div class="box">11</div>
+  <div class="box">12</div>
+</div>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  justify-items: stretch; /* this is the default */
+}
+
+.box {
+  padding: 40px;
+  background-color: rgb(111, 158, 202);
+}
+justify-items: stretch: This is the default value, and because it's also the default value for align-items (column), the content stretches to fill the available space on both axes.
+
+
+Image - Justify Items: Stretch
+justify-items: start
+
+
+Image - Justify Items: Start
+justify-items: center
+
+
+Image - Justify Items: Center
+justify-items: end
+
+
+Image - Justify Items: End
+#Column and Row Alignment
+There are times when you need to center an item on both axes. You can do this by setting align-items: center and justify-items: center:
+
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  align-items: center;
+  justify-items: center;
+}
+
+Image - Center Center

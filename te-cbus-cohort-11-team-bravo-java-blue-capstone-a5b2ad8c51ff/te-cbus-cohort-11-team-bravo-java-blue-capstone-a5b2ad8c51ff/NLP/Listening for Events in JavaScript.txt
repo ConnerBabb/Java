@@ -1,0 +1,99 @@
+Book
+https://book.techelevator.com/content/event-handling-javascript.html#listening-for-events-in-javascript
+
+Listening for Events in JavaScript
+Reacting to events in JavaScript will require three things from us:
+
+A DOM element that we want to listen to events on
+A specific event that we want to listen to
+A function that holds the logic that we want to execute
+We already know how to select DOM elements. But how do we know what events we can listen for on a certain element?
+
+#Types of Events
+All DOM elements can receive the following events:
+
+Mouse Events
+click - a user has clicked on the DOM element
+dblclick - a user has double clicked on the DOM element
+mouseover - a user has moved their mouse over the DOM element
+mouseout - a user has moved their mouse out of the DOM element
+Input elements, like <input>, <select>, and <textarea>, also trigger these events:
+
+Input Events
+keydown - a user pressed down a key (including shift, alt, etc.) while on this DOM element
+keyup - a user released a key (including shift, alt, etc.) while on this DOM element
+change - a user has finished changing the value of this input element
+focus - a user has selected this input element for editing
+blur - a user has unselected this input element for editing
+Form elements have these events:
+
+Form Events
+submit - a user has submitted this form using a submit button or by hitting Enter on a text input element
+reset - a user has reset this form using a reset button
+There are many more events that can be listened for but these are the ones you will be using 99% of the time. You can find more at the MDN documentation for events.
+
+#Adding Event Handlers to DOM Elements
+Let's imagine that we want to react to a user clicking on a button. When they click the button, we're going to change the text in an <h1> to be different. The HTML for this might look something like this:
+
+<h1 id="greeting">Hello</h1>
+<button id="change-greeting">Change Greeting</button>
+First, let's write a JavaScript function that will do the logic of what we want:
+
+function changeGreeting() {
+    let greetingHeader = document.getElementById('greeting');
+    greetingHeader.innerText = 'Goodbye';
+}
+Now we'll want to get the DOM element we want to listen to the event on. Here that's the button:
+
+let changeButton = document.getElementById('change-greeting');
+Then we attach the function to run whenever we get a click event on the button:
+
+changeButton.addEventListener('click', (event) => {
+    changeGreeting();
+});
+And that's the basics of event handling.
+
+#Event Handling using Anonymous Functions
+You could also get the same functionality as above by attaching an anonymous function as the event listener instead of calling a named function:
+
+changeButton.addEventListener('click', (event) => {
+    let greetingHeader = document.getElementById('greeting');
+    greetingHeader.innerText = 'Goodbye';
+});
+These two examples are functionally the same, but you might have reasons to use one over the other.
+
+Best Practice and Tech Elevator Convention
+
+You will see in all of our examples that we always structure event listeners as two different functions. We highly encourage you to follow this convention too.
+
+The structure will be that you first write your named function that implements the event handler logic:
+
+function changeGreeting() {
+    let greetingHeader = document.getElementById('greeting');
+    greetingHeader.innerText = 'Goodbye';
+}
+And then call that in an event listener:
+
+let changeButton = document.getElementById('change-greeting');
+changeButton.addEventListener('click', (event) => {
+    changeGreeting();
+});
+This is best practice because it makes the event handler easy to test as it is just a normal JavaScript function that we already know how to unit test and it makes our code more flexible and able to handle HTML structure changes in the future.
+
+#The Event Object
+All event handlers will receive an object when the event is triggered called the Event Object. This object holds a number of important properties that we can use to get information about what the event was.
+
+To use this object, we can write our event handlers to take a parameter that will hold the event object:
+
+(event) => {
+    ...
+}
+In our function, we have access to an object that has details of the event that was triggered, including:
+
+Property	Found In	Purpose
+currentTarget	All events	Holds the element that the event was triggered on, ie. the button clicked or the select box that changed
+clientX	Mouse events	The X coordinate on the screen of the click
+clientY	Mouse events	The Y coordinate on the screen of the click
+altKey, metaKey, ctrlKey, shiftKey	Mouse and Keyboard events	A boolean on whether the specified key was pressed down during the event
+key	Keyboard events	The key that was pressed, taking the Shift key into account. Arrow keys show up as 'ArrowRight', 'ArrowDown', 'ArrowLeft', and 'ArrowUp'
+More information on Events and information in Event objects can be found on the MDN page for the UIEvent object.

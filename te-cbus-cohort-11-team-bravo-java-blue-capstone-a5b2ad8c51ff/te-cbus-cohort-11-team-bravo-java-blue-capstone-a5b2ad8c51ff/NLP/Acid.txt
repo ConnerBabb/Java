@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/sql-transactions.html#acid
+
+Making Calls in Transactions
+One issue with SQL is that you can really only run one statement at a time, and that the statements are separated from each other. If the one of the statements fail, it's difficult to reverse anything that came before. For example, imagine that you want to transfer money from one bank account to another. If you have a table like this:
+
+#accounts
+account_number	name	balance
+383953	Bob	100.00
+485920	Jane	403.00
+If you want to transfer $25.00 from Bob to Jane, you'd need two statements to do that:
+
+UPDATE accounts SET balance = balance - 25 WHERE account_number = 383953;
+UPDATE accounts SET balance = balance + 25 WHERE account_number = 485920;
+Most of the time this works, but what if something goes wrong? What if the database crashes right after you take $25 from Bob and the second statement throws an error? You'd be in an inconsistent state.
+
+You want the transfer to be seen as a single action. The money is either transferred or it's not - it should never be in an in between state. What you want is for this action to be ACID compliant.
+
+#ACID
+ACID is an acronym for Atomicity, Consistency, Isolation, and Durability.
+
+Atomicity	This means that the statements in your transaction above either all happen or none of them happen.
+Consistency	This means that your database should never be in a state where one statement has run, and the other hasn't yet. In other words, all statements in the transaction happen at the same time.
+Isolation	This means that no one else on the database sees the results of the statements until they are all completed.
+Durable	This means that once the statements have run, they are permanent and saved in the database.
+Most SQL databases are fully ACID compliant by using transactions

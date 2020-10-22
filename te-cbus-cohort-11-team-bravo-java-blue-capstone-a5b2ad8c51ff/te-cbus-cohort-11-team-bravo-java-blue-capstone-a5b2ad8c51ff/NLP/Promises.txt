@@ -1,0 +1,21 @@
+Book
+https://book.techelevator.com/content/web-services-javascript.html#promises
+
+Promises
+In the Axios library, many of the methods return Promise objects. This is because many of the methods in the Axios library are asynchronous. You can use these Promise objects to implement asynchronous code.
+
+As you know, when you call a synchronous method, you expect to get the final result back as soon as the method finishes executing and use it immediately:
+
+const salesTaxDue = checkoutService.calculateSalesTax(orderSubTotal); // method returns a number
+const orderTotal = orderSubTotal + salesTaxDue; // the result can immediately be used in a calculation
+However, when calling an asynchronous method, the method may finish executing before the result is available. How can you represent a result that isn't available yet, but will eventually be available?
+
+In JavaScript, one of the most common ways to handle the results of asynchronous methods is using an object called a Promise. When a method returns a Promise, you can think of it as saying, "I don't have your answer now, but I promise to get back to you when I do."
+
+In your code, you can associate handlers—that is, functions—with the task's eventual success or failure.
+
+A Promise can be in one of three states:
+
+Pending: initial state, neither fulfilled nor rejected.
+Fulfilled: meaning that the asynchronous operation completed successfully.
+Rejected: meaning that the asynchronous operation failed

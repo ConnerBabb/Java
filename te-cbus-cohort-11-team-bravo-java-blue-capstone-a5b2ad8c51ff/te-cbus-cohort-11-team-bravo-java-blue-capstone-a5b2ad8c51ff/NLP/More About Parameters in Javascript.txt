@@ -1,0 +1,84 @@
+Book
+https://book.techelevator.com/content/functions-javascript.html#more-about-parameters-in-javascript
+
+More About Parameters in JavaScript
+There are more things to talk about with parameters in JavaScript, including the lack of required parameters, default values in parameters, and how to deal with an unknown number of parameters.
+
+parameters === arguments
+
+JavaScript has a confusing habit of calling parameters by two different names. Sometimes they are called "parameters" and sometimes they are called "arguments". These are the exact same concepts. The book will be using "parameters" throughout, but be aware that they might also be called arguments in other places.
+
+#Optional Parameters
+Parameters in JavaScript are always optional. So what if a value is not provided for a parameter when calling a function? As you saw in the previous discussions, if you don't assign a value to a variable, the variable is set to undefined. So calling:
+
+console.log( multiplyBy() );
+Works, but prints NaN to the console. This is because its two parameters are getting no value, and undefined multiplied by undefined returns the value NaN, which stands for Not a Number.
+
+#Default Parameter Values
+In some cases, there's a reasonable default value that you can use if a parameter value is not supplied. For example, in the case of our multiplyBy function, perhaps you want multiplicand and multiplier to default to 0 if a value is not supplied. To do that, you'll rewrite the function to look like this:
+
+function multiplyBy(multiplicand = 0, multiplier = 0) {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+Now, if a parameter is missing, it will be set to 0 instead of undefined. A call like this:
+
+console.log( multiplyBy( 2 ) );
+Will now print 0 to the console instead of NaN. You can use this to make your functions more robust and useful in varying scenarios.
+
+This is especially useful because JavaScript doesn't have overloaded functions like C# or Java does. If you want a function to be able to take a different number of parameters, you have to write all of that logic in the same function. Making parameters optional makes your code more flexible and able to handle different situations.
+
+#Handling an Unknown Number of Parameters
+There may be times when you want to handle an unknown number of parameters. A good example of this is writing a function that concatenates an unknown number of strings together. If you call a function like this:
+
+let name = concatAll(firstName, lastName);
+You might also want to call it like this:
+
+let name = concatAll(honorific, firstName, mothersMaidenName, '-', fathersLastName);
+How many parameters might you have for that function? I don't know! But, in JavaScript, you can use a special variable to get at all of of the given parameters, whether you expect them or not. This variable is called arguments. (Yeah, I know. It should be "parameters", but it's arguments.)
+
+With arguments, you can treat all parameters that have been passed to the function as an array, even if you don't have any parameters defined in the actual function definition.
+
+So you could implement the above function like so:
+
+function concatAll() { // No parameters defined, but we still might get some
+    let result = '';
+    for(let i = 0; i < arguments.length; i++) {
+        result += arguments[i];
+    }
+    return result;
+}
+Given that function definition, concatAll("Good", "Bad", "Ugly") would return "GoodBadUgly".
+
+#VIDEO: Named Functions
+This video will show how to create named functions in JavaScript.
+
+
+#Anonymous Functions
+Anonymous functions are functions that don't have a name. Functions in JavaScript can be used just like any other value, so being able to create a function without a name isn't as crazy as it sounds. You create an anonymous function with the following syntax:
+
+
+Image - Arrow Function Signature
+As you can see, this function has no name and can't be called as is. You can either assign it to a variable to call it:
+
+let multiply = (multiplicand, multiplier) => {
+    let result = multiplicand * multiplier;
+
+    return result;
+}
+
+console.log( multiply(5, 2) ); // Prints `10` to the console
+Or you can pass the anonymous function to another function!
+
+// Filter an array of numbers so that we are only left with even numbers
+let numbers = [1, 2, 3, 4];
+
+let evenNumbers = numbers.filter( (number) => {
+    return number % 2 === 0;
+});
+
+console.log( evenNumbers ); // Prints out `[2, 4]`
+In the code above, a new anonymous function is being created and passed as a parameter to the filter function on the numbers array. That's right, a function can be passed as a parameter to another function in JavaScript.
+
+Now, you don't need to fully understand how this is working, but you do need to know that you can do it. If a function is just a block of code, then you can put the block of code in a variable and pass it around in your program. And that makes anonymous functions very powerful. And you'll be seeing much more about it in the weeks to come

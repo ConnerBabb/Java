@@ -1,0 +1,47 @@
+Book
+https://book.techelevator.com/content/unit-testing-ool.html#creating-unit-tests
+
+Creating unit tests
+Now, you're going to write some real unit tests.
+
+One more thing to discuss: Errors vs Failures
+
+One common issue that often confuses students is the difference between Errors and Failures.
+
+Errors are errors in your code or in the unit test. This is likely to be a runtime error, such as a null reference exception or an array out of bounds exception.
+
+If you have a failure, this means that your unit test failed. So you likely have a logic error, meaning that your code isn't doing what you expect it to do, or more appropriately, what the unit test expects it to do.
+
+Here at Tech Elevator, you use a testing framework called JUnit to create and run unit tests.
+
+#Adding files and tests
+Like all other Java code, unit testing code is defined within a class. Each test class typically contains the unit tests for a single "unit" of production code.
+
+If the "unit" is a single class from the production code, then the convention is that the test class belongs to the same package as the class under test. The name of the test class is the name of the production class with "Test" at the end. For example, the test class for the production class "Foo" would be "FooTest."
+
+JUnit includes three main annotations for methods to indicate that they're used in testing:
+
+Annotation	Description
+@Test	Indicates the method is a test method. Test methods are always public, return void, and take no arguments.
+@Before	Indicates that the method should be executed immediately prior to every test. It's used when there's a repetitive setup task that is performed by several tests (for example, "Arrange").
+@After	Indicates that the method should be executed immediately after every test. It's used when there's a repetitive cleanup task that is performed by several tests (for example, deleting temp files, rolling back database transactions, etc)
+#Viewing tests
+You can view tests in the JUnit window. It opens automatically once you've run a test, or you can open it yourself by selecting Window->Show View->Other and searching for JUnit.
+
+#Running tests
+You can run the tests in a file by either right clicking on the file or clicking the Run button on the top navigation bar and selecting Run As->JUnit Test. You can also run tests from the JUnit window. Once all of the tests in a file have been run once, you can re-run a single test from the JUnit window.
+
+#Debugging tests
+You can debug a unit test by putting in a break point and then right clicking on the file. Another way is to click the Debug button on the top navigation bar and select Debug As->JUnit Test. You can also run tests from the JUnit window by right clicking on the test and selecting Debug.
+
+@Test
+public void length_returns_the_number_of_characters_in_a_String() {
+    System.out.println("length_returns_the_number_of_characters_in_a_String"); // FOR DEMONSTRATION PURPOSES ONLY, don't do this in your own tests
+
+    /* The assertEquals method validates that two values are equal and
+        * fails the test if they are not equal */
+
+    String theString = "Java"; // Arrange
+    int length = theString.length(); // Act
+    Assert.assertEquals(4, length); // Assert
+}

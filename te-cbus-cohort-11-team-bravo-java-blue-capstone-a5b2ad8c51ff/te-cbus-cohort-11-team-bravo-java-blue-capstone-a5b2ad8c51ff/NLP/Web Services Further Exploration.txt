@@ -1,0 +1,97 @@
+Book
+https://book.techelevator.com/content/web-services-post.html#further-exploration
+
+Further exploration
+#Using the right HTTP method
+You may have heard the term "REST" or "RESTful" when it comes to APIs. The formal description is rather verbose and technical, but what it boils down to is using HTTP to interact with other applications—that means using URLs and standard HTTP methods.
+
+There is no REST "standard" as it's more of an architectural style, but it does rely on the HTTP standards. The HTTP standards essentially define the HTTP methods as:
+
+GET for returning resources
+POST for creating a new resource
+PUT for updating a resource
+DELETE for deleting a resource
+The method definitions are a little more verbose, but this is what they essentially mean. If you want to read the formal definitions, they're available from the IETF HTTP Working Group.
+
+As you read earlier, the HTTP method lets developers know how the data does or doesn't change on the server. It's because of the HTTP standards.
+
+Another reason to not use GET on methods that modify data is that GET requests can be cached by the browser, server, or any intermediary. If the request was cached, you may not have the data change that you're expecting or the request may not even reach the server. POST, PUT, and DELETE requests can't be cached.
+
+#Further CORS reading
+The CORS example mentioned earlier illustrates the basic concept of CORS and how it works. If you want to learn about more advanced concepts, the MDN Documentation on CORS is a good resource.
+
+#Enabling CORS on other platforms
+#Java
+To enable CORS in your Spring Boot application, you use the @CrossOrigin annotation on any controller or method that you want to be enabled for CORS:
+
+@CrossOrigin
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+    //...
+}
+You can also specify the origin or origins you want to enable CORS for:
+
+@CrossOrigin(origins = "https://www.example.com")
+// or
+@CrossOrigin(origins = {"https://www.example.com", "http://foo.com"})
+The above examples enable CORS for your controllers and methods. The Spring Framework documentation for CORS Support shows ways to enable CORS on a global level and specify allowed HTTP methods and headers.
+
+#ASP.NET Core
+To enable CORS in your ASP.NET Core application, you have to define the conditions you want to allow CORS requests in a policy. A policy contains, at a minimum, three pieces of information: allowed origins, allowed headers, and allowed request methods.
+
+In your project's Startup.cs, you'll define the policy in the ConfigureServices() method:
+
+public void ConfigureServices(IServiceCollection services)
+{
+    //other configuration code...
+
+    services.AddCors(options =>
+    {
+      options.AddDefaultPolicy( //CORS policy
+          builder =>
+          {
+              builder
+                  .WithOrigins("https://www.example.com") //requests only from https://www.example.com allowed
+                  .WithHeaders("content-type") //requests must include "content-type" in the header
+                  .WithMethods("GET"); //allows only GET requests
+          });
+    });
+}
+Alternatively, you can specify any origins, headers, or methods:
+
+builder
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod();
+Note
+
+Be careful when using AllowAnyOrigin as it opens up your application to anybody, which isn't very secure. But if you plan to make your API freely available, this is what you'd use.
+
+You can also mix and match the "allow any" and "with" methods, as well as specify multiple values:
+
+builder
+    .WithOrigins("https://www.example.com", "http://foo.com") //requests only from https://www.example.com or http://foo.com allowed
+    .WithHeaders("content-type", "accept") //requests must include "content-type" or "accept" in the header
+    .AllowAnyMethod(); //any HTTP method allowed
+Now that the policy is set up, you can enable CORS for your entire application in the Configure() method:
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    //other configuration code
+
+    app.UseCors();
+
+    //...
+    app.UseMvc(); //UseCors must be called before UseMvc
+}
+If you don't want to enable CORS globally, you can enable it on a specific controller or action using the [EnableCors] attribute:
+
+[Route("api/[controller]")]
+[ApiController]
+[EnableCors]
+public class AccountController : ControllerBase
+{
+    //...
+}
+For more information, the MSDN documentation on Enable Cross-Origin Requests in ASP.NET Core shows ways to define and use multiple CORS policies

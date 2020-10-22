@@ -1,0 +1,1189 @@
+Zoom
+https://techelevator.zoom.us/rec/share/9M1xaJDh2EdIRtbT6h7YXogQIo7haaa8hikWqKVYy1F86cxLn_k1_yisWZwaDJY?startTime=1592832488000
+https://drive.google.com/file/d/1xRZE9m3pOo2CEXecqe8_ciV8Cl2iutWf/view?usp=sharing
+https://docs.google.com/presentation/d/1ucYozq6INm3nEKMva0FpAvIoEIR5u_DkzyAL98rIu_0/edit?usp=sharing
+So, we're going to start today with looking at consuming. They're using these web API's with the cinco get, which is just kind of select and SQL, it's a way of getting information. And that doesn't change the remote information. So it doesn't change the server. Kinda like when you do a select in the database, everything stays the same. So we're going to start today by looking at that. But before we can do that, we need to talk about just how networks work and some basic network terminology. So that we can talk about using web services. So we're going to start so we're going to start with kind of an introduction to networks and the internet. We're going to walk through how what clients servers are and how they work. And then some of The very kind of high level some of the details. So we're gonna look at Internet Protocol, which is IP and house, which is how addressing is done on the internet. And we'll talk about what that means. And then this thing called domain name systems, which we'll need to know, when we start working with that we're going to have road addresses, we'll need to understand how those works. So we'll look at that. And then we're going to look at hypertext transfer protocol HTTP, which is the main way that our application will speak to another application across the internet. And that'll bring us to some other pieces like being we'll talk about request and response and how that works and what that means. And then get itself which is, you know, in the title for today. So that's kind like a select and status codes that come back to it. And then we're going to have to break apart URLs. You've used URLs, sure, for years, going to various websites, but we're going to break them apart, because we're going to need to understand exactly what each piece means. So we because we're going to have to are building them and later this week, giving other users x stars. So that's all we that's what we're going to need to talk about just to be able to start looking at web API's. So then, once we have that, we'll look at rest, which is the one of the frameworks. We're not frameworks but a architecture for doing web API's. So we'll take a kind of a brief look at that. We'll come back to it in detail later this week. And then that's going to lead us to need to understand this thing called JSON which is a messaging format. And I know I'm using a lot of words you don't know yet, but you will by the end of today. And then finally, we can take a look at using these API's in just with a simple, get, so getting information. So there's a lot of just terminology and understanding today at kind of at a high level, at least what some of the words are going to mean. Before we can even look at code or look at how we're going to do do this. So let's start by this idea called client and the server are clients to relationship. So networks in, and the internet works on this idea of client and server when I shouldn't say. So in this is that there's two essentially computers communicating with each other. One is called the server, or why this was the client, the client does what's called make request, it asks questions. Then the other one is called the server. The server answers the questions. Traditionally, and if you go to like amazon.com, your browser your, you know, if you use Chrome or Firefox we're using that's the client. It's going to ask the question on your behalf. Amazon's computer across the internet that sends back you know, the product You're looking for the other information you're interested in, that's the server. So servers are generally large, larger computers, they're generally often large numbers of computers working together. They usually communicate with multiple people the same time. But their sole job is to answer questions coming into them. And these questions we'll call these answers will call responses. where clients are the software devices that are asking these questions usually on the behalf of the user. So it doesn't have to be two computers communicate without human users. And the same relationship exists once asking a question making a request that owns providing an answer making a response. So generally getting four servers there's one for multiple clients connecting to it. Some kind of common ones that we run into Every day,
+
+Chrome browser would be a client. And if it was going to any web page, that web server that sites web server would be the server. Smart TV. It's a client. If you're streaming Netflix on it, Netflix servers, their computers are the clock or the servers. Your phone is a client. Its messaging server. So when you get SMS text messages, or AI messages or other types of messaging that's coming from a messaging server. When you open up your email app, like Gmail app, or what are the other built in mail apps, and you it goes and retrieves your email, your email apps, the client and the it communicates with the email server to get your emails. So we use this relationship a lot, mainly because it's the majority of The internet works using this relationship, everything on the World Wide Web portion of the internet works using this relationship, everything on just about every network. Internal and external, uses this relationship. So we're going to need to understand it because what we're going to do today is we're going to build our own client. That's going to be what we end with, we're going to build an application that is a client that's going to communicate with a remote server, initially a local server meaning one, or one that's on our own computer. And then we'll look at the very end of the day communicating with a remote one, one that we don't own or control around. And then later this week, we'll build the server side. So it by the end of the week, we'll have looked at building both the client and the server in this relationship. So
+
+what's let's look at the how
+
+we use Use this specifically with the web,
+
+since that's the most common use, and that's the way we're going to our applications are going to communicate, they're going to communicate through, we're going to learn, they're going to come across the same channels that web pages use. So the World Wide Web portion of the internet. And they're going to do it using this pattern of making requests that has a bunch of parts. So let's talk about when we go to a browser, and we go to an address, like
+
+duck elevator.com.
+
+And press enter what happens because we're going to have to have a working knowledge of this entire process of everything that has happened in the background, because that's what we're going to be building the pieces for. So what's happened and we're going to go through it first kind of quickly, and then we'll come through and go through each piece in detail. What's happened when I did that when I typed in that address?
+
+tech elevator calm and I pressed enter. The browser
+
+immediately says I don't no clue what tech 11 commas. So it goes out to these servers called DNS system servers asks, so we'll come back to more detail about them. But they say, Okay, I know it's like a lookup. I don't know what televator comm is, but here's its computer readable address, this thing called an IP address that we'll get, we'll come back to you in more detail. And that sends it back to my browser. So when I first typed that in, that's what happened in the background. And then using that IP address the computer usable address, or readable address,
+
+my browser then sent a request
+
+it so it opened a connection send a request to the server at that address, which is The server that's supporting tech eliminator calm right now.
+
+That server.
+
+So let's set that request and use this part of what's called a protocol, which is just a way or a standardized way of a set of rules about how it's going to communicate called HTTP. And it also used this method called get. So it's like a select. And it's so it opened this communication with the server. And it essentially said as part of that said, Hello. And it really does actually say the word hello. And the server answers back that it's available. And then it said, I need the set of things. What it told it needed, is it What did whatever is that combat tech elevator, which is HTML, and the server, don't put that together. The pieces needed. I don't know what that server looks like, but I'm guessing it's probably going to databases and other pieces and builds this kind of dynamic piece of HTML. And then it turned it as a response to my browser. And then my browser started loading it. And the browser loading it portion is what we'll spend all next module one. But it starts loading it in. It repeats that process many times. And we'll look at that. Once we've talked through the parts in detail. We'll look at that again. So that process repeated, probably, I don't know how many but I'm guessing 1015. Actually, probably a lot more than that times to get every image, every little piece of this page to put together.
+
+So that's what happened when I
+
+just when I went to an address, I went to google.com or amazon.com, or any page dot com, any website, that's the process that always repeats. That same process very similar processes. What happens when you open up an email app and check your email
+
+or you go on
+
+a device and tell it the stream, you know, Amazon or Netflix, the same process is occurring. So now that we have kind of an overview, so that's a very high level overview. So I don't expect you to have to understand that yet. But I need context to where each of the pieces now we're going to talk about so let's talk about the first part. When I go in, I type this name and how the my computer or my browser, which is my client knows where to go on the internet. No massive network of the For hundreds of millions of
+
+computers
+
+to get this content,
+
+it does that through this thing called an IP address. So an IP address is like a phone number or a house number. A house number may be a better analogy because of something else we're going to run into in a minute. But an IP address is identifies where on a network something is, every device, every computer, everything attached to a network or the Internet has to have an IP address for it to communicate with anything else, even to attach. So IP stands for Internet Protocol. And it's a numeric number or numeric address, that tells you tells where identifies where on a network of computers or devices. And they'll share my so my browser knows the IP address of where tech elevated commas. So it can send a message to it kinda like if we know somebody's phone number, we can call them right. Without that phone number, we can't call somebody, we have to have a phone number to connect to them. If we don't know their address, we can't go to their house. But once we have that information, it's we can dial it and contact them or we can show up at their door. It's the same same here, the browser once the client once he knows the IP address, can communicate with the remote system very similar to the way we could do. We can make a phone call. We know a phone number and just like a phone, there's a bunch of hardware and switches between us and that remote computer that are doing a bunch of work to get us there. But with this is allows So as to tell each of those pieces where we want to go is this address. We want to communicate with this number. And they can then get us, they can take our message and get it to that number through a bunch of steps. But we don't worry about those parts in the middle. We're only worried about our how those work in detail. We're just worried about the beginning point in the end the request and response. So IP addresses, there's two formats. They the common format, the most common is what's called IP four. And it looks like this. It's for four numbers between zero and 255. So then anybody have any ideas why it might be zero and 255.
+
+The size of a bite,
+
+exactly is the size of one bite. That's the number range. A bike can hold. So it's four bytes. And that's been, that's the current draft. Well, it's not the current, it's actually the most commonly addressed system. But that's the original addressing system. So every device on the internet, or any network has an ipv4 address. It's assigned to it when they do in order to do a connection. When you're, you know, your computer's right now all connected to connected so you can see the video of this. So we can communicate, all your computers have an eye IP address, probably a couple. All of your phones which are probably sitting beside you in your pockets or around you in some way all have an IP address. If you have a smart TV, it has an IP address. If you have a smart toaster, it has an IP address. Everything that gizumon connect to a network has to have one your computer in order to be quick and connected to the internet probably has to probably one for your internal network. Even if you don't know you have One. So your router that you bought in plugged in and didn't really have to do much with or your internet provider provide gave to you and plugged in, that's giving you an IP address internally so you can communicate with other things in your home. And then there's an external one, one that's for the internet. And that that's so that everything in your home can share one external IP address on the internet, and then still communicate as individuals. So it's kind of like having, you know, if you have a, if anyone ever lived in a home that had a landline phone, you know, there might be three or four or more people that all share one phone number. And you call and you say, I want to speak to this person, you know, I'm in, depending on who they ask for if the phone gets handed to the right person. The same idea is here, your internal IP address. All those devices are behind one IP address and the internet device on internet communicate to that one. And then the router basically keeps track of who was talking to who. That's what that router is doing is doing it at very high level. That's usually for your internet. So we have an IP address for but there's a problem with ipv4. Actually, there's no problem with it. Yeah, it works great. And it's fairly easy to remember and use but in
+
+ipv4 has
+
+a little it's 32 bits. So it allows a little over 4 trillion addresses. It seems like a lot at the time in the 19. I think it was late 50s or early 60s when this whole thing was came up with that seemed a magic way large. Well, we're out of them right now. Companies buy huge blocks of them. They record them. If you think about everything I just described in your home. The fact that refrigerators and toasters are actually getting IP addresses now and people's means that there's the weed basically ran out. So the shared know your internet provider has a huge block that they own, that they rent essentially, and then they lease you one
+
+as you as you need it.
+
+So there's a new version called IP six. IP six is a another number that seems so impossibly large that it seems like we can never run out the actual number. I'm not sure what you would call it but it's approximately 1 billion times the estimated number of stars in the universe right now. So it's quite large number that IP six can represent. So it might be a couple years before out of them. It looks, it looks like this. So it's a bunch of it's in hexadecimal, which gives more than just the zero to 10 range that we can use some more combinations. And it's 123. It's several. It is consistent 12345678 numbers. And then any ones that are zeros get admitted down. So it can be smaller. But it uses same same type of addressing, it's just a bigger number. That's the more modern addressing. All computers right now are older, just about all devices usually have both. And we can see ours and we've got this terminal. Let's make a new copy of terminal.
+
+And
+
+I have config. Well Mac, it's an IF config. It's IP config on Windows. And it gives a bunch of information. That we don't really care about network admins and hardware people do. But what I am interested in is up here and in zero. So I can see my internal IP address. So my computer right now, internally has an IP address of 1921680153. It's either four address,
+
+I don't know what my external address is, my computer doesn't either.
+
+My not six address internally is this right now. So I can see it. I can go to
+
+many sites
+
+and ask it to show me my IP address.
+
+And it will show you my external IP address. Maybe
+
+I just realized you
+
+can't see.
+
+So my external IP address right now is 741400 253. So there's many websites that could do that. I don't know if this is a good one or not. I just typed it in. I realized I was doing on the wrong screen. So you couldn't see it based typed into Google. What is my IP address and click on the first link. And now it looks like it's filled with ads. And All right, that's great. So there's lots of ways you can see it. There actually is a Google search that will show it to you in the search results, but it's not what I thought it was.
+
+So that's the upcycled ever. Like device gets old enough for the recycle side. recycled constantly.
+
+So, if you watch your IP address, you'll see it change anywhere from every few hours to every few days. So it's up to your internet provider. When they give you one day, they'll give you new ones, they at least they will do what's called leasing. So they give, they give you one, they assign it to you, and then they change it as they need different numbers or if they read as a refresher system. So these numbers changed a lot. They're not they can be consistent, but getting a consistent, dedicated IP address is not something that we generally need. So they can your honor provider keeps basically a bunch of records of this is who has this IP address right now. So when we get a somebody's asking for it, this is where we need to send it, see if they're the reason a regular basis. Alright, cool.
+
+So before we look at the next Step of this, what questions do you have?
+
+So that so IP addresses are.
+
+So IP addresses are what the computer uses, but they're not really human friendly. Imagine if we had to, you know, go and use the internet by, you know, instead of googling it, we 172 1624 one, internet probably wouldn't be that popular. It'd be difficult to use it be challenging. So that's what comes in this idea called domain names.
+
+And actually, let's switch these two slides.
+
+Because then we talked about so domain names make it P addresses human understandable. They make addressing to system so that we can understand it. So these are the names like tech alibaba.com or google.com. That's a domain name. It means absolutely nothing to a computer. That's all for humans. Know, when we tell it we want to go to, you know, tech elevator calm or Amazon calm. Or I'm sure everyone's used to going to stack overflow. This point you tried to go to this addresses, the computer has no clue what you're talking about. Those names only exist for us to use. And they form so they're called domain names. And they form a way for us to talk about servers on a network in an easy way. And they do that through structure, a structured naming system that has two pieces are really top level domains. And then sometimes what's called just the domain, and then what's called sub domains. So I guess it's three pieces, but you can really think of the domain and the sub domains is the same thing. So the hierarchy and this hierarchy gets read left to right. So the domain name actually starts with this being the highest level of the domain. So comm.org is actually the top level, that's the beginning of a hierarchy, not the end. So top level domains like com.org.gov.io, there used to only be a few of them. They used to be something that
+
+people challenged to.
+
+Not challenged, but people
+
+they were the original idea was ever going to be separated they were going to be you know, everything that's commercial will be a.com everything that is private organizations or just personal people would be in.org everything government related to being.gov everything education way. being.edu everything that Computer related or technical support related to the dotnet. So they had these nice kind of silos of where things would go. And outside of the ones that were heavily regulated like.gov and.edu that fell apart almost immediately, as people just grabbed whatever one they wanted and companies wanted, if they was their company name, they didn't want just calm. They also wanted all the other ones I could get with the same name. And then there's these registered what's called registrar's and if you want one minute, these are actually pretty easy to get a name. If you haven't looked into it, you can get one for about $10 a year or so, or cheaper actually, some of them and you just go and basically put it in there. Make a claim to the name and the pay yearly fee for it. And now, it's exploded to these top level domains. There's a huge number of them used to be like 10 of them now There's a huge number, all of which, again, where they just try to try to again to make them kind of these silos of different types of information that's already falling apart just a couple years after they released them. Except for a few like.gov and.edu, which are still heavily regulated that you have to be actually a government agency to have a.com address. So that's the top level domain. And there, it begins hierarchy. So the next part is just called the domain. And that's would be in this address tech elevator. So that's what a company registers and that's the part is these two together what's going to be really important to us? So you go out and you say, I want to have the name tech elevator Comm. You go to our registrar, you say, Okay, I'm going to register tech elevator.com. And if nobody else wants it, nobody's has it then it's relatively inexpensive. If somebody else wants it or has it, it can get really, really expensive. See these popular ones auction and get sold for really amazingly high amounts. And then you own that the rights to that or you lease the rights that for a time period. And that is how we're going to know how to get to tech elevator.com. That's how we're computers going to figure out how to get where it's going. It's from those two parts together. And then anything before that is called the sub domains. So, the sub domains are another form of hierarchy organization that is more internal to the domain that's kind of internally managed. So in this case, we get a dashboard tech related comm dashboard is a subdomain of the domain tech elevator, which is a sub in the hierarchy of the top level domain.com. So that's domain names again, only existing for humans. So before we look at how we're gonna end up using these, what we need next thing we need to know about other questions. So the next thing we need to know is we type in this human readable tech elevator comm into our address bar, then how does I browser know where to go? It obviously can't keep track of all the domain names. And that's through these things called domain name systems, the domain name system. So the domain name system is essentially a bunch of servers out on the internet that are in this giant network together that are lookup you if you tell it, tech elevator.com it replies back with the current IP address a technically better.com and these domain name systems all constantly sync together. So they tell each other things that are changing, they'll say, Okay, take your time just changes IP address. Here's the new one. And it does this thing called propagation where it moves through all these things. different servers around the internet. You can have your own, you can set up your own domain name system. And it will, you'll start getting the updates to if you really want them. So anyone can set up a domain name system.
+
+And what it does is a lookup you we give it tech elevator comm and it returns the IP address. So at the time, I don't, I doubt it's still the same. But a couple courts ago I looked it up this was 198 14923144 What's the IP address of tech elevator comm I'm sure it's different today. We'll find out in a second. So but they find that out. my browser first goes to a DNS server Domain Name System server. And it asked it it says okay, I my users telling me to go to tech Ltd calm. I don't know what that means. Where do I go and the domain names system server returns 1984923144 the IP address or the IP six address and then the browser's like, Oh yeah, I know how to do that. I know how to request to go there. So then it starts communicating with the tech elevator sir, that address. So these servers are set up. Again, internally, your when you make a request through your ISP. And the it does this kind of happens seamlessly for you in the background, you can override it and create your own or you can use other ones there are lots of them out there you can choose to use, but if you don't do anything, the ISP is just going to handle this for you. So that's what's going on in the background. And we can see this happening. I can't really see it but we can get a sense of it.
+
+For that
+
+terminal, there's a tool called ping and Ping. It's available in pretty much every OS. And every terminal system is always the same command Ping. Ping is a, basically a request to a server that it says do you exist? Are you there?
+
+So but if I do ping tech elevator
+
+comm it's going to start asking tech elevator.com Are you there? But what's going to happen first, the first thing we're going to see is it's going to transform tech elevator comm to a IP address. And we see right here that happened. So what's happened between these two steps that quick is that went out to a domain name system server. And it said, okay, who's tech elevate calm and I got back the address. So you can see it's slightly different. It's 198185159144. This is what it was in a couple courts ago. We tried this tomorrow, it may be the same as what we just saw. Or maybe different. And so right now it's asking about, it's asking over and over again. Say, are you there? Are you there? Are you there? Are you there? And it's measuring the response. So let me stop that from. And if you're, if you type that along, it's Ctrl. C to stop it. But we can see that transformation happening that did not come from my local computer. Well, to be fair, it may have do this thing called caching, but it didn't originally come from there. But it went to a domain name system server to do that look up.
+
+Now you can't.
+
+The question of, can you do a DDoS by pinging a server? Not not in that way, that amount of traffic that the amount of traffic my computer can generate a ping is nowhere near what a server would. It's like a little flag to us,
+
+you know, it's like a mosquito landing on the server. It's not affecting it anyway.
+
+And ping requests are the smallest request you can make. So when you DDS you want large request to take a long time to fulfill. All right, so now we have our domain names. And we have the DNS server lookup. So back in our where we started, our browser is given an address to go to, it makes a request out to the Domain Name System server, which is out on the internet someplace. Or there's many of them, most DSPs have their own little local model ones locally. It returns back with the IP address. And now we're ready to start looking at how we can actually make the request to the server. So before we can do that, we need to have one more piece to this address. So the IP address gets you to the building. It's like a street address. It gets you to the door But on any computer that can be multiple servers are, can be hardware, but they also are software. So Postgres, when we were running Postgres on our local machines, that's a Postgres server that was running. As we said, there was a difference between their RDBMS and the databases inside of it, you have multiple database, your DVD story had world, you add your Capstone database. Those are all running inside of the Postgres RDBMS. And the reason you connect to it was because it's running a server on your machine. So the, there can be multiple servers running on any computer. Because most servers are just software. I mean, we're gonna build servers later this week. So the address the IP address is like a street address and get you to the building. But it's like going to an apartment building. If I live in an apartment building that has no 50 units and I tell you to come visit. Me, and I tell you, you know, it's at 123 High Street, and you show up and it's a building with 50 units. What you don't know where to go still, right? You're out the building, but you still don't know how to find me. And it's the same idea with IP address that gets you to the computer, the server or the computer, the hardware server portion, but it still doesn't necessarily mean it knows what to do once it gets there. So port, it's like in the street address would be like having the apartment number. Now if I tell you to come to my 123 high street address and say, Well, I'm in apartment 5049, you know where to go you know which door to go to ports. The same idea for IP address, IP address gets you to the computer port gets to the actual server software, so where the request actually needs to be made. So ports are added on to the IP address with a colon And then the number and they range in it. They're in a numeric range between zero
+
+and
+
+6560 5000. And some. So Oh, wait, I did write it down here, zero, and 65,535. So they're in that range. So be like going to apartment building with 65,535 apartments. And unless somebody tells you which one of those 65,000 apartments is theirs, you would have no idea where to go. This is the same support tells the client where to go. We're actually more specifically tells the hardware when it gets there. This is the door I'm interested in.
+
+So and then each
+
+software for instance, one computer could have a web server running on it. It may have an email server running on it. It may have Postgres running on So the port if Port 80. And we'll talk about this idea why the imports in a second says, Okay, I want it this one for this computer at 1984923144. I want to think on port 80, which happens to be this web server. So the request gets sent to this web server to make the request the same request with the same IP address, the Port 5432 gets sent to Postgres, because that's what's running at that port. That's the
+
+hardware, the software server running there. So
+
+ports a part of every request as well. But there's this concept called well known ports. Well known ports are ones that either are reserved, we can't there somebody they they're saying that or there's every time they're used, they're always the same thing. And often one ports if there there's a default for each way of each thing we want to do so if For instance, the web HTTP, which we'll look at in a moment, which is what the main unsecure web, so the main part of the internet works on the world wide web works is on port 80. So we don't have to tell it Port 80. When I went to tech Ltd comm I don't have to tell you, I want Port 80 because it does that since I'm using HTTP. And we'll look at what that means in a moment. But since I'm using that, it says, okay, by default, this goes on port 80. So this uses Port 80. If it's HTTPS, which we looked at last week, the secure version of HTTP the encrypted version with two asymmetric encryption, then it uses Port 443. We don't have to tell it, we want to use 443. It'll just use it if we use HTTPS. So when I went to like went to last week, and went to HTTP, dashboard, comm it used Port 80 by default, if I'd done the same thing with HTTPS dashboard comm it was on port 443. I don't have to tell it to do that. And so there's other some other ports, some other common ones. You don't need to memorize these except for Port 80. You want to do Port 80 and Port 443. But the other ones, some examples is that email. sending email generally goes on port 25. Not always there's some other types of email but most of it goes on port 25. file transfers when files move, they often will go on port 21. There's a way to connect with terminal to a remote computer that's almost always on port 22. And again, you don't need to memorize all those you'll except you want to know Port 80 and 443. Those are specially Port 80. That was important
+
+but The range between zero
+
+and 1023 is considered one imports. And again, you don't need to know that number. That's just the idea of the first of the 65,000. The first thousand are these well known ports, these are defined, and a lot of the ones above that are also defined. Notice that Postgres Port 5432 is above the 1000 range, but it's still Postgres is port. Other people can use it, though. And if we do, by the end of the court, you'll, you'll know port conflicts well, because you'll run into them. So now we have the next piece of how it gets to the get to the server, the hardware to actually get to the piece of software at once. We have an IP address and a port. And we don't have to tell it the port unless it's different than the default for the way we're trying to communicate what's called the protocol. So all Communication is happening with a
+
+set of roles.
+
+That Okay,
+
+so these set of rules are called protocols. So they say that, to for these things to communicate for the browser to communicate with the web server, it's going to follow the set of rules. If for your email to communicate with your email client to communicate with an email server, it's going to follow a different set of rules. And each of these protocols has names for instance, the web server, the web protocol, is HTTP and we'll look at that in detail. One of the email protocols is smtp. file transfers FTP. Again, you don't need to memorize all those just use just wanted to use the example that there are, there are many of them. And each one has a set of you follow these steps. And this is how we'll communicate back and forth. The one we're specifically interested in is HTTP.
+
+So hypertext transfer protocol.
+
+If you remember from your pre work, I know feels like forever ago, but when you looked at HTML, that was Hypertext Markup Language. So the web, the World Wide Web is based around this idea of hypertext, which is what HTML is. And hypertext transfer protocol is about transferring that type of information. So everything's text based in it. And it defines just a very strict set of rules have been two things. When a client needs to communicate with a server and get a response back. How do they do it? And So there's HTTP and HTTPS are the two main protocols said used by the World Wide Web. So the most common ones being used on the internet. They're not the only ones. They're just the most common. And the difference between HTTP and the one with the s, we looked at that somebody last week without knowing really what HTTP was. But HTTP is the original, it's unencrypted. So it's the one where I bought a Wireshark. Last week. And, you know, we couldn't find an example since we are just sitting at home. But
+
+you can see all the text being sent
+
+across the network in HTTP, everything in the opener on encrypted. HTTPS is encrypted with a symmetric encryption. So the two key encryption that's the one we talked about where they exchange certificates. The browser sends a certificate its public key to the server, the services public key to the browser, and they encrypt the data and then they both use their private keys to In crypto on the other side, that's HTTPS. So those are the two main protocols used for the World Wide Web. On the internet. That's actually what we're going to use to communicate as well, for our API calls in our API server. So we're gonna have to know a little bit more about HTTP. So HTTP and HTTPS are the same, with the exception of HTTPS adds that security through what's called Transport Layer Security, or TLS, which is just that asymmetric encryption around everything that it's that HTTP is doing. So it's an add on like a security add on. You'll hear TLS Transport Layer Security, and that's what it's referring to. You also sometimes hear it probably more commonly hear referred to as SSL or secure socket layer. This same thing tell us is a there's a little more to it than just SSL, but it used to be called SSL and for years, it was a few years ago. They've added some things and change the name to TLS. I, I don't I never hear anyone call it TLS outside of books and articles. But technically it is, but everyone's different. So you'll hear SSL that referred to the same thing, just the security route HTTP.
+
+So
+
+we have to understand HTTP in a lot more detail to use it. And it has two parts a request and a response. The request is what the client makes. When I go to wherever my browser other browser window this Alright, so when I go to my browser and I we done before, and I go to WWW dot tech,
+
+elevator,
+
+calm
+
+then
+
+I spell it right
+
+It's communicating
+
+through HTTP.
+
+Or actually, this is indicating it's communicating through
+
+the default for HTTP.
+
+So
+
+sorry, I'm waiting on. Okay.
+
+Everyone froze. So I assume that You couldn't hear me. So
+
+everyone's moving again. So
+
+Alright, so.
+
+So it's HTTP is, is part two pieces of request and response, the request being made from the client. And the response being returned from the server. And they both have multiple parts. We need to look at the basics parts of this protocol because we need to understand this protocol to build requests on it.
+
+So for
+
+actually, before that, before we jump into HTTP, why don't we go ahead and take a break? Because I know if not, it will be a while before I remember again. So we'll come back at what 1027 and continue
+
+So what questions come up for you during the break?
+
+Do the headers on an HTTPS versus an HTTP differ at all?
+
+Um, not much. Now. The headers actually know the headers themselves don't. Okay.
+
+We're gonna take a look at the headers. Well, we will look at the comparison, I guess, but the difference is really the encryption. It's really just an HTTP mess.
+
+Okay. So, then we have to move parts of these these requests.
+
+So in the response
+
+so the request is broken out. into multiple parts, the four that we're going to really focus on is what's called the method. So what type of request it is the what's called the resource, the requested resource, what it's trying to get the header, which we'll take a look at, and then the parameters. So that's kind of like, we call a method and we send it arguments. It's the same idea. It's what things can be used to change process the request, what kind of data they can input data. The response then is going to have a status code that's going to become important to us. It's going to tell us how it went, how what whether the server could respond, and then header its own. And we'll look at what a header is when we get there. And then this thing called content types, it's going to tell us what kind of data it contains. And then the content itself sometimes called the body, which may be an image, it may be a music file, it may be the beginning of a stream, like if you're streaming something from like Netflix or Amazon Prime. video, it may be an HTML page or a CSS file. So it's any of the content is whatever was asked to be delivered.
+
+So in the request side,
+
+there's, the method is one of the things we're going to focus on a lot, it's what kind of requests are we actually making. So there's multiple types of requests, there's four that we're going to really care about. There's four big ones. And then there's a bunch of other ones that are more administrative. So the four main ones are the CRUD operations. So, you know, select her read, which is get create, which is post, update, which is put and delete, which is delete. So the same operations we had in SQL, you know, select, insert, update, delete, now we're going to get which is going to work Like a select, it's going to be for requested don't change the server. This the fact they're these idea of this word called idea potent, which is what get me at needs to be it means that after we make the request, everything's exactly the same as it was before we made the request. And that's, and then we can make the same request 1000 times, and we'll get the same answer every time. That's exactly given that nothing's changed on the server in the data. That's exactly what a select is, right? If you make if you select star from the world table, and you never change the world table, data from some other source in the city table in the world database, and you do that 1000 times in a row, you're going to get exactly the same response back every time, aren't you? It's going to be the same list of cities. If you select star from where city ID equals one, you're going to get the first city city with the ID equal to one. Every time you make that request, that's always going to happen as long as you don't change the city table from some other source. Now, if you connect the second copy of dB visualizer, and change what cities that Id one then changes, but you're selected and change anything.
+
+That's it important.
+
+I mean, nothing's changed. That's what GET requests are for the web. They're for nothing changed. They're going to change nothing. They're just going to get information. That is, what majority of requests on the internet are, or get requests. They just want information. When you go to Google, and you know, do a search, you don't change anything on Google. Those are all get requests. So they're commonly used to get sites. They're used for things like search pages, to view products, those type of those type of things. When you go to Amazon and you view you decide you want to buy, you know, headstart for Java book, and you go there and you search for it. You've seen Nothing on Amazon. Now I know, we all know that there's a bunch of ad analytic stuff that is changing, but that's different that's outside, that's other servers on the main Amazon servers for just looking at the product, you haven't changed anything. If you look for no headstart, Java 10 times, you're going to get the same result all 10 times. If you do a Google search, given that nothing's changed in Google servers for you know, Java, you're gonna get the same result
+
+by by saying that sentence, my phone, just done a search for me on that and was starting to read me the results.
+
+So
+
+if so, that's what get is. It's a request that may Makes no changes. And that's what we're going to look at today making this request. There's three other types or three other major nights post, which we'll look at tomorrow. Which makes changes, it adds things that's like doing an insert from from SQL. Put, which updates information. So that's like doing an update statement from SQL, and delete, which removes information. So post put and delete are going to change things but gets not. So there's not that there are other methods. There's ones that are informational like that can do things like get logs and get other information. But we won't worry about those. We're just gonna look at these four. So the requested resources, what we're interested in, when we go to
+
+site and we do a search.
+
+We've asked for some HTML from the site. Here's what we've looked for when we go to
+
+google.com
+
+and I want my calendar, I want just regular google.com.
+
+I guess I'm still gonna go there. I know I'm there. But I'm still gonna go there because I want to.
+
+So we've made a request for the HTML on this page. If I went to a site, where I'm going to download a file, or I want to get a PDF file, when you go to your pathway folders, and you have documents inside that, have your resume and other information when you want that particular document. When I open up the slides there, when you open up the slides, you requested that one, you requested a Google slide document, right. So those things that we asked for, those are what's called resources. So everything that we request is going to be about we want to protect Have a resource. We want something that the servers sharing servers are sharing these resources and we want access to them. And that's what the requested resources are. So that may be HTML file like it is when we go just to google.com or covid.com. That may be the CSS, which we'll look at next module, it could be an image. To get this image right here, that's a resource on the server. To get this image as a resource on the server. There's a ma wax, actually pre CSS, but this is an image that's, you know, was downloaded and in where it could be information from the database, it could be access to a stream, like when you stream video or music, or anything else, a server can return to us because that's what the resources, the header is meta information about the request. So let's look going back here.
+
+In the browser, there's what's called development tools.
+
+So in Chrome, part of the reason we use Chrome is because it's developed has a really robust set of developer tools. The reason or if you're have Tor the next two modules, you're gonna need a browser. And you can, if you don't want like Chrome, you can choose Firefox as well, as a bit fine. You won't want Safari at this point, or, because it's internet tools, its development tools are really lacking compared to Chrome and Firefox, those but both of them have really robust developer tools. So and they're pretty much on par. So in Chrome, we can get to the development tools, we right click on a page, there's an option for inspect. And we're gonna look at these a lot more detail later today. But just for now, I'm actually gonna move, move mine to the side, which is where yours will be by default. At that four When we get to JavaScript, and there's all these different categories of things, we could be interested in tabs of things. The one I'm going to click on is network. So the network shows us what's going on, but only shows us what's going on. Once we have this open, so you can see that I've done things but it doesn't show me any information. But if I refresh the page, which sends the request, again,
+
+Google server to build this page, he says quite a
+
+then I'm going to find the top one dose the one to google.com and open it. And we're not going to go through it in too much detail, but we can see here there is
+
+the response header
+
+request headers. So these headers contain things like I'm going to focus on the request header down here. They recreate things like the web method get. They tell it, I'm using HTTPS, they tell it that I'll accept the response in HTML, XML web app. So a bunch of different things. I'll accept the response. And they tell it what language I wanted in saying I want it US English. And then some other stuff cookie stuff, we'll look at next module. He tell it, they tell the Google server that I'm using Mozilla five, that I'm on a Macintosh with an Intel five, the version of iOS that I have access to Apple's WebKit in Chrome's browser and the versions of it so all this information about my connection, and who I am, is included in the header. So it's meta information about the request my back here and so the last thing is parameters. So parameters are things that can change the request. So back to Google, if I'm making a request to Google and I might want to search for search for tech elevator, and center. And up here, I see the URLs. The address has changed now includes all this other information. Notice part of it, q tech elevator. Okay, tech elevators, what I typed in these values up here are parameters there, things are going to change the request. So my request is still to google.com. But now the resource has changed the resource I want to search. So it's specifically telling Google I want the search resource, not just the main page, and it's passing some other details. I don't know what source and GSL, CP and all that mean, but here I can see my search terms are here in the request. So the set of parameters to change tell the web server how to process the request is saying I want search results around the search term televator.
+
+So that's the fourth part of a request.
+
+So, before we look at the response or any questions, I know this is a lot of information. So, a lot of just terminology, but we have to be able to use these terms to talk about web communication. So So most of it you just need to remember these terms exist and to go look them up when you hear them or Hey, request means or header means something about the request. So Alright,
+
+so the response is similar.
+
+So the response is what the server sends back So back here in our search request, I'm going to find the original request, which top a bit
+
+too far. So, the response sends back
+
+some information
+
+just side by side.
+
+So the first thing it sends back is a status code. So right here, status code 200. So it says, okay, you made a request of get it responded with 200. So the status of this 200 and he status codes each have their own five ranges, and each code has a different meaning. So there's some that we really care about most of them, we just care about the range, what ranges to them. So anything in the 100 range, which is Very rare to see is what's called informational. That means that I don't didn't like process probably anything, but here's some information for you. So the second portion 200 are the successes so we get a status code of 200 there was success. So when I see this 200 it means that Google's told me your request was successful. There's also others in the 200 range 200 ones created we'll look at that tomorrow. But there's there's others as well. But anything that you want it range means everything was
+
+good. So the worst the word Okay.
+
+Sorry, I was pausing again, cuz everyone froze again. So
+
+so then there's 300 300 to what's called redirects. redirects is where you go to the server and you say, I want this thing. I want this resource. And it says, Oh, it's someplace else. These happen all the time. They happen in the background. We don't even know they're happening most of time.
+
+I don't know for sure, but I'm guessing if we look down through
+
+Actually, let's not go through all that.
+
+But if we look down through there, I guarantee we'd find some redirects in there. But they they're almost always are just, we get told to go someplace else, and we just browse just go someplace else. It makes the next request. So example b 301. Moved permanently, it means we go to like if we went to Google search site, and they say, you know what, we move the location of our search server. Here's the new location, and they would send a 301 status of this move permanently. So go they go to this new place in the future.
+
+400
+
+are the ones Ones that users commonly see. Because those are client errors or user errors. So some of the most common ones 400 bad request, you'll probably be sick of that. But the end of the cohort, that's kind of the null pointer exception of web development and Java. Four for one on authorized so you don't have access to do it for three forbidden you can't even get to the folder for four not found means you ask for something did not exist. And there's a bunch of other ones. So each of those are, something's wrong, but it's the clients fault. Not the fault. The client did something wrong. They made a bad request in some way. And then 500 are, there's something wrong and it's the server's problem. The server has problem on it and the most common one you'll see is 500. In Java, at least 500 means it through an exception. The server the server threw an exception when it was trying to process the request. So, there's scan, each one of these ranges have a bunch of arrows on it, you can, there's a long list of them. But the important part for here is, you will want to know the ranges, you'll especially want to know that if you see 200, everything's okay. If you see 400, something's wrong with your request for C 500. Something went wrong with the server, because we're going to be building all these pieces of it. And we're going to want to know, did it work. And if it didn't work, was something in our request, there was something on the server. We're building both pieces that will help guide us there. So
+
+so we get the status code.
+
+And then there's a header that comes with the response. So coming back here, we look at the response header. It's similar to the request header, we just look that it has things like well content type in the second. Cookie information, it tells it the status tells us things like, well, the date and time the type of content return, that it's setting back text HTML. And then some other information, a lot of what we don't, we may or may not care about. But we have some information.
+
+And for both of these,
+
+okay.
+
+So it's meta information about the response that the browser can use to make choices. The next piece is the content type. So the content type here is text is saying, I'm giving you text back. I'm giving you this case, I'm giving you text HTML back. So what it's actually giving back on this request is the HTML to build this page. If you look at some of these other things, like for instance, here's an image.
+
+It's content type is image jpg. So it's saying I'm giving you an image and it's
+
+These are probably all the same. Now this image is the ping file. So it's telling us what data is coming back for each of these requests. And each one of these settings is a request and response.
+
+So it has the content type, and then there's finally the content, or what's called the body. So in our original request, up here, I can click Preview, and I can see the content. And so this is actually what they originally sent for this request. But what it ended up being
+
+what it actually is, is this page. They sent back the HTML, the base HTML Alright,
+
+so
+
+Ryan, can you repeat that one more time? I'm sorry, you just cut out right there.
+
+Yep, yep. So it's the response, the body of the response includes what is returned, the resource return in this case is returning the HTML to build this page. We can see it here in the response. There, HTML pie looks a lot different than yours did in the pre work, but that's what it is in the end. And then it doesn't include things like the images that we see here. Those are going to be other requests. We can see this in these various images, which we can't see the preview. But those are from this is from the tech elevated request. But I don't know probably from down here, these images. So we can see, each of these were their own requests and response. Each of these parts on the page, but their body is whatever that thing is, in this case, it is this image the star. In this case, it's another version of the star. In the original case, it was the HTML. Some of it might be JavaScript and CSS, each one with separate, separate piece of information that's required to build what you see in the browser. But that's what the responses the content type says what kind of response it's going to be.
+
+So before we look at the next piece, what questions do you have?
+
+So the next piece is that
+
+when we started, we went to
+
+Address, we put in the URL. So what does all that mean in the URL? So this URL up here, URL is the address we put in the address bar. And I'm kind of making assumptions because I know URLs kind of entered the non technical vernacular. So but URL is just an address. It's like a phone number. But it has a bunch of parts. And we need to have a base understanding of what those parts are. Actually, we're going to need a more and more detailed understanding of what those parts are as we go through the week. Because this URL controls everything about the request about the initial GET request. And I got to this one's kind of large. So the URL the universal resource locator, so we said that we were asking for resources, whether it be HTML file or image file, so URL is a universal resource locator. It's a universal way of addressing where the location of resources. So it's a way of saying, I want the HTML at this location, I want the image that you have, I want this particular set of data from the database. It's a way of addressing that. And giving it a way that we can make ask those questions. So it's broken into two parts. Some of the parts we've talked about already, and some of them are going to be new. So first, it starts with a protocol. So even hear me see that we can see that this URL to go to my Google Docs here starts with HTTPS. That's a protocol. We already talked about a protocol mean. So it's how we're going to speak. So just about everything in the world wide web is HTTP or HTTPS, but there are other protocols, including ones that browsers can do. The second part is the domain So www.koco.com and then followed optionally by the port, because remember, the port will default in many cases. And this whole list domain can be a domain name, but it can also be an IP address. It can be either one, if it's an IP addresses use directly to the main name is going to go to the Domain Name System server and resolve it or look up the IP address.
+
+And then the next portion.
+
+So here, presentation D, that is a path. That's a path to where the resource that we're in us and is located.
+
+Have one, our file system. So
+
+traditionally, it was a path, usually on a file system on the server. So instead, I Want to thing in this folder on your server? In modern web, it's generally what's called it's really not. It's a virtual path. So it points to a location or info piece of information. So it's more like an identifier. And we'll learn what that means later in this week we build servers. But that's a path.
+
+And then
+
+if there's obviously a question mark, and this one doesn't have it, but our Google Search does the question mark, that starts what's called the query string. The query string is things that change the request. So things like or parameters that go with it's another way of looking at it. These are the same things. If you were calling a method in Java, you would pass to the method. These are those only for the web request. So in this case, to the Google search, it's passing that term tech elevator which is what I searched for So the query, the query string starts with a question mark. And then it's a set of key value pairs. So sources one part one parameter equals HP is the parameter that goes with that. Then there is a ampersand between each parameter. So there's another key value pair is another parameter equals the value is this. I don't know what that means that's, that's Google's internal thing. Then the ampersand starts another parameter. Q is a parameter which is equal to tech elevator. ampersand starts another parameter. Oh Q is a parameter which is equal to tech elevator and start to another parameter GS, underscore LCP equals and then the value is this long string of text. So for each so this is setting the parameters is the query string is how one of the ways we can send information with the request to change how it's working. And then the last part is Your is what's called the fragment or the anchor, depending on how it's going to be used, traditionally is called the anchor. But now it's more commonly called the fragment. And that starts with a pound symbol. We can see it up here. And this URL for Google Slides there, they're using it. So the everything after that pound symbol is kind of passed through for the client. It's telling the servers giving it it's saying someplace in your client ask us to send you this. What you're going to do with it's not, we don't care about it, we use it a lot. So JavaScript frameworks, like react and view, use this fragment a lot. It also can be used to, for instance, this is telling it I don't know exactly what this time but I know if I go back to this exact URL, I will go to this exact slide in the slide deck. So that fragments saying when you load this up, reposition the page in this way, go to this section of it, do this information with it. So it's information for the client how to display the page. So the parts we're going to really care about, this part is going to be pretty much taken care of for us, it's always going to be, I will look at that when we get to develop it. So it's always going to be pretty consistent. We're going to really care about the sections right here for this week. Right now, it's going to be what we're accessing on a server. And two days, we have to build these, we're gonna have to identify how someone's going to ask for something for us. And then these are going to be our parameters. So these are going to be kind of like our method names, and our parameters or arguments to our methods, only now for web use.
+
+So those are the parts of the URL.
+
+So before we
+
+kind of wrap off This terminology up, and then start looking at how we're actually going to use it. Do you have questions?
+
+Did you? You said that the anchor and the fragment, it's not really that important, right? Right. The second,
+
+not this part, right, the second.
+
+It will be the next module more. So
+
+it changes and that's because JavaScript, the JavaScript frameworks, like view the view doesn't make heavy use of it, but make some but view and I'm sorry,
+
+I suppose at least, those all make happy.
+
+However, display the page in the, in the quiet rather than something rather than part of the response.
+
+Okay, thank you. Other
+
+questions?
+
+So there's one more thing about these requests and responses, because we've been talking that all of what we talked about, pretty much all morning has been what's needed to make a request and get a response. So we have the set of the client makes the request, the server answers response. So it's kind of like a conversation. In fact, it's often referred to as a conversation between the client and the server. But HTTP is what's called stateless. And this is going to be really important for our development. Because we're going to have to deal with this in a lot of different ways. What it means to be stateless is that every request and response is completely independent of each other. And once they make a request Once a request is made and responses given both the client and the server, forget they were ever having a conversation. It's over. They don't worry about it anymore. So it'd be like if fucked up, and you start a conversation with somebody. And you said, No. What's your name? And they replied with their name. And then you said, What are you doing today? But now you've forgotten their name, or no, you know their name, but you forgot you ever asked them their name. And they forgot that you asked them their name. So biggest answer your question, oh, they answered what you're doing today, what they're doing today. But they forgot your name. You know their name now. So you get to keep that. But you forget that you've asked the question. So it's a conversation with each step. Both sides are completely forgetting each other. So we know that we can go to amazon.com and log in, and they can remember our names. And we can do things and it can remember information about us. So there's something going Knowing that is keeping track of all this stuff. It's not the protocol, we have to do all kinds of work outside of that to keep track of it. So both the client and the server actually have to do work to keep in sync and to know things about each other. But HTTP is completely stateless. Each request and response is 100%, independent of anything that came before it will come after it. There is no exceptions to that. And that's going to cause us a lot of not problems, but a lot of challenges, especially when we get to the server side, and a lot more than we get to JavaScript. And if they earn login next week, how do we keep someone logged in if we don't remember we're talking to them.
+
+And that's going to be one of our challenges.
+
+So, but it's important today to remember that when we start making requests and very soon against a service It's gonna forget as after every request and response, every time it answers us, it forgets we exist. And we're going to forget it too.
+
+So that's what stateless means.
+
+So we'll come back to that, as we need it more that throughout the module, because stateless is an important concept. And I know it's kind of a weird concept. It's hard to imagine that these things don't that the client server don't have some kind of context, especially since all of our experiences about the web as a user shows that there is some context there. But that's built by div that context is created by developers. So it's artificial context to
+
+as we're gonna find.
+
+All right. So back to this. I'm gonna walk through this exactly what's happening with all the things we just talked about. This diagram right here. You should memorize This is diagram for interviews. This is one of the most common interview questions. I will tell you that when hiring people just starting out, if they couldn't describe to me how a basic GET request worked, then that was a huge flag of they, if they can't, they don't understand the basics of how it works, then how can they be building things for it? Like, you know, they claim they were. So this is one of the places I'll say I there's a few of them. I say memorize this, this diagram is one of them. Not it not to be the detail. They shouldn't memorize all the words but the concept. So when you go to so starting back with
+
+no. Okay, so alright. So
+
+you go to the browser you type in www dot tekoa jmeter.com and what happens? So what happens is, as soon as they click enter it the browser says, I have no idea what tech commas that's meaningless to me. So it makes a request. And this is the first time an HTTP request is an HTTP request against Domain Name System server. And it sends it tech elevator COMM The Domain Name System server looks up the IP address the IP for and usually both the IP four and IP six address of tech elevator.com. And it returns it. So it's responses the IP address, so response back 198185159145 so it gives that answer back the client so the browser now says okay, I know how to communicate with an IP address. So it sends a HTTP request to the server at 198185159145 on port 80, because it's using HTTP, and the default for HTTP is Port 80. So unless it's been told otherwise, by the user back here, which it wasn't, it was just given a domain name. It's going to communicate on port 80. So it sends that dress on port 80 is going to include it's going to do that from building essentially, the user. When it entered, it builds a URL. So those URLs are request to themselves, they start to request it all the information the browser needs to build a request. Every time you enter your address in your browser request, at least one request is being made. And then includes the parameter. So things you might have typed in, or things it needs to send, like we went to the Google search. we typed in no search term for tech elevator, and we saw it appear in the URL. So that's going to include all that information, it's going to go to To the server, the server that is going to build a response. So part of this URL is asking for a particular resource. So it's saying I want HTML that goes with this site, or I want this image, or I want this music file, or I want this slide deck. I want something that you have. And the server says, okay, to have that either I just if it's an image, it just sends it back. If it's something more like HTML, I may have to go put it together, like Google would for the search results. They're going down. But Google would, they're here for the search results, that's to go together and get a bunch of information. And it puts it together and returns the response along with status code, if everything goes okay 200 and then the content. So, in if we're getting an HTML page, it says it says a content type is text HTML Here's the HTML file. If it's returning a JPEG image, then it's going to say my content type is image. It's a JPEG, and here's the JPEG file. And that's going to be returned to the response to the computer or the browser. The browser then is going to take that response and build it into what's called rendering. But we'll get to that next module, but into a web page view for the user. So that's what we see here. So when I come here, and I do this search, actually, let's see assemblers go back to just google.com. So when I type this, I'm doing a request an HTTP request on port 80. It's going to do the DNS lookup. It's then going to get the proper plates and make a request HTTPS requests on port 443. In this case, since HTTPS it gives Google's web servers
+
+the initially return
+
+Oh, that worked out perfect because
+
+If we look at this request, I went to google.com. And they said, okay, you're not here. You're the wrong place. So it gave it a three it said retry port on a different address. And I did it told me to retry google.com. But internal redirect means that they internally did something. And then google.com returned with a 200. So when I went to google.com, I got redirected in the background to www google.com which returned 200. So this is my initial response. And that's the HTML and you can see this is the initial So all right. Sorry. So this response is HTML, and then includes a bunch of directives and other pieces that are needed. So images like the Google logo, their icon images begin out through, there's a bunch of everything we need to build this page. So then makes another full request set of requests for each of these pieces. So to build this page, it's made 40 different HTTP requests to this between my client and the Google server. are in there probably at all against Google services. Look down three, or they might be, but there's some that are probably against other servers. Actually, no girl gets could go server. That's not usually the case. But it goes and builds all the parts together. So this process to build a single web page that we see in a browser repeats multiple times. So for building what's considered one of the simplest web pages on the internet, as far as design, it took 41 requests to build it. Going back and forth between the server so that's an each one stateless, each one of these doesn't know the other ones exist or care. If we go to a site, that's a little more complicated, like tech elevator.com.
+
+And
+
+you don't have any questions get but I'm pretty sure it's gonna be a lot more than 40 because there's a lot of a lot of stuff going on on this page. And that's not a negative. It's just a different design paradigm. Right.
+
+So We can see
+
+we're at 130 41, requests, 51 request 53 requests, and you can see the parts are being filled in as we go, right? That's what's going on in the background. When you're billed. When you go to a web page and pieces get filled in, the pieces aren't there, then they show up. That's all these requests
+
+going on.
+
+So
+
+this took 252 requests to build the tech elevator page. If we look down through here, we're going to see, I know we're going to see that some are from Google servers. Some of them are forum for credit server. So I'm sure some ad or advertisement.
+
+So they come from all different places.
+
+That's normal. That's how most webpages work. So this request cycle is not one request one response. It's for most For a webpage, it's many requests and responses. But fortunately, we're not going to build web pages yet. We're getting there. That's the next module. But API's, we're going to do one request from response. And we're actually going to be doing one line of this at a time. Building up to eventually putting it all together.
+
+Do that.
+
+So, and there's a question. They don't care about the order. Though, we'll learn how to control that next module. And during the render, often, we won't care about the order, but when we do, we'll learn how we can force order and stuff like that. Alright, so before we move on now to finally web API's, now we finally have a baseline for it. Are there any questions?
+
+Brian, you're talking about, like CSS files being loaded using API's. And when you link stylesheet in through the HTML file, Is that considered an API call itself?
+
+It's not though. That's just a server call for a resource.
+
+Okay, so wait asked that question.
+
+That's a good question. Because it's, it's a little there's a line between the two. That's it's fuzzy at first. But most of the things we just looked at the some I'm sure were API calls. A lot of those were just requests for resources servers means we just said I want the CSS file on the server said, Okay, here's the CSS file, or I want this image those are not API calls.
+
+And that's what we're gonna
+
+actually leads right into what we're gonna look at next API's because everything we talked about is not about API's. API's are going to use all this information, but this is how everything on the on the web web portion manner that communicates everything using HTTP.
+
+Okay, sorry Pete that sunlight
+
+every HTTP. All right.
+
+So I'm actually gonna try
+
+see if this will help to want to do this picks I'm not gonna be able to see anybody but All right.
+
+Let's see if I can get over here.
+
+I can see about a third of you at a time.
+
+So if you have a question, please speak up. Hopefully this will help.
+
+And they're also tiny now. It's weird.
+
+So if
+
+so, this is the way that this is API specific, anything that is looked at. It's HTTP specific, everything that communicates on the worldwide web, or using HTTP and HTTPS communicate in this way. So API's are one of those things, but web servers, and anything else that's communicating across the, you know, let's say the internet, but I'm specifically talking about the world wide web portion. Because there are other portions that's only one, one piece of the internet. But what most people think of as the internet, they all communicate this way everything. So we're going to focus Then on API's today, or this week, which is how we're going to communicate between programs between applications. And then eventually we'll put that together with how we can make it for a user as well. So to do that, we're gonna have to talk about one more thing or some more, more than one more thing, but and that's this concept called rest. So there's different architectures of building API's. And we talked about API's. We're talking about a way for a program to remotely call a method on another program. So we call methods string classes, right? We've been doing that for the last few weeks. But we have API's involved. We're calling methods on other computers across the internet. So we can can call a method anywhere in the world as long as they've given us permission to do so. But it's the same idea we're gonna, but we're gonna have to address them differently. It's not going to be a method name with a class name, it's going to be using a URL and these pieces that we've just talked about, and we're gonna get a response back, that's going to be in a particular format that we're going to have to learn to work with. So rest is one of the ways of doing that. It's one of the architectures of doing that. And it's an architectural pattern that defines a set of constraints around creating web services or API web API's. API's are not web specific. We'll learn in turn JavaScript will learn to call API's that exist in the browser. But web API's are ones that are available on the web, publicly available on the internet. They don't have to be public, I should say, available on the internet. And web services that implement this idea called rest this architecture called rest but The most common in use right now are called restful services. And we'll look at designing rest a lot more. When we build web services later this week. And they'll talk we'll talk a little bit more about one of the other common architectures. But restful services have some roles around them. So one, they're
+
+based on
+
+a uniform interface that's based on resources. So our URLs point to a resource just like we do on a web browser. So our URLs that we use for a restful service are going to look like what we put into the address bar of a web browser, which is gonna make it a lot easier to work with for us because we're used to that already. It's not new. They're stateless. They're using HTTP. So they're going to be stateless. We're going to build restful services are way stateless, we're not going to take advantage of we said that there's ways of, you know, make seeing if your users logged in or how that's
+
+When the restful, they're gonna be client server based with HTTP. So they have to be.
+
+So they break it into data logic, and then the interface the way the user interacts with it. And there's some more definitions, but that's the basic ones. If there's a link actually to a site in a video that have a bunch of information about rest, if you want to get more into the details, and we'll revisit it in a little more detail. As we go before that, we finally to a point, we can start looking at something practical. So
+
+I'm gonna go to
+
+the lecture code today. And actually, I'm not going to go to the lecture code itself.
+
+Something that's new
+
+In the folders today is tutorials. So we'll talk about those at the end. But one of them inside of it is the postman tutorial. And this is what I'm actually going to be running. And if you want to follow along, you can just watch his boys. But they'll be there for you to use and experiment with afterwards, because we're going to have to kind of learn a new tool. So to do this, I'm going to first I'm going to start a local server that's been provided. And to do that, and the postman tutorial, and if you follow the readme, it steps you through this exactly in this README that comes with the tutorial.
+
+But in
+
+one thing you're gonna have to do for the next week or so is script to use local servers to emulate the server side of the API. Comic you have Postgres running locally, you're going to run servers locally and the ones that you're given our use this thing called MPM So they're JavaScript servers. But that won't matter to us. There's servers. So to run them, you have to get into the folder that have for each project the package JSON. And we'll talk about with Jason awesome, just here in a moment. And then run this command npm install. And that's going to set up the project. And running an npm install can take anywhere from 30 seconds to 30 minutes or more, depending on the project size. These ones are all pretty small. And they'll feel really small. Once we get the view and to some of the giant projects that feel happening. See it right now what it's doing is is downloading a bunch of stuff from this remote repository to set up my computer. And if you're doing it or when you do the same things for your exercises and stuff later today, that's what's going to happen. And then it's done and I get a bunch of warnings but what it's gonna ignore all those And then MPM, and this one, I think, is Dart. And there'll be a command to start the server. And it's either going to be run, serve run server, or it'll be start depending on some various things internally, but just whatever the readme say for that particular one, this one's NPM, run serve, I think.
+
+And that's going to start a web server or an API server. It tells me where things are at.
+
+So that's all just so we don't have to go not to rely on something across the internet that may or may not be there. We want to use it during lecture during your exercises, so as to kind of give you a one that's guaranteed to be there so runs on your local machine. To use this we're going to use a cool
+
+is should be on your taskbar.
+
+little space guy or whatever it is flying with the orange background. See what open that.
+
+And we'll be using postman a lot for the rest of the cohort. This will be one of our art concept toolset. Because it's a test tool for API's, we're not going to develop it, we're going to use it to test. It allows us to isolate the API's and do work with them outside of our other code.
+
+Which means that it
+
+is going to become much easier to work with so it's starting up. It's going very slow because my Internet's
+
+just not doing well this morning. Okay.
+
+So when it starts up, yours is gonna look probably slightly different because you're going to have the first time you run a page, you can that you may have to sign up for a free account as well. But I think you can use it without it. But if you do, it is completely free. You can there's a paid tier, but you don't have to use it. I've never have and I've never had any problems using it. So to work with this, what I want is a request. So create a basic request.
+
+I'm going to click on that.
+
+And
+
+I can give it I want to give it a name. I don't have to give it a name, but I'm going to I can actually just click cancel and it'll go past this. I don't want to name it. In fact, do I really want to name this? I'm just gonna click Cancel. This is really the window I want.
+
+So here Here,
+
+these tabs, you can create different request types. So if I click and go to File New, and go to new request, I'm just going to click a tab, it'll give me another tab and request. And here, it allows me to say the web method. Here's all the different web methods, the four that we said, we're going to be using get post, put, delete those others. We do them all from postman. So I want get, and then the URLs, the address of our API. So this API starts up and it says, here's the different addresses you can go to. I'm going to copy one, let's go to users. And I'll put the era and just like we put in the address bar of a website. And then I'll click Send, and send it's going to send the request to an HTTP request to this server. And then we'll get response back We can see over here, it said that something happened. And we get this response back. So before we look at the response, let's look at some of the parts here. So, stuff there. So first down here, I see where it says status tells me 200. Okay, so told me the request was okay. If I went to say user, which doesn't exist, I get a four four not found. So it tells me the status, but I want my Okay. And then I can see the header. So this is split into two pieces. The top portion up here is the request. The bottom portion is the response. So if I click on the header up here
+
+and
+
+others
+
+I get it too.
+
+Oh, there's no header. Okay. So there, it assuming header information. We'll look at it other ones the second with more. So then if I look at the header here on the sponsz, it tells shows me the response header formatted. The body of the response is the sum we'll come back and look at that tells me how long it took the response to be, how large it was. So a bunch of information about the responses, why visa protesting, we can actually see all of this inside of the dev tools for Chrome. But it's a little more difficult to work with. For instance, if I take this and I go to Chrome
+
+same address and a browser,
+
+I'll get for a get request. I'll get the response. Same way. If you go there, Yours may look different cuz I have a browser plugin that formats these responses. But it'll still be the same information. And we can see here in the network, I can see the same. I see it formatted unformat as the same stuff here, I can look through the header and I can find all the information that is here as well. But this is a little harder to work with because I have to keep changing pieces and kind of hunt down information. And this one, we're going to find this we start working with parameters. This would be really easy to change the parameters see see our kind of our changes immediately. So we use postman for most our testing. It also separates it from webpages and things like that to work with.
+
+So let's go to a different one.
+
+Here, sorry.
+
+Here, let's go to images. I changed the URL, images. And I press enter. So send, see now I get some other information.
+
+If I wanted to change the header, I can I can add a key to the header here. There I can see the header as it generated, the code of the header of the full thing that was sent. I can see again, the response header. It was 200. And then the body the response I can set prayer Too by clicking here, and then I can add parameters in. And we'll get back to that in a moment though.
+
+So this response.
+
+If I look at its raw form, it looks like this, which is pretty much what we just saw. The pretty forms gonna show it to me a little formatted. This response is what most of our responses from a web API are going to look like. This is a format called JSON. So
+
+before we look at that, are there questions?
+
+You remind me what a header means.
+
+Yeah, header is meta information information about the request and response. So it says it's the part that came with the race like in this one for the response, it says that it's sending JSON back as a response. See, most these idiots they never expires. Here's the date and time it was sent. It's going to keep the connection alive. Don't catch these responses. Get them every time. So a bunch of just information about it. Use it regular users want to see this normally, we won't actually have to worry about it too much. We know it's there because there are some pieces we will eventually need from it. But that answer your question, or Yep.
+
+Okay. So this body.
+
+Let's look at, let's go back to users. I think it's easier to see
+
+is in this format, JSON, and JSON is
+
+JavaScript Object Notation.
+
+Let's see. Both these ones are there.
+
+And it's messaging format. And so just means a communication format that is commonly used for RESTful web services. It's based on JavaScript objects, but we don't know JavaScript objects yet. So that's not really that big of much of concern. But it follows just kind of a built in objects that have a very simple key value pair format, almost like a giant map. So it's going to be set up that objects are identified by curly braces. So this whole responses object here on this response, it's not each of each set of these is one object. So over here, each of these is one object. Then there can be arrays as well. Arrays are by square braces like we're used to. So this is identifying that this object has a key property or key named reviews and
+
+Entire responses an array of objects.
+
+Then
+
+properties and values, a key value pairs like a map does. Only they're just in text because everything about HTTP is sent in text. Nothing is sent across the internet. That's not just text, which when you think about, you know, video and music and images, how does that work? We'll get to that. So eventually, but it's all just text. HTTP is a text is hypertext transfer protocol only transfers text. So this is a way of sending object data in text. So each of the objects they have properties, these would be like our member variables in our Java objects or Java classes. So this one has one of hotel ID title review, author stars, they have values in the properties and the values are divided by colons. So this is saying for the property hotel ID this objects value is one for the property title. Its value is what a great hotel. For the second object, the by the value of title is peaceful night's sleep.
+
+And then
+
+each thing, whether it be an object, an array, or a key value pair are separated by commas. So these are all these comma delimited list. So if we look here, we have one object.
+
+And inside of that has one property reviews.
+
+that contains an array.
+
+And that array is an array of objects. This is the first object. It has. This these key value pairs that are separated by a comma. The objects themselves then in the array are separated by commas. Over here, we have an array of objects. This is an object that has the Key ID, username, first name, last name, and email. The values are for the value of ID is one, the username is a green less zero, the value of first name is in the value. Last name is grainless. The value of the email is this email. This is the second object. So that's the same keys. And values are different values. And they're separated by commas. These are separated by commas. And it just continues for an array of objects into it has each of the objects. So that's what JSON is, every one of these keys can have a value that is either a string or
+
+a number,
+
+an object, another object, or an array, like in this case.
+
+So that's a lot I know.
+
+Especially when you haven't seen JavaScript objects to begin with, which is these are all based on But if you think of it as just key value pairs, and you keep in mind that curly braces are objects, square braces we've been using for arrays for a while. So that's not nothing new. And there are key value pairs like a map, separated by the colon and everything. Absolutely everything is comma delimited. There's still commas between every, every time there's a change in something. It's not that hard to learn to read. And that's really what you're going to need to do with it right now read it, we're going to be creating it and reading it, but we're not going to be doing it directly. We're gonna have Java do most that work for us. But we need to be able to look at it. So you need to be able to look at this and say, Okay, this returned an array of items. And here's the here's the fields have an ID, username, first name, last name, email, here's the values. And here's a second one third one. That's the level of understanding you need to have JSON right now. But into the cohort, you'll know JSON very well. But for this week, that's that level.
+
+So questions before we
+
+finally can start looking at this in Java
+
+questions. Okay.
+
+All right. So, um,
+
+well, we have a lot left.
+
+So, and so let's take another break. And we'll come back at 1149 and take a look at how we do all this in Java.
+
+It's gonna be okay guys, just breathe. be okay. It's exciting. You get the internet evolve now, right? It is.
+
+It's exciting. It's not scary at all. It's great.
+
+Some time before I said anything important, that's great.
+
+So let's talk about now calling one of these web services from job, we'll find out everything we just talked about, you have to have this kind of all this knowledge of what we're going to do and how it's working. But it's actually really easy from Java because of framework we're going to use called Spring Boot. So we used spring JDBC. For database access, we talked about what spring was kind of the high level then. And said spring JDBC was a way of abstracting away JDBC to make it easier to use. And we looked at kind of what that meant. So Spring Boot is going to do something very similar for web services for service development. And when I can take a deep dive into Spring Boot today, we're going to look at it later this week when some of its features are more important to us today what to say we're going to be using Spring Boot, and it's going to provide this library two is called rest template. Since I'm familiar right JDBC template for databases, it gives us the rest template for making REST service calls. And it's going to be four basic service calls, it's going to be really easy to use. We're going to give it an address. And we're going to refer to that add these addresses to these URLs that point to the resources or interest on a API. We'll call them endpoints. So we'll say that we're going to give an ad the location of an endpoint, so resource for an arrest API. And then we're going to tell it, what kind of response we want back. And it's going to give us it's going to make that call for us and it's going to transform it into the response, put some rules of course. So it's actually a little easier to use for basic use, then, we're actually about the same to us as the JDBC template. It makes it really easy Which, just as a side note is amazing for having done web services the long way. They're incredibly confusing and difficult and spent days setting up single API calls that it's going to take us 30 seconds to do right now, using Spring Boot.
+
+Which is great, because then we can focus on the real problem,
+
+which is the whatever we're trying to solve. So I'm going to go to two places. First, we have to get a server running. We're going to run a local server against we just so we have something to work with. At the end, we'll go to transform we're gonna
+
+actually code for today. And that's here.
+
+Inside of the lecture, there is a folder called server. I'm going to change directory to that So where I'm at is today's lecture code, you'd be in student lecture course and then server, and it should be the folder that has this package JSON. So for all these commands, you're gonna have to repeat doing running these servers for exercises today for the tutorials we're using this week, actually, for the next six weeks, you're going to be doing a lot of this eight weeks with the capstone. A lot of running these servers and doing things with them. You always want to be for these NPM commands, always in the package that has the file package dot JSON on it, this file. If you don't see this file in there, your command for the install command and the start commands, it's not going to work, you're going to get an error that it can't find anything, can't find the project. So in here, first, we have to tell NPM to build out our project. So I'm gonna run npm install and that's going to download everything Again, these projects are pretty small for this week, or at least right now. They could they'll take anywhere from a minute or two, or a few seconds, actually, to quite a while, depending on the project size. And what it's doing now it's going out and it's grabbing all this stuff from the internet like, comic we were talking about, Maven was doing a little bit from Java. It's doing that now only this server is actually in JavaScript, but we won't, we won't worry about that the next module. So now it's done. And we might get warnings, we might get errors. Well, we don't want errors, we might get warnings, we'll get lots of good security errors. Don't worry about them at this point. We're not running this on the public Internet, so it's okay. And now, to start it. For this one, I'm going to use NPM start. And the differences really just follow the directions on whether you run start or run serve. Some of them start a full web server and depending on the needs of that project, and that's it Run, serve. And in some of them start what's called a node server, which is a different type of server and not start. But you really don't need to worry about that each README will have a direction of which command to run. But it might not be consistent. Just know that it'd be run server start this one start.
+
+In fact, most of them are starting, there's only one or two, I think it's one, sir.
+
+And that starts up and it gives us some information. It tells us that these
+
+endpoints are available. And we'll learn later this week, we're going to call them internally call them route. So it tells us some information about what routes are available as well. So what changes in the URL we can make. But let's first go to postman and see what this is actually going to give us. Let's start with hotels.
+
+And this will take this URL and put it here.
+
+I'm going to make sure get selected and press Send. It's gonna To call the server, and this is what we're going to get back, we get back this JSON that has, it's an array of objects. Each object in the array has an ID, name, address, and the address itself as an object with these fields, that stars rooms available cost per night cover image, and that objects been repeated for seven different hotels.
+
+And we got back a 200. So everything's working.
+
+So kind of like we wanted to troubleshoot all of our problems with sequel in dB visualizer. And then, after we knew everything was working using Java, the same thing is going to be true with an API with our API, troubleshooting in postman, and then just use the results in Java, because it's going to be much more difficult to troubleshoot in Java compared to postman factory. We have lots of errors that kind of disappear in Java that are really clear in postman
+
+and we'll talk a little bit more about that tomorrow.
+
+So now we know we have a working API.
+
+I'm going to go to the Java project. Sorry, I'm trying to get these organizers. So a lot of tools now involved. We don't need this anymore. don't need this anymore. Keep that. postman over here. Okay, cover that up. All right. So I'm going to open up a clips I already have a clips open I have the lecture code open Eclipse. And the project. If we look at it, there is
+
+two objects hotel
+
+which is just a bunch of getters and setters and number of
+
+stars rooms available cover image, so matches.
+
+Okay, and we'll talk about how that works. And then there's a second one review, which we'll use for a second API call.
+
+Hey, Brian, you cut out for a bit more.
+
+Oh, how these match? Why they match.
+
+Alright, so
+
+then if we look at the application, it's a simple
+
+this command line application that we're going to populate. If we just run it, see what it does
+
+make this bigger.
+
+So run a house.
+
+So when it runs, it's going to ask us a bunch of menu options to print basically things that came from that API.
+
+And we're growing To write code to populate it,
+
+the moment it'll run, maybe.
+
+So while we're waiting on this
+
+other stuff, okay, so it gives us these options. And we'll say we want to when we list hotel, we want to see the hotels that come from this list.
+
+So let's build this first one.
+
+So we're going to need two things. We need the address. So we know this is the address. But let's just take this and we'll call it the base address of our API. Because if we change this to reviews,
+
+we get reviews instead of the hotels.
+
+So we'll make this our base address.
+
+With the slash net, we concatenate on hotels, reviews, whatever we need. I'm going to copy that out. And let's create a variable up here. And since it's not going to really ever change, make it private static final, make it a string and call it something like our API API base URL.
+
+And we'll just paste that.
+
+That's going to be our at the base of our URL, we're going to concatenate things together to create the URLs we need for each call to our API. That'll give us a starting point. So we don't have to have a series have to have a string at some point, but got to make it easier. And then the second thing we need is the rest template. The rest template is going to be like our JDBC template. It's what's we're going to use to actually do the calls.
+
+So we're going to do that with They create a private rest
+
+template,
+
+rest template. And we'll just create a new one here.
+
+We just want one for the whole object. So
+
+we'll have to import it, or I misspelled it one of the two.
+
+I misspelled it. No.
+
+So I thought it was already imported. And if we look at the inputs up here, it's being reported from org spring framework web client rest template. So very similar to the orange spring framework JDBC, spring JDBC. We are database JDBC that we got before now it's web client. So the rest templates web client, just like a browser is it's allow us to work with a very similarly instead of getting back something we see we're going to get back the raw data that we can work with.
+
+So if I want to print all the hotels
+
+Let's
+
+start with down here. This is create a private method for it, we could just write it here in the code, but that's going to get kind of messy. So let's create a method. It's going to return a list of hotels array of hotels, because that's what I'm going to get back. I know that because my hotel object matches this. And we're going to look at that here in a second. So I'm going to get back an array of something type hotels, what I called here in Java,
+
+and what's called something like request hotels.
+
+And it's going to be the type of data I'm going to get is hotel hotels, equals my rest template. My endpoint sparring
+
+My endpoint. So I'm going to call it a method get object, or get for object. So let's take we had query for results GET TO GET request for an object, just like we had query for result set with JDBC template. So we're going to use for most of our requests are gonna be queer for object. There are other types just like they were for JDBC template, but we're just going to focus on this one for now. And that's the one we're going to use them most majority of the time, maybe all the time, or just about all the time to wait for get, update, delete, insert while it's something different. So that we'll put our URL together. So we know we have one, our API base URL, and I want to get to not reviews to this URL So this is my base URL, so I need to concatenate on hotels to it. So my base URL plus hotels, my response type is going to be whatever this is this object type, I want to convert it to that. So it's going to be hotels.
+
+Hotel,
+
+sorry, to Rei, dot class.
+
+And now we'll return hotels.
+
+And then up here
+
+there's a method already exists called print hotels. I'm not going to scroll down because, yeah, this does print greeting print hotels, we're gonna call this method. All it does is just use system out print free to the member variables on the getters on the hotel object. So here what has changed this system out print to be print, hotels, and we'll call request hotels.
+
+And let's run it.
+
+And let's list hotels. And we'll get the list of the hotels. So when this rest template returned, what it got back was this data. So what we need to do is think about how did this end up in this hotel object. So when we query for out when we get for object, when we tell it we want to transform it into an object, what it does is it maps the data in the JSON to our object object, we tell it we want it to be.
+
+So we look at the hotel object.
+
+It has a number of variables that matter ID name. We don't have address, but stars. Each of these variables is in this with the exact spelling and casing that they are in the JSON as keys, cover image. And it. It's a number string. It's a string. It's a number, the datatype match. So if we build a object that have these keys, the ones we're interested in does not have to be all of them notice addresses not in their cost per night is not in there.
+
+Then
+
+we make them match exactly. And then we provide getters and setters for them. And we have to have getters and setters provide getters and setters for them. And actually, technically, this is showing, we just really need getters but we totally should have centers to. Then the rest template will say, Okay, I have this values and you want a hotel object. Well hotel object has properties that match just by the text. So it says, Okay, I have a property called stars, you have a property called stars. And it's they're both ends, so I'll populate it.
+
+So it goes through and populates each of the things that match.
+
+So far, JSON
+
+it is takes whatever the field is matching, and just populates it into that field. So the rules around this is that the data type, remember, there's only three data types that it can be for data types, it can be for JSON, it could be a number. So actually, that could be either double or an integer. We can easily just make this long that would work too. So compatible data types can be a string or it can be an array. Ray, or another object. So that's the four things we essentially can have here only wait for number we can have not you know, and long double float whatever will match the value.
+
+We must have getters and setters
+
+is we saw, we don't actually need the setters, it'll set private variables, but we should have setters. Because it's something we're going to talk about more later. And there has to be a no argument constructor, meaning that our class has to have either have no constructor or a constructor like this. If we have multiple overloads of the constructor, you know, so we can set values as we construct it, there has to be moment no arguments. That's important. Because otherwise the it won't know how to build the object, instantiate the object to populate it. So following these rules, having all the properties that match with getters and setters that knocks them in and having a no argument constructor forms this thing called a Java bean. Don't worry too much about that. He just made that it's a Java object that can just contains data. And it can be instantiated by a framework and then populated with data, or we can retrieve the data from a later populate it just based on the name. So that's what the rest templates doing for us, which means getting this JSON is just gonna be about building objects.
+
+Right? So
+
+which is, again, if you six or four years ago,
+
+the amount of time you spent doing this, it was a lot. Yeah.
+
+So you, it's literally just mapping them out, as long as the IDs are identical, and you don't even actually have to have all of the IDs that are in the JSON response.
+
+If there's things that JSON does not the object just ignores it.
+
+That's ridiculous.
+
+This?
+
+Well, you go back real quick to your clips, because I'm wondering, when you're building the request template there with the hotel's array dot class.
+
+It's a little bit more
+
+on what that is.
+
+So this second part, we're telling it, what type of object we want to build. So this is saying, okay, we have the hotel class, photo Java bean.
+
+We want to build those and we want an array of them.
+
+In what we have to do is set the class name of array of type hotels, and class off any object because arrays are just objects, sends it the class name. So we're going to look at doing this an individual one and we'll look at doing it with just like a string as well. So this is almost all Almost always, with the exceptions of some examples that we won't do today of cases where you're using things like polymorphism, or taking advantage of that. You we can say safely, this is always going to match this. It's going to be whatever we have here with a variable holding in class. Just remember that for today, you'll be
+
+in a good place. Okay, thank you so much. All right.
+
+So
+
+it's dark. None of this is JavaScript. This is all 100%. java. JavaScript Object Notation is based on JavaScript objects, but it's not JavaScript. It's an independent language independent messaging format. So yeah, Java is doing something amazing and easy to use, not amazing, easy to use. json like the first part JS JavaScript. It's JavaScript Object Notation. It's based on JavaScript objects. But as we'll only see, we get the JavaScript objects. They're actually different, just slightly, but it's a language independent messaging format. next module will be in JavaScript. So So let's do another one. So we have the first one, let's get a single, what's the next one actually, on the list. So let's get all the reviews. So the reviews are going to be changing this here to reviews. And we'll see if we get a list of reviews. This is going to be very similar. We have a review object here. That has the hotel ID, the title, review the author of the stars, they match each of these properties, the ones we're interested in, in the data types. So the hotel ID and enter parameters. There's numbers. Yeah, there's a strength. So in our application, we can build another method. And we'll get an array of these again. So it's gonna be reviews.
+
+And I say requests, not review reviews.
+
+It's called request reviews.
+
+And we're going to get, again, a review, array. Reviews equals rest template.
+
+Get for object,
+
+our URL, our base URL, which is localhost 303,000. And then we'll concatenate this time on reviews to form this URL. We want that endpoint. Our response type, we want it to map it to the JSON to will be review array dot class, because that's what we want back right now. reviews and then we'll just have to return that reviews and to make it work so we can see it work up here on number two. Number two are listless reviews. There is a print reviews method down below that will call it let's call it request
+
+reviews.
+
+Alright, and now let's run it again actually stop it and stop all these and we'll just run again so we can see the reviews now.
+
+And now we can see all the reviews.
+
+Okay, so that's good, but there's something more we might want. So what if we only want one hotel or one review? So remember when we started the server, it gave us some information Instead, okay, other routes that exist are like this. So we can take hotels, Id reviews to get information about all the reviews from one hotel.
+
+So this one here the syntax of a colon with
+
+value. So quantity is referring to a variable. So we're saying we put an ID, hotel ID in this path. This is we'll get back the reviews for that hotel. So if I come back up here, I say hotel, or something else would give you let's pick a hotel ID. So Id one, let's look at it. And I stop there. I press enter.
+
+I get back just the hotel ID one.
+
+If I put two, I get back just the hotel. Friday. If I add reviews, I should get back Nothing, okay, there might not be any reviews for it. I get back just the reviews for hotel one. So the ID can be used to limit things to one particular
+
+set of information.
+
+So we can pass the ID on the in the URL, too limited to a single hotel or single reviewer single set of reviews, so their parameters that can be used. So that means the only thing we really have to change is just our URL or in our Java code. So they say, I think the next one thing for the next option was get sure the details for the hotel ID one. Let's go to method it's going to do that. So make it private method. It's going to return hotel and we'll say request. Hotel by ID So first thing we're gonna have to do is build this endpoint. So what we want if we want just the hotel One is we want a URL that looks like that. And we know it's working. So we'll try our you're on postman, we know this is what we want. So this is the part I need to put onto my base URL, because my base URL remember is this. Let's build a string called string URL. And it's going to start out with our app API, base URL plus hotels.
+
+So I'm going to concatenate on this.
+
+And then I'm going to concatenate on the ID plus the ID.
+
+And then
+
+I'm going to return because I'm going to get a hotel back right. My rest template. I'll just have it returned directly. We could put this in a variable like we did the last week. examples. But actually, let's put this in a variable. Let's make it more explicit, just for readability.
+
+So this is going to equal one hotel.
+
+So the rest template, and we're going to get get to a get for an object. And our URL is going to be our URL that has this all concatenated together. And what we want back is a single hotel dot class. So we're saying okay, build as a hotel, a single hotel from this request, and then we'll return the hotel. So for number three up here, we have a print. I think there's a print hotel, let me see. Print greeting print hotels, print hotel, that's what we want. Sorry to make sure I was using the right method. And now we're saying request. Hotel by ID, and we'll pass it one. So we could ask the user for the hotel ID or something like that here. Which hotel they wanted, like you were doing in your Capstone.
+
+But what is hardcode one.
+
+So now we have this. And we'll go down to number three hotels for ID one, and we get the single hotel back now. So the next one is going to be the same thing by four reviews. So now we want this, we want three reviews for hotel one, which is going to be that URL. So it's going to be the same idea and then we're going to build this URL.
+
+So let's make another method.
+
+Private, and this is going to return a array of reviews again,
+
+because we can get more than one.
+
+It's going to be request reviews.
+
+reviews by hotel,
+
+ID and hotel ID
+
+Again, we'll have our URL, string URL. And we could do this all in place right in the template. But this for readability will keep it like this plus, so it's gonna start off the same plus hotels plus the hotel ID. Plus Now we need to concatenate on reviews. So we're building this ID, this is the base, a base URL, and then we concatenate on this hotels, then we can't name on the ID, then we concatenate on the slash reviews. So we need a string that exactly matches our URL. We need one we used in postman to get there and see what we needed. And then again, we're going to get back a list of reviews so we actually can, don't need to store it because return it. So this time, we'll do that since we've already done three exams. Where we put it in a variable. So rest template get for object, we're going to pass it our URL. And our response type is going to be the type of that we want mapped. So it's going to be review. It's going to be an array dot class. And now up here, we can call print reviews again.
+
+And we'll pass it our request.
+
+reviews
+
+by hotel ID. And again, we'll give it hotel ID one
+
+and spell that right.
+
+Let's run it
+
+by how tidy one.
+
+We get our reviews back for like our example over here now, optics. Right. So The next type of things are gonna depart from what we just did. And what we talked about a little bit. So before we do that, what questions do you have?
+
+So is this a case of this is really easy. We got this or is this a case of this is so confusing, and there's so much I have no clue what's going on that one?
+
+Thank you. In theory, it looks super simple when you do it.
+
+So like I have no questions, okay. But
+
+that's fine. That's what I hope but I know there's a ton of information today. So, I mean, the code itself, there's not much to it. You can kind of follow a pattern, make it work, but Alright, so let's move on.
+
+So there's other types of the next thing we want to do is get
+
+reviews by, we want to get hotels by the star reviews.
+
+So what we can do
+
+is we can do this, we can add a query string, and you can see how it's adding it down here. I can actually in postman, just add my keys down here. I'll show that here in a second. So stars equals three is what I want to populate the value if I want to add a second parameter, I could add something like reviews to see how it's creating it up here with the end. So then I can delete them or remove them. I don't actually want those.
+
+So you can create them either place either in the URL or just putting them in the list for where it says parameters. So you get there by clicking the params button. But this is the URL we need to build. Because if I run this, I only get the reviews that have or the hotels have a star review. So three star reviews. Let's do two star reviews. If there are any, like there's a five star review or two, nope. Okay, four star reviews, there's looks like all the rest have four star reviews. There's one, three star reviews and a bunch of four star reviews.
+
+So I'm missing.
+
+Now, okay, they're all three and four star reviews. So this type of parameter, we're building part of what we call the query string before.
+
+So
+
+let's look at that because now we have two ways of sending parameters. And they both work slightly different and they're often used for very different things or for slightly different things. It doesn't mean they can't be used for the same things, but There's usually there's a slight difference in the way they're often used. So these two different types of parameters, the first type we looked at with a number, the idea is just in the string. Those are called path parameters or path variables. Because the idea is in the path, right, it's in the URL, the address. So this would be talked about as a path to a resource. So the idea is just part of that path. These are commonly used for things like ideas like the hotel idea, the photo ID. So they're commonly used to identify a particular thing on the list of resources we get to rest design this week, we'll talk about that our guests should return. Like if we have good hotel, it should return all the hotels, and then we give it a particular ID in this way. And then it should kind of create context as we go down the URL. So query string parameters, which we saw quite a bit of today, right earlier, we didn't build them but we just looked at them, the things that are after Question mark, the key value pairs in the URL. Those are commonly used for things that are going to change the results. So like filters, like star reviews, so three star reviews know those hotels that changes the results compared to hotel ID one which selects a particular entity from the list. There's a fine line there. I know from that description, it's you can actually use either one, we can set our hotel IDs with query parameters. If we want to set star reviews with a path parameter we could. So there's no technical limitation, but that's commonly how they're used because we often need to use them together. So we want to get all the hotels of all the reviews of a certain type that for a particular hotel type of type of thing. But this particular service doesn't support that but imagine when when to get all the reviews for hotel one happened to the reviews themselves gave the hotel four stars or above. So we then we need the hotel path parameter and the query string. But that's getting more complicated we need to for right now just know that we can use either there's a difference between the two and how they work. So, but the way we're actually going to use them is the same, we just have to build a string of this URL.
+
+So it's really a matter of knowing where it goes and just building a string.
+
+So with that, let's build
+
+a method.
+
+So private, and we'll get back hotels because there'll be more than one and request
+
+hotels by star rating
+
+and stars
+
+And then we'll just return it directly. Because we've already looked at how we'll do the list of hotels will say rest template. Well, we need that URL.
+
+So we do need to build that. So we're going to get
+
+for object.
+
+And we're going to have a URL that we're going to come, we're going to build the second. And then it's going to be our hotel array, dot class. So we know that this is a hotel array, because that's what we're returning and we're just returning it directly. Plus build that URL, string URL. API, base URL, plus hotels, question mark star. So I just build the query string, this is just text, I just type in the text that is from here until I get to the part that needs to be able to be variable. So that's the part that needs to change. The rest of it always stays the same to us. Start with views filtered. So when I get to that part and I concatenate on that data, then I could easily write you know a method that says what star reviews Do you want to see I might see a lie now the user selected.
+
+So up here then
+
+we can print, hotels again.
+
+Request hotels, by star rating.
+
+And let's get thick most of them were get three
+
+and we'll run it and that should be option five.
+
+We get the we know that. There was one we can see it here. We change it to four here.
+
+We should get back
+
+these hotels. We change this to Here if our method so it changes the
+
+address it's building.
+
+And now we get back all the ones we see. So we should we'll get back the same day that we see in postman. We're just mapping it to object says. So we only see the values we get called from the getters.
+
+All right, so any questions before we
+
+stop something else to look at one more thing to look at So, so right now, we've been working locally. But the point of doing this is not really to work locally, though. There are service frameworks like micro service frameworks that do exactly that. But our main point is to want to go across the internet and get something from some other place.
+
+So let's do that. So there is a
+
+I'm going to send a address in the chat, if I can. There's an API public API called teleport teleport.org that allows you to look up cities.
+
+So here is it's
+
+endpoint.
+
+And I'm going to go here, let's create any request in postman, enter its URL, press Send. And I already have the IDs and stuff here for it. So this is what we're gonna get back. And what we really care about is the city information is first part is a bunch of information. That creates links to other areas and stuff so you can build kind of a map type page, but what we care about down here, so this gets back the information for New York City. So if we're going to do this, we're going to get this information back. We need An object that matches the city. So I'm postman running that, and this is coming from teleport.org. So this is not something we built. This is something that's on the public Internet right now. And their addresses API cities with the name ID. So I'm going to come here. I'm going to build a new city class, because we have to build one that matches what we're interested in.
+
+So when your new
+
+class
+
+name is city,
+
+and we're going to pick
+
+a few fields, this is pick fullName Gianni mic, just to get just to have a couple things to work with so we can see it working. So we'll get right back And it's a string. So we need a string. And I'm just going to copy this name because it has to be exact.
+
+Spin it.
+
+And then
+
+we're going to create getters and setters for these.
+
+So let's generate some getters and setters.
+
+Right? Remind me which ones you have to and you don't have.
+
+You don't have to create any of them. You just pick the ones you're you're interested in.
+
+I don't think we have to have it like this. Let me check something.
+
+I think I'm telling you something wrong. This doesn't make sense. To me,
+
+actually, let's try it.
+
+What better way to learn figure out something by by testing it? I'm not convinced we have to have the match exactly. I think that's wrong. But let's just make it match exactly. That will fix the way I think it probably needs to be. This is very on Java like, and so I'm suspicious that we don't need it like this, but I'll explain in a minute. So let's put a two string infesting Yeah, well, let's put a T string in here. Enough. Yeah, that we won't have to do a loop.
+
+So to source to string.
+
+And now we have the city class, to call that, this here.
+
+Let's come up here
+
+and go back to
+
+Our app.
+
+And let's call it something like private
+
+city. And we'll say get
+
+city your request city.
+
+And then diversity objects city equals our rest template
+
+dot get for object
+
+our URL is going to be that URL we use in postman. let's paste it there. And then our request type is going to be our city object dot class. And we pull that missing to see all of that URLs longer. And then we'll just return
+
+City object.
+
+And then this will be here. So we'll get rid of this system out print. And we'll just do a system. Now I guess I should have kept the system out print, print line of request city. And it should print those two values, then when we run it, we'll try it.
+
+So let's take a little longer. So what else we got full name New York City, GM ID, the ID. I'm going to try something I'm not. I think it's going to work. But because I can't believe it won't, but I might be wrong. He didn't hit me when I was looking at this before that how I'm dropping like the city object is
+
+I think
+
+I'm betting we can do this. Brian, I got a quick question.
+
+Yeah. You said before that you needed to include the no name, no parameter construction. They're just included by default. If you don't,
+
+yes, that's if we don't give a constructor. That's the default constructor. Yeah, we only have to explicitly include it if we add a constructor of a right. So before we had objects that we can construct, like our rectangle, we only have the width and height. You couldn't construct it without it, or scanner you can construct with an input stream. We can't have that with these Java beans. They have to be able to construct with no data, other construct empty.
+
+So here's what I think will work.
+
+Again, I'm testing this I might be wrong. I often am but I can't imagine. A Java framework does not support this.
+
+Can't Stop that, but maybe it's maybe a dozen All right.
+
+Now we should be able to run it
+
+sucks
+
+Nope, it doesn't.
+
+Okay, so ignore all that
+
+says hit undo took us back to the way it was. Alright
+
+that's really surprising to me.
+
+Let's see six
+
+shoe stores. Okay. Yeah, so ignore that last part. I'm so yeah, so you they have to match exactly. Even if you have to violate, violate slightly violate the Java standards to to make the match alright so I want to do one more example I know it's late but I worry that kind of worried that we've done everything in this kind of one class. So I do a simple way. Another simple example that involves writing everything from scratch, not putting it in the middle of this app won't take long. It took me like three minutes last night. So
+
+think a little longer than that. But
+
+But, yeah, so let's write one more example where we don't have it kind of in these if statements. And we have to write the whole thing. So there's another API. Before we do that, are there questions? So there's thousands of API's on the internet, thousands of them, many of them freely available, many of them that do ridiculous things, different levels of great, like, gap, all kinds of things. So one of the ones that I've ran to the past is this API that returns chuck norris jokes. That's all it does. So somebody spent some time just spending an API that you go to this URL, and it will send back a random Chuck Norris joke. So let's build an application for this. So and there's because it's pretty simple. It's just, you know, it also has some things like an array mixed in, which we haven't seen yet. So
+
+we're going to build
+
+an application for this. Let's start by
+
+building. So first, we want to run it here in postman, and we get back our, our jokes. So we need objects that matched the best. We're going to have to do with more than one object because notice that they This object we get one object back, it has two fields type and value. And value itself is an object. We saw that on some of those other like address. But we didn't, we just ignored it them. But what we really need is inside this internal object. So we're going to have to build an object, we're going to build two objects, one that represents the value, and then a second one that represents this object that uses value as one of its parameters, and the framework and the rest template will put it all together for us.
+
+So let's
+
+create first a class that represents this whole thing.
+
+So maybe we'll put it call it a joke, or quote or whatever you want to call it. Here. We'll change this package instead of hotels. Let's change package by Chuck Norris.
+
+And then we'll right string,
+
+we could just ignore it, but I'm going to map everything so it's kind of small. So private string type, then I'm going to have an object of type value we haven't created yet named value. And we're going to come back and fix that. But let's do source, generate getters and setters.
+
+And now we have to create the value object.
+
+So I'm going to create a new class
+
+and become value. And it's going to represent this. The class name doesn't have to be called value, but I'm calling it the X. It makes it easy to remember where it goes. That's the only what has to be called. value is this. This variable name that has to match this the day Type just has to be something that can be built from this.
+
+So I have four things.
+
+Private it to an integer.
+
+It has to be called ID.
+
+The second one's the joke. So private string joke. And now I have a list of categories. It's an array. And they're strings.
+
+So what data type you think I need here? It guesses?
+
+Right? Yeah, an array of strings. I'll say I wanted a way of strength, and it's called categories. And I'm gonna cut and paste that because I'm sure I will miss type it on the wise.
+
+And now let's just build
+
+generator getters and setters for it.
+
+We're done. With our data objects, so pretty simple, but it's hard to build data objects that have getters and setters, properties that match these types.
+
+Now, let's build
+
+a class that can call it. So let's call it our Chuck Norris service. So we had everything together before, why you would put your dress template in with your, your main and your system outs. That's just for brevity of examples. So let's build it more how services actually get built. And we'll look at this a lot more tomorrow. So here,
+
+we're gonna have our URL. So private, final static
+
+string. And we'll call it our URL.
+
+base URL is actually good name. And we'll get this URL here. We know that's what we want was copied over here. Here.
+
+Now, let's go ahead and create our rest template.
+
+Now why let's not do it there, let's do it differently.
+
+We need a public method that's going to return our object of type joke. We're only gonna get one back. We know that because we know the response here. So joke, and we'll say something like request,
+
+joke.
+
+And then our joke object.
+
+And now we need a rest template. So let's build one each time.
+
+And let's call a rest template.
+
+This is kind of wasteful. Why wouldn't just build one at the top?
+
+That would make a lot more sense but
+
+we don't have to. This is just an object
+
+So probably better to make a private one up here that's shared. But I'm going to show that we don't have to do that. So rest template, kit for object base URL. And that response type is going to be Joe dot class.
+
+And we're done with this portion. Now we just need something to use it
+
+to return the job. And we'll return joke.
+
+So let's build a class to use it.
+
+It's about a class. call it something like Chuck Norris. Demo. We're going to put a public static void Main in it and not opened up. I'm going to put these side by side so now We really just have to create our service class. Chuck Norris service. New Chuck Norris service. And now we call it so we could say system out print line service dot request joke.
+
+Let's run it
+
+up. So that's putting up the object name because request joke has a value object on it. So get value, which has the get joke object on it.
+
+there and we get
+
+each time we run it, we get back now
+
+Different Chuck Norris joke, all from the nerdy category. So last thing is that there's always this question of how do we put parameters on? I know a question got asked a lot for the capstone was how do we get these parameters into our database? The same kind of problem exists here so we can quickly make it so we can choose whether we want to use the nerdy category or not, or maybe make it they can select various categories. Though I don't know how many categories exist because you're honest, I did explore this that far, but so maybe we could take it say okay, do a system when the scanner to ask a question to scanner input equals new scanner, system dot n.
+
+And we'll do a system out. print line,
+
+enter categories
+
+Enter category that only takes one category.
+
+And now we'll do string category equals
+
+input dot next line.
+
+Next line.
+
+Now we'll just take it over here and pass it to our method.
+
+Sorry, string
+
+category. And then here, it's going to be our category. So we're going to pass it from here when we get to user input into our method here.
+
+And now we'll just remove the limit to
+
+take that off of our URL, and just add an extra part that says if must say string URL equals space URL. And if category not equal to No. And category dot length is greater than zero. So if there is a category, then we'll take the base URL plus equals that string that we copied from above. And we'll concatenate it together with the category. And a weight. This will be your URL, sorry. And then we'll just change it to URL here. So we took our user input, we're just concatenated in to where we want it in our URL. So what we've done is we made this part limit to nerdy, optional, and they can change categories. Again, I don't know all the categories that are available. I just know the one. But if we run it, we get the question. We don't enter any categories and We get back just a regular joke. And if we put in the one category, we know we get good jokes back for that category. four points, not the jokes. The point is how easy it is to call these API's. And the point is, we just have to match up that JSON to our objects.
+
+Alright, so any questions? or What questions do you have?
+
+I have a question about how in the chuck norris demo why we're using get good value. How does that work?
+
+So yeah, that's a good question, cuz we haven't.
+
+So here, request. Let me write this out. More detail. So that's one way of how we could write this right. But what we're actually doing doing
+
+is we're saying we have joke,
+
+our joke. And that's going to come from our service request joke with our category, right? So then what I want is actually the joke. So now that gets me to this object. And it has typed in value as getters since getters. So my next level is I need a VAT have a value object, value equals joke. dot get value, which gets me this object. So I'm calling the get value to get this object, which then goes to this object, and then I want the joke. So that's just a string. So string dot joke. I can't call it joke again. Joke. string, about actual joke.
+
+calls my value object, get joke.
+
+And then I do my system out print line
+
+with actual joke. So these code,
+
+this code in this line of code are equivalent.
+
+This is called method chaining. And we're gonna look at it more in detail. It's used a lot in JavaScript. But what it is is as each one of these things return, I can treat this as whatever it returns. So in this case, request Joe category returns a joke object. So I can treat it as a joke object, which I know I can call get value on. Get value returns value objects, I can immediately treat all of this as a value object, which I don't Joke one we see up here. So then this is the string. So if that doesn't make sense to you do it this way, or any combination. But as we go through the code, I tend to start writing code more and more, like I actually write it
+
+which is met with a lot of method chaining
+
+in JavaScript will do a lot of method chaining.
+
+So question questions, are that answer your question? or?
+
+Yeah, yeah, I didn't realize it was that the object was part of the other object. And so that's how it all works.
+
+So Other questions?
+
+Okay. So
+
+your exercises today
+
+there
+
+Let's get to the right server. So I'm going to stop this server. Again to stop these servers, you Ctrl C. And I'm going to go to one load up into two levels. And to the instructor, you'll go Of course, it's an exercise. And inside of that you're going to find a folder called server. I'm also going to code the readme. You can open that README and Bitbucket to stop maybe quicker, maybe not.
+
+And
+
+so it'll step you through a lot of it. So first, you're gonna have to start the server. So when the path they're starting with is starting from inside the exercises folder. So you're going to go to CD server and then run those commands npm install Remember, I'll take could take a couple minutes, depending on the speed of your internet and some other things. And then NPM start, which is going to start the web, the web server or the sorry, the API. So since writing the client aside the server side, that's what we're starting. And then here's the endpoints that are available auctions and then auctions that can take an ID between one and seven. So I'd encourage you before you start the exercise, I know you want to get through the exercises as quickly as possible. No, that's always everyone's goal. Before you start the exercises you'll do yourself it'll speed you up a lot. If you take two minutes or a few minutes, really shouldn't take more than a couple, two or three minutes in play with these URLs in postman. Take a look at them, see what the results look like and get. Just familiarize yourself with what's being returned and what the URLs look like. So meaning that you change this ID to a number And it works. So
+
+I can take this URL
+
+come on to postman,
+
+and auctions will give me an error or give me nothing Oh, I forgot to run NPM start. So there is a great example of if you get nothing happens in postman, I didn't get any response. First thing you want to make sure is the server is running. So NPM start. And when the server is running who can't use terminal? Well, you can use another copy of terminal you can right click on terminal and choose to open a new window use all you want. But the terminal it's running in it stops here. So that's you want to look for this to make sure it's running. So now if I do the same thing
+
+there's what we're going to get back
+
+in the fight give it a particular item.
+
+We're going to get this back.
+
+Alright, so
+
+that's the first thing you're going to do, or what you should do. So I would so then the walk you through the data model, I'll leave you to do that. So you want to use the readme for these exercises. So more than previous in the course. So there's a split in our cohort right now. There's older content, which is what you've done so far. water content, the readmes are kind of, let's be honest, they're kind of throwaway, right? They give you some information, but you can do the exercises really without the readmes. Starting today for this module, next is this 2.0 version of content. Which means we're going to work on something else we're going to talk about the Remi has become really important. Often they guide you through important pieces that if you don't know you're going to struggle with so you need to read the read. Pay close attention to the read bees from now on. They actually walk you halfway through the exercises sometimes too. So they'll speed you up a lot. So they walk through the provided code, they tell you the methods. And I'll leave that for you to go through. So you just be writing code then kind of like we did today.
+
+They walk you through each thing you're going to do.
+
+And then when you're done.
+
+If you want to stop the server, it's Ctrl. C, not Command C, but Ctrl C. Alright. So questions on Oh, and there's test cases. Sorry, I should point that out. There are test cases for the exercises. So as you run each one, you can run the test cases just like you have the last six weeks or so. So know that they're there because our lecture code didn't have test cases, but the exercises do so you can validate Work as you go.
+
+So questions? What are we doing for exercises?
+
+All right. So
+
+the next thing you might notice today, there's a new folder inside of the lecture materials are the materials called students tutorial. And today there's tomorrow's materials are partly out there, let's do tutorial inside of them. So the students tutorials are, if you read the readme, they step you step by step through doing something similar to what the exercises are and the concepts we're going to look at, without having to really know anything about it, it steps you through and says, write this exact line of code, then do this exact thing. So there are tutorials, they're not meant for you something you have to figure out, there's something you follow, which means that if you rush through them, they don't help. But if you spend time and actually read what it says and do what it says, and try to understand They can really help. So today's is out there for, if you get stuck with the exercise, that would be a good place to start would be the tutorial to walk you through it, because it'll walk you through exactly the type of thing you're going to do with the exercise without having to figure it out, just have to follow it. And then tomorrow's is out there. These are like they're, they're optional. They're encouraged, but optional, and when you do them before or after class is up to you as well. If you do do them. So those will be there every day for the rest of cowork. There's a few days where they're not. They don't exist because of the type of material it is, but for almost every day for the rest of court. There'll be a tutorial.
+
+So many questions on from that.
+
+All right, somebody's day.
+
+Thanks. So I'll be setting up
+
+Hold on, Brian. Yes,
+
+sorry, I think I need to let them know that in today's exercise, there are a couple of tests around how you handle exceptions. And you may have handled it properly. But the test is only looking for a certain way that you handle the exception. And I'm going to be reading your code. So don't worry about getting that test to pass for the, for the exception handling, like, I want you to do something about the exception handling but I'm not going to panic if you couldn't get that specific test passes me. Once you get into it, you'll see what I'm talking about. So
+
+sorry, if I can.
+
+Alright, so.
+
+Oh, yes, I've been middle. So I'll be setting up the review schedule for later this week. That'll be coming. Soon. There'll be three one hour sessions with three Teams each for those and then there's at least a couple you'd have staff have a one on ones with me in the next like 20 minutes starting I'll be rescheduling those so that for later this week so know if you have a one on one before like two o'clock it's gonna get rescheduled
+
+or we're into it already right now and so
+
+then that's all I have So any questions any other questions or
+
+a blank Could you please push it right away when collection?
+
+I can. I'll do it right now. Why am I
+
+it really helps to go with that.
+
+I mean to always do it right after class it just
+
+so anything else not pushing this. How about you?
+
+I think we are starting next Capstone. Next Tuesday. Am I right?
+
+I believe so. It's next week. Yeah. I think it's gonna be Tuesday, Wednesday and Thursday since the because of the July 4 holiday.
+
+Okay. I think as
+
+it's playing right now,
+
+that's a good thing.
+
+Yeah, so you have a lot of time because we're not counting Friday, Saturday and Sunday now because of July 4, so that's technically six days. You can even take holiday take the holiday off and still get five days so that's that's pretty, pretty good.
+
+I haven't seen it though. So how big it is, so maybe it's giant.
+
+I don't think it is.
+
+Anything else?
+
+Thank you, and good luck.
+
+You guys you guys
+
+Transcribed by https://otter.ai

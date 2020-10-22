@@ -1,0 +1,15 @@
+Book
+https://book.techelevator.com/content/inheritance-ool.html#class-hierarchies
+
+Class hierarchies
+Using inheritance to organize your classes allows you to build a Class Hierarchy of your code. You could think of inheritance as a parent-child relationship.
+
+
+Image - Hierarchy of Clocks
+In the example above, there are a variety of different Clocks that you must define in your code. They're arranged here in a hierarchy.
+
+Both GrandfatherClock and CuckooClock are types of Clocks. The Clock class defines all the characteristics of what a Clock is, such as holding the hours, minutes, seconds, and advancing the time. GrandfatherClock and CuckooClock adopt these characteristics. They then add their own characteristics, like the pendulum of the GrandfatherClock or the little bird that comes out of the CuckooClock. They may look different, but they're still fundamentally Clocks.
+
+In fact, programmers would say that if a GrandfatherClock inherits from Clock, then a GrandfatherClock object IS A Clock. GrandfatherClock is the subclass and Clock is the superclass. Same for CuckooClock. This is the same for CuckooClock. CuckooClock is the subclass and Clock is the superclass.
+
+Another thing to notice is that AlarmClock is a subclass of Clock, but it's also a superclass of DigitalAlarmClock. This means that DigitalAlarmClock IS A AlarmClock and IS A Clock. It inherits the properties and methods from all of the classes above it in the hierarchy.

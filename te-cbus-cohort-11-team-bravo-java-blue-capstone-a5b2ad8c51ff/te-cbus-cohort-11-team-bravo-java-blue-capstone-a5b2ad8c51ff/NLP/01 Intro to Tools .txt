@@ -1,0 +1,2140 @@
+Zoom
+https://techelevator.zoom.us/rec/share/3cpRLJLM1E5ISJHD2VicWKF_GKb3eaa81XJP_voPxEZt0rM3kAyIFeBlcP7cZ8wZ?startTime=1589220232000
+https://drive.google.com/file/d/1rNHsoyq6vMNnae2HJoYSdsgNSXe62ym4/view?usp=sharing
+https://docs.google.com/presentation/d/1xNzk8ShAp2W8i_1U0SHjlw4NBGhDy7yiLgoD7G2-yhY/edit?usp=sharing
+
+Alright, so now it's recording.
+
+So guys, just go ahead and click on continue to keep going meeting.
+
+Okay, so the structure is organized into this tree structure where every directory has directories inside of it or other files inside of it. And this tree structure the structure of this file system is what how we're going to specify what files or directories or resources, what things on the computer we're interested in.
+
+So
+
+So this is going to be set up such that all folders
+
+are in another folder
+
+except the root folder,
+
+the starting point and
+
+all folders can contain
+
+zero to many folders and or files.
+
+So,
+
+all folders contain files and folders, files again being what we're interested in. I should put that for is purely for organization.
+
+files are content like,
+
+like pictures, or
+
+documents.
+
+So we can see this file system on the Mac OS using finder, or another program we're gonna look at in a second called terminal
+
+Finder.
+
+I can see for my, what's called user folder, so my folder which is named Brian library, I can see all the folders inside of it. And all the files. These are folders and these that are not the blue file folder symbol are files. inside of that class development folder, I can see more folders. More folders, I can hear down to two. Finally there's just files. There's no more in the hierarchy. So you can see this hierarchy unsatisfied. And we can, there's a lot of stuff we can do with fighter and if you've interacted with the file system at all, it's probably been through a tool like this, like finder or Explorer for Windows or Windows. But that's not necessarily the best way to always interact with the file system. Before we move on, what questions do you have about the file system itself? Okay. So, the way we're going to interact with the file system
+
+is going to be using what's called a shell.
+
+And to get to a shell, open up
+
+terminal, which on your Mac, you should be on their dock and be the symbol here. Click on that it's gonna put a terminal and what terminal does it's it gives us access to what's called a shell. Specifically, the shell called bash shell, in a shell is provides a way to work with the file system using text based commands. So instead of going here, and clicking that I want to go to this folder
+
+and clicking through
+
+I want to go to my development folder. Instead, I go here, and we'll come back to what the commands mean. But I tell it using text based commands that I want to go to this folder and see its content. And that's what a shell does is gives us this access to these text base commands. And the computer then we use them to control the computer to tell it what we want to do. So what we're going to be using is called bash shell. bash shell is One of many shells, there are many shells available. But bash is one of the most common use and it's available across pretty much every OS, you can get it on Linux, you can get it on its default on many Linux installs, you can get it. It's the default on Mac OS. It's available on Windows. So it's pretty universal, and it's one of the more common ones to be used. There are other ones though out there. Quite a few actually different ones. And each one just has a different set of commands. So the commands are gonna be looking at today, though, they're going to work on many of the shells. We're going to see, some of them may be slightly different, or the same concept, just slightly different commands. We're gonna look at bash shell, that's what we're going to be using throughout the court. When you go to the workplace. There's a good chance you'll be using bash shell as well. That's the most common one and use. The biggest question I always get for this is why why do we? Why do we want to type this? When we can just go here and click it's so easy Well, normally you don't have to. But when you get in start programming, there are some things we can do with this, that we can't do without visual representation. Specifically, the reasons we're going to use this terminal, try to get these more is because it's going to give us more flexibility. There's going to be a lot of extra things we can do with the commands we're running. When we go here, we tell it we want to go to the development folder and we give it one command, we're going to be able to do more than just say we want to go here, we're going to say we want to go here want you to do these extra things as well. So it's going to give us more flexibility. It's also once you get used to it a lot faster. And this is the thing that most people have trouble believing at first. Even developers who have been doing it for a while we've avoid shells, is that once you get used to using this, you'll find yourself using it For a lot of things, even when you could do it visually because it's just faster. Another important reason we're using development is because it can be scripted, which means we can write reusable commands that we can then we can write our own commands for it. And that can do more complex tasks for us. Developers love to automate things, they'd love to take a task that they can do in a few minutes and spend a few hours. So they don't have to do spend a few minutes on it anymore. And shells do that for us allows us to do that. And then one of the more important, most important reasons, but we're going to use it in this cohort and focus on it and I'm actually not going to lie to use the like the grant Well, I can't really stop you but I'm going to strongly discourage you and glare at you medicinally if you do use, I'm not gonna want you to use the GUI for things I get. I don't want to use a graphical user interface for those because a lot of those tools like get have these interfaces. That, all they do is make it give you extra options available. And they are just for convenience in the background. They're running these shell commands, they're running the exact magic is type yourself, which is fine. There's nothing wrong with using them once you understand what those commands doing the back end. Because when there's a problem, you can't troubleshoot it if you have no idea what the user interface is doing in the back end for you. So we're going to focus on using a lot of the tools through the command line or through the shell. And then, once you understand them, you can layer on there's other interfaces. So that's what a show is. So before we move on to how we're going to, you're just using it the basics of it. What questions do you have?
+
+Can you show how you went to terminal again?
+
+Yes, so it's here in the dock and it's this icon that looks like a box with the Better than sign the coordinates click on that's what brings it up. If you ever lose that, since I guess it's a good time to mention that it's also available in the launchpad under other and it's available there.
+
+Okay, thank you so much.
+
+Hey Brian. Yes. Can I share my screen real quick?
+
+Yes. Let me
+
+stop my shirt. Okay, you should Bella, sir No. Sorry.
+
+It was it was important. I really had to share that. I just
+
+yeah, you'll be learning the commands that You'll need to navigate, and you'll get to practice it with the exercises that we do today on how you're going to navigate all those things. So,
+
+yes.
+
+I was in reference to a chat question, Brian sorry, they were asking.
+
+I always forget the command to return home with something like the tildy something. But imagine, we'll get to that later on since there's a cheat sheet for today.
+
+That's actually where we're going next is how to use the shell, what the commands are.
+
+So
+
+So let's look at the basics of using the show.
+
+So first, there's some terminology we're going to need. So I'm going to go here to the next slide. We've already talked about one about topology, that's kinda sorry, terminology, that's the root directory or root folder. That's the beginning of the file system. So
+
+If we go
+
+can actually see it and find it. Well, we could but but if we go back to this diagram that was here, that's the starting point. So the entire computer, the entire drive his hard drive or system, all the files in the system start in one folder, and that's called the root. It doesn't have a name by itself. It's the only unnamed folder, but it's called root, meaning the starting point, and everything is inside of root. So when we talk about root, that's what we're referring to. Then there's what's called the home directory. The home directory is where your stuff starts. root is where the computer starts. So all the stuff it has, Home is where you begin. So your home directory is your name, actually for for most for you. It will be your first initial and your last name, all lowercase. So your home directory is set up right now. So The home directory is where you're kind of experience in the computer starts. That's where all your stuff lives. That's where your pictures are, your files are, it's where your source code is going to be. And that's what we start when we go into terminal, I've actually changed. So I'm actually will go back to what this means. But I can see this view by home directory is the same here and here, the order is different. But if we actually went through and compare these, we would find out they're identical. So we have to understand that term, home directory is where you your stuff begins. It's inside the root. In fact, it's a couple layers inside the root, but we won't need that very often. But we'll come back to that as well in a minute. But, so, commands of what we type when I type this LS, or the CD, those are commands. Those are what tell the computer how to do something. And then there's arguments to the commands, like with their CD, and there is a tota that tells the command how to continue, tells the command what we want it to do. And those are called arguments. So those four, we're gonna walk back through all those, but those are kind of the four terminal pieces of terminology we need to know to really talk about the show and how we're going to use it.
+
+So let's look at
+
+some of the basics of the shell commands. So first, no matter where we're at on the file system, one of the most important things we're going to want to do is get to the
+
+home directory.
+
+So we're going to want to be able to get back to this
+
+starting point here. Sorry
+
+We can do that using the command change directory.
+
+So the command, CD,
+
+change directory.
+
+And we can specify a directory using the cincotta path we'll look at in a minute, or
+
+specifies
+
+the home directory.
+
+So CD toda
+
+will go to the home directory. So no matter where I'm at, if I type cd, space toda, change directory Tilda and press enter. I'll go back to this directory, my home directory. So my starting point, not the system starting point, but my starting point. So one of the other things I often want to do here Know where I'm at. Notice we're in this text,
+
+format. And if I
+
+clear it, so you can't see that history, you don't really know where you're at. I know I'm in a directory named Brian lottery. But let me go to CD, I'm going to go to development. And I don't have a clear sense now where I'm actually out on the file system. So anytime I want to know where I'm at in the file system, I can use pwd. It'll tell me exactly where I'm at in the file system. It's going to start from the root though not from the home directory, home directories in here, you can see it here in the middle. But this starts back at the root says I'm in a folder called users. And inside that users is this folder with my username, my home directory, and then I'm inside of this development folder. So pwd
+
+tells you
+
+where you are in the file system.
+
+And pwd stands for print working directory.
+
+So that tells us where we were at where we're at it also we can you see these so we can change to different directories, we often wait want to know what's inside the directory. When I go here, I can see a bunch of stuff in this directory summer files, summer folders. To see what is in the directory, I can use this command ls or list. But the command is just LS, but it's the list command which will list all the files, list all files and folders in a directory. So if I type ls, I can see there's two files in here. I'm actually going to get back to my home directory and that type ls link. See this A lot more in here, that matches what I'm seeing over here.
+
+So
+
+I may want to see a little bit more information about this. And this is one of the places we can use an argument. Arguments meaning something we can add to a command that modifies how it behaves, that changes its behavior to do something different. So there's two arguments we'll commonly want to use without us. The first one is a, which lists all information. And to do an argument, we do LS dash, and then the letter that specifies the argument we want. So a and that gives us a little bit different information than we saw before.
+
+Somebody doesn't hear
+
+dash a shows all files and folders
+
+and that would be using LS dash a
+
+dash l
+
+shows details
+
+about the files and folders.
+
+And that's going to be LS dash L.
+
+and
+
+can be used together as LS dash away. In fact, I'm going to put it on here because that command is going to be really common. So I see all these other folders here that have a.in front of them. So when you see a file or folder with a.in front of it, it's what's called a hidden file or folder. It's been hidden from regular users. We're going to care about these sometimes as programmers because they can have information about the programs we're building and running often. But regular users don't need to know much about them, or really the demons exist. So dash a shows us as extra files and folders. Notice when I come here I don't see those files and folders. Actually, can I think it's always get this wrong. If I do I'll come back.
+
+So we can add here, but by default it doesn't show and it doesn't hold it setting we can turn it on just for a single time. But in Terminal we can just say dice a and see everything. Dice elf
+
+gives us
+
+more details about the files and folders. Notice by itself it doesn't have those hidden files and folders anymore.
+
+Ray gives us both.
+
+So here we're seeing hidden files and folders and we're seeing a bunch of details about it. You don't need to understand all these details right now. This did what at a high level they tell the date it was last modified Total file size, how many bytes it is. They tell some information about who owns it. And then they tell some information about who can use it and how they can use it. Have all this information, the two pieces you're interested in right now, I'm at least for the next few weeks, is this is the name, the folder name of file or file name. This is what's displaying right here in Finder.
+
+And this first letter,
+
+if it's a D, it's a folder, the DS for directory, if it's a dash, it's a file. The other letters and the other symbols you see there, we'll worry about those later. We don't need those right now. So we'll come back those in a couple weeks. But for today, when you do LS dash LA, the main thing you're going to be looking for is is this dash for a file, or D for folder so
+
+And file.
+
+See how they describe that in file details. first letter is D for a directory and dash for a file. Alright. So now we want to do something. Let's do something with these. We've looked at some things, but let's do something that we can actually create. So first I'm going to find out where I'm at. So pwd, I'm in my user directory.
+
+And
+
+I'm going to change directory into the development directory and you should have the same set of directories on your system, my user directory You have the user directory of the development directory. So this is something you can follow along with if you want. The you I have a lot more stuff in mind, because I have stuff left over from other courts, yours is going to be very small, yours has nothing just the development folder and a couple others and your user directory, I have a bunch of junk that haven't cleaned up and then inspect you are gonna have the same folder, which is called development. So I'm going to go to the development folder. So here is my development folder. And I want to go to this folder, but I'm here. So to do that,
+
+anybody have any idea what commands we would use?
+
+At CD? Yeah.
+
+So if we wanted to go to the development directory, we type cd. Any ideas? Any guesses? It's a guess so it's okay if you don't get it right. What we protect next
+
+to those slash developments,
+
+tilde slash w definitely work. Remember Tilda is our home directory slash development. And we press Enter. And now if we do pwd, we're in the development directory. So now we're here in this directory, we can see if I do an ls here.
+
+I see programs workspace just like I do here in Finder.
+
+So, I want to do, I want to add some stuff, I want to make a directory in here. So there's a command to make a new folder on the directory, and it's make dir make directory. And we can just give it a name. So say test folder. And if you notice over here in Finder test folder appeared. If I do an ls, it's here in the list. So we put this in here. So Make directory
+
+directory name
+
+creates
+
+a new directory.
+
+Alright, so now
+
+I want to go into the test folder directory. So I want to switch from here development to here the test folder. So
+
+see James what a command would I type here?
+
+Think you're you, you do a CD and then test folder right? Yes. Great. So see the test folder
+
+and now I do a pwd and I'm in test folder. So now I'm here. So I've navigating the same way I would do by clicking here. And then here and then right clicking and choosing new folder and creating test folder and then clicking on it. By doing this set of commands, the pwd is in between or just to show you that were the changes being made. Because one thing we'll talk about, kind of at the end is that for all these commands, and by show, they don't give a lot of feedback, as long as things are born Well, they just kind of make you assume that it worked. So
+
+now we're in the new folder.
+
+So now I can actually, there's some places I might want to go, I might want to go back one directory. Or I may want to refer to test four as the directory I'm currently on. So there's two shortcuts we can use with CD or other commands. And
+
+when I make c make a space here,
+
+let's grab another
+
+so we'll say a single dot
+
+is an alias for the current directory
+
+and dot dot. It's an alias for
+
+the current
+
+directories.
+
+directories parent.
+
+Now, that's that's odd, really awkwardly or change that for the parent directory of the current directory.
+
+So what that means is that up here,
+
+yes, I don't think you were on the slide. Your slide isn't showing that you were typing on for some reason or something.
+
+It's not.
+
+That's concerning.
+
+It's a shirt now.
+
+I see it. You see See ya. See you too. Oh, you can't see it, Rochelle but everyone else can see it.
+
+I'm looking at in zoom. I mean, I'm not watching it live on the slides. Okay.
+
+But everyone else's you're seeing it show up in the slides thruster. Okay. Okay,
+
+yeah, I saw it in the slides before when I was inside but right now in zoom for whatever reason, it's not
+
+showing up. So as long as everyone else can see it, I can. I can live with Michelle was saying I think she can.
+
+It was for other okay. No, I know, I know. I know that you have brought it up.
+
+Alright, so.
+
+So when we're here, if I'm hearing test one I want to refer to test for like, for some reason I wanted to CD to test folder. I could. I don't know why, but we'll look at why this would work more I could say CD dot can actually it's going to get to the.is referring to Basically stay where you're at, and we're going to use that a lot more in the future. But for now, because we want to introduce the other one, which we will use a lot more today, the parent alias. The single dot refers to the here, but two dots refer to the parent. So via here in test folder, the parent of test folders development. So if it is a cd dot.do pwd exam back in the development folder.
+
+So I'm going to go back to the test folder.
+
+And if I'm here and I wanted to go back to my home directory, I could type cd todo that would take me back to the home directory or since test folders parents development in developments parent is the home directory. Then I can type cd dot dot which is going to take me from test folder back to development slash and we're going to look at a second to the slashes these forward slashes break apart the different folders. That's what tells it. We can think of it just like these lines here that finders putting in for us saying, there's a break in a new folder dot.so the first dot takes the development, the second one will take it back to my home directory, which is the two parents. We can see that's where I'm at. So dot dot refers to can be used in place to say, the parent of wherever this is. Right? So I'm going to go back to test folder, which I can get to by from where I'm at. CD tilde slash, it's in development. test folder.
+
+Center can be pwd and I'm back there.
+
+Because the next thing I want to do is
+
+to create
+
+some files in here. But before we really start creating files, we need to understand this thing called pass. And we've already looked at it when we're typing these commands here. That's a path. When I type pwd it, it shows me this, that's what's called a path. And what a path is, is a text representation of where something is located at, on the file system.
+
+So if we go back to here,
+
+the path is
+
+where this file is located in the structure. And it's done by the names it starts with the root or can start with the root, which is going to be a slash and that's going to signify the route If I CD, forward slash, I do an ls. See, I'm back in a place we haven't seen before. I'm at the root. This is the root folder of my Mac. Most of stuff in here, I can't even access, I can look at it, but I can't actually do things with it because it's system files. The stuff that I can do something with is inside of this user for that we can see not that user for to this users for that we can see here in the path. So the line that these slashes are the breaks between these names. So it's saying start here, and then there's a break. This is the first slide and then there's a name. And then there's a break, there's a name, and then there's a break and then there's another name. And these names can either be directories or they can be files. And together the roots, it's going to go. I'm going down, few slides down to the one after the show. commands are run. And it's going to form this thing called a path. That's going to be that representation of where we're at in that structure. And paths can be in two manners. They can be what's called an absolute path or relative path. So, let's talk about absolute first because this is probably the easier of a to to understand. So absolute path means a path that always starts the root. This path is absolute. It starts at root. And no matter where I say, CD path, in this file system, it will go there because it's giving us an absolute position.
+
+So it's the same for everybody at all times.
+
+So if,
+
+for example, I was giving all of you I directions You asked me if you want directions on how to get
+
+let's say to Grandview Avenue
+
+so
+
+I don't know each of you all of you live. So I give you directions and I say, I will start at around one common place that everyone here I know has been to the only place I know that all 21 of us are 22 of us have actually done so I give you directions that say, Okay, you go out of the parking lot, you turn right. You go to the first stoplight, you turn right? You go to stoplights, you turn right, go to stoplights and turn left and you'll be in Grand Rapids
+
+i think
+
+but the point but every one of you could take those directions and you're gonna end up in the exact same spot because it's absolutely has a set starting point. The starting point is not doesn't matter who you are. It matters with the pointers. And that's what the point of references, and that's what an absolute path is. It's always anchored to the root. Just like those directions are always anchored around one. I can give them out to 1000 people and they can all follow them the same way. Yes, they have to know how to get to read one. But that's not my directions. My directions are from web one to Grandview Avenue. That's absolute. I've chosen route one is my route. And that's absolutely passed. So that's what an absolute path is, it's always the same no matter who uses it and where we use it, we get the same result. relative path would be a little different. So using those same directions, if I told you, all of you, okay, so go out of your house. Take a right drive into you come to the first stoplight, however long that is take a right drive into your pass through to stoplights. Take Right drive to go to more stoplights and to take a left. I don't think any of you're gonna end up on Grandview Avenue or the same place. Because those directions, the same directions given in that manner are relative to where you're at, to where your position, even how far you have to go be very relative. Some people, if I follow those directions, I wind up going that far, I live fit right inside of Columbus. So there's stoplights everywhere. Other people, if they follow those directions, they may be driving for quite a while. But none of us are going to the same spot because the directions are relative to where we're at. We don't have a fixed starting point, they don't start at root, they don't start at any particular point. They start at wherever that command happens to get used that. Just like those directions will start wherever if your houses happened to be at when you start, or whatever location you start following them out. That's relative Relative can be really powerful, which is why we're going to use it because if I have a structure where I have a project folder in a development folder in five different locations, I can make my path relative and have the same command work from all those five locations. As long as the structure internally is the same. That can be really useful powerful we use for example of real life use of it is when your exercises are scored, relatives pass their your pass of the same once you get inside of your Bitbucket accounts. And we just have to say relative to whatever Student Account we're looking at, go to this location, it goes there for us, we don't have to know the actual beginning part just have to know from any student folder, here's how you get there. Because the thing we're looking at, that's relative. So we use relative paths actually more than we use absolute pass, but we have to be very aware that they're not going to work the same from all places, which be aware of where we're running them at.
+
+So for instance with this with a relative path,
+
+if I,
+
+I'm here. So I'm in my home directory, which is slightly different, but you get the idea. And I have test folder and development just like I really do.
+
+Or, I guess, I have
+
+let's just go with that. I don't have that exact structure.
+
+So, and I'm here
+
+and I type cd test folder.
+
+This command is relative. It doesn't say where it's starting at it, it says go to test folder, and I'm here then it goes test folder.
+
+That works. If I run this same command down here,
+
+So I run this command here.
+
+And it goes down into which children and looks for test folder. It doesn't exist. So it doesn't work if they have if development have a folder called test folder and it would work. So that's what relative is. And the way we can tell a difference the relative path and an absolute path in the file system
+
+is that
+
+relative paths
+
+are going to start CD test folder
+
+or dot dot.
+
+They're not going to have any beginning slash. Absolute paths are always going to have a beginning slash, because they start back at the root of the system. The one exception to that is the total
+
+Because the Tilda
+
+is this, it's an alias for whatever this is for all of your computers. It's different. For everybody's Mac, it's always users, and then whatever your username and the Mac happens to be your internal username, which for you would be your first initial and last name. slightly different from mine. When I got set up, we were using full names. But that totally just refers is replacements for alias meaning that we use it it just says, okay, we placed that tilde it with whatever this happens to be allowing us to have absolute past that take advantage of basically the Mac OS or the Windows OS or whatever we're using to go to the right location.
+
+So absolute paths
+
+are going to start with slides or Tilda and Relative pass will not. They'll start just with a folder name. Start with a folder, or file name. Alright, so before we can continue because this concept athlete versus relative path is one that is kind of weird. The idea of having things we're doing relative to where we're adding something or how we're using something is a concept that though it does exist some in some areas outside of programming, not a lot. So before we continue, what questions do you have about that?
+
+My question is just kind of, I mean, I might be getting ahead of myself here, but is there a good time to use one or the other that we should be aware of? So there's, there's no set rule But the basic guideline is,
+
+is how you want your path used. So if I was giving, say I was giving you a path, all of your path to how to get to your exercises. And it happened to be inside of your user folder, and it's in your org, this path to test folder actually might be a great idea. So I wanted to tell you how to get here. And I take this path here. And I put it in river and you all try to use it, it's all going to fail for all of you. Because this username is different, that's absolute, but sometimes I may want that. Sometimes I may not be referring to something that has this username inside of it. But if we go back to here, maybe I want to tell you how to set up the Notes app for the past the notes tab. So I sent you this, this will work for every one of you. So I have some two things here, one where it's going to always be the same for everybody. So I want that when I have that I want to use an absolute path. But then I had the second case where it's gonna be different, slightly different for everybody. So for the set first case, so we go back to that not we have absolute out of the way. So go back to and I wanted to tell you how to get to that test folder we just built. And I say, Okay, well you do it by going to from your home directory, you go to this path. If everybody runs this in their home directory, and has been following along, it'll work for every one of you. Because it's relative to your home directory. And you all should have a development folder and now a test folder inside your home directory. So that it works. So it really depends on the use case. There's no that's the only rule is how do I want to use this
+
+Does that make sense?
+
+And that's definitely something that gets easier with just usage. These, this kind of that kind of thing will actually seem very second nature probably by the end of the week even comes about very quick for terminal for this usage.
+
+So other questions
+
+so however, how does everybody feel about absolute versus relative?
+
+Ah, I have a question. What does CD dot dot dash dot that do?
+
+You like this? No, this I'm checking out. Yeah. Yeah. So, that goes back from wherever for around like test folder. Yes, I happen to here. So I'm here and the first one says CD, it's a relative path. He says go to the parent folder. So development and then from development, go to the parent folder. So here, so so let's go to the parent of the parents folder, or the parents path for playing it really awkwardly, but I hope that's coming across what I'm
+
+what I mean.
+
+So anytime we have, we could type the same thing by typing
+
+this with a tilde in front of it could do the same thing.
+
+We can even include bomber dash into more dots, right?
+
+Yeah, we can't, we can't until we get to the root folder.
+
+So here if I do this, and let's do a pwd. I'm back in users or users, my user folder so users by lottery, so let me go back to where it was a stat
+
+and reposted it See the dot dot.
+
+And now I'm inside of the global Users folder, the system users for because I'm in the parents, parents parent, so I can go back, I get the route. Does that make sense? And clarifies it. It also will find be used in the middle of things. But we'll, we'll get to that a little later. We'll get major module four, we'll use it like that. But All right, let me get back to where? All right.
+
+Okay, so
+
+all right. So given a structure, we have these files here. We have a folder here, a, and inside of a, there's B inside of B there C. inside of a. There's also a D instead of D. There's e And we're starting out in ABC. So our current location
+
+is here. That's our starting point.
+
+And we want to get to here
+
+and we're going to do it with a cd command cd, right? So
+
+let's see.
+
+Let's go with J, what a command will be typed relative to get from here to here.
+
+Let's see the dot
+
+will see the DOD is going to refer to here.
+
+Or city double.cd dot dot. Yeah, that would work. So
+
+so for that.
+
+We're going to go for cd.so if we wanted to do this with an absolutely path carena what a absolute path we use. If we're here, we want to get to here.
+
+Um, so absolute, you would have to,
+
+you would all be starting at the same place.
+
+So wouldn't
+
+you just go back from the beginning and just type a
+
+slash a slash b?
+
+Yes. Okay, great. All right.
+
+So given the same starting point,
+
+so still starting here, because I only have one
+
+still starting here.
+
+Okay. And now we want to get here
+
+and then here.
+
+So I'll give somebody a chance to volunteer this time. So who'd like to give an answer to that relative? What relative path would
+
+we use?
+
+Would it be CD? dot dot slash dot, dot? I would
+
+work.
+
+And how about the absolute path?
+
+Would it be tilde a on that one? Ah,
+
+well, Tilda maybe, but we don't actually know if that's the home directory. So
+
+but you're, you're in the right.
+
+Right Path.
+
+CD, slash a.
+
+Yeah, I'm doing
+
+great. All right. So now we're here same starting point.
+
+But now We want to get from here
+
+to not to E f, we change that to here.
+
+So this should be d e.
+
+So what
+
+what relative path can be used
+
+in a
+
+toolkit is correct,
+
+I think should the AD AD would give us the correct absolute path. Okay, that is true. So a D is actually the answer to actually slash ad
+
+is the answer to the next question. So, gum
+
+but how can we do it relative
+
+Are you asking him specifically Are you just asking the class? I'm just
+
+asking the class for this one. Okay.
+
+Um, I think it would be dot dot slash, dot dot slash D slash he
+
+would do it. So and So let's look at how that how that works.
+
+So for that
+
+we're here
+
+and we want to get to here. So the first line is dot dot
+
+that's this first dot, dot.
+
+And then to get to the next one, we want to go back to the parent. So dot dot, the second dot, dot
+
+and then we want to go to D.
+
+So that is the Bob the D, and then t
+
+So that's how that works relative. So saying going go to the parents parent, and inside the parents parent works back into the B, A, D. And inside of that were expected to be similar to where you run this from, it's going to try to go up to, and then go down into a DNA file from that pad pack.
+
+So any questions on any of those?
+
+But what would happen if you were already in say B, and then you ran out less relative path?
+
+That's a great question. So let's take a look at what will happen then.
+
+So we have the first dot, dot, and we're here now.
+
+So it's going to go here.
+
+Then the second dot.is going to say, cool up here somewhere, whatever the parent of a is. We don't have one. So it's going to air. Now if there is a parent of a, we don't know if there is or not in this particular scenario, but we'll say they're not, we'll say as the root for the structure, then it would go to that parent and then try to go to Dini. Which would air it would air unless that parent had DNA inside of it.
+
+Does that make sense? Yeah.
+
+I guess I had a question.
+
+Yes. So for number five, can we just do CD tilde slash E.
+
+We could, if we knew that D was the user's directory. We don't know if there is a user directory on here or not in the structure. Others.
+
+Okay. All right. So then
+
+to kind of wrap up talking about bash.
+
+So there's some things, some tips about bash, and about shells. And we're going to come back or wait. We finished the commands. No, we didn't finish the commands. Nevermind, wrong slide. Let's go back here and finish the last couple of commands.
+
+Thought that felt like we're missing something.
+
+So now we have an idea passed. Now we can write some commands. So we have our new folder we created. But let's create a file inside of it.
+
+There's two ways we can create a file.
+
+One and the way all encourage you to do it. The easiest way on these systems is these Visual Studio code to do it.
+
+We can say code and then A new file name like our test
+
+dot txt.
+
+That opened up Visual Studio code. It opened on my other screen, I'll drag it over here.
+
+And I can edit it
+
+and then File Save.
+
+While it's going very slow.
+
+And then by looking out here, LS
+
+I just did that the wrong location that was moving around for me fix that. So it should be in the test folder. I'm going to code. Well, that's one way so I can see there's a code file out here that was created. Let's see, we saw it right test. txt. Here's the other way. We can use touch test dot txt. If I do LS so either one of those will create a file code, since you usually want to find the content is usually the easier one. Now code only works because we have Visual Studio Code installed, which is this visual tool that you saw pop up.
+
+It doesn't work on a system without that tool installed.
+
+So code
+
+file in.
+
+Well, hope what creates
+
+a file then opens it
+
+in Visual Studio,
+
+code
+
+or file,
+
+just it opens.
+
+Touch file name
+
+creates empty file
+
+and let's make these a little
+
+Some more room there.
+
+So I want to get to these on one
+
+slide here. All right.
+
+So we can create a file. Now, let's say we want to make a copy of the file.
+
+So we have a file here in our test folder.
+
+Let's make a new directory make was called test two or test folder two. And I want to copy this file into test folder two. I could say copy test dot txt space test folder to place test dot txt. Now I have a copy here and if I CD into test folder, two, I can save a copy there as well. It'll be the same file CP
+
+m, it's gonna be filename,
+
+original file or file, new location
+
+copies of file
+
+if I wanted to move the file
+
+so I go back where I'm at, I'm at test folder, see where I'm at. So then pwd I'm in test folder too. So I'll touch test two dot txt and I'm going to move this file back into my original test folder. MV moves a file. So my test two dot txt and I want to move it back one
+
+into the beam test dot txt.
+
+See it's no longer in this folder, but if I go back One to the parent, it's now there. So MV moves a file.
+
+So with the MV command, you're doing the name of the file name and then the path where you want to move it to. Exactly with the with the file name. I want it to be when it gets there.
+
+So move to something else kind of interesting.
+
+So something that's kind of a weird concept
+
+is that
+
+there is no real concept of renaming files and most file systems including this one. So there's no command to rename a file. The reason is, is when we rename a, when we rename a file, we change the files name. We are moving its position in the hierarchy. So we can do the same action but when we When we use a GUI, like finder, if we want to rename, we click on it and we get this nice rename option. But what we're really doing is moving it to a file with a different name. So, in Terminal if I wanted to name test two, to something like another test, I would move it test to, to another test. And now it's been renamed. So moves a file moves, I'm gonna say moves or renames a file. But the important differences there is no difference to the file system. renaming a file is just moving it to a new location. Seems kind of weird, but it's the way the file system thinks of the file thinks of the name. It's an identifier, a location, and it's like so it'd be for instance, if you had a house and let's say it was at 100 some street And the address changed because of some, for some reason it changed the 210 some street.
+
+The house didn't physically move did it.
+
+But to most registrations and most things, it's going to appear. If you went to the went to most businesses and said, I want to change my address from 170 to 210, you're going to have to basically do a move residence. It's the same idea house didn't change, the label changed, but the label referred to where the house was. So it effectively moved. And that's what the file says. That's what's going on with a rename. So MB also renames files. If I want to see inside of a file, so I'm going to see what's actually in this file. I can use cat.
+
+txt, and it's empty. There's nothing in it. So
+
+if I wanted to go back, go back Try find something you don't have to do this parts and you want the same files as I do. And see which one of these actions of file.
+
+So, here, this archetype files a file. So it's a cat T.
+
+I can see the contents of a file that prints out to the screen
+
+at the show, or print
+
+contents of a file screen, so close to getting it all in here.
+
+Need to get one more line
+
+All right. All right, that'll work.
+
+So now, the last thing we might want to do is delete a file
+
+or a folder.
+
+So I'm gonna go back to
+
+development.
+
+And let's say I want to delete my test file. I can do with RM for remove. Test txt, it's gone.
+
+So RM removes
+
+a file.
+
+Now there's a command called to remove a directory to Rm dir test folder to and I get this error directory, not empty
+
+but to put it here
+
+No work.
+
+I'll fix that later, but removes a file there's also a the RM dir command to remove a directory only if it's empty. I'll tell you why my entire career I've never used the RM dir directory command. I don't know why anyone would. It's kind of tedious because it only works after you empty the folder unless you want something to protect you from deleting a non empty folder. Maybe then. So RM can be used for folders too. So there's RM dash r means recursive that means delete yourself and everything inside of you. So if I do that for test folder, it's gone. It deleted that and all of its contents. So it has two arguments dash r
+
+dash r
+
+Remove all contents
+
+or folder with dash R.
+
+And there's also dash f force.
+
+Make it happen
+
+no matter what. And we need to talk about that.
+
+I'll clean that slide up after
+
+lecture. But so this is command RM dash R. And sometimes you get back this thing that says you can't delete it, you don't have permission or something's happening. If you had an F to it force, and then whatever you want to delete, it's going to be gone. So, when you if you look up how to delete a folder, you're probably going to find the command RM dash RF, folder name. It'll work I'm going to encourage you not to use it unless you know, unless you're sure you want to use it. Normally, RM dash Rs, all you need with the folder name. So the reason being is that the dash f will delete everything no matter what the operating system will delete itself if you tell it to. In fact, there used to be a really common thing on the internet, you still see it on occasion, where people would say, I don't know how to do this. What command Do I need to run to make this thing happen? Usually for something that was really simple that obviously that it was very nobody's user and you will see the answer come back have run this command.
+
+So fast slash is the root.
+
+What about leave that before I hit Enter.
+
+If you run that command, it will wipe out. The operating system will start deleting itself into it deletes its own delete command, it can't go any farther. It will completely kill your system. Now you can reinstall the operating system but don't do hardware damage. But I used to be a common prank internet prank. I've still seen it on occasion here and there. But a lot of people use command line there used to be the fears 10 years ago, so sounds like the puts your phone in the microwave, it'll instantly charge it. Exactly. It's that's the modern version of it. So my point is that that command can be dangerous. But when it's used, right, when you know what you're doing with it, it's really powerful. So when you see us RF, try to use our first and if you can't make sure you know what it's going to delete, because it's going to delete whatever you tell it to it's going to do exactly what you tell it to do, even if that's not what you really wanted to do. Right. So I know we're past an hour but one more slide. It's not much, it's just some tips, and then we'll take a break. And that's just three things I want to point out, because we've looked at all the command line stuff and where to come back and do an exercise with it. After we talked about get so three tips about the command line, or about terminal one is no news is good news. If you notice I was going through here, I didn't get any feedback on anything, except for one time this entire lecture, I got one piece of feedback right here directly was not empty. When there was a problem. Terminal commands in bash commands tend to take the idea of if they don't tell you there was a problem, you assume they work. So if they work, not, they don't do anything. They they appear to do nothing, they do something. But that's so you can just run a bunch of commands without having to read feedback, you just assume it's going to work. So there are some exceptions. When we get to get we'll see exceptions but Normally, we want, you want to just take it as I'm not getting feedback, everything's working. And if I do get feedback, you need to read it, because it's probably an error. Second, there's a history of all your commands running. You can't see my hand, unfortunately.
+
+But nope, don't work.
+
+But the arrow keys, if you press up arrow, it goes to every command I've typed since I opened this terminal, Down arrow goes the other way. So I can go back to a command that I wanted to do again, because these commands often get very long. And press enter, and it's run the command again. So you can scroll between it. The third one and probably the most useful is that auto cracks, not our cracks it autocompletes as you type, if you press tab.
+
+So here,
+
+I don't know where I want, but maybe I need I know I want to go to my home folder. I'm going to go As soon as I type enough letters that it can uniquely identify development, if I press tab, it will complete the word. And then I can do that for each step of the path. I know in my development folder, there's that test folder, T and I click the word. Now if it can't, if it's ambiguous, if there's two folders that started out with test, then it won't autocomplete into its unique into a can on the biggest determining what, what you need, what the next part is. So to be honest, the way I type on terminal almost all the time is I type one or two letters and I press tab, I basically keep one finger just pressing tab after every couple letters until it autocompletes and going the next one, it saves a lot of typing. But too It also gets rid of a lot of typos and there's you'll find throughout the code word typos are my biggest enemy, or one of them.
+
+So
+
+there's there's a couple tips for the by show.
+
+So before we break, what questions you have about what we just looked at
+
+Makes sense you feel like you can go use by show.
+
+Great. Alright, so let's take a break. We'll come back at 315. Let's come back at 325 and we'll take a look at get
+
+In time before we create, Oh, thank you, Michelle.
+
+What about it's gonna record what we'll find out?
+
+Sorry, should I stop recording? I'll let you do it.
+
+No, no, we'll find out. Okay.
+
+If it is I'll put them together into one and get it to you. You'll have access to it either way. Sorry, I forgot to record again and shoot it so but, so version control is this keeps these, this checkpoint of changes. The reason we want to do that is that now we have a bug we have a problem and go back in time and look at how it worked before we broke it. So one Teams can go
+
+can go
+
+back in time
+
+before bug occurs, bug occurred
+
+to compare to a working version. That means we can break something go back and say, What did I actually break? What changed? The second reason if we have this we have these checkpoints, we can share the checkpoints with our team members. So this can actually make it so that sharing of code can be made simpler. So sharing code among team members is simpler when we can just share changes in the checkpoint. So we won't share everything To say, here's the things that changed since last time I gave it to you. And the third and probably the most important for a team that we're going to be doing here. This allows team members to develop code in parallel
+
+and then merge it together, merge
+
+their code together, when complete.
+
+So, why this is important forget this is actually these three reasons are the reasons that gets became so heavily adopted. It's not the only version control out there. It's the most popular by far right now. There's some other other get based ones that are simpler to use, that are kind of coming up like Gradle and some of the other and a few others. But before get there's all these other version controls, systems that also exist, but you they work like a library, you checked out The core source code, which means you went and you got it, copy the source code. And while you had it, nobody else could use it. Just like in a library, if you go check out a book from the library, nobody else can read that book until you're done with it, you check it back in. And that worked great, you couldn't touch each other's code, you couldn't break things. Something we've run into a lot this corporate merge program problems you've never had. But then what happens is, somebody makes a bunch of changes, they check out a bunch of code, and they go on vacation. Now, nobody can work on the project. And that happens a lot. And it was frustrating. And it also sometimes you need to work in the same files and the same code in a team. So get allowed, allows for parallel development in virgin together. Something we'll run into, you're running to a lot this course was called mergers. That's where you change something and something else changed at the same time. And when you try to put it back together, get spits out a bunch of errors and say, I can't I don't know what to do here. You have to fix it and then tell me When you're done, and that's not errors, that's gits feature, that's actually the huge advancement get brought as this merging process. The other big advancement is these things called branches. Branches allows us to do the first thing allows a team or an individual to make changes without having to be afraid, breaking everything, we can just swap back and figure out what happened or disregard our changes. That was pretty revolutionary and get as well and why we use it. So
+
+it gives us this
+
+huge benefits of making it so once we commit, and we're going to talk about what commit means in a minute. Once we commit, it's almost impossible to lose our work, no matter what we do. It's not impossible, but it's very, it's very hard to do. Until we commit, we can lose it easily. So get give us get gives us developers the safety of the ability to work in teams better Also the safety of protecting our code in a very non intrusive way. And my favorite feature is that it gives us the freedom then to play with code to make changes without fear, because we can just back it out. Anytime we can do that, it means we can problem solve in a much more creative ways. That's what gets going to give us. So we're going to use it for all the code of how I'm going to give you code is you're going to get it from get repositories. That's how you're going to turn code back in, is you're going to push it to get repositories and we're shower matter of added greater score your exercises. They're going to get it by using get to pull it back out and take a look at it. So we're going to use get to communicate our code back and forth. When you work with pairs, you're going to use it to make changes together. When you work on your Capstone. You're going to use it for a group of people. To work all together in the same project. So we're gonna use getting on a daily basis. But before we do that we need to configure get. So everyone needs to follow along with this next part because it's we're going to set up, we're going to work together to set up get for everybody. So if something goes wrong, as we do this, please immediately reach out to Rochelle ri, and we'll help you solve it. So we're going to do set up two things forget the first thing we're going to do, we're going to set up your user and we're going to do this in Terminal. And it doesn't matter where you're at in Terminal doesn't matter what path you're on. This will work globally.
+
+So
+
+the first thing we're going to set up is we're going to configure your user and to do that, we're going to type this first command, where your name is your full name, it should be your first full, first and last name. In this is actually important for it to be your first line. Name. If you really don't want it to be no, it should be your first and last name. Your future employers are going to see this name, it's what they're going to refer to as how they're going to match it up in your resume when eventually, you as you use things, you check into repository here in your portfolio later. So you want it to be your name.
+
+So we're gonna make a get
+
+config in our dismissed config, but try again, config,
+
+dash dash space dash dash, global
+
+space, user dot name, space, and then a name, your name in quotes, double quotes. And you should not get that error. I got that error because I've already run the command. And I press enter without thinking about how I'll send these out here in river
+
+Brian, could you post them in the chat channel instead? Okay.
+
+Or is that? No,
+
+I can't. I was gonna put them in reverse. There's a permanent record of them. Oh, that's a good idea. They're in the slides. So you're right. Yeah.
+
+Actually, you just post it in the stretch. Yeah. Thank you.
+
+And the second one is
+
+the same with email.
+
+Oh, wait, I'm trying to get in the wrong chat
+
+today. I got it. Thank you. And then Zack was asking a question about his user name. What?
+
+Oh, you know this name here.
+
+If you already done this and change it to something else, that is something else
+
+on a different PC. Okay.
+
+So on this PC, go and make it your name. So your commits from this one, get this username. This is not the username you login with. This is the username, it's gonna be attached to your commits. So if you have a seven other PC, you can actually have two different names from two different PCs,
+
+which a lot of developers do just determine where they did work at.
+
+Right? Thank you. So for that one, it'll be get configure dice dice global user dot email. And this email address should be one that you want to use professionally, because again, it's going to be attached to your commits. And so for me, it might be in quotes, and you shouldn't get a bunch of stuff. I've misspelled something but
+
+you should just get no feedback at all.
+
+Just like that neurofeedback, so Everybody get through those two things,
+
+or is anybody still working? It's okay, if you are, I'm still working. Okay. We'll give you an
+
+invalid key for my email.
+
+So, if you got an invalid key, it's Is there any spaces or stock differences around the user email?
+
+that's usually where that will come from. Looks like I misspelled my email.
+
+Can we change the email later on, if we wanted to,
+
+actually, if you just run this command again, with another email, it'll just change it. The username you're supposed to, I think I've removed first but they email you can update
+
+I'm getting an error that hold on a second
+
+that it's not a get command, see, get help.
+
+If you're getting that command, just like I got it when I first typed the first one, almost always in this spelling and either get confused.
+
+Are you able to make this bigger by any chance like your zoom
+
+for the
+
+for the terminal and for where you're typing like the terminal and get configuration Are you able to make those bigger at all the font Well, I
+
+can make the font and turn it off.
+
+A little bigger.
+
+Okay, what about our zoom?
+
+All right, zoom itself. I don't think it has any. I think the zoom fonts since it's a image coming through would probably be something in the zoom settings for the display
+
+nicely. Okay,
+
+because it just displays my screen at my size.
+
+I see. So I'll probably have to make mine because I have a visual impairments I'll probably have to make mine
+
+a little bigger enough to figure that out.
+
+There is we can use I'll send you a message on where some tools are in the Mac that can help I think help with that.
+
+Okay, thank you.
+
+Brian, did they get a confirmation if they've done That's correctly they
+
+do not think they only get a message if there's a problem
+
+Shall we issue you're able to get past the error? Are you still
+
+almost done? Okay?
+
+No, we're doing this on on our machines. Now.
+
+Will we have to do this again if we if we get on to terminal for another machine forget or anything like that or Yes, this would be setup for what We're actually doing a setting up the get not setting up your account like you're getting a bucket account we're just setting up this machine as like you. Yeah, exactly. I'm telling this machine what settings to use when it works with like Bitbucket. Okay, thank you. Alright, so now we're going to go on to the next set of commands and for these are a little easier can actually you can actually cut and paste them. So I'll put these into the chat, and there are three of them.
+
+And
+
+thank you, I don't know if you saw that you shouldn't chat. There's a view option.
+
+I think it looks like you might be able to zoom it to a higher level
+
+in the chat itself, in the I think it's in the view at the top. I don't
+
+Yeah, and so I don't have it on my screen so I'm not sure where it is because you don't see it. I'm sharing my screen. Before we go here, it's like if you think if you go to the very top, this little section drops down, it says View Options. And there's a zoom ratio inside of that original size 150 200% 300%. I think that's what you would want.
+
+Thank you, James, for pointing it out.
+
+So, thank you. In the question, Jay, about how do you tell if it's done or not? This is something we'll have to get used to in Terminal. If you don't get feedback, we assume it happened. And it probably did. In fact, I can almost guarantee it did. It done what we told it to. There is a way and get not to look it up. If you really want to display what the settings are, but, like if you come into a machine, it's already been configured. There is a way to show the settings cloud online. Put my head. So the next set of commands are going to set up what's called the difference editor, we have problems that we have emerge, we have other issues, it's going to be the editor we use to make changes, not to our code, but to comments. And to see what differences are between two sets of code. We, by default, it uses this tool called VI, which is all text based. And it's you get in, you get stuck in it, and it can get hard to get out of you have to remember the commands to get out of it. And it's kind of hard to use. So we want to set it to use Visual Studio code, which is a much easier tool to use. So we have to run three commands for that to happen. And these there's no changes to so you can actually just cut and paste them into terminal. So I'll put each here in the chat. First one, and what this is doing is saying change the editor to run code dash w which is that code command we looked at already to criticize
+
+Here's the second one.
+
+The second one
+
+is telling it creep, called code. So when you need a difference tool, call the command code.
+
+And the third one,
+
+saying when you do that, here's the full thing we want to do when you use W and D, we want to send the local file name and this thing called a remote funding, these are placeholders. And so we can compare two files. And said, you can just cut and paste these one at a time into terminal pressing Enter after each one. And you should get no feedback at any time. It should just go to the next line. If it does, everything's good
+
+to go give everybody a moment to do that.
+
+Is there anybody still
+
+still working on those three?
+
+I am just about done here. Okay.
+
+That's great crackit when I give any feedback from the chat
+
+Okay, I'm done. Thank you.
+
+Alright, so now we haven't we have get set up. Now let's look at how
+
+we're going to use
+
+my mouse to go to the right screen here.
+
+So get itself.
+
+We're not going to use all the features again. It's not that they're not going to be available. We're just not going to be require them. So we're not going to use some of the more advanced features like branching. Some of them actually really powerful features, we're going to use kind of a basic usage is a little different, though than you'll use it in many environments. And we'll talk about where that difference is going to be. But the basic usage is going to be the same for any place you just get. It's all about these things called repositories, which are kind of like boxes of information.
+
+good works, but this idea that there's
+
+multiple repositories and each one is a copy of the same thing. So it's kind of if you had two warehouses, and they both had the same stock in them, and you're moving it between each other and you always want to be in sync, it'd be this that same kind of idea. So the way the workflow works is we start by getting new work, and we can do that in a few ways. Either we started in your project with get a knit which we want Using during the cohort, or we can copy that starting point of the project from a remote, which is someplace in the cloud like the bucket. It's on the internet. It's not on our local machine, some of our computer, it's someplace else. And we do that using clone. And we'll do that today with your repositories where we update that work using pole which gets changes. And then as we work, we make our changes. And then we walk through this process of saving our changes to this thing called the stage which is getting ready to be sent using add, then we put them in our local repository using commit and then we push them to the server which is going to take them from our local machine and put them into Bitbucket.
+
+So clone is going to get
+
+copy of a repository
+
+As a starting point,
+
+add is going to add changes to the stage. Commit is going to add changes to the local repository. Push is going to add changes or move changes, not move copy, copy changes to from the local repository to the remote repository
+
+to the server.
+
+always gonna copy changes
+
+from the remote repository
+
+to the local repository.
+
+And when we're talking about repositories worth talking about these two computers talking to each other, they both have a copy of your project. You have one that you're working on Your local local means your computer, and remote is just this one on the internet someplace back. When you when you push your change to the master repository or like, does it overwrite? What information is there on the repository? Or does it just add, like, say like, it has your like the original, and then it has your copy. It has closer to the second, it has the original with your copy. And those are called commits. So they're kind of like, those are those checkpoints we're talking about. So it creates a new checkpoint with your changes in it. And then makes that the newest one, kind of the main one. But there's still a history that somebody can go back and easily say I don't want to see those changes. I want to see what it was like before your changes and use it that way.
+
+And then status we'll look at today just tells us
+
+tells us the state of files.
+
+tells us the state
+
+files are in, in this process might be kind of awkwardly worded but I hope it makes sense tells us what state the files are in. so files as we work through these can have four distinct states for things that can be in.
+
+One that can be untracked, which means that
+
+a file, file or folder
+
+can be seen by get but
+
+it's not being tracked by get.
+
+This means that it's not part of get and that's what ad does. So modify means that a file, a tract file, notice the file has been changed file folder has been changed.
+
+But not staged.
+
+So staged is a file, a change
+
+has been
+
+added to added and committed is
+
+a change has been
+
+added to the local repository.
+
+Because there's a distinction between the stage and this local repository, there's the stage thing where we're just setting things out, and the local repository where we're actually paying attention to them. Once you commit a file, you won't, the chance of you losing those changes is very slim. Everything before that moment, even when you've added them, but not committed them, when they're just on the stage. It's very easy to lose. It's as easy Loser files of any other file gets not protecting it, but working with it anyway. So there's this mantra forget of commit early commit. Often that means that you should commit your work. So everything through this stage as soon as you can, once you start working on it, and then you should do that as much as you can. I would say that there's tolerances everybody has and how much work you're willing to lose. It's the first how much you commit is how much work are you willing to lose? That you could lose pretty much at any time. If you if you lost because of just a mistake, you made a typo you made or a simple problem. For a lot of people that might be 10 minutes of work or 10 lines of code, whatever that tolerance is for you. That's when you should be committing. If that tolerances a few hours, you're probably going to spend a lot of extra time fixing problems you didn't need to fix. Get could have solved for you. So you should be committing often I personally commit, every depends on what I'm doing. But if I'm working on like your exercises, I would do it every few. Every exercise on the ones will start. later tonight, maybe every five or six lines of code,
+
+or 10 lines of code or every time I solved a small problem.
+
+So I commit, if I find I haven't committed for half an hour, so then I commit no matter what. Because those are the things where you make a profit, you make a mistake, and you made a mistake. And there's a problem and you can't fix it, you need to back it out. That's that first level when you commit, so it should be often pushing to the server makes a backup of it. That should be everyone has a second tolerance where how much work you're willing to redo if you spill coffee on your laptop and destroy the hard drive, or it gets stolen out of your car or explodes into flames or whatever it happens to be. It everybody has a second tolerance of when there's a disaster with your laptop. How much work are you willing to redo? It's usually a lot higher than the first one doesn't have to be at that tolerance whenever you're thinking, you know what if I had to do two hours worth of work, that's too much, that's when you should be pushing. I would say you should always push at least once at the end of the day, moving on to the report remote repository, but many times today be better. Most teams I worked on require a daily push and prefer
+
+two or three pushes throughout the day.
+
+If I was doing most your exercises, I would push after every two or three exercises. Depending on the size of them, some are smaller than others, some are larger than others, I mean, and right. So those are the stages and kind of what the stages mean. The important thing here is add does not add it to get it adds it to the stage. Commit is the one where it makes us something that is protected. By getting part of source control. Alright.
+
+So the workflow,
+
+again is going to be
+
+add commit, pull. And if we're working with a team, you're going to pull get changes. And we're going to walk through doing that in a minute and merge, meaning just fix errors. And then I commit again and then push, that's going to be the workflow and that's the workflow you're going to have ADD commit, push, she let's just put these and let's make them stand out in some way.
+
+Let's put them in a different and blue text.
+
+These are going to be the three that you're going to do
+
+on a daily basis to submit your exercises and to protect your work while you're here.
+
+So
+
+before so that's the big To get and I went through that kind of quick because I'm assume that you've done the pre work. And you've already looked at quite a bit at this point. And I know a lot of you attended the get kind of pre cohort session as well. So there are questions, because Okay, if there are, if you didn't do that stuff, and you have questions, please ask. Okay. I just don't want to spend too much time duplicating something you already do. So that's how it works. The important part from this is this add, commit and push. But we're going to use it slightly differently than anything you've probably seen in the book. Because we need to have two repositories. And we're not the only place that does this. A lot of companies do it. But it's not part of the standard kind of use case. So our use case is going to look like this. We have two repositories. We're going to call one upstream, and we're going to call one origin. Actually, we're not Good is going to call one upstream and the other one origin. That's the kind of official term for these two. And it's going to come down to your repository in my repository or tech elevators repository. My repository type elevated repository is going to be blind copies of homework, it's going to be lecture code for the day that hasn't been filled out yet, or changes to it. So it's going to be stuff that you don't do you work on or use, but you your changes won't be there. So it's kind of like a fresh copy of everything. Your repository is going to be all of your changes to the stuff.
+
+And so your repository is going to be called origin.
+
+That's the default name for the base repository in get the tech elevated repository we're going to refer to as upstream, which is again, it's a common name for this type of use case where there's two repositories They kind of one in a position of having the clean copies of everything
+
+is called upstream.
+
+So you're going to work each day by doing a pull from upstream. So you're going to get a clean copy of projects upstream into your computer. You're going to work then here on your project. And then as you make changes, you're going to add it to the stage. And then periodically, you're going to commit it, I would actually say every time you add fine, you could do this, this these steps as many times as you want. It just kind of builds up boxes as it goes. You're gonna add it and commit to put in the stage and then your local repository. Then it's some point, at least once a day, but you can do it as much as you like. You're going to push it to origin, which is going to put so you're going to get this blind copy of like an exercise. From ups, Bitbucket, from the upstream repository, do your work, add committed and then push origin, which is your repository, which is where you're going to be saving your work. And it's also where, like Michelle will go to look at it when she scores it. And, but she'll only look at the last copy put in. So that means you can do this all you want into it scored, it doesn't matter how many times you have it, she doesn't care if there's 100 copies of it, she only looks at the top last one done. So you can take advantage of that to do basically keep a backup for yourself.
+
+So this is how we're going to use it here.
+
+Now we need to walk through setting this up and actually doing the commands to make this happen. So questions on how we're gonna use it. Okay.
+
+All right. So
+
+Let's
+
+set up your repositories. So the first thing you want to do is go to Bitbucket in a browser, we're going to need that. So we're going to need terminal
+
+so I'm going to get a bucket
+
+you're gonna look slightly different because you probably right now should have anything two repositories. You should have one that says Java blue materials and one with your name Java blue material. If you have other repositories you've added on your own, that's fine. But those are the two that you should have that I've added for you. So these are upstream in origin. The one with your name is origin, that's your repository. The one and you can write to it, you can make changes to it, we can see it too. And we can check it. Okay, that's where we can look at your progress and see what see your work. Java materials is my copy. So you have access to it to read it, which means you can get things from it, but you can't actually change things in it. So we're going to clone if you remember back from
+
+the process.
+
+It started here with a clone. So we're going to get this first copy. We're going to clone origin to your local machine. That's where we're going to start. So to do that, you want to click on
+
+the repository. or with your name. I'll just do now I had the repository with my name but I don't have the other one.
+
+Other people see it?
+
+I'm not saying either.
+
+Alright, let's
+
+just see one with my name and Java blue.
+
+Should you shove to theirs Will you see?
+
+Java blue?
+
+Okay, so, let's see.
+
+said you didn't see either. Let me check yours.
+
+Looks like you didn't accept the email invitation did I?
+
+Gotcha. Let me find out. I'll resend it this time sensitive so you should get another copy of it.
+
+That's probably the same for the other one as well.
+
+Actually for Java, blue materials, I'm guessing that there's two MB email invitations out of acept. And I'm guessing that's the same and that's not a big deal. I'm just resend them here. And to any of them that happen, it's up to them and they should show up for you.
+
+Click have to go log in to the other
+
+group. Yeah, so there's quite a few people It looks like they didn't stop them. Sup them so they're being reset now so you need a septic before you're going to see
+
+the Java blue material
+
+like everybody a minute to get to those.
+
+I need to get back to
+
+her I need to beat
+
+Describe what we're going to do.
+
+While people are getting these emails and accepting him.
+
+Hold on, Brian.
+
+Yes.
+
+Somebody has changed their email since enrolling at Tech elevator? And is it the emails going to their old email? What would you like them to do? Do they? Is it possible for you, for me to give you access? I'm sorry, are you saying?
+
+Yes, I can.
+
+So
+
+I can change it. But let's not change it. Now. We can change it later. Because there's a bunch of places I have to change it to keep it in sync. Otherwise, a bunch of stuff will fail throughout the code as we try adding things. So we can change it. So just send me your new email what you want to change and then we can I can work through it. There's some stuff that Maddie has to do changes for him, that I have to change as well. So we're just If you don't mind, just use your old one. If you've got access to it
+
+thank you for pointing out Rochelle. So
+
+okay, just send it to me if you could please and I'll change that. Yeah, work it out.
+
+That's what so is everybody have that? Or is everybody still waiting on or trying to get access to
+
+me I accepted the invites and I show three online I showed Java blue lecture notes, Java, blue material, and then my name Java blue material.
+
+Okay, good. That's good except for
+
+that lecture notes
+
+are good for access to that since that contains
+
+answers to exercises and other such things. Not yet they're not there. So, but they will throughout the court.
+
+I have lecture notes as well. Yeah, me to meet you. Thank you for letting me know.
+
+I want to give it to the whole class
+
+can leave it. That's, that's all right now.
+
+I don't want to burden you with having to know that all the answers are right there and
+
+oh, I did.
+
+Okay, should be gone now. All right.
+
+Okay, so everybody has both now.
+
+And replaced, you can follow along. Great.
+
+Okay, so you want to go into your repository, that's where we're going to start. So I'm just going to use issues here since it's on top and you want to go into to warm up your name, and the first thing we're going to do is clone that repository.
+
+So to do that there's a button right here.
+
+See it's copy when you go over it. We're going to click that button. And it's going to copy this address to the clipboard. And then we need to go out to terminal. I'll give everybody a moment just to get caught up to that.
+
+Yeah, so if so on top, I see somebody said they got a warning or cloning enter repository. That is correct. All right. So now we have that in the clip, we're going to go to terminal We want to put it all in the same location. So I want to CD to home directory slash development. And then in the development folder here, so when you're in your development folder, paste that command and press Enter. And it's going to clone the repository and get that error warning, you appear to clone an empty repository, which is true, you do have an empty repository. We have
+
+to slash F or something to force it to.
+
+No,
+
+there's nothing in it right now. So
+
+should just that should scare everybody a moment.
+
+I'm getting password. It's asking for
+
+a password. It may ask for your bucket user ID or password. So that's the same one you logged into Bitbucket, within the browser.
+
+It's not letting me type in the tournament.
+
+It is it's just not showing you the characters. Oh,
+
+yeah, that's how terminal does passwords.
+
+Brian, yes,
+
+logging on my account. I don't see anything with my name on there so I can cause and paste that code on there.
+
+So what do you see on
+
+the only it's a Java blue material that's the only folder.
+
+Okay, so I'll have to go
+
+send the
+
+invitation
+
+It's not taking my password but I'm not sure why.
+
+So do you have it set up through Google authentication with the bucket?
+
+Thank
+
+you can always request like you could go to Bitbucket and log out and then log back in and say forgot password and then you can go through the process of resetting your password. If that would be the case, or trying again right now in Terminal just see if we can get it to right Brian?
+
+Yes, yeah. Okay.
+
+Then he might pronouncing your name correctly.
+
+Okay, your Shabbat invitation your email
+
+to us once you accept that you should see your repository
+
+When can I see that code again? I'm putting in Terminal and you're,
+
+you're gonna cut and paste it from
+
+right from my repository. Yes.
+
+Yours will be different than mine.
+
+Well, not that but Got it. Got it.
+
+So there's three
+
+key. He shouldn't hinder your career if you're having problems though. Is anybody else having issues?
+
+I'm putting my password now.
+
+Okay, so your password. Did you get past the password?
+
+No, I reset it. It's time to reset it. It's set. I'm using the same password. So I'm not sure what's the problem. I put it in a different one, but it's not taking.
+
+Okay. So Jessie, you Sydney password, it's the same password you use to log in at the web at the website. You'll see no, no error. You'll see no feedback. As you type it, you just type it in. If you haven't set up through Google OAuth, then you may have to go and reset your password to a regular password before you can use it. But
+
+okay, then I got the message you have appeared to clone and empty that's where we should be at right?
+
+That's where it should be great. Not sure
+
+why I'm still having this problem. All right. Okay,
+
+did it ask for? So when you look at the line, they get clone the HTTPS part where it has like my name right here is your username correct?
+
+It'll be on your, your terminal where you pasted it. Yep.
+
+Okay, so if the username is correct, the only thing that can be is the password.
+
+There's it's just a password prompt. So that's
+
+so have you tried No, you reset the password already, but you tried logging out have tried logging out in the browser. And using the same password sees the difference between the two browse the browser in the terminal.
+
+You can't cut and paste that unfortunately.
+
+Now I'm I'm having a problem where I'm trying to select my, my folder are whatever for of development and when I try to select it it's saying no such file or directory found or whatever. But I do have one I'm staring right at it. Okay, so there's something wrong in your path. So anything can cause that. So
+
+if you if you're in development now is that we right now? Do a pwd and let's see where you're at in Terminal
+
+users and me. Okay, so let's do CD, and just type a letter D, and press enter.
+
+Capital letter D, I should say
+
+Tap the Enter tab. I'm sorry.
+
+It should auto fill out.
+
+Only shows, documents and downloads.
+
+case you're not inside your user for them. So that's why so type cd space in the tota and press enter. You're inside the Users folder but not your use. Not the C keys for
+
+good, Brian. Thank you.
+
+Oh, you're great.
+
+Cleaning geek Did you? Is it working for you do sorry, were you talking about the password? I was looking for the folder. You just send it to me. So they're showing my passwords a little key on there. So what should I do right now? Just talking typing your password, the same one using the browser, you won't see it typing and then just press Enter. And
+
+so is there anybody else that's not?
+
+Does that did not get to the yo period decoding enter repository. Great.
+
+This is normal how this goes guys.
+
+This but for the most part,
+
+my thing is still not finding my development folder
+
+popped up, typed exactly what you said. And then it popped up. I tried to do the CD D tab that popped up desktop documents downloads. You have desktop documents, downloads.
+
+You don't want to have so you should be
+
+you don't have development in that list
+
+it's not
+
+one second
+
+because we were using earlier so no it's not
+
+no I don't
+
+okay so
+
+yet um, yet it shows it on the sidebar on my Finder. Well that'll, that'll that will show there even if it's been removed. That means it was there at one point. My my guess is that it's been got deleted at some point. So in Finder, let's see what finder says. Go to finder and click on Click on the development okay. And
+
+see where does it open up something? No, it's empty.
+
+So it doesn't take you some time it says programs and workspace.
+
+No.
+
+Okay, so
+
+see how can we fix this
+
+you click on your name, you don't see development. This make a folder called development. Okay. Inside the like I have like like you have right above your name. There I have that folder that says development. here when you click here on your name, your C keys folder. Over here in this list, you should have a folder called development. You won't have all these other folders you should have some a few others be step one called development if not make one with a capital D, so that the other paths relative paths we use later in the current work. Okay, I know have that. Okay, so now in Terminal change into that and run that, and paste that command to clone it.
+
+Now won't cause you any problems until we get to Module Three, but it's an easy fix. Let me get there.
+
+Okay, now it's working. Okay, great. Okay.
+
+So everybody now has it. Everybody's got to the part that says that it's not an empty directory. And if not, you'd need to let us know because if you don't, you won't be able to do your exercises or follow along and lecture.
+
+mindset.
+
+That destination path is not an empty directory.
+
+That's it isn't crack.
+
+That's should say
+
+it should ask for a password. It may or may not. Mine's asking for a password. Is that going to do anything? You have to type in your Bitbucket password.
+
+It will not give any feedback you should type it. Okay.
+
+Try to remember that off the top of my head.
+
+Jay, I think in your case you did the clone twice, right? For the same thing. Did you try to do it again a second time you weren't sure if it was correct. So I think that that was why it said it already existed.
+
+Okay.
+
+If you do an ls from where you're at right now, J and you can see the directory, your name, Java Blige materials, then you're good to
+
+go. I didn't catch that. Thank you, Michelle.
+
+I'm sorry. I I think it was set. So if it says that you have cloned an empty repository that is correct.
+
+That is correct.
+
+It does not come after the I got the same thing that Jay put in the chat with the county objects, compressing objects, unpacking objects.
+
+I'm sorry, that's that's why it's not for me. do an ls. We're at right now. And you should see a folder. That is your Justin wood, Java blue materials. If you see that folder, then everything's fine. Cool. Thank you.
+
+So everybody has Oh, I don't think I do. Okay. I'm not sure what I'm doing wrong. All right. So where are you at right now? I just did the LSI. It says development. But
+
+CD, says development and do a CD into development.
+
+And then do the lesson here and see if it's it says no such file again but I went to the Finder and it was in there. Okay, so do a pwd, maybe you're not where you believe you're in Terminal
+
+users, users. Okay, so type cd space tota
+
+forward slash development
+
+and then press Enter.
+
+And then if you do an ls after that you should see your folder if it's in Finder in that location
+
+yeah
+
+Still Yeah. But you see a folder though that's, I see all my folders, but development there. No, you should see a folder called. That's Benjamin kept Java blue materials right now. Oh
+
+no, I don't see it.
+
+Alright, so type cd space development
+
+and then press enter
+
+and then do an ls in this directory.
+
+You see it now? I don't see it.
+
+Okay, let's so do pwd and post and copy the path that it shows you in the chat. Please
+
+You want me to just post a pw the output the output it gives you so when you do a pwd it should give you an output like this. Just copy and paste that you can copy it by selecting it and Command C, and then paste with Command V into the chat so I can see where you're at. Yeah.
+
+That just did the wrong thing. Okay, why don't you I'm gonna go ahead and
+
+stop sharing. If you can share your screen please. So we can take a look at it. You can just at the bottom of the screen just yeah.
+
+So you want to see my terminal?
+
+Yep, we can start there are just terminals fine.
+
+It's not Sharon, could you? I thought I did.
+
+I guess I don't know how to hit share screen but
+
+the easiest way if you click the up arrow right beside share screen
+
+actually now just click share screen. Another box should come up that ask you which desktop or what thing you want to share. show a list of several things. And yeah,
+
+perfect. All right. So
+
+okay, so let's
+
+so let's back out that command that's in there right now. Doesn't look like you're in the right place.
+
+Okay now do a
+
+pwd. Well, you already did that right above I see that. So now CD actually has to LS first, see where you're at.
+
+Okay, since there's a development, so type cd,
+
+space, capital D,
+
+E, lowercase EV, and press tab.
+
+Now press Enter.
+
+Okay, so now I do an ls
+
+okay. So, now paste that command you had or you can use.
+
+So the one from
+
+Okay, now press enter.
+
+Okay. Now you might want to stop your share.
+
+And
+
+actually, you can't see the password anyways, but
+
+now go ahead and type in your password and
+
+press enter.
+
+Okay, I think I did it. Okay. All right, so everyone else's at that point.
+
+Okay, great. So now we cannot now we have the first part setup. Thank you
+
+for the learning experience, right? We gotta be in the right folder. In order to run these commands, always check that we can all learn from that.
+
+Alright, so I'm
+
+sorry, I'm trying to get my stuff back in where it needs.
+
+And what Michelle said is the biggest problem, you'll run into being in the right folder for each of these commands, if you run into the wrong folders, they don't work. And that'll come up for just about everybody, probably multiple times. And that's normal. So the next thing we need to do is set up we have origin setup now. But there's nothing in origin is empty. So what we need to do now is set up upstream. upstream is a little easier because it's the same command for everybody. We just have to make sure we're running in the right place. So everybody should be in a place right now where if you type ls, I'm not because I changed around. If you type ls, you should see this folder be your name. So we need to change directory into that folder. So to be your name, then probably material and then when you do pwd, you should see that you're in development. Sorry. You're Name Java blue material
+
+is everybody there?
+
+One second. That's what we need to type Java blue material after our name.
+
+If you just start typing your name and press tab, it should auto populate everything for you.
+
+Okay and then
+
+that after you do the CD into your folder if you do a pwd you should see that you're in users, your username, so a Murray development and then the HMR a Java blue materials for That's what should be listed when you type pwd actually almost the same as what I had since I, by coincidence, use your folder since it was on top that's my
+
+pwd just that okay it says users Amory
+
+and then it just says a marine.
+
+Stops a user's a Marie.
+
+Yes, as you there's a Marie and then
+
+then type cd space and then a capital D V and press tab and it should fill out development.
+
+Mm hmm.
+
+And then press enter the change in development.
+
+Okay, and it says, Yeah, development Amory.
+
+Okay, so do an ls now. And let's see, you should see your your name is Keisha Marie Java blue materials listed
+
+as just the workspace. says Tc HSIR development. Amory?
+
+Yes. I don't see the whole dollar bill materials. I don't see that. Okay.
+
+When I typed in LS earlier, it said no such file or dictionary exists, you know, our dictionary
+
+depends on where you're typing where you type the command at. So now we're in this folder, we're seeing the LS for this folder. So you must have been, so let's go to let's go to find your machine. So we can look it might be easier than terminal for this.
+
+Okay?
+
+And
+
+thinking that your
+
+repository folder is in the wrong location.
+
+Okay, so where do you want me to go from finder, so
+
+click on your name Over here, under favorites. Okay. And in the list that appears here, do you see the your name? issue? Peter Murray Java blue materials folder? I do. Okay. So right click on that folder and choose Copy. Okay. And now go into development
+
+and choose Paste.
+
+Okay, so we want to paste that into that folder or you can just drag and drop it to.
+
+Okay.
+
+Okay, so then if I go to development, it'll be here right should be there.
+
+There it is. Okay. Okay.
+
+So now back in Terminal. You should now be able to CD and if you just type like a why the first couple letters, your name and then press tab. It'll autofill and you can Okay. All right. So now everybody should be in their folder. Yep. Can you do you have a?
+
+Did you have an issue?
+
+All right. So um, so we're going to set up upstream, the second piece of this. But it's the same for everybody. So I'm going to use just cut and paste the command. So here's the command. And the command is going to be get remote add upstream
+
+and then
+
+keeps getting me.
+
+And then this address, so if you did copy it with Ctrl V, or right click copy and just paste it in the terminal and press enter. Then that's all I should have to do.
+
+Just copy here
+
+paste here
+
+and you should get no feedback from it should just come to the next line.
+
+Thumbs up when you're good guys
+
+thanks
+
+okay unless you're embarrassed of your thumbs like me, cuz they're useless they're double jointed.
+
+Okay, so I think I was everybody
+
+alright so now, now the next step is now we have to pull from upstream. So the Pull from upstream. That means we're going to tell it to go get the today's changes. So today's exercises essentially and pull them down into your repository. You're going to do this every morning basically once a day, preferably before class. Each morning before lectures in, it's going to give you the new laptop, that day's lecture material, it's going to give you exercises for the day, all the materials for the day. So that command is going to be get
+
+poll
+
+upstream. So we're telling you which remote we want to pull from. We created that remote not last command, and then master and the root or base branch. The default branch is called master on get. So we're telling it we want the default branch once we tell it the remote upstream, we have to tell it the branch name, even though we're not using branching here.
+
+So if you press that
+
+you should see something like that. Not look 100% exactly the same, it should look pretty similar. And then if you do an ls after that, you should see module one listed.
+
+You brilliant, Brian. I
+
+don't really understand like the upstream convention.
+
+Like, why are we doing it this way rather than like dispersing? I mean, I understand it's easiest for you but is this like something that you would be doing doing in like a normal setting? Like why is the upstream used upstream is used in any setting where you have in software, it's what's called a gold master. So it's a copy. That is kind of the source of truth of the starting point for everybody. But you don't want anyone else to be able to change it. You will need to control that source of truth that beginning point without having your other Workers changing it.
+
+So
+
+the, in this case, that's what we have, we have these blank exercises we need to distribute. So you pull it from that, and then you push to your own repository. So it is used in workplaces a lot where there is a starting point copied, like when there's old versions, the old versions have come from upstream, you do your work and then you push the origin for the next version is going to go out the door. That's a common kind of way. So we're mimicking that. Okay, got it. Thank you. Okay.
+
+sarana know your terminal again to see so I can see what we should have got
+
+this portion right here.
+
+Okay now I didn't get anything with remote anything in it No.
+
+What did you get
+
+that usage get remote add that then
+
+it's like a whole bunch of
+
+usage get remote add that sounds like there was a problem with the get remote add command that should have gotten given no feedback it showed us went to the next line.
+
+Kathy that code again
+
+it's in chat.
+
+Oh you can't see my chat box can you I can push it again. Yeah
+
+I forgot you can't see my zoom controls.
+
+So I'm getting a it's coming up as remote forbidden. And then it says I'm unable to access it.
+
+Image check but I'm guessing three
+
+and once we type that in we were supposed to type in get pull upstream master. Yes.
+
+You didn't accept the invitation from the in your email.
+
+Oh, okay. They're super students.
+
+I'm like, oh, there's two of them. Gotcha.
+
+Yeah, I can resend this one. Make sure you have the right one if you want more.
+
+Okay, thank you. I appreciate it.
+
+Yeah, I still didn't get it. I don't know.
+
+What did you get?
+
+Oh my God, please make sure you have the correct account right access right.
+
+I'm gonna have you share your screen because I'm not sure what her me
+
+sharing Sure, yeah.
+
+I hit share screen and then
+
+can you see that
+
+again? All right. So good port stream master.
+
+So type get
+
+remote
+
+station space station v as in Victor
+
+dash space space in the dash.
+
+No, no, no space after the dash then V is in Victor. Press Enter please, just just one
+
+upstream
+
+fetch upstream. That's correct. Okay, so I'm
+
+gonna try to copy that code again and then
+
+just type it as that looks right. So type is get
+
+space, pull
+
+an upstream space upstream
+
+and then space master
+
+Press Center
+
+TC boss What's wrong with that?
+
+Wait. All right. So, um, press
+
+the up arrow please
+
+press it again
+
+and again please. And one more time another time. Okay right there. Okay, so
+
+press the backspace to take that
+
+space out and press enter. You're getting an error though. Good. Okay, so type get
+
+up Space remote,
+
+space RM for remove space upstream.
+
+Press Enter
+
+and now press the up arrow think twice and then press Enter. Now trying to get pull upstream master
+
+Okay, there it's working, there was a space an extra space in the naming.
+
+Okay, and how do I stop sharing my screen?
+
+If you go to at the top there should be a button that says stop sharing, or actually I can do it too. there I'll just provide your share and you won't have to.
+
+Thank you. Alright. Alright, so everybody is
+
+at that point. point now. So at this point, once you have that set
+
+do an ls you should see the module one.
+
+Okay. So
+
+how's it working arbitrary setup.
+
+We have the material so every day
+
+you're going to get your new materials by coming to this folder. So you're going to CD development, your name Java with materials, you have to run these commands all the commands we talked about a run in that folder. If you run them in the child folders, like the module one folder, your project folders, you're going to get different results because the way it works is from the folder and down. So you always want to be in that top folder. So you want to go in there run get pull upstream master to get your new materials from upstream. So the things I publish each night and then when you, you're going to do your work. And as you work, you're going to run three commands to man's to kind of build out your stage in your local repository. You're going to run get add dash a and the dash eight add the Add is going to tell it to add all the files all your changes. And that will work if you're running it from your Java blue materials for your name dropping materials. So get add dash a is going out all your changes. So if you think about this as like a shipping company, what that's doing is you're putting them in a box, you're taking the stuff you want to ship you're boxing it up and die Shay says do that with all of it. Then you run get commit dash m in a comment is going to allow you to put a comment what's called a commit comment. And that comment should be something like turning in homework Or, you know, exercises three and four, something that identifies what's in this commit. When you go into the workplace, those comments actually get can get quite complicated. But for here, just something that identifies whether you're commit, even if it's something simple, that's okay. But keep it professional because anyone who looks at your repositories can see this, which means if you put it in your portfolio, a future employer can go and see where your comments were. So if it says, comment, one, they're probably not going to care too much at the beginning of the cohort. But if you put something really unprofessional in there, they might. So keep it professional. And that's going to be like if you took those boxes, the box and you put it on a truck. So you can repeat that process just like when you do in shipping over and over again, you can pack up as many boxes as you want. You can put as many of them one on the truck.
+
+And then
+
+at least once so you should repeat that because the second you get it into that commit to your local repository. Then your code is safe, it's under kind of under gets protection.
+
+So
+
+then, at least once a day, but preferably more, you want to run the command get pull upstream Master, and that's going to push it to Bitbucket. That's going to be what actually submits it. And that would be like telling the truck to go make the delivery. So it has all the boxes on it that you've done with the commit. They've been packed with ADD, and now push tells it to go make the delivery. So that final step, all three steps are required to submit anything. That so if you forget to add and you commit, you'll probably not tell you any there's any problems with it because there's not. There's just nothing there. The same way if you push and while I really messed up here The most important thing in the whole presentation I messed up, get push.
+
+Oh, I was like, is cool gonna do the same thing I was thinking the same thing. Sorry about that
+
+I really thought was probably the most important line in the entire tire afternoon and I thought a sabotage is Brian.
+
+So
+
+it's a learning opportunity, okay.
+
+Double check everything, even your teachers
+
+especially. So get push origin master is going to put it tough. It does take everything you changed him to commit and put it in that bucket repository your copy the Bitbucket repository, which is where Rochelle and everyone can see it and score.
+
+Alright, I would also throw out there, Brian, for you guys on your end to after you make that push and you want to make sure I'm going to say See it, go to Bitbucket. org look and see if it's in the repository, you can click and see what files are there up in space for me to be able to pull down because people will say I pushed it, but it's not there for me unless it's up there. So Alright. So
+
+So this would be the workflow you have every day in the slides the same thing we just went over. So you want to refer to it always runs in your folder in your root folder. So in development, your name probably materials, no other folders should be running. You get new work, you start today by running this command to get the materials. You do your work, you complete your exercises and then you run these two commands as you go throughout the day to add your work to the stage and then commit it to put it in the box, get it ready for shipping. And then when you want to submit or just when you want to Backing up in a very secure way, you run this command to do that. And you can do this as many times as you want, when we show scores will only see the last one you did. So if you have a bunch there for backup purposes, it won't harm anything, in fact, would prefer to see that because then you're less likely to lose work.
+
+Okay. So any questions on on that?
+
+All right, so we're all set up now.
+
+There was one more thing we have to do. I know it's
+
+almost five. It's been a long day. I know that but then you could just start on your exercises because yes, there's exercises tonight. So I was thinking we could do the first couple. And I think once you have the pattern down, that should put you in a place to
+
+get through them pretty easily.
+
+So how are you going to work on them? So every night's exercise, tonight's exercise is a little different. We don't have you're not they're not programming exercises. You're going to Do some of these terminal commands we looked at. So, for tonight's the way you're working on them, it's gonna be a little different than you will on future ones. But they all have one thing in common. They have a readme file that will tell you
+
+how, what to do.
+
+So I'm going to go here
+
+and I'm actually going to do in Terminal because that's the way I should be doing it. So in your exercises folder, and I'm actually going to go back and I need it don't follow along with this. Next up, this is something that I need to do that you don't. Okay. So, you're going to go into your name Java blue materials. inside of that your module one, you're going to CD into module one
+
+inside of that You're going to have
+
+the 01 reduction or tolls, I'm going to CD into that.
+
+Inside that you're gonna have four folders. Actually, let me do an ls dash L. So we can see all four folders. These are, there is a student lecture, which is going to be your lecture code. That's the code that you should be changing. We don't need to worry about that today. There was no lecture code. Lecture final will be code that I changed during lecture. And that way we don't we you can have two separate copies, you can have your notes and yours and I can do what I wouldn't mind and you can have two copies to compare and we won't conflict and get then there's two more folders. There's two two exercises. These are your copies of exercises. This is where you should be working. Then there's instructor. instructor is where all work if we do any exercises in class. So you want to go into CD into student exercises. And we look at it. There's three files in here. There's a readme, playground folder tree and a verify.sh. So to read the readme, there's two ways we can do it. We can either go to Bitbucket and actually see it and read it there. Or we can code
+
+the file name,
+
+which is what I'm going to do.
+
+And I'll move terminal back out here so you can see it
+
+both on the screen, and we'll open it up in
+
+Visual Studio code.
+
+And then if you click this icon right here,
+
+it does preview mode, maybe should be preview mode.
+
+It's taking a long time.
+
+Which will show a rendered copy of the empty file. The other option would be
+
+if we got to the bucket
+
+bucket here
+
+and
+
+you go to these folders in your folder, I'm going to go to the one in Java, the main Java blue materials, because that's my copy but you go in your individual folder, actually for the readme, it doesn't matter. So module one, the tools, standard exercises. Then you can see the readme rendered here as well. There's two ways to see it, whichever is easiest for you. And what it's going to do is going to tell you a couple things, one, how it's going to be evaluated. So this is gonna be based on file,
+
+adding and removing and changing files and directories.
+
+And then
+
+it's going to there's a script tells you that you can run, and we'll walk through running that, that will tell you if you're doing it properly. If so, there are tests that test your work. There's some tips and tricks you might want to do. Telling you should reference you can reference finder, but you can't use it to create these because if you do this, there's some final work that gets submitted that won't actually be populated. And then there's steps. So the steps are, you're going to run the test cases. And then you're going to apply commands. It's going to create this in a particular location and it tells you exactly
+
+What to create, and then what it should look like at the end.
+
+So let's run the test cases and do the first few
+
+least the first couple of them. So to run the test cases, it says to run them by run, verify. Hey, Brian.
+
+Yes. Can we pause for a second? Sure. I have someone that's struggling to
+
+Java blue materials up. Okay.
+
+Can you show how you got back to Hey, can you share how you got to that in Bitbucket?
+
+For the in the bucket? Yeah. So on your folder.
+
+You should have Java libertarian or your name Java materials. It doesn't matter for this. Which one?
+
+Hey, so I think we need to see someone scream with you is that Okay, I'm helping.
+
+Yeah. Yes. Give me a moment to show kind of showing you sure where this is at and then I'll unshare so you can
+
+have them Sure.
+
+Okay, Java blue material.
+
+And then if you open that up, you'll see
+
+module one,
+
+module one, and that in this now is just the folder structure. So if you go on module one, you'll see the 01
+
+module one, and then introduction to tolls, and then stupid exercises. And when you open that folder, it has the readme and it should render it down below.
+
+Thank you. All right now on share my screen
+
+and shop you can have them share it.
+
+Okay, would you mind sharing your screen please?
+
+So when I typed in LS, I didn't see the model one, there's only readme.md file there.
+
+So um
+
+let's do pwd and see where you're at.
+
+Okay, so do LS here now.
+
+So do
+
+that get
+
+remote dash,
+
+F G H v as in Victor looks right.
+
+So let's do
+
+get
+
+pull upstream master.
+
+Let's see what it says. Present.
+
+Okay, so press the up arrow
+
+and
+
+look up a command. I can't remember the command for merging. I think it's just
+
+So at the end of that,
+
+going to type two dashes
+
+in Mako, you can put in a piece in the chatbox like I am I but it's going to put the two dashes together. So I'll do that and related
+
+history's
+
+so you're gonna put that at the end so you're gonna press
+
+So, back back in Terminal
+
+Sorry, sorry
+
+I'm sorry I'm so sorry.
+
+So type the get press up arrow But don't want that command by itself. It's going to be get coal upstream master and then that will come at the end. Oh, cool.
+
+P upstream master.
+
+Okay now space and then the dash dash.
+
+Now press Enter
+
+actually close close
+
+this file down when you're done
+
+just said gases hit the close.
+
+Close it. Yes please close okay
+
+and now do an ls cos
+
+Okay, I'm gonna have it. That's fine. Just go into the module one. So now you should be able to see the module one. Okay.
+
+Okay, I'm sorry, I didn't see how to get module one in my terminal either.
+
+So it's, it's in the same location as in Bitbucket. And we're going to do it with I can't share at the moment, but actually I should be able to. I'm going to take the sharing back now, since
+
+we got that problem solved.
+
+So it's going to be in the same location as in Bitbucket, you're going to take that location out manually. So it's going to be from your development folder. It's going to be CD To your Java blue development folder, module one, Introduction to tools, student exercises, exercise, and you could do those one level at a time. Does that make sense?
+
+Let me see. Where are you on your terminal?
+
+Right? This is the path you're going to yours.
+
+Your name Java blue materials.
+
+Okay, see?
+
+No, I'm not here.
+
+So where are you Where are you at? be doing pwd What does it show you
+
+shows me I'm in w materials and then just a Marie.
+
+But are you in Java materials or are you sure Marie Java materials
+
+why shimmery Java boom zero okay
+
+so do an ls. What do you see?
+
+I shimmery material.
+
+So
+
+do a pwd and what's the
+
+Java materials? I show my Java material?
+
+And we do an ls you see the same thing?
+
+Mm hmm.
+
+Okay. See, I'm one inside of the other.
+
+can we fix this?
+
+Okay, so do a CD into the next level down.
+
+Okay. And now do an ls, you should see module one.
+
+Let's just see what we're
+
+doing after you CD. Now you should do LS and see module one.
+
+Okay, I do I see
+
+CD in the module one.
+
+Yeah, I see the module one Uh, huh.
+
+Do a command change directory into module one, please.
+
+Don't do that. Again, CD.
+
+And space module one.
+
+Module don't need to put dashes.
+
+There's a match what's
+
+okay?
+
+And then CD if you just type 01 and press tab, it'll auto.
+
+After I type cd module, dash One, two, I hit Enter. Yes, you don't go. Okay.
+
+Then CD
+
+into a space and then 01 and press tab.
+
+When I do CD there are one that doesn't let me tab.
+
+So press do an ls right now.
+
+Okay. As it
+
+doesn't say anything.
+
+Something's, something's wrong. All right.
+
+I need to see this as well.
+
+Go ahead and share your screen please.
+
+This would normally be happening in the classroom where you'd be huddled up behind your machine trying to figure it out. So it's all good.
+
+I'm not seeing the shares. Oh, there we go.
+
+So press
+
+a single quote.
+
+single quote
+
+and then press enter.
+
+Okay, so now, type cd, M,
+
+od maybe in the press tab.
+
+Press, go back then
+
+and type it out and go take out the CD as well and do LS
+
+Guess you're not in your directory. So type cd
+
+space, capital D, EV, press tab. Now press Enter. I'll do LS. Now I'll type cd and a, a should be enough and press tab
+
+and then press enter. do an ls
+
+CD, m should be enough, then press tab and press Enter. Now let's do an ls to Aradan. Okay, so cd 01
+
+and press tab
+
+and continue. Go and press enter. Let's do an ls
+
+and
+
+press Enter please.
+
+And now to CD
+
+student
+
+press tab. And yesterday a dice exercises we want. So just the letter enough should be enough to. Yeah.
+
+Okay. And then that's where you need to be.
+
+Thank you so much. Sorry about that.
+
+You're fine. Let me
+
+switch back. Stop. Sure here. Alright.
+
+So now everyone's here, and we can see how we can see the directions and Bitbucket in the readme. The first thing we want to do is we want to run these test cases, because that's going to tell us we can work with the test cases then, by making a change and then verifying right away, it happens and the test cases will tell exactly what score you're going to get. Because it's all about percentages of the problem solved. So the percentage of the test case is solved is, is the score. So to run that, it was In the readme was sh, verify sh. And this has to be run in the student exercise directory. If we do an ls it has to have this verify sh file in it. So sh, verify sh and it should look like this. or something's very similar.
+
+No such file or dictionary
+
+or directory say.
+
+So, do an ls, cuz we just ran that directory and it was
+
+right.
+
+Okay. And you should see verified us.sh enter. Yes I do. Okay. So type sh in space, and then just the letter V should be enough in press tab. Okay, now, press Enter.
+
+Okay, there it is. Okay.
+
+So what this is what you're looking at are tests. There are things that are telling you how it went. So it's saying that there's 22 requirements. And none of them are complete right now. That's what it's telling you. So we have to complete these requirements.
+
+I believe it.
+
+I think it does the first
+
+one on its own. Let's try. I'm just going to press the up arrow, run it again. No, it doesn't. Okay, so we have to, so I want to put this aside. So I'm going to keep this terminal window open. But I want to keep it someplace else, because we're gonna keep coming back to it. I want to run these tests every time I make a change. So I'm gonna open a second terminal window. And to do that, I can just come down to the terminal icon. Right click on it and choose new window.
+
+I'm going to put these over here when I arrange these so I can see the test on top.
+
+And I can see
+
+my work right here. And I can see the directions right here.
+
+So the first direction is
+
+create a directory called playground on our home directory.
+
+So I'm going to go to my home directory.
+
+So under the cd space Tilda
+
+that's going to take you to the home directory.
+
+And then I'm going to make a new directory.
+
+So I'm going to make the playground directory MK dir playground, which the direction says right here, starting your home directory, create a new directory called playground. So I'm going to press that make directory do an ls to make sure that in my home directory, I now have playground. But more importantly, but to come back up here, I'm going to press an up arrow and run that same command again that sh verify sh. But now when I have it see the first one has a checkbox beside it's been passed, it means I was successful.
+
+So Did everybody get to that point?
+
+I didn't know I'm sorry. I did not get to that point.
+
+So what is where are you at right now?
+
+Um,
+
+I did make directory playground but it just went back to a memory like money.
+
+That's what it should do. And when you ran with it To the other terminer ran the SH, verify sh command again. Just press the up arrow to get to it. What happened then? Oh, let me see
+
+nothing happened. It didn't pass it.
+
+So it's still Yay. All right.
+
+So back in the directory we ran the make directory command for playground or you do a pwd and what does it say? In the new terminal right? In the in the gap in the terminal where you did the play the make directory for playground.
+
+two terminals open right now.
+
+I think I did it wrong. Okay.
+
+Can you move your ID Oh, CD tilde. Okay, hold on a sec.
+
+Phoebe's folder.
+
+directory.
+
+Yeah, it's not as smart. Let me go back to not passing it.
+
+Okay? then most likely playgrounds and in the wrong location.
+
+I'm sorry it passed. It
+
+did okay, great. Okay. All right. So let's do one one. So what we're what you're going to build in the end is this file structure. One step at a time. So we're going to do it all. We'll just keep getting started through. So let's say we have the first playground, but let's build just one of them. And then have the past. Test pass. Let's build maybe we'll build Columbus here and we'll get to see the equivalent of test pass up here. So there's going to be some directions we're going to be skipping to do that. But next one is build playground USA. So now that I'm here and I'm inside my home, my home directory, I'm going to CD into playground.
+
+It should be empty.
+
+And then I'm going to make directory USA.
+
+And now if I do an ls, I should see USA.
+
+And I'll stop them second. If I come back up here and I run the test again.
+
+Now I should have two tests passing.
+
+Now I have a question
+
+with this, the verifying
+
+Like all we had to do is get them all to pass and then we we push that back to Bitbucket and that this will save the progress we made even though the rest of the folders aren't going with them. Exactly, yes, it creates a log, I was gonna log out which is what you're doing. And then that log gets submitted. Okay.
+
+That's what that verify scripts doing
+
+the biggest
+
+source of my, my programming as far as HTML, so all everything has to be in the file and you know,
+
+okay, cool. Okay, so now we have us the USA folder, and let's build we need Ohio, and then Franklin inside of Ohio. So let's do those two steps together. So to do that, where are already inside the USA folder, I believe no we're not so to say USA. So I CD into the folder I want to work in. And then I make the next directory. So I want to directory Ohio inside of USA. So I CD into USA made Ohio. Now I'm going to CD into Ohio. And then I'll pause for a second and make Franklin make directory,
+
+Franklin.
+
+And now once we have that, I'm going to run the test again. And now we should have the test for USA passing the test for Ohio Franklin passing. There's no test test for Ohio. So no, the Ohio testing we're here. So we have four tests passing now.
+
+And then one more step to do. We'll get the first file so we'll Get the Columbus dot txt file created.
+
+And
+
+guess I picked a bad one, but that's okay.
+
+I realize it was one of the ones we had to move I just chose to conceal. It's here.
+
+Alright. So is everybody to this point?
+
+Mm hmm. Okay,
+
+so now we'll change directory into Franklin.
+
+And now, we're going to create
+
+a file called Columbus dot txt. So how do we create a file command?
+
+So remember
+
+if you have an A in your name, take a guess.
+
+Space dash dash. Oh god, I'm sorry, my brain
+
+CD or change directory? Oh yeah, sorry.
+
+Most of it is in your name. So
+
+yes touch. So we'll touch so we're going to touch
+
+Columbus. We're almost there everyone I know we're really late on this text, how to do an ls we should see Columbus Tech's ready to run the test cases again. So if you keep doing make now there's five test pass testing. So if you look at the directions, see what the test case should pass when you do those directions, make the change here, and then run the test case to make sure it passed. If you follow that procedure, and we're This is a process we're going to talk about going a lot more detail a lot more detail about the cohort called test driven design. If you follow that process, this will go a lot easier than if you try to do it all at once and then figure out when things went wrong or if there's problems, because now, if you do one or two at a time, you have one or two places to look for the solution to your problem, you know, everything else has been working before it. If you wait to the end and run the test, you end up with this thing where you might have made the problem on step eight, you may made on step 20. Maybe the last thing you did. So you'll save yourself a lot of time by running those tests over and over again, every time you make a change, or a couple changes, run the tests. Right. So now let's look at how you're going to submit these. Let's push the first submission portion of the submission. It won't be done you have to complete it and do it again. Submit it again, out to that bucket, and then we'll be done for the day. So back here in the first browser, the one you've been running the test center. You have to do three things. You have to add it to the get stage. You have to commit it to the local repository, you have to push it a bit bucket.
+
+So
+
+to do that,
+
+we're going to add it to the stage. And this has to happen. I'm in the wrong place for this to happen. So I should be inside of the,
+
+your name Java blue materials for.
+
+So I'm not, I am in standard exercises, Introduction to tools, module one, Java blue materials. So I need to be here, and yours will have your name in it. So I'm going to see the CD. So dot.is going to take me back to Introduction to tools. So I'm gonna go back to more steps, CD dot, dot, dot, take me there. So that's where I want to be where you can see more A woman you do LS
+
+that's why I want to run these next commands.
+
+And the commands then
+
+there's a few ways you can get there other ways to you can come by CD, toda, development, your name droppable materials as well. Give it a second to get there. Before we do the last.
+
+Good job, I see somebody passing how to one of the ways to do a space in a file. There's a couple ways to do it. I will warn you exercise and clean this will have things that we expect you to figure out on your own that we don't necessarily tell you exactly how to do. So. Alright, so now we're here must not assume ever is anybody not here?
+
+I am in Java blue materials. And we need to be Yeah, I'm there.
+
+Okay, great. All right. So We need to run the three get commands. And this is where we should run all the get commands in this folder. So when you go get add dash a
+
+no feedback, you should just get nothing.
+
+But now we can see what status run
+
+it's going to do and get status. And we should see something like that in green. The things in green are things that have been added to the stage. They're not committed. They're not in your local repository. They're in stage.
+
+So the next step will be to add it to the local repository. That's going to be get commit. And let's give it a comment.
+
+First, exercise,
+
+first commit
+
+and I forgot
+
+dash m,
+
+get commit dash m, and then the common in quotes, and then you should get something like that.
+
+And I'll run a get status again.
+
+And it shouldn't say this your branch is ahead of something like this, your branch is ahead of origin master by one commit. So what that's telling me is that I have changes that are committed, committed in my local repository. They don't exist in the remote. That's what it's telling me. The last step is going to be get push origin master. Get push, origin master.
+
+And you see something like that.
+
+And I pull this down so you can see the whole history
+
+and You're done. And to find out we can say get status and say your branch is up to date with origin Master, nothing to commit working tree clean means that the remote in origin and what you have locally are the same. So we're done. It's been committed.
+
+And I would ask that you guys double verify, when you look in Bitbucket, that it is there
+
+because that's what I will find.
+
+So the fight to see what Michelle is going to see in your Bitbucket account. If you go here, I'm going to refresh it because I this is the folder I was working in on my machine. And this was in the readme it tells you that this is what you should look for. There'll be this new file submission you can see it was added two minutes ago with the commit first exercise first commit.
+
+So we open that up.
+
+It shows the test cases along with the test cases that were passed. So you can check what was you can check, always check what Michelle is going to see when she's scoring it by going to Bitbucket and just looking at the file. Whatever you can see when you just go to Bitbucket, look at is what she's going to see because she only looks at cares about the last changes. So then, for the exercises, you'll just complete the rest of the steps in the readme. We did we've done everything that you have to do. You just have to do it. So much more complicated. You might have to change directories a few times to do the same commands in different orders and things like that. The one kind of gotcha was the space and somebody looks like sacri already found it and posted it for you so
+
+well. He was asking me and I gave him this information. So then I felt bad. And I was like, You know what? I was gonna tell everybody. That's great. So
+
+So Rochelle spore the hardest hard part for you, which is, which is good. So yeah, there might be some other gotchas in there. Don't never be surprised if you're thinking they didn't tell us how to do this. We probably didn't. That's on purpose.
+
+Sir, we know what you're doing.
+
+And I'm sorry. Can you confirm how how we go? See if we see it in Bitbucket? Can you show that stuff again?
+
+So if you go to Bitbucket, can you go to I'm going to Java blue materials because that's where I'm working. You'll go to your name Java materials.
+
+Go into module one. Introduction to
+
+student exercises where you're working.
+
+And then for this particular exercise, it added the submission text, you should see your commit message here, the submission dot txt if you open any file, the version of the file that you see me You open it just like that for any file on Bitbucket is what Michelle will see when she scores it.
+
+So that's how you can always verify what she's going to see.
+
+Which means that whatever state this is in, when you get to the deadline, that's the state that
+
+it's gonna get scored.
+
+Okay, I'm not seeing mine in there, but I pushed it out. Let me see that there's
+
+probably some message that came up besides the regular push message. But since we're at the very end, let me Let's wrap up and then I'll or I'll take a look at yours. Okay, no problem. Sorry, guys. Oh, no, you're fine. It's just only I'm only doing that because there's nothing else left. So rather than
+
+don't say sorry for asking for help. Now I do exactly.
+
+This. Okay. Thank you.
+
+So, all right. So
+
+see, I didn't know how.
+
+That's how you work through the exercise there do this particular set of exercises are due Wednesday at 8am. So, before we before that, I would if I was, I would strongly suggest you try to keep up each day with the exercises. We give you an extra day in case you can't for that particular day to get caught up. But the more head you are, the better off you'll be. You can't really get ahead but the more up to date you are, the better off you'll be because there are going to be days when you can't get them done that one day or you run into problems. If you have a buffer already built in for that you'll be a lot easier. These especially like today's exercises is something that shouldn't be too, too much of an issue. Nothing is going to be easy. I'll never tell you something's going to be easy, but easier than what they're going to be by the end of the week, I'll put it that. Okay.
+
+So if there's
+
+no other questions, then I'll let you go. And tomorrow we'll
+
+start looking at code.
+
+So thank you for staying. I know it's been a very long day, and very late, but we're ready to start coding now. So, yeah, that's awesome. I can't wait.
+
+You guys on lunch break today. So that's not normal for
+
+orientation day. That's what was off. It wasn't really long lunch break. We normally have that. shoving the food down as fast you can run into the classroom. That's right. Yes. Yeah. That's why I felt weird today. Okay. All right. So thank you and Aisha if you want to stay on off.
+
+Yeah, definitely. Thank you.
+
+Oh, good night, everyone. Thanks.
+
+If anyone else needs help, you can stick around to just hang out.
+
+If you want to go ahead and share your screen again. I won't Together
+
+All right, so let's okay.
+
+So I see I see the problem. Oh I see the problem up there. So when you done the commit, it looks like you use dash n instead of M is a marry.
+
+Oh, okay so I just
+
+asked me to do get commit dash M
+
+dash M is America.
+
+Okay, that's what I had at first, but for some reason I wrote down Okay, get commit dash m, and then
+
+just put first enter. Okay,
+
+that's, that looks good. That's we should see and then get
+
+get push origin, Master
+
+or Master Yes.
+
+Everything's up today. Okay, do a get space status
+
+Transcribed by https://otter.ai

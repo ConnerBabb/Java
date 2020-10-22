@@ -1,0 +1,30 @@
+Book
+https://book.techelevator.com/content/css-grid.html#grid-template-columns
+
+Grid Template Columns
+The body is now a grid container, which by default gives you a one-column grid, as the first image shows. To customize the layout of the grid, you'd need to define the number and size of each column.
+
+To define the columns in your grid, you can use the property grid-template-columns. The value of this property is the number of columns you want to define and the size of the column.
+
+In the following example, you're defining a grid with four columns where the first and third columns are 200px wide, and the second and fourth columns are 100px wide:
+
+body {
+  display: grid;
+  grid-template-columns: 200px 100px 200px 100px;
+}
+This approach works, but you're using pixels here, which are fixed length units. What if you want your grid to have four equally-sized columns and span 100% of the available width?
+
+In addition to creating grids using the units of measure that you already know about, grid introduces the fr unit to flexibly size grid rows and columns. This unit represents one fraction of the available space in the grid container. To have four equally-sized columns, you can update your grid-template-columns to:
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+After making these changes, the page looks like this:
+
+
+Image - HTML page with Grid
+The content now seems to be laid out horizontally rather than vertically. If you want to see the grid lines, you can use Chrome's Developer Tools. Open the inspector and select any element that is a grid container and you'll see the grid outline in the browser:
+
+
+Image - Chrome Dev Tools with Grid outlined

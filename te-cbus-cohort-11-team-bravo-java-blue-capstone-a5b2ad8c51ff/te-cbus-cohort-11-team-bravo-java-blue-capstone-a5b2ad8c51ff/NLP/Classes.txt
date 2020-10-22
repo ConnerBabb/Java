@@ -1,0 +1,484 @@
+Book
+https://book.techelevator.com/content/introduction-to-classes-ool.html#classes
+
+Introduction to classes
+You started working with primitive data types, and they can be disappointingly simplistic. Arrays add some new capability, but they're fixed in size. Fortunately, the collections framework offers the opportunity to work with more complex objects created from class definitions.
+
+Still, what if you want to create your own data type, like the time on a clock?
+
+int hour = 11;
+int minute = 23;
+int second = 42;
+This works, but if you want your program to store multiple clocks, you may run into trouble.
+
+int[] hours = new int[] { 11, 8 };
+int[] minutes = new int[] { 23, 17 };
+int[] seconds = new int[] { 42, 58 };
+This is a problem, as you need to ensure that all of the values remain in sync, and that you don't inadvertently update hours[0] and minutes[1].
+
+Now, you'll learn how to create your own data type that has two properties, like hour and minute. Like a clock, your data type ticks, counting second by second.
+
+To do this, you'll use something called classes. This chapter focuses on the mechanics of creating classes. Additionally, you'll learn:
+
+How a class is defined
+Class variables, methods, and properties
+How to create a constructor
+The difference between public and private
+There's a video at the end of this chapter. It belongs to a three-part series that provides examples of using classes to build an application. You're encouraged to watch the video after reading.
+
+#Classes
+Programmers often need to solve problems that the Java language doesn't have an out-of-the-box solution for. E-commerce sites need "shopping carts." Social media sites require "user profiles."
+
+To create programs like these, programmers need to model this data and represent it as a custom data type. Using classes, they can define what characteristics and behaviors a data type has. Think of a clock, for example:
+
+a clock has a current time, based on an hour, minute, and second
+a clock can be set to a specific time when it is "plugged in"
+clocks track time by ticking one second at a time
+Defining characteristics and behaviors within a class helps programmers write clean code. Code remains in its place, and can be reused at any time. Programmers can create as many objects from a blueprint as needed, and the objects still follow the rules.
+
+Now, you will build your own application from an object-based design perspective. First, you will create classes, which serve as blueprints that indicate what variables and methods an object has. Variables and properties represent an object's state, and methods indicate an object's behaviors.
+
+It takes time to become proficient in object modeling. This tutorial covers the basics.
+
+#Creating classes
+The following example shows how a class is created:
+
+// Clock.java
+public class Clock {
+
+}
+The keyword class allows you to create your own data type.
+
+#Creating an instance of a class
+To declare variables, you might type the following:
+
+int count = 18;
+string name = "Bill";
+To declare a new instance of your class, type something similar:
+
+Clock clock = new Clock();
+This code declares a variable of type Clock, named clock. The next part of the expression new Clock() allocates memory to hold a new instance of the Clock class. The clock variable stores a reference to that memory location.
+
+Reference Types
+
+Remember to use the new keyword when working with reference types. Each variable references a different memory location on the heap where the object resides.
+
+#Properties
+Imagine that you want your class to have some different characteristics. Since it's a clock, it should represent the current hour, minute, and second. Properties add state to the class. Each individual instance keeps track of its own separate state.
+
+The following syntax adds properties to a class:
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+Coding Convention
+
+In Java, all properties are accessed through methods called Getters and Setters. These are named based on the property they are for with either the word get or set before them.
+
+You have defined three properties of the type int named hour, minute, and second. This allows you to set these properties in your class, and they'll be stored throughout the lifetime of each instance.
+
+A note about `this`
+
+The this keyword is a special type of reference variable available within each class and its members. It allows code within classes to have a variable that refers to "this specific instance."
+
+In the code block above, you may have noticed the use of public and private. These are called access modifiers. The following sections discuss them in more detail.
+
+#Derived Properties
+Sometimes, you want properties to represent an object's state, but you need it to be dependent on other properties. For example, a full name is derived or generated using the combination "First Last."
+
+You can add a property that lets your clock return the current time, like "01:10:42." You don't need a fourth property with its own setter. Creating one allows the possibility that the value it returns contradicts the value stored in the hour, minute, and second properties.
+
+A derived property lets you generate the value by relying on the other properties within the class.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    public String getCurrentTime() {
+        return this.hour + ":" + this.minute + ":" + this.second;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+#Methods
+When you need an object to "do something" or perform a behavior, you can use methods.
+
+In the case of the clock, it can tick. When you invoke the tick method, it changes the state of the class by ticking forward one second at a time.
+
+The following code sample shows how to add a Tick method that changes the state of the object:
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // tick() method changes the value of hour, minute, and second
+    // void means nothing is returned
+    public void tick() {
+        this.second += 1;
+
+        if (this.second >= 60) {
+            this.minute += 1;
+            this.second = 0;
+        }
+
+        if (this.minute >= 60) {
+            this.hour += 1;
+            this.minute = 0;
+        }
+
+        if (this.hour >= 24) {
+            this.hour = 0;
+        }
+    }
+
+    public String getCurrentTime() {
+        return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+Using methods allows you to encapsulate the logic needed to make your clock function. Encapsulation lets you restrict access to the internal mechanism of how the class works by hiding or protecting its variables. This way, the values remain consistent and don't contradict each other.
+
+Rather than having the user of the clock change the second, minute, and hour manually, the clock ticks and internally manages when the values need to increment by one or roll over to zero. Ideally, this limits the risk of bugs that appear in your code.
+
+Void Return Type
+
+Some methods don't have a return value. Methods with no return value have a void method signature.
+
+#Constructors
+When you define classes, you want to make sure it can be instantiated into a useable state. That is, when the new statement creates a new object, you should be able to provide any arguments the class needs to allow usability afterwards. To do this, you use a constructor.
+
+A constructor is a special method of a class that initializes an object of that type. All constructors have the same name as the class they're in.
+
+Below, the Clock class has a Clock constructor. The constructor provides users the ability to set the clock to a specific time when instantiated.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // Constructor has same name and spelling of class.
+    // Notice there isn't a return type with constructors.
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+}
+#Access Modifiers
+The keywords public and private are two of the most common access modifiers in the Java language. Access modifiers control visibility to methods and properties to the rest of your program.
+
+#public
+The modifier keyword public marks something as publicly accessible, meaning it can be used or invoked by external callers.
+
+By making the Clock class public, public class Clock or any other program that references the code instantiates it.
+
+Marking a property or method public indicates that it can be used by any external caller. An external caller may be an outside program, or a class within the application itself.
+
+#private
+The private access modifier restricts access to type members. Private variables and methods are only visible from within the class that the member is declared.
+
+In the clock example, the class variables hour, minute, and second are all designated private. If you try to access them through an instance of your class, you receive a compile error.
+
+This allows you to hide your implementation away from users or outside callers of the class. Because it's only exposed through the getter and setter methods, you can restrict the values and/or access to the variable.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+     public void setHour(int hour) {
+        if(hour >= 1 && hour <= 24) {
+            this.hour = hour;
+        }
+    }
+
+    public void setMinute(int minute) {
+        if(minute >=0 && minute < 60) {
+            this.minute = minute;
+        }
+    }
+
+    public void setSecond(int second) {
+        if(second >=0 && second < 60) {
+            this.second = second;
+        }
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+If it helps, think about classes as something seen from the outside, not the inside. public is what other programmers should see. It should be reserved for things that are useful to help someone perform a task.
+
+However, programmers don't need to see everything—for example, the code that makes things work under the hood. In those cases, you should keep things private so that they're only accessible from within the class.
+
+Access modifiers and methods are a key feature of encapsulation, the first pillar of object-oriented programming. Encapsulation lets you restrict access to the internal mechanism of how the class works by hiding or protecting its variables. This way, the values remain consistent and can only be changed through methods that the class allows external resources to have access to. In this way, a class controls how it is used and makes sure that use is consistent with its purpose.
+
+For example, rather than having the user of the clock change the second, minute, and hour manually, the clock ticks and internally manages when the values need to increment by one or rollover to zero. Ideally, this limits the risk of bugs that appear in your code.
+
+#Overloading methods and constructors
+To provide users of your class with different options when they instantiate new objects or invoke new methods, you can create an overloaded method or overloaded constructor.
+
+As a programmer, when you overload a method or constructor, you add flexibility to your class so that users can leverage different inputs when interacting with it.
+
+There are three rules of an overloaded method:
+
+Overloaded methods must have the same name.
+Overloaded methods must have the same return type (does not apply to constructors).
+Overloaded methods must differ in the number of parameters and/or parameter types.
+#Method overloading
+In the following example, an overloaded method allows the programmer to "tick" the clock a number of times.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // Constructor
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    // Overloaded method, relies on other tick method
+    // but allows users to pass an int to say how many
+    // times it ticks
+    public void tick(int numberOfTimes) {
+        for(int i = 1; i <= numberOfTimes; i++) {
+            this.tick();
+        }
+    }
+
+    public void tick() {
+        this.second += 1;
+
+        if (this.second >= 60) {
+            this.minute += 1;
+            this.second = 0;
+        }
+
+        if (this.minute >= 60) {
+            this.hour += 1;
+            this.minute = 0;
+        }
+
+        if (this.hour >= 24) {
+            this.hour = 0;
+        }
+    }
+
+    // Getters and setters
+    public String getCurrentTime() {
+        return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+#Overloaded constructors
+Below, an overloaded constructor allows the programmer to create a clock with default values or to specify their own values when instantiating a new clock.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // Overloaded Constructor
+    public Clock() {
+        this.hour = 0;
+        this.minute = 0;
+        this.second = 0;
+    }
+
+    // Constructor
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    public void tick(int numberOfTimes) {
+        for(int i = 1; i <= numberOfTimes; i++) {
+            this.tick();
+        }
+    }
+
+    public void tick() {
+        this.second += 1;
+
+        if (this.second >= 60) {
+            this.minute += 1;
+            this.second = 0;
+        }
+
+        if (this.minute >= 60) {
+            this.hour += 1;
+            this.minute = 0;
+        }
+
+        if (this.hour >= 24) {
+            this.hour = 0;
+        }
+    }
+
+    // Getters and setters
+    public String getCurrentTime() {
+        return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+#Building a real application
+It can be difficult to find ways to apply these different concepts. To help you put these concepts in perspective, watch the following videos. They serve as a supplement to the next few chapters.

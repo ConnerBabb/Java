@@ -1,0 +1,13 @@
+Book
+https://book.techelevator.com/content/introduction-to-classes-ool.html#overloading-methods-and-constructors
+
+Overloading methods and constructors
+To provide users of your class with different options when they instantiate new objects or invoke new methods, you can create an overloaded method or overloaded constructor.
+
+As a programmer, when you overload a method or constructor, you add flexibility to your class so that users can leverage different inputs when interacting with it.
+
+There are three rules of an overloaded method:
+
+Overloaded methods must have the same name.
+Overloaded methods must have the same return type (does not apply to constructors).
+Overloaded methods must differ in the number of parameters and/or parameter types.

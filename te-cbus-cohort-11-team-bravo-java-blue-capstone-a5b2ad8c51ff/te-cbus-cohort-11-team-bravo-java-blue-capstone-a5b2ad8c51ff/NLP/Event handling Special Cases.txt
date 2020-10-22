@@ -1,0 +1,91 @@
+Book
+https://book.techelevator.com/content/event-handling-javascript.html#event-handling-special-cases
+
+Event Handling Special Cases
+Here are a couple of things to keep in mind as you work with event handlers in your code.
+
+#Bubbling and Propagation
+A single event doesn't just trigger on one element, it will actually trigger on many elements, if you let it.
+
+When an event triggers, it is triggered on the element that has been clicked or changed first. The browser will run any event listeners on that element, but then it doesn't stop there. The browser will then go to that element's parent and trigger the event there too. This process is called 'event propagation' or 'event bubbling'. The browser will continue to do this, triggering the event on up the parent tree until it gets to the window object that is the super parent of all the elements.
+
+This is useful because we might have instances where we want to handle events at different levels of the DOM tree. For instance, let's imagine that we have a table of rows that each have a text field in them. If a text field gets a focusin event, we might want to highlight that field:
+
+let textboxes = document.querySelectorAll('input.textboxes');
+textboxes.forEach( (element) => {
+    element.addEventListener('focusin', (event) => {
+        // Here event.currentTarget is the input textbox
+        toggleMarkClass(event.currentTarget);
+    });
+});
+But we also might want to highlight the entire row by adding a mark class to that row. We could do that in the text field's event handler, but it would be much more flexible to do that in an event handler for the rows. Since any focusin event that is triggered on the text box will eventually bubble up to the row level, we can add a focusin event handler on the row:
+
+let rows = document.querySelectorAll('table tr');
+rows.forEach( (element) => {
+    element.addEventListener('focusin', (event) => {
+        /*
+         * Here event.currentTarget is the row
+         * even though the `focusin` event will initially
+         * trigger on an input element in that row
+         */
+        toggleMarkClass(event.currentTarget);
+    });
+});
+What if you don't want an event to keep bubbling up? To stop the propagation of an event, you can call the stopPropagation() method of the event object:
+
+let textboxes = document.querySelectorAll('input.textboxes');
+textboxes.forEach( (element) => {
+    element.addEventListener('focusin', (event) => {
+        // Here event.currentTarget is the input textbox
+        toggleMarkClass(event.currentTarget);
+
+        // This stops the event here and does not call the event on any
+        // parent element
+        event.stopPropagation();
+    });
+});
+#Further Reading
+You can read more about event propagation on this page from SitePoint Event Propagation and Bubbling.
+
+#Where to add Event Listeners
+As you may have seen in our discussion on DOM, the DOM doesn't get created until the HTML has been read in by the browser. The timing of this can't be guaranteed, so our JavaScript could, in theory, load and run before the DOM is fully ready.
+
+But in order to attach event listeners to DOM elements, we need to be able to select elements from the DOM. Trying to get DOM elements from the DOM before the DOM is ready will cause errors at run time.
+
+So how do we make sure that the DOM is fully ready before we try to attach our event listeners?
+
+We can do that by listening for an event!
+
+When the DOM is fully loaded into a browser, the browser itself will trigger an event called DOMContentLoaded on the document object. What you need to do is add all of your event listeners inside of an anonymous function that only runs once the DOMContentLoaded event is fired:
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Register all of your event listeners here
+});
+#What about elements that are created and aren't yet on the DOM?
+Often times you will create a new DOM element yourself or from a template and want some of its elements to have event handlers on them. Those elements don't exist when the page is loaded in the browser, so any registering of events in DOMContentLoaded will not happen for those new elements.
+
+In that case, you will need to attach those events after creating the DOM elements. This is typically done by writing a new function that takes the new DOM element and attaches the event handlers that are needed. Then, after creating the new elements, pass that to the new function and then attach that element to the living DOM.
+
+#Default Behavior for a and form Elements
+Some events will trigger a browser's "default behavior". This includes a elements--where a browser will attempt to navigate to new page by default when they are clicked--and form elements--where a browser will call a remote server by default when they are submited.
+
+However, the browser will always call your JavaScript listeners before doing the default action. This gives you the ability to prevent the default action if you don't want it to happen. This is useful if you want to use a elements to toggle something on the page instead of navigating off of the site.
+
+To do this, you need to use the event object that you get in your event listener and call preventDefault() on it.
+
+aLink.addEventListener('click', (event) => {
+    // Tells the browser to not perform its normal action
+    event.preventDefault();
+
+    // Then call the event handler
+    toggleImage(event.currentTarget);
+});
+#change Behavior on Select and Text Controls
+The change event can act a little tricky on text and select controls if you're not careful. A change event will only trigger once the action to make the change has completely finished and will only happen after the field itself has blurred and the value has actually changed.
+
+For text input elements, change events will only trigger once you click or tab out of the box, and then only if you actually change the value that was in the box. Click in and then click out of the box? No change event. Change a value and then change it back to what it was before clicking out? No change event. This is something to be aware of depending on what kind of functionality you're going for.
+
+For select fields, change events trigger when a new option is selected. So this event won't wait for a blur event, it will trigger right away when a new option is selected. However, it still won't trigger if the same option that was already picked is selected.
+
+#Unit Testing with Events
+You don't usually unit test event's triggering. You can, but that will quickly get into integration testing rather than straight unit testing. However, you can use named functions for your event handlers and then it's easy to test your named functions just like you always have.

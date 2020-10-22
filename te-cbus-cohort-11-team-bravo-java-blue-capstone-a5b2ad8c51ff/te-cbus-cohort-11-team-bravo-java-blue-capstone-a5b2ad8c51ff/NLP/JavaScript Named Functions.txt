@@ -1,0 +1,49 @@
+Book
+https://book.techelevator.com/content/functions-javascript.html#named-functions
+
+Functions
+In order to write maintainable code, one of the primary things to avoid is code duplication. Programming languages provide many features and constructs to achieve this, and one of the most common is functions.
+
+In the context of programming, a "function" is a way to package up a block of code, allowing you to reuse that block over and over again. This is especially helpful when you have a piece of logic that is needed in more than one place in a system. For example, there are many systems that need to validate that an email address entered by a user is correctly formatted. A function could be written that encapsulates the validation logic in one place and then be used anywhere that requires this validation.
+
+Functions in programming are analogous to functions in Algebra. You may remember something like this from your secondary education:
+
+
+Image - Algebra Function
+Given this example, f(5) => 13. In the function definition, x is defined as a parameter variable for the function f. So, when you write f(5), you're using the value 5 in place of x and 2(5) + 3 => 13, so the value 13 is "returned" by the function.
+
+You'll see in a moment that functions in JavaScript work in a very similar way. They have a name, they can accept parameters, and they can return values.
+
+There are two types of functions that you will see in JavaScript; named functions and anonymous functions.
+
+#Named Functions
+Before you decide to dive into using functions, it is important that you begin to read and understand the two parts of a named function: the function signature and the function body.
+
+The components of a function signature are:
+
+The function name
+The function parameters
+
+Image - Function Signature
+#Function Name
+Like variables, functions have names that can be used to reference them. Also, like variable names, careful consideration should be given to choosing names for functions. Function names should be:
+
+descriptive - it should be clear what type of action or calculation the function performs when invoked
+camelCase - the first letter of the name is lowercase and the first letter of each subsequent word is uppercase
+unique - function names need to be unique across all JavaScript code that is loaded into the page. If a name conflicts with another function, the one that's loaded last will overwrite the other one
+#Function Parameters
+Parameters are variables that can be used to provide input values to a function. When functions are created, parameter lists indicate what inputs the function can accept.
+
+For example consider the following function:
+
+function multiplyBy(multiplicand, multiplier) {
+  let result = multiplicand * multiplier;
+
+  return result;
+}
+This method indicates that it accepts two parameters. The first parameter acts as the multiplicand and the second, the multiplier.
+
+You can then call that function using its name and passing in parameters.
+
+console.log( multiplyBy( 5, 2 ) );
+What does this print to the console? The function takes the two arguments, multiplies them together, and then returns the result. The return keyword is used here to return the value that is in the result variable back to whoever called the function. So 10 will be printed to the console.

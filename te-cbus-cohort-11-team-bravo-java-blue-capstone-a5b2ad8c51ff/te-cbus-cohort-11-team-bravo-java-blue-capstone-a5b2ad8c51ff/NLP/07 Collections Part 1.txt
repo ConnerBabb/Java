@@ -1,0 +1,1329 @@
+Zoom
+https://techelevator.zoom.us/rec/share/3sZrMZvX5jpOcLPq-R3WUZZ-HNmmeaa80Sge-aYOnxpcAK5EbNhhiHELjMB700tX?startTime=1589894599000
+https://drive.google.com/file/d/1LVbXBcd1YmiRZpgMFwvYB0z4ADzWxzzD/view?usp=sharing
+https://docs.google.com/presentation/d/1dM7XHyibCMppdPq4PT6ieGkGBVdjH4iMgrnt0cZ2mBc/edit?usp=sharing
+All right, start again. Today we're going to talk about more objects that are built into the language that we can use. We're going to spend today and tomorrow talking about or half tomorrow talking about a few more of those. And specifically, a group of them called the collections are the question classes. And some because they're, they solve a problem that we commonly run into in our code. So we're going to look at the clock, start looking at the collection classes today and finish tomorrow. And then we'll move on to on Thursday, or starting to build our own classes and our own objects. So today, we're going to do that. We're going to start by talking about packages. We've already encountered them some talk about them a little bit. We're going to explore them a little more what they are, how they're used, and why. So we're going to talk about pack Just the amount of talking about what collections are, you know, kind of a general idea of what they are. And then we're going to specifically talk about the list
+
+collection.
+
+And that's going to bring to a problem of the fact that these collections we work with will only work with reference types. And we're going to need to understand boxing unboxing and this thing called auto boxing to work with these, so we'll walk through that. And then we'll, that'll lead us to a new loop type the for each loop. So we'll take a look at that. Then we'll take a look at two more collection types Q and stack. And as part of that, though, it's not on this list. When we look at q and stack, we'll look at a third loop type called The while loop
+
+and how that works.
+
+So let's start by talking about packages because we start working with more and more objects. Ready to understand more how these packages work and what they do.
+
+So packages
+
+are just a way of organizing Java classes. We can almost think of them like virtual folders. But beyond just being folders and organization, they create scope for the classes themselves. They they help identify which classes can see each other and which are kind of hidden away until we tell them to look look for each other. And their main purpose outside of this prevent the scope. In our variables we have scoped because we don't want all the variables to exist all the time. But this is to prevent two classes with the same name from having what's called name collision, and, or really having a better way. Easy way of saying that may make sure that they're not ambiguously overlapping, so that we can have two classes that have The same name. As long as they're in separate packages, we can still identify them specifically which one we're working with. And that means that as we develop, we don't have to worry about what other developers and other Java projects have called their, their classes if we want to use their code, so we've already seen like the scanner class on Friday and some yesterday, and that would mean that we could have no, it's in Java dot util. We could have a our own scanner class and Comdata elevator, and that would be okay, because they're in separate packages. So that's the kind of vision that it's creating. On top of that also creates just a way of organizing code into kind of like groups, things that go together.
+
+So this creates what's called a namespace.
+
+And a namespace is what I was just describing. It's a grouping of elements. So everything in the group has to be a unique name and it's organizational structure that got groups together so they can we can find them easily and identify them easily. And namespaces aren't from just Java, they're from more computer science than from programming. So things like our file system, the folders, and directories on our LS, those are a namespace, that's what a file system creates as well. The same idea or domain names on the internet. When we go to www.google.com compared to tech elevator.com, those that's the same, same idea namespaces that have been created to allow for each one of those to have their own unique set of names without affecting each other.
+
+So packages themselves.
+
+See him here. If we look in the Project Explorer. That's what we're seeing here. When we go look in source main Java, things like combat tech elevator, we see combat millimeter data. So they come in levels and they're identified by all lowercase names that usually start as a reverse domain name. So comm dot tech elevator compared tech, Ltd calm, that's just a convention that's not a requirement. They can actually be any any name. But that convention came about because each company or programmer or group generally will own if they own a domain name that's going to be specific to them. So using that as a package means that that code is easily identifiable as theirs. But also it's something that another other programmers aren't going to be using unless they're part of that group, usually, because they don't, only one group can have that each domain name. So that became a convention to start using a reverse domain name. technically not a reverse in the reverse way we look at it but we look at web We'll find that the column is actually the is the top level. But it's common for developers who don't have that just use their own name. So you just use your full name. all lowercase as it's a package is a really common usage of
+
+42 developers for their own personal code.
+
+And but it can be anything. But we do want it to be something that is reasonably likely to be unique to us. Because that's what's going to separate our code from other code we may want to use. And the problem would come about is if we were writing code. And we have, let's say we decide we want to use something from Java util, what are the packages we use commonly, and
+
+our combat tech elevator.
+
+data has this file and a call number. cruncher if we wanted to use that in some of our other code, but we also are trying to use Java utility, it also happens have a class clean number cruncher, that would cause conflict.
+
+So that's the end we'll talk about how to deal with that. But
+
+that's the reason we want to try to be having something that's unique to our our code. Because if we have them in separate packages, if we have them separated, we only we don't have to worry about that we can still uniquely identify them.
+
+So when we're talking about a VLOOKUP
+
+could import example since we'll be and this is today's lecture code. So the package itself for each java file is defined as the first line just with the word package in then the package that is part of the organization we see into folders is something that Eclipse is Doing fours based on that package definition. It's also we'll see, as we go through the court that there's so you've probably already seen if you go to the File System, and look that there's a folder for comm, there's a folder for tech elevator, inside of a folder inside of this Java folder that was created. And we'll look at the tool later and the coracle Maven that enforces that kind of structure. But for Java itself, just having this at the top of a class file, identifies what package it's part of. So just about every class file is going to start with that it's possible to actually not have that like we did on day two when we done hello world. But that puts it in what's called the Java default package which means that everybody is code is in the same place. So in that case, if we had all had our code on the same machine or hello world, we wouldn't have on the run them because it would have said to her In this kind of default place, there's no 18 hello world applications, we have each in our own package, then it wouldn't see it that way it would see it as there's 18 distinct HelloWorld applications because the package becomes part of an identification. In most of all, we see we've seen combat like elevator quite a bit that's tech elevators package name we use using the convention based on the domain name. But they can we, they generally become just like folder system, and multiple levels. So to add more levels, we just, it's just a.if. We wanted to move this into combat tech elevator, like examples. So Eclipse requires us to do something different to move it so we can identify it but for the language, if we just moved it by adding a dot and another level to the package. Then we create a new page. package under sub package for just like we do a folder on the file system. And it can get as long as we need it to be. So examples them if we wanted to have
+
+lecture beyond that, and we can continue
+
+moving through it creating more and more defined packages, each one's distinct. So if you think about a folder on a system or a set of folders, or a box within a box, the boxes can't see what's inside of each other even though they're in or one's internal to the other one.
+
+So, get out to the air goes away.
+
+So more so larger project as we move forward, not not yet, but later in the course, they're gonna look more like this. With multiple packages, each one that identifies a small group of classes doesn't have to be small group, but a group of classes that provide that functionality and separating them into where the Report Writer in this report, but we could also have another one if we wanted to, and log because they're separated, and then we can identify them individually by the package name and the class name. Not that we generally would want to have the same class name in our own project that's duplicated, but it would be possible.
+
+So while
+
+right now, we usually see one or two patches of time and will for the next couple weeks, eventually as we grow the size of our projects, we'll see more and more packages, large projects can end up with hundreds or even thousands of packages within them. So so
+
+the package is part of the name
+
+and it it is part of the class name and it works
+
+together Create with the class what's called a fully qualified class name. So it works like a surname for, for people. It helps identify a more specific, it creates a more specific identifier, along with the class name. That to identify unambiguously what which one we're talking about, for instance,
+
+if
+
+we had
+
+two mutual friends, so
+
+and both of them were named Josh,
+
+and I came up to you and I said, you know,
+
+guess what Josh told me yesterday.
+
+And there's two of them. What in that sentence identifies which one I'm talking about. There's if there was no other context, you would have no other way. Knowing which Josh is referring to. But if I said, you know, Josh Jones told me yesterday, and one of them's named Jones, the other one's name.
+
+colossal, then
+
+we could, you could identify immediately which one of the two I'm speaking takes out the ambiguity. That's the same way a package name works with a class name, and what's called a fully qualified name to remove ambiguity, the same way that a surname works. So the fully qualified name of a class is
+
+the package
+
+and the class name together. So for this import example here,
+
+the fully qualified name of it would be
+
+it's in package combat tech elevator. So it's fully qualified. name would be comm dot tech elevator
+
+dot import example.
+
+So it starts with the package, the full package. And then it ends with the classic, giving us an unambiguous definition or identifier that we're talking about this particular class, because there's only be one of them with that name and combitech elevator in that package. So it becomes an ambiguous. So we can always refer to things this way. And when we talk about things like scanner, things that are more likely to be ambiguous, we often will will say it's java. util scanner Java, you
+
+today, Java util collection. But
+
+we don't always want to write all of that in our code writing that out in code with Become tedious to have to constantly write
+
+out
+
+the full, fully qualified names.
+
+So, the end the fully we could do that like here were scanner. Every time we wrote, we use scanner we could write Java util dot scanner, and then new Java util dot scanner, using the fully qualified name right in in our code. And every time we use it, use that as its full name. And that's completely acceptable in the Java language. And if we have type where if we were working in contact elevator, and we decided to have our own combo together with the scanner, sometimes we will have to do that to explicitly say we want this one. But normally, we don't have those complex only it's the chances of us flee. We won't create a class called scanner and convatec elevator. If we didn't, it's not ambiguous. We can take it easier route. And that's something we've already done. And that's by importing what's called importing the class. So by importing a class, here, we add the import to
+
+after the package at the top of the class file.
+
+And so if we wanted to import scanner here, we would import java util. dot scanner with the full package and the class name that we were importing. And all this is doing is saying, in this code, this isn't actually pulling anything in. This isn't bringing scanner into our code. It's already there as part of the standard library. So it's always there. Well, all it's doing is saying, well, we're talking about scanner in this code. We're talking about the one in Java util. It just allows us to then refer to it as the specific one we're going to be speaking about in this file, just like in the conversation. I started It with So Josh Jones told me yesterday and then I continue with a bunch of information repeating the name. I don't have to keep adding Jones on to the end of it right you'll know that it provides context that for this conversation or for that we're talking about what specific jobs we're talking about. In this case this is creating contacts for in this class file. This is the particular class scanner we're talking about. if there happens to be more than one
+
+available then that's the one we're referring to.
+
+Ryan
+
+Yes. Can we see the the content of the gala dot util dot scanner but what is inside the scanner? like can we see the
+
+necklace? You can
+
+so the there is in the JDK there is a source folder where you can actually go and look through the source code of most of Java SE most because there is some that is not available. didn't used to be the case but already has some proprietary code now that they don't open source. But there is also an open JDK that has completely open source. Open Source means the source is available for everyone. There's also there's a GitHub repository of open JDK that you can go and look through the code. So we can see the code of scanner, we can see the code of string, and I would encourage you to go look for that.
+
+Then I was following questions whenever he throws an exception. in Eclipse, it opens another class and shows the documentation but it only ran the test fail. So I thought maybe there's a way to check.
+
+Just see one of these all these classes. Thank you.
+
+Yeah, there is. But oh, but it sounds like you're thinking you're
+
+looking at it from a troubleshooting point of view.
+
+Yeah,
+
+and so to better understand how the classes work, and you know, troubleshooting
+
+from better understanding how the classes work, you should definitely explore them. When troubleshooting your code, you should never really need their code. The problem I guarantee is in your code with the Java language, because there's billions of users of it that it is open source. So people over the time
+
+it has very few problems, and it's older portion of the language.
+
+But yes, you can go see it. And actually, when you are stepping through code, and you end up in these this code, you don't understand you don't you didn't write, which I'm sure if anyone's been using the debugger. It's happened to you at this point, at least once or twice. And if not, it will. That's what's happening. There's, it's stepping into the core language code, stuffing into strings code or the exception code that's being thrown. Because that's all available. Most of what's available as well. And then when you get to those screens where it just says the name of a class, but it doesn't show code, and it's just a blank screen, I've seen anyone seen that that's where it's stepping into code that's not available. But it can, it can't show it, but he can tell where it's at inside of it, and then step through it, but we can't see it. Alright.
+
+You have to change that code. When you like, when you worked for a company.
+
+Did it change the Java core code? Is that what you're saying? No. You wouldn't ever change the Java core language code. We'll learn as we go next week. Why? It's because we can make effective changes to it without touching the code. One of the principles we'll learn when we talk about object oriented programming is that if if we're using something and we need to change the way weights behaved? The answer is not to change the original ever. The answer is something else. That's one of the core tenets of object oriented coding. And if we can't change it using something else that I tried to avoid getting into, but this is a huge topic next week, then there's probably a problem. Either they did it was designed so we couldn't do it, which we'll talk about why and when that might be the case. Or we're probably doing it wrong. And we'll talk about that as well. But yeah, so no, we wouldn't. You wouldn't change the record, you would do something else with it. But Alright. So when we import classes, and we're telling it we want to use them, any class we want to use in our code or almost any class we have to import. So we have to import statement at the top that says we want to use that class. And there is some defaults we can that can be seen that work. So for instance, if we had cosmetic a later class A and combo took a later class B, if they're in the same package, they can see each other, we don't need to import them to use them. It's just available. Because that's part of what packaging is saying these things go together. So if they're in the same package, we don't need an import, we can just use it. If it's in another package, even a sub package like coms, like tech innovator, data, Class C, we would have to import it. So we have to import anything, any classes that any other package. So like that, or Java util scanner, and then there's a package Java dot Lang, which contains a lot of the really basic core code like string and some other code like that and exceptions and other things that we that use all the time. So the stuff that we've been Working with where we just use it, and we don't have to do anything extra. So most of what we've been doing so far is in this Java Lang package. And that is implicitly imported for us, meaning that it's always available to us. We don't have to tell it, we want to use it. If we don't tell it, we want string from another package, which we can do, we can import a string from someplace else that would be that would cause all kinds of other problems creating your own String class, but called string. But if you did, we could do that. And we could explicitly import it and say we want to use this one. But if we don't, it just assumes that if we're using string or something in Java, Lang that it comes from Java dot line. So that's implicit.
+
+So let's look at this, this code here, this import example. And
+
+so here,
+
+it has all the code written that does something like me looked at last week, written out using fully qualified names. So it has Java util dot scanner equals Java util scanner for system in Java dot Lang dot system in Java Lang system out print line. So for each use of an object, it identifies it fully qualified. Which, if you look, this code is rather hard to read. It's hard to focus in on you know, this is a system out print line, or this is just a string, because we are constantly have this other stuff that is repeating in the way. So, we normally wouldn't write code like this, but we can. And if we come to a place where something's ambiguous, we might have to for one or two lines.
+
+So to import things.
+
+We would take
+
+whatever we want to use like scanner and after package. But before class, the only two pieces of code that go outside of a class is the package definition imports, because they're not really code. They're more of a identifier what this how this class is going to work. So we change that to an import, Java util scanner. And then once we have that import for each of these, we can remove the fully qualified name and now just refer to in the scanner. Java Lang is imported already for us. So we can remove any incidences of that without doing anything else because it is the
+
+implicitly imported
+
+string as well.
+
+And integer we're gonna look at today.
+
+anxi already the codes becoming much more readable. It's now easily identified, we're talking about string we don't really normally care what packages from when we're writing the code down here and when we're reading it, we We might care if we have to troubleshoot to go see which one we're looking at. But normally we, we won't care, we know we have a scanner, we know you have a string, we don't need to be explicit. So this last one, we're not gonna look at the classes, but there's this class called number cruncher over here, it doesn't really do anything, I think it adds two numbers together like that. It's in combitech, elevated data. So to use that, we also have to import it. If I
+
+copy that, and then just get rid of the fully qualified package names. See, we get an error is the second remove that. If you look at it, it's going to say that it cannot be resolved to a type, we see that that particular error cannot be resolved to a type what it's doing is saying, I can't find this type I don't know where it's at. You also may see that the types in big us meaning that I see two of them See two number crunchers. I don't know which one you're talking about. So even though this is in a subclass, so subpackage data kind of took over that data type elevator, it's still a completely separate package, we'd have to import it.
+
+And now, we end up with with those two imports, being able to write all of our code in a way that we just didn't find the class names. So I'm going to show one more thing about imports. But before we do that,
+
+so the answer to your question is no, we don't need to do that, like you do in
+
+JavaScript by linking files.
+
+Java uses a completely different convention. And this is from the chat I'm answering.
+
+Java is
+
+uses a very different convention called the classpath, which involves libraries and where packages exist inside of the system. And we'll look at that later in the court a little more detail. But it we don't have to explicitly say we want to use this file from this file.
+
+Which when you when you look working on a very large project, that
+
+the classpath allows you to do things like swap code, on what's called hotswap code, you can change code wide applications running, in some cases, if you build your application, right. And you can change out complete usage of it with something we'll see next week. So meaning you could change the way your entire application works kind of on the fly as you go without affecting your clients compared to the linking system, like a lot of JavaScript, some other things other languages use, where you actually have to redeploy you have to stop Things can give a new file that has the new link in it. So So now the answer is no, it doesn't doesn't work that way. It works in a very, very different way. So,
+
+so right.
+
+So are there other questions before?
+
+packages Make sense?
+
+So when you're calling the package, comm dot tech elevator, it's not explicitly giving you access to all of the classes contained.
+
+It's all the classes. So this class if I want to use this lecture class, I can just use it because it's in the same package.
+
+Okay, but I see you doing the import of the number cruncher. Are you just showing that to show an import? No,
+
+no, because it's in dot income. Talk elevator. It's in combat tech elevator data.
+
+Data, okay.
+
+Yeah, so he's doing explicitly to have a sub package to show that sub packages are not it's not recursive, it doesn't include the sub packages. It's only the exact package itself.
+
+Okay, thank you.
+
+Yeah. And what that means is for, like down here and data, I could create a new class if I wanted. And I could call it lecture. And that would allows me to do that. Which is something that a larger system could be useful if you have like multiple things that go to the same thing. You want to have something that does database connections, and each one, they could all just be called connections. You don't have to worry about what it's called for each one. You just worry about the package and get the one you want. But some packages aren't included.
+
+Okay, I got it. Thank you.
+
+delete that. So didn't end up with that.
+
+Alright, so the last thing that I want to look at it for import it is possible
+
+To import a tire package at once.
+
+So we import
+
+can do come
+
+see Java till dot star and we will get everything from Java util. Now available, it means it will use it like it is lying, it'll think every everything we type will automatically be assumed to be in Java util if we didn't explicitly say it otherwise.
+
+Or if it's there, it'll use that one.
+
+So this type of import is available, and we'll use it a lot in testing. But it's there's a lot of controversy on whether whatever when it should be used. So it has some potential problems with it. The problem being that when we do this, now we've created this whole level of Things we don't need that we're now saying we might want to use in our code. So that's normally not a problem. But if you let's say you're working on a large system, and we're using this their system from Comdata accounting, and they have a bank account class, and we so but we don't use it. So we've been but they have a bunch of other accounting classes and we've imported comm dot accounting.
+
+And this way,
+
+in our codes working, and we've created a class in our own code, that is called checking accounts and they don't have one And then six months from now they do an update. And we talked about javas can often do live updates without bringing down without stopping the system for the users. And they decide they've got to add checking accounts to their class. If we've explicitly said that we want to use their bank account class and only their bank account class, then that's not going to have an effect on us. But if we've told it, we want to use everything, and they've added a new class in there update, it's going to break our code. So when we deploy it, it's going to break everything. For that reason, I've never worked in an environment or any team that allows us in any code that actually is going to go to what's called production. It's going to be used by clients. So if it's going to be out and be released, we use it during testing. We use it in development, then we'd remove it. Before we went to testing and I've actually worked on a system where one got in it crashed our system over the weekend, when there was a automatic update applied, not automated. It was done by admins, but they weren't programmers They were just doing the updates the scheduled updates. So the other side there. The other side of the argument is this screen, there's a book called clean code written by a guy remember his real name. Everyone calls him Uncle Bob, that is quite popular that says that you should explicitly use this into your three. And on the fourth one, you should change it to this. So that's a popular way of using it as well. But when you know it's available, you're going to see it. Personally, while you're here, tech elevator, I don't care which way you do it. When you go into testing, I use it in test cases a lot because I don't care if my test cases break in the future. I can fix them without affecting the customer. But But be aware of that when you get into a work environment. Most teams won't allow you to actually use it except for development. So
+
+So
+
+before we move on to taking a look at collections, any questions on anything we've talked about so far, or what questions you have
+
+Robert Martin is the name. Right.
+
+You know, I have it right here. I can find it. It's
+
+Yeah, Robert, Robert Martin.
+
+For that, that book clean code I would recommend at some point early in your career you read it. It's kind of the go to for writing code, I think most developers you read it doesn't mean you have to agree and follow all of it. Most people take a I disagree with this. Most teams have things where they deviate from it, but it's the standard of like the starting point of usually for writing good code. All right.
+
+All right. So let's talk
+
+about first before we talk about some collections and what they're gonna do. But before we do that, let's quickly recap. arrays, just the highlights. So we know what array we have like a string array, the one we looked at quite a bit. We talked about arrays. They're indexed starting with zero. They are simple data structure that allow us to work with this these groupings or question sections of data. They are fixed in size. So like in this array, there's five elements in it, there only can ever be five elements. Even if we want to delete one.
+
+We can not get rid of it, we can just remove the value.
+
+So it always be five want to add one, we have to create a whole new array. We can't doesn't resize. And they're accessed using square brackets in the index. So we access things we say we want to point to this element by using the index, either change it or to retrieve it. So you've been working with arrays for a few days now. So that's probably nothing new. But just to recap, what arrays do, and some of those are kind of limiting, right? The fact the main one being that they're fixed in size,
+
+and that they only hold data in this one.
+
+One structure And if we want to do something like insert a new element in the middle here, we have to rebuild it to build a whole new array, add a new size, and we have to know reposition them manually. So we can't easily put something in the middle, we're kind of stuck with where we put things. If we can't add or remove from it, we can only remove the values but not the position, not the
+
+index, or so.
+
+the limitations of array is what collections solves. Because being able to keep having data structures that we can work with a collection of set of data is something we have to do a lot we it's very rare to work with a single thing. It's usually a group of things we're going to be working with will work with. So the collection classes are a way of
+
+making These groups of data easier to work with.
+
+And
+
+the collection classes in Java, their own Java dot util package. They define data structures that are going to extend array, just about every collection type has arrays in the background, because I'm doing the work, but they kind of wrap around them to give us more functionality.
+
+So collections are written to be
+
+what's called generic meaning they're going to be useful for all reference types. And that point to their use for all reference types. It's going to cause us some problems soon, but we'll look at the solution for that. And they're defined by whatever collection type we look at with this symbol. T, sometimes it'll be an E as well doesn't really matter what letter it is. But that's called a generic type. And it means that it can take any object, any reference type, but it also means that we have to do Fine, what it's going to be using. Because it is Java is strictly typed, we have to, if we have a collection, that collection will be able to hold strings, that collection will be able to hold integers. So that collection will be able to hold scanners. It can't hold multiple types of things for most collections. Though, we will look later in the quarter of a way we could make it do that. So it's possible but by default, well, we need to talk about something next week before we can talk about how that would work.
+
+So we have to give it a type. So we're going to see this
+
+use each of this T to identify on classes where we have to identify what kind of type they're going to be using. So there's a link here, and I'm not going to go through it in detail, but it goes to the Java doc for collection. And if you're interested in what other ones we're gonna look at a few of them today. List queue and stack. And then tomorrow we'll look at a couple more map, specifically map and set. But there's other ones than the ones we're looking at. And they're all there's a list of them here. And there's some a bunch of information about just the collections and kind of the general things they can do. But if you're interested in more details than what we go into.
+
+So that's what collections are going to
+
+what collections are. So
+
+you're here
+
+in also put out a common. So collections are the set of classes that wrap around arrays to do similar functionality give us more functionality, I should say. around them the basic array, common interview question, something slides about pointed out is, is it a re collection and the answer is no arrays are arrays collections are these specific classes that are part of the Java util collections group.
+
+So let's look at some.
+
+So the probably the most common one is list. So it's defined as list t. So we're going to have to give it we'll see where I gave it a data type that's going to work with list is an ordered set of elements. It's zero index, like an array. So internally, it looks like an array. It's zero indexed, it has all the elements inside of it. It's going to maintain the order of insertion. So unlike an array where we always say, we want to put it at position, index three or index four with a list, we're going to be able just to say we want to add this to the list and it will resize as needed. But it's always going to maintain the order we put them in at. Its we are still gonna have an index we can work with if we choose to, and that will allow us To access elements still by the index like we would an array, it's going to allow duplicate entries, and that's most collections will but we're going to see some, especially tomorrow that will not. And like an array can hold one data type. So we'll set the data type string or scanner whatever we want to set it to a nonce the data type will be able to work with that list. And then the main thing listed they can add in shrink so as we work with them, we can add data without having to worry about what size they are. It will grow as needed and it will shrink as needed. So we'll be able to add and remove from it will also ability things like insert an item into the middle of it
+
+or at a particular index
+
+and it will arrange itself and reindex itself. For us, we won't have to worry about handling any event
+
+So let's look at how we would use a list.
+
+So we use a list
+
+by instantiating list by using list. And then a data type. We give it a variable name, so we declare it, then something's different here than what we've seen before. We're going to say when we instantiate it, we're not going to stand the type list because the list is something different. It's what's going to interface. And we'll look at those in a lot more detail next week. But at a high level with interfaces. It's not unlike a class where it contains all the code that is needed for that thing to be it. an interface contains no code. It just contains a bunch of methods signatures that creates a data type that guaranteed Certain functionality. So for the list, we're going to start with the interface. And then, but to use an interface, we have to use a what's called an implementation or concrete class one that actually has code in it. So we have to choose how we want it to what kind of functionality we want to use with this interface. The most common list is called ArrayList.
+
+The one you use for the vast majority of
+
+problems you run into, so we'll say new, and then the class we want to actually be our list. So ArrayList, and we also have to give it the data type. So here, it would be the example of actually building that code. So list. If we were building the array like we've been looking at, list, the data type, we're working with the name, variable name, new ArrayList, and then the data type we're working with. And then finally, the parentheses to
+
+Like we would for any other object.
+
+Right? Can I slide for a second?
+
+I'm sorry. You see.
+
+May I see the previous slide for a second? Yes.
+
+Mike is asking Mike cutting in and out right now.
+
+I am thinking
+
+sometimes for me, but it could just be on my end. That's what I'm about to just cut out whatever.
+
+You're cutting out for me too. Okay.
+
+Not that I can
+
+really do anything about that, but
+
+just just wondering
+
+Yeah, it's a pop up came on my screen and it says your connection is poor, but I don't. I was just going to restart my router during the break, but we'll see. Okay.
+
+Thank you, Ryan. I got it.
+
+All right. Alright, so
+
+alright, so we would create either
+
+a list like this. And then it gives us access to a bunch of methods that we can work with.
+
+So let's go. I'm going to go out to the lecture code.
+
+And let's create that list.
+
+Down here so it's easier to see. So list the interface, the data type, we're working with those and then let's use the one We've structures equals new, the implementation class that we want our list to be.
+
+So ArrayList.
+
+And then we have to tell it the data type it's going to be. And this is because this first data type definition is telling it, what this variable is going to hold. Let's go. And the second one is telling it when we instantiate an ArrayList, what it's going to be. And there's some shortcuts you can do around this, but we're not going to use them yet. So now there is both these have an error. That's because they're not important. They're in Java util, we don't have automatic access implicit access to them. So I can import it, or do the first one manually that I'll show you a shortcut for it. So we can import it by import, Java dot util.
+
+List,
+
+or re list is a second separate import. If I hover over it, there's this way let's not resolve to a type quick fix. The first one is import ArrayList Java util. When you click off this box, it's sometimes goes for the first choices, which is why how I'm sure a lot of you ended up with that extra import in some of your exercises. Also, if you cut and paste things around, it will sometimes do automatic imports for you to try to help you. And there's often the ArrayList doesn't have it, but there's often multiple possible imports.
+
+So
+
+when you're doing these let looking at this, make sure like if your that you clicking the one if you're using this option that you actually want, because there may be down in the list another import option, or even two or three. And you want to make sure you pick the right one. So for these questions always want Java util. But if you select it, it'll create the import for you. Alright so now we have A list in this variable instructors, if I look at it, so for any object that we've looked at yesterday, we can do a dot, and it will tell us IntelliSense will tell us all the methods available on it. And we can look, there's quite a few methods that are available.
+
+So that because access those methods are how we're going to access this list.
+
+But before we take a look at those, since it's been over an hour, let me go and take a break.
+
+And so we'll come back at
+
+1024 and
+
+so I continue
+
+recording right so
+
+Now we have a list of Stan shaded.
+
+So the next thing we need to do is be able to do something with it to be able to add to it, or to change it in some way.
+
+So let's look at what some things we could do with a list.
+
+So
+
+some of the actions we can take on it is we have the ability to determine what size it is. So similar to the length of array,
+
+it will size will tell us the size.
+
+We have the ability to add to it. So the Add method will allow us to add new items to the list. This will add to the bottom of the list. We also have have the ability to add a particular index will, they'll say, well, we want to put it in at index two, then it'll insert into the list and reindex everything around that, we can get an item from the list by particular index. So we can say we want to get the idea of an index to the same way we could from an array le was to get get method. Or we can remove an item from the list by giving it an index, say we want to remove the item from index two. So like an array, it's still heavily reliant on the index. But now we don't have to worry about the list.
+
+How that
+
+the size of it or
+
+changing those indexes ourselves, or managing them on our own. Well, now they're managed, they'll be completely managed for us as it resizes and changes. So let's work through these and we'll come back to the conversion. The End So if you wanted to create the list like we were working with, we'd use the variable structures. Add and now we could add any string to it. So, john,
+
+structures add
+
+it. One is I add them, it's just creating a
+
+adding each one, and we'll walk through that. So I'm gonna put a breakpoint here on line 16. So we can see the last being built
+
+and debug it.
+
+You can see here it's created the structures list. Notice that unlike our array when we created it, it would be it would show all the values empty with an empty list when it's created. There's nothing there. It's just an ArrayList with no values.
+
+So
+
+the as we step through this code, I'll stop
+
+and see I mean added jobs but add an index zero.
+
+The next once been added.
+
+And we can see it being built out, it looks just like we're used to with an array. So they're ordered in this way they've been ordered in the order of insertion, the last one added has the largest index and this that order will be maintained. As we go through some of the other collections the order is going to be important some of the job that some of the other collection types will do will actually be around ordering of data. So for list the order will be maintained in the way we put the data.
+
+Or if we change it to the order, we change it to
+
+So we can continue here, we can loop through a list. Let's do that here. So we can say, since we have the index
+
+i equals zero,
+
+i is less than the size of the list.
+
+And this is propolis.
+
+To do that, for each one, like we would for an array, we would have said something like this for the array we looked at. Now that this array is a list, we use the get method in the index the same way.
+
+And if we run that, we'll see that
+
+it prints out our list.
+
+So size allows us to size and get allows us to loop through the list the same way we would with number using the index
+
+So let's also allow duplicates.
+
+So if I
+
+add this is second john,
+
+and
+
+I'll debug it.
+
+We'll skip to the next breakpoint. And we see the list already contains the value of john. But when added, it adds a second one. So the like erase the values don't have to be unique. And again, that's being pointed out because when we get to some of the other collections, then won't always be the case. Some of the problems they'll be solved or be around uniqueness. So we can also insert an element in the middle So for the value we created, where it doesn't quite match our original list.
+
+Let's Let's change it so it does.
+
+We can pick where we want to be so well structured is not add.
+
+We can pick the index we want to put something. So we'll add our show and index to actually one so it matches the original list that way to match all the examples from arrays.
+
+And if I move the breakpoint here and run it
+
+we have the listening created breakpoints. We stopped running, running into it. See the list. And then we run this line, we'll see that shell gets inserted index one, and everything else gets moved downward. So it reindexed Steve Madden 92 and jaw the second john to a new index.
+
+We can also remove
+
+so we don't want the duplicate in there. So
+
+we remove instructors remove,
+
+we removed by index. Let's move to the next five which is where the duplicate values was. Again, I'll move my breakpoint and re debug it. And your mind is what the list looks like. The value we're going to remove here and we remove it removes the index if I removed One of the other values above, it would have reindex the same way it did when I inserted the value. So to reindex, around what we're doing. So that's a. So from the chat, there's a question about. So will we ever need to go back to arrays? The answer is sometimes Yes, there, they both serve a different use case, most of the time you use list. Most the time you list or another collection list is by far less than one we learn to mark a map by far the main collections that you use. But a couple times when use res, sometimes it's easier to deal with array. When you have like if you're setting poisoning the same three Options, Options, a common time that that's used is in configuration. And you need the boys to be at the exact same indexes that's commonly used. The other time that you'll fart, you You'll find yourself falling back into the race is if you need to work really high performance. So a race are faster. It's been there the basics, because they can't be resized. The way they handle memory is to get everything in one group and keep it together. And so they can go through their positions faster where a list doesn't necessarily do that it gets kind of chunks. But that's pretty rare you need that. So most of the time, the vast majority of time you'll stick with list desk or one of the other collections.
+
+So we can find out something is already in the list. So there is a method that
+
+contains so we can say
+
+boy in is C
+
+if your shows on the list, since we was the one that was added second separately equals instructors contain, and then a value. So, since we're using strings be a string value, and we know that that's in the list plus add a second line. So this
+
+is
+
+Josh in the list.
+
+We know that that names not in the list.
+
+I'm just putting them into the void value so that we can look at them.
+
+debug here, and when the list contains a value, it's going to return true contains return true for that value.
+
+So we know
+
+here, except that return true because character, a certain Show isn't the list that returns false because the string Josh is not in the list. Alright, so the other thing we could do is we can convert back and forth between an array. And a list, I would say fairly easily. But really, we can do it with a loop in will actually trigger exercise. That's one of the ways you can do it. Or there's some built in system ways to go back and forth. But it involves a little more complex syntax. And some things we haven't really seen yet. But let's, I'm gonna write examples of the many ways and we'll talk about what it's doing. So getting to from an array to a list is
+
+or list two arrays
+
+involves using a class called arrays. And if we wanted to change this into string
+
+instructor array
+
+from our list
+
+sorry, instructors said the wrong thing involves another method on here called to array. So to array will allow us to convert the list to array notice we get an error right away that we can't convert object to string what the talk we'll talk next week what that means.
+
+But what
+
+one of the ways we can solve it is that here, we can give it an empty array for to populate. So we can say new string array and instructors dot size. And with that, it will take this new string array we create, it'll populate it and it'll come back into the instructors array. So for that particular line code. It has some stuff we haven't really seen it.
+
+So for today,
+
+I would say just take it as,
+
+as one of those lines of code that if you want to do it that way you want to use it, use it as is. And as we get to the cohort, we'll learn what the rest of the pieces mean. Because there's a few things to unpack in there. So we can see if we just step through it though, we can see the it's created an array that that exactly matches our list. We want to go back we have an array and we want to go to the list which is probably a more common use case.
+
+rays can also be
+
+turned into lists, we need something else again, that will just take as this is kind of cut and paste code that you just replace your
+
+lists and arrays with.
+
+We can do
+
+string
+
+vector lists those
+
+we need this class called arrays
+
+as list
+
+and then we can pass it our structure the array, and it returned the resulting list. So a little so using this arrays class as lists to a static method off of it, if we pass it an array, it'll return the list of the same type.
+
+And that's what that could be. This word is here on the slide as well.
+
+Let's put another one.
+
+spittle listed. numbers.
+
+So list type,
+
+numbers equals new ArrayList of type.
+
+I have an error.
+
+If we look at this error,
+
+it's saying that something that is really cryptic.
+
+So the problem is
+
+that when something is defined like this, that T said represents a datatype. But only is a reference data type, which means that
+
+isn't a primitive can't be used.
+
+So our list type,
+
+our collection types can't don't work with the primitive data types like double long. But of course, we need to be able to have things like lists, there's no need to have things like lists of numbers, right? We can just have strings.
+
+So we need a solution for that.
+
+And the solution we've already kind of seen, we started looking at them in the the primitive wrappers. And we looked at them by using their static methods to parse between strings and integers and doubles and other values. But those same classes can be used to solve this problem as well. Because the primitive wrapper classes what they are is a object representation of
+
+the primitive data types.
+
+So
+
+look at those for each primitive data type.
+
+There is a wrapper class that has it's generally the same name just up just with a capital letter. The exception being integer spelled out as integer and characters spelled out as cars but as character.
+
+But they're not they are, they are the same.
+
+Then they could be initialized with we can as we create them, we can pass them either a value and a lowercase primitive version of it, or we can pass a string that has that value. So we can pass the string that has a one or 10 and it will create a capital integer for us that is 10. And then we can use these wrapper classes in our collections like list so we can still create The same type of the same usage, but we'll have to use the wrapper classes rather than the primitives.
+
+So let's look at that what that
+
+means let's actually create
+
+one. So if we want to create an integer, you can say integer.
+
+And there's a couple ways we can do it.
+
+Same character employees
+
+equals new
+
+integer 45.
+
+So we can create this way. So we can pass in a primitive value, and we could pass in a variable that contain that value as well here and it will create the object version of the integer or we could say, integer pieces of cake equals new image. We can also pass a string
+
+for
+
+and then we can use these, just like we would a primitive. So we can say employees
+
+greater than pieces of cake.
+
+sweet boy, yeah, and enough cake equals.
+
+So we can use that an if statement or anyplace else, we have a Boolean expression. So we don't need to convert them back to use them with the operators. Making these kind of a special another special case like string that they can work with these operators.
+
+directly there was some of the only objects that can
+
+and the reason they can do that is something we're going to talk about. Sorry, I got to turn these notifications off this concert. river otters quit River. I don't know, I think you can hear that every time it beeps on my computer but yeah. All right, so
+
+so we can use them
+
+directly or directly just like we would lowercase and the reason we can do that is this concept that we need to look at called boxing and auto boxing, boxing unboxing and auto boxing. And that's the way that these wrapper classes interact with their primitive types. So first, we have to define two terms, the first boxing and the second unboxing. And then we can talk about how Java actually handles the pores. So boxing means to go from a primitive to a wrapper class. So we had some code here.
+
+Like and
+
+I are
+
+num equals 10.
+
+We can say integer.
+
+Num, as rap rapper, equal equals num. without doing anything extra, we don't have to do new end and then pass it on. We also could say integer, something like emitter XYZ equals 20. We can just use a literal. So we don't always we don't have to explicitly generally do the new integer, we can use the lowercase with it. So this is going from a primitive into the wrapper class. So this is called boxing. And the reason it's called that is because of the way it's working with the stock in the heap.
+
+So if we look at boxing,
+
+it means that we have primitive which we know the values on the stack.
+
+So
+
+we have value 10 here and a primitive on the stack. And boxing just means that it takes that value, it creates an integer on the heap moves that value on the heap. And then
+
+it associates it with
+
+the variable of the wrapper class type that we've created. So boxing just means if you think about the stack is the value we talked about, the heap is kind of these almost like boxes, which is why it's called boxing these objects that have values inside of them rather than the value itself. Just taking the value from the stock putting moving on the heaps, we can use it. That's what boxing is. So unboxing is this going the opposite way? It means that we can, and that's what's happening here. It's not that these objects can actually work. With an operator because we're going to learn we learn more about objects that objects can't do that. It's because of unboxing that this works. unboxing means the opposite. It means we can go from the wrapper class to a primitive type.
+
+So I have wrapper class
+
+x, y, z as and cause x, y.
+
+And that works. So I'm going from the, the wrapper class to back to a primitive unboxing is just going the opposite way. So we have the value here that's in the heap in the wrapper, class integer. And when we unbox it just takes that value and it moves it onto the stack for a primitive to use.
+
+So the way Java would I use this code here?
+
+I wrote this code, I didn't have to do anything explicit. To make that happen. I just used it, I just set my integer equal to my wrapper class or my wrapper class equal to an integer. And that's because Java has this concept of auto boxing. And auto boxing means that that process is just automatic. It happens for us. So when we do something like this, with these two integers, using an operator that only works on primitives, what is happening in the background is that for both of these wrapper classes, it's removing the value, putting it on the stack, so we can compare them with a operator that does value comparison.
+
+The same way when
+
+we're
+
+creating an integer sending an equal to a primitive, it's moving the value automatically to stop under the heat force. So out of boxing is just the fact that we can use the uppercase integer and the lowercase interchangeable in most most cases, there are some cases we'll run into where we can't. And, and then you have to do it manually, like this. But they're pretty limited and they're usually around. Well, some of the collections erase usage that that happened. But you'll get an error saying that it can't be out of box. At that point, you can't be auto box, and that's means it can't be automatically converted.
+
+So the
+
+one of the problems we'll run into with auto boxing is that these are objects these wrappers are objects. So unlike our integers, they can be no so if I have
+
+nom
+
+plus equals, let's make it more explicit. Let's say num equals num plus 10. I know that's always going to work, right? Because num can be the value that I put in here. 10 or it can be a zero, that's all it can be. But
+
+if I create a Double
+
+D, and then I do d equals d plus two.
+
+Now, this is after initializing. That's an all D plus two this works. But it's not going to work when the code actually runs. Let's run it. Run it in debug,
+
+really spread coins
+
+we Get here we run this line of code.
+
+Next time code, this line of code,
+
+I'm going to get a null pointer exception because D is not. And that's because the null pointer exceptions coming from when it tries to auto unbox it. So it's trying to get the value of d out to put it into the stack. So it could do the plus, but it can't because it's no so I get the null pointer exception. So the wrapper classes with auto boxing introduced the idea that we could have a mathematical operation with nulls involved with the primitives don't ever got could never occur, we can only have zero. So my comment this outside an error every time. But the reason we would have had these at this point is that now we can build a list of type integer or any of the other primitives using the wrapper class numbers equals New ArrayList of that type
+
+and then we can add to it using literals or primitive values
+
+using add
+
+and going back to your question about when you would use arrays, one of my most common uses of arrays if when I want to do something like this is that
+
+this
+
+is much easier when I have a little set of strings or a little set of values.
+
+So we have the add in
+
+We now we can use them the same way we would use other buyers we'd have ENT,
+
+O or Alesis, some equals
+
+C, our numbers get
+
+get next to the 30 plus five.
+
+We can use them like that, like we would buy out of an array.
+
+So the wrapper classes allow us to have collections or use these primitives like objects. So before we continue, are there questions on any of that?
+
+Brian, do you just mind recapping the stack and heap process with the wrapper objects one more time.
+
+We thank you so
+
+Boxing going from a primitive, so lowercase, and to integer capital or lowercase double to upper capital A double or any of them means when we have the lower cases, the primitive we looked at yesterday that it's just this portion here, right? That's what it looks like when it starts. So if we're going to do this, assign it to the capital version, the class, then that's an object over on the heap. So but its value on the primitive is on the stock. So boxing means that when we do this, it creates the object here on the heap, the integer and then it takes the value from the stack, it automatically populates it, which is what's going on here. Otherwise, we'd have to type new integer and pass it the value, which we can do manually. That's how we manually box But it's doing that for us. That's what boxing is. And now we have an object of type integer that has, you know, address on the stack to where the integer capital injure is on the heap, and then the values on it. So does that make sense for?
+
+Yeah. So when, when you're doing a comparison between the two values in the unboxing is the value retrieved from the heap?
+
+It is. So what's happening when we're doing like that, were we done to equal or greater than between them?
+
+Next slide. Better I get there is that when we have something like
+
+C capital editor,
+
+so capital integer greater than another capital integer, and let's say this one has the value of 10. And this one has 20, but these are an objects right? So these are in the heap. So we'd have
+
+These two guys on the heap.
+
+When this happens, and it sees this and those that can't compare to a heap objects using this, this compares value. So what it does is it takes the value from the heap and it moves it to the stack. So for this value, it's going to move it down to lowercase I, and it's gonna take this value, move it out of the heap into to the stack as a lowercase i. So it primitive and then it will do the comparison here. Okay, let's unboxing so unboxing is taking actually this process would be the auto boxing portion. But unboxing is the process of taking it from the heat and putting it into the stack. Okay, perfect. Thank you.
+
+And really the times that we really need to know a lot about that outside of it, just interview questions is troubleshooting. If you run into problems knowing that that process is going on in the background, sometimes it's necessary. And knowing that auto boxing is happening can be important for troubleshooting and also so we'll run into cases where we get an error says auto boxing can't be performed or can't auto box. And that that's letting us know we have to do it manually, which means we have to type out new integer, a new double and pass the value in
+
+like this right here.
+
+So other questions on
+
+Okay, so this all brings us to
+
+Well, let's go back to our loop.
+
+So now that we have these collections, and what we're going to look at next views for arrays too, so it's not just for collections. We have this ArrayList where it's not do it Really is dependent on us to care or know about the index. So with the array, the index is always very important, we have to use the index to get the items. But, or the list, we often won't care What does add things to the list, we don't even care what size it is, we just care that there's things in the list. When we have that, we can always loop through a list like this or any of these collections like this, or just like we would have an array. But we also there's another loop we can use, that takes the emphasis off of the index and moves it more into just, I want the next thing in the list. And that's what's called the for each loop. And the for each loop is not just for collections that it can be used for arrays. But it's not we have collections, it makes a lot more sense to to need it.
+
+So in it, you can loop through every item in a list or array.
+
+By saying for a variable of the type that's that list or arrays holding. So that's going to hold this variable is going to hold the next item, and then a colon, and then the collection. So if we had this the structure array we've been looking at, we can say, for string name. And then as it loops, it's going to name the first time through is going to be john the second time through is going to be Rachelle the third time there's going to be Steve, four times through Matt and final time through MADI. That's what's going to be in this variable here. Colon the name of, in this case, an array but it also could be a list or other collection. And then inside of the block for the for, we can use this variable and that'll have the item we're processing them.
+
+So for each
+
+is for when We want to loop through every item in the collection in order we can't skip around. So there's problems we looked at, like when you find 13. skip the next number, we can't do that with a for each. Because we can't change where we're at, you know, just go forward, go from the beginning to the end. We also while going through the loop, we can't change anything about the array or collection, we're looping over. So if we want to modify something like we want to know, add two to the third one or something like that. It fortunately won't work because we can't modify the original collection during for each. And we also won't know what iteration run, we won't know if this is the third item or the fifth item. But often we don't care. All we care about is just going through the items.
+
+So to print
+
+this list like we had up here, and actually I'm going to go up and grab this code. So we can have a comparison Where that's to me exactly that when we're printing this list here of instructors, we're just going from zero to the size and all we're doing is printing them out. So this can be rewritten as a for each as for string name, and we're using a string because that's the datatype. This particular list is holding colon,
+
+the name of the list or array,
+
+the variable name and then now we could just use
+
+that here.
+
+And we'll see when we run this
+
+it prints out twice because the first time is coming from this for loop. The second time that is coming from the for each loop. So it's just an easier syntax we have that need and it's really common just to want to loop through everything in the list and show it or do something with it without caring what index were on or carrying, or wanting to change the color.
+
+So walk through
+
+kind of visually what's happening with less than the false up.
+
+So given this, we had this array of cities they get into work with arrays or lists look at the other work with all the other collections we're going to look at has these values in it. So as we started through the list, the first time through the next value availables will be Columbus. So this variable city is going to be populated with Columbus. And then down here when we use it, it'll be Columbus goes to the next item in the list which is going to be Cleveland. So city now as populated with Cleveland, we use it here in the body of the for loop. City is going to be Cleveland. Okay, so the next item which is going to be Cincinnati, so the string here, that variable gets populate with the value of Cincinnati. The next item We use it in the block, that variable is populated with Cincinnati, then it's gonna go to the next item, which will be Pittsburgh. So city here is going to be populate with Pittsburgh. And that's going to be available in the block and populate with Pittsburgh, then it'll go back for the next item, which is going to be Detroit
+
+city that will be populated with Detroit.
+
+And here in the block of Detroit, and it goes back to the next item, it says there is no next item, so the loop completes. So that's how a for each loop works. It's just an easier method.
+
+Somebody simpler method of looping through everything in the list.
+
+And the reason we're going to need that is we're about to look at a couple collections that work a little differently than listing array. So before we do that, what questions do you have
+
+Brian, where his name coming from, in the example and then close.
+
+In the example in clips Neymar here, yeah, it's coming from right here. Okay, so we define a variable here to hold the next value, and then we use that variable in the block. So name would be appear, where we say instructors don't get. We don't assign it to a variable that's those are equivalent. If this was an array that would be equivalent of instructors had I.
+
+So for a list
+
+this for the right for this in for a for each loop, it's here to hold the next value or get the next value in the loop. That makes sense. In the data type of this is least whatever this has been with this holding. So if it's an array of lowercase. And then actually let's do an example of one of those because that's
+
+to make it more clear that we can't do this with
+
+other things. Let's do double, double.
+
+We'll just put the three of men, so it's short 2.4 3.14 and 5.678.
+
+So we can have this and I perhaps to do
+
+pratha defined as an array.
+
+Okay, so now we have that we can do a for
+
+loop. Now we would do double
+
+that's already in context,
+
+or scope, in our array, and then we could do the same.
+
+Let's do whatever that number is plus one.
+
+So we can use it to do other things down here.
+
+And then if we ran that, it'll loop through each value in this double one at a time. And for each one, just add one to it
+
+that we see already the problems of double but
+
+so we can use with an array or list.
+
+So other questions.
+
+So let's talk about
+
+some, a couple other collection types. That solve. So loop are sorry, list is very general, right? It solves the same type of problems of the radars just holding a group of things together for us. But there are other collections that do more specific things. They're more specialists they solve very specific, particular problems.
+
+So let's look at one of those are a couple of those.
+
+So the first we'll look at is Q. So Q is defined with, again with a T. So it's generic just like list was it can take any reference type and hold any reference type. Its data structure that is around organization of order of data, specifically, ordering data in a way that's called first in first out. So like a checkout line at the store, the first thing that gets put into the line, first person in line is the first person to checkout right? And people add to the back of the line, and then the first next first person goes and so on through through the line. That's the way a queue works. So we can only insert at the end of the queue using this method offer. So we offer it and whatever data were offered. So if we had a queue that was lined up is 123. If we offer it's going to add for two At the end, we only can remove items from the beginning of the queue. So the first one that was put in and using this method, pole, and pole, which takes the first item, it returns it to us, it removes it from the queue. So unlike when we get something from an array, or list or we use the index the array when we use pull, it's going to skip the top item. And it's going to give it to us, but it's also going to remove it, it's not going to be in the queue anymore. So again, going back to the grocery store, checkout, it's the same idea. You're standing in line, the first person goes in, they checkout and then they walk away and they're not online anymore, right? Then the second person that we've gotten in line goes and they check out and they walk away, they're not online anymore. And that continues through the line as new people just keep adding to the end.
+
+So
+
+There's also a peek another method that's going to be available to queue that's going to allow us to look at the next item. So it's going to allow us so it'd be like the grocery store, the clerk looking up to see who's next in line, but not actually checking them out. So that remains in the queue, we just look and see what it is. That's what peak allows. And then there's gonna be a method is empty. That is going to allow us to determine if there's any more items in the queue. That's because with the queue, we're not going to worry about things like its size. We're not going to be able to access things by index. Instead, we're going to care about it. Are there more items in the queue to work with? To be fair, we can't get it size if we need it, but we generally won't need it. Because we can't loop through by index or get things by index. So the only point of having the size might need to tell a user No, there's 10 emails waiting on you. So some robots Uses of this of a queue. It's printing, like when you go to print a document, you get that print, I think it's actually called a print queue in windows that shows up, it shows you all the items waiting to be printed. The first one you print is the first one, it gets printed. And through the last one you added email, he's the same way that they go in order. In most modern systems, it's not as apparent, like in Gmail where everything gets grouped together, but they're still processed in order they're received. Call Center processing, you know, the next, the first caller gets, they talked to them first. And they talked to them in the order that they called. So queues are used for those type of problems. So we're going to create a work with a queue very similar to what we just did with list.
+
+We're going to
+
+Create a queue using an interface. So a not a class, but this thing called queue that's going to guarantee what a queue what it means to be a queue. It's not going to
+
+have any code in it though.
+
+And then we're going to give it the type data type that we're going to hold in this queue. So any reference type. And then when we create the queue, there's multiple queues we could create. If we looked at, if you look at the queue, Java Doc, there's quite a few different ones. But by far the most common one is actually linked list, which is can be a list as well, but we're going to use it as a cue. We're not going to go into really detail what linked list is but a high level what is a list that optimizes inserting onto the beginning or end and removing from the beginning.
+
+So which exactly what a kudos so
+
+We're going to build it like this. So cue
+
+the data type variable equals new linked list. And then the data type we're going to use. And then the parentheses because it's working instantiating a new object. So let's go build one and code for actually, before we do that other questions at this point on cue.
+
+Sorry, I was on. I was on here. So you mentioned I know you said link list is kind of a high level overview. But it does essentially the same thing as a queue. Like what would the purpose be of
+
+using it? That's a great question because we can also use link list as a list. So when we're using it as a cue, what we get out what we get is access to offer Mainly poll, that's what we care about. Since it's already optimized about adding to the removing from the beginning, but if we used it just as a link list, we would have to get it by index zero, or get first, which is also available for it. And then we'd have to remove the first one. But this, we can use pole and just it'll do that for us. So it allows us to treat and it's also getting into this other concept that we're gonna look at a lot next week. specifically called polymorphism, where it allows us to treat this list like a queue and get the behaviors and functionality as a queue without actually caring that it's a linked list. It will, but we'll talk about that. We'll spend a lot of time on that next week. So
+
+let's build one.
+
+Let's make a
+
+So we'll make a queue.
+
+And we'll just do strings because that's what we've been doing with the others. Again, if we wanted to do numbers or something like that, we would use the wrapper classes, the same as we did with list. And then let's give it a name like tasks when we get something that could pass. This could be another common example, queue usage. So link list, string. And now we have to import both of these. So I'm going to hover over q.
+
+And make sure I'm getting it from Java util which is what I want
+
+and hover over link list. And I could go up and type import java util, linked list or W tilde cube. First one is W tilde link list, which is one I want. So click that.
+
+And then we iterate what that did. Is it created
+
+put these up here
+
+was working But
+
+in this case, would it make more sense to just do a double toe? To asterik?
+
+off in the same or the dynamic sense?
+
+No, it could make sense. Yes.
+
+Yeah, that's what I'm talking about in code you're working on, like here or in development that can make sense to make things easier. That's that's the thing. I was saying that I've never worked at a place, every place I've worked over 23 years or so. never allowed that in actual code that was going to a client or being used by customers. We had to remove it at the end. But you could do it. Yes.
+
+And if you do it here, I'm, I'm okay with that.
+
+I'm not going to do it here because I want you to see where these are all coming from explicitly. But also, the way I personally work is I just work just how it is done. I type out what I want, then I hover over it and I just have it import them. They don't have to really worry about But it's not harming me in a to have the list out
+
+the top.
+
+Alright, so now if we want to add things to our queue, so we can say tasks
+
+offer
+
+and let's clean dishes saw for some tasks.
+
+Maybe we want to sweep the floors
+
+and see
+
+what other tasks we want to do and when to clean dog
+
+tasks and we'll scrub ceiling
+
+so we have some tasks in our list, they're going to be ordered like that. So the first one, my offered clean dishes that'll be the first task that gets done. So it's like a task list where we're just going down and going down in order but that's What's in our queue? Now the processor queue. So this is going to bring up something new again, because we're not going to work with indexes this time.
+
+And while we could
+
+do the for loop, the for each loop like we just did with list, the problem is that's not going to remove them from the list, it's not going to call pull over and over again. So generally, when I'm working with a type, or we're working with a type like queue,
+
+where it's about the order,
+
+and it has that is empty, what we really want to do is we want to limp loop. Why is empty is false. Why it's not true that is empty, we want to loop which means we could write a loop like this.
+
+We only have a Boolean condition, so we could skip the iterator
+
+and we could write tasks is empty. We really want to go with that's making more explicit He goes false, and you could do the knots, the knot. task is empty as well. I'm writing out only just for clarity. And then we could do that. So we could loop like that. But when we have this condition, when we have a loop where we need we only have a Boolean condition a manager, we don't have an iterator. There's another loop called The while loop. That is exactly for that. We only have a Boolean condition, we can change this to while then we just get rid of the
+
+extra and it will loop. Wow, the condition is true.
+
+So I'm going to go back to the slides here real quick. And let's take a look at the while loop. So it's made it's perfect for things like the Q because we want to loop Wow, the queue is not empty. We want to process the Q as while it's on empty.
+
+so forth.
+
+Visual it
+
+lets you try again.
+
+OK, so we can say wow
+
+it's true that cities start with C. So starts with is, now we know about string methods. So we can say that for cities for each index
+
+while it's it's true, they start with C do something.
+
+And then we're managing here since we have an array and we have a condition a blank condition that we want to loop While it's true there C. So which means we want to loop through the first three but we don't know how many actually are going to be grouped that way. So first, if they would alphabetic order and we want to loop through all the Things start with that letter we have, this is just managing this index manually. So kind of showing we can use them in conjunction with each other. We also get to write a for loop and use the index and then broke when it no longer was true to that would be the same thing. But here, that's true, it starts with C. So it continues to loop. It's true, it starts with C, so it continues to loop. It's true, it starts with C, the next index starts with C, so it contains a loop. Now it's false. And the loop ends. So the while loop goes as long as the Boolean condition is true, this first time it's false it ends. So if there was more cities down here, the startup See, it would never see them because the condition became false. So that's exactly what we need for a cube with is empty. So and I'm realizing now that this while loop examples, not the best. So what questions you have about That loop before we use it, I need to rewrite that. Okay. So let's make it work then make it working here. So we have that. If we wanted to actually process this queue, we might want to say something like, well,
+
+maybe we want to say for the
+
+task is empty, we could say system out, print line.
+
+next task.
+
+And then we'll say tasks dot poll, and it's gonna return a string because it contains strings. And maybe we'll do another one system out print line, remaining
+
+tasks.
+
+And we can also on task wouldn't get size to see how many items are in it. But really, it doesn't do much for us. We can't use it to control you. So let's put a breakpoint here or a while loop.
+
+And then right.
+
+Get rid of that breakpoint, continue. Alright, so here were our tasks. And if we could look at tasks over here,
+
+we can see it has our four tasks in it. And the order we put them in. So it's going to start through it, it's going to say it's, it's not true that it's empty. So it's going to pull the next task and if we watch over here, when it pulls, we'll see that when it pulls the task, it's been removed. And it printed it so it returned to this a string, return the string, the item was in it and now we can see the size of Because that's how many is remaining. Now it's not true that it's empty. So we pull. And now the task, remove has been removed. And if we continue through and see each time it pulls, that task is removed. It's when we're left scribbling. Now it says there's zero left. Now when zeros left is empty is going to be true. So it acts as the loop. If we'd use peak instead of pole, we would see them but it would never empty the queue. So pool is how we have to get things off the queue. So he's a specialist. It's only used in really, when we have this particular case, we need this first in first out
+
+type behavior.
+
+But questions on it.
+
+I have a question.
+
+Yes. How frequently do you Find yourself scrubbing your ceiling.
+
+Don't Don't. Don't Don't screw up. Don't be honest. I don't know if I've ever scrubbed my ceiling. As far as sounds disgusting, i don't i don't know i have no baseline of, of how often you're supposed to scrub a sewing. I just don't look out. I just don't look up. It fixes the problem. All right.
+
+So, all right.
+
+So let's look at one more.
+
+Let's look at another collection type one more. And that's actually it's 1125. Before we do that, let's go and take a second break. But one more collection to go through. So we'll take come back at 1135
+
+or guess
+
+Brian Yes.
+
+Just quick question, like when I did this, and I realized
+
+so what questions did come up for you during break?
+
+Okay. All right, so let's look at another question type in another specialist collection type. Specifically, this one is about order similar to queue, but it handles orders slightly differently. And that's stack. So stack order sizes data is first in lastin. First out, so this would be like a stack of books. If you have a pile of books and you pile you know each book on top of each other then When you go to get the books off the top, you take it off the top, that was the last one you put on, right. So that's the way a stack works. So we're going to start at the beginning of the stack. And we do that using the method called push, we can only remove for the beginning of the stack. And we do that using a method called pop peak exists the same way if we could look at what's on top of stack, but we can't without removing it is empty is the same as queue as well. And you can see I even cut and pasted that because let's see if there's remaining items. And just like queue, it's optimized around insertion deletion, so we can't really search it. So I'd work if we had a stack here of two items, and we push an item on top, it would go to the top. If then we use pop it remove that item from the top and give it to us and remove the item peak would show us The item but not remove it. So just like you did for Q.
+
+So real word uses this weekly
+
+queue for for stock is actually, we use it all the time without knowing it in the browser. So the browser's back button in history in a browser works to a stack. So that type of behavior, we need to know the last thing that happened. Document Undo, when you press Undo, in a document what it's doing, it's usually controlled in some kind of stack like structure, where it gets the last thing off and removes that change.
+
+So the robot uses of a stack is that history.
+
+So to use a stack, or before we do that go there's their questions on stack. So to use a stack, we're going to create it slightly differently. So stock doesn't have an interface. It's the only collection without an interface. I have no idea why I've been trying since I realized that that was the case, which is when the first time I taught this to figure out why stack as an interface, and as far as I can tell, nobody really, they just decided not to do it that way. Stocks, the only one, we're just going to use the class name, like we do. Any other. Most other objects are the ones we've used so far. So it's going to be stack. And then stack is defined as a generic. So we're gonna give it a variable, or the data type, a variable name equals new, and then stack, so this case, they're gonna match and then the data type we're working with. So it'd be like stack string, variable name equals new stack, and then the datatype again in parentheses.
+
+So let's run
+
+through what interfaces
+
+interface is When we were looking at this one right here, we use queue, and list. And we had a different class that we used in interface, we're going to go through, we're going to spend all day on interfaces. But at a high level, what it is, it's, it's a data type that doesn't actually have code in it. Instead, it It's a promise of what that data type can do. So it's a promise of whatever. whatever's in this variable is going to be a queue. And then we have to choose from multiple types that we want called implementation classes, or concrete classes, which is what linked list is, and it actually has the code that does the work. We'll learn why that's important. We'll spend a lot of time talking about why it's important next week. In fact, that's one of the big focuses is this use of interfaces and why they're important.
+
+So in this case, we're not going to
+
+have that So we'll see stack.
+
+And
+
+let's put a stack that looks like one we would be used. We use them in our browser stack. And we have to import stack. And it's in Java util like the other. So important. Java to
+
+push items onto the stack.
+
+I can say
+
+and let's push
+
+some addresses. We might want to
+
+And history,
+
+that's probably enough. So we have, so our history actually never could have stack the look about like browser history. And that's how we put items on the stack. When we remove items from the stack, we would use a while loop just like we would to process the stack just like we would the queue because we can't access the item in the stack by index. So much of a queue. So we'll say Wow,
+
+it's not
+
+empty. This time, I'll just use the NOT operator instead of the. So we're saying while it's not true that history is empty is true. So when it's false,
+
+then we could say
+
+something like System dot out print line
+
+last address
+
+and then our stack which is history. And we'll pop from the stack
+
+and let's put a breakpoint here
+
+and debug.
+
+So we can watch these methods working.
+
+You heard about breakpoint and
+
+so now we are going to create our stack
+
+see created here
+
+and nothing is currently in it. And now when we push is showing the index because internally it does have one but we can't access it So we can see it here in Eclipse, but we can't do anything with it. We see what is a pushes.
+
+It's putting them
+
+in that order. And then when we pull,
+
+so we're going to say why it's not empty. It's gonna pop. And we'll see the last one popped off. So they'll came off the bottom instead of off the top. And then these come out in reverse order that we added them. MCs, pop, just like pulled it from queue removes it as we go. If we use peak, we could look at it without changing the stack. But we can only look at the top. The next one is going to be it's going to come off. So the next one it's available.
+
+So questions on
+
+that, right. So
+
+let's look at a really common use case for stack because it hasn't This behavior allows us to do something that is pretty common. So let's say we had an
+
+integer array of integers
+
+and they're 10 2030 4050.
+
+And I wanted to reverse that array of integers.
+
+We can use a stock to do that very easily.
+
+So, first if I pushed these items, these integers into a stack, so I can for each integer and nums which number
+
+I could give me a stack.
+
+The split a stack of type integer ft is the wrapper class. It was called the num stack equals new stack of type integer then for each number, reach in, in nums in the array on the stack, we can push and push in that number. And when we do that
+
+what's going on there that we looked at today?
+
+What process is happening for that to work?
+
+Yes, yes, exactly. It's auto boxing into the wrapper class. These are primitive integers. And our stack can only use the wrapper class because it's collection for use reference types. So now we have our stack, but now if we wanted to, say print them and just print them in order, we could do something with them, like put them into another array or list or something but just print them, we could say while the num stack is not empty
+
+system dot out print line.
+
+And then for each one on the num stack, we could pop it.
+
+Let's put a breakpoint there and let's walk through it working.
+
+Um, so this is a really common use, in fact, outside of the outside of history the two times so over the years, I think I've maybe used one cue ever. Like it was it a job at Tokyo was actually a more advanced version of one. But stacks are kind of useful, because we often need history. And not often but occasionally we need it and when it does, stacks are very useful for that. But probably the most common time I've used a stack is when I Need to reverse something. And that's what we're going to see happening here.
+
+So we have this array
+
+on our stack.
+
+And we'll see that it's putting everything into the stack.
+
+experiments, we could see it, we have our ton. See each one's being added in. And you can actually see the auto boxing happen. If you watch here, you're going to see a value and then it changed to
+
+the
+
+reference type.
+
+See that in 50. The first time isn't a stock, it's actually the primitive with a value of 50. But before it completes, it gets boxed into the integer. That's the auto boxing occurring. So now I have a stack that has those values if I look at the stack here, so it's my list in order, but when they pop off, they're going to come from the bottom because it's the Last ends the first one out. So see here 50 3010, and it's done. So stacks can provide a quick and easy way to reverse a list. There are other ways to do it, but that's kind of a quick way of doing it in a lot of cases.
+
+All right, so, questions about
+
+questions about anything we've talked about today. Okay.
+
+So let's take a look at your exercises.
+
+actually expected that last part to take longer than that.
+
+Go open up
+
+import exercises here.
+
+Isn't it amazing how you guys like what all was covered today? And you guys were like, Okay, I'm getting it I have traction I see what's happening here like a week ago seriously That's amazing. Good job guys.
+
+See I think like that and then I started doing an exercise by myself. I'm just like yeah now
+
+actually applying it to a lot different than to a different thing than knowing it. I doing Oh, yes, I'm doing exercises. So my point is that that's normal.
+
+Was it's getting better
+
+Yes, yeah, before the match of this was day two
+
+none of this would have made any sense.
+
+So
+
+Alright, so
+
+we pull these up. So you're gonna, they're good. Kinda like what you did.
+
+You've been working on problems that are inside of methods with directions for each one and comments. There are tough cases for them.
+
+So when the J unit tests
+
+and see there's not many, but let's do one or two of them, let's walk through
+
+a couple of them. We won't do the hard ones. I'll save those for you. But
+
+maybe Let's see the first one. So we already looked at how we can convert a restless turn array using the built in methods. But let's look at let's do it manually for this one. And for these are going to be a few places, we have to go back and forth, create a listen array. And it that's actually a really common thing, you end up doing a lot in actual code. Sometimes one works better than the other. And you can use those built in methods, but you also can do it more manually.
+
+So if you were doing that,
+
+if we're going to build a list of strings, we're going to send an array of strings. And we need to build a list of strings to return. And that should be the first thing you check is what am I going to return? Now that we're getting more and more data types, they're getting more complex. One of the first things you should look at on any method you're working on, especially for the exercises is what are you actually trying to get to? You're trying to go from this data stream An array of strings to this data structure a list of strings. So what's the first thing we need?
+
+So if we have to return a list of strings, what are we going to have to have?
+
+A list?
+
+A list of things. So that actually, it sounds
+
+like oh, yeah, it sounds obvious. But that's actually one of the first things you should do is say, if I need to return a list of strings, I don't have one because they're sending me an array. Sometimes they'll send you the same thing to return that you might not need one. But if they don't match, these two things don't match. The first thing I would do would be to create the other things. So this is going to be
+
+we'll call it our string list to match their name
+
+and
+
+what do I put here for love
+
+But I need to instantiate
+
+lists string, and then parentheses. Okay.
+
+So if I use list here
+
+in parentheses, it won't work.
+
+So what did we, because list is an interface and interfaces don't actually contain code and name this right? ArrayList Yes, we have to instantiate. So we use list here, the interface. On this side, we use the implementation class ArrayList. And if we do use the interface, we're going to get an error. So if you get that, because it seems everything we've done so far, it's always been the same on both sides of the assignment, right? This is the first time we've seen where there's a difference. That differences actually become more the predominant thing. We'll be doing a lot more of as we go. But if you use list because the intuitive thing to do, then you're going to get an error saying it can't be a substantiated. So that should be your head when you see that error that there's something else you need. You need an A class rather than interface. And that that's difficult right now, because we don't know what to interfaces yet. Right? I suffered this high level description. So we need ArrayList. That's our list we're going to return to the second thing I would do would just be take this Nall and return it as a list.
+
+So now we're returning an empty list.
+
+So how can we get that array into that list? in the same order?
+
+loop for the
+
+bridge loop? Yeah. So we can use you said we use a four or a for each loop. In this case, can we use a for each loop
+
+Yeah, we don't need to index, right, because we're looping through the array in the ArrayList. If we're going there, ArrayList doesn't care about index because at the end, if we're going the opposite direction from an ArrayList, to look to an array, we would need the index. But we don't miss case. So let's do a for loop, a for each loop. That's one of the conditions we might want that so we would say string. And we don't know what it's really called. So it's called s, or what data this is. And then string array.
+
+And then on our list,
+
+well came up right away. So the Add method, and anytime you're working with objects, most things you're gonna be working with now, what are objects? And really, the integers are numbers, right? So they're like you're working with a 10, you're working with a 20. So it's pretty obvious what we're doing with them usually, but when you're working with objects, If you're not sure what to do, the first thing you should do is type in the variable name and press dot because the dot operator, and it tells you everything you can do with that object. And if you stop on it, it gives you documentation right there about it. So I'll be honest, I don't remember, when I'm working outside of preparing for each day, I don't remember half the time, like queue uses offer, or, you know, compared to push for a stack. Instead, I would just type in the variable, press it and then like, there's offer that's the one I need. And often, we can see that this list can do quite a bit more than what we've looked at. Some of these don't mean they'll make any sense. I know. Some of them don't make sense to me there. I'd have to figure out what they do as well, but a lot of them remove replace all sighs They at this point should be making sense and probably do because they do exactly what they sound like they're doing.
+
+So we need add in with this add
+
+the next stuff,
+
+item. So I'm gonna stop that. And I'm gonna put a breakpoint here on line 26. And we can debug a test case by putting a breakpoint in. If we right click on the test case, we can choose debug. We could do this with an individual test case or the whole list I'm going to do the whole list because there's no other ones working right now. So we can see we get the new ArrayList we have our first string array. So now using debug, we can see that this first test that's been sent is contains Apple orange of bananas. So that's what we have to return back in our list. So as we step through for each the first time through ss apeks is the first item in the list is going to add To our ArrayList. And we can see that it does. The second time through this S is the second value orange. And that's going to be added into our ArrayList. The third time through this assets banana, the last item in the list or the array, and then it'll be added to our ArrayList. And then we're done. And then if we want to see the next test at this point, if you step out of this, you're going to go into the Java core language code and j unit code. We don't want to do that. So I'm going to press resume here. And that's actually going to go to the next test and went back to that line because there's most you've seen, there's multiple tests and each of these test cases, so they're testing different values. So this time through, I can see it's red, orange and yellow, rather than Apple orange banana. So I could continue studying if I wanted to see how that works. If I press resume again, the next set they're sent is left Right, forward and back. I press resume again, and it's complete. And then over here my j unit tab, I can go back to that and see that we pass the test case. Now I'm going to remove the breakpoint. So if I run the other ones that debug it'll stop at that breakpoint and want to move it or work through it something already done. So that's another way of converting an ArrayList to a list. And for right now, though, I showed you a simple what I consider a simpler way but a lot more confusing way and using some things that we don't really have discussed yet.
+
+If you're converting back and forth doing something like this is completely fine.
+
+Come so don't don't shy away from having to do something like loop through it to convert it to an array or ArrayList.
+
+Right. So questions about that one before we Let's do one more.
+
+Don't want to do too many because I don't want to take too much of your enjoyment away from exercises. But
+
+maybe one more question. I'm
+
+sorry. You say you already The next one is Yes, please. So
+
+the next one's going the opposite way.
+
+So we have a list of strings, and we want to go to
+
+an array of strings.
+
+So what do we need to return?
+
+Right?
+
+We need array. So what do we need to create? Let's be the first thing we do.
+
+Alright to return.
+
+Yeah, so let's make array, an array. So string array, and we'll call it
+
+string array
+
+equals new string array, but now we need a size right?
+
+So what how can I find out the size I need?
+
+Can we use good size on the list?
+
+Yes, that's exactly how we do it. So I'm gonna say string dot list dot size,
+
+because they're going to be the same size. So now we have our string array, we would change the return to this. And really, for all just about all these problems are actually all of them. This is how I would start, I would look first. What's the return type? create one, change the return to be that and then between here, it's the question the challenges How do I go from this data to this data, and then if I as I go, if I found out I don't need this, and I would just delete it and do you know if I could do the work just here. You can always delete this line and do the work and the other one that's easier. But having this starting point of I need To go from
+
+this type, to this type,
+
+and then having now I have this type here, build here. And I from between these two lines, I have to figure out how to do that, I think puts the problems in some easier context, it gets rid of where you're going, you know the path, you just have to forget the path to get there.
+
+So,
+
+right. So now
+
+how can I get the values out of this list into this?
+
+What would I need to do?
+
+When before it
+
+would be a for loop? And can I use a for each year? I do I need the index.
+
+You need to index because it's an array
+
+Exactly. So if I was just looping through the array, like we were before, I don't need the index, but I have to put it into an array. And arrays don't have methods to do that. So to have to put it in my index, I'm gonna need the index. Anytime we need the index, we'll create a traditional for loop.
+
+So
+
+when does the loop when should the loop stop?
+
+I was just gonna say would you use the string list size?
+
+Yes. For list we can loop the same way we would array just to less than the size because the size is going to be one more than the last index just like an array.
+
+I plus plus
+
+and then I want to put it into string array. And we're ready to work the rays. So that index so 401 to each one. And what I want is from string list. So how can I
+
+just told you but
+
+I couldn't since it just popped up on the screen when I press dot there's the get method that allows us to get by index. So since my array and my list are the same size, which is built here, I know that you know index zero, I can just move into the raid index zero, so move each one at the same index between the list in the array.
+
+So again, I'll put a breakpoint right here and debug it.
+
+start stepping through it. See the values they sent this time stringless here is the same thing, apple, orange banana. Notice when built the array, it has three items already in it all in all, because arrays, build out their things, everything in memory and put in dedicate space to them and get them to the default values.
+
+It's a strength that default is no.
+
+And then we'll go through the first one that I it's going to be apple. And so it sets this fire from the list in Santa here in the same index. And the next one, index one, orange. Index two is gonna be banana. So now we have the completed ArrayList. Again to resume the next test cases, right orange and yellow. See the next ones left, right, forward and back. And now it's done. Look at the J unit and see that it's passed.
+
+So any questions about those?
+
+Why, why the list doesn't
+
+have a index on it.
+
+Let's just have an index index, we just have to use the get
+
+to retrieve values using an index.
+
+You'll do the same thing on the
+
+square bracket to get the index for each element.
+
+Not from list
+
+only from a list
+
+from the get method replacing brackets
+
+for list or list for
+
+Java or
+
+C sharp doesn't do they use the square bracket use the square brackets. So this is Java,
+
+Java. All right. Thank you.
+
+Could we just use the two array method on that one? You
+
+could? Yes, you could. Yeah, the shortcuts that I thought shortcuts but the get the shorter code that I showed you to do, that would be a perfectly fine solution to either base. This was just starting, you could do it this way as well. And
+
+whichever way makes sense to you use.
+
+So let's do the next one. And then we'll, that'll be the last one. I'll leave the rest of you. Just because this has something a little more we have to do with it when processing it. So here, they're getting a string array and returning a list of strings. So what do we need? What's the first thing we should do?
+
+create our ArrayList
+
+Yeah. So let's create our ArrayList it's gonna be list You know it's type. And again, you can say something like no four letter,
+
+Oh, I can't use that name of the there
+
+equals new. And then the list being the interface ArrayList being the implementation, we're going to use the mutation class that could be constructed or implemented. stanchion, sorry, with a type string. And then this variable here is what we're going to return.
+
+So if I want to go through that string array,
+
+how can I do it? What do I need? We're actually at this point, hopefully, it's clear we need a for loop. But can we use a for or should we can we use a for each loop?
+
+For each?
+
+Yeah, cuz we don't need the index here. We just need to each word in the list in order So for each of you these exercises, and I think there's a comment at the top that says this. So, for these exercises for today, you could try to find ways to do it with a for each loop, but not all of them are possible with a for each loop. For instance, this one, it would make no sense to use a for each. But you should try it first. And usually that'll be the default anyways, because it's easier, right? So we're going to string some kind of word and and then what are we looping through what variable
+
+in your way,
+
+string array, the array that they're sending us.
+
+So now we have word. Now our next problem is how do we find out if a word is four letters or not?
+
+And that statement,
+
+good enough, same, okay. So, go do something with word if word.
+
+For strings, how do we find out if they're four letters long?
+
+So we're gonna use length.
+
+And we're gonna save not equal to four, right?
+
+So because the ones we care about is we want to return all the strings that are not exactly four characters. So every string that's not four characters. So in our example, train, boat and car, we returned train and car. So we want the ones that are not equal to four. So now what do we do with them now that we know
+
+they're not equal to four? So our next problem is is that
+
+add them to The array that we made.
+
+Exactly, so four letter words, ad,
+
+and word.
+
+So is there anything else we need to do for this problem?
+
+Let's find out. Let's run the test.
+
+And that test has been passed. So
+
+right. So I'll stop there since so you can have the rest of them.
+
+And we just tell Rachelle that I don't like a quarter of your exercises for you,
+
+Brian, you can continue your answer.
+
+No, I don't want to spoil the fun for for you that wouldn't. That wouldn't be fair. I will give you a hit on one of the ones.
+
+Well, I'll
+
+tell you directly. We just did this when I'm lecture. But I'll leave that to you.
+
+One at the bottom.
+
+This puzzle is
+
+thick today. Yes, the boarding gate.
+
+So it says thank portable queues. I would personally never solve this problem using a queue. I would use a list and I'm almost positive that the reason it says model Bocuse is because the person who wrote this test is from England. And that's they're referring to think model lines
+
+I bought was positive because
+
+so when you get there and it says think multiple queues, you can solve it using a queue, but it'll be a lot easier to see using a bunch of less. So
+
+Alright, so any other questions? Anything else?
+
+All right. So some
+
+things for today.
+
+All right, so you have your elevator pitch presentation at 330. Today, wait three, whatever time it is on the calendar.
+
+I think it's a three, right? Three.
+
+So that's a three today. And then they'll have, I'll be back here in this Zoom Room at two o'clock for an open review. That's open any questions? I have an hour have a three o'clock meeting myself. But both of us do different things. So I'll answer any questions you have, review any concepts you want to go over. So whatever you have, and I don't have any agenda. So if you don't have questions, then we'll just enter late or I can. So that'll be a two and then also remind you that the classroom, this classroom, this room, the Zoom Room is always available. I leave it over In 24, seven, I don't, I don't close the meeting. So if you want to use it to collaborate in the afternoons, you're welcome to you're welcome to join here with other people when use it in the know this those links and all the other rooms but I know a lot of people are in the least in the cocoa or just in the classroom until they leave. So you can launch it in there and you know, I think ask people to join as they enter the classroom. You're welcome to use it. It's very rare I use this for anything else and I for that specific purpose so that you can so you can use it if I because it works a little better when you get above two or three people that hangouts does so well you know, that's that's available. And if I do ever need to use it for a would be for you anyways, it'd be for some things like the review.
+
+So
+
+so anything else today before
+
+Okay, well then I'll let you go and thank you and good luck.
+
+Thank you easy everyone.
+
+Transcribed by https://otter.ai

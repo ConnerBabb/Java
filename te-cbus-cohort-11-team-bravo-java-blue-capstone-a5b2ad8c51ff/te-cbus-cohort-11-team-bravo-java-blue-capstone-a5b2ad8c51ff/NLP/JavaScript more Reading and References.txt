@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/variables-and-datatypes-javascript.html#more-reading-and-references
+
+More reading and references
+#Mozilla Developer Network
+The Mozilla Developer Network (MDN) is a seemingly endless source of advice and knowledge. It should be the first place you go to for answers.
+
+The following are the MDN pages were used in this chapter.
+
+MDN: JavaScript data types and data structures
+MDN: Grammar and types
+MDN: Variable Statement
+MDN: Lexical grammar
+MDN: Template literals MDN: Standard built-in objects
+
+#Others
+Wikipedia: ECMAScript Good overview and brief history of EMCAScript.
+What is the difference between JavaScript and ECMAScript?
+Contains a short history of JavaScript and ECMAScript, their share past, and possible future.
+What every JavaScript developer should know about Unicode A nice introduction to Unicode, and the basic use of it within JavaScript.
+
+FreeCodeCamp: JavaScript type coercion explained Round to at most 2 decimal places only if necessary
+
+Google JavaScript Style Guide 13 Noteworthy Points from Google’s JavaScript Style Guide
+
+Why are shortcuts like x += y considered good practice? Interesting takes on why short assignment operators are considered best practice.

@@ -1,0 +1,16 @@
+Book
+https://book.techelevator.com/content/exception-handling-ool.html#defensive-programming
+
+Defensive programming
+As you can see, exception handling is extremely useful. Exceptions help you avoid scenarios which may worry your users or make them think something bad happened.
+
+Still, you can't rely on the runtime to tell you when there's a problem. If the exception can be avoided through defensive programming, it should be at all costs.
+
+Here are a few ways to avoid exceptions.
+
+Exception	How to prevent it
+OutOfBoundsException	Confirm that your index is within the bounds of the array or list first.
+ArithmeticException	Make sure that your divisor isn't equal to 0 first.
+NullPointerException	Check if the reference object you're acting on is != null before calling any properties or methods on it.
+NumberFormatException	Occurs when you try to convert a string into an int, bool, double, or decimal that can not be parsed, for instance, Integer.parseInt("Bernice").
+IllegalArgumentException	Use user-interface validation first to inform the user that they typed in an invalid value and to try again. This doesn't remove the need for an IllegalArgumentException, but it cuts down on the occurrences.

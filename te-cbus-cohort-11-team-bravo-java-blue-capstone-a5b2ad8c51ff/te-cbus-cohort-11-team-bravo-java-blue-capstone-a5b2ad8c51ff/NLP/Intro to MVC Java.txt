@@ -1,0 +1,55 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-java.html#introduction-to-mvc
+
+Introduction to MVC
+Before you learn how to build APIs, you'll need to understand the problems that design patterns and frameworks solve. Imagine you launched a new startup that creates some of the best-designed coffee mugs marketed towards software developers. Initially, you sold your mugs on Etsy, but now it's time for you to expand your business.
+
+You know you need to start with a web presence, so you build out a full-featured website that communicates with your database, customer relations management (CRM), and inventory management systems.
+
+Eventually, you realize that your customers find you on their phones, so you want to make your products available on iOS and Android devices. The web application serves up its own user interface, so you end up starting from scratch and build out a mobile application for iOS and Android.
+
+This process leaves you with three separate applications that share a lot of the same functionality. You could have avoided this issue with thoughtful planning.
+
+You know that the common functionality of this application is on the server and that each application represents that data differently. A way to solve this problem is to create a single API that returns the data to the calling system. It's then up to each application to take that data and present it to the user that best fits their screen size and device.
+
+#What is MVC?
+Applications can become quite large. As a result, it often becomes difficult to manage their size and complexity as new features emerge or existing requirements change. To address this, software developers rely on design patterns that assist in keeping the code clean and maintainable. One such pattern is called Model-View-Controller (MVC).
+
+MVC is a design pattern that separates an application into three main components:
+
+Model
+View
+Controller
+As programmers, the MVC pattern promotes loose coupling by helping to create applications so that the logic across web applications can be reused while not allowing any particular part to do too much.
+
+#Models
+Models are classes that represent the data in an application. Model classes define the properties of the data that you need to present, and provide the business logic and validation rules that must be enforced. Typically, models are retrieved from and stored in a database.
+
+#Views
+Views are the pieces of an application that display the user interface. A view is a template to present model data in one way or another.
+
+API Views
+
+The view in an API refers to the JSON that's returned to the client. The JSON is the data that's the content of your view. It's up to the different applications or views to display a representation of that data. This is discussed further in later sections.
+
+#Controllers
+All incoming web requests from a client are routed to a controller that knows how to retrieve model data. The controller then determines how the data should be returned to the client and returns the appropriate view. You can think of controllers as mediators, as they facilitate communication between models and views. The image below depicts this process:
+
+
+Image - Model-View-Controller
+#Bringing it together
+Using Twitter as an analogy:
+
+A single tweet or a list of tweets are the model.
+A Twitter timeline, a single tweet page, and a Twitter thread are all different ways to display model data.
+If you ask the Twitter API for a list of tweets, the controller returns the data in JSON format. It's up to each view to display the data.
+#Separation of concerns
+The MVC pattern helps to create apps that separate its different aspects:
+
+UI logic exists within views.
+Business rules and validation are contained in models.
+The primary role of controllers is to facilitate communications between models and views.
+This separation makes it possible for a team to break up the work. For example, one person can work on view code without interfering with work on the business logic
+
+
+

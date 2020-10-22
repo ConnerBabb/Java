@@ -1,0 +1,54 @@
+Book
+https://book.techelevator.com/content/command-line-programs.html#standard-i-o
+
+Standard I/O
+Until now, you've spent a lot of time writing the type of logic that could be used to run an application, but it probably hasn't felt very rewarding. Maybe you're feeling like something else is missing. This code can't do much:
+
+public double kilometersToMiles(int kilometers) {
+    double miles = kilometers * 0.621371;
+    return miles;
+}
+You'll see how the code you've written up until this point can be used to make an application. Instead of being battered through a series of tests, you'll build an application that interacts with the user and has them provide different inputs, which allows the program to run the way they need it to.
+
+To do this, you'll need to rely on a framework to help you interact with something called the standard I/O stream.
+
+Standard Streams are preconnected input and output communication channels between a computer program and its environment when it begins execution.
+
+— Wikipedia
+
+For most command line programs you write early on, the standard input stream is the keyboard, and the standard output stream is the terminal application which launched the program.
+
+You'll leverage the standard streams and reuse the code that you write—like the method above—to build fully functioning programs. Here, you'll build a kilometer to mile conversion calculator.
+
+Enter a kilometer value to start at: 0
+Enter a kilometer value to end with: 20
+How many should it increment by: 5
+
+Going from 0km to 20km in increments of 5km.
+
+0km is 0mi.
+5km is 3.106855mi.
+10km is 6.21371mi.
+15km is 9.320565mi.
+20km is 12.42742mi.
+To achieve this, you'll need to break your program down into two main steps:
+
+Prompt the user to provide values for start from, end with, and increment by.
+Print out each of the values converted from kilometers to miles.
+#Where does standard input fit in?
+Here, you'll start with an empty program and pseudocode these steps in.
+
+public static void main(String[] args) {
+
+    //greet the user and prompt them to enter a start from, end with, and increment value
+
+    //print out each value converted into miles from start from to end with
+}
+You can use System.out.print() and System.out.println() to print a message to standard out but how do you get information from standard in? The answer is to create a new Scanner using System.in and then use the readline() method.
+
+Here is an example of using the two methods together to prompt the user to enter a value:
+
+Scanner input = new Scanner(System.in);
+System.out.print("Enter a kilometer value to start at: "); //prints out a message
+String userInput = input.nextLine();                   //saves what the user types in userInput
+After the program runs these lines, userInput holds whatever the keyboard input the user typed before they pressed enter.

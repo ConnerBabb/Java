@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/introduction-to-classes-ool.html#constructors
+
+Constructors
+When you define classes, you want to make sure it can be instantiated into a useable state. That is, when the new statement creates a new object, you should be able to provide any arguments the class needs to allow usability afterwards. To do this, you use a constructor.
+
+A constructor is a special method of a class that initializes an object of that type. All constructors have the same name as the class they're in.
+
+Below, the Clock class has a Clock constructor. The constructor provides users the ability to set the clock to a specific time when instantiated.
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // Constructor has same name and spelling of class.
+    // Notice there isn't a return type with constructors.
+    public Clock(int hour, int minute, int second) {
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+}

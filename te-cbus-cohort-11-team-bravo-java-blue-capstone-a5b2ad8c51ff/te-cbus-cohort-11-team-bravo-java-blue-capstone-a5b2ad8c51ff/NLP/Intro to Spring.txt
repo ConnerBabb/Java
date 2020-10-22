@@ -1,0 +1,26 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-java.html#introduction-to-spring
+
+Introduction to Spring
+It's important to understand that MVC is a design pattern and not a framework. Any language that wants to implement a framework based on the MVC design can do so, and you'll often find that multiple frameworks exists for each language.
+
+The most popular MVC framework for Java is called Spring MVC, which is part of the much-larger Spring Framework. Over the years, the Spring Framework has grown into a massive, enterprise-grade framework that goes well beyond its original intent of managing dependency injection.
+
+You'll use a product called Spring Boot that simplifies using this large and complex framework. With Spring Boot, you can easily create stand-alone, production-grade, Spring-based applications.
+
+#Request and response lifecycle
+As mentioned in previous chapters, in a web-based client-server system, a client and a server exchange messages through HTTP requests and responses. Both web APIs and applications reside in web servers, and share many of the same characteristics and features.
+
+One key distinction between the two is the payload contained in the HTTP responses. Web applications typically serve complete web pages, including all the HTML, CSS, JavaScript, and data needed to display a page. Web APIs, on the other hand, usually limit themselves to the data to complete a view. The view in terms of presentation is on the client; all it's missing is the data to display. The web API provides that data.
+
+The following diagram is an illustration of the request and response lifecycle in a Spring MVC application:
+
+
+Image - The flow and handling of HTTP packets within an MVC application
+The client—such as a browser—sends an HTTP request to the server.
+The server receives the HTTP request, converts it to a request object, and determines what controller action to forward the request to.
+The controller action receives the request.
+The controller creates a model (data) and performs any other needed logic.
+The controller creates the response object.
+The server converts the response object into the appropriate HTTP response and sends it back to the client.
+Many things happen in this request/response lifecycle. Thankfully, Spring MVC does most of the work for you. In this next section, you'll focus on the Controller and the Model

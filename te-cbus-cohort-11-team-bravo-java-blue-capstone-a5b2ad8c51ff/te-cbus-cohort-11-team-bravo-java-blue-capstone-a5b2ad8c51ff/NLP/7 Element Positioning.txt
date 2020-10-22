@@ -1,0 +1,65 @@
+Book
+https://book.techelevator.com/content/css-selectors-box-model.html#element-positioning
+
+Element Positioning
+By default, all elements are rendered in the flow of the page using the box model rules you saw earlier. However, there are ways to dynamically position any element using CSS. You can do this with the position property.
+
+#static
+Many CSS properties have a default value, and for position that default value is static. Static tells the browser to put the element in the page normally and react to a user scrolling the page as if the element is stuck, statically, to the page. If you don't set a position for an element, this is the position value that it has.
+
+#relative
+Setting the position value to relative offsets the element from its normal location. With an element set to relative, you can then set top, bottom, right, or left to move the element. Even though the element is moved, the browser still keeps all other elements in the same position as if it was still there, essentially reserving its space. This can create a blank space on the page where the element would have been or may result in overlapping elements.
+
+#Example
+.inside-box {
+    position: relative;
+    top: 40px;
+    left: 75px;
+}
+This CSS rule shifts the element 40 pixels down and 75 pixels to the right. The top property indicates how far to move it from its original top coordinate—effectively moving it down—and left indicates how far to move it from its original left coordinate—effectively moving it to the right. In other words, you're positioning it relative to where it would have been without the CSS rule, as shown below:
+
+
+Image - position:relative example
+#fixed
+Setting the position to fixed lets you take the element out of the normal flow and place it wherever you want in the browser window—otherwise known as the viewport. Once you declare an element to have position: fixed, you can set the top, bottom, right, or left properties to define where in the viewport you want it to be displayed.
+
+Unlike relative, top defines how far from the top edge of the viewport you want the element set, and left defines how from the left edge of the viewport you want it displayed. Similarly, bottom and right position the element that many pixels from the bottom and right edges of the viewport.
+
+Note
+
+Even when a user scrolls through the page, the element still stays in the same place. Remember that top, bottom, left, and right refer to the browser window, not the page itself. Not setting a location causes the element to be fixed to wherever it normally shows up on the page.
+
+#Example
+.inside-box {
+    position: fixed;
+    top: 20px;
+    left: 70px;
+}
+This CSS rule sets the element to a fixed position 20 pixels from the top and 70 pixels from the left of the viewport. Note how the green box doesn't move as the browser window is scrolled in the video below.
+
+
+Image - position:fixed example
+#absolute
+Setting the position value to absolute lets you take the element out of the normal flow and place it wherever you want within the parent element, similar to how fixed positions the element within the viewport.
+
+Just like fixed, when you declare an element to have position: absolute, you can set the top, bottom, right, or left properties to define where in the parent element you want it set. These four properties also define how far from those edges of the parent that the element is set.
+
+Elements positioned with absolute are taken out of the normal flow. The browser doesn't reserve a blank spot for this element and as far as the other elements are concerned, it's as if it was never on the page.
+
+If you imagine the page being like a piece of paper under a sheet of glass, absolute sticks the element to the paper while fixed sticks the element to the glass.
+
+Note
+
+When using position: absolute, the parent element must also be "positioned", which means position must be set to any value except static. If the parent element is not positioned, the styled element uses the document body as its parent element.
+
+#Example
+.outside-box {
+    position: relative;
+}
+.inside-box {
+    position: absolute;
+    right: 80px;
+    bottom: 20px;
+}
+
+Image - position:absolute example

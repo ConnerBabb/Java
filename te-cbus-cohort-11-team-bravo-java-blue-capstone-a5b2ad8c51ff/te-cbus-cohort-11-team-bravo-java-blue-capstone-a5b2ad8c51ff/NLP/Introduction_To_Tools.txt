@@ -1,0 +1,22 @@
+Book
+https://book.techelevator.com/content/introduction-to-tools.html#introduction-to-tools
+
+Introduction to Tools
+Successful programming requires more than just understanding and writing code; it requires the ability to work with files. In its broadest sense, software development unites code with data. Programmers store code along with data and other resources such as configurations, pictures, and sounds in files.
+
+A number of tools exist to help programmers. The Integrated Development Environment (IDE) is one of the most important tools you'll learn throughout the cohort to help you work with files. Examples of these tools are Eclipse for Java and Visual Studio for .NET.
+
+In addition, the built-in Graphical User Interface (GUI) file tools and the command prompt bash shell are also frequently used by programmers to work with files. Examples of these tools are Finder for OS X and File Explorer for Windows. Both are covered in this chapter.
+
+Lastly, a primary concern to programmers is understanding the version of any given file. As software evolves over time, tracking and referring to previous versions of a file is just as important to programming as knowing the location and content of the file. This chapter introduces the widely used version-control software, Git.
+
+By the end of this chapter, you should have an understanding of:
+
+File Systems
+Shell Objectives
+GUI file tools
+Command Line Navigation
+Command Line file manipulation
+Git functions
+Local and Remote Repositories
+#File system and the she

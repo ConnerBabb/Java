@@ -1,0 +1,32 @@
+Book
+https://book.techelevator.com/content/server-side-api-1-dotnet.html#introduction-to-asp-net-core-mvc
+
+Introduction to ASP.NET Core MVC
+It's important to understand that MVC is a design pattern and not a framework. Any language that wants to implement a framework based on the MVC design can do so, and you'll often find that multiple frameworks exists for each language.
+
+The preferred MVC framework for .NET is ASP.NET Core MVC, a framework for building web applications and APIs using the MVC design framework. It's built upon ASP.NET Core, a rich, open-source framework for building and running web applications and services.
+
+ASP.NET Core is built upon .NET Core, a platform for building websites, services, and console applications for Windows, Linux, and macOS. It's the cross-platform successor to the .NET framework.
+
+Essentially, ASP.NET Core MVC is built upon ASP.NET Core, which is built upon .NET Core:
+
+
+Image - .NET Core Stack
+To learn more about ASP.NET Core, see the ASP.NET Core documentation.
+
+#Request and response lifecycle
+As mentioned in previous chapters, in a web-based client-server system, a client and a server exchange messages through HTTP requests and responses. Both web APIs and applications reside in web servers, and share many of the same characteristics and features.
+
+One key distinction between the two is the payload contained in the HTTP responses. Web applications typically serve complete web pages, including all the HTML, CSS, JavaScript, and data needed to display a page. Web APIs, on the other hand, usually limit themselves to the data to complete a view. The view in terms of presentation is on the client; all it's missing is the data to display. The web API provides that data.
+
+The following diagram is an illustration of the request and response lifecycle in an ASP.NET Core MVC application:
+
+
+Image - The flow and handling of HTTP packets within an MVC application
+The client—such as a browser—sends an HTTP request to the server.
+The server receives the HTTP request, converts it to a request object, and determines what controller action to forward the request to.
+The controller action receives the request.
+The controller creates a model (data) and performs any other needed logic.
+The controller creates the response object.
+The server converts the response object into the appropriate HTTP response and sends it back to the client.
+Many things happen in this request/response lifecycle. Thankfully, ASP.NET Core MVC does most of the work for you. In this next section, you'll focus on the Controller and the Model.

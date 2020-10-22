@@ -1,0 +1,320 @@
+Book
+https://book.techelevator.com/content/intro-html-css.html#introduction-to-css
+
+As you saw in the previous section, HTML on its own isn't very impressive. HTML allows you to structure your documents, but Cascading Style Sheets (CSS) brings your web pages to life with layout and style. CSS is a style sheet language used for describing the presentation of a document written in a markup language like HTML.
+
+#Browser default stylesheets
+Before you learn how to create your own styles, you need to understand that there is some default styling applied to HTML. Imagine you have an HTML document with some headings, paragraphs, a list, and a link:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Basics</title>
+  </head>
+  <body>
+    <h1>CSS Basics</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque tempora
+      quasi doloribus labore, reprehenderit iste, aliquid, distinctio
+      consectetur ipsum corrupti perferendis? Exercitationem quo dicta
+      aspernatur recusandae possimus a cupiditate illum.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, similique a
+      aliquam quidem at nam sapiente nostrum, cum consequuntur enim repellendus
+      saepe totam asperiores eaque tempore ipsa exercitationem, delectus
+      voluptates.
+    </p>
+
+    <h2>Another heading</h2>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
+
+    A link to <a href="http://www.google.com">Google.com</a>
+  </body>
+</html>
+You'd see a web page that looks like this.
+
+
+Image - CSS Default Browser Stylesheet
+It doesn't look like much, but there are some default styles applied to this HTML:
+
+The <h1> is larger than the <h2>.
+The <p>s have some spacing between them.
+The <ul> has some space between it and the <h2>.
+The link is blue, making it stand out from the rest of the text.
+If you open the Chrome Developer Tools and highlight the <h1> element, you'll see the style definitions to the right. For <h1>, you'll see user agent stylesheet, which means this is the default style, and it's coming from the browser.
+
+
+Image - User Agent Stylesheet
+#CSS documents
+Now that you know where the default styles are coming from, you can learn how to create your own stylesheets and override them. First, you need to create a new stylesheet in the same directory as an HTML document.
+
+Usually you'd store your stylesheets in a directory called css. You can call this whatever you want; in this example, it's called styles.css. Now, you have a directory structure that looks like this:
+
+├── css
+│   └── styles.css
+└── index.html
+You need a way to reference your stylesheet in your HTML document. You can do this using a new HTML tag, the <link> tag. Remember: any metadata about your document or links to stylesheets or JavaScript should go in the <head> section.
+
+The HTML External Resource Link element, <link>, specifies relationships between the current document and an external resource. This element is most commonly used to link to stylesheets, but is also used to establish site icons—both "favicon" style icons and icons for the home screen and apps on mobile devices—among other things.
+
+Below, you can see how the <link> element is used:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Basics</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+</html>
+#CSS syntax
+Now that the HTML document is linked to your stylesheet, you can create your styles. The first thing you might want to do is to add comments. Open styles.css and add the following:
+
+/* this is a comment */
+To create a new style, you need to start with a selector. CSS selectors define the elements to which a set of CSS rules apply. There are many selectors that you'll learn about later this week, but for now, you'll learn the most basic one, a type selector.
+
+A type selector selects all elements that have the given node name. Here are a few examples of type selectors:
+
+body {
+  /* apply the following declarations to the body element */
+}
+h1 {
+  /* apply the following declarations to all h1 elements */
+}
+p {
+  /* apply the following declarations to all p elements */
+}
+The style declaration block contains one or more style declarations. Every style declaration consists of two parts: a property and a value. They're separated by a colon and end with a semi-colon:
+
+/* this is a comment */
+body {
+  /* style declarations */
+  /* every style declaration consists of two parts: a property and a value */
+  /* seperated by a colon */
+  /* ends with a semi-colon */
+  property: value;
+}
+h1 {
+  property: value;
+  property: value;
+  property: value;
+}
+p {
+  property: value;
+}
+#Working with fonts
+One of the first things you might want to do when styling your web page is to change some of the properties related to fonts.
+
+In the previous section, you learned that the browser supplies a default stylesheet, and each browser vendor supplies their own. This means that if you're viewing a web page in Chrome on macOS, the default browser font is Times. How can you change that to something else?
+
+You can start by using the body selector. The body itself doesn't have any text, but this style applies to the body and each element that is a descendant, or child, of it, which is every element. The property that you'll change is font-family, and the value that you'll set it to is Arial, Helvitica, sans-serif:
+
+body {
+  font-family: Arial, Helvitica, sans-serif;
+}
+You might wonder, "Why does the font-family have three values?" As you'll learn in the next section, there are very few fonts that everyone has universally installed on their machines. What you're declaring here are fallbacks in case the visitor doesn't have the specified font. If they have Arial, their browser uses that; if not, it'll try Helvetica; if that fails, it defaults to a generic sans-serif font.
+
+If you look at this in the browser, you'll see the difference between the default Times and Arial.
+
+
+Image - Times versus Arial
+Sans-Serif versus Serif
+
+Sans-Serif and Serif are two categories of fonts that you'll come across when building web pages. A serif is a decorative stroke that finishes off the end of a letter's stem, sometimes also called the “feet” of the letters. In turn, a serif font is a font that has serifs, while a sans-serif is a font that doesn't, which is why it's called "sans-serif."
+
+
+Image - Sans-Serif vs Serif
+#Web safe fonts
+To use a font on a website, that font needs to be installed on a visitor's machine. But what if it isn't? Then the visitor's browser will default to a font like Times. To avoid this, it's best to use web safe fonts. These fonts are installed on every device that accesses your web site and are safe to use. Here's a list of web safe fonts:
+
+Serif Fonts
+"Times New Roman", Times, serif
+Georgia, serif
+"Palatino Linotype", "Book Antiqua", Palatino, serif
+Sans-Serif Fonts
+Arial, Helvetica, sans-serif
+"Arial Black", Gadget, sans-serif
+"Comic Sans MS", cursive, sans-serif
+Impact, Charcoal, sans-serif
+"Lucida Sans Unicode", "Lucida Grande", sans-serif
+Tahoma, Geneva, sans-serif
+"Trebuchet MS", Helvetica, sans-serif
+Verdana, Geneva, sans-serif
+Monospace Fonts
+"Courier New", Courier, monospace
+"Lucida Console", Monaco, monospace
+As you can see, this list is small. What happens when you want to diverge from this list?
+
+#Web fonts
+There are many web font providers available, with Google Fonts being the most popular. Google Fonts allows you to add beautiful typography to your web site by including a link to the font's stylesheet.
+
+All the fonts in their catalog are free and open source. These fonts use cross-site caching, which means you only need to load a font once with any website. That same cached font can be used on any other website that uses Google Fonts. This means that by the time someone visits your site, there is a good chance they've already loaded your font.
+
+Start by browsing through the Google Fonts catalog until you find one you like and click on it. In this example, you'll use a popular font called Roboto.
+
+When you click on the style, you'll see multiple styles you can choose from. Make sure to only select the styles you'll use. Even with caching in place, you'll want to be careful about how many fonts you add to your website. The more fonts you use, the larger your page will be.
+
+A good rule of thumb is to stick to one or two fonts. When you've selected your fonts, you'll see an embed tab on the right side of the page. If you click on it, you'll see some code that you can copy and paste into your stylesheet.
+
+Copy the <link> tag into your HTML document and place it in the <head>:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Basics</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+</html>
+Next, update your selector to use the new font family:
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+Now, your page uses the new Roboto web font.
+
+
+Image - Roboto Google Font
+#Font properties
+So far, you have only seen one property related to fonts. In this section, you'll learn about some other font properties.
+
+#Font size
+The font-size property defines the size of the text. This value can be one of any number of units of measurement, which you'll learn about later this week. For now, you'll use pixels:
+
+body {
+  font-size: 20px;
+}
+The default font-size is 16px, so this is only slightly larger than the default.
+
+#Font weight
+The font-weight property defines the weight of the text. You can use values like normal and bold with this property:
+
+font-weight: normal: The text is normal weight.
+font-weight: bold: The text is bold.
+p {
+  font-weight: bold;
+}
+You can also use numerical values:
+
+100 Thin
+200 Extra Light
+300 Light
+400 Normal
+500 Medium
+600 Semi Bold
+700 Bold
+800 Extra Bold
+900 Ultra Bold
+p {
+  font-weight: 600;
+}
+If the font family doesn't provide the requested weight, it uses the closest available one.
+
+#Font style
+The font-style property specifies whether the text should be slanted or not:
+
+font-style: normal: The text isn't slanted.
+font-style: italic: The letters are slightly slanted.
+font-style: oblique: The letters are more slanted than italic.
+p {
+  font-style: italic;
+}
+#Line height
+The line-height property defines the height of a single line of text:
+
+line-height: normal: Reverts to the default value of the browser.
+line-height: 1.6: You can use unitless values; the line height will be relative to the font size.
+line-height: 30px: You can use pixel values.
+#Text align
+The text-align property defines how the text content of the element is horizontally aligned:
+
+text-align: left: The text content is aligned to the left.
+text-align: right: The text content is aligned to the right.
+text-align: center: The text content is centered.
+text-align: justify: The text content is justified.
+#Text decoration
+The text-decoration property defines how the text content of the element is decorated:
+
+text-decoration: none: Removes any text decoration.
+text-decoration: underline: Underlines the text content.
+#Text transform
+The text-transform property defines how the text content should be transformed:
+
+text-transform: none: Removes any text transformation; the text appears the same as in the HTML code.
+text-transform: capitalize: Turns the first letter of each word into a capital letter.
+text-transform: uppercase: Turns all letters into capital letters.
+text-transform: lowercase: Turns all letters into lowercase letters.
+#Working with colors
+If someone handed you the keys to a new car, you'd probably be excited to see it. But that excitement would quickly fade away when you step outside only to see that it's painted a bright, neon green, the carpet is a bright pink, and the car has yellow seat covers. You'd probably ask yourself, "Who designed this car?"
+
+Color matters for the car, and it matters for your website. You must make sure that your designs are visually appealing and that you use color contrast throughout your website. Color contrast refers to the difference in light between font, or anything in the foreground, and its background. Try to keep that in mind when changing the colors of backgrounds and fonts.
+
+#Background color
+The background-color CSS property sets the background color of an element. If you want to change the background color for the entire document, you could target the body element and set the background color to blue:
+
+body {
+  font-family: Arial, Helvitica, sans-serif;
+  /* we can use names or rgb hex values */
+  background-color: blue;
+}
+
+Image - Working with Colors - Blue
+Now that you've changed your background color to blue, the contrast with the black text isn't very good. It'll be hard for your visitors to read the text on the page. If you want to check the contrast between text and background colors, you can use online tools like the Coolors Color Contrast Checker.
+
+#Color
+You know the contrast between the blue background and black text isn't that great, so you need to change the color of the text. The color CSS property sets the foreground color value of an element's text. You can update the text on the page by setting the color property to white using the body selector:
+
+body {
+  background-color: #0000ff;
+  color: white;
+}
+
+Image - White Text on Blue Background
+This looks a lot better. Using color contrast in your designs greatly improves the readability of the text on a page.
+
+#Color values
+You can now set the background color of any element along with the foreground color of an element's text. In the previous examples, you used names of colors like blue and white, but where did those come from?
+
+There are several ways to define a color. Here are two of the most popular ways:
+
+Using a keyword such as blue, white or transparent.
+Using the RGB cubic-coordinate system via #-hexadecimal code.
+#Color keywords
+Color keywords are case-insensitive identifiers that represent a specific color, such as red, blue, black, or LightSeaGreen. There are several things to keep in mind when using color keywords:
+
+CSS completely ignores unknown keywords.
+The color keywords all represent plain, solid colors, without transparency.
+Several keywords are aliases for each other:
+gray / grey
+lightgray / grey
+darkgray / darkgray
+Take a look at this code, which uses a verybrightred value for the color property:
+
+body {
+  background-color: #0000ff;
+  color: verybrightred; /* this keyword is not valid, color reverts back to default of black */
+}
+See the MDN Documentation for a full list of color keywords.
+
+#RGB Hex
+The RGB color model defines a given color according to its red, green, and blue components. If you want to set the background of your document to a hotpink color, you could define that using the hexadecimal #FF0099. The first two characters represent red, the middle two represent green, and the last two represent blue:
+
+body {
+  background-color: #ff0099;
+}
+Note: R (red), G (green), B (blue), are hexadecimal characters (0–9, A–F).
+
+Don't worry about memorizing these numbers. This is something you can lean on your tools to do for you. In Visual Studio Code, you can select a color from the palette, and it inserts the correct hex code for you.

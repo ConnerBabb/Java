@@ -1,0 +1,73 @@
+Book
+https://book.techelevator.com/content/introduction-to-classes-ool.html#methods
+
+Methods
+When you need an object to "do something" or perform a behavior, you can use methods.
+
+In the case of the clock, it can tick. When you invoke the tick method, it changes the state of the class by ticking forward one second at a time.
+
+The following code sample shows how to add a Tick method that changes the state of the object:
+
+Clock.java
+Program.java
+// Clock.java
+public class Clock {
+    private int hour;
+    private int minute;
+    private int second;
+
+    // tick() method changes the value of hour, minute, and second
+    // void means nothing is returned
+    public void tick() {
+        this.second += 1;
+
+        if (this.second >= 60) {
+            this.minute += 1;
+            this.second = 0;
+        }
+
+        if (this.minute >= 60) {
+            this.hour += 1;
+            this.minute = 0;
+        }
+
+        if (this.hour >= 24) {
+            this.hour = 0;
+        }
+    }
+
+    public String getCurrentTime() {
+        return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public void setSecond(int second) {
+        this.second = second;
+    }
+
+    public int getHour() {
+        return this.hour;
+    }
+
+    public int getMinute() {
+        return this.minute;
+    }
+
+    public int getSecond() {
+        return this.second;
+    }
+}
+Using methods allows you to encapsulate the logic needed to make your clock function. Encapsulation lets you restrict access to the internal mechanism of how the class works by hiding or protecting its variables. This way, the values remain consistent and don't contradict each other.
+
+Rather than having the user of the clock change the second, minute, and hour manually, the clock ticks and internally manages when the values need to increment by one or roll over to zero. Ideally, this limits the risk of bugs that appear in your code.
+
+Void Return Type
+
+Some methods don't have a return value. Methods with no return value have a void method signature.

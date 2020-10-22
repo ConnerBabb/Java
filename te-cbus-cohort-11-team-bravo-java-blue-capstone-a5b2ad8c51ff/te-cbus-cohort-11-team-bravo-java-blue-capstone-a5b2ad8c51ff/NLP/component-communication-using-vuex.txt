@@ -1,0 +1,197 @@
+Book
+https://book.techelevator.com/content/component-communication.html#component-communication-using-vuex
+
+Component communication using Vuex
+In the previous section, you saw how you could refactor your BlogPosts component into two different components. Although this works, you still have to load the data into the parent component, App.vue, and pass that list of articles down to your BlogPosts.vue component as a prop.
+
+Initially, it seems that this is something the BlogPosts component should handle. One way to fix this is to load the data within the BlogPosts component. This could be some static data or a call to an API to fetch the list of articles from a database.
+
+But what happens when you need the same list of articles in another component in your application? What happens when two different components need to make changes to the posts data?
+
+When multiple components need to both access and modify data across your application, it's best for all of your application data to live in one central location that your components can connect to. This concept is common in programming and is typically called a datastore.
+
+Setting up a datastore and allowing your components to access it is a common practice. This ensures that there's one central repository of data that's always up to date. It's so common that Vue has special features built in to accommodate it. The most common technology used to solve this in Vue is called Vuex.
+
+#What is Vuex?
+Vuex is a state management pattern and library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state (data) can only be mutated (changed) in a predictable fashion.
+
+What is state and state management?
+
+You'll often hear the terms state and state management library in Vue and other frameworks. Don't let these terms confuse you; all they refer to is the data within your application and how it is managed.
+
+Returning to the BlogPosts list component, imagine that the posts were defined in the component and not as a prop. The component can be broken down into three parts:
+
+The state (data): the source of truth that drives your application
+The view: a declarative mapping of the state
+The actions (methods): the possible ways the state could change in reaction to user inputs from the view.
+<!-- VIEW -->
+<template>
+  <blog-post v-for="post in posts" v-bind:post="post"></blog-post>
+</template>
+
+<script>
+  import BlogPost from 'BlogPost';
+
+  export default {
+    name: 'blog-posts',
+    components: {
+      BlogPost
+    },
+    // STATE
+    data() {
+      return {
+        // state
+        posts: []
+      };
+    },
+    // ACTIONS
+    methods: {
+      getBlogPosts() {
+        this.posts = [
+          {
+            id: 1,
+            title: 'My First Post',
+            content: '<p>This is my first post</p>'
+          },
+          {
+            id: 2,
+            title: 'My Second Post',
+            content: '<p>This is my second post</p>'
+          }
+        ];
+      }
+      addPost() {}
+      updatePost() {}
+      deletePost() {}
+    }
+  };
+</script>
+This is a representation of the concept of "one-way data flow":
+
+
+Image - One-way data flow
+However, simplicity quickly breaks down when you have multiple components that share a common state:
+
+Multiple views may depend on the same piece of state.
+Actions from different views may need to mutate the same piece of state.
+This is the problem that Vuex aims to solve by providing a central "store" where all of your data lives.
+
+#Defining data in a store
+Vuex uses a single state tree—that is, this single object contains all your application-level state and serves as the "single source of truth." This also means usually you have only one store for each application.
+
+When you create a new application using the Vue CLI, make sure to manually select your features and select Vuex.
+
+
+Image - Vue CLI Vuex Option
+When the project is created for you, there is new file located in /src/store/index.js:
+
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {}
+});
+If more than one component needs access to your data, this is where you store it. To create a list of two blog posts that any component has access to you, define it in state:
+
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  state: {
+    posts: [
+      {
+        id: 1,
+        title: 'My First Post',
+        content: '<p>This is my first post</p>'
+      },
+      {
+        id: 2,
+        title: 'My Second Post',
+        content: '<p>This is my second post</p>'
+      }
+    ]
+  },
+  mutations: {},
+  actions: {},
+  modules: {}
+});
+You don't need to worry too much about mutations, actions, or modules at this point. All you need to know is that when you want to define data that can be accessed across your application, you do so in state.
+
+#Accessing data from the store
+Now that you've defined state for your application, you need a way to access it in your components. The easiest way to access the store is by using the $store object in your application. Remember that you define all of your data in the state: {} object, so to access state, you'd use $store.state.
+
+If you have an array of posts in your Vuex datastore, like the following:
+
+export default new Vuex.Store({
+  state: {
+    posts: [
+      {
+        id: 1,
+        title: 'My First Post',
+        content: '<p>This is my first post</p>'
+      },
+      {
+        id: 2,
+        title: 'My Second Post',
+        content: '<p>This is my second post</p>'
+      }
+    ]
+  },
+  mutations: {},
+  actions: {},
+  modules: {}
+});
+You can access that data using $store.state.posts:
+
+<template>
+  <div class="posts">
+    <h1>Blog Posts</h1>
+    <div class="post" v-for="post in $store.state.posts" v-bind:key="post.id">
+      <h2>{{ post.title }}</h2>
+      <div v-html="post.content"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'blog-posts'
+  };
+</script>
+You might wonder how this is possible. The answer is that Vuex does most of the work for you. When you create a new project and select Vuex, the following code is created for you in /src/main.js:
+
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store';
+
+Vue.config.productionTip = false;
+
+new Vue({
+  store,
+  render: h => h(App)
+}).$mount('#app');
+The store is imported and passed into the root Vue instance which now makes that store available across all of your components. This means that you can access the store throughout your entire application.
+
+As with properties, to access the store in your methods and computed properties you have to use this:
+
+export default {
+  name: 'blog-posts',
+  data() {
+    return {};
+  },
+  computed: {
+    allPosts() {
+      return this.$store.state.posts;
+    },
+    publishedPosts() {
+      return this.allPosts.filter(post => post.published == true);
+    }
+  }
+};

@@ -1,0 +1,53 @@
+Book
+https://book.techelevator.com/content/arrays-and-loops-javascript.html#loops
+
+Loops
+One of the things that are best learned with arrays is the concept of loops. Programs that you write can use any of the control structures below during execution:
+
+A straight line / top-down - the program runs from top to bottom and every line executes
+Applying conditional logic - using if/else, the program conditionally executes code based on a condition being true
+Repetitive code flow - the program continually executes a block of code as long as a condition remains true.
+In this next section, you will cover the last point.
+
+There are three different types of loops that are used in programming:
+
+for loop - used when you want code to repeat a defined number of times (e.g. one time for each element in an array)
+while loop - used when you want to continually execute a block of code as long as a condition remains true
+do-while loop - used when you want to execute a block of code at least once and repeat it as long as a condition remains true
+The most common loop used is the for loop, though for many of the exercises you complete and perform on the job any of the loop choices can be substituted.
+
+#Writing a For Loop
+The for loop is defined using the following syntax:
+
+for (<initializer>; <condition>; <iterator>) {
+    <body>
+}
+The loop is made up of three very important pieces:
+
+initializer - the statement (or set of statements) that set the initial state. This is executed one time before the loop begins.
+condition - the expression evaluated before each iteration of the loop.
+iterator - a statement (or set of statements) that execute at the end of each pass through the loop
+The loop continues forever until the condition evaluates to false.
+
+If you wanted to print "Hello World!" to the console five times using a for loop, it would look like this:
+
+for(let i = 1; i <= 5; i++) {
+    console.log("Hello World!");
+}
+Here's how the three parts match up:
+
+initializer - let i = 1; - you declare a local loop variable that is named i. Its initial value is 1 and it is used to track which iteration of the loop we are on.
+condition - i <= 5 - before running the body of the loop, you check to make sure i is less than 5.
+iterator - i++ - after each iteration of the loop, you increment the value of i by 1. This syntax is equivalent to i = i + 1. The condition is then evaluated again and, if it remains true, the body executes.
+Increment & Decrement Operators
+
+There are many different ways to increment a variable.
+
+i = i + 1;
+i += 1;
+i++;
+On the flip-side, there is a short-hand syntax for decrementing a variable as well.
+
+i = i - 1;
+i -= 1;
+i--;

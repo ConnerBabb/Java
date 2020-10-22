@@ -1,0 +1,1551 @@
+Zoom
+https://techelevator.zoom.us/rec/share/u8JzK5r35n9OT43qw2zeQJZiA4b4X6a80yYe8vUInUyNwid8f0t-MgqnWfRpQU8f?startTime=1595510732000
+https://drive.google.com/file/d/11N2JZfHtHKKr_2bUQBRYJKxaDsnNSCsl/view?usp=sharing
+https://docs.google.com/presentation/d/1cBlP8ZTmFL0hl5Exro8Hvnty9nV6JpzEV_DE7I_MwIA/edit?usp=sharing
+So today we're going to talk about, we'll call component communication. But we're really going to talk about is breaking down components and then how well how they communicate, but using this thing called a state management pattern, specifically a part of view called view x or as an actual additional plugin for view. So before we even started on this,
+
+today is going to be
+
+so next slide
+
+maybe. So we're gonna look at three things. And but I wanted to talk about this image that I showed you earlier in the color, Michels drawing, because today is going to be one of those days. Most of you are many of you are going to end today feeling like that you got ran over by some sort of knowledge train or some other Other analogy. So, because today's hard, there's a lot of stuff, there's a lot of new material, there's a lot of new ideas, and they're not easy ideas. But it's okay. If you end today, or as we're going through today, and your or even other days during this week, and feel like you aren't sure what's going on. So it's there to remind you that you'll get this, it will come. It doesn't have to come during class. In fact, that's pretty normal, really normal, not just for you, but for everybody who ever wants to this program. So, that's not meant to be to make you feel like that. It's impossible, or that. But just as you're going through today, focus on how to make it work. Focus on the code. There's gonna be a lot of code today and focus on Just how to, to make it solve the problem. And then the why. And some of those more complex reasons will come. Well, we're gonna keep revisiting this over the next week tomorrow. We'll revisit it in detail. Next week, we'll revisit it. So you don't have to end today with a full grasp on view x. So we're going to start by quickly talking about this thing called the single responsibility principle, which is going to guide a lot of what we're going to do today. It's nothing new. we've, we've already talked about the concept that it has quite a bit. So we're going to talk about that. And then we're going to talk about view x. And we're going to kind of go through a really like really high level view of UX. And what it is because we're only going to focus on a couple piece of pieces of it to solve the problems we need to solve right now. So today, we're going to focus on two pieces of it and it Just kind of the problem it solves, and why it's used, and then how to use it a lot of how to use it. So in, then we're going to focus on talk about component design. And we're going to talk about view x, I'm going to walk through the pieces even though we won't use a lot of them just so you have a kind of an idea of what all it does. And then, when we talk about component design, we're going to break down what we looked at yesterday, or last few days into more proper components, and talk about how those should work together. And that's going to need bring us to need to use UX. So we'll implement UX and get it working with those components. So a lot of what we're going to be doing with all three of these is going to be through just coding today but So let's start with view components again. So view components, we've been looking at them as this one thing that builds a page, every component we look at as a single component, and the whole page has been in that component. And we mentioned the beginning that that's not the way components really should work. We were more focusing on just how we build them. Today, we're going to start focusing on how we really should be breaking them up. They should be in smaller pieces, but we needed something larger for that. And this idea of how they communicate is actually one of the most challenging parts of view is how these pieces communicate. So components are meant to be reusable parts. So a whole page is a component, though it will be it should be made a smaller component, the makeup, small kind of widgets that we can reuse. Like, for instance, on the review page, each individual review that has that little little section that shows one review should probably be its own component.
+
+It So
+
+in these reusable parts of components, and we're going to put them together into things that are going to represent the page itself. And we'll call those views but they're still just components. There's nothing different about them, only the views will represent the page. The components represent the parts of the page. So today, we're still going to keep using App view, the app component as the view. But it's still going to be now broken into a mini components set of one that we're loading that we build. And the each of those components can have components building on each other. So this is all driven. A lot of view is driven by this idea, called the single responsibility principle, and this should be nothing new. We've talked, we've talked through the principle multiple times, I've never named it. So the single sponsibility principles, this concept in computer science that work in programming should say That every module, or every class, in this case, every component should have responsibility over one single part of the functionality of an application. And that it should be the only thing that has that responsibility. So there should be one place where we started calling the source of truth. For data for functionality, there should be one for each piece of functionality. And it should then entirely encapsulate everything needed about that, about that thing. So this is going to guide why we're going to use view x with for data, we're going to create single responsibility for the data, and also why we're how we're going to break up components. So it's a this principle is a major part of how just view is supposed to function. So before we talk about view x, I'm going to start the lecture I'm going to load the lecture code
+
+and start npm install, running
+
+folder for today's lecture.
+
+And today's lecture code, if you look at it is a copy and paste of where we ended yesterday. So it's I just took the lecture final that we ended with yesterday and I copy the folder for today's starting point.
+
+So with that, let me get a new terminal.
+
+Make sure I'm in the right place with the package JSON. So npm install. Alright. So now with why that's working, let's talk about VX and what the problem is going to solve and some of the ways that solves this problem. And I said it's we're going to talk about at a very high level for it's kind of global functionality and what it does. So, view x is what's called a state management pattern. It's also a library. It's a library that provides the state management pattern for view. So what state management is, if you remember, back to Module One, what state is, is the data. It's what the values of data at any given time and an object we talked about objects have state, they have behavior, state being with the getters and the properties, the member variables. So the same ideas here, it's across all programming languages, state is still data. It's more than just a data. It's the current values of the data at any given moment in time. So it's what this data contains now. So that's what state is a state management pattern as a way of handling state or especially on larger projects.
+
+So one of the
+
+large challenges of component based development like view is that you have all these components they need to share state, they need to have, for instance, if we look think about our page that's building now so we can look at a better patient yesterday it had those, you know, pieces across the top
+
+that
+
+no it had the boxes across the top. And those had numbers in them. And there was what six of them I think. We'll just make that into another box. And there was numbers and these
+
+and these were based on the reviews.
+
+And then there was these reviews and this list down here. And all of these all of these boxes, And all of these reviews were sharing one thing in common. All of these values are sharing this one array of reviews. And these were deriving their are computing confused terminology, their values based on the values in this array. These were displaying their values based on their data based on the data in the array for each review, the number of these that we're displaying was based on the number of them in the array. So everything was driven by this one array, this arrays the state. So as we add and change this array, with reactivity, these values will change. So if we started breaking these down into components, where that each one of these was not, this wasn't all one component, but this was a component and then this component just repeated for each one of these, and then maybe get more space to move my mouse. This part was a component.
+
+Now,
+
+we can't just have this in the data section of don't, which component do we put it in? If they're both relying on each other. So if we put this array and this component, then we know that this component can access its data from this keyword. But how can this component accesses? or How can the other copies of this component access it? If we put it up here, we have the same problem now how can the individual reviews access it? So what we need is a way of having
+
+the state
+
+be someplace else, someplace that all these things can access it And that's what state management does. It creates a single, single source of truth for the data for the state itself. And that's what view x is going to give us, it's going to give us this ability to move things like the array of reviews out of the component into view x. And then these components will all access this one, state storage to get the data and they'll all change it. But like most things, there's a lot of rules about how they'll change it and how to access it. So that they can do it in a way that's safe, that they can do in a way where they make sure they always have the correct data. So view x is going to do that by creating this state store where we can put things like that array, and then it's going to give access to it. Through to from the backend from the front end. And from anything else needs it using these different parts. Two parts mainly are three parts called getters, actions and mutations. We're not going to use all those degrees, just one of them. But we're to talk what those what those means. So what it does is it creates this way of using the state and a managed fashion that as we're making changes as each components making changes, the others can see it and the others reactively can respond to it. So, view x is going to give us this through and there's also a link, I'm going to put this link because so at some point, at some point later this weekend, or at some point, I would highly suggest going to view x This is the view documentation view documentation is pretty good. But actually, I think it's usually easier to find answers in the view documentation that is in like Stack Overflow is the documentation is well written. But I'm not suggesting you go read all the view documentation, though. That's not a bad idea. But if you go to this link on the first page, what is UX? There's this video. It's about I don't remember it's it's not that long. It's long enough that I didn't lose interested in fast forward it which happens to me usually within five minutes, so it's not very long. But I strongly suggest you go watch it, because it's, it would I was figuring out view x watching it. I usually don't watch videos, but I decided to watch it and it was the thing that made it was like oh, yeah, okay, now I see how this is all supposed to work. It's very easy to follow, how you actually supposed to work through it. So I would suggest you take a look at that at some point. So the US breaking this is going to do this by creating this thing called a store, the store is going to be a store for storage. So it's going to be where we put the storage of the data. And in the store is going to have be divided into five parts. And our components are gonna be able to access the store using these pieces of these parts or these parts. So it's got the state itself, and that's going to be the data and that's going to look a lot like the data objects we already have used I in components to a point that when we create it will basically cut and paste it today. So it is going to have these in called getters. Another thing called mutations, we're going to focus a lot on mutations today. So we're going to look at the state and the mutations today. Another thing called actions and then finally something called modules. And we're going to look at each of those quickly here.
+
+So for those five pieces
+
+actually, before we do that, let's install view x. So we can look at the actual state store while we're talking through it. So I'm gonna go back to the lecture code. And down here, terminal. In this the same folder on npm install, we have to install view x. And we're going to do it by running the command view, add view x
+
+and press enter. So when we done the,
+
+the view create
+
+last week, or this week, whenever that was, it seems, whenever point we do create, and we made these choices, and we just chose the default they said there was a bunch of options view X was one of those. So if we choose if we don't choose everything we need up front we can use view Add to add those other libraries. So this is going to add view exports shouldn't take very long the glass night it took like 30 seconds or so it's going much slower today. But of course, so it's going to add, it's going to set up our project and convert our project to use UX. And what that's going to do is going to create state, the store force, the store is just going to be a JavaScript library that gets loaded with you know, it's done. And it said it's changed some things that showed is that it's created, it's changed the main j s. It's added index j. s, and it's updated the package files. So I'm going to go now and expand that. In a quick look at the main j. s, we saw where we saw that view was being created. Previously, we didn't look really well. It was doing. But now we can see that it's also creating, adding this thing called store to it. And that's view x. We get, we don't need to worry about that much. But what we do care is our going to care about it's in the store folder. There's an index js. And that's our view x store. So this is where we're going to handle all of the view x pieces.
+
+So here,
+
+it has.
+
+The store itself is this object export default. And it has the other pieces here inside of it. So the state is going to be the data. So we're going to put the data here
+
+and this object that we can handle
+
+that we're going to use shared among other components. It doesn't mean all of our data over here but all the data we need shared So the store is going to hold our data and give us access to our data, we're going to be access it from any component. Now the view x is installed by using the this keyword. And it should be this dot dollar sign state, not this dollar sign. And then dollar sign state and we started looking at the dollar sign command yesterday, there are things that are part of you that we can use, and then whatever key so if we have something like status, it would be this state status would get us the status from the state. And so the stored self is not actually reactive. It's just storage. So we're going to then add computed properties when we need it to make it reactive. Actually, it's not true, it actually is. It's going to react to it. But technically, it's what we'll get to Later. So we can bound these computer properties to the state. So the second piece that's not here, we can add it but we're not going to today are called getters and getters allow us to define ways of, we can think of them almost like computer properties for the state. So they're to derive value values from the other state that we can add to the store. So this is these results have some automatic caching in them so that if the state doesn't change, they don't need to recalculate after they're called. So some performance enhancements and some other things like that, when we that are a little better than the computed property we might have in our own component. But again, that's that's what they provide. So the next piece mutations is something we're going to focus on a lot today. So mutations are, you can think of them kind of like a setter for Java, not the same idea. It allows us to set data. So we can access the state data at any point. And we can set it equal to other things. But if we do that, we start getting strange results. So we it's, we want to follow encapsulation. But now we have to enforce it on the using side rather than the creation side because Java don't have the idea of private. So mutations are the way will act way will change the state. So we will make change will create a mutation, and we'll call that we'll do what's called committing it instead of updating the state directly. So this has some, a couple of advantages. One, it's kinda like a setter where it allows us to be in control of the data. So when we call the mutation, it can do other things that we need it to but mutations We'll create the reactivity, I said this, I made a statement to the states not reactive by itself. But when we use a mutation to change the state view x reactively changes, everything changes the state. Basically, we actually tells everything that's using the state to update. So it creates reactivity. And then the last piece for mutation is that the reason we're going to use them is that it creates this history of who and when, in what changed. So we're going to see this history, this log of and the vitals of everything that changed and it has this feature called time machine where we can actually go back and say, I want to find out what it looked like, no three changes ago for this value. And then we can kind of go back in time and look at it and move forward through all the changes, which is really invaluable in debugging. It makes debugging Few a lot easier. So mutations are going to give us, we're going to treat them like setters. If you think if you think of them that way, at this point, that's what they're going to be. We're going to set data with mutations. So the last next piece, actions, again, we're not going to see any actions today. We're not going to directly use them. But actions are work similar to methods. And we don't call actions we do what's called dispatching actions, actions, but don't focus too much on that at this point. But if you see the word dispatching, they're talking about calling an action of UX. And they can change state and they can perform other functions, but actions real
+
+kind of job is to hold the business logic to do the algorithms to do the call API's to do any of that work that we need that has not really nothing to do with the state. It may change the state in the end, but it's disconnected from the state. So for instance, if we need to call an API to populate our list of reviews, then the actions that were that would occur. So for today, we're not going to actually be using actions but
+
+and then the last piece modules
+
+is
+
+allow is for organization. So in a large application, and we're not going to get anything nearly large enough during this cohort to to need this but a large application you might have, you know, your reviews here, you may have a storefront, you might have a bunch of different pieces that all need or need to use this one view x state. So modules allow us to create group things and say, you know, this is the state, the getters, the actions and mutations that go with the reviews. And here's a set of state actions, mutations and getters that go With our storefront, and here's another one for our FAQ and for each of the pieces, so allows us to break them down. They're kind of the same ideas like a Java class where I encapsulate all the functionality about one concept. I say kind of Not really. It's just the same basically serve the same purpose. They're not class like though. They just serve that same, the same
+
+purpose in the code.
+
+So that was a lot. I know that so but said we have a very high level, look at view x. So before we look at kind of how view x is going to work, and now just start using it.
+
+Other questions, or what questions do you have?
+
+It sounds cool.
+
+Okay, that's good.
+
+It actually makes
+
+working with multiple components a lot easier than it used to be.
+
+That but it does have the even interview documentation, one of the first things they say is you're going to pay for long term productivity being of being able to have multiple components with a higher upfront cost and a lot of new concepts in work a lot more code a lot, a lot of new concepts, a lot of added upfront cost, but for really high payoff and long term productivity. And that's really what it ends up being. There's a lot of stuff added that seems small until the applications get large and then it gets very important.
+
+Other before me
+
+Yeah, we're Where are these gutters at?
+
+They would be here in another section that looks like this.
+
+It's just the not all just about every that we're not gonna have modules and actions, but most of UX stores would have modules and actions. But not all of them would have getters. So they've, for some reason, I think because of that chose not to make it one of the default defaults. Right?
+
+So the way this is going to work then with components
+
+here's an example I stole off of a tutorial I read last night. So if you go out and look through Vex tutorials, and you see this image, you can just admit to it I copy and pasted it
+
+because I think it actually fits really good.
+
+So the way view x is supposed to work, and we're not going to have the action portion. So but we'll talk about how we're going to do it today. And another way of doing it is that it's supposed to represent if we can think of it like a appliance store, or just any type of store. So the customer comes in, and they talk to Larry, that person up front. And that's the, you know, the salesperson, and they say they want to buy a TV. And there's, there's 10 in stock. So, Larry can't actually do anything with a TV, but he can request that one be removed from stock. So he contacts Jenny, which is the mutation and she removes the TV from stock and she updates the state which has the inventory and then delivers it And then the customer can see immediately is identical can see in the inventory, so you think about them being on the wall on the back that now there's nine. So a second customer comes in because there can be multiple customers calling the actions at any given time. And they are interested in the TV stock. So they decide they want to purchase the remaining nine. So again, they call the action at which they tell Larry the salesperson I want to purchase all nine of these televisions but Larry can't touch them himself. So he has to go to he has to dispatch the request to Jenny, which is the mutation and that's the person who can get the inventory so they remove the inventory from the shelves, the nine TVs from the shelves in when that happens the state. The nine to TVs are on the shelf starting 10. Now zero, and the customers can easily see that there's now no TV is on the shelf. And if a third customer comes on, they can immediately see that there's no TVs on the shelf. Again, if somebody wants to add, if a truck shows up to add TVs, they're going to come in. And they're going to tell Larry, we have a delivery of five TVs. Again, Larry can't actually move the inventory. So he's going to dispatch the request to Jenny. And that's the action, who's the mutation who can move inventory is going to get the five TVs and put them in the inventory, which is the state and the customers who are standing in the store can at least see now there's five TVs sitting on the shelf. So in this example, this view x kind of workflow, we're going to have actions that are like a salesperson standing in a retail store. They can't, but they have, but like a salesperson, I guess back in the 80s, early 90s, where they have a strict division between the person who's selling the appliances and the person who can actually move them around.
+
+So
+
+we talked to the salesperson to purchase the item, the salesperson that has to call dispatch the request to someone else to actually move the item. And that would be what mutations do, they move the data. And when they remove the item, that's the inventory. So the inventory in this case in the US stores out front, all the time. So that means that the customers who are the components, who are watching the state, they immediately see the change, and they all meet at least the same change, and that's what state's going to do. So that's how the workflow view axis is meant to work. So We're going to take a shortcut today, because we don't really need, Larry. So we're going to cut out the salesperson. And we're going to do our calls directly to the mutations. Which is another way working with view x when you don't have extra things need actions. And we're going to do it that way for a couple of reasons. For smaller application, that's one of the patterns of using it. But also because just to get rid of the complexity for today of actions and just deal with mutations in the state, which is the more important pieces of it. So we're going to work where the customer comes in, in more like a modern store appliance store where they come in and they talk to the salesperson is also the person who moves it from inventory. So it'll be we'll go directly to the mutation. So that's how we're going to use it. And before we jump into doing that, are there questions?
+
+Okay, so let's
+
+expand this out
+
+farther cuz we're pregnant want to see. Alright, so the first thing I'm going to do so is I'm going to go to yesterday's component of the client, we finished yesterday, product reviews. And I'm going to move it to I'm going to split it to the right. So I'm going to put it over here so we can always view it and just close it from the side.
+
+And before we start anything
+
+so before we start building
+
+Well, let's build the state first and then we'll, we'll start it and then we'll
+
+work through breaking up the components. So we look at this Review, the data that we're going to need shared, that's going to have shared status is going to be
+
+this data about the reviews.
+
+So if we think about how that page actually let me start the page
+
+serve, would be easier to look at the pages we talked about this.
+
+So as we think about how the page runs,
+
+the reviews, everything is driven off the reviews, multiple parts of the page, also use the filters, some change the filters, some use the filters, right. The filters are changed from those boxes at the top, and they're used by the list listing reviews. Name and Description is kind of global to the whole application. They'll use the one place but they're still global to the data. So our state probably should be at least reviews, at least folder and name a description.
+
+So let me pull this up.
+
+And that's because know the state the filters used here, the filters used here. The reviews are used everywhere on the page. So they're definitely global. These two are used just here, but I would, I think we could argue that they're part of the review themselves, their description and the title of it so
+
+we can move
+
+most of this data, I'm just gonna copy actually,
+
+everything in the return and we'll remove might be easier to delete what we don't want.
+
+And they go too far. I think I walk too far.
+
+I did, took a delete at my side. So what Stop it there actually entered the array. I'm going to move this into the state
+
+and get rid of that last.
+
+So some of these pieces we probably don't want in the state. The ones we probably don't want is show form is about. It's not something that's global to the site, right? One Piece does the show form, it's just a flag to determine whether or not we want to show the ad form. So we'll get rid of that. And I would argue new review is also not global. It's something that's just for the ad. So we probably don't want that here. So I think that's a good starting state. So we see the state itself is what we had in this data section. But more specifically, it's what we had in the data section that we went shared among multiple components. So before we can really go any farther now we We have our state of UX defined, we need to figure out what components we're going to build. So let's go back here and look at how we can break down this down into components. So any suggestions and what? And I will say we'll just get rid of that
+
+view logo at the top altogether.
+
+But so for what we see here, any suggestions on what might be a component?
+
+Any of the new arrays that we built for like one star review, we consider a new component.
+
+So each of these is what you're saying or so you're saying that we should have
+
+a component.
+
+This should be a component
+
+like this. If each box is a component that we're
+
+yeah Think so?
+
+Yeah, I would agree.
+
+Okay, so
+
+these are all B components.
+
+And when the new review will be considered a new component,
+
+the new review, okay? So actually let's expand that form.
+
+And Alright, so the new review probably should be, okay.
+
+component.
+
+other components that one's just
+
+every single review,
+
+I guess you can think of right, a single review
+
+would probably be a good component. And let's put that
+
+any other components.
+
+The name and description could probably be put Together,
+
+they probably could.
+
+So these are probably going to go together in some way.
+
+Brian, I was kind of thinking that like the star reviews at the top would be one single component, and then the display overviews would all be at one giant component. Can you explain to me why it's better to break them down into the individual components like
+
+that? I'm not saying that somebody is I'm asking everyone here, but they thought the company should be at this point. Though I do agree, they actually should be individual components. So the reason is, so I will I will say that the reason is, is because we can build one of these and then this duplicated five times, I actually think that this line is going to take two components, because there's two differences in functionality here. One for the average because it works differently, and then one for these which all work exactly the same with the exception of just this number.
+
+So any other
+
+breakdown, anyone can think up for the page.
+
+So I agree with everything you said, James, I think that this list it'd be a component made up of components of individual reviews.
+
+So one giant component that consists of smaller components. Yes.
+
+Okay. That's how I would I think it should be.
+
+So I actually think that's a pretty good start, and probably a pretty good thing. So now we need to identify what how what we're going to do with each of these.
+
+So
+
+so we need to this one right here is probably pretty simple. This is probably going to be your ad, ad review, right?
+
+So here
+
+we have this list, so maybe something like review list.
+
+And we have
+
+another component inside of here, which is going to be the review, Scott review display.
+
+And this, this one is going to repeat.
+
+And here
+
+let's see, that's what this dar summary i think is what it's called in the original code. And then probably this last one here, something like the average summary
+
+And then up here.
+
+This is just two strikes. So I agree they should be together. But I'm going to suggest we could take this here and put it just in the app view. Because it really doesn't do anything but display text, we could build a little component for it. I don't think it's probably I don't think we're gonna gain much by doing that. I think we just put in the app view at the top, but it's corrected, each separated out.
+
+So I think these would be a good set of components to start with.
+
+So any questions on how we're going to break it up or why? Okay, so what a page this is how we want to break up the components. The idea is that we build small pieces of functionality we can reuse, we could duplicate them. So like these star summary fields, We build one of these. And we can use it. Now multiple times. The only difference is really this number of stars 12345 stars because these numbers are computed. And they're going to come from the view App Store. So we, each one just needs to know how many stars is representing the average could actually be the same component, but might make sense to make it separately because it really behaves differently. It's not the same thing. It looks the same, but its actions are different. I think add reviews, probably the most self explanatory one, right? And actually the review, view display. So review list is the one that's his may or may not be needed. I think the reason that a review list might make it easier is because since we're going to have build the building this whole thing in our app view in our page, we could add the review list and let it deal with the individual how the individual reviews are displayed. So just to kind of recap away that work. So that the main view distills the main positioning, we just positioned the list, you don't have to deal with the individual ones on the main page. So it's gonna make it easier for us to move around it is one kind of widget. And that's what we're, we're building. So our goal is that these become reusable and interchangeable. So that if we want to change the way these star summaries, look, we just build a new component and put it in position because remember, view builds tags, each one of these components is going to become an HTML tag or view tag that we can use an HTML in the template. So if we want to move the position of the reviews, and we have them in one view list component, we just move a single tag into a new position in the template of the app view and it changes position. And that's that's the goal is to have these little pieces each one were represented, like HTML tags that provide a large amount of functionality and allow us to easily read Some things on the page and layout the page.
+
+So I'm going to take a screenshot of this
+
+went somewhere on my desktop, you find it here.
+
+So we can refer to it as we need it. And now I can clear
+
+drop nicely right here in the background. Maybe.
+
+Alright, so let's start building this now.
+
+So let's start up the app view first. Let's get it set with this portion. And then we'll start building the individual components.
+
+So let me go back here to the code Ryan. Yes, I'm going to pull over shell Can we do a break?
+
+going? Are we had a lot to do.
+
+Now we can we can take a break. We have to at some point.
+
+I was gonna take a break after we do this first section but that's okay. We'll do it now. So we'll come back at 1021
+
+not paying attention, right, Ryan, you said that was? Yeah, that's your cell when you weren't aware of something was going to go down? I did. Yes. Exactly what I said I told john oliver sharp
+
+goes in with the driving without gas, right, you're not paying attention to. So
+
+before we continue, what questions do you have coming back from break
+
+Okay, so let's.
+
+So let's set up the app view. That was, I think where we're at getting ready to. So what we're going to do is we're going to change the app view to get rid of everything. And we're going to make it so it just has these two pieces. And then we're going to slowly rebuild the page. We're not going to touch the original product review, as I cut and pasted the copied the data out. We're going to leave it there. So we have a reference to keep going back to. So I'm going to open the app view and we're going to use this as our
+
+main page.
+
+For this to be what's called our view, this will be our thing is going to represent our page. Tomorrow, make sure we do an example where it's not at view. But today when she's out view because it's already here.
+
+Should you use so the first thing let's get rid of these
+
+leads, which means we need to get rid of the product review import. And the components because as soon as I save, if any of those are there, it's going to complain that they that it's no they're not used. Right, so now we have nothing on the page. So I want to put in
+
+this h1.
+
+So these things here, I want to pull these in here
+
+is h1 and h2.
+
+And I'm going to say, if you're following along, you probably don't have river open. You'll want to open it because one of the things I'm going to do is cut and paste all the CSS because we don't want to type out a bunch of CSS today. So I'll paste it into river for each one each site segment. Because what one of the things we're going to have to do is we're gonna have to break up all the CSS down here into The proper elements rather than going through and cutting and pasting it. I've already pre pre done that. So So we have these, but now we can't use this for the name of description.
+
+So
+
+because they're not in the data any longer, so we're going to use the store. And actually, let me go ahead and do the first CSS now.
+
+So with this we're at.
+
+So there's the first one, we're just going to put paste this in after the app section in the style. So this is all this is a new CSS it's all from the product review component, just breaking it up into the pieces. And that way we have the the right styling we had before. So now let's use the V store. I'm also going to take this index, the V store, I'm going to move it over here. So we can we see it side by side as well. So what I want to be able to do is in this store I want to access here, like we had before, this name from the store. So to do that
+
+we're going to use
+
+So since we're in the app view,
+
+we're still going to bind it. So it's still going to be a one way binding.
+
+And we're going to get rid of that.
+
+Use
+
+dollar signs store
+
+And so that first part, the dollar sign store is pointing to this the store. So it's saying the store and then we're going to say dot state.
+
+The second part
+
+the state
+
+is pointing to state. So this key word and then to dot, what is it name? So the last part, the name.
+
+Name is pointing to the name here. So store. Stay state. We want something from the state name, the key from the state. We want
+
+So let's save that. And
+
+save, I didn't save it, I need to save all. I'm going to save all because we changed
+
+how we changed.
+
+Oh, I've opened file. Let me close that. Otherwise it's going to keep
+
+doing that. And now we have the data shown up here.
+
+So the value of it.
+
+So we'll do the same thing for the scription.
+
+Again, from here from the app view, we're going to say store dot state in the key description.
+
+And we have the description on the page.
+
+So now we need to start
+
+working out. So before I guess before the Continue for the first component of their questions on
+
+how that simple usage works.
+
+I'm assuming they're not all gonna be that simple, right?
+
+When we do one way binding, yes, I mean, it's gonna be a little more complex, because outside of the app view, we have to use the this keyword. But that only just adds one more complexity of one more layer in front of this. But for one way binding, we just want to get the values, they're not more complicated than what we're used to use, not much more complicated what we're used to using. It's when we want to change values, the UX starts getting a little more a little more complicated.
+
+All right. So let's build our first component. Let's start with the average summary component. And there is an order we'd have to build these. And the reason is, if we go back to that image is that these the order of these two don't matter. We'll do average Summary was the first one, the Add review doesn't matter. But when we get down to the list, we have to build review detail display before we can you build review list. So let's build them in the order, we'll build this, we'll just build it down the page. Actually, now we want to build the page, let's build it, average summary, then the star summaries, and then the review, list and display then what I do at the end, so we'll get things displaying first.
+
+So let's do the average summary first.
+
+And when you're building components, you have to be aware of which components are using which. And in this case, we only have one, but you'll want to either build or make just even if it's just nothing, nothing more than an h1 tags and see where it's displaying you'll want the internal components built. They need to exist before you can fully build the external components. So you kind of build inside out.
+
+So let's build
+
+the app. Average component, the average somebody to build a new file here on components, I'm gonna call it average summary dot view.
+
+And then inside of that, why they keep going over there.
+
+It's going to do that use the view snippet, so View tab to get all the pieces.
+
+So if we come over
+
+to our
+
+product review, what we really want is this right here.
+
+So grab that, move that to the template.
+
+So we got to change a couple things.
+
+So first, let's build in our export default we need to create the name surname will be average summary And then we don't need any data in here. But we are going to need a couple things, we need a method. So we're gonna need a methods. And we're going to create one called update filter. And that's going to update our filter because we have to be able to click on this on the on click event and update to filter, right, we already have this key here average rating. So we're going to need something to get that so let's use a computed property.
+
+And it's going to get
+
+the average rating.
+
+And that's going to have
+
+we have that down here, I think as well.
+
+Our computed properties or average rating, so it's gonna be almost the same.
+
+So let's grab this. We're gonna move it over here.
+
+So the difference is that we don't have reviews here. So we're going to have to have something reviews. And it's going to have to be equal to something here. So we have to get them from the store. So I think these three pieces give us enough we can work with the wax now to make it functional. So the first thing, let's get the average rating, because I think that's the most important piece right to go to use it. Why is that?
+
+I'll never use that. Sorry.
+
+So we're going to take off to this keyword here, because now it's just going to be this reviews. And I want to get this reviews list here. So it's going to start with this keyword, because I'm in a computed property. So another difference is when I was over here, when we bind to the data here, we Don't have to use the this keyword or call a method up here, right? So it has context already. So we're in the template, we can access the view x. When we're in the computed property, just like everything else, we have to use this but the rest is the same store.
+
+So our state,
+
+so again, the store
+
+the state, and we want reviews.
+
+So reviews.
+
+And I'm going to save this. And we should be able to actually see the completed prop this widget working out. Let's make sure that part's working before we
+
+do anything. So I'm going to go back to App view.
+
+And I'm going to add, add it to the
+
+app view. So we have to do
+
+three things. Remember to add a component. First we have to import it.
+
+Average Summary from
+
+components
+
+and the average
+
+summary.
+
+And now we get this name to our component list. And then that becomes a tag we can use up here. And I want it in the same way that I have it in here and the original page. So let's take this well display div and move it right here.
+
+And then we'll close it.
+
+And then we'll put this inside the wall display.
+
+So average
+
+summary
+
+and let's see what happens
+
+and nothing Well, don't forget
+
+average rating
+
+you have to put dot view after average summary when you import it It
+
+shouldn't have to. I don't think maybe you do. Singing You didn't have to but I might be wrong.
+
+Start to refresh maybe it's
+
+not let me inspect it and see what
+
+Where's what they are.
+
+You're returning this DOD reviews.
+
+Oh, okay. Thank you.
+
+Yeah, that would do it.
+
+Again, we have to remove this keyword. Now we're using this variable.
+
+So now we have it here. So we need our CSS in place.
+
+Brian Do you mind explaining why you have to use the this keyword in your average summary but not in the app top view when you're calling
+
+this date it's really not the it's not really. I'm sorry I kind of misspoke. It's not that it's in the app top view it's it's in the template. So just like when I use the template if I'm getting something from like here in the template when I call number one star reviews, or I can call it without this, but if I call number one star reviews from down here, like if I made this one call this one, I would have to call this number one star reviews. When I use reviews from here in the data in the template. I just use it directly. Right well filtered reviews, but remember if we start reviews there, but when I use reviews In the computer, the methods, I have to use the this keyword. So the difference is the template has access to the context. So it already knows the context of the pages on where the computer properties and the methods do not. So we have to say I want it from this context. And the same thing here state is part of the existing context. So in the template, I don't need it, but in the computer properties I'm about to do.
+
+Okay, that makes total sense. Thank you.
+
+All right. All right. So we have
+
+that splaying and
+
+think we're missing some CSS somewhere, but we'll come back to that. Let's get it. So we have it working.
+
+The well display CSS.
+
+Actually, we should build it Go grab it. We'll just fix it.
+
+Isn't that
+
+here? Ready?
+
+Oh, display. Oh.
+
+So let's go back to the view. And to make the existing CSS work. Let's add. That's what I forgot to add the class main. I forgot to make it all work. Yeah, that's what what's missing. So we have to have the class mean, we wouldn't normally have to do that. But it's that so we don't have to change the CSS. We had to get the same class we had in the product review. That's what was missing. Okay. So now we have the summary working. So it's showing the average rating of all reviews right now. We just can't see the reviews. They're there in the store. So it's working. So The next thing we want to do is get it. So when we click, we want to be able to update that filter, which you can see now, the only thing here is the average summary. There is a view x. But we can't find we can only see what's been changing state, we can see the current state, we want to change this filter here from there. So now what we're to change the filter here, and our state our store, we need a mutation. So we could change it
+
+like this, this
+
+store dot state filter equals zero. That actually would work. But we don't want to do that. We never want to change the state directly. It's allowed because JavaScript can't really stop it. We don't have that concept of private. So we want to use a mutation. So we need to build a mutation we're going to do so and again, we want to use a mutation because it's going to like a setter, it's going to give control to the view X to around the change. But also, just as importantly, it's going to allow it to have a history. And that history is going to be really valuable, especially when you start debugging. So we're going to build our first mutation. I think I go here in the index j s for the store in the mutations section. So we'll call it update filter. So I'll be tations. Take two things, or at least one thing, the first argument of a mutation is state, it's always going to be state, we're not going to pass it that's gonna be passed to the mutation. And that's just the state object. So, we always start with all mutations start state the first variable and then we Have any other arguments we want? Generally, we're gonna have an argument because we're mutating something, we're changing something, right? So argument of what's going to change.
+
+So are the new value.
+
+And then on that state object, we'll call filter equals filter. So this is what we're going to use from here to change this. So let's look at what this is referring to.
+
+This a little smaller.
+
+So we have this state object up here, claps reviews.
+
+So we have this state object up here. So when this is being passed through
+
+this first variable
+
+is going to be past
+
+this object filters going to come from over here. So filter is going to be passed. Well, let's let's write it. And then it's going to allow us access to this object. So let's add the, what's called committing a mutation here. So we can see this next part, the guy. So the using mutation, we're going to do what's called committing the mid hit mutation.
+
+So to commit a mutation, we call
+
+this
+
+and we want to say,
+
+the store.
+
+Now instead of the store, we're gonna call commit.
+
+And then the first argument is going to be a string. That's going to be the name of the mutation.
+
+Update filter,
+
+and then the new filter reward. So this is just going to be zero, because this is the average and it always passes to zero.
+
+And that's all we need.
+
+So let's save it make sure it's
+
+working as expected before we change anything. So if we click here now and get a view x,
+
+we forgot to add the event. So now on the event, sorry, we're going to call update filter.
+
+On the click on the click event, we changed update filter, which is going to call the commit on the mutation.
+
+So now we call this smart
+
+Already default to 00.
+
+Yeah, it's not changing. You're right. Thank you. We have to change Oh, let's
+
+change the filter
+
+to one manually.
+
+And now
+
+let's take a look at the events.
+
+The events not being captured.
+
+Is there an invitation update filter? And
+
+Oh, I forgot to save the files. Save all
+
+Let's check this
+
+There's one
+
+there guys. Okay, I forgot to save the store. So now let's updated the filter. So we can see the mutation here what tells us what just happened. And we see the first of what's the time machine argument. But we'll come back once we have some more there. So it's working.
+
+So what's just happened is the commit
+
+tells it
+
+to change the mutation with this name.
+
+When this is called, it automatically passes the state to it. The first argument then this value gets passed into the second argument.
+
+And then using the state.
+
+It
+
+uses the state filter, which is this here. And it takes the value
+
+filter, which is here gets passed
+
+from the filter into the state filter, which is here, which updates this value. So that's how the mutation works. Does that make sense? Kind of. So the takeaway, I would, today if it doesn't, is
+
+we named the mutations we give the mutations name.
+
+We First arguments can be state, the second argument could be the new value. We use the state object with the keys. And the state that we want to change equals the new value. And then to call that we call this store commit with the name of the mutation and the new value.
+
+That's how we make it work.
+
+The questions before?
+
+Yeah, so the state is always going to be passed on the source side, right? So that's never going to be passed on.
+
+Components up. Yes, that's correct. The states automatically pass when a mutation is called.
+
+And then are committed. In this case, we only have the filter. Can we have like we can have as many
+
+parameters to pass, right?
+
+Yeah, if we have extra parameters, I think
+
+since it's like a setter
+
+You could pass an object or an array. I don't know if you can have multiple parameters. I don't feel like you pass it from a commit. Because it's just like a set of you're supposed to be setting one value, but that value might be a whole array or whole object, if that makes sense. Yeah.
+
+Cool. Thank you.
+
+Alright, so we have our first component now fully functional. So let's move on to the next one. Let's build the star pieces now. So on the components I'm going to create, and these are going to be very similar. Although we're going to have to have get another new concept for them.
+
+So I'm going to call it star
+
+star summary, view
+
+and use view
+
+and the view snippet Get this back over here.
+
+It's going to be
+
+close to what we had before. So I'm going to go up and grab. He might be quicker just rewrite it, one of these dips. And that's going to be our template because that's what we're going to build. We're going to make a few changes to it just like we did previously around using our state. So we still can have number of star reviews. But now we don't need one star reviews just from the number of reviews. And we need update filter. So this now is going to be could be any number of star reviews, it could be 123. So we need to kind of make some of that more generic. So our properties, our default is going to be star
+
+summary.
+
+And then we're going to need some methods and it's going to look very similar to what we have
+
+Before, actually, it's gonna be almost identical to what we had for the last one, it's going to have update filter. And that's going to be a mutation. So we already know that this is going to be a mutation of, well, we don't know what to send yet. Let's leave that. And then we'll want a computed
+
+computed and
+
+it's going to have something like number of reviews. That will call from here and here.
+
+And then
+
+if remember the number of reviews, we had some code down here to do that, and number review, so it's basically going to be this method with a couple changes.
+
+So we're going to reduce the same way. But just like before, we have to have the reviews. So we're going to get those the same way from this
+
+store, state reviews
+
+and then distributed to this keyword.
+
+So now for everything else we have kind of a problem. And we'll call from here on click. Let's change that to update filter. We need to know how many stars we're dealing with, right? Is this a one star use two star reviews three star reviews, we have to have some way of knowing that because we want this to be generic around that. So what we need is a way to pass in to this component from its parent component, what it's representing. So We have that that's called a property.
+
+So up here in the list, I'm going to add props
+
+to new key.
+
+And then we give it an array of properties this could take. So here, it's going to take a property rating, comma there. So rating property is going to be passed in from the parent component. So now we have something we can use for all these pieces that need to know what the rating is one, we can find it right here. So we can change that to find the rating.
+
+And then
+
+what am I missing that it's Let's save it. Let's see if it still is angry.
+
+There should be quotation marks after update filter online.
+
+Oh, thank you.
+
+There should be
+
+that was too many quotation marks. All right, thank you. So
+
+now here, we can use the rating.
+
+Because we want is we want this rating, but it's going to be a string now because before we had to controls a number, and everything being passed to the score is going to be string, so we just parse it. I'll show you why there was going to be strings in a moment. So we're going to parse and
+
+this rating.
+
+So then, finally, we need to call this mutation the same way we did before, but now we can use that rating to call the mutation update to the proper filter. So store, commit, we're going to call
+
+Same update filter mutation.
+
+And we want to pass the new filter value, which is going to be the same way, we need to make sure it's an end. So this rating. Alright, so now we have we shut up everything for our star review. So let's go add them to the app view.
+
+is wrong. Yes. Sorry. Can you go back touch? How so like just saying props and then rating? Is that saying that you're calling the ratings from the parent? Like from from the reviews array that we have in the store?
+
+know, from someplace else that we're not to yet? Okay, that's a great question. So. Okay. So hopefully that'll be clear here in a second because we need to we need to ask add them to the app view before we can use that. So we're going to pass this in from the outside from whoever uses this component, whoever imports it. So let's import it so we can see that happening. So we need to import. I'm just copying this line. And we're going to change this to the star summary and star summary. And then we added to our component list, which gives us this tag. And there's five of them, right? One, four, so let's put them all in place. One. There's one star, two star, three star, four star, five star. Let's make sure they're the, the base of them's working before we deal with that rating. And they are so they're all zero because right now, they don't know what rating they are. And that makes sense. And if we look at them in the component tools, we can see for the star summary, they all have an undefined rating. So we need to get that rating. Property populate. So let me move star summary over here. And so the way it rating work where a property works is it creates something that we can bind from the parent as a attribute on this tag we created, what we're creating with properties or attributes on the tag. So we say, rating
+
+equals one.
+
+Save that to see it working. Then we'll talk to it again. You can see now it's working. There's one star review. Remember there wasn't that should be correct.
+
+So we just take this, and
+
+for each of these,
+
+we give the value
+
+for five
+
+we save it and we'll see the values are out now. Like we would expect. So what's happening when we create a property,
+
+the property name, the attribute name, goes to the property name. And then we the value becomes usable, the same way we use the data here, or we can use it, you know, here in the methods or the components the same way we use things from the data with this from methods components and this directly in the template, just like it does with data, but the value gets passed as an attribute from the tag where it's being included and apparent. That's what a property is, which is why they're always strings. Because tags are always properties always strings and tags. They have to be simple values. We can't pass whole object or something like that in this manner, which is part of the reason we need something like UX.
+
+All right, so questions on that before we Continue.
+
+Actually, I'm wrong, we can't pass an object in that matter. That's tomorrow, or Tuesday, I mean, that we won't be able to pass an object that manner. Because later today, we're going to pass an object in that manner. So
+
+Alright, so
+
+sorry, at some point, can you do what you did with buying TVs and talking through how this is all working together? Again? I don't know when it makes sense to do that, but that'd be awesome. All right.
+
+So at this point,
+
+I think we have enough because we have a mutation now.
+
+So where's that?
+
+So at this point, what's happening? We have
+
+for you These were usually says a mutation that changes and view x,
+
+we can change
+
+the filter. And we see we load state, we can see the filter changing state each time to the new, the new value. So from what we had before, or what we had with that example.
+
+We have
+
+UX working here.
+
+And inside of that, we have our mutation which is the person who can deal with stock, right? So that is our mutation is what do we call it update folder? So update filter and the example that we originally started with actually Well, she's that might be better
+
+if I can remember where my I saw that open?
+
+Yeah, so here
+
+Jenny is now
+
+update folder in the mutation.
+
+So what we're doing in our state
+
+that we have right now that we're updating is filter, which is starts equal to zero, our component, and then we do have two components. So we have the average summary. And we have the component of the star summary. And we'll say star summary for five. We have five of them. So we have six customers standing in front of our store. And again, we don't have Larry, we fired him So what we're going to what's going on right now is for each of these, when we click the event that updates the filter,
+
+it's
+
+calling with the filter information from that component to update filter, which is our mutation. So that would be the person who can change the stock. So the mutation is the thing that can change the stock and the store example. That's the that was the original example with Jenny where the query, the action had to ask her to actually remove the TVs from the shelf. So they're the ones that can move the TVs from the shelf. But in this case, they're just changing the number of the TVs on the shelf. So we started with zero TVs on the shelf, and let's say this is this particular customer is four stars three, so they send the filter equal to three. So we have zero filters on the shelf there Calling the person who can do the stock which is named update folder and saying we want to change the stock of filters, we have to three. That person then is updating the inventory. So the folders and inventory from 03. And then that is immediately being communicated to all the components are out here listening that the filter that filters in stock is now three. So when the next one calls if it happened to be the see one now, it'll be the same way it's going to send the request to the mutation. So the person who can change the stock and now it's going to be a filter one and update filter who's the person who can change the stock changes the stock filters. Now two, one, which gets immediately communicated to everybody that's listening The customers which our average summary and star summary components that filters in stock or not one.
+
+Does that answer what you wanted or?
+
+Yeah, that solidifies it. I'm a little confused about it updating, no one filter one is selected, it updates average summary.
+
+a
+
+weighted average summary wouldn't stay as
+
+well, average summary doesn't get updated. None of these are actually getting changing. What it's doing is is changing the filter. And they're all using the filter to figure out what reviews are being shown. Actually, will, they don't yet right now all they do is have a filter. So they're not actually doing anything with the filter. They just get told pay the filters. Now this but none of these none of the star summaries or average summary. don't actually do anything with a photo they change it but they don't use it. Something else is gonna use it. Another customer that's coming
+
+Yeah, okay, that makes sense,
+
+which is why our stock hadn't changed, we just keep putting different numbers on display. Just look out like that right now folder, there's keep getting told how many are there. Right. So when that's actually gonna be, the next piece we'll build is now that we have these, we have the filters updating. Let's get the list of reviews displaying. So this is going to be a little more work than the filters because we have to get one review display. And then we'll have to add it to the list. And we're going to do all that work before we really can make to form we can see it. So we have a lot of work before we can actually see something happening, which is always troublesome, right.
+
+So I'm going to actually go ahead and close
+
+these summaries because we don't need them now we're done with them. And we're going to create two new components. So in our image, we're going to create this component, the review display. And we're going to create the review list, we'll create the review display first because review list is going to be what we're going to use to list them all. So it's going to let you build on it. So let's go out and create a new component. And we'll call it the review.
+
+Display dot view.
+
+And
+
+let's build it
+
+so go out here to product you know,
+
+let's do this smart x so we couldn't see it, but I'm actually wrong. Let's do this. By not doing starting this one and then kind of making a mock one, and then we'll do the list and then finish this one so we can see it working. So I'm going to do the template. And in this template, let's just pay make it an h1, or replace later with
+
+view display.
+
+So now we have something we can import, we don't need it, and then we'll name it. We need we should probably name it. So our name review
+
+display.
+
+So we'll just do that now. And now we'll, we'll do the list and we'll come back to the review display. So we're going to build the second component that's part of this and that's going to be the review list
+
+and the review list
+
+is going to use the review display. So we'll make use view to get the template. And its name is going to be
+
+review list.
+
+And it's going to have a components.
+
+That is going to be the review.
+
+So this is something else we have it down, we've only done use components from the app view works exactly the same way from any component. The view components like app view that are representing a page or just components themselves, there's nothing really special about them. So we'll just import review display from and this is in the same directory. So we'll just do review display.
+
+And now we use the tag up here.
+
+So we need a div
+
+Class equals review. Because the template has to be a single container, and it can't be a loop. So it can't be for this main container inside a template can't be for. And the next thing we need is the review. Display. Let's make sure that's working first. So we'll save it.
+
+And nothing's
+
+sure I saved everything. You
+
+Oh, I didn't You're right, thank you.
+
+That's exactly why I didn't do so now we need to add review display to the video.
+
+So it's a review list to the app view
+
+on its
+
+review, list. And we'll come down here and review list and I don't need to add the view display here because that's inside of the review list. Now, this will go after the well display should go here. So this will go review, dice list.
+
+Okay, so we have the review display. So we have one, that's what we expect. So now let's come back to
+
+the review list.
+
+And
+
+we want
+
+we need that filtered reviews. We need this for our
+
+clients. So let's build this
+
+and make a computed property here.
+
+Sorry, they securely make our computed property and we're gonna have to make some changes like we did before. So we'll so called photo reviews, that's what we had to change that and get rid of this
+
+comment.
+
+And that's gonna return. Probably,
+
+let's fix.
+
+There we go. So what we're gonna need to change here
+
+is we're going to need two things. We need the filters, and we need the list of reviews, right? So we need to get what the current filter is.
+
+And we need to get this list of reviews.
+
+Because that's what we need here.
+
+And that's what we need here.
+
+So let's do that. By saying constant say this call it filter equals this store state filter. So we get the filter from the app. And then this was removed in this from keyword from this from the filter. And now we need to get the list of reviews. So constant reviews equals this store state reviews and remove this keyword from here. So that should give us a list of reviews now. So now we just use it like we did before. So we could go cut and paste the four but it'd be easy enough to rewrite so what is right for equals for each review and filtered reviews.
+
+I'm gonna need to do a binding
+
+Just the key.
+
+And let's see we had it review ID before. Let's make it more correct and find the something like name.
+
+So it actually exists.
+
+So now for each of these, you should get one review for everything that's in filtered reviews. Click on all and they're there. So for reviews, one, two, so we're getting the right number. So we have there, we can assume we're getting the right reviews, or at least the filtering is getting the right number reviews. Now we just need to build out this display.
+
+So
+
+we need to go finish the display reviews now.
+
+So let's go back to it,
+
+your display. And for the template, we're going to get rid of this. And let's go back over to our original pre view and find where we display the review, which was up here. And we want this whole review class.
+
+That's there.
+
+That's we want we want to grab that and we're going to put it here. And now we're going to get rid of the
+
+for because the for now is happening in the list.
+
+So div review.
+
+star ratings going to stay the same so what we actually need is the review
+
+There. So we need this review.
+
+And we're gonna have to do something with this favorited too, but let's get the review playing first. So how can we get the review onto the page? The ideas?
+
+I mean, can you do it in the template portion? Is that allowed or would you have to do it into like
+
+a script portion, but then the script portion So, so who has the review right now who has each review? store? Well, the store has the data, but who actually knows which review this particular review display template components needs to display. The review lists exactly the list So that's the parent. So why don't we just look at the weekend pass coming from the parent into the component child component?
+
+property?
+
+Yep. Sweet.
+
+That's it, we need a property. So we'll create a property.
+
+So props,
+
+which is going to be array of properties. And we'll just call it review. So singular review.
+
+We'll save that.
+
+And now let's go back to the review list.
+
+And so I said before we couldn't, let's make this easier to read.
+
+We couldn't buy in a,
+
+or we couldn't set a whole object to these values, which is true when we're using them directly. But if remember, we can bind to attributes and bind things to them. So we'll bind, we have this attribute now review.
+
+And we want this to be equal to
+
+the review object.
+
+So right now that's being that's equal to the word review. So to bind the attribute to something in view, just like we did here, we use v bind. So we can v bind our own attributes, which is going to pass the review object, each review from the for loop into this properties, which is being used by the template, we use the same name, so nothing should change. Save it and
+
+filter and nothing happens because there's probably a console where
+
+there's all kinds of costs. Where's
+
+something's going wrong. So let's figure that out.
+
+So we have the props
+
+review.
+
+And on average, let's look at Star summary. Its props right? Yep.
+
+prompts review, which is used up here, reviewer
+
+and the review.
+
+I have something that saved me save everything and see if it fixes it.
+
+Okay, I just had something not saved.
+
+Alright, so we're missing some CSS. We'll fix that in a second. So now we have all the reviews splaying back. Let's fix that now.
+
+So we want to get the
+
+The style and that's going to be on the list.
+
+Currently, yeah.
+
+Why would it be?
+
+Good this component
+
+has the class review.
+
+B list as the class review.
+
+Let's go back over here. I think it's gonna Got the CSS from
+
+the ones that have the quiz grab all these other ones have review in the name because I didn't have them divided out as well as I thought I did.
+
+We put these on there.
+
+Yeah, it looks Right, right.
+
+Except for that outer thing, but we can fix that. Okay, so this is the CSS I just
+
+pasted.
+
+And I think what we need to fix now to get rid of that outer line is in the review list. This class can become review list. There, that's what so we have the reviews displaying now. We have this checkbox that Doesn't work any longer. So we need to fix that. Because now that checkbox that checkbox isn't in the data any longer, it's now over here in the store.
+
+So we need to update the store for that.
+
+Right? Yes.
+
+Sorry. Can you can you just walk through one more time? How from the review list? You're able to display the review just by using review? Yeah.
+
+Let me put these side by side.
+
+Okay, so the review list.
+
+So I can I split this one more time.
+
+Okay. Okay. So we have three things involved. We have the store. And we have the review display the single review and we have the review list.
+
+So the review list
+
+is
+
+where it's starting. So it gets this list of reviews so that it gets that from the filtered reviews. So it's looping through the list of reviews that it's got from the filtered reviews, which is got retrieved the reviews from over here.
+
+So I guess they go this way.
+
+So it has the list of reviews now, right. And now it's looping through the list of reviews. So for each review, it's repeating this and it gets put into this key review each individual review,
+
+which gets passed to here
+
+and
+
+we have a property here review
+
+That were binding here.
+
+So we bind it because we have to run a pass this variable, not just a string. So this is connected here. So this gets put in here. And because of this binding, it gets passed into this property.
+
+Then here,
+
+we're using the review.
+
+And it's using this property for all these values.
+
+So we create a new
+
+each time through who creates a new, whole one of these. So a whole new review display gets created. for that individual review for the next review in the list, it passes it through this binding to this property in that particular review display which is used to Create the individual review.
+
+Yeah, it just makes sense. Now, it's just weird that the for loop is being controlled outside of where you actually build every single
+
+review. That was that's what their mouth but I got it. Thank you.
+
+So let's get back to you.
+
+So we have now our reviews display. And now we want to get this favorited working. So that's going to be in the review display. put us back over here, we're going to have to work with a store again. So originally in we have this as a V model connected to this favorite to the favorites and the object that was in the data, but we can't do that any longer. So we're going to need a method. So let's come down here. And we'll create a new method.
+
+On the individual review, that's something like one favorite change. And we'll figure out what we're going to pass to it later. And now what we need this method to do is we need it to change
+
+this value in an individual review.
+
+Which need means that if we're going to change something in the store, we need a new mutation. So let's create another mutation. That's going to be flipped. It's called flip favorited.
+
+first argument is mutation is always going to be state
+
+and our second argument will be
+
+Review to change. So what we'll do is we'll send it since we don't know which review to change, we'll send it the entire review. And we'll just have it
+
+swap the value.
+
+So then we'll set it to review to change dot favorited equals not review, to change dot favorited
+
+and save that.
+
+And now we're going to call the mutation for over here, but we need the entire review. So why bad as an argument here,
+
+and we'll call it this
+
+store. Commit, we're going to commit to mutation We're going to commit this mutation flip favorited.
+
+And we're going to pass it the entire review object.
+
+I fix that.
+
+And then from our checkbox here, instead of having this being bound to V model, let's change this to bind to the checked property of a checkbox. So we'll change this to V bind. checked. So check one review favorite is true and won't be checked when it's false.
+
+And then we will add an event. So v on change on the change event will call on.
+
+favorite,
+
+favorite change and we'll pass it review So we could also just probably call this preview down here. But well, we can pass it through this way too.
+
+So let's make sure that it's working.
+
+And then we'll talk through it because there's a lot going on there.
+
+And let's refresh it.
+
+And I have something wrong.
+
+I'm sure there's a typo someplace.
+
+Mutations Do you need to use state at all?
+
+In this case, I shouldn't
+
+because some thinking should be taking advantage of
+
+unknown then Wow, that's just a spelling.
+
+favorited Help Desk.
+
+We have everything saved this time.
+
+Let's see where the problem
+
+let's go to the View tools.
+
+Favorite is being called.
+
+So you can see it when it's called.
+
+So something to do with that CSS class not working. We just completely missing the CSS class. That's very possible. We are, we are completely missing the CSS class. Thank you.
+
+So I think it's down here.
+
+There. Actually it's a scrub all the CSS from here.
+
+Not sure which go to which so
+
+just take all the CSS and put it here. And I think actually this is the one that need all the styles, not the review list.
+
+shirts.
+
+diff mean, to review of rating
+
+tip man to review active rating.
+
+We don't have a main in this one I don't think
+
+should be in that parent though. Let's see
+
+10 Review lists now.
+
+But if we go back to review list, take out the CSS, because that's actually all for the individual ones. change this back
+
+to class just a div. Let's try that.
+
+Now it's inside of
+
+another div has to be she let's change this to class. Back to review. That's why I had it review originally.
+
+Nope, that's gonna be applied.
+
+So let's do this. We'll come back to you, your display.
+
+So that's getting applied though.
+
+Oh, I think we're missing.
+
+We're missing something
+
+from the product view.
+
+Here, we're missing this
+
+V bind to the class and the view we delete when I deleted the for loop. I deleted that as well. I should be back.
+
+Now it works.
+
+Sorry.
+
+So so we just wasn't applying the favorite class. But let's see how this is this mutations working because this mutation works a little different than the other because it was pointed out it's not using the state object.
+
+So, when
+
+this we, so we have a review
+
+and let's get
+
+see this shift to the right.
+
+Okay, that's what I want. So we start with the review list.
+
+And we have the review display we have this store.
+
+So again, starting with what we have before,
+
+we have the list of reviews
+
+being retrieved
+
+here
+
+in this list and loop through and then for each one and individual review and this individual review parts, kind of the key to this. So the individual review is what's being passed in here. So let's say this is the second time through and it gets this industry. Review. Alright, because that's going to be important. So it's this review. That right now is here in review. Now it's passed into the display. So it gets called, that review is now being passed on the on favorite change. And then that review is being passed as the review to change to the mutation.
+
+And then it changes that review
+
+on the review to change.
+
+So what it actually has here, in a view review to change is not a copy of this review. What it has, is a reference to this review. So here a reference to this review was passed to hear in the property in that record, reference to this review was passed here in the method which that reference then was passed on to the mutation. And then the reference is changed. So if we know if we change the reference, what we're actually changing is this review. So when we update it without the state, because of the reference being passed in this way, it changes favorited here
+
+that makes sense.
+
+I see a lot of looks and says that does not make a lot of sense. So,
+
+so what questions do you have before? Okay. All right. So
+
+necessarily knowing Exactly about the references and how it's all working is not as important today as knowing this.
+
+You have a review. And you're using it here.
+
+You're passing the entire object. And so the important thing is this object had originally come from the state store, from the UX store, would you did you have this entire object that came from the store? If we pass that into a mutation, and change it, it changes the object in the store directly. So think of it just like the other activity in view going on. So we don't, you don't need to worry a bunch about the reference. I want you to know that because I said I'm not a fan of things is magically happening. But the important takeaway is that if you have an object that you've got from the store, you've passed to mutation and you change that object, the object changes in the store
+
+Does that make more sense? Not really. Okay.
+
+So questions before
+
+so now we have all the reviews showing. We have the Favorites working
+
+the filters working. The last thing we need to do is get
+
+the in the ad.
+
+But I know see, I know you have to be give a event right at 1230 today, right? But this is a lot so let's still take a break. So we'll come back at 1147 and continue in.
+
+So what questions do you have Break.
+
+Brian Do you know of like,
+
+anywhere to get more view practice because I feel like I would like repetition as a good way that I learned. And I don't know, I was just wondering if you have anything.
+
+I don't know anything just off the top my head off look around for I don't know of any sites like code wars or anything that does for you. But I'll look and see if I can find something. I think the best way to do it probably just be to build a project. Just find some simple web page and emulate it. Okay. But you know, I'm sure there's lists of you projects out there. I'm sure there's lists of like, build this type of thing.
+
+I'll look around.
+
+So other questions. Also, you'll have answered With a capstone project right yes you're gonna get a lot of you experienced before you're done that's a good
+
+that's right because there's no option this court not to do them in view.
+
+Not that I ever told my classes there was an option so don't you're not missing anything. There was found at the end when they found out half agrovet Java green didn't use view so
+
+freakin dotnet Yes, they Yeah.
+
+Alright, so if there's no other questions and let's move on and get the
+
+ad working.
+
+So
+
+well we need is that form that goes right here that has the ad and has that line. that hides it and shows it.
+
+So we need another component.
+
+So we're going to get rid of this one.
+
+Weather views displayed by the listing. So we'll close those. Now create the next component. I'll create a new file and call it add review.
+
+This is going to be a component and a component again, this one should not have to be no, it shouldn't not need
+
+to just have the form inside of it and part of that link. Thank you.
+
+So again for use the snippet to build the view template.
+
+And what we want here is the form. We're going to probably make a few changes around this form. But let's go get from the product review. We want This whole form. Let's grab it. And what that link to let's put it here.
+
+And that's going to be our template.
+
+And so we need a div around the whole thing. Because there we're getting right there is that templates have to be single container and a form is not a single container.
+
+Let's close the div and
+
+fixing the imports in dense, right? So we have
+
+the form.
+
+Before we start changing anything on it, let's
+
+set up what data we're going to work with.
+
+Then we'll come back to see how we have to change the form to make it work.
+
+So we know our name, it's going to be
+
+add review,
+
+then we're gonna have a data object, we're gonna need a data object this time, because we're gonna have at least that show form, switch, and also our new review.
+
+So, let's
+
+return
+
+because all data objects have to return an object. So the data methods, I mean, so we'll have that. So if you remember from our original product, we had show form. So we're going to use that or you haven't have typed out so let's type it.
+
+And we're also going to add, have this new review.
+
+So that's going to be here
+
+because there's a really aspects of just what it means to be a
+
+To add to review, they're not really something that's
+
+part of the more global data.
+
+So now we're going to need a couple methods, we have the reset form method. Let's get it. So we we need the same methods we had before. So these add, review and reset form. Let's get those.
+
+And we need these to be in methods.
+
+We need a comma here between data and methods.
+
+Just clean this up a little bit.
+
+So this can't happen here any longer
+
+because we have to change the value in the state in the state
+
+So the rest of this can remain the same.
+
+Well, we might want to fix Well, we'll come back to that. And then there's some style or one here for the forum. So I'm just going to copy and paste that was put that in now. So when we see it for the first time it so anyway, so we're going to have style here. This all came from the product reviews is just getting broken down. And that's here.
+
+So now what we have to fix is
+
+Did I get it all? I don't think I got it off.
+
+No, I did. Okay.
+
+So the last thing we need, there was also a computed property, this is form valid. So let's put that in computed
+
+So our form works exactly like it did at the end of yesterday by the time we're done our page, done all kinds of weird things with the formatting on that. Okay.
+
+So now we have this form valid.
+
+So our form should pretty much be mostly working. So let's add it to the app view and see what it looks like. And then we'll get it connected. So back on the app view, I'm going to add this next, this next component import,
+
+add review, from
+
+components, add review.
+
+And down here we'll add the components list, add review.
+
+And then up here, we want it between the star summaries The review list. So we'll add a review right here.
+
+And
+
+so there's our form. Let's make sure.
+
+So the Save button still works. Cancel buttons still works.
+
+So it looks like it's mostly working.
+
+We just have to get it connected to the data store now. So if we look here, we still have that add review in the form,
+
+wrong place
+
+in our app, now, you can see that it's now broken up into each of the different components. As we look at the app reviews data specifically, we still have the day review. And as we fill things out, it's still populating the same way that it did yesterday. That hasn't changed.
+
+So
+
+let's
+
+see what we need. It's it's really one save. One, submit sorry, one submit, we got to click add new review. So we have that method. So all we really need is now just to connect to the store.
+
+So which means if we're going to change something in the store, what do we need?
+
+Yeah, we need a new mutation.
+
+Let's create a new mutation. And this is going to be add, review. First of all right, and the first argument again has to be state. The second argument will just pass in the entire review object.
+
+Now
+
+on the state
+
+New views
+
+well unshipped so this mine, right here, we're going to unshipped and add the review. So the only thing different instead of calling this line if we move the unshifted over here into the mutation, and we're going to call commit the mutation from here to call it.
+
+So to commit that mutation,
+
+we will
+
+call this
+
+store,
+
+commit. And mutation we're going to commit is add review. And the data we're going to commit is this new review.
+
+So let's try it.
+
+So we have new review.
+
+Three star review Actually, let's get a two star review. So it stands out, give it some data it save
+
+and
+
+it didn't work.
+
+So let's figure out why. Because we have a swear
+
+I know made up I forgot to save again.
+
+So one thing you should be taken away today is how important it is to save all your files to do save all or save after each individual file. Alright, so let's try it again.
+
+Review.
+
+Save, they can say they pull the Brian.
+
+Yes. So
+
+So, so I review work so it's all working
+
+So favorites isn't working now. So let's look at this review in the store. So I'm going to point something out with what's happened actually go to the View x tools. And let's load the state.
+
+So that should be the first objects, we'll look at it.
+
+So it has favorited false.
+
+So
+
+it's not showing up though.
+
+So the problem actually is that since it's in the store, now, we need actually to have favorited already in the object because it's not being added in the in the ad review, so we can actually fix this problem. So these bindings here adding the other keys here in the Add review, but they're not having favorited. That's being added later. So it doesn't update rapidly because remember, we said that if we update the state directly without any mutation, it doesn't react So that's what's happening. So when I update here and I click here it updated the state just like we expected it to. But the problem is that it didn't react because the state's not reactive, the mutations become reactive.
+
+So, what we need to do
+
+is just come in here
+
+Mossad, what is it favorited
+
+favorited and started to false. And then when we create a new, a new form, no,
+
+no some icon
+
+will come down here and just do the same thing.
+
+So what is added here, we're set to default to it. So it's in the object when it goes to the state. And then we should see it. So now let's refresh the page.
+
+We add a review. So we'll add a view from
+
+now it works.
+
+Now they all work
+
+right. So,
+
+before we look at the look at the history next
+
+history feature of UX. So before we do that is there are other questions
+
+or what questions you have, I should say.
+
+Right. So, then let's
+
+look at the history. So you see as I flip
+
+Click these values. There's changes appearing here. This is the view x history. So every time we do a mutation, it gets logged.
+
+And let's add another review.
+
+So the mutations log and attend this history. So everything has happened since I. Last time I restarted the server. So last time I saved a file, or pet refresh is being logged here. And this gives a history of exactly what happens. So here it shows me that there was a mutation. Here's what was sent for the mutation that was sent to add review. To see the latest state of the object, I have to click, I have to click Load state, I have to repeat that it doesn't automatically update the state.
+
+And that's just a performance feature.
+
+So, but this history, I can look at any of them, I can say Okay, so here for flip favorite, it was called, on this particular review, it was set to true for the review with this information. Here flip February set for the same review, because I'm doing the same ones. Here was one three. So on this review, it was set the true here the review was added, this particular view is added, but I can also do time travel, so this will time travel. So if I click this, it'll unravel everything and show me what things were like when it was in that state. So you see the reviews gone, but the other one was there. The first review was added. So now maybe I want to see what it looked like after the third flip favorite. I can time travel there, and he shows me what it looks like at that point. So nothing's changed in the state is showing me a history allow me to move through it. So I can go to add review.
+
+And now I'm at the final point.
+
+So I can see where so I can move through the history of everything I was doing on this page. All the mutations that occurred on this page. This is another reason mutations are important, because we can move through mutations, but we can't move through anything that was changed. It was not a mutation. Because we do things and say, You know what, I didn't really want to that was causing me problems. So one of the things before I say that caused me problems do the next step. One of the things this is really useful for us, we have an error, a bunch of things that happen there's an error. And so there's something out of place in the page. So anything had changed on the page had to happen through data changes, right? So if they were in mutations, we can start walking back through and say, okay, was the error before this change? Was it right before this change? Was it right before this change. And then when we find the one where the error no longer exists, we can look at and say this mutation is where the error was introduced. And we can look and say, This is what changed. So it can tell us exactly what changed when the error was introduced, which is invaluable during debugging. Because that's actually much easier than stepping through code over and over again, we could look at the different states and find where there was a break, and then see exactly what happened when that break occurred. And then we can even know move back and forth and say, well, there was the error there wasn't. And keep in review, that particular the state it those particular times. If I say well, no, I didn't really want that to occur. I can delete it. And now everything reverts up to that. So that last ad now is gone because it can't revert one mutation has to review if we delete them, and it has to delete everything in the chain after it as well.
+
+So mutations give us this ability to
+
+see all the changes to our state, something we didn't have before, and to move among them to actually have a history, commerce like a good history of what's going on in our application.
+
+Alright, so what questions do you have?
+
+You said it took two cohorts for you to really give you right right Brian?
+
+To give you Yeah. Not not to be able to use it so
+
+so um
+
+no figuring out how to use it and apply it.
+
+Took it It wasn't didn't take all courts it took, took some time took a few days, being able to really understand all the pieces and how they're all working together that took a couple chords. Yeah. So view x is hard. This this view x part is hard. I would not. That was not part of when I was learning VI The first time you x is a newer technology. But I've used so I first solve UX last Saturday. I'll put it in perspective, but I've used state machines before. So the idea of a state management's not new, so I didn't have that hurdle
+
+in state management's hard concept in itself.
+
+And yeah, you It's It's not an easy to, to grasp. It's it's a very of the stuff we weave in the cohort view x is the newest of the technologies we have included. It's, it's fairly new, but it's also gaining popularity like crazy. Everyone's using it that uses view. So it's not bad new but in compared to other technologies to this. So
+
+that's because the other way of doing this was crazy hard.
+
+I mean, just crazily difficult.
+
+Yep. Not
+
+even after you figured it out. It still made no sense. This once you figure it out, it makes sense.
+
+Yeah, but I would, I wouldn't have the expectation of yourself to get it today.
+
+I would have the expectation of sometime during the final Capstone may Real quick
+
+to be realistic.
+
+So other questions are what question other questions do you have?
+
+So what parts don't make sense to you?
+
+I know there has to be some of them.
+
+But I don't really understand like, the different components of what actually makes up the like each view class.
+
+Okay. So the all the different pieces we now have.
+
+Yeah, I mean, so you said that there was a, you call it a State Controller like this type of technology, what was your term for that? Again,
+
+state management,
+
+state management. So like, how would a How does what is state management I mean, could you just Like, explain what, like what your concept of state? Because like, I know, I see like what's going on? I mean, obviously, like, we got the methods, you know, computed and all that. But uh
+
+i guess i'm just honest. Like, as far as actual state management,
+
+how would that work? Like I'm sure that is there like a common thread between all state management systems because you said you've used them before. So what did you take from your past usage?
+
+Yes, there is. So state management is about a single source of data for multiple things to use. So state is just data. It's just it's called state compared to data because data implies that it's fluid in state is the snapshot or what the data is at this moment. Not what it could be. It's what it is now. So hence the difference between data management compared to state management, state management is managing the data at this moment. So the value of currently has. So, state management is the idea of we had state before and our components in our original components. This data element that we've been working with all week is state for that component. But when we talk about state management is taking this state that's for this component in moving it to something that can has control of it that's reusable from multiple sources. And this is actually a difficult problem because if multiple sources are using it, and multiple sources can change it, then something has to be in control of those changes. Because otherwise they run into what's called caught they went into what's called collisions. Meaning that Two things try to two things can change, let's say filter. And we have five things that could change First, the six things that can change fotor in two of them try to change it at the same time. Then what happens? Well, in traditional data that would cause an error, they can't two things can't change at the same time, I called actually cause a collision error. In Java, as you keep going, you'll find those quite a bit in Java, JavaScript doesn't have quite the same problem because it's what's called blocking it means only one thing can happen at a time. But we don't want those changes necessarily lost. We don't want to lose the fact that two things did change it back to back. So stay managed. It's about controlling multiple things trying to change the same data at the same time. In some of the common threads is having something like they call mutations and view x, but something that can change roles, access to the data that everything has to go through. So like a setter in Java, which is what mutations really do. Another common theme is having history management. View access is actually much nicer than most the ones I've seen. But some kind of log of these are the changes that happened. And this is the order they happened in
+
+is a common theme of state management as well.
+
+So at its core, it's just about having multiple things, accessing the same data, and controlling how they access that so that they don't, it doesn't break things of two things, or five things or any number of things try to change the same value at the same moment. Does that
+
+help or?
+
+I mean, it's something.
+
+Yeah. So databases kind of have this built in, right. So this is kind of happening already with SQL, but stay tuned. What happens more in memory? So that's what viewbox is giving to us. So before we had all of this in one component, it had one set of data, right? It had the data element.
+
+So it had
+
+this data. And all of this page was using this data. Well, all of this page still needs to use this data. But now we have the problem that
+
+the page is not a single page anymore.
+
+The pages one component that needs to access this data, this page has now two components need to access this data. three components and if we keep going down, there's five I think. So five components in this flow, we'll see the ones we can see so three components then the list for components then The new form. So what I'm up to five components, six components 789 1011 than the page itself as a component. So we have 12 components just right here visible the need to access this same data. And this data, when it was all in one component was fine because only one plane could access it at any given moment. Because there was only one component product view. That was the only thing. We had it before but it didn't have any data from our product view. It just you loaded product view on what product you deal with it, but we broke it into all these components now 12 and if we have 20 reviews, you know, three reviews comes up goes up to 20 components in the list. So we very easily ended up with maybe if we have 20 reviews with what that would be 27 years So components, all using the same data.
+
+So
+
+the management comes into moving that data
+
+over here
+
+to this storage
+
+so that all of them are using this storage here. And I'm gonna get claps reviews again. Didn't collapse. Yeah. All them's using the storage here. Sorry. So all of these are using this. But when they're getting it when they're just displaying it, they get it directly. Because it doesn't matter, right? If they're just displaying this, nothing changes if this one has this name, and the name changes here, and this one gets the name It doesn't really matter if they're different. But the reality is if they're reactive, it's going to update anyways.
+
+It's when they go to change this data, there's a problem.
+
+So if
+
+since these cow have filter,
+
+if this component tries to change filter it the exact moment, this component tries to change filter in this one wants to set it to three, and this one wants to set it to a four or five. Who wins? What value gets set to that these happens the exact same time? There's there's no answer. It's the language says there's no answer. And so it creates a collision error. Now JavaScript that way it won't, but that's what most languages will do. But it's still confusion because what is the user expect? What did they expect to happen? So stay tuned. But removes this connection. Part of what it does is remove this connection. And it puts it through the same thing happening, but now it's going to this. So the three and five are getting put here to this update to this mutation.
+
+And the mutation
+
+changes this but what it's also doing is saying Okay, first we change it to a three and
+
+component in this component did it.
+
+So the component with some ID for the component details about the component, and then we changed it to five and I guess I am backwards, but and the other component did it. So We have this history. And it keeps track of that. So that if we do run into a problem, that's not what the user expect, we can look through it sustain, manage, it's about controlling these values when they change. So that if we have 20 somethings using the same data, that it has strict control over what order those things are happening is at least a history of it if there isn't conflict.
+
+Does that help at all?
+
+No, I'm getting a little closer.
+
+So it's kind of a weird concept for just using it to get used to using if you just think of it is the same way getters and setters work, and Java the same basic idea as far as as far as using them. We keep our it'd be like keeping all the data in a data class in Java. And we move around and cause the getters and setters in that class to use the data is the same basic idea. For again, for usability, not for what it's actually Doing but
+
+thanks for running through the
+
+so whether
+
+we just have a few minutes today, left but
+
+unless they okay
+
+sorry there was discussion and moving your 1230 meeting so I want to see if that happened because we didn't get through everything I want to get through today. We didn't we didn't make it so we're going to finish it tomorrow. We got enough though we got enough that does everything you need for your exercises. So the next thing is something that
+
+will start tomorrow with
+
+taking this here and giving it a different visual representation. So we could change the page and make it a little more usable. So like you sprayed, you go to like a shopping site like Amazon, you can look at. This is a list, you can look at it as a table. There's different ways you can look at it. So that would be the next step. But that's not really about view x. That's more about just more disk view stuff. So we'll start with that tomorrow. So the exercises we'll be working on today are like the ones you've been working on previously. Let's open those up. Maybe folder
+
+going someplace.
+
+So
+
+you're going to start with just go through the readme, you have to do the npm install before, there are tests, but they don't give you directions on how to run them. Because at this point, you've ran them every day this week. So just NPM, run
+
+test unit, test colon unit, like you haven't,
+
+at least according to the star test. So so you'll just be going through starting from,
+
+I think,
+
+a couple of components in building out the components for this reading list, application.
+
+And book so a couple different components.
+
+And then working inside of the
+
+store, you want to build off this new app store as well. For that talk, it walks you through like it has been the other day. walk you through this step do this here in the same way. So that's what you'll be doing at a high level. Oh, there they have, oh, no. So ignore what I said about test there is a command to run the test in there and then test their Cypress test. So there IE those are the ones that pop up in the browser that you ran on like the first day. So
+
+I don't know how I missed that last night.
+
+So that's what you'll be doing their questions on. On that okay.
+
+Save and then for
+
+the rest of this, today.
+
+You have to the two pathway events, one to 1230 the as postgraduate support, meet and greet And then at three, the job fishing workshop, so get to this. So tomorrow we'll doing a review of raw this week. We'll start by finishing today. But he's going to review a lot of concepts that are work well, then we'll do some project that involves, it's going to focus heavily on view x. So I think that's probably good. We'll have a little bit of everything. So we'll do that. We'll review all the concepts of the week. And then I just want to find next week I mentioned there's going to be a two day project next week, and a couple people contacted me worried about that. That's not a like pair project that's going to be in mostly in class. So we're going to work. It's going to be a two day review. I should say it's going to focus on a project. But we're going to review things from every part of the cohort. So Java concepts, SQL concepts, API concepts, and JavaScript concepts, building out a full, full application. Not saying there might not be a take home assignment on like Thursday night, but there'll be nothing over the weekend for it. So I'm not I'm not guaranteeing there will be a take home assignment on Thursday night just I want to leave that option open.
+
+So Other questions?
+
+Done. Good luck and thank you and enjoy your pathway thing here in a couple minutes.
+
+Transcribed by https://otter.ai

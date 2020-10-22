@@ -1,0 +1,11 @@
+Book
+https://book.techelevator.com/content/responsive-design.html#mobile-first
+
+Mobile First
+With the shift in internet consumption coming from mobile devices, mobile screens are now the primary means in which users interact with your applications. As such, the term mobile-first was coined to indicate that applications should be developed with a "mobile-first mindset."
+
+As developers, instead of adding breakpoints into the design as the width of the screen gets smaller, you should create breakpoints in the design when the width of the screen gets larger.
+
+One approach that helps provide a mobile-first approach is to simulate mobile devices using Chrome or Firefox's Responsive Web Design tools.
+
+A simple strategy to follow for introducing breakpoints is to start with the small screen first, then expand until it looks bad. At this point, it's time to insert a new breakpoint.

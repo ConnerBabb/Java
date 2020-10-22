@@ -1,0 +1,1771 @@
+Zoom
+https://techelevator.zoom.us/rec/share/v_J-IK3X0nxOW7PQ5VDteLMvOZ65X6a8hiQc__dfzEmBH9w7CRjnW8qqIbvkU6iN?startTime=1593177804000
+https://drive.google.com/file/d/1daMONMwGHTwLgl9OScjldqU5qyRm7nDY/view?usp=sharing
+
+So today what we're going to do is,
+
+is really no new content, though, I'm sure will, during parts of it run into some minor new things, or expansions on things. But we're going to, we're going to start just with an open review of some questions I got from the pulse survey, I'll see if they're still relevant. And then there was a couple sent to me. That will take a look at it. Again, I'll see if there's a lot relevant and then any questions you have. And that'll just be open for as long as as long as we need. And then we'll work through a project. At least one, maybe a couple. We'll see how far we get using all these all everything we've been working on. So
+
+with that,
+
+I'll start just by asking what?
+
+what questions you have or what would you like to look at again, from this week, actually from anything, you don't have to be just from this week.
+
+I mean, I know we just went over the dependency injection yesterday. But even as we moved on with the rest of class, it didn't really seem like we were using it still. But I guess I'm just unsure of when to use it or where to use it.
+
+So right now, the only place you're probably going to use it is for your da O's. We, I it was in the code yesterday, we didn't write it. But really even writing it. There's not a lot of code. It's more of code you'd leave out almost and then one annotation of four different As you track direction. So,
+
+for example, let's see Where's yesterday's server.
+
+And it's something you're going to use mainly in the server code. So we can do it manually, which has some benefit. And we'll actually see that today we'll see both examples of both styles of dependency injection today the project and actually write them.
+
+There's,
+
+when we're working in a framework like spring, which is a dependency injection container, it's controlling our classes, it gives us a little more ability with it, which is so on the server side when working in Spring Boot is where you're going to run into it most and it's usually going to be set with your dinos. But you can take advantage of it farther, but the way it looks and the reason it doesn't stay down is because it's not a lot of code. So in the do classes, In the implementation class, the only code for the dependency injection is this app component. That's it. This tells us that this class can be instantiated by dependency for dependency injection, for this interface,
+
+then in the controller,
+
+the code for it is right here. So it looks like something we're used to right? This right here could be done by dependency injection, or it could be done by somebody instantiating our own class and is passing those arguments in. Right? So we've so it's not new code. The dependency injection is what's happening. When spring since spring is going to create this class to this hotel controller, because it's part of its framework we're creating this class for it kind of j unit creates its test classes. We just create them and tell them where they're at So since spring is going to create this, it's what it looks at this, it has to provide these. So it goes and looks for the things marked a component that implement these interfaces, and then instantiate these classes and populate them. So it's happening. It does a lot, but there's not a lot of code around it. Which See, right? It's hard to see in the projects.
+
+Does that answer what you were?
+
+Yes. My confusion is really, because it seems like we weren't using dependency injection at the beginning of the week. Unless I just wasn't realizing it.
+
+We were not this yesterday was the first project that was changed over to dependency injection. It's because it's not required.
+
+Okay, so I yeah, I guess that's really my biggest confusion is because it's not required. I guess I don't know why you would use it. Well, when you can go ahead and just do it. Normally.
+
+It's because When you do it normally.
+
+Let's go back to the server side project for day one, which didn't use it
+
+vation controllers.
+
+For this class, this class is doing the same thing. I mean, this is actually the same controller, you know, just being expanded. So the day before it was like this, the day after, it looked like this, and this was taken advantage of the dependency injection. So, the reason that we use it is that this class this version, the class can only use a do from memory. That's it. If you want to use a real database with this, you have to rewrite parts of this class mainly this these two lines of code. So, it's completely coupled to where the data is at and how the data is being being stored. And used.
+
+So it's very inflexible.
+
+This version of the class doesn't care whether we're using that in memory database, it doesn't know. And it can be switched out without it touching this class. to any data store, we want another database or even another API, really anything we want in this class will never know or care. So we, two of the reasons will use dependency injection. So another one we're going to see today, is that often we just watched Why does the hotel controller care where the reservation how the hotel do the reservation do work? And why should it if it doesn't have to care about why how they work is what they can do. Then it's not not limited by them. If it does have to care how they work and how exactly which ones are being used, then it is limited by them. So going back to the calling a plumbing service
+
+example,
+
+if
+
+in this case with dependency injection, this would be you call and you ask for the plumber, you don't care who shows up, doesn't matter. As long as they could do the job. They show up and they they fix your your sink. But which means that you know, if they have 20 plumbers on staff, someone's there right away to fix your sink. And if that your plumber, when I'm sick for the day on vacation, your sink gets fixed. You're not bound to who it is. Without dependency injection, it would be like if you had you call the same plumbing service, but you only will allow Sally to do your plumbing. That's it. Only person you're allowed to do your plumbing. So you can't Let me say, you know, my, I have my water heaters leaking, it's filling up my basement, since Ollie and they say she's on vacation for two weeks now for two weeks, your basements filling out because you refuse to let anyone else do your plumbing and you can't say give me somebody else, because you're bound to that one person. That's the only person who can do fix your plumbing. So if they're not available or they're not performing it or they can't do the job, you're just stuck because you're coupled to that them. So with dependency injection, you're not stuck. It can, you can switch out that resources needed. Does that
+
+that makes total sense. I must have missed the portion about where you were able to utilize other data sources with a with a dependency injection.
+
+If we're going to see that today during the project, that's certainly pick one that we would see a data source swapping out it will also We're going to have worked with a real database today instead of a main memory database. And there's another case for dependency injection there that makes it required. Okay. Doesn't make it requirement makes a lot easier.
+
+It seems like just for this, it would, you would you would need to have, like a bigger scale project for it to start making more sense.
+
+Yeah, that's, that's true. To make more sense. On the surface, yes, I would agree with that larger scale project, you start seeing more benefits from it. But really, it's even on a small scale project. We're still it still becomes useful. It's actually quicker to code once you get used to it. And it allows you to in there's there's something we're missing that we're not going to see this cohort. That is where it's really highly beneficial, even if you have two classes. And that's in testing. So if we, these, this class has hotel controller uses these memory D is their database, so it can't be unit tested. We could actually unit test a lot of our controller classes, even though they have this external resource. There's still methods we can call. But this one can't be unit tested. Now we can work with integration testing. But that means we have to set up the data and whatever the hotel and memory do needs. And that means if they switch out, if we decide we're going to change something, then we have to change our class or change our unit tests or integration tests. This class is fully unit testable. Because what we can do is we can build fake code mocks, hotel and reservation dinos and we can inject them from our tests and we're not bound to the database anymore, we can just have a class that when you call the interface method list, it returns just a hard coded list, because this class doesn't care where those came from. So that means that we can fake data from the other sources because we're not testing those when we test. Hotel controller, we're not testing reservation do the hotel do so who cares if they're fake, as long as they can give the right results. So a mocking, with dependency injection, we can replace pieces, we can place the pieces around our classes that we're not testing that just we need with fake versions that we give correct test data. So all that work you're doing with integration testing, to set up the database when you start to do that for the rodeos. But if your other classes are bound to do is you have to do all that for those classes too. And you get rid of that need if you through dependency injection. So leave The scanner classes that the system and system out of the stream classes that you were working on your captions, both of them, you, everyone ran into the problem where they couldn't test most the project because of the system and a system out. Well, you can actually mock those make fake ones that return the menu you want that returns the user, you know, selecting one. And then your class. It doesn't care if it's a real user there, your your c li class, and then it becomes fully unit testable. So there's a huge benefit there as well, that we unfortunately really won't get to see.
+
+Like you're running out pretty quick.
+
+Is it possible to change the database on the fly like the customer needs to swap from the API to the actual database or something like that? It actually is. Yes.
+
+So the container of this class because it Stan shades like the hotel controller, and it's using it, we can have it in, there's more advanced cases where we can have it do conditional injection. And actually, we saw an example that, you know, we didn't call it all this. When we're through the example of the for the interface example, where swap, there was a menu choice of you want the database or a file to load, the catering system items. That's exactly that that was mocking a dependency injection container in the main method. Now, that's a kind of crude version of it. But if you take that up to asking spring to do it for you, it's kind of happening in the background. Yes, you can, can do that to a point that you can with the right, the right setup, you can swap out any part of your system on the fly. In fact, a lot of applications will be written where they look on service based applications that are written With the same stuff we're writing using, but everything's injected together, where there's actually what the control center where someone can say it. Well, today, we need these three versions of this class running. Because these systems are available, and it swaps out the pieces in real time.
+
+That's the configuration files that you need to do make that happen, right?
+
+Yes, you wouldn't use the Add Component annotation for that you would use a little more more advanced usage. And that's way beyond the scope of what we're going to look at it in something you might run into working in, but not setting up or using probably for years.
+
+Or something like architects levels puts that up. Yes.
+
+Ah, so like, are you able to set up like, different, like hierarchies I guess, of like, people that have Separate, like capabilities like inserting, deleting would be like somebody who worked for the company.
+
+So you can, but that would not be with dependency injection. There's actually other tools built on for that. In fact, that is one of the two topics on Monday. Yeah, this idea called authorization. And we're going to, we're not going to go into it real deep. But just this this idea that you can assign, in most systems off just about every framework. And like in the database itself, you can assign roles to people. So you can say, these are this group of people's developers, this group of people's managers, this group of people's customer service representatives, and each one of those roles can have a set of things they're allowed to do in a system. And then is, you know, you'll hire somebody new you pick, this person's no developer, so they get that set of things they can do, but they can't do the things the managers can do or the things the customer service reps to do. That's done through a different
+
+mechanism then,
+
+Dennis. Okay, cool. Thanks.
+
+So the questions before.
+
+So it's all question in the chat. Can you define restful or maybe explain why it's important. So restful is a it's just an architecture of developing services. So there's two major types of services. There's one's called restful or rest, which is representational state transfer. I think it's very close to representational state transfer. It's not representational state transfer, but it really doesn't matter. something close to that. And then there's this other version called soap. So, rest so it's two ways of transferring messages across the internet. There's others but those are the two big ones.
+
+So originally there was just this one called soap. Wi Fi see if I can find
+
+a soap message.
+
+If you see so then it can make understanding rest a
+
+little easier.
+
+Yeah, I've just seen, like restful when I'm googling things, I see people using restful and I'm like, I don't know what you mean when you're saying that at all. Like, it sounds like it's important, but I don't understand.
+
+It's not
+
+creative. So it's up to you too bad.
+
+Okay, actually, me,
+
+I'm looking for some old notes because I had an example of soap from.
+
+So what it's a type of web service is really what they're talking about. It's going to take URLs, URL based requests, like we've been working with. So it's going to take requests very much like websites do. So the URL is going to drive the resource it's looking for. And then it's going to have a message body, just an HTTP. And so that's what define defines it as being restful. It is going to usually, though, doesn't have to it'll, the vast majority of time will take use JSON to transfer data, that it can use other things, but that's the majority of them, or sometimes just simple data. types like a rust like these services we are working for, they can just return an integer or just returning a double, maybe tour a single string.
+
+But see what day that week was that
+
+and so when they're you hear restful, they're talking about web services that look a lot like what we've what we're looking at right now.
+
+I'm sorry I have trouble navigating to talk at the same time. So that's why I keep pausing. Tries I have my day. I can't conquer
+
+doing both at once.
+
+I think I have a good example of this to compare. Yeah.
+
+So, okay, so
+
+now it is representational state transfer. And then soap is simple object Access Protocol. So this is a soap message. These two messages are equivalent. This soap message defines stock price stock name, IBM. It has all this overhead for it. This is a JSON message that would be used with rest. It does exactly the same thing. This is a really simple soap message. This JSON message will never get any more complicated. This is so this soap message could get much, much more complicated. So the reason that it came about is that soap is really sick has all this stuff built in. It has transactions built in, it has login built in, or it has security built in corruption built in. And as you do that, it gets bigger and bigger. So it's kind of like if you want to send a message. If you were, here's a guy, you want to send a message and you are going, you want to send it to your friend's house and you put it in an envelope. And then you go out and you find somebody with a tank and you give it to them. You say drive this to my friend's house to make sure it gets there that's so and it's just as difficult to work with as it's finding the tank and getting some of the drive it or learning to drive it. It's not easy to work with but it's really powerful and really secure. So it's used in financial institutions and but it was also the original messaging format. So everyone used to use it. And then people realized, you know, what, we're just passing around, you know, movie times for websites half the time. Why are we wrapping in a tag, you know, if we're just going to, you know, put the hours of the day that the store is open, we don't need this kind of security, we're going to tell everybody anyways. So that's what rest came out of. So instead of having this in Awesome, so works on its own protocol, it can work on HTTP, but doesn't usually usually. So you have to have this giant cert these servers in place that know how to handle it and all the software that knows how to handle it. So rest came about this idea of why not just make it work like the rest of the internet. And we'll just send text strings that are really simple that just have the information we need. So that would be like, you want to send the same message to your friend but you know, you write it on. Oh, sorry, you write it on a postcard and know just mail it, who cares? Who sees the information? You know, if you have the stuff you write in a postcard is public, right? You expect that someone might read it, but you don't care, because who cares if they find out, you're having a great time when you're on vacation. So that's rest. They're both still used. Most services you'll find on the internet or restful. There's some rules around restful that we looked at a couple of days ago. But the rules are things like they're going to use URLs, they're going to use path parameters for IDs, and things like that. And they're going to point to plural names to services. But really, it's a simple service. We can call with a URL and get these JSON responses back that are simple.
+
+Is what it comes down to.
+
+All right, that helps a lot because I was just like, why do I care that it's restful, it just is the one like now that there's another one that's way worse. Yeah. There's somebody happy with
+
+you. There's some others formats as well. Soap and rest are not the only message. There's, there's, I can't think of any off the top of my head, you probably will. But they're more specific to particular environments and not environments but systems that exist. But restful also guarantees is going to follow a restful services guarantee it's going to follow some certain roles. Like if you have a system working with hotels, a restful system, if it's purely restful means that if you go to the path hotels, you're going to get a list of hotels back. If you go to hotels slash ID, you're going to get one hotel pack. So there's rules around restful services that make it easier to use to. So that's why a lot of times they'll say this is a restful service. They're advertising, you know what you can follow the regular roles and it's going to work So
+
+Other questions?
+
+So
+
+so the questions that came up the pulse survey, though there were,
+
+or the pulse surveys the last few days, I don't know if they're still relevant, but I'll ask. And if they are, we can talk about them. So one of the questions came up was just the word at messagebox request body. And that happens to be also the same day that there was about a lot of trouble about the request body. So is that a question that they wouldn't want to talk about? Or is that just more of a
+
+Okay, so I'll assume that everyone knows request body at this point.
+
+Okay, that's what I was wondering I, but I didn't want to deny somebody the answer for request body if it wasn't just meant to be funny.
+
+So
+
+so there's another one of understanding the different pieces of MVC and how it relates to the front end the back end. And I don't have I didn't write, keep track of who asked these questions that was after cut and paste twice. So I just had the question, so
+
+I would definitely appreciate that one. I actually missed that question on the quiz because I didn't realize that the object was the view. Okay. So
+
+get the
+
+I'm going to pull up the diagram the other day cuz it's
+
+really hard to talk about MVC without
+
+the three pieces.
+
+Or actually, let's make one.
+
+Alright, so in MVC, there's the three, the three main pieces, right? There's the annotation.
+
+So we have
+
+the controller,
+
+we have
+
+the model,
+
+and we have the view.
+
+So in our current environment, we don't end up working with the view a whole, whole lot when we do, but that's the more of the JSON stuff that's being built for us by Spring Boot. So the controller in the model, so the model is encode.
+
+The model is these classes, the do classes. So it's
+
+it's the DA s, and the implementation class videos, and also
+
+these data classes.
+
+So, in this project, the model is really all of this code. It's all the Java code we've written to week one through six. That's the model that's we've been building. So it's the data classes. It's the DA O's, it's the JDBC classes is the classes that transform, no data, decimal to binary or do the Fibonacci sequence. Those are all model classes. Because it's responsible for the data is responsible for doing the know, determining the answer. Just Data Wise though, it takes in values, and it gives out a response, which is what methods do.
+
+So that's
+
+that's the model. The controller class
+
+is
+
+in this code, just here, this one class. And it's responsible is we noticed when we look at the controller code in classes,
+
+it doesn't do a whole lot in these classes. all it's doing is it's,
+
+in this case, it's getting getting the request. So the request comes in here to the controller, so under the controller, the controller then calls the model
+
+which is Right here, calling the model.
+
+And then the model returns the answer, which is what's happening here, right? It's returning the list hotels in the model. And then the controller calls the view, which returns an answer, but that's not really happening. As much as we can see it that's happening right here.
+
+The controller's calling the
+
+telling it, I want to return this in spring boots doing
+
+this part for us. So this is happening over here in Spring Boot, but it's happening right here. And then the controller returns the answer, which is right here the return.
+
+So these two are happening together. But
+
+so the controller gets the input, it's going to call the model. So often the controller code is going to be pretty limited. You saw some examples are controller code react to make a few decisions about which model to call, right? You chose to call. I think it was auctions with one set of parameter like title or something like that, compared to not use that and just get a list. But in this piece, that's how it fits in, in the server. And if we have a view, we can we could call it ourselves right here, we could call something ourselves and say, you know, go make a response for us. We just don't have to because of Spring Boot in particularly this library called Jackson data bind that we have loaded that does that for us. Now, the second part of the question was how does this work with a server This is how it works for the server but the same idea kind of exist in the client side as well. I mean, the do pattern is partially an MVC pattern. It has.
+
+But now Not really.
+
+It's really missing me if you think of the the output as the view, then it's a similar pattern, but the menu having a CLA class.
+
+So if you think of this as a c li class,
+
+this as your JDBC class.
+
+And this is your menu, and you have each isolated and your c li gets the user input. It calls the JDBC class. the GFC class returns the value to the COI class. And then it calls the menu class to display that information. That's the model view controller pattern in the client that many of you had in your both your capstones with it that's why this toy idea of keeping the system out out of these pieces. And only here is important. Because the whole purpose of the model view controller pattern is to make these three pieces interchangeable. So we can have it in both places, and then you can even so it's not a, we build this structure around. Our whole application is necessarily MVC it can be but pieces of it inside of it can be MVC as well. It's just a pattern of separation.
+
+Does that help?
+
+That definitely clears a lot of for me, I guess I didn't realize there was so many pieces integrated into the controller, but your circles and going through that really helped.
+
+I think from today's quiz, there was the question about where does the validation occur. And the validation occurs in here. So I think that might be here or here in the model, because we put those annotations in the controller Has the app valid? But that's not doing the validation that's saying you validate if you do run your validation annotations you have before you pop as you populate your data.
+
+So are the validation annotations not where you're doing like your, your min and your max, unlike the number of guests and things like that.
+
+Yeah. Those are in the model.
+
+Okay, because the view is not the
+
+I see the can confuse these data, these Java bean data classes, data objects, they're part of the model.
+
+Okay, gotcha. So all right.
+
+So the question was using get with parameters is that still? And this was from a couple days ago. So it's hopefully been cleared up by just the work. We've been doing other things, but if it's not, okay, it will see that today in that project. So
+
+if nobody speaks up, we'll just leave it for the project.
+
+And
+
+Okay. And then there was
+
+also a few questions about rest in API in Spring Boot.
+
+We already talked about REST API.
+
+Go to a high level explanation of that, because that's kind of an interesting term, because it's used in multiple ways. These things we're building, we keep calling API's and they are API's. They're web API's. But that's not the only thing and API is an API is a interface. That's meant To be used from the outside into another product. So it's a way that a piece of software exposes its usage to an outside source. So in this case, our API. And our controller is saying somebody outside of here, we don't care who can ask us for the list of hotels. But there's also API's inside of products like Chrome has a API built into it. And when we write JavaScript, we'll use that API to do things. There's other applications on just like Windows applications that expose API's internally in windows that another Windows application can communicate with it. So an API is the
+
+is the way to
+
+it's just a way for an outside something outside to communicate or use another piece of software Web API specifically or web services are a way to do that across the web, which is what we're building with like rest and soap. And from the chat looks like back to the MVC. So,
+
+it Yes. That
+
+that confusion about the view and the controller is really common. It's actually one of the probably the most confusing part of MVC. Because it does seem like the users interacting with the
+
+view, but they're not. So
+
+the controller here
+
+is
+
+taking the user actually interacts with this. So the user
+
+sends the request to the controller.
+
+So let's do this outside of Here.
+
+And I don't know for sure that
+
+Google uses MVC, I, but we can. I can't explain it like they did. They may i don't i have no idea how I've ever seen their code. So we go to Google, right? And if they're using MVC, what I'm looking at right now, this web page is not the view. In MVC, it's the output of the view that was sent to me by the controller.
+
+So if I do a search,
+
+my browser is now set a request to the controller and their system. And that controller has went and use the model to get these results is thing called the view in the view who said okay, here is the HTML, here's the response you need to give.
+
+And then the controller.
+
+So the controller is caught off to
+
+this example me.
+
+So we have the view over here.
+
+And the controller is now caught off to the view. And it's done the model and stuff already, we'll just leave that out for this one, the view responds back with
+
+HTML.
+
+The controller then is sending back that HTML. And this is for web for us as JSON. Back to my browser, my browser renders in I interact with the browser, the browser is rendering the HTML. That's not the view. That's the output of the view. It's the same idea kind of like between class and object, right? We interact with an object in code, we don't interact with the class, the class is the code. The view generates the code, the output, the message that's going to be sent.
+
+When
+
+we're using here with our, between these hotels and the client that we have, when the client says, Give me a list of hotels, it calls our controller, which gets a list of hotels and the view is transforms it into JSON. And it sends it back to our client. Our client doesn't show the user the JSON, it transforms into a menu that the user that interacts with that menu, which is the out which is the rendering of the output of the view, not the view itself. So the actual interactions always happen with the controller. The view just builds the response. Does that make sense? Kind of It's a lot easier to see, I think with web stuff than it is with API stuff.
+
+So some that hopefully will make more
+
+sense that makes a lot of sense. Thank you. When we so
+
+alright, so then the, there was a few questions about exceptions. Exception handling. I know this come up all the time because exceptions are hard.
+
+And I think they were.
+
+It was creating custom exceptions from scratch. You usually don't need to do a lot of that but if you do, it's just a matter of just extending the exception class when you want to do it is When you need to communicate something that is an exception to the standard workflow, and still put exception to an error that's occurring, that it doesn't already exist in Java. So if it's not, if it's something that your codes doing wrong, you need to communicate, that's the time you need a custom exception.
+
+And then
+
+the larger I think, the bigger question and the bigger one is around. Actually, we can look at the I'll continue with the custom exception one before. So in this case, we also use them for these not found things like four or four years. So let's look at that. So creating one of those, creating any custom exception is just a matter of extends exception. That's it. That's really the whole thing that creating a custom exception and once we have that It's not, we call them customers is really just an another exception. Some are provided some have once we built to turn them into something that can be used in the web, it's just a matter of adding this response status. This response status is ignored until it leaves the controller, when it gets the controller and the view is going to build a response. It's going to use that then to build a response in this case for for. But until then, it's just another exception moving around our application. So the using of them in a larger application, which goes along with this as well because our web applications are the first time we've kind of are these API applications for the first time this really comes up a lot. We ended up with
+
+kind of tears of
+
+class. Right.
+
+And so,
+
+and the way they end up working is
+
+this, each one has methods, this one's calling this and then this one's calling this. And this one's calling this and then they're returning down through. So that's how our codes working, calling these methods in any place here through here, we could throw an exception. So in a larger application, so anytime we throw this is actually not just for larger applications, larger applications can take more advantage of this, but it works exactly the same in any size of application. If we throw an exception here, so this is where we have an error.
+
+And we have a choice.
+
+We can either
+
+handle the exception here, meaning we can do something about it, we can fix something. If we have some way to inform the user, we can help The user, the way you handle exceptions is up to the individual exception individual code. It's really can we fix something that if this program keeps running, that we can we get it back to a state where it's make sense where it will work. So our exception means that we are getting a list of hotels, and we throw an exception. So now our list of hotels us know if we can make it so either we skip the code that where we need the list of hotels, so that we can try again, then that might be a response. Or maybe we set hotels to an empty list so that we don't try again, or we tell the user in some way in this in the program, those are all responses we could have just from that one list. And there's more so because we can't we the problem, maybe we can't leave the list at all, because it's going to cause problems. We try to use it later. So if we could do something here, we do it. If we don't we Throw it in throwing, it just means to pass it to the next level. And that's who called this code. So instead of returning a response, now it throws the exception here, and here now makes the same choice, they may be able to do something about it, maybe they can set the list or maybe in this case, the problem, the risk is gone. They don't they didn't need the hotel list that was only internal. So when it gets back here, they can just keep going. Or maybe now this class can talk to the user. So it makes the same decision cannot do anything about it. And if it can, that's when we do a catch and do something about it. And now the exceptions done. So once we catch the exception unless we throw it again, and then it's a new exception. So once we catch the exception that exceptions done, which is why it's risky to catch exceptions. We're not doing something with what's called bearing exceptions is because we added them, once they're caught, the, as far as job is concerned, everything's fine. So we have to have our code, make it fine again, or it's going to be problems. So here they make the same choice, they may or may not be able to handle it. If they can't,
+
+then they throw it to the person who called them.
+
+And they make the same choice. Same thing because they can choose to catch it. And or we can choose to catch it there. And now maybe we can do something about it here, but maybe we can't. If they can't do anything, then it goes to the next level. So each of these levels if the exceptions caught and dealt with, then this process ends. So if it's caught here, then it stops here and these last two don't occur. If it's caught here, it stops here and this last one doesn't occur. If it's caught here, now with the last level, and if we can do something about it, we do But we can also choose to let it leave our application. And when it leaves our application before it would go to the JVM, now in Spring Boot, it's going to go to Spring Boot.
+
+And
+
+that means that they're going to handle it, but they don't know anything about our code. The JVM is going to handle it just by saying you're done. Your program is done and crash, it's going to shut it down and throw out the stack trace of the console because it doesn't know what else to do. Spring boots a little different. Most of the time, it's going to crash the code but if it has this then Spring Boot will say okay, this exception I do know what to do with you want to four four returned you or some other status code you want the status code not found returned. So now it hear out in Spring Boot on the Spring Boot, land didn't know what to do with it. So it says, Okay, I know how to build a four four message. So I'll build that and return it. If it doesn't have this response status, then it's going to crash the server. Actually, it won't, that's actually not true, it'll return a 500 error, it'll throw the error, you know, keep the server running, and hope things are okay. Because often with a server, since the requests are stateless, the next request will be fine again. So then the user gets a really nasty 500 error on their browser, or their application or their postman or whatever they're using.
+
+And then
+
+they
+
+see often a stack trace and some other stuff.
+
+But in a regular application, we choose in each one of these layers where we want to do something so large applications
+
+we often don't want
+
+This happen.
+
+We don't want this final
+
+switch not in a web application, we're going to probably allow it to happen. But we often wanted to stop everything to stop here, and maybe tell the user something went wrong. So if we put a catch here, for the exception, and we catch any exceptions being thrown up through here, then we can stop the application from crashing or we can more and more Indyk controlled and tell the user things like you know, there was a there was an error, here's what it was. So a lot of x. So exceptions, custom exceptions are used when we want to pass information. That's not the normal workflow. It's not the date. It's something different up through these levels. So maybe this level when something happens, like the hotel not being found, wants to tell this level that that occurs. So it throws an exception Wish we can catch up here to check, we can catch that particular exception to look forward. So,
+
+does that help for the people? Who asked
+
+that question? I say there was a few different. That was a
+
+one that's came up a lot in the last week or so.
+
+So the other
+
+so that was the last of the kind of the theme questions from the pulse survey.
+
+The pulse surveys guys look the last couple days because I
+
+do most of the time they get answered if they don't keep coming up as we go. Are there other questions? There's one more I got that I'm gonna but it's a little
+
+different.
+
+So the other question I saw your question, James, and you posted it publicly. So that of what to be ready for for an interview. Right? What was important. And I saw your slides, Oliver, and those are excellent. So I would say those are a great place to look. But I'll I'll go down through some other things. That is some will correspond with what's on there. I didn't see anything that was in my slides or stuff I point out in lecture that wasn't in all of our slides. But the kind of stuff you'll want to be ready for is, you're going to want to be able to explain and some of this is in those slides already. You're going to want to explain how Java works at a high level at a high level. So you want to be explained that the whole idea of you write source code, Java c compiles it to bytecode the J VM are the JRE changes to machine code and what each of those means, you know, that that the byte code exists so the Java can run anywhere. And the JVM is the piece that is machine specific. machine code is what runs on a particular OS. And source code is just what we write about level. It doesn't need to be deeper than that. But you'll want to know those terms. And what that means. You'll want to be able to explain know what it means to compile to take take code from source code to bytecode. And that that's done by Java C. You want to know what the JVM does. And the JRE, which both work with changing the bytecode to machine code, you want to know what JDK means, which is Java Development Kit. That's what we use to develop one. But again, not the level I'm just explaining right there. So I do have a. So I see your question. I do have a terminology list that's partial. But I don't have a complete list of terminology. Now that's, I've encouraged many of you in one on ones and encourage you again, make flashcards. So I'll send you a list of some terminology, but it's definitely not complete. It's something I've been working on each cohort is I have time, which means not very much. And it's just add terms to it. And definitions. So yeah, and yes, critters pointing out. Also, there's also some really if you look at things like Java interview questions, or Java, like junior developer interview questions, there's some really good sites like thousands of questions out there that can find so be able to define a variable be able to talk about list versus a map for so Ray. Be able to explain the difference in a parameter of object or a value type and a reference type. Be able to recognize that if the interview says value type or primitive, that they've been exactly the same thing, it's going to be depending on the age of the interviewer.
+
+In most cases,
+
+let's see
+
+it being able to talk about the old principles is really important. So capsulation inheritance polymorphism being able to explain what those mean being able to talk about how you use them, be able to identify parts of a class, know the constructor versus the getter, the method member variables. Being able to spline depth, this is a big one that people miss all the time is being able to explain the difference in a class and an object and how they relate. That's a pretty common question.
+
+So be able to understand that and be able to explain It.
+
+So some more being able to explain what interfaces do compile versus runtime error.
+
+So loose? Maybe not that. See.
+
+For some reason, interviewers love to ask the question that just being stuck in queue. I have no, I don't understand why because I doubt most interviews have ever even used a stacking queue. But they'd love to ask that question. So remember the description of those.
+
+See, abstract class, what abstract classes gets asked a lot.
+
+At high level that just needs to be you know, it's a class you can instantiate. And you can have code you can hear it like a superclass versus, or that you can force the user to override like an interface level at that low. I answered that levels all you need for most of these, except for though principles. Maybe you You just need a simple answer to them, you don't need a lot of detail. They don't expect you to have to understand the inner workings of how a reference versus value type object work. But they do expect you to know that have a stack in the heap at a high level that value types kept directly on the stack, a reference type has an address in the stack that points to the heap. Because that's important to the use of the language. They don't expect you to know how the stack and heap actually work or how that all puts together, how they're, they're managed. So that high level is all you need.
+
+For now,
+
+let's see. Be able to explain a superclass versus an interface. So for SQL, be able to describe left join, right join and join. What those do and what data they get back. Be able to write one. It's really common to give you a problem of well write a left join for the between the Tables right a right time between these two tables explain what data you're going to get back.
+
+So be able to explain primary and foreign key,
+
+C. And then also probably referential integrity, what it means and transactions. Again, these are all high level, you don't need to do a lot of detail on them. So, for this API stuff, we're starting to look for Bo to explain what JSON is just a high level that it's, you know, key value pairs that are it's comma separated and it's made of objects and arrays, and it's used for messaging for API's. That's really that was all you need. So for MVC below explain MVC workflow, people love asked the question we just talked about, who takes the user input and they So that's a common one because of the the old problem, it seems like the view. That's that's, that's a really actually question comes up a lot
+
+better to explain HTTP versus HTTPS
+
+in the basic web workflow, so just that idea that you put. So a common question is, you know, if I go to a website, or browser, put a www.google.com, what happens build explained that it goes to the DNS system, DNS server, gets the IP back, that then takes the IP and makes a HTTP call on port 80. To the web server, web server for me, it's a form takes, receives the request, gets the performance response, returns the response with a status code of 200. The browser renders it, that diagram that I know I was on all of our slides that memorize that diagram, it'd be able to answer it. So I'll tell you when I was having when I was hiring people who were just starting out and I was interviewing them, the Two questions that were pretty much a really three, three questions that I would ask or talk about when always asked me to talk through that if they couldn't answer I almost always passed on them was if they couldn't tell me that level of how the web works. Because if they're, especially for a position where it's for a web, do you have a web development or API development, which is just about everything nowadays? It's going to be involved in some way. Because if they didn't understand the basic concept of networking, then of that level of networking for the internet, then they probably at least, to things they weren't they were going to have trouble working on most systems and tools they need. If you're into programming, you're learning to program and what are your questions early on is not how the houses working when I'm working with the internet. That's always a big red flag that maybe they weren't really bad into it. But I'm not saying that you should have asked us to do point you've had lots of other questions for 14 weeks. So now seven weeks, so, but eventually I expected people to ask that question and figure it out. The other one was that basic Java workflow, you couldn't say, what source code bytecode and machine code was, then? I would, my thought would be well, how can you troubleshoot problems when you run into them? The third one was the price of a method be able to say those four parts in the method signature, and how a method works to memorize those four parts because again, that's that's the core fundamental the entire language. So Alright. So those are some also build explain statelessness requests in response to stateless for for request and response. There's more this is not by any place general. This was ideas that are just I can think of that I've asked about or heard people asking About. And there's actually a presentation on that goes through technical interviews. I don't know when it is, it's coming very soon. I say next Friday, cuz I think that's when it's on the calendar. But next Friday is a holiday. I think so. Probably the one. I don't know when it will be. But there'll be a presentation where one of us, I'm not sure, whichever instructor gets done, volunteer, volunteered for it. We'll do the do the presentation, the whole cohort that's a lot like this. So the only thing I'm going to tell you to be prepared for more important than all that other stuff is be able to talk about your projects and your code. The reason we done the code reviews, the way we did is because when you start talking about code with publicly, if you can't talk about your projects, you can't talk about your code. That's going to make it really hard to talk to an interviewer about your projects and code. So you know how the projects you've worked on work? No way technology used. Don't say, Oh, we wrote a catering system. It's weird a catering system using Java on a sequel? Well, that one didn't. But if it would have, you know, we use Postgres SQL back end. And in those type of answers, you want to be more a little more detailed, you're talking to developers. So also be able to talk about things like the process of test driven development, that people love to talk about that even if they don't do it. And things like what get does, and let's see.
+
+Till the end in Yeah.
+
+And then also, be prepared to give opinions and have them. interviewers will want you to have opinions on things like, Oh, I mean, they'll ask you there's no, some examples is like the classic space versus tab. I've actually heard people come back and say they've asked that in interviews. There's no right answer. Having an opinion and have a reason for having that opinion. Another big one is interfaces inheritance. I'll just let you think about that. inheritance, sir or not. You can argue either way. Yes or no. is how's abstraction work with Oh, why do some people say it's a concept and some people not? So those are all just opinions. their opinions people argue about to the point that they
+
+argue. Another one is, what's what's something that you hate about the language?
+
+Yes. Yeah, that's a good one. Yeah. So be prepared just to use a lot of those will just come up on you know, they'll ask you a question. What do you think about this? How even if you do think you're wrong, if they're asking you a question that is opinion based, have an opinion on it. You can be wrong. It's alright. Just have a reason for why you why you answered that Because that's what they're looking for.
+
+Yeah, my buddy suggested to have an opinion on like something that you hate about the language. But he also told me that since I only know Java, like, there's probably not going to be much, much that I like know to hate. But as soon as I start learning another language, I'll probably discover those. Yeah. And then another one he said was like, on a project that you've worked on, what's something that you would have changed or a mistake that you made that you would do differently? And he said that one time he had a person answer nothing, and he was like, Okay, bye.
+
+Yeah, yes. Yeah. The interviewers love to talk about the your failures, at programming. And for good reason, the way you the way you respond to failing or the problems are much more telling them the way you respond to the times everything went perfectly.
+
+Plus, it's more fun, right? for them.
+
+Yeah. So be prepared to talk about when things didn't go well because and then for all this descriptions are fine or definitions are fine, but descriptions of it your own descriptions are much better descriptions where you can give examples, your own code or your experiences are the best. So, you know, they asked about encapsulations or season heritage they asked about inheritance and you start talking about inheritance, you start talking about shaping gampel the shape example. That's okay, that's a textbook answer. And you can get by on that, but if you can talk about you know, you explain what inheritances and then talk about how you use it in your project. The first Capstone may be used for your items. So you inherited you the price and the name between each of the item classes. That's even better. All right. So yeah,
+
+thank you so much for that Brian. That was That was an awesome list.
+
+That's not exhaustive. That's just things I can think of.
+
+Definitely a great start.
+
+So Other questions?
+
+So then, let's take a break, and we'll come back and work on something. So we'll come back at 1040.
+
+Alright, so this next thing I want to do is I want to work on a project this review some of these concepts, mainly focusing on the project itself, and how this all fits together because there's something we really haven't seen yet. And that's how the database fits into all this right we have these in memory data But I know a couple people have asked me about that. A couple of you have set asked the question of, well, how does the database how does it work with the database? Because I know there's a leap between the in memory stuff was just a bunch of lists and maps and memory in that, so I thought we would use something we're all familiar with her to have, you're going to be much more familiar with the rest of you. So what I did is I took and also go into dependency injection and show why interfaces are so important that a lot of these design things that I've been trying to encourage you to use. So I, I went through the capstones, and I found one module two Capstone and I found one that met some some things that would be easy to do this with that was laid out in a way that would work. So I took one of the capstone projects. Specifically, I won't say who they are, but I took team threes Capstone and I
+
+put it in this quiet project.
+
+So their deals are here. I did not touch any of their code.
+
+And we can run it.
+
+And you can see, I think it'll work because I'm not sure if I the database the speed of good test.
+
+So I do good. So it works. And
+
+I also chose it because they have some of the bonus quiet requirements complete and one of the ones that we could, so it gives a little more to work with. So it's the full working Capstone here. And then I took the DA O's and I moved him to a server project, just to do as I didn't have to touch them. They're just in place. So what I want to do is only take this Capstone and I want to build it, so that the original Capstone uses API, instead of the database directly in the API server will interact with the database, which means we're going to have to add controllers. We won't we already have the details to work with, but we're going to have to convert them so they can, we can use them for the injection. And then we'll have to work out how we can get into the CLA. And I'll tell you, I tried, I think this will work. I'll just believe it that we can make it work. But my goal is to change, not change their code, really at all, or very limited. There's a couple lines, we'll craft the change, but very limited. And leave everything just as is. My goal in the client is that the only thing we have to change is the extent to which do is instantiated between our API and their JDBC, but nothing else. In the server side, we may have to touch a little bit more because of the API stuff. The objection stuff, but I don't think much.
+
+So let's look at it. Let's start with the server.
+
+So the server is going to connect to the database. So the structure of this will be that
+
+their
+
+Capstone here. The original Capstone, we'll call the API,
+
+which we'll call the database
+
+and then pass back through the response
+
+with all their existing code just working.
+
+So we need this connection here. Set up So let's look at that. So Spring Boot has the ability to connect to the database, we had to add, we have to add a couple libraries to it, which I've added. So those come through this palm file. So the palm files, we haven't really looked at them. But they determine which libraries are included in, in our project. So what what we have access to what other parts of Java or tools, so Spring Boot gets added by things like the web stuff that we've been looking at here. The test some of the test stuff. And what I've added is I've added JDBC, from Spring Boot, and I've added
+
+Postgres, the Postgres driver,
+
+and then in Spring Boot, once you have those, we can we don't have a traditional data source. We do but it doesn't for us. We don't have to do new No data source and pass it a bunch of information instead it's in configuration, which is where really should be, because otherwise we can't easily change the password. So in this Spring Boot application and server main resources, there's an application properties file. inside of that, I put the data source I just cut and pasted world's data source.
+
+So the first thing we need to do is get the right data source
+
+which I think is in the client. I assume they have it in there. So I
+
+Oh, um, so you need to do the SQL database thing if you haven't already. Because we just set the max value to be the you know what I'm saying? For the mega reservation thing. You did that?
+
+I did not pay anything for said it. be recorded. And
+
+okay, cuz Yeah, like we, before you put that solution in, we had to figure it out in a different way. So we didn't changing anything in the sequel, okay? That's just
+
+so it's gonna fail at some point, that's what you're gonna say, Okay, we'll fix the database when we get there. That'll fail with an ID with a sequence thing, and we can fix it. So let's grab this, you know, who knows, maybe it'll work.
+
+We might not even get to the point we need
+
+somebody to take and change the properties. So the point of having these in the properties is that one spring is going to create the data sports source for us and give it to us through dependency injection. But to this is a file that lives on the drive and it can be changed at any point without really doing much of anything. So we can now change the password. Without having to rebuild our application, which is important, right? And even more important, we could have somebody else manage it. So we could be running our system without the developers knowing the password to the database. Which is why it actually works in most environments, environments. They don't want you developers to know the password.
+
+And
+
+yes, yes, Maven is how we, all these projects are built it at some point I'll either do because there's no it's not actually covered. But I would usually do an afternoon session or I might just record a video walkthrough Maven.
+
+For this, we'll see how it works.
+
+So Brian, this application properties that you have is this where you would also include like an API key if you are accessing another API like an outside, outside one
+
+Yes, yeah, we can put anything here we want to just be able to access that we want to control outside of our code, we want to be able to pull it in. So, right, so we have our data source setup. The next thing we're going to do is we need, we are going to have to slightly change the details. And very slightly, just the constructor and the on the JDBC classes. And that's because we can keep them the same and we can have it keep sending us this data source. But spring JDBC already has a JDBC template built into it. So if we just change this to JDBC, template
+
+JDBC
+
+template
+
+and then we'll change this to
+
+then
+
+The JDBC template will be given given to this class by dependency injection, already populated with the data source from that application properties. Which means we don't have to change anything else. So just the constructor and all three of these JDBC classes. So, so if you're working with a DA inside of Spring Boot, instead of injecting the data source, which is what we do, instead of passing that, we use the JDBC, the whole JDBC template. And that's really the only change. We want to make that change three times. once for each is going to see that now for space and venue.
+
+See template.
+
+And then finally, venue
+
+Let me see.
+
+That should be all the changes we have to make to this code. So my goal is not to change your team's original code, with the exception of small things like this, where we mainly around dependency injection.
+
+Right? So we can close these, because we're not gonna look at these again,
+
+unless we run into errors, but
+
+but we will look at the details.
+
+And I also reorganized in this case, I reorganized them into a different file structure, a different package structure that's very close to what they had. I'd moved, model do and do JDBC separately. So
+
+that's the other change I made.
+
+All right. So now
+
+let's build our first controller.
+
+So we ever do setup so We didn't build the videos. But I think after the last, your last weekend everyone's pretty familiar with building do is at this point, right? Everyone was pretty successful, everyone was really successful with videos. So if you're working with a database in this, you would build those exactly the same, the only difference is what we just had, you'll inject the JDBC template instead of the data source. And then you won't have the data source and code, you'll have it in the application properties. Which means if you're given a project that's already been set up with a data source, like you probably will be for the capstone. I haven't seen the capstone project yet, but I'm guessing you will be you'll go to the application properties if you need to make changes like the database name or anything like that.
+
+Alright, so to build a controller.
+
+Let's build a new class here.
+
+And let's put it in a package called controller.
+
+And we'll call it Bob a venue controller.
+
+So what our API is going to do is expose the venues. So we need to know what we can do with the venues. Let's take a look at their da Oh, it looks like they have four methods. I'm gonna just cut and paste these over here. Maybe we'll just put a comment up here so we can design what we're going to build. Alright, so they have a select all venue, get value by ID search menu by name and add venue and create a since you've already kind of called yourself out as being your Capstone. I wasn't going to tell anybody unless you volunteered, whose it was. I'll ask, do all these methods work or any of these that I know
+
+that there is one method that we didn't end up making, but I don't know If it's in venue or reservation, oh, it was search reservation by ID. I don't know, if you look in the JDBC, as you'll see an empty method.
+
+This is looking the venue JDBC. I said we weren't gonna look at it again, because I but the reason I wondering is you have actually an add value because that would actually be
+
+a let's see. A new. No, you don't. Yeah, there was one that we didn't end up doing. So we can take that out. Yeah. There is a thing that adds a venue in one of our tests, though, so you could make that easily nice. But
+
+if we get time with him, we will, though, I doubt with the time we have we're going to get but Okay, so we have our three methods. And what we'd want to do next is design our endpoints. So what endpoints let's just go through what endpoint should search select all the newsfeed and they don't have to match up one to one. It's the same functionality
+
+than us. Yeah. Yeah. That's why we use venues. How about giving us by ID
+
+slash curly brackets ID.
+
+Okay. So venues and like this same thing that's right into the job away.
+
+How about search? Right? What is the other way? You're writing it though, right?
+
+So you'll see that just in general rest documentation and API documentation. Because API is one of the big purposes, their language, they're not language specific. We write this in Java. And you know, somebody, a Python program can call it it doesn't care. That's part of what rest does too. Or just not rest API's do too is they make it so two languages can communicate without knowing what the other side is or carrying. So they commented And just documentation as the colon. So it's kind of language independent version when we say that, but it's what JavaScript uses, but
+
+we'll see that later.
+
+So what about search menu by name? What's its URL look like?
+
+Shouldn't be venue slash.
+
+Yep, that slash name. Question.
+
+So name.
+
+So should it be like this?
+
+I mean, it's, I think I could work but wouldn't it? wouldn't wouldn't you want to use a
+
+query string? You would. So the difference between a query string and the PATH variable is not the technical difference, but the design difference is that the path variables should be used for IDs. So been By ID should be a PATH variable, but name is not even though it's a filter, right, it's changing the list that's going to be returned. It's not selecting an individual is referring to a particular entity. So, anytime we have a filter type case or something that like this, we should it should be a query string. And part of the the idea of that design is that it easily identifies the difference between referring to an individual entity in something that is more of a general search. So we would want it to be name equals and then some value. All right.
+
+So now we have three
+
+or three, sorry, pass. So let's
+
+make try to make this work. Not try we will make this work. So what's the first thing we need in a controller? Rest controller?
+
+Rest controller
+
+Exactly. So we need that rest controller. That's what identifies this class as a rest controller. So without that, it's not going to find it to be able to use any of our
+
+classes. So import that.
+
+So now we need
+
+request mappings, right? So I'll start that request mapping. And what's your first Pappy?
+
+Or ID slash venues?
+
+Yeah, let's start with that one.
+
+And then method equals request method is this going to be? What kind of methods is going to be yes, you get
+
+to get and now
+
+So we know we've already been given by the
+
+JDBC. This is going to return a list of venues. So we'll return the list of venues
+
+around quick question.
+
+Yes. just general one. Yeah. Is it common to see like a request mapping with like a base path up top and then just additional, like the homework? Or is it more common where the whole path is ready for every single method?
+
+It just depends. It depends. There is just they both do exactly the same thing. So it's really up to, but the author of the class wants to do the putting in at the top makes it so you don't have to keep repeating the word venue. So you'll see that a lot, but a lot of people just put it in each one to make it more clear. So it's, so you'll see it both ways, pretty pretty equally. Thank you. Okay, so we just have to have a name for it. So it doesn't matter about the name. So it should be descriptive. But list. Does it take any arguments?
+
+No. Okay.
+
+And let's do some importing. So what are we going to do here in list?
+
+Where do we get this?
+
+So you're probably gonna want to create a do while you're gonna want acquires Yeah.
+
+So we have to do, then you do, I'm going to use the interface, not the JDBC. We'll create a private one.
+
+And you do
+
+do and
+
+so this is the first
+
+I spelled something wrong up there all capital.
+
+So this is the first time that we now need dependency injection. I don't want to instantiate that here because I don't want to be bound to the JDBC class. So there's two ways I can do it. One, I can put auto wired. The auto wired keyword says, I want the next thing and only works on one. The next line. I want the next thing dependent given to me by dependency injection. So we're done if I do it that way. The other way we can do it, which actually can be a little this ways. It's new, right? So but there's another way that is a little more natural feeling for a lot of people, and that is we can create a constructor
+
+and we'll say
+
+we went to venue. Do you do and what is pass it like a stutter.
+
+And that's all we have to do. And when spring creates this says it's gonna be the one containing the venue controller class and it sees that in the constructor, it'll say, okay, the only way I can do that as I do it through dependency injection, so it'll go find the piece that we need.
+
+So that's all that's all we have to do to have our do.
+
+And it's going to go find the data source give us the JDBC template, all that
+
+will be all injected together and give it to us ready to go.
+
+So that means we get to see return.
+
+Question. Like, isn't it like components?
+
+Somewhere I forget.
+
+Yeah, right. We just were you do it or do you do do that later? No, we, we missed it. So that is, so we're gonna call Let me see Finished calling search all venues here. Since that's not really something new. Think that's what it was right select on the news. All right. So you're right in this Do we have to have a component we have not added that. So we'll go back to the
+
+then UDL.
+
+And we did.
+
+So we add the component to the JDBC do but then we call the venue do.
+
+Yes. So what we're doing is we're saying that this, so the component gets added not to the interface, but to a class that implements the interface, better, thank you.
+
+So implements then you do
+
+and then when This happens, it's going to say, okay, you want something for the venue do interface. And I need a standard a some object that can match that interface that is that type. So it's going to go through all the classes that have
+
+component, and one of them.
+
+If one is clicked for the one that implements then you do so only one class that implements venue do can have the coning annotation. If you have five classes implemented, you pick which one you want. And then whichever one that is it was Stan shaded, and then
+
+passing the constructor of the controller
+
+or into the variable if it's auto wired.
+
+And then this, there's actually a little chain going on here. Because when it goes to instantiate this for us, it's going to say, Okay, I need a JDBC template. Well, I have I know how to build one of those already. So I'm going to build that and it's already a data source, say okay, there's nothing in the application properties file. So I'm going to build the data To source from that jacket is the JDBC template,
+
+inject the JDBC template into the venue do that inject the JDBC venue da o object
+
+into this venue controller that's been identified to the interface.
+
+Okay, it finally just clicked for me right there. Oh, goodness, I was wondering why we weren't using the JDBC. But now, after that explanation, I totally understand
+
+it, we're going to see when we get to the client side, and part of the reason I picked this particular project is because they they use the interfaces. They use the interfaces, in the other side of the product in one place. A lot of people did. That was not the only reason. That was what a lot of the teams did. So you're thinking So did we that's, that's just one of the reasons. And we can see then, kind of the, when we manually do it, how this works. And I think it's a little more impressive when we go from JDBC to an API I suddenly I think it hopefully it will help. Alright, so we should be done right? request mapping gets locked all venues. I didn't we didn't handle the exceptions, but let's just see if it works. So we're going to run it. There is a exhausters venue applica application for the spring application, as well as on Java server. I'm going to bring up postman
+
+and
+
+our URL is going to be localhost 8084 running and we decided it was going to be venues.
+
+So venues and let's send it
+
+what is code
+
+controller
+
+started.
+
+So I meant to ask you when you were doing in one of the files and didn't have ADHD, I had, like, I had a different port, I believe, I meant to ask him about as we forgot,
+
+which it was your properties, your application properties.
+
+Oh, the application properties would have Port 5432, which is where Postgres is running. So remember the ports port to the particular applications. So that's pointing to Postgres, Ada should be pointing to eclipse here. So I have something else wrong at at venues
+
+there. I don't know what was going on the first time, or maybe it wasn't done, but started starting. So there we have the
+
+venues coming back as Ras now or it's JSON now.
+
+So let's, let's complete the other two, let's do the whole venue do and then we'll put it in the client. Because we should be able to swap out the client piece by piece, and have it connecting itself to the database and to our API at the same time, depending on what it needs. And if I'm right from looking at it, that that's the way it was separates out from this particular project. It should work. So we have two more given you by ID. So it's gonna look very similar right? request mapping. We already started the path so there's no need. Let's talk about that. That's going to look like venues ID.
+
+Method
+
+equals
+
+request method and
+
+Public list. No, just a venue because that's what it returns.
+
+So then you get
+
+how do I tell it to get this? Id? What do I need?
+
+If I want to, so what do I need if I just want to get it into a variable called ID?
+
+How do I complete the rest of the signature?
+
+I just do and tidy. tidy.
+
+You know, this is not very Java like.
+
+I mean IDs violates all the rules of the Java variable naming right? If you turn in days two's homework with this variable name and if you imagine the country As you would have got from Michelle telling you, so
+
+suppose to be PATH variable with the ID, and then you would do, like in parentheses, I'm using my hands. And then so ID and that part, and then it would be called int, whatever you want to call the ID.
+
+We can do, can you ID UID. So both of work. I prefer this one personally, because this isn't quite, this is very close. It's really name equals ID, which will match this name and put it into this variable. So we can name it Java like that. That's that it worked. The first way would work and work fine. Actually, it needs to be easier to write but it always bothers me that we have this variable called ID
+
+in Java,
+
+so We can name it whatever we want by doing that.
+
+So now we just going to return venue do what is it your methods
+
+get venue by ID
+
+and we'll pass it our venue ID.
+
+So we should be done with that. Let's save it and make sure it works.
+
+Alright. So now if we come here we have a venue anybody three so when you free then you ID three should be the rusty farmer spot. So we run it three and we get the single rusty farmer spot.
+
+And we have the last one. Search by venue name.
+
+So how should we Write this here. What do we need?
+
+request mapping?
+
+So, do we need any request mapping? Or should we have one?
+
+Man based off of the homework, you probably just use the method from above. And you can put, I think it's a
+
+PATH variable required equals false.
+
+So if we had a request mapping because we can explore both, so what would our request mapping be? What would the path be?
+
+venues and then
+
+whatever is gonna be unlist, right?
+
+Well, if we're gonna put it in list instead of
+
+so if you didn't request Matt, if we started out with On our method, we would have this right? Because we've decided we're going to send it through a query string, which is part of the path. So we'd have to have it like this. And then method, request method. Get, that's this mapping. We can't have a duplicate. So we can't use vid. We can't use this URL like this with a new methods, we have to use the original. To do this off of venues like we want, which is the way it should work for filter in the original homework where they had the hotel's slice filter on day, not homework in the lecture like on day two that actually violated the way rest is supposed to work.
+
+But it was also to make it just easier to deal with that day.
+
+So it should be here.
+
+But I can kind of see now that it also made it confusing when you Got to seeing the first time you use it the right way. So we want a, somebody already said the request puram. And even said required equals false. And that's correct, because we don't always want it to be there.
+
+False.
+
+Finish spell false, and string name.
+
+So is this an instance where we would also need a default value?
+
+No, I don't think we would. Not in this case. Because why do I care if it's names? Not there? Why do I want to default?
+
+of names? Sorry.
+
+I thought that. I know I've asked this question before, and I thought that there was something to do with the database receiving a null value.
+
+Yeah, I don't want the database to receive a null value, but I think there's a better way for this particular case. It's a case by case basis. I think there's a better way to handle it. So if you just said required I was false of names not there. It's going to be no. All right? Well, I only want to search by name. If it exists, they didn't send name, then I think send a blank name. fixture. We can search by that, what if they want to? I don't know why. But so we can just do an if statement. If name is not equal to No. Now we know there's a value there. And then we could return venue, do search for you by name.
+
+And we need anything else for this method.
+
+I don't believe so. But I do have a question.
+
+Yes. So
+
+So if this is the proper way to do it, like we wouldn't write a separate method for this because we wouldn't be able correct.
+
+That's correct. If you want to follow the rules the rest Yeah. Okay.
+
+That makes sense. Thank you.
+
+So let's test it. So we've got here.
+
+name equals, actually
+
+the test, get a list of venues first. So we can get something a different one. So we don't.
+
+We could say name equals.
+
+And I haven't checked, but does credit is your name search have to be exact.
+
+I'm
+
+gonna say I don't remember.
+
+That's okay. I know. I know you weren't expecting to answer a bunch of questions on this today. Now it does, but it's just fine. That does not affect us at all because it's your, your code name that's going to be using it. Alright, so we have our first API done. Let's go put it in the client. Let's, let's swap out the original application now to use this. So we have to do two things. So this is the original application, I only moved it into this other project, so that we can use the rest template. That's the only the only reason it was the easiest way to make that work. But everything else is the same. All the codes exactly the same. I haven't touched anything yet. What we are going to need is we do have to have something that knows how to call this API that has to exist. But I don't want to change the original stuff. So let's add here.
+
+A new class, and we'll call it
+
+we'll change the model instead of JBC. Let's put it in API.
+
+Let's call it API.
+
+Then you do.
+
+And then you do. I don't care about that. But I do care about these, then you do is going to implement,
+
+then you do.
+
+we'll import it.
+
+Again, so import it. And now it's going to tell us we have to add them to the methods. We'll do that and our methods. Alright. So
+
+how can we get?
+
+So what do we need? If we're going to call that API in here?
+
+What two things do we need
+
+injection so
+
+way. Yes, but I meant more.
+
+more specific than that. So what classes do we need? What type of data do we need? So we need to we need one piece of data, we need one object. What are those two things?
+
+And integer for venue ID.
+
+Well, that's what we're going to pass into the methods. But I mean to call the API, our API,
+
+do we need a constructor? So we
+
+will need a constructor eventually. So let's put one here.
+
+What are we going to give to this constructor?
+
+So if we're going to call an API what's remember this application knows nothing about that other one? What does it need to know about it to call it it's, if you're thinking of something really simple and thinking that can't be it. It's probably uh, James you keep I'm sorry to keep interrupting you what it was, I'm just unlimited. Data Source, do we have to test the data source to? Kind of that's really close the venue, do? Um, no. You don't need to etc. Now, this class isn't gonna know anything about JDBC. When we're done. We're not when we're done, it's still going to know, right or using anymore. So, the datasource, what's the data source for an API? data source for database? What's the equivalent for an API?
+
+We need a rest template. That's the object we need.
+
+So that is true.
+
+So let's build a rest
+
+template.
+
+What's the datasource equivalent?
+
+If I tell you to call, if I say, call my API, what's your first question gonna be? That's all I say. I built this great API. Try it. Is it what's the path? Yes. What's the path? What's the URL? That's the data source. That's the connection. This application here knows nothing about this one. The only connection is that URL.
+
+So we need a URL.
+
+And it's called something like base URL. And let's pass that in the constructor. That way, this class isn't really tied to the localhost port. We're still the applications are going to have to be but we can change that without changing this class.
+
+So this base URL equals
+
+base URL, we already said we need the rest template. So we'll say rest template. We equal New rest template. In this case, we are going to instantiate it because this client class isn't running in Spring Boot. It's running has some spring thing, elements. But since we are standing everything directly, we don't have the ability just to auto wire things in.
+
+That's something that spring boots giving us in the other project.
+
+Alright, so now we have a URL
+
+if I want to select all the venues
+
+How do I do that?
+
+Right before we go on, I guess I'm a little bit confused about what this file is, is doing. I thought we just did a lot of the work in the last one. We made all the calls and everything.
+
+We built an API over here in this project, that's a server. Now we're in a completely different project. This is the client.
+
+So this is their original Capstone.
+
+So we're building a file, we're building a new form of do that can call this project. But it's going to have to call it like postman does.
+
+Because it's an API.
+
+It's we're building the front end now. So like maybe a better way to say we built the backend now we're building the front end, or modifying the front end. So we're calling our new API how do we select all venues? How do we call it
+
+this template dots
+
+list? Yes. So rest template
+
+is a dot you said dot list, but is what is the method on rest template if we want to get a list
+
+or get anything?
+
+So we want to do a get request right? So let's see get
+
+get for
+
+object That'll get us any object
+
+that we're going to pass in the URL for the URL is going to be our base URL. And we're going to assume our base URL is this is the part we don't want to be harder. This portion is part we don't want bound into our class, we want that decoupled away because I can change easily. This part is dependent on the URL, so that's okay.
+
+So we're going to concatenate that one.
+
+And now we need a list of venues right? Well, rest template can't return a list. So what can we return? We need a list in the end, what can we return from instead of a list?
+
+What are the type of data type? Yeah, you can use an array So we can say, venue, array.
+
+Then you array equals, and then here, what do we need?
+
+Yep. So we need the
+
+venue, array dot class to talk we're going to it's going to deserialize into the venue array class.
+
+And now
+
+we need to put it as a list right? We know how to do that. We learned that on day three, converting to a list so we know we can say, list
+
+type venue,
+
+and then use Scott venue list equals res.as list and pass it in your array
+
+and then we can return Are
+
+you list? Alright,
+
+so we're almost there. So we have our new deal created. So now we have a deal that's calling an API, instead of calling the database. So let's go to the CLR. Because we're going to have to tell the CLR we need to use that. So we also need the URL, but this is just adding. So instead of a data source here, what is that another private variable, private string, base URL.
+
+And that's going to be equal to
+
+four. Now this That way, if it changes, we have one place to change it.
+
+Get that space out of there.
+
+Now here's where the part that is important comes up. This is the part that is Why we use interfaces? So, right here What's going on? is in the constructor, it's changing these. But these could be being passed in right? from something else, which will be a dependency injection. So it'd be the same idea.
+
+So this is using JDBC Venu. Do
+
+something UDL equals new API.
+
+Then you do.
+
+I think we made it lowercase. And now we pass it our base URL that we have above.
+
+It will comment out the JDBC one
+
+and we'll run it
+
+The server still running, we have to leave it running for this to work.
+
+Now we get list of venues.
+
+Those are coming from the API. I didn't have to change any other code in their project. Now, to prove they're coming from API, we haven't done the rest of the API, right. Let's select that. We get a null pointer exception. Because in our version, when they called search by name we haven't implemented yet. This is why we use interfaces. I swapped out the entire functionality of their program by just changing creating one new class, in the stanchion, this is also where to buy dependency injections. Important. So instead of me manually typing it, I can just move a component and change this behavior. So we can change the entire behavior, their application, their data source, but Because the way they have it written, and the way that many of you have written this Excelsior, COI and all these other classes, they don't care where that data is coming from. They just care. They have data. They just care. There is something called outside of this line right here. They don't care whether it's JDBC or API benue, Gale saw some
+
+questions
+
+real soon to
+
+write our own API, or is the silly question because it's just
+
+JSON. That's what we're doing right now. We did. That's the first part we that we're writing was writing our own API that was in this project.
+
+Well, I guess maybe the JSON file is what I'm more curious about.
+
+No, no, no, we won't. It'll be both for us.
+
+So that's serialization and deserialization. Is the whole process of in just about every language provides that. Why should we build our own JSON file? When it can be done for us? We'll just go to objects and have them serialized in the JSON. We'll do the same, we get the JavaScript if you work with Python, you'll do the same thing with C sharp, you do the same thing. There's we will build test JSON.
+
+forget to add want to do that today. But
+
+but we won't build it in code. There would be no reason to
+
+really do that.
+
+So you'd basically build out your API with Java. That's the idea.
+
+Yeah, that's the whole idea of an API actually, is we build it out in whatever language you want, like Java. This client happens to be Java. But it could be JavaScript. It could be postman is not written in Java, as far as I know, might be, but I don't think it is. I'm pretty sure it's not. I can call from JavaScript. I call from Python call from any, any platform with one. And the JSON that gets serialize and deserialize. between the two is the common piece, the common message. One language says how to create JSON the other languages how to form it back into its object. That's the, the part that's independent between the two allow them to speak. So the idea being our API's, which is what our controllers are building, don't. They're completely agnostic from the client, and who's using it. And the client the same way is agnostic from the API. They know each other exists. They know each other what blank they know each other's message their JSON may take, but they don't know anything about each other. This API This client has no clue. The venue API is a Java program to,
+
+to the API get all of its information from Postgres, though that was you putting that one file in there?
+
+Yeah, you got it from your da is that you built it from Postgres. Oh, okay, nothing, nothing's changed. The only thing I changed in your demo was I added a component. And I changed to inject the JDBC template instead of the data source. And then the data source, which is still the same, so the same data source. Now the property is I'm under stock here. So it can be built by spring two, but still the same data source the same JDBC template spring boots is building those instead of us saying new JDBC template, and then passing your existing code, the JDBC template, and none of your fresher code changed at all. So do your JDBC class in the API side.
+
+I guess My next question would be, are we ever going to get around to building our own server because I know that we're just doing localhost stuff right now.
+
+Doesn't know we're not doing localhost localhost is a full blown server. localhost is just an address. Instead of google.com. It's localhost in the end. What happens we say localhost, it goes to the system. And there's this thing called the host file, which is kind of a pre DNS lookup. And it says, okay, your local host, that's, that's me and it changes it to IP one to seven zero dot zero dot zero dot one, and returns back to the whatever things using it. And so, but the server we're running right now is the same server you would run the host Rahman we could put in the internet we could actually set if I wanted to, or had the equation here which I don't and will not do. I could take this right now and crate either turn my security office My router. So my whole network is up to the public Internet or create this thing called a DMZ, which takes a while to do and then put my computer into it. You could access this.
+
+This is a full blown web server running.
+
+This isn't logos isn't a development mode. It's just it's just an address.
+
+Will you go through the changes you just made and point them out? Yes.
+
+So starting with the server.
+
+The first thing was which has really changed to their project, but it was just something I added was the application properties for spring.
+
+This server side
+
+in each of the JDBC
+
+classes,
+
+added a component
+
+and then added, changed the
+
+constructor to be Past JDBC template instead of the data source. And then instead of instantiating, a new JDBC template just set the one that they already had existing. So I didn't add this line they did. So as this structure went from data source to JDBC template that set their original one and the app component. That's it for the JDBC templates.
+
+That's all the code that was changing their JDBC classes.
+
+And then the controller that's all the new code, right? So that's when cars are added. That's what we've been doing this week. In the client side. We added the AP Ivan you do which is again, new stuff from this week, didn't make any changes to the JDBC classes. And the changes to the CLA was right here. I added a private string up here but I could have just hard coded that here too. was right here. So the big change the change there and partyer project that changed the way it was working, because we built an API, but we didn't have to worry if there was an API existing. Is this line of code in that new do class?
+
+powerful line of code. This Yeah. Using using interfaces correctly, is really powerful.
+
+It allows, and this is the modularity I've been trying to. I've been describing and trying to talk about this is modular. It's not dependent on where the JDBC class is not dependent on the database. It's just dependent on interface. The other side of that interface is swap
+
+So
+
+any other.
+
+So let's write the next couple interface methods. Now that we have the venue working, so we'll go back and to our server.
+
+And we're going to need
+
+to eventually know we already have this interface methods I'm sorry, we already have the API done. For the venue. We need to go back to API venue and just get venue by ID. That means should be pretty easy, right? Rest template.
+
+dot get for object.
+
+Again, the base URL, plus
+
+venues and then
+
+Then you've got class, not an array, and we're done for that one.
+
+And then search venue by name,
+
+it's going to look a lot like this under the URL is going to be different. So let's just copy this, it's going to be almost exactly this with a different URL. So we could actually write the reuse more reusable. But actually, we can get rid of this here.
+
+Just go for that.
+
+So our URL is going to be different. So let's make a URL.
+
+So our URL is going to be
+
+this.
+
+I'm going to copy that.
+
+And that's the URL we need. This first portion is what's in our base URL.
+
+And now we have this portion remaining of this last portion here is what's going to be our name, variable. And I got a bunch of extra clips helped me a little too much there.
+
+And then we're done. That should be our euro.
+
+So now it has changed this to be this URL.
+
+And we didn't do ad because the JDBC class didn't use it. So let's
+
+run the CLA again.
+
+Keeping us close to the news pick, pick number six. Now we get the venue information instead of an exception classes there. And we should be able to view spaces, right? So we get spaces, but now now the, this client is switched out to using Postgres because the space do still using Postgres. So we have this application, working partially through an API partially directly through Postgres, depending on which do is being called spacieux. And reservation do, we're going to Postgres, the video is going to our API.
+
+And it doesn't care. It works exactly the same.
+
+So we don't have to be consistent either. We can, each one's its own individual thing.
+
+All right. So let's
+
+let's keep going.
+
+So
+
+And I guess I'm a little bit confused on the base URL here, GFI slash venues. And then you included the parameter as well. Why do we have to include the parameter there?
+
+Because the in this one is searched by venue by name. So we want to call this URL. Only with this becomes the name of the venue we're searching for.
+
+So the JDBC, including the question mark name equals, when you do the request parameter. I'm sorry, I just got lost right there. So
+
+this side.
+
+So this side is the AP videos, the web, we're calling the API. So this is the client
+
+in the other side,
+
+in the Wii U controller, we have it set up to use the client
+
+We have this setup,
+
+not quite run place here, this setup where we can take a request parameter name, but that's different. That's the API application.
+
+Okay.
+
+So that's the connection is that URL.
+
+So when we're calling this when this is receiving these requests, it can't tell the difference between this code in this client job application or this from postman.
+
+Or if I take this and I put it into a
+
+browser,
+
+it doesn't know. It doesn't care. It has no idea that I caught it from a browser versus postman verses from another job application. Oh, it knows if somebody sent it. This URL and this Is the responses supposed to get for that URL? That's all it knows. So this URL becomes our complete connection between the two applications. Okay.
+
+I'm gonna go ahead and scoot my brain off of the floor now.
+
+Yeah, but is it a good scooping? Like a?
+
+Cuz my hope is it'll be, this would be I like oh, yeah, this is the last six weeks now. Makes sense.
+
+One question on the URLs following up on that. So did we only have to change that URL because they're the same in that other class? Because it's on the get venue by ID noticing that we didn't have to put the slash ID there.
+
+Sorry.
+
+Here Or in the controller?
+
+So in the API venue, do, we had to change the URLs between the two that had the same on the controller? But I noticed we didn't have to add the slash ID for the one that gets venue by ID. So does that just because they are the same path on the venue controller?
+
+We should have and I'm guessing because I have a suspicion, let me check something. Or did that pull from the
+
+I don't know me.
+
+Well, I'm caught on coming out. Right.
+
+And
+
+it's not using given you by ID to get the venue. Gotcha. My guess is, now I have to actually let's find out Search value by name. It's up on the call hierarchy, which shows every place is being used.
+
+Select a venue
+
+how we're going to end up in a long list of
+
+No, this is okay. So select venues they're, like venue is sometimes called hierarchy. Yeah, they're using search venue by name. Instead of get by ID when you select from the list, which is why it's working. We actually wrote it wrong. So good. Yeah. Good catch. Yeah.
+
+This actually should concatenate on this.
+
+I don't know if maybe this is not used to actually use the code or we just have it reached where it's using the code. Let's find out
+
+that's used in looks like the get venue ID is used when they print reservation detail and pet reservation time period. So it's using a different place we haven't got to yet.
+
+Cool, thanks.
+
+That's a great question because yeah, I should have aired if it would have worked the way I actually thought it was working. Alright.
+
+So let's
+
+see.
+
+Space isn't too
+
+Are you considering a break, Brian?
+
+I wasn't I probably should shut NIH or Tory thought it's a review. So we can
+
+Yeah, we need to get one more, we need a little more.
+
+So yeah, let's take a break, we'll come back at 1158. And continue.
+
+So did any questions come up for you during the break or? Right? So I know it's getting late, but I want to make sure we get through at least one of the post like methods.
+
+So let's do the reservation portion of the API. So a loop will end up leaving
+
+the project in a state where the spaces do is going to Postgres and the reservations and then you are going to our API.
+
+So I'm going to go back, close the client code
+
+and also bring up some other things we could do like a second controller class. We don't have to have everything in one controller class.
+
+So let's see. So we're going to need
+
+don't really care about their JDBC. class. I think we completed it right? On reservation. Let's see, did we get the component in place in the JDBC? template? So we're done with that.
+
+Let's create a second controller then for
+
+reservations. Okay, reservations controller. The controllers don't have to match our videos. We could have this on venue. I'm actually putting it separately more so we can work with a separate controller, because I don't think you've we've seen much of that, right. We're probably I don't think any of that so far.
+
+So the rules of having multiple controllers.
+
+We already talked about we need the rest controller annotation.
+
+is really that
+
+these
+
+request mappings just have to be unique across the entire application. That's the only role. So since things are stateless, it's not really going to matter. Other than that, which means we can have a request mapping in here. That is just venues or been use ID, we have to have a different different request mappings. And often those paths are where you kind of draw the line of, we need a new controller we have on your path now that's common place to draw the line. But not the only. That's just one. All right. So again, we're gonna have to look at we're gonna have to do all everything that's in the reservation. Do so I'm going to go just the reservation to you because I really don't care how it works. I just care
+
+what works okay, and when I change that Cuz
+
+asked the same question I asked before. Do all these methods do something? printed? Right? She's not here back yet. Or
+
+let's find that I forgot to start my video. That's a good summation. Yes. Get by ID and date. Yeah, I think they all do.
+
+Okay. I'll just like, not that I don't trust you. Yeah, they do. Nope, they don't get reservation list by the end date doesn't do anything. So, and then the reason I care about that even is, we don't need to know. You just be a little less work.
+
+Okay, so we have three methods we have to deal with.
+
+make reservations, get a reservation, Id get reservation and next 30 by venue ID.
+
+So We're going to need to figure out what paths
+
+we are going to use for these.
+
+So, what
+
+passion we have for this make reservation.
+
+What? URL
+
+slash reservations.
+
+Yeah, slash reservations probably good.
+
+All right. So we probably the reservations are really about. So we could go all out, and we could have a path like this. Then use spaces with a venue ID,
+
+space space ID
+
+That's really probably what this should look like.
+
+Can we do it like that? Okay. We can
+
+though I actually not I think about it. I don't know if we need the venue involved. Because if we have a space ID we don't need a venue it right doesn't really make any sense. spaces are true, actually independent entities. So probably really should be like this.
+
+That would make sense.
+
+So, like that. Yeah, we can do it like that.
+
+Okay, so what about get reservation by ID?
+
+So we're getting it by the reservation ID right. So that we need space involved if reservation? Probably not. So probably reservations. Idea With the reservation ID and now it's a venue ID. So what should this one look like?
+
+venue ID, ah, done reservations.
+
+Yeah, so probably venues, the ID for the venues, reservations. So that's actually works out pretty well. Those are three very different paths. But for each of them, it's what entity are we really talking about reservations are about the space. So it should be in the space hierarchy. When we have a reservation it directly it's about the reservation doesn't need to space anymore. Well, we're getting reservations by venue, it's about the venue. So we get the idea and then tell it one level more that we're not interested in the reservations. Right, so let's build. Do we have a couple other things this first ones make reservations, what data types are going to be
+
+Let's Bonnie.
+
+Let's go to a new request body. That's true, but I'm sorry, I said data type. I'm what web method
+
+post
+
+post. So it's gonna be a post.
+
+Let's start writing it. So we need to request mapping. And we need a path that is going to be equal to our path up here.
+
+And we're going to put this into ID.
+
+And now we need
+
+our request method equals post.
+
+And now we need public and what should we return from our post
+
+Let's look at the model
+
+is post supposed to be a string?
+
+It's not. Thank you. Wow, I really messed I don't know what went wrong there but that's nothing like it should look like
+
+reservation. Okay.
+
+So which was a reservation and was called add
+
+what are what should it take here?
+
+We're going to make a reservation we know the method we're going to call needs a local start date, number of days and number of attendees and the reserved for
+
+so reservation object it sounds like
+
+yeah, let's let's look at their reservation object and see what it actually has. Because that's going to change the way we need to format it. So as number of attendees Start Date. Okay, so the fact that they have the same names actually makes it really easy.
+
+So we can choose that so we'll just pass a
+
+reservation object and
+
+so I can desyrel so this can be deserialized the Jason can be deserialized what do I need here?
+
+What inner body Okay, I know there's some of you that will not ever forget that but
+
+it's kind of hoping James is gonna answer that one.
+
+Ciao traumatize
+
+the city to get
+
+everything imported. All right.
+
+So, we also need what
+
+have the reservation but what else do we have? We've got everything See fair?
+
+Yeah. I variable
+
+and name, ID and let's put it in a variable and space ID.
+
+Alright, so now we need to call the
+
+reservation do
+
+reservation do make reservation returns an int. I'm going to make an assumption. Assume that that's the reservation ID. Yes. Okay, good. Good. And so we'll get right back his reservation servation ID equals Oh, we need to do. So what is it reservation Make a private reservation do capital
+
+I'll use the auto wires you have an example of both. I personally like the auto wired a lot of people like the constructor either ones fine because that's really easy. Now I have a full do to work with not do anything else. I should call this reservation do though.
+
+So reservation do
+
+make reservation. We have our space ID from here. And then our reservation object.
+
+We need what was the get start date.
+
+number of days is going to be
+
+its reservation object
+
+Get number of days.
+
+Now we're going to do attending.
+
+So for those of you that had the same thing, because there's several people that got the comment from you during the review, that you should have just pass the reservation object to this method match how easy this would have been.
+
+If the theory took that
+
+it's for the same reason, it's because
+
+we split it out if we already have it, something that holds it together. Alright, so now we're going to have to set on our reservation before return it.
+
+It doesn't have the space ID because we're going to get that from the
+
+path parameters. Let's put it there. So to return to the object, and now we'll need to set that
+
+reservation ID
+
+In our return reservation
+
+All right, we should be able to give it a try now
+
+and see what happens.
+
+So this is our path. So we need to find a space valid space ID. Actually, they're all just
+
+like, there's a bunch of numbers starting at one, right?
+
+Yeah, it's like one through 50 something.
+
+Yeah. So if we just, let's make another request for this.
+
+No, I forgot that localhost. Grab that. Remember here.
+
+This is going to be a post. We'll just put it on space one that'll be easy. reservations. We need a post body. So it's going to be raw. And it's going to be JSON. And now we need JSON. So let's go to the reservation object. And what we are expecting to be populated as the number of attendees start date number of days and reserved for.
+
+So we build a test enough test object.
+
+We can build that like this.
+
+We want number of attendees
+
+and that's going to be quotes. And then it's going to be something we'll come back to it comma delimited start date.
+
+We'll come back to the data number of days
+
+or days, we'll go back to the data how many reserved for
+
+the reserved for we have a name, so maybe this test and number of days, make it to number of attendees is pretty easy. To start date, we'll use standard, the standard date format for is usually two year,
+
+dash, month. So we'll put 702
+
+and we'll see what happens when we send that. So now we need the header, content type application, Jason, Postgres adds up for us. So we can send it and see what happens.
+
+When did you do the space? Id
+
+should be at 80.
+
+Oh, thank you. I copied the wrong request.
+
+wrong address. Thank you. Alright.
+
+So we're here in we got a reservation ID
+
+which means it had to go to the database and work So, we have a reservation made, but it's returning a 200. I wanted to return a two a one. It's an it's an add. How could I do that?
+
+request response? Oh, does?
+
+Yeah, it's Yeah. So um, request that response status.
+
+It's in as we should do. Station controller.
+
+Response status dot
+
+and HTTP status dot.
+
+And I want to have one so it's created.
+
+And that's a small change, but by doing this, send the same thing when a lot of reservations in the same name. That's okay. I still got it. Maybe I hadn't
+
+forgot to save it.
+
+We got to complete
+
+Now we got the 201. And next reservation ID. So we have to complete the rest of these before we add it to the client. But they're both just simple gifts. So these should be pretty simple to do. Because both of them are just an ID and just a single call for an object. So should be able to say request mapping and we already know the request mapping for both. So path is going to equal we said we want this one to be reservation ID.
+
+And this becomes ID.
+
+And if it equals request, method dot get and public, so be getting reservation so it's going to return a reservation kept reserved
+
+certification.
+
+And we need that PATH variable.
+
+Name. Actually, I'll leave it just as an ID. So you have an example of that. And it's going to return from our reservation to get reservation ID and pass it the ID.
+
+We should be done. And now one more
+
+request mapping for this URL. And we are going to test this. I'm just doing them both at once for and once we know that, we'll just change out where it says ID to ID to the Java syntax. And it's also a get if you find as you're writing API's, that You're writing a lot of gifts, it's because you are most of your requests will be gets unless your method. So begets it's not uncommon to have several, or even a lot of gifts with one or two posts or posts or delete. That's really common. So public, this is going to turn a list of reservations. We know that because that's what we're calling here.
+
+I'm already already committed to this, typing it out
+
+and call it get reservations.
+
+For venue.
+
+And again, we need the PATH variable, but this time
+
+it's going to be an ENT. It's going to be the venue ID. Last time it was the reservation ID
+
+and reservation do
+
+get reservation for next 30 days and we'll pass it already done. That
+
+So let's test these real quick.
+
+So that's coming. I'll grab this URL, create another request. Put it in, and we want to see. venues. That's ovations. Let's see. I don't know if anyone has reservations or does good. Oh, good. Oh, we've been making other reservations have a new one that works out well. And now the other one was what reservations. Let's look at reservation one or nine. Actually, let's look at one of the old ones. If there's a 109 there must be a one a weight right? Or 1008.
+
+maybe find out I
+
+don't know it's not venues
+
+there this Okay.
+
+So now we need about bring this into the client.
+
+So we have the reservations done as controller.
+
+So one thing we're missing What am I missing with all these? What am I not doing that you should be doing?
+
+actions?
+
+Yeah, I'm not, I'm not doing all the air handling, I should be. And that's not good. But I was more excited by showing you the swapping out the pieces than the are handling. So
+
+it you know, you see it's already 1220 and we're
+
+all much more to go.
+
+So, say that, I may have done a lot of refactoring. And now my stuff prints out and in the menu, and so my menu calls the space do and all those. Would this work if I also did this,
+
+if that. So, when you refactor if you succeed If you refactor the way the reason I chose your project, then it's not gonna work. But if the only place you can cheat, the deals are still right here.
+
+Then it'll just work.
+
+Okay, yeah, it doesn't. But that's that's fine.
+
+But if I like changed the same thing that you changed in this csli in the menu, then would it work? Yeah.
+
+Or even, it would even better yet. So it creates the menu right here.
+
+If you need like the venue, do and your menu, then pass because you can pass it in.
+
+Oh, that's sick. Okay, cool.
+
+And then and then it'll work. So the Yeah, but if you just to do that, change it to work to.
+
+Okay, that's sick.
+
+Alright, so we need to create something to call the API's. That's what the class So now we're working in the client. This is this completely separate from where we're at. This is where we're going to communicate with URLs. So, we're going to go to the API. I'm going to create a new class here. And reservations. So API reservation do
+
+and here,
+
+we're going to start
+
+it's gonna be like our venue.
+
+So we'll just copy this. That's gonna be the same.
+
+It's gonna implement implements reservation.
+
+reservation do
+
+and These are capital. And we need to change this name out. But
+
+it's important that and now we need
+
+to implement the method, import it first.
+
+And then all the methods.
+
+And we know that one of them, this one doesn't, isn't used because it doesn't do anything in the other ones. But we need to have calls to the API's for all these the first ones the big one. That's the ad. So for this one, it takes in their code takes in the art, these arguments, we need a reservation object.
+
+So let's create one.
+
+We create a reservation, object new reservation equals new reservation and we just set all the pieces to it.
+
+So new resume
+
+Set start date is what we need. It's one of them. We need it to be a local date, but it already is. That's what's being sent to. And reservation set number of days. I'm excuse me, new reservation set. The reason we're doing this is because this is the object that's going to serialize into our JSON. We don't have to do anything to make that happen. It's just it's going to happen for us from the JDBC template. reserve for Okay, that should be everything. All right. So what's different about a post What do we have to have for the post?
+
+In our client side
+
+remember The
+
+we have to handle inset for post, put and delete.
+
+So we didn't need him to Yes. But remember here, we created our post.
+
+We had to set content type header.
+
+We have to do that in Java two, we have to set the content type application JSON. So we do HTTP headers, headers equals New to create a headers object. And then on our headers, we import it so we can tell us work. headers, we can choose the headers to set them Content Type. And you see it takes a media type. So that's a media type dot application. json should be someplace, there it is. That's going to set the header. And now we have to create this exact same entity. In the entity, we have to define what type of object we're sending. So reservation
+
+and let's call this the request
+
+equals new HTTP entity of type reservation. And we're going to pass it two things. What two things do we need to pass the entity?
+
+What is the entity represent?
+
+Attention, how to pass it the header. We do and what else
+
+we get right reservation.
+
+Yes, that's exactly what it represents the message body and the header. So that means we have to pass it the message body in the header. And we do that in the message body first, which is our new reservation object. The object is going to become the message body, and then the header.
+
+Alright, and now
+
+we're ready to do we need our URL.
+
+So our URLs out here,
+
+let's just go grab that. We already have the base URL, so we don't need that actually describe the one.
+
+So let's build a URL equals
+
+and now we just replaced the parts. This first part here is the base URL. So base URL that we're passing in, that we need spaces. This is the space ID, a space ID, that they're going to be passing and then reservations. Now, we're going to get back a reservation object. So let's just put it back into new reservation, which is the same, the same reference, or the same variable.
+
+So on our rest template,
+
+what method did we call for a post?
+
+was for object. Yes, we call post for object.
+
+And it's going to take our URL request. And we're getting back a reservation object. So it works the same way we have to put that HTTP entity request object in it with the header in the request body. So reservation class class
+
+and then
+
+we'll return the new reservation should now Have the get reservation ID that comes back.
+
+So posted, putting the leader pretty much the same.
+
+But only delete, you don't have to send the reservation class and you call put or delete instead of posts for object. But you start to build the headers the same. Right? So, questions on anything we did there before we build these last two gets and then test it out. All right. So these two we need to have these in place before we can try it because we can we can have one or the other do not both.
+
+Excuse me, I'm sorry.
+
+But these are really simple. Those are what we've already done in the other class. This one, forget reservation by ID Excuse me,
+
+but it's called rest
+
+as template dot get for object. And our URL is going to be our base URL. So it's going to be this
+
+reservations URL right here.
+
+So it's gonna be that plus
+
+reservations slash data slash there the beginning to
+
+plus the reservation ID.
+
+From here, and then the response type is the reservation object class.
+
+So we have that.
+
+And then here if this last one is going to get a list of reservations, so we know we can do rest template
+
+dot
+
+get for object.
+
+And that's
+
+the one that was a little different. That was the we still have it here. It was venues right? Some of those venues, one, reservations like that,
+
+sorry, URL to the right.
+
+Let's grab that.
+
+And again, it's going to start with
+
+our
+
+base URL, plus all of that. But that needs to be the venue ID. So that one is a venue ID. So plus, venue ID, the response type plus is going to be list or array of reservations. So reservation dot array, dot class, and we want to return it. So we can't return it as an array. So we'll say arrays.as list.
+
+And that should
+
+get our list or list back in turn into array and return it.
+
+So let's see if it works.
+
+So now the reservation in the venue are going to be coming from the API, the spate anything about the space will be coming from Postgres directly against the JDBC class. And to make that happen, we'll just come here and for the JDBC class, change it to
+
+reservation or do equals new API reservation do
+
+and pass it our base URL and set of data source
+
+and import this and I misspelled something called as copy.
+
+All right, we should be able to try it now.
+
+So we must have been you
+
+must pick, no. Then you four.
+
+We can look for reservations and just video. There are none. So let's go back and pick another we know there's reservations at one so let's make sure they're working. So see reservation to this venue three.
+
+I'm doing something wrong, I think but I'm sorry.
+
+Yeah, that that has worked. So I don't know what's going on.
+
+I'm not gonna worry about that right now.
+
+The list doesn't align with the venue IDs.
+
+Oh, okay. That might be where I was. Okay.
+
+But anyways, what we're worried about is the add the other stuffs just simple gets. So let's add, let's search for available spaces. And when do you need to space? What did you remember what date format used?
+
+Yeah, month, day, year,
+
+month, day year, so if you do seven, like this? Yep. Nope. Sure.
+
+Switch reservation.
+
+My gosh a year maybe.
+
+So your formatters using?
+
+Yeah, yeah, sorry. That's okay.
+
+It's been
+
+a week,
+
+week and a half
+
+over my code from yesterday so I'm
+
+Alright, so let's the video. Let's choose
+
+number three.
+
+And
+
+oh, they're working. They're showing all their reservations. But that's another Oh, we were wrong. Wrong venue. Okay. So now let's search for available spaces. So we need to space and that was month, seven, day, five year okay, how many days we'll say two days. Many people in attendance to There's so now we should be able to reserve
+
+the reserve first one.
+
+And now's the
+
+space test.
+
+And it worked. So we got our, we went through our API, and we got back
+
+a reservation ID.
+
+So, again, we didn't change anything and
+
+team threes code. Green, I believe 400 was responsible for the other half of the code.
+
+Their code just works.
+
+So and then, in this case, space is still going to do a JDBC class, which is an interesting way to leave it. So I'll leave it like that. And because it's 1236 All right.
+
+So the question Sir, more questions for
+
+you again. I'm sorry.
+
+I'm sorry, I missed what you said.
+
+It's a lot of information. I just feel like
+
+I just need to go through it again. Okay.
+
+Yep, it is.
+
+I'm sorry to ask, Is there any way that you can make this available for everyone?
+
+Oh, that's an example.
+
+Oh, it's in the lecture codes today. Okay, cool. Okay, there's, I'm sorry, I forgot to say that I forget to say at the beginning of the lecture, it's in a folder xx review, review on this projects and there's actually a it's my copy and a copy for you as well. So since I didn't tell tell you that and nobody was following along, then that actually brings up something interesting. You can take the copy the copy for you, I'll push my copy. And if you want to switch out their classes, to your classes from your capstones, you can just go to your capstone project and start there because you have to have the spring stuff in place. That's project related stuff. They're not your code. So you can drag and drop your JDBC classes, your car, your menu into these projects, and get rid of team threes and do the same thing with your Capstone. So I guess that worked out.
+
+Thank you. So hey,
+
+Brian, quick question. So I have to like catch there are the date not entered correctly? Yes. And I don't know. should it have thrown that air if that was there, should there be another catch?
+
+The parts there, yeah, they got the here.
+
+And that's where it failed.
+
+date format, but it works when it was formatted. I did.
+
+Interesting.
+
+Cuz I was like, Did I do a try catch for that? I was like, I feel like we did that
+
+way that error message.
+
+Is it because of the wild gate equals no and one state was no longer now, after you said it
+
+this time should have thrown the format exception, which should have went to through a different exception besides date time parse exception.
+
+Yeah, that's what I was wondering.
+
+format or exception. Yeah, I think it was a null pointer.
+
+So that came from here, because they just failed. So I bet this slide without format or through like a format exception or something like that. Gotcha. That'd be my guess. Because it and then it so you're, you had a proper catch. He just didn't catch that particular case that I created for it. Catch up. Okay, it'd be my that actually the only way that could happen because otherwise photo but a date time parse exception, because this definitely didn't work. Then. And this was no, because that's what caused the null pointer exception here. So yeah, that's, or something else that could have happened, actually, this may have been here. And not to bring up the menu thing again, because there's model because there's system outs all over the place, that it may need to been flushed here before it could print. So it actually may have printed blank and displayed in the stream and then threw the exception before it printed. Which is another reason for keep them isolated so that you can control that,
+
+which I felt very bad about that. So I went back and did.
+
+I will say, I think there was one, two teams since you've done a public this time that had that that didn't have that problem. So by by talking about that with your code, just about everybody on this call is thinking, yeah, that's, that goes for my card too. So
+
+but alright.
+
+So Other
+
+questions?
+
+All right. So a couple
+
+the guy got here.
+
+So in the lecture code I forgot to tell you about. Let's look in there real quick because there's something else in there too.
+
+That's four after today, but now you have two options.
+
+What's inside this xx review day, meaning it's outside of the regular curriculum material? There is. So lecture final and student lecture is what we just looked at
+
+lecture files where I'm going to push all that code
+
+in There's also this project.
+
+So there's ended up being two copies of it. There's projects an empty spring client application and an empty server. There's nothing in it. I think it has it has like I put a JDBC class has no code. And when I say they have no code, I mean, if we look at
+
+like the controller,
+
+every one of the classes in here are,
+
+where to go there. They look like this. There's empty. Just, I put classes there inside of the placeholder text because and it has, if you remember that address book we wrote back in Module Two.
+
+It's here
+
+in this database file, SQL file, the address book that also inserts some entries. So the final one that we use then on God. So, this is not required, though, I would strongly encourage you to try it and do it. There's no directions. So, I would suggest you take this project, since there's no
+
+essence, the last exercise that
+
+you had should be already turned in, right?
+
+Since you're out of things to do into Monday, and that's, that's, uh, wow.
+
+Take this project, and
+
+build an API for that address book and then the client to use it. Without directions. That's what you're, you know, basically remember doing your Capstone right you build you make the requirements, you decide how it's going to work. You have a database to start with, decide what controllers you need what JD You see classes you need, sadly, kind of stuff you're gonna do for the capstone, right? Do something full, full stack. So I would encourage you to do that. So that gives you a place to work where you have the client, the spring stuff all set up, it has the database setups, you can just inject the JDBC template. It even has the data source stuff set up. So you can just inject the template not have to worry about all that. So you can just focus on the code. So it's basically like a capstone style project, just with no directions, the requirements if you want to start practicing, it's also a great practice for this guy to build an API. You know, you don't have to build the client, then you can just use postman to test it. If you want to build a client. Go. Go ahead. If you some of the few people that are familiar with web development. Know then are those some JavaScript I've talked to a few of your Python, build your client those languages don't want to use Java, but your server in Java, then call it from another language. Go use this database and then find some geoip API on the web and call it and get information, or insert random facts into it using an API on the web. So just do something with with API's. And you could do it together. You could do it as a mob. That means a bunch of people pair programming at once. So instead of two people working together, it's you know, four people or eight people or three people, whatever number is working at once on one project. Or you can you do it by yourself. So or you can just not you can choose not to do it too, but I encourage you not to choose that option. Two days with no work is not that yeah, that's no good. So that's, that's what you have to work with that's in there to work with it and then now you have the other one, that in student lecture that you could take Can you do the same thing with your Capstone? If you have that intrigues, you're more said none of us required. So I would love to see what you do with it. But
+
+if you don't do anything with it, that's
+
+when I do have a question like, so if you are doing a side project that has a database and like, at what point do you decide that you should make an API for it? Is it just good practice to go ahead and make one
+
+or if you're, if you're building a side project and your side project is a webpage,
+
+then yes, you should have an API. Because that stuff is going to change a lot. If your side project is a desktop application, or a CLR application, then that may be overkill. If your side project, you're building it as a csli. Because you're thinking, you know, in the future, I want to change this to one web application. And I just don't know how to do that yet. Then you definitely should have an API GPIO allow you to change off the interface where the other way won't.
+
+Okay, I see. All right, thank you
+
+for the address book thing, like, what if we wanted to, like create another table? Like, are we able to just create another table and that's equal?
+
+Yeah, it's yours. Yeah, do anything you want with it.
+
+Change the tables, go put different data in. manipulate it any way you like, I just, I mainly want to give you a project where you didn't have to worry about creating a database, unless you want to, you don't have to use address book, change it to something else. But where you could write the API's stuff with all the spring stuff set up all the configuration done. So they basically look at them as empty projects to do something. The practice for what you'd be doing on the capstone next week, might have any problems you could solve in a stress free way over the weekend, just by trying to get a simple API to flow through to a CI
+
+Rather than a bunch of requirements.
+
+So last couple things, not just announcements. Let me go ahead
+
+Transcribed by https://otter.ai

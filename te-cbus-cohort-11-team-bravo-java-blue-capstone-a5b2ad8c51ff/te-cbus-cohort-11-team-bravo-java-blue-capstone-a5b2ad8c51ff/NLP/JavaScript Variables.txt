@@ -1,0 +1,98 @@
+Book
+https://book.techelevator.com/content/variables-and-datatypes-javascript.html#variables
+
+You'll already be very familiar with variables from your work in Java or C#, so some of the following may feel repetitious, but a brief refresher doesn't hurt, and there are differences that are unique to JavaScript.
+
+Fundamentally, a variable is a named location in memory that contains a value that's important to your program.
+
+It might help to think of a memory location as a box with a label. On the label is the name of the variable. Inside the box is the value. In order for an instruction to access the data, you give it the name on the label of the box.
+
+For example, and as you'll learn shortly, the code below creates a variable named firstName, and sets its value to 'Bernice', which is stored in the labeled box in memory. The code then displays the value to the screen, or console, by referring to the name on the label of the box where it's stored.
+
+
+Image - A variable is a box
+To be clear, the reason variables are called "variables" is because their values can vary. The following code sets the value of firstName to 'Larry', and then displays the new value once again on the console.
+
+
+Image - The box has a new value
+Only the value inside the box has changed, not the name on the label. For the most part, you don't need to worry about the details such as where the box is in memory, or how the values are put into or retrieved from the box. JavaScript takes care of that for you.
+
+#Variable names
+Programming languages tend to be very particular when it comes to naming things, and JavaScript is no exception. There are certain rules that you must follow to satisfy JavaScript when naming variables.
+
+#Naming rules for JavaScript variables
+Variable names are comprised of letters A-Z, a-z, characters _, $, and digits 0-9.
+Variable names must start with a letter, _, or $.
+Variable names are case-sensitive.
+Variable names may be not be a reserved keyword.
+The following are considered best practice in JavaScript.
+
+Use camelCase for multi-word variable names.
+Use uppercase for constants and separate words with an underscore, _.
+Boolean variable should begin with is.
+#Good/valid variable names
+Name	Reason
+result	Simple, single word
+firstName	Appropriate use of camelCase
+isComplete	isComplete is a boolean, so it follows boolean naming conventions
+PI	Pi is a universal constant; uses all uppercase letters
+number_of_monkeys	Valid, but not great; doesn't follow camelCase best practice
+__grandTotal__	Special characters can help make names unique
+#Not good/invalid variable names
+Name	Reason
+q	"Q" is only a name on Star Trek, or in James Bond movies; prefer names over a single character
+case	Invalid; case is a reserved word in JavaScript
+2many	Invalid; names may not begin with a digit
+BuildingBlock	Doesn't follow the camelCase best practice
+notExcludedCharacters	Double negatives hurt to read and understand; perhaps includedCharacters is a better name
+helpMe!	Invalid; _ and $ are the only special characters allowed in names
+In addition to the general suggestions listed above, there are many published programming style guides available on the Internet. They typically have suggestions on many other topics, from how to lay out your code, to what format you should use for documenting what the program does.
+
+#Declaring variables
+Now that you know how to name your variables, you can create some. To create a variable, you need to declare it.
+
+There are two ways to declare a variable in JavaScript. In either case, the basic form is the reserved words, let, or const, a variable name, and a semi-colon, ;.
+
+var considered harmful
+
+Under previous versions of JavaScript, programmers routinely used the var reserved word to declare variables. This reserved word, and an even earlier method of declaring a variable by simply assigning a value to it, are still available in the language to run older, legacy code, but neither should be used in new code. Stick with let and const as discussed below.
+
+#Using let
+You use let when you know the value of the variable needs to be changeable. The basic form is:
+
+let myChangeableValueVariableName;
+Look at the "box" images at the beginning of the chapter. The firstName variable is declared with let because the variable's value changes from 'Bernice' in the first image, to 'Larry' in the second:
+
+let firstName = 'Bernice';
+Additionally, note the variation to the basic form of the let declaration in this example. While you're only required to use let followed by a variable name, you may "assign" a value to any variable while you're declaring it.
+
+The value 'Bernice' is assigned to the firstName variable using the assignment operator, =. Additional operators are covered later in this chapter, but for now, all you need to understand is that the value to the right of the = operator is assigned to the variable on the left. That's all there is to assignment. The value on the right is assigned to the variable on the left.
+
+There's one more way to declare a variable using let. Occasionally, you'll need to delay assigning a value to a variable until after it's been declared:
+
+let firstName;
+
+// ...additional JavaScript code...
+
+firstName = 'Bernice';
+The firstName variable is declared, and several lines later, has 'Bernice' assigned to it. The assignment operator = works exactly same way here as is described above. Once again, the value on the right, 'Bernice' is assigned to the variable, firstName on the left.
+
+JavaScript comments
+
+You probably noticed the // ...additional Javascript code... line sandwiched between the variable declaration and the assignment in the last code example. This is "line" comment in JavaScript. It behaves the same way as line comments in Java and C#.
+
+JavaScript also supports "block" comments /* */ like Java and C#.
+
+#Using const
+The reserved word const—short for "constant"—is the alternative to let. You use const when the value to the variable must not be changed once it's been assigned the first time. While this may seem contrary to the nature of variables, there are many times when the values must never change.
+
+Look at this code:
+
+const PI = 3.14159;
+Unlike let where assignment isn't required when the variable is declared, const insists on it. JavaScript raises an error if you attempt to declare a const and don't assign a value at the same time.
+
+const preferred over let
+
+An additional twist to the idea of constant variables with their unvarying values is that const is the preferred way to declare all variables. const makes variables immutable, so you know that no matter where you see the variable in code, the value can't have changed after it was originally assigned.
+
+Since the value can't be modified by assignment elsewhere, the code becomes more readable and easier to understand. You should only use let when you know the variable's value must be changeable—for instance, when the variable serves as a count of something, or a total sum. Otherwise, default to using const when declaring a variable. You can always change it to a let if needed.
